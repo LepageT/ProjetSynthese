@@ -7,10 +7,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Stagio.Domain.Entities
 {
-    class Student : Entity
+    public class Student : Entity
     {
-        public int Id { get; set; }
-
         public string Matricule { get; set; }
 
         public string LastName { get; set; }

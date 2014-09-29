@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Stagio.Domain.Entities;
 
 namespace Stagio.Web.Mappers
 {
@@ -10,8 +11,10 @@ namespace Stagio.Web.Mappers
         }
 
         protected override void Configure()
-        {        
-       
+        {
+            Mapper.CreateMap<Student, ViewModels.Student.Edit>();
+
+
         }
     }
 }

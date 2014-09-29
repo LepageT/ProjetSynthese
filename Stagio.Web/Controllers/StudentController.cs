@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using Stagio.DataLayer;
 using Stagio.Domain.Entities;
 
@@ -63,24 +64,43 @@ namespace Stagio.Web.Controllers
 
             if (student != null)
             {
-                //var studentEditPageViewModel = Mapper.Map<ViewModels.Student.Edit>(restaurant);
+                var studentEditPageViewModel = Mapper.Map<ViewModels.Student.Edit>(student);
 
-                return View();
+                return View(studentEditPageViewModel);
             }
             return HttpNotFound();
         }
 
         // POST: Student/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(ViewModels.Student.Edit editStudentViewModel)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
+                try
+                {
+                    var student = _studentRepository.GetById(editStudentViewModel.Id);
 
-                return RedirectToAction("Index");
+                    if (student == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    else
+                    {
+                        student.Telephone = editStudentViewModel.Telephone;
+                        student.Password = editStudentViewModel.Password;
+                        _studentRepository.Update(student);
+
+                        return RedirectToAction("Index");
+                    }
+
+                }
+                catch
+                {
+                    return View();
+                }
             }
-            catch
+            else
             {
                 return View();
             }
