@@ -10,5 +10,8 @@ namespace Stagio.DataLayer
             base.OnModelCreating(modelBuilder);
         }
 
+        public System.Data.Entity.DbSet<Stagio.Web.ViewModels.Student.Edit> Edits { get; set; }
+
+
     }
 }

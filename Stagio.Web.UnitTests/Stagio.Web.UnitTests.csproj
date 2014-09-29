@@ -68,13 +68,17 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="Student\UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Stagio.Domain\Stagio.Domain.csproj">
+      <Project>{976fe607-b2b5-412f-98b1-b8106d6b610c}</Project>
+      <Name>Stagio.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Stagio.TestUtilities\Stagio.TestUtilities.csproj">
       <Project>{9999bd96-9ae9-4332-9205-86e60ac4ca88}</Project>
       <Name>Stagio.TestUtilities</Name>
