@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Stagio.Web.Controllers;
 
 namespace Stagio.Web.UnitTests
 {
@@ -9,6 +10,7 @@ namespace Stagio.Web.UnitTests
         [TestMethod]
         public void TestMethod1()
         {
+          
         }
     }
 }

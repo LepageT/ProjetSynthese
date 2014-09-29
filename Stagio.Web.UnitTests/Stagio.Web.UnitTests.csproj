@@ -63,6 +63,10 @@
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Mvc, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Stagio.Web\bin\System.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
@@ -78,6 +82,10 @@
     <ProjectReference Include="..\Stagio.TestUtilities\Stagio.TestUtilities.csproj">
       <Project>{9999bd96-9ae9-4332-9205-86e60ac4ca88}</Project>
       <Name>Stagio.TestUtilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Stagio.Web\Stagio.Web.csproj">
+      <Project>{F69EB36E-05C6-4680-B6F7-EAF3CA9FA150}</Project>
+      <Name>Stagio.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
