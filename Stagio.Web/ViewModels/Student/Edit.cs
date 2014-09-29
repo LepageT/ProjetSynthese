@@ -11,7 +11,7 @@ namespace Stagio.Web.ViewModels.Student
         public int Id { get; set; }
 
         [DisplayName("Matricule")]
-        public string Matricule { get; set; }
+        public int Matricule { get; set; }
 
         [DisplayName("Nom")]
         public string LastName { get; set; }
@@ -21,7 +21,7 @@ namespace Stagio.Web.ViewModels.Student
 
         [DisplayName("Téléphone")]
         [Required(ErrorMessage = "Requis")]
-        public string Telephone { get; set; }
+        public int Telephone { get; set; }
 
         [DisplayName("Mot de passe")]
         [Required(ErrorMessage = "Requis")]

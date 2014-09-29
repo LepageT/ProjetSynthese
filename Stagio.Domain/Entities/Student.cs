@@ -9,15 +9,16 @@ namespace Stagio.Domain.Entities
 {
     public class Student : Entity
     {
-        public string Matricule { get; set; }
+        [MaxLength(7)]
+        public int Matricule { get; set; }
 
         public string LastName { get; set; }
 
         public string FirstName { get; set; }
 
         [Required]
-        [StringLength(10)]
-        public string Telephone { get; set; }
+        [MaxLength(10)]
+        public int Telephone { get; set; }
 
         [Required]
         [StringLength(8)]

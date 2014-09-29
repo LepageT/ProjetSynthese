@@ -11,45 +11,13 @@ namespace Stagio.Web.Controllers
 {
     public partial class CIController : Controller
     {
-        private IDatabaseHelper _dbInit;
+        private StagioDbContext _studentDbContext;
 
-        public CIController(IDatabaseHelper dbInit)
+        public CIController()
         {
-            _dbInit = dbInit;
+            _studentDbContext = new StagioDbContext();
         }
 
-        public virtual ActionResult Index()
-        {
-            try
-            {
-                DeleteDb();
-                SeedDb();
-            }
-            catch (Exception ex)
-            {
-                return Content(ex.Message);
-            }
-            return Content("Le contenu de la BD a été remplie avec les données de tests </Br> <a href=\"\\\" id='go_home'>E.T téléphone maison</a> ");
-        }
-
-        public virtual ActionResult ClearDB()
-        {
-            try
-            {
-                DeleteDb();
-            }
-            catch (Exception ex)
-            {
-                return Content(ex.Message);
-            }
-            return Content("Le contenu de la BD a été effacée.</Br> <a href=\"\\\" id='go_home'>E.T téléphone maison</a> ");
-        }
-
-        private void DeleteDb()
-        {
-            SqlConnection.ClearAllPools();
-            _dbInit.DeleteAll();
-        }
 
         private void SeedDb()
         {
@@ -57,22 +25,29 @@ namespace Stagio.Web.Controllers
             {
                 new Student()
                 {
+                    Id = 1,
                     FirstName = "Quentin",
-                    LastName = "Tarantino"
-
+                    LastName = "Tarantino",
+                    Telephone = 1234567890,
+                    Matricule = 1234567,
+                    Password = "qwerty12"
                 },
                 new Student()
                 {
-                    
+                    Id = 2,
+                    FirstName = "Christopher",
+                    LastName = "Nolan",
+                    Telephone = 1234567890,
+                    Matricule = 1234560,
+                    Password = "qwerty98"
                 }
             };
-            /*foreach (var todoItem in studentoItems)
+            foreach (var studentItem in studentItems)
             {
-                context.TodoItems.Add(todoItem);
+                _studentDbContext.Students.Add(studentItem);
             }
-            context.SaveChanges();*/
-            /*var testData = new DataBaseTestHelper();
-            testData.SeedTables();*/
+            _studentDbContext.SaveChanges();
+
         }
     }
 }
