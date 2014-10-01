@@ -76,35 +76,23 @@ namespace Stagio.Web.Controllers
         [HttpPost]
         public virtual ActionResult Edit(ViewModels.Student.Edit editStudentViewModel)
         {
-            if (ModelState.IsValid)
+            var student = _studentRepository.GetById(editStudentViewModel.Id);
+            if (student == null)
             {
-                try
-                {
-                    var student = _studentRepository.GetById(editStudentViewModel.Id);
-
-                    if (student == null)
-                    {
-                        return HttpNotFound();
-                    }
-                    else
-                    {
-                        student.Telephone = editStudentViewModel.Telephone;
-                        student.Password = editStudentViewModel.Password;
-                        _studentRepository.Update(student);
-
-                        return RedirectToAction(MVC.Home.Index());
-                    }
-
-                }
-                catch
-                {
-                    return View();
-                }
+                return HttpNotFound();
             }
-            else
+
+            if (!ModelState.IsValid)
             {
-                return View();
+                return View(editStudentViewModel);
             }
+
+            Mapper.Map(editStudentViewModel, student);
+
+            _studentRepository.Update(student);
+
+            return RedirectToAction(MVC.Home.Index());
+
         }
 
         // GET: Student/Delete/5

@@ -5,7 +5,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4 id="edit-page">Edit</h4>
+        <h4 id="edit-page">Modifier mon profil</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
@@ -13,24 +13,24 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Matricule, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Matricule, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Matricule, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Matricule)
+                @Html.DisplayFor(model => model.Matricule)
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.LastName)
+                @Html.DisplayFor(model => model.LastName)
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.FirstName)
+                @Html.DisplayFor(model => model.FirstName)
             </div>
         </div>
 
@@ -41,24 +41,40 @@
                 @Html.ValidationMessageFor(model => model.Telephone, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        
         <div class="form-group">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.OldPassword, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="password"
-                       @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                       @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })>
+                @Html.EditorFor(model => model.OldPassword, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OldPassword, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.PasswordConfirmation, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PasswordConfirmation, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PasswordConfirmation, "", new { @class = "text-danger" })
+            </div>
+        </div>
+      
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" id="edit-button" value="Save" class="btn btn-default" />
+                <input type="submit" id="edit-button" value="Sauvegarder" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Retour à l'accueil", MVC.Home.Index())
 </div>

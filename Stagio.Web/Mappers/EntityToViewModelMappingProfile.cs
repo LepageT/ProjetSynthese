@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Ninject.Infrastructure.Language;
 using Stagio.Domain.Entities;
 
 namespace Stagio.Web.Mappers
@@ -12,8 +13,9 @@ namespace Stagio.Web.Mappers
 
         protected override void Configure()
         {
-            Mapper.CreateMap<Student, ViewModels.Student.Edit>();
-
+            Mapper.CreateMap<Student, ViewModels.Student.Edit>()
+                .ForMember(dest => dest.PasswordConfirmation, opt => opt.Ignore())
+                .ForMember(dest => dest.OldPassword, opt => opt.Ignore());
 
         }
     }
