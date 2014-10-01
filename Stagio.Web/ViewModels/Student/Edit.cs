@@ -21,7 +21,7 @@ namespace Stagio.Web.ViewModels.Student
 
         [DisplayName("Téléphone")]
         [Required(ErrorMessage = "Requis")]
-        public int Telephone { get; set; }
+        public string Telephone { get; set; }
 
         [DisplayName("Mot de passe")]
         [Required(ErrorMessage = "Requis")]

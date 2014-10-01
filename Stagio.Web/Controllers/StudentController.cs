@@ -9,13 +9,14 @@ using Stagio.Domain.Entities;
 
 namespace Stagio.Web.Controllers
 {
-    public class StudentController : Controller
+    public partial class StudentController : Controller
     {
         private readonly IEntityRepository<Student> _studentRepository;
 
-        public StudentController()
+        /*public StudentController()
         {
-        }
+
+        }*/
 
         public StudentController(IEntityRepository<Student> studentRepository)
         {
@@ -24,26 +25,26 @@ namespace Stagio.Web.Controllers
 
 
         // GET: Student
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             return View();
         }
 
         // GET: Student/Details/5
-        public ActionResult Details(int id)
+        public virtual ActionResult Details(int id)
         {
             return View();
         }
 
         // GET: Student/Create
-        public ActionResult Create()
+        public virtual ActionResult Create()
         {
             return View();
         }
 
         // POST: Student/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public virtual ActionResult Create(FormCollection collection)
         {
             try
             {
@@ -58,9 +59,9 @@ namespace Stagio.Web.Controllers
         }
 
         // GET: Student/Edit/5
-        public ActionResult Edit(int studentId)
+        public virtual ActionResult Edit(int id)
         {
-            var student = _studentRepository.GetById(studentId);
+            var student = _studentRepository.GetById(id);
 
             if (student != null)
             {
@@ -73,7 +74,7 @@ namespace Stagio.Web.Controllers
 
         // POST: Student/Edit/5
         [HttpPost]
-        public ActionResult Edit(ViewModels.Student.Edit editStudentViewModel)
+        public virtual ActionResult Edit(ViewModels.Student.Edit editStudentViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +92,7 @@ namespace Stagio.Web.Controllers
                         student.Password = editStudentViewModel.Password;
                         _studentRepository.Update(student);
 
-                        return RedirectToAction("Index");
+                        return RedirectToAction(MVC.Home.Index());
                     }
 
                 }
@@ -107,14 +108,14 @@ namespace Stagio.Web.Controllers
         }
 
         // GET: Student/Delete/5
-        public ActionResult Delete(int id)
+        public virtual ActionResult Delete(int id)
         {
             return View();
         }
 
         // POST: Student/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public virtual ActionResult Delete(int id, FormCollection collection)
         {
             try
             {

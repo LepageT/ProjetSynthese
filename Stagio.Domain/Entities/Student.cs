@@ -9,7 +9,7 @@ namespace Stagio.Domain.Entities
 {
     public class Student : Entity
     {
-        [MaxLength(7)]
+        [Range(1000000, 1999999)]
         public int Matricule { get; set; }
 
         public string LastName { get; set; }
@@ -17,8 +17,8 @@ namespace Stagio.Domain.Entities
         public string FirstName { get; set; }
 
         [Required]
-        [MaxLength(10)]
-        public int Telephone { get; set; }
+        [MaxLength(12)]
+        public string Telephone { get; set; }
 
         [Required]
         [StringLength(8)]
