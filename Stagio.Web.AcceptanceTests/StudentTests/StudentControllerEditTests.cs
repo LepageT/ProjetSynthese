@@ -29,10 +29,13 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         public void edit_should_update_item_if_id_is_valid()
         {
             const string NEW_TELEPHONE = "444-444-4444";
+            const string OLD_PASSWORD = "qwerty12";
             const string NEW_PASSWORD = "asdfgh12";
             _driver.Navigate().GoToUrl("http://stagio.local/Student/Edit?id=1");
             _driver.FindElement(By.Id("Telephone")).Clear();
             _driver.FindElement(By.Id("Telephone")).SendKeys(NEW_TELEPHONE);
+            _driver.FindElement(By.Id("OldPassword")).Clear();
+            _driver.FindElement(By.Id("OldPassword")).SendKeys(OLD_PASSWORD);
             _driver.FindElement(By.Id("Password")).Clear();
             _driver.FindElement(By.Id("Password")).SendKeys(NEW_PASSWORD);
             _driver.FindElement(By.Id("PasswordConfirmation")).Clear();
@@ -47,10 +50,13 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         public void edit_should_redirect_to_index_if_updated()
         {
             const string NEW_TELEPHONE = "444-444-4444";
+            const string OLD_PASSWORD = "qwerty12";
             const string NEW_PASSWORD = "asdfgh12";
             _driver.Navigate().GoToUrl("http://stagio.local/Student/Edit?id=1");
             _driver.FindElement(By.Id("Telephone")).Clear();
             _driver.FindElement(By.Id("Telephone")).SendKeys(NEW_TELEPHONE);
+            _driver.FindElement(By.Id("OldPassword")).Clear();
+            _driver.FindElement(By.Id("OldPassword")).SendKeys(OLD_PASSWORD);
             _driver.FindElement(By.Id("Password")).Clear();
             _driver.FindElement(By.Id("Password")).SendKeys(NEW_PASSWORD);
             _driver.FindElement(By.Id("PasswordConfirmation")).Clear();
