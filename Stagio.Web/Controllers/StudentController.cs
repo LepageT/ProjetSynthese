@@ -13,10 +13,6 @@ namespace Stagio.Web.Controllers
     {
         private readonly IEntityRepository<Student> _studentRepository;
 
-        /*public StudentController()
-        {
-
-        }*/
 
         public StudentController(IEntityRepository<Student> studentRepository)
         {
@@ -48,7 +44,6 @@ namespace Stagio.Web.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
 
                 return RedirectToAction("Index");
             }
@@ -82,6 +77,14 @@ namespace Stagio.Web.Controllers
                 return HttpNotFound();
             }
 
+            if (editStudentViewModel.OldPassword != null)
+            {
+                if (editStudentViewModel.OldPassword != student.Password)
+                {
+                    ModelState.AddModelError("OldPassword", "L'ancien mot de passe n'est pas valide.");
+                }
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(editStudentViewModel);
@@ -107,7 +110,6 @@ namespace Stagio.Web.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
 
                 return RedirectToAction("Index");
             }

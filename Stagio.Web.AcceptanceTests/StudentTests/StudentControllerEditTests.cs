@@ -10,10 +10,9 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
     public class StudentControllerEditTests : BaseTests
     {
         [TestMethod]
-        public void edit_should_render_view_if_id_is_valid()
+        public void student_should_be_able_to_edit_his_profil_if_id_is_valid()
         {
             _driver.Navigate().GoToUrl("http://stagio.local/Student/Edit?id=1");
-            //_driver.FindElement(By.Id("edit-student1")).Click();
             
             try
             {
@@ -26,7 +25,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         }
 
         [TestMethod]
-        public void edit_should_update_item_if_id_is_valid()
+        public void student_edit_should_update_his_profil_if_id_is_valid()
         {
             const string NEW_TELEPHONE = "444-444-4444";
             const string OLD_PASSWORD = "qwerty12";
@@ -41,13 +40,13 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             _driver.FindElement(By.Id("PasswordConfirmation")).Clear();
             _driver.FindElement(By.Id("PasswordConfirmation")).SendKeys(NEW_PASSWORD);
             _driver.FindElement(By.Id("edit-button")).Click();
-            _driver.Navigate().GoToUrl("http://stagio.local/Student/Edit?id=1");
+            _driver.FindElement(By.Id("edit-student")).Click();
             var telephoneDisplayed = _driver.FindElement(By.Id("Telephone")).GetAttribute("value");
             telephoneDisplayed.ShouldBeEquivalentTo(NEW_TELEPHONE);
         }
 
         [TestMethod]
-        public void edit_should_redirect_to_index_if_updated()
+        public void student_edit_should_redirect_to_index_if_updated()
         {
             const string NEW_TELEPHONE = "444-444-4444";
             const string OLD_PASSWORD = "qwerty12";

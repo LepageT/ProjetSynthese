@@ -15,8 +15,12 @@ namespace Stagio.Domain.Entities
 
         public string FirstName { get; set; }
 
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Entrez un numéro valide.")]
+        [Required(ErrorMessage = "Requis")]
         public string Telephone { get; set; }
 
+        [Required(ErrorMessage = "Requis")]
+        [MinLength(8)]
         public string Password { get; set; }
 
 

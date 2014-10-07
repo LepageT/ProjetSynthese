@@ -60,6 +60,7 @@ namespace Stagio.Web.UnitTests
         {
             //Arrange
             var student = _fixture.Create<Student>();
+
             studentRepository.GetById(student.Id).Returns(student);
             var studentEditPageViewModel = Mapper.Map<Student, ViewModels.Student.Edit>(student);
 

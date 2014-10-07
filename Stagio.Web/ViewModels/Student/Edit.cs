@@ -29,7 +29,6 @@ namespace Stagio.Web.ViewModels.Student
 
         [DisplayName("Ancien mot de passe")]
         [DataType(DataType.Password)]
-        [ValidationOldPassword]
         public string OldPassword { get; set; }
 
         [DisplayName("Mot de passe")]
@@ -49,9 +48,7 @@ namespace Stagio.Web.ViewModels.Student
 
     public class ValidationNewPassword : ValidationAttribute
     {
-        public ValidationNewPassword()
-        { }
-
+        
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             string password = (string) value;
@@ -63,35 +60,9 @@ namespace Stagio.Web.ViewModels.Student
             {
                 return new ValidationResult("Le mot de passe doit contenir deux chiffres et deux lettres."); 
             }
-            return null; // everything OK
+            return null;
         }
     }
 
-    public class ValidationOldPassword : ValidationAttribute
-    {
-        public ValidationOldPassword()
-        { }
-
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-        {
-            string oldPassword = (string) value;
-
-            StagioDbContext stagioDbContext = new StagioDbContext();
-            IEnumerable<string> listSamePassword = stagioDbContext.Students.Where(x => x.Password == oldPassword).Select(x => x.Password);
-            
-
-            int count = 0;
-            foreach (object o in listSamePassword)
-            {
-                count++;
-            }
-
-
-            if (count == 0)
-            {
-                return new ValidationResult("L'ancien mot de passe n'est pas valide.");
-            }
-            return null; // everything OK
-        }
-    }
+ 
 }
