@@ -1,2 +1,7 @@
 ﻿<h2 id="home-page">Bienvenue</h2>
-@Html.ActionLink("Modifier le profil 1", MVC.Student.Edit(1), new { id = "edit-student" })
+<div>
+    @Html.ActionLink("Modifier le profil 1", MVC.Student.Edit(1), new { id = "edit-student" })
+</div>
+<div>
+    @Html.ActionLink("Créer un profil entreprise", MVC.Enterprise.Create(), new { id = "create-enterprise" })
+</div>

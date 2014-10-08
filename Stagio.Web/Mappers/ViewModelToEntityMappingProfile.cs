@@ -17,7 +17,7 @@ namespace Stagio.Web.Mappers
                 .ForMember(dest => dest.LastName, opt => opt.Ignore())
                 .ForMember(dest => dest.Matricule, opt => opt.Ignore());
 
-
+            Mapper.CreateMap<ViewModels.Enterprise.Create, Enterprise>();
         }
     }
 }
