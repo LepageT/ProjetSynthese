@@ -6,6 +6,7 @@ using NSubstitute;
 using Stagio.Domain.Entities;
 using Ploeh.AutoFixture;
 using FluentAssertions;
+using Stagio.Utilities.Encryption;
 
 namespace Stagio.Web.UnitTests
 {
@@ -48,7 +49,7 @@ namespace Stagio.Web.UnitTests
             studentRepository.GetById(student.Id).Returns(student);
             var studentViewModel = Mapper.Map<ViewModels.Student.Edit>(student);
             studentViewModel.OldPassword = student.Password;
-
+            student.Password = PasswordHash.CreateHash(student.Password);
 
             //Action
             var actionResult = studentController.Edit(studentViewModel);
@@ -66,6 +67,7 @@ namespace Stagio.Web.UnitTests
             studentRepository.GetById(student.Id).Returns(student);
             var studentEditPageViewModel = Mapper.Map<Student, ViewModels.Student.Edit>(student);
             studentEditPageViewModel.OldPassword = student.Password;
+            student.Password = PasswordHash.CreateHash(student.Password);
             //Act
             var routeResult = studentController.Edit(studentEditPageViewModel) as RedirectToRouteResult;
             var routeAction = routeResult.RouteValues["Action"];
@@ -84,7 +86,7 @@ namespace Stagio.Web.UnitTests
                                                       .Create();
             studentRepository.GetById(student.Id).Returns(student);
             studentController.ModelState.AddModelError("Error", "Error");
-
+            student.Password = PasswordHash.CreateHash(student.Password);
             //Act
             var result = studentController.Edit(studentEditPageViewModel) as ViewResult;
 

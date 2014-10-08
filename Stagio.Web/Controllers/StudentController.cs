@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using Stagio.DataLayer;
 using Stagio.Domain.Entities;
+using Stagio.Utilities.Encryption;
 
 namespace Stagio.Web.Controllers
 {
@@ -76,22 +77,21 @@ namespace Stagio.Web.Controllers
             {
                 return HttpNotFound();
             }
-
-           
-            
-            if (editStudentViewModel.OldPassword != student.Password)
+         
+            if (!PasswordHash.ValidatePassword(editStudentViewModel.OldPassword, student.Password))
             {
                 ModelState.AddModelError("OldPassword", "L'ancien mot de passe n'est pas valide.");
             }
-            
-
-            
 
             if (!ModelState.IsValid)
             {
                 return View(editStudentViewModel);
             }
-
+            if (editStudentViewModel.PasswordConfirmation != null)
+            {
+                editStudentViewModel.PasswordConfirmation = PasswordHash.CreateHash(editStudentViewModel.PasswordConfirmation);
+            }
+           
             Mapper.Map(editStudentViewModel, student);
 
             _studentRepository.Update(student);
