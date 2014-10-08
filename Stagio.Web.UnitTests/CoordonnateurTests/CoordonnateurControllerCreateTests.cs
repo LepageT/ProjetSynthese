@@ -18,7 +18,8 @@ namespace Stagio.Web.UnitTests.CoordonnateurTests
         {
             var invitation = _fixture.Create<Invitation>();
             invitation.Used = false;
-            invitationRepository.GetAll().FirstOrDefault().Returns(invitation);
+
+            invitationRepository.Add(invitation);
             var viewModelExpected = Mapper.Map<ViewModels.Coordonnateur.Create>(invitation);
 
             var viewResult = coordonnateurController.Create(invitation.Token) as ViewResult;
