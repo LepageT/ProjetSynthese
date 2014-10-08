@@ -74,9 +74,9 @@ namespace Stagio.Web.Controllers
                              {
                                  new UserRole() {RoleName = RoleName.Coordonnateur}
                              },
-                Password = PasswordHash.CreateHash("admin123"),
-                Name = "Super AdminLafleur",
-                UserName = "admin",
+                Password = PasswordHash.CreateHash("test4test"),
+                Name = "Super FNDTux",
+                UserName = "coordonnateur",
             };
             _accountDbContext.Users.Add(user);
             _studentDbContext.SaveChanges();

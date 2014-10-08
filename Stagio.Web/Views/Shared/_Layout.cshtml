@@ -19,16 +19,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-
-                <div class="navbar-collapse collapse">
-
-                    @Html.Partial("_LoginPartial")
-
-                </div>
-                <!--/.nav-collapse -->
+                <div>@Html.ActionLink("Home", MVC.Home.Index(), new { @class = "navbar-brand", id = "home-link" })</div>
             </div>
+            <div class="navbar-collapse collapse">
+                @Html.Partial("_LoginPartial")
+            </div>
+            <!--/.nav-collapse -->
         </div>
     </div>
+
 
     <div class="container body-content">
         @RenderBody()
