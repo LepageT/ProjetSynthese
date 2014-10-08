@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Web;
 using System.Web.Mvc;
 using Stagio.DataLayer;
@@ -53,6 +54,40 @@ namespace Stagio.Web.Controllers
 
             _coordonnateurRepository.Add(coordonnateur);
             return RedirectToAction(Views.ViewNames.Index);
+        }
+
+        public virtual ActionResult Invite()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public virtual ActionResult Invite(ViewModels.Coordonnateur.Invite createdInvite)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(createdInvite);
+            }
+
+            System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
+
+            message.To.Add(createdInvite.Email);
+            message.Subject = "Création d'un compte coordonnateur";
+            message.From = new System.Net.Mail.MailAddress("thomarellau@hotmail.com");
+            message.IsBodyHtml = true;
+            message.Body = createdInvite.Message;
+            String invitationUrl = "<br/><a href=stagio.local/Coordonnateur/Create?token=123456>Créer un compte</a>";
+
+            message.Body += invitationUrl;
+            System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.live.com");
+
+            smtp.Port = 587;
+            smtp.Credentials = new System.Net.NetworkCredential("thomarellau@hotmail.com", "LesPommesRouge");
+            smtp.EnableSsl = true;
+            smtp.Send(message);
+
+            return RedirectToAction(Views.ViewNames.Index);
+
         }
     }
 }

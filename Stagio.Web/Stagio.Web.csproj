@@ -197,6 +197,7 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Coordonnateur\Create.cs" />
+    <Compile Include="ViewModels\Coordonnateur\Invite.cs" />
     <Compile Include="ViewModels\Student\Edit.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -248,6 +249,7 @@
     <Content Include="Views\Student\Edit.cshtml" />
     <Content Include="Views\Coordonnateur\Index.cshtml" />
     <Content Include="Views\Coordonnateur\Create.cshtml" />
+    <Content Include="Views\Coordonnateur\Invite.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -26,9 +26,6 @@ namespace Stagio.Web.Controllers
     public partial class CoordonnateurController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public CoordonnateurController() { }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected CoordonnateurController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -75,6 +72,7 @@ namespace Stagio.Web.Controllers
         {
             public readonly string Index = "Index";
             public readonly string Create = "Create";
+            public readonly string Invite = "Invite";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -82,6 +80,7 @@ namespace Stagio.Web.Controllers
         {
             public const string Index = "Index";
             public const string Create = "Create";
+            public const string Invite = "Invite";
         }
 
 
@@ -92,6 +91,14 @@ namespace Stagio.Web.Controllers
         public class ActionParamsClass_Create
         {
             public readonly string createdCoordonnateur = "createdCoordonnateur";
+        }
+        static readonly ActionParamsClass_Invite s_params_Invite = new ActionParamsClass_Invite();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Invite InviteParams { get { return s_params_Invite; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Invite
+        {
+            public readonly string createdInvite = "createdInvite";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -105,9 +112,11 @@ namespace Stagio.Web.Controllers
             {
                 public readonly string Create = "Create";
                 public readonly string Index = "Index";
+                public readonly string Invite = "Invite";
             }
             public readonly string Create = "~/Views/Coordonnateur/Create.cshtml";
             public readonly string Index = "~/Views/Coordonnateur/Index.cshtml";
+            public readonly string Invite = "~/Views/Coordonnateur/Invite.cshtml";
         }
     }
 
@@ -147,6 +156,29 @@ namespace Stagio.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "createdCoordonnateur", createdCoordonnateur);
             CreateOverride(callInfo, createdCoordonnateur);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void InviteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Invite()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Invite);
+            InviteOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void InviteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Stagio.Web.ViewModels.Coordonnateur.Invite createdInvite);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Invite(Stagio.Web.ViewModels.Coordonnateur.Invite createdInvite)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Invite);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "createdInvite", createdInvite);
+            InviteOverride(callInfo, createdInvite);
             return callInfo;
         }
 
