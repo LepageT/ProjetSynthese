@@ -192,6 +192,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="T4MVC1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\Student\Create.cs" />
     <Compile Include="ViewModels\Student\Edit.cs" />
   </ItemGroup>
@@ -239,10 +244,12 @@
     <None Include="T4MVC.tt.hooks.t4" />
     <None Include="T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>T4MVC.cs</LastGenOutput>
+      <LastGenOutput>T4MVC1.cs</LastGenOutput>
     </None>
     <Content Include="Views\Student\Edit.cshtml" />
     <Content Include="Views\Student\Create.cshtml" />
+    <Content Include="Views\Student\Upload.cshtml" />
+    <Content Include="Views\Student\CreateList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\UploadedFiles\" />

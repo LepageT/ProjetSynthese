@@ -62,6 +62,18 @@ namespace Stagio.Web.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult CreateListGet()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateListGet);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult CreateListPost()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateListPost);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult Edit()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
@@ -90,7 +102,9 @@ namespace Stagio.Web.Controllers
         {
             public readonly string Index = "Index";
             public readonly string Details = "Details";
-            public readonly string Create = "Create";
+            public readonly string Upload = "Upload";
+            public readonly string CreateListGet = "CreateList";
+            public readonly string CreateListPost = "CreateList";
             public readonly string Edit = "Edit";
             public readonly string Delete = "Delete";
         }
@@ -100,7 +114,9 @@ namespace Stagio.Web.Controllers
         {
             public const string Index = "Index";
             public const string Details = "Details";
-            public const string Create = "Create";
+            public const string Upload = "Upload";
+            public const string CreateListGet = "CreateList";
+            public const string CreateListPost = "CreateList";
             public const string Edit = "Edit";
             public const string Delete = "Delete";
         }
@@ -114,13 +130,29 @@ namespace Stagio.Web.Controllers
         {
             public readonly string id = "id";
         }
-        static readonly ActionParamsClass_Create s_params_Create = new ActionParamsClass_Create();
+        static readonly ActionParamsClass_Upload s_params_Upload = new ActionParamsClass_Upload();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Create CreateParams { get { return s_params_Create; } }
+        public ActionParamsClass_Upload UploadParams { get { return s_params_Upload; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Create
+        public class ActionParamsClass_Upload
         {
             public readonly string file = "file";
+        }
+        static readonly ActionParamsClass_CreateListGet s_params_CreateListGet = new ActionParamsClass_CreateListGet();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_CreateListGet CreateListGetParams { get { return s_params_CreateListGet; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_CreateListGet
+        {
+            public readonly string listOfStudentToCreate = "listOfStudentToCreate";
+        }
+        static readonly ActionParamsClass_CreateListPost s_params_CreateListPost = new ActionParamsClass_CreateListPost();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_CreateListPost CreateListPostParams { get { return s_params_CreateListPost; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_CreateListPost
+        {
+            public readonly string listOfStudentToCreate = "listOfStudentToCreate";
         }
         static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -151,10 +183,14 @@ namespace Stagio.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Create = "Create";
+                public readonly string CreateList = "CreateList";
                 public readonly string Edit = "Edit";
+                public readonly string Upload = "Upload";
             }
             public readonly string Create = "~/Views/Student/Create.cshtml";
+            public readonly string CreateList = "~/Views/Student/CreateList.cshtml";
             public readonly string Edit = "~/Views/Student/Edit.cshtml";
+            public readonly string Upload = "~/Views/Student/Upload.cshtml";
         }
     }
 
@@ -187,25 +223,49 @@ namespace Stagio.Web.Controllers
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void UploadOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create()
+        public override System.Web.Mvc.ActionResult Upload()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            CreateOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Upload);
+            UploadOverride(callInfo);
             return callInfo;
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Web.HttpPostedFileBase file);
+        partial void UploadOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Web.HttpPostedFileBase file);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create(System.Web.HttpPostedFileBase file)
+        public override System.Web.Mvc.ActionResult Upload(System.Web.HttpPostedFileBase file)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Upload);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "file", file);
-            CreateOverride(callInfo, file);
+            UploadOverride(callInfo, file);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CreateListGetOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Collections.Generic.List<Stagio.Domain.Entities.Student> listOfStudentToCreate);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult CreateListGet(System.Collections.Generic.List<Stagio.Domain.Entities.Student> listOfStudentToCreate)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateListGet);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "listOfStudentToCreate", listOfStudentToCreate);
+            CreateListGetOverride(callInfo, listOfStudentToCreate);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CreateListPostOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Collections.Generic.List<Stagio.Domain.Entities.Student> listOfStudentToCreate);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult CreateListPost(System.Collections.Generic.List<Stagio.Domain.Entities.Student> listOfStudentToCreate)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateListPost);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "listOfStudentToCreate", listOfStudentToCreate);
+            CreateListPostOverride(callInfo, listOfStudentToCreate);
             return callInfo;
         }
 

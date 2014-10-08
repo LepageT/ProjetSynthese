@@ -8,6 +8,7 @@ using AutoMapper;
 using Stagio.DataLayer;
 using Stagio.Domain.Entities;
 
+
 namespace Stagio.Web.Controllers
 {
     public partial class StudentController : Controller
@@ -33,42 +34,64 @@ namespace Stagio.Web.Controllers
             return View();
         }
 
-        // GET: Student/Create
-        public virtual ActionResult Create()
+        public virtual ActionResult Upload()
         {
             return View();
         }
 
-        // POST: Student/Create
         [HttpPost]
-        public virtual ActionResult Create(HttpPostedFileBase file)
+        public virtual ActionResult Upload(HttpPostedFileBase file)
         {
+            var listStudentToCreate = new List<Student>();
             if (ModelState.IsValid)
             {
-                var matricule = new List<string>();
-                var name = new List<string>();
-
-
                 if (file.ContentLength > 0)
                 {
                     var fileName = Path.GetFileName(file.FileName);
                     var path = Path.Combine(Server.MapPath("~/App_Data/UploadedFiles"), fileName);
                     file.SaveAs(path);
 
-                   // using (var rd = new StreamReader((Server.MapPath("~/App_Data/UploadedFiles"), fileName)).ToString()
-                    //{
-                     //   while (!rd.EndOfStream)
-                     //   {
-                     //       var splits = rd.ReadLine().Split(';');
-                     //       matricule.Add(splits[0]);
-                    //        name.Add(splits[1]);
-                     //   }
-                   // }
+                    using (var rd = new StreamReader(path))
+                    {
+                        rd.ReadLine().Split(',');
+                        while (!rd.EndOfStream)
+                        {
+                            var splits = rd.ReadLine().Split(',');
+                            var createStudent = new Student();
+
+                            createStudent.Matricule = Convert.ToInt32(splits[0]);
+                            createStudent.LastName = splits[1];
+                            createStudent.FirstName = splits[2];
+
+
+                            listStudentToCreate.Add(createStudent);
+                        }
+                    }
                 }
+                return RedirectToAction(MVC.Student.CreateListGet(listStudentToCreate));
+            }
+            return View("");
+        }
+
+        // GET: Student/Create
+        [HttpGet, ActionName("CreateList")]
+        public virtual ActionResult CreateListGet(List<Student> listOfStudentToCreate)
+        {
+            return View(listOfStudentToCreate);
+        }
 
 
-                //var student= Mapper.Map<Student>(createStudentViewModel);
-                //_studentRepository.Add(student);
+        // POST: Student/Create
+        [HttpPost, ActionName("CreateList")]
+        public virtual ActionResult CreateListPost(List<Student> listOfStudentToCreate)
+        {
+            if (ModelState.IsValid)
+            {
+                foreach (var studentCreate in listOfStudentToCreate)
+                {
+                    //var student = Mapper.Map<Student>(studentCreate);
+                    _studentRepository.Add(studentCreate);
+                }
                 return RedirectToAction(MVC.Home.Index());
             }
             return View("");

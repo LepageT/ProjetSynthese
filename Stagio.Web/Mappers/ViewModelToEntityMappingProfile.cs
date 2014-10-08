@@ -21,6 +21,7 @@ namespace Stagio.Web.Mappers
                 .ForMember(dest => dest.Telephone, opt => opt.Ignore())
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(x => x.Id));
 
+
         }
     }
 }

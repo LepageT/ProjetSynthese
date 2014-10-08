@@ -20,6 +20,7 @@ namespace Stagio.Web.Mappers
             Mapper.CreateMap<Student, ViewModels.Student.Create>();
 
 
+
         }
     }
 }
