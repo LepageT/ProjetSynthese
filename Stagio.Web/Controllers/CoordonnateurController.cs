@@ -19,6 +19,8 @@ namespace Stagio.Web.Controllers
         {
             _coordonnateurRepository = coordonnateurRepository;
             _invitationRepository = invitationRepository;
+
+
         }
         // GET: Coordonnateur
         public virtual ActionResult Index()
