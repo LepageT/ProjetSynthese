@@ -47,6 +47,8 @@ namespace Stagio.Web.UnitTests
             var student = _fixture.Create<Student>();
             studentRepository.GetById(student.Id).Returns(student);
             var studentViewModel = Mapper.Map<ViewModels.Student.Edit>(student);
+            studentViewModel.OldPassword = student.Password;
+
 
             //Action
             var actionResult = studentController.Edit(studentViewModel);
@@ -63,7 +65,7 @@ namespace Stagio.Web.UnitTests
 
             studentRepository.GetById(student.Id).Returns(student);
             var studentEditPageViewModel = Mapper.Map<Student, ViewModels.Student.Edit>(student);
-
+            studentEditPageViewModel.OldPassword = student.Password;
             //Act
             var routeResult = studentController.Edit(studentEditPageViewModel) as RedirectToRouteResult;
             var routeAction = routeResult.RouteValues["Action"];

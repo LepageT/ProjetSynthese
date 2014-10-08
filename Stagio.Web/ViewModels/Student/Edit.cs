@@ -53,14 +53,21 @@ namespace Stagio.Web.ViewModels.Student
         {
             string password = (string) value;
 
-            int nbNumbers = password.Count(Char.IsDigit);
-            int nbLetters = password.Count(Char.IsLetter);
-
-            if (nbNumbers < 2 || nbLetters < 2)
+            if (password != null)
             {
-                return new ValidationResult("Le mot de passe doit contenir deux chiffres et deux lettres."); 
+                int nbNumbers = password.Count(Char.IsDigit);
+                int nbLetters = password.Count(Char.IsLetter);
+
+                if (nbNumbers < 2 || nbLetters < 2)
+                {
+                    return new ValidationResult("Le mot de passe doit contenir deux chiffres et deux lettres.");
+                }
+                return null;
             }
-            return null;
+            else
+            {
+                return new ValidationResult("Le mot de passe est obligatoire.");
+            }
         }
     }
 

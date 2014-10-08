@@ -77,13 +77,15 @@ namespace Stagio.Web.Controllers
                 return HttpNotFound();
             }
 
-            if (editStudentViewModel.OldPassword != null)
+           
+            
+            if (editStudentViewModel.OldPassword != student.Password)
             {
-                if (editStudentViewModel.OldPassword != student.Password)
-                {
-                    ModelState.AddModelError("OldPassword", "L'ancien mot de passe n'est pas valide.");
-                }
+                ModelState.AddModelError("OldPassword", "L'ancien mot de passe n'est pas valide.");
             }
+            
+
+            
 
             if (!ModelState.IsValid)
             {
