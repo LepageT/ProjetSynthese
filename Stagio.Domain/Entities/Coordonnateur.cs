@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
-
+using System.ComponentModel.DataAnnotations.Schema;
 namespace Stagio.Domain.Entities
 {
-    class Coordonnateur : Entity
+    public class Coordonnateur : Entity
     {
         public string LastName { get; set; }
 

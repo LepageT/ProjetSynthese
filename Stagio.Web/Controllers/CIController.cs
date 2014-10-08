@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -60,6 +61,15 @@ namespace Stagio.Web.Controllers
             {
                 _studentDbContext.Students.Add(studentItem);
             }
+
+            _studentDbContext.Coordonnateurs.Add(new Coordonnateur()
+            {
+                Id = 1,
+                FirstName = "Test",
+                LastName = "Test2",
+                Password = "12345678",
+                Email = "admin@admin.com"
+            });
             _studentDbContext.SaveChanges();
 
         }
