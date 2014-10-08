@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -40,17 +41,37 @@ namespace Stagio.Web.Controllers
 
         // POST: Student/Create
         [HttpPost]
-        public virtual ActionResult Create(FormCollection collection)
+        public virtual ActionResult Create(HttpPostedFileBase file)
         {
-            try
+            if (ModelState.IsValid)
             {
+                var matricule = new List<string>();
+                var name = new List<string>();
 
-                return RedirectToAction("Index");
+
+                if (file.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(file.FileName);
+                    var path = Path.Combine(Server.MapPath("~/App_Data/UploadedFiles"), fileName);
+                    file.SaveAs(path);
+
+                   // using (var rd = new StreamReader((Server.MapPath("~/App_Data/UploadedFiles"), fileName)).ToString()
+                    //{
+                     //   while (!rd.EndOfStream)
+                     //   {
+                     //       var splits = rd.ReadLine().Split(';');
+                     //       matricule.Add(splits[0]);
+                    //        name.Add(splits[1]);
+                     //   }
+                   // }
+                }
+
+
+                //var student= Mapper.Map<Student>(createStudentViewModel);
+                //_studentRepository.Add(student);
+                return RedirectToAction(MVC.Home.Index());
             }
-            catch
-            {
-                return View();
-            }
+            return View("");
         }
 
         // GET: Student/Edit/5

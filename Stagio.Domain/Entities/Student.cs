@@ -9,6 +9,7 @@ namespace Stagio.Domain.Entities
 {
     public class Student : Entity
     {
+
         public int Matricule { get; set; }
 
         public string LastName { get; set; }
