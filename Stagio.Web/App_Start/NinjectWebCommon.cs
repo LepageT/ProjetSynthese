@@ -1,5 +1,6 @@
 using Stagio.DataLayer;
 using Stagio.DataLayer.EntityFramework;
+using Stagio.Domain.Entities;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Stagio.Web.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Stagio.Web.App_Start.NinjectWebCommon), "Stop")]
@@ -65,6 +66,7 @@ namespace Stagio.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
 
+            kernel.Bind<IEntityRepository<Student>>().To<EfEntityRepository<Student>>().InRequestScope();
             kernel.Bind<IDatabaseHelper>().To<EfDatabaseHelper>().InRequestScope();
         }        
     }

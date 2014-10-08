@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using Ploeh.AutoFixture.Kernel;
 
-namespace Miam.TestUtility.AutoFixture
+namespace Stagio.TestUtility.AutoFixture
 {
     // Do not fill navigational properties (virtual method)
     public class VirtualMembersOmitter : ISpecimenBuilder

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Stagio.Domain.Entities;
 
 namespace Stagio.Web.Mappers
 {
@@ -11,7 +12,11 @@ namespace Stagio.Web.Mappers
 
         protected override void Configure()
         {
-        
+            Mapper.CreateMap<ViewModels.Student.Edit, Student>()
+                .ForMember(dest => dest.FirstName, opt => opt.Ignore())
+                .ForMember(dest => dest.LastName, opt => opt.Ignore())
+                .ForMember(dest => dest.Matricule, opt => opt.Ignore());
+
 
         }
     }
