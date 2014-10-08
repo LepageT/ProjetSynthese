@@ -18,7 +18,7 @@ namespace Stagio.Web.AcceptanceTests
         {
             _driver = new FirefoxDriver();
             _driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
-            _driver.Navigate().GoToUrl("http://stagio.local/Ci");
+            _driver.Navigate().GoToUrl("http://thomarelau.local/Ci");
             _driver.FindElement(By.Id("go_home")).Click();
         }
 
