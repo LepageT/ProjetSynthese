@@ -78,6 +78,9 @@
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.0\lib\net45\System.Web.Razor.dll</HintPath>
+    <Reference Include="System.Web.Mvc, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Stagio.Web\bin\System.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -119,6 +122,7 @@
     </ProjectReference>
     <ProjectReference Include="..\Stagio.Web\Stagio.Web.csproj">
       <Project>{f69eb36e-05c6-4680-b6f7-eaf3ca9fa150}</Project>
+      <Project>{F69EB36E-05C6-4680-B6F7-EAF3CA9FA150}</Project>
       <Name>Stagio.Web</Name>
     </ProjectReference>
   </ItemGroup>
