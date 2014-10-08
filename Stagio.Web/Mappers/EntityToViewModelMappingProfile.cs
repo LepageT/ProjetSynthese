@@ -18,6 +18,14 @@ namespace Stagio.Web.Mappers
                 .ForMember(dest => dest.PasswordConfirmation, opt => opt.Ignore())
                 .ForMember(dest => dest.OldPassword, opt => opt.Ignore());
 
+            Mapper.CreateMap<Invitation, ViewModels.Coordonnateur.Create>()
+                .ForMember(dest => dest.FirstName, opt => opt.Ignore())
+                .ForMember(dest => dest.LastName, opt => opt.Ignore())
+                .ForMember(dest => dest.Password, opt => opt.Ignore())
+                .ForMember(dest => dest.ConfirmedPassword, opt => opt.Ignore())
+                .ForMember(dest => dest.InvitationId, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
+
         }
     }
 }

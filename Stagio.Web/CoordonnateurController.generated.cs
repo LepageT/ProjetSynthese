@@ -54,6 +54,12 @@ namespace Stagio.Web.Controllers
             return RedirectToActionPermanent(taskResult.Result);
         }
 
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Create()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public CoordonnateurController Actions { get { return MVC.Coordonnateur; } }
@@ -90,6 +96,7 @@ namespace Stagio.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Create
         {
+            public readonly string token = "token";
             public readonly string createdCoordonnateur = "createdCoordonnateur";
         }
         static readonly ActionParamsClass_Invite s_params_Invite = new ActionParamsClass_Invite();
@@ -137,13 +144,14 @@ namespace Stagio.Web.Controllers
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string token);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create()
+        public override System.Web.Mvc.ActionResult Create(string token)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            CreateOverride(callInfo);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "token", token);
+            CreateOverride(callInfo, token);
             return callInfo;
         }
 

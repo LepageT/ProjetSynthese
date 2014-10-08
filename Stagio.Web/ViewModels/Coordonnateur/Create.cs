@@ -29,5 +29,11 @@ namespace Stagio.Web.ViewModels.Coordonnateur
         
         [Required]
         public string Email { get; set; }
+
+        [HiddenInput(DisplayValue = false)]
+        public string Token { get; set; }
+
+        public int InvitationId { get; set; }
     }
+ 
 }
