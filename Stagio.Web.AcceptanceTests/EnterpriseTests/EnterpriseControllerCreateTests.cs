@@ -56,5 +56,32 @@ namespace Stagio.Web.AcceptanceTests.EnterpriseTests
             _driver.FindElement(By.Id("create-enterprise")).Click();
            
         }
+
+
+        [TestMethod]
+        public void enterprise_invitation_create_should_be_added_in_DB()
+        {
+            const string FIRST_NAME = "Bill";
+            const string LAST_NAME = "Gates";
+            const string TELEPHONE = "111-111-1111";
+            const string PASSWORD = "asdfgh12";
+            _driver.Navigate().GoToUrl("http://stagio.local/Enterprise/Create?Email=test@test.com&EnterpriseName=test");
+            _driver.FindElement(By.Id("FirstName")).SendKeys(FIRST_NAME);
+            _driver.FindElement(By.Id("LastName")).SendKeys(LAST_NAME);
+            _driver.FindElement(By.Id("Telephone")).SendKeys(TELEPHONE);
+            _driver.FindElement(By.Id("Password")).SendKeys(PASSWORD);
+            _driver.FindElement(By.Id("PasswordConfirmation")).SendKeys(PASSWORD);
+            _driver.FindElement(By.Id("create-button")).Click();
+            try
+            {
+                _driver.FindElement(By.Id("home-page"));
+            }
+            catch (NoSuchElementException)
+            {
+                Assert.Fail("Identifiant home-page non trouvé sur la page.");
+            }
+            _driver.FindElement(By.Id("create-enterprise")).Click();
+
+        }
     }
 }

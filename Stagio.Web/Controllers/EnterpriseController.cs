@@ -31,9 +31,13 @@ namespace Stagio.Web.Controllers
         }
 
         // GET: Enterprise/Create
-        public virtual ActionResult Create()
+        public virtual ActionResult Create(string email, string enterpriseName)
         {
-            return View();
+            var enterprise = new Enterprise();
+            enterprise.Email = email;
+            enterprise.EnterpriseName = enterpriseName;
+            var enterpriseCreatePageViewModel = Mapper.Map<ViewModels.Enterprise.Create>(enterprise);
+            return View(enterpriseCreatePageViewModel);
         }
 
         // POST: Enterprise/Create
@@ -46,6 +50,7 @@ namespace Stagio.Web.Controllers
                 {
                     var enterprise = Mapper.Map<Enterprise>(createViewModel);
                     _enterpriseRepository.Add(enterprise);
+                    //ADD NOTIFICATIONS: À la coordination et aux autres employés de l'entreprise.
                     return RedirectToAction(MVC.Home.Index());
                 }
                 return View(createViewModel);

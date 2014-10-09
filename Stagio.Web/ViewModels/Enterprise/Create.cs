@@ -37,6 +37,9 @@ namespace Stagio.Web.ViewModels.Enterprise
         [Required(ErrorMessage = "Requis")]
         public string Telephone { get; set; }
 
+        [DisplayName("Poste")]
+        public int? Poste { get; set; }
+
         [DisplayName("Mot de passe")]
         [Required(ErrorMessage = "Requis")]
         [DataType(DataType.Password)]

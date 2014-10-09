@@ -27,6 +27,9 @@ namespace Stagio.Web.ViewModels.Student
         [Required(ErrorMessage = "Requis")]
         public string Telephone { get; set; }
 
+        [DisplayName("Poste")]
+        public int Poste { get; set; }
+
         [DisplayName("Ancien mot de passe")]
         [DataType(DataType.Password)]
         public string OldPassword { get; set; }

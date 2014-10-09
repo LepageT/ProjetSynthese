@@ -17,11 +17,23 @@ namespace Stagio.Web.UnitTests.EnterpriseTests
     public class EnterpriseControllerCreateTests : AllControllersBaseClassTests
     {
         [TestMethod]
-        public void create_action_should_render_default_view()
+        public void create_action_should_render_view_with_email_and_enterprise_name()
         {
-            var result = enterpriseController.Create() as ViewResult;
+            //Arrange 
+            var enterprise = _fixture.Create<Stagio.Domain.Entities.Enterprise>();
+            enterpriseRepository.GetById(enterprise.Id).Returns(enterprise);
+            var viewModelExpected = Mapper.Map<ViewModels.Enterprise.Create>(enterprise);
 
-            Assert.AreEqual(result.ViewName, "");
+
+            //Action
+            var viewResult = enterpriseController.Create(enterprise.Email, enterprise.EnterpriseName) as ViewResult;
+            var viewModelObtained = viewResult.ViewData.Model as ViewModels.Enterprise.Create;
+
+            //Assert 
+            Assert.AreEqual(viewModelExpected.Email, viewModelObtained.Email);
+            Assert.AreEqual(viewModelExpected.EnterpriseName, viewModelObtained.EnterpriseName);
+
+          
         }
 
         [TestMethod]
