@@ -121,13 +121,13 @@ namespace Stagio.Web.Controllers
                 System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.live.com");
 
                 smtp.Port = 587;
-                smtp.Credentials = new System.Net.NetworkCredential("thomarellau@hotmail.com", "LesPommesRouge");
+                smtp.Credentials = new System.Net.NetworkCredential("thomarellau@hotmail.com", "LesPommesRouge2");
                 smtp.EnableSsl = true;
                 smtp.Send(message);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                ModelState.AddModelError("Email", "L'adresse courriel est invalide");
+                ModelState.AddModelError("Email", "Error");
                 return View(createdInvite);
             }
 
