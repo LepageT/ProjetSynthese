@@ -41,6 +41,17 @@ namespace Stagio.Web.UnitTests.CoordonnateurTests
         }
 
         [TestMethod]
+        public void coordonnateur_create_get_should_return_httpnotfound_when_invitation_dont_exist()
+        {
+            var invitations = _fixture.CreateMany<Invitation>(3);
+            invitationRepository.GetAll().Returns(invitations.AsQueryable());
+
+            var result = coordonnateurController.Create("1");
+
+            result.Should().BeOfType<HttpNotFoundResult>();
+        }
+
+        [TestMethod]
         public void coordonnateur_create_get_should_return_httpnotfound_when_invitation_is_already_used()
         {
             var invitations = _fixture.CreateMany<Invitation>(3);

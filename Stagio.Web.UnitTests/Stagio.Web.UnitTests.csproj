@@ -103,6 +103,7 @@
     <Compile Include="AllControllersBaseClassTests.cs" />
     <Compile Include="CoordonnateurTests\CoordonnateurControllerBaseClassTests.cs" />
     <Compile Include="CoordonnateurTests\CoordonnateurControllerCreateTests.cs" />
+    <Compile Include="CoordonnateurTests\CoordonnateurControllerInviteTest.cs" />
     <Compile Include="StudentTests\StudentControllerEditTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

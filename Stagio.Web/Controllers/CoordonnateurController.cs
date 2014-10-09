@@ -107,20 +107,29 @@ namespace Stagio.Web.Controllers
 
             System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
 
-            message.To.Add(createdInvite.Email);
-            message.Subject = "Création d'un compte coordonnateur";
-            message.From = new System.Net.Mail.MailAddress("thomarellau@hotmail.com");
-            message.IsBodyHtml = true;
-            message.Body = createdInvite.Message;
-            String invitationUrl = "<br/><a href=stagio.local/Coordonnateur/Create/123456>Créer un compte</a>";
+            
+            try
+            {
+                message.To.Add(createdInvite.Email);
+                message.Subject = "Création d'un compte coordonnateur";
+                message.From = new System.Net.Mail.MailAddress("thomarellau@hotmail.com");
+                message.IsBodyHtml = true;
+                message.Body = createdInvite.Message;
+                String invitationUrl = "<br/><a href=stagio.local/Coordonnateur/Create/123456>Créer un compte</a>";
 
-            message.Body += invitationUrl;
-            System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.live.com");
+                message.Body += invitationUrl;
+                System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.live.com");
 
-            smtp.Port = 587;
-            smtp.Credentials = new System.Net.NetworkCredential("thomarellau@hotmail.com", "LesPommesRouge");
-            smtp.EnableSsl = true;
-            smtp.Send(message);
+                smtp.Port = 587;
+                smtp.Credentials = new System.Net.NetworkCredential("thomarellau@hotmail.com", "LesPommesRouge");
+                smtp.EnableSsl = true;
+                smtp.Send(message);
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("Email", "L'adresse courriel est invalide");
+                return View(createdInvite);
+            }
 
             _invitationRepository.Add(new Invitation()
             {
