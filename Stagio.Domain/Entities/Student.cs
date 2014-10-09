@@ -19,7 +19,7 @@ namespace Stagio.Domain.Entities
         [Required(ErrorMessage = "Requis")]
         public string Telephone { get; set; }
 
-        public int Poste { get; set; }
+        public int? Poste { get; set; }
 
         [Required(ErrorMessage = "Requis")]
         [MinLength(8)]

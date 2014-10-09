@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Mvc;
 using Stagio.DataLayer;
+using Stagio.Web.Validations;
 
 namespace Stagio.Web.ViewModels.Student
 {
@@ -28,7 +29,7 @@ namespace Stagio.Web.ViewModels.Student
         public string Telephone { get; set; }
 
         [DisplayName("Poste")]
-        public int Poste { get; set; }
+        public int? Poste { get; set; }
 
         [DisplayName("Ancien mot de passe")]
         [DataType(DataType.Password)]
@@ -38,7 +39,7 @@ namespace Stagio.Web.ViewModels.Student
         [Required(ErrorMessage = "Requis")]
         [DataType(DataType.Password)]
         [MinLength(8)]
-        [ValidationNewPassword]
+        [ValidationPassword]
         public string Password { get; set; }
 
         [DisplayName("Confirmation du mot de passe")]
@@ -49,30 +50,7 @@ namespace Stagio.Web.ViewModels.Student
 
     }
 
-    public class ValidationNewPassword : ValidationAttribute
-    {
-        
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-        {
-            string password = (string) value;
-
-            if (password != null)
-            {
-                int nbNumbers = password.Count(Char.IsDigit);
-                int nbLetters = password.Count(Char.IsLetter);
-
-                if (nbNumbers < 2 || nbLetters < 2)
-                {
-                    return new ValidationResult("Le mot de passe doit contenir deux chiffres et deux lettres.");
-                }
-                return null;
-            }
-            else
-            {
-                return new ValidationResult("Le mot de passe est obligatoire.");
-            }
-        }
-    }
+   
 
  
 }

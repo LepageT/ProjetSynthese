@@ -196,6 +196,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Validations\ValidationPassword.cs" />
+    <Compile Include="Validations\ValidationVerifyIfEmailIsUnique.cs" />
     <Compile Include="ViewModels\Enterprise\Create.cs" />
     <Compile Include="ViewModels\Student\Edit.cs" />
   </ItemGroup>
