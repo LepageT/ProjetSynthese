@@ -181,6 +181,7 @@
     <Compile Include="Mappers\EntityToViewModelMappingProfile.cs" />
     <Compile Include="Mappers\MappingExpressionExtensions.cs" />
     <Compile Include="Mappers\ViewModelToEntityMappingProfile.cs" />
+    <Compile Include="Module\FunctionString.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -193,7 +194,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Student\Create.cs" />
     <Compile Include="ViewModels\Student\Edit.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -243,9 +243,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Student\Edit.cshtml" />
-    <Content Include="Views\Student\Create.cshtml" />
     <Content Include="Views\Student\Upload.cshtml" />
     <Content Include="Views\Student\CreateList.cshtml" />
+    <Content Include="Views\Student\ResultCreateList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\UploadedFiles\" />

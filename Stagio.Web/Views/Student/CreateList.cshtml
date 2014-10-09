@@ -1,10 +1,16 @@
-﻿@model IEnumerable<Stagio.Domain.Entities.Student>
+﻿@using Stagio.Domain.Entities
+
+@model IEnumerable<Stagio.Domain.Entities.Student>
 
 @{
-    ViewBag.Title = "CreateList";
+    ViewBag.Title = "Liste des étudiants qui seront ajoutés";
 }
 
-<h2>CreateList</h2>
+@{
+    var listStudent = new List<Student>();
+}
+
+<h2>Liste des étudiants qui seront ajoutés</h2>
 
 <table class="table">
     <tr>
@@ -16,27 +22,43 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FirstName)
-            </th>
+        </th>
 
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Matricule)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        listStudent.Add(item);
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Matricule)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+        </tr>
+    }
+
+
 
 </table>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <div class="panel-body">
+
+        <input id="submit_button" type="submit" value="Confirmer" />
+
+    </div>
+}
+
+
+
+<div>
+    @Html.ActionLink("Retour à l'accueil", MVC.Home.Index())
+</div>
+

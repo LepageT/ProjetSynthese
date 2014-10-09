@@ -2,7 +2,15 @@
 
     <label for="file">Filename:</label>
     <input type="file" name="file" id="file" />
-
+ 
     <input type="submit" />
+       
 </form>
 
+<div>
+    @ViewBag.Message
+</div>
+
+<div>
+    @Html.ActionLink("Retour à l'accueil", MVC.Home.Index())
+</div>
