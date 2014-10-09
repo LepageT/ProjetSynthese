@@ -7,11 +7,12 @@ using Stagio.Domain.Entities;
 using Ploeh.AutoFixture;
 using FluentAssertions;
 using Stagio.Utilities.Encryption;
+using Stagio.Web.UnitTests.StudentTests;
 
 namespace Stagio.Web.UnitTests
 {
     [TestClass]
-    public class StudentControllerEditTests : AllControllersBaseClassTests
+    public class StudentControllerEditTests : StudentBaseClassTests
     {
         [TestMethod]
         public void edit_should_return_view_with_studentViewModel_when_studentId_is_valid()

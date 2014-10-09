@@ -14,7 +14,7 @@ namespace Stagio.Web.Controllers
     public partial class CIController : Controller
     {
         private StagioDbContext _studentDbContext;
-        private StagioDbContext _accountDbContext;
+        private StagioDbContext _accountDbContext;//temporary before Coordonnateur and employee are created
 
         public CIController()
         {
@@ -28,8 +28,8 @@ namespace Stagio.Web.Controllers
             {
                 _studentDbContext.Database.Delete();
                 _studentDbContext.Database.CreateIfNotExists();
-                _accountDbContext.Database.Delete();
-                _accountDbContext.Database.CreateIfNotExists();
+                _accountDbContext.Database.Delete();//temporary
+                _accountDbContext.Database.CreateIfNotExists();//temporary
             }
             catch (Exception ex)
             {
@@ -76,7 +76,7 @@ namespace Stagio.Web.Controllers
                 //_accountDbContext.Users.Add(studentItem);
             }
 
-            var user = new ApplicationUser()
+            var user = new ApplicationUser()//temporary
 
             {
                 Roles = new List<UserRole>()
@@ -87,7 +87,7 @@ namespace Stagio.Web.Controllers
                 UserName = "coordonnateur",
                 Name = "Super admin coordonnateur Tux"
             };
-            _accountDbContext.Users.Add(user);
+            _accountDbContext.Users.Add(user);//temporary
             _studentDbContext.SaveChanges();
             _accountDbContext.SaveChanges();
 
