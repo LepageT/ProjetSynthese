@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Stagio.Domain.Entities
 {
-    public class Student : Entity
+    public class Student : ApplicationUser
     {
         public int Matricule { get; set; }
 
@@ -19,9 +19,9 @@ namespace Stagio.Domain.Entities
         [Required(ErrorMessage = "Requis")]
         public string Telephone { get; set; }
 
-        [Required(ErrorMessage = "Requis")]
-        [MinLength(8)]
-        public string Password { get; set; }
+        //[Required(ErrorMessage = "Requis")]
+        //[MinLength(8)]
+        //public string Password { get; set; }
 
 
     }

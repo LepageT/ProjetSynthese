@@ -45,7 +45,10 @@ namespace Stagio.Web.Controllers
             {
                 new Student()
                 {
-                    Id = 1,
+                    Roles = new List<UserRole>()
+                             {
+                                 new UserRole() {RoleName = RoleName.Student}
+                             },
                     FirstName = "Quentin",
                     LastName = "Tarantino",
                     Telephone = "123-456-7890",
@@ -54,17 +57,23 @@ namespace Stagio.Web.Controllers
                 },
                 new Student()
                 {
-                    Id = 2,
+                     Roles = new List<UserRole>()
+                             {
+                                 new UserRole() {RoleName = RoleName.Student}
+                             },
                     FirstName = "Christopher",
                     LastName = "Nolan",
                     Telephone = "123-456-7890",
                     Matricule = 1234560,
-                    Password = PasswordHash.CreateHash("qwerty98")
+                    Password = PasswordHash.CreateHash("qwerty98"),
                 }
             };
             foreach (var studentItem in studentItems)
             {
+                studentItem.UserName = studentItem.Matricule.ToString();
+                studentItem.Name = studentItem.FirstName + " " + studentItem.LastName;
                 _studentDbContext.Students.Add(studentItem);
+                //_accountDbContext.Users.Add(studentItem);
             }
 
             var user = new ApplicationUser()
@@ -75,8 +84,8 @@ namespace Stagio.Web.Controllers
                                  new UserRole() {RoleName = RoleName.Coordonnateur}
                              },
                 Password = PasswordHash.CreateHash("test4test"),
-                Name = "Super FNDTux",
                 UserName = "coordonnateur",
+                Name = "Super admin coordonnateur Tux"
             };
             _accountDbContext.Users.Add(user);
             _studentDbContext.SaveChanges();

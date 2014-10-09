@@ -15,9 +15,10 @@ namespace Stagio.Web.Mappers
             Mapper.CreateMap<ViewModels.Student.Edit, Student>()
                 .ForMember(dest => dest.FirstName, opt => opt.Ignore())
                 .ForMember(dest => dest.LastName, opt => opt.Ignore())
-                .ForMember(dest => dest.Matricule, opt => opt.Ignore());
-
-
+                .ForMember(dest => dest.Matricule, opt => opt.Ignore())
+                .ForMember(dest => dest.Roles, opt => opt.Ignore())
+                .ForMember(dest => dest.UserName, opt => opt.Ignore())
+                .ForMember(dest => dest.Name, opt => opt.Ignore());
         }
     }
 }

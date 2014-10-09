@@ -42,5 +42,10 @@ namespace Stagio.Web.Services
         {
             throw new System.NotImplementedException();
         }
+
+        public bool UserMatriculeExist(string matricule)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

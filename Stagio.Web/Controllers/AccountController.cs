@@ -13,8 +13,8 @@ namespace Stagio.Web.Controllers
 {
     public partial class AccountController : Controller
     {
-        private IHttpContextService _httpContext;
-        private IAccountService _accountService;
+        private readonly IHttpContextService _httpContext;
+        private readonly IAccountService _accountService;
 
         public AccountController(IHttpContextService httpContext,
                                  IAccountService accountService)
@@ -46,7 +46,7 @@ namespace Stagio.Web.Controllers
 
             if (!user.Any())
             {
-                ModelState.AddModelError("loginError", "Inexistant password or username");
+                ModelState.AddModelError("loginError", "Mot de passe ou nom d'utilisateur non existant");
                 return View("");
             }
 
@@ -58,7 +58,7 @@ namespace Stagio.Web.Controllers
         {
             var identity = new ClaimsIdentity(new[]
             {
-                new Claim(ClaimTypes.Name, applicationUser.UserName),
+                new Claim(ClaimTypes.Name, applicationUser.Name),
                 new Claim(ClaimTypes.NameIdentifier, applicationUser.Id.ToString()),
             },
                 DefaultAuthenticationTypes.ApplicationCookie);
