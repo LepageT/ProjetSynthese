@@ -30,12 +30,12 @@ namespace Stagio.Web.Controllers
 
         public virtual ActionResult Create(string token)
         {
-            if (token != null)
+            if (!String.IsNullOrEmpty(token))
             {
 
                 var invitation = _invitationRepository.GetAll().FirstOrDefault(x => x.Token == token);
 
-                if (invitation == null)
+                if (invitation == null )
                 {
                     return HttpNotFound();
                 }
@@ -129,7 +129,7 @@ namespace Stagio.Web.Controllers
                 Used = false
             });
 
-            return RedirectToAction(Views.ViewNames.Index);
+            return RedirectToAction(MVC.Coordonnateur.Index());
 
         }
     }

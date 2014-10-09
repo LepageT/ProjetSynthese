@@ -24,7 +24,10 @@ namespace Stagio.Web.Mappers
                 .ForMember(dest => dest.Password, opt => opt.Ignore())
                 .ForMember(dest => dest.ConfirmedPassword, opt => opt.Ignore())
                 .ForMember(dest => dest.InvitationId, opt => opt.MapFrom(src => src.Id))
-                .ForMember(dest => dest.Id, opt => opt.Ignore());
+                .ForMember(dest => dest.Token, opt => opt.Ignore())
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .IgnoreAllNonExisting();
+
 
         }
     }

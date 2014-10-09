@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ploeh.AutoFixture;
 using Stagio.DataLayer;
+using Stagio.DataLayer.EntityFramework;
 using Stagio.Domain.Entities;
 using Stagio.TestUtility.AutoFixture;
 using Stagio.Web.Controllers;
@@ -28,6 +29,8 @@ namespace Stagio.Web.UnitTests.CoordonnateurTests
 
             coordonnateurRepository = Substitute.For<IEntityRepository<Coordonnateur>>();
             invitationRepository = Substitute.For<IEntityRepository<Invitation>>();
+
+            coordonnateurController = new CoordonnateurController(coordonnateurRepository, invitationRepository);
         }
     }
 }
