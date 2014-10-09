@@ -3,61 +3,48 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using AutoMapper;
 using Stagio.DataLayer;
 using Stagio.Domain.Entities;
 
 namespace Stagio.Web.Controllers
 {
-    public partial class EnterpriseController : Controller
+    public partial class CoordinatorController : Controller
     {
         private readonly IEntityRepository<Enterprise> _enterpriseRepository;
 
-        public EnterpriseController(IEntityRepository<Enterprise> enterpriseRepository)
+        public CoordinatorController(IEntityRepository<Enterprise> enterpriseRepository)
         {
             _enterpriseRepository = enterpriseRepository;
         }
-
-        // GET: Enterprise
+        // GET: Coordinator
         public virtual ActionResult Index()
         {
             return View();
         }
 
-        // GET: Enterprise/Details/5
+        // GET: Coordinator/Details/5
         public virtual ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Enterprise/Create
-        public virtual ActionResult Create(string email, string firstName, string lastName, string enterpriseName, string telephone, int? poste)
+        // GET: Coordinator/Create
+        public virtual ActionResult Create()
         {
-            var enterprise = new Enterprise();
-            enterprise.Email = email;
-            enterprise.FirstName = firstName;
-            enterprise.LastName = lastName;
-            enterprise.EnterpriseName = enterpriseName;
-            enterprise.Telephone = telephone;
-            enterprise.Poste = poste;
-            var enterpriseCreatePageViewModel = Mapper.Map<ViewModels.Enterprise.Create>(enterprise);
-            return View(enterpriseCreatePageViewModel);
+            return View();
         }
 
-        // POST: Enterprise/Create
+        // POST: Coordinator/Create
         [HttpPost]
-        public virtual ActionResult Create(ViewModels.Enterprise.Create createViewModel)
+        public virtual ActionResult Create(FormCollection collection)
         {
             try
             {
-                if (ModelState.IsValid)
-                {
-                    var enterprise = Mapper.Map<Enterprise>(createViewModel);
-                    _enterpriseRepository.Add(enterprise);
-                    //ADD NOTIFICATIONS: À la coordination et aux autres employés de l'entreprise.
-                    return RedirectToAction(MVC.Home.Index());
-                }
-                return View(createViewModel);
+                // TODO: Add insert logic here
+
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -65,13 +52,13 @@ namespace Stagio.Web.Controllers
             }
         }
 
-        // GET: Enterprise/Edit/5
+        // GET: Coordinator/Edit/5
         public virtual ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Enterprise/Edit/5
+        // POST: Coordinator/Edit/5
         [HttpPost]
         public virtual ActionResult Edit(int id, FormCollection collection)
         {
@@ -87,13 +74,13 @@ namespace Stagio.Web.Controllers
             }
         }
 
-        // GET: Enterprise/Delete/5
+        // GET: Coordinator/Delete/5
         public virtual ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Enterprise/Delete/5
+        // POST: Coordinator/Delete/5
         [HttpPost]
         public virtual ActionResult Delete(int id, FormCollection collection)
         {
@@ -102,6 +89,32 @@ namespace Stagio.Web.Controllers
                 // TODO: Add delete logic here
 
                 return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: Coordinator/InviteEnterprise
+        public virtual ActionResult InviteEnterprise()
+        {
+            var allEnterprise = _enterpriseRepository.GetAll().ToList();
+
+            var enterpriseInviteViewModels = Mapper.Map<IEnumerable<ViewModels.Enterprise.Create>>(allEnterprise);
+
+            return View(enterpriseInviteViewModels);
+           
+        }
+
+        // POST: Coordinator/InviteEnterprise
+        [HttpPost]
+        public virtual ActionResult InviteEnterprise(int id, FormCollection collection)
+        {
+            try
+            {
+               
+                return RedirectToAction(MVC.Home.Index());
             }
             catch
             {

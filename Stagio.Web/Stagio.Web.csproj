@@ -168,9 +168,13 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\CIController.cs" />
+    <Compile Include="Controllers\CoordinatorController.cs" />
     <Compile Include="Controllers\EnterpriseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="CoordinatorController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="EnterpriseController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -249,9 +253,11 @@
     </None>
     <Content Include="Views\Student\Edit.cshtml" />
     <Content Include="Views\Enterprise\Create.cshtml" />
+    <Content Include="Views\Coordinator\InviteEnterprise.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ViewModels\Coordinator\" />
     <Folder Include="Views\CI\" />
   </ItemGroup>
   <ItemGroup>

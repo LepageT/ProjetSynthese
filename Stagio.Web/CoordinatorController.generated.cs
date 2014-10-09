@@ -23,10 +23,13 @@ using System.Web.Routing;
 using T4MVC;
 namespace Stagio.Web.Controllers
 {
-    public partial class EnterpriseController
+    public partial class CoordinatorController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected EnterpriseController(Dummy d) { }
+        public CoordinatorController() { }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected CoordinatorController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -62,12 +65,6 @@ namespace Stagio.Web.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult Create()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult Edit()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
@@ -80,13 +77,13 @@ namespace Stagio.Web.Controllers
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public EnterpriseController Actions { get { return MVC.Enterprise; } }
+        public CoordinatorController Actions { get { return MVC.Coordinator; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Enterprise";
+        public readonly string Name = "Coordinator";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Enterprise";
+        public const string NameConst = "Coordinator";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -99,6 +96,7 @@ namespace Stagio.Web.Controllers
             public readonly string Create = "Create";
             public readonly string Edit = "Edit";
             public readonly string Delete = "Delete";
+            public readonly string InviteEnterprise = "InviteEnterprise";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -109,6 +107,7 @@ namespace Stagio.Web.Controllers
             public const string Create = "Create";
             public const string Edit = "Edit";
             public const string Delete = "Delete";
+            public const string InviteEnterprise = "InviteEnterprise";
         }
 
 
@@ -126,13 +125,7 @@ namespace Stagio.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Create
         {
-            public readonly string email = "email";
-            public readonly string firstName = "firstName";
-            public readonly string lastName = "lastName";
-            public readonly string enterpriseName = "enterpriseName";
-            public readonly string telephone = "telephone";
-            public readonly string poste = "poste";
-            public readonly string createViewModel = "createViewModel";
+            public readonly string collection = "collection";
         }
         static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -152,6 +145,15 @@ namespace Stagio.Web.Controllers
             public readonly string id = "id";
             public readonly string collection = "collection";
         }
+        static readonly ActionParamsClass_InviteEnterprise s_params_InviteEnterprise = new ActionParamsClass_InviteEnterprise();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_InviteEnterprise InviteEnterpriseParams { get { return s_params_InviteEnterprise; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_InviteEnterprise
+        {
+            public readonly string id = "id";
+            public readonly string collection = "collection";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -162,16 +164,16 @@ namespace Stagio.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string Create = "Create";
+                public readonly string InviteEnterprise = "InviteEnterprise";
             }
-            public readonly string Create = "~/Views/Enterprise/Create.cshtml";
+            public readonly string InviteEnterprise = "~/Views/Coordinator/InviteEnterprise.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_EnterpriseController : Stagio.Web.Controllers.EnterpriseController
+    public partial class T4MVC_CoordinatorController : Stagio.Web.Controllers.CoordinatorController
     {
-        public T4MVC_EnterpriseController() : base(Dummy.Instance) { }
+        public T4MVC_CoordinatorController() : base(Dummy.Instance) { }
 
         [NonAction]
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
@@ -197,31 +199,25 @@ namespace Stagio.Web.Controllers
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string email, string firstName, string lastName, string enterpriseName, string telephone, int? poste);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create(string email, string firstName, string lastName, string enterpriseName, string telephone, int? poste)
+        public override System.Web.Mvc.ActionResult Create()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "email", email);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "firstName", firstName);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "lastName", lastName);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "enterpriseName", enterpriseName);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "telephone", telephone);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "poste", poste);
-            CreateOverride(callInfo, email, firstName, lastName, enterpriseName, telephone, poste);
+            CreateOverride(callInfo);
             return callInfo;
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Stagio.Web.ViewModels.Enterprise.Create createViewModel);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Web.Mvc.FormCollection collection);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create(Stagio.Web.ViewModels.Enterprise.Create createViewModel)
+        public override System.Web.Mvc.ActionResult Create(System.Web.Mvc.FormCollection collection)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "createViewModel", createViewModel);
-            CreateOverride(callInfo, createViewModel);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "collection", collection);
+            CreateOverride(callInfo, collection);
             return callInfo;
         }
 
@@ -272,6 +268,30 @@ namespace Stagio.Web.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "collection", collection);
             DeleteOverride(callInfo, id, collection);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void InviteEnterpriseOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult InviteEnterprise()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InviteEnterprise);
+            InviteEnterpriseOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void InviteEnterpriseOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id, System.Web.Mvc.FormCollection collection);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult InviteEnterprise(int id, System.Web.Mvc.FormCollection collection)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InviteEnterprise);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "collection", collection);
+            InviteEnterpriseOverride(callInfo, id, collection);
             return callInfo;
         }
 

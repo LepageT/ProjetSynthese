@@ -60,6 +60,34 @@ namespace Stagio.Web.Controllers
             {
                 _studentDbContext.Students.Add(studentItem);
             }
+
+
+            var enterpriseItems = new List<Enterprise>()
+            {
+                new Enterprise()
+                {
+                    Id = 1,
+                    FirstName = "Quentin",
+                    LastName = "Tarantino",
+                    Telephone = "123-456-7890",
+                    Email = "blabla@hotmail.com",
+                    Password = "qwerty12"
+                },
+                new Enterprise()
+                {
+                    Id = 2,
+                    FirstName = "Christopher",
+                    LastName = "Nolan",
+                    Telephone = "123-456-7890",
+                    Email = "toto@hotmail.com",
+                    Password = "qwerty98"
+                }
+            };
+            foreach (var studentItem in studentItems)
+            {
+                _studentDbContext.Students.Add(studentItem);
+            }
+
             _studentDbContext.SaveChanges();
 
         }

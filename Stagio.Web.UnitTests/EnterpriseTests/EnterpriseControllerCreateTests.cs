@@ -26,14 +26,13 @@ namespace Stagio.Web.UnitTests.EnterpriseTests
 
 
             //Action
-            var viewResult = enterpriseController.Create(enterprise.Email, enterprise.EnterpriseName) as ViewResult;
+            var viewResult = enterpriseController.Create(enterprise.Email, null, null, enterprise.EnterpriseName, null, null) as ViewResult;
             var viewModelObtained = viewResult.ViewData.Model as ViewModels.Enterprise.Create;
 
             //Assert 
             Assert.AreEqual(viewModelExpected.Email, viewModelObtained.Email);
             Assert.AreEqual(viewModelExpected.EnterpriseName, viewModelObtained.EnterpriseName);
-
-          
+ 
         }
 
         [TestMethod]
@@ -48,7 +47,6 @@ namespace Stagio.Web.UnitTests.EnterpriseTests
 
             // Assert
             EnterpriseRepositoryAddMethodShouldHaveReceived(enterprise);
-
         }
 
         [TestMethod]
@@ -81,6 +79,25 @@ namespace Stagio.Web.UnitTests.EnterpriseTests
 
         }
 
+        [TestMethod]
+        public void create_post_should_not_add_enterprise_to_repository_if_email_already_in_repository()
+        {
+            // Arrange   
+            var enterprise1 = _fixture.Create<Enterprise>();
+            var enterpriseViewModel1 = Mapper.Map<ViewModels.Enterprise.Create>(enterprise1);
+            var email = enterpriseViewModel1.Email;
+            var enterprise2 = _fixture.Create<Enterprise>();
+            var enterpriseViewModel2 = Mapper.Map<ViewModels.Enterprise.Create>(enterprise2);
+            enterpriseViewModel2.Email = email;
+
+            // Action
+            enterpriseController.Create(enterpriseViewModel1);
+            enterpriseController.Create(enterpriseViewModel2);
+
+            // Assert
+            enterpriseRepository.DidNotReceive().Add(Arg.Is<Enterprise>(x => x.Email == enterprise2.Email));
+        }
+
         private void EnterpriseRepositoryAddMethodShouldHaveReceived(Enterprise enterprise)
         {
             enterpriseRepository.Received().Add(Arg.Is<Enterprise>(x => x.Id == enterprise.Id));
@@ -89,6 +106,7 @@ namespace Stagio.Web.UnitTests.EnterpriseTests
             enterpriseRepository.Received().Add(Arg.Is<Enterprise>(x => x.LastName == enterprise.LastName));
             enterpriseRepository.Received().Add(Arg.Is<Enterprise>(x => x.EnterpriseName == enterprise.EnterpriseName));
             enterpriseRepository.Received().Add(Arg.Is<Enterprise>(x => x.Telephone == enterprise.Telephone));
+            enterpriseRepository.Received().Add(Arg.Is<Enterprise>(x => x.Poste == enterprise.Poste));
             enterpriseRepository.Received().Add(Arg.Is<Enterprise>(x => x.Password == enterprise.Password));
         }
     }
