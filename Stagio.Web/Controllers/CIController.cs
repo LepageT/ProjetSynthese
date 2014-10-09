@@ -70,6 +70,13 @@ namespace Stagio.Web.Controllers
                 Password = "12345678",
                 Email = "admin@admin.com"
             });
+
+            _studentDbContext.Invitations.Add(new Invitation()
+            {
+                Id = 1,
+                Email =  "testemail@admin.com",
+                Token = "123456"
+            });
             _studentDbContext.SaveChanges();
 
         }
