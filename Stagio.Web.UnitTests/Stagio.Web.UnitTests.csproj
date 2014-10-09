@@ -104,6 +104,8 @@
     <Compile Include="StudentTests\StudentControllerEditTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AccountControllerBaseClassTest.cs" />
+    <Compile Include="AccountControllerLoginTests.cs" />
+    <Compile Include="AllControllersBaseClassTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -1,16 +1,19 @@
 ﻿
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using Ploeh.AutoFixture;
+using Stagio.TestUtility.AutoFixture;
 using Stagio.Web.Controllers;
+using Stagio.Web.Mappers;
 using Stagio.Web.Services;
 
 namespace Stagio.Web.UnitTests
 {
-    public class AccountControllerBaseClassTest
+    public class AccountControllerBaseClassTest : AllControllersBaseClassTests
     {
-        private AccountController _accountController;
-        private IHttpContextService _httpContext;
-        private IAccountService _accountService;
+        protected AccountController _accountController;
+        protected IHttpContextService _httpContext;
+        protected IAccountService _accountService;
 
         [TestInitialize]
         public void AccountControllerTestInit()

@@ -8,19 +8,14 @@ using Stagio.Web.Mappers;
 
 namespace Stagio.Web.UnitTests.StudentTests
 {
-    public class StudentBaseClassTests
+    public class StudentBaseClassTests : AllControllersBaseClassTests
     {
         protected StudentController studentController;
-        protected Fixture _fixture;
         protected IEntityRepository<Stagio.Domain.Entities.Student> studentRepository;
             
         [TestInitialize]
         public void ControllerTestInit()
         {
-            AutoMapperConfiguration.Configure();
-
-            _fixture = new Fixture();
-            _fixture.Customizations.Add(new VirtualMembersOmitter());
 
             studentRepository = Substitute.For<IEntityRepository<Stagio.Domain.Entities.Student>>();
             studentController = new StudentController(studentRepository);
