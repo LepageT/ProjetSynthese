@@ -44,11 +44,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoFixture\CollectionPropertyOmitter.cs" />
     <Compile Include="AutoFixture\VirtualMembersOmitter.cs" />
+    <Compile Include="Database\DataBaseTestHelper.cs" />
+    <Compile Include="Database\TestData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Stagio.DataLayer\Stagio.DataLayer.csproj">
+      <Project>{0988FEE9-30A1-49A7-A7B1-9D1571ECEA28}</Project>
+      <Name>Stagio.DataLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Stagio.Domain\Stagio.Domain.csproj">
+      <Project>{976FE607-B2B5-412F-98B1-B8106D6B610C}</Project>
+      <Name>Stagio.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Stagio.Utilities\Stagio.Utilities.csproj">
+      <Project>{12547a44-ff09-479d-820e-e54a227c939c}</Project>
+      <Name>Stagio.Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

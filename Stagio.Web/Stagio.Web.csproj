@@ -176,7 +176,6 @@
     <Compile Include="CIController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Class1.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CIController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -277,6 +276,10 @@
     <ProjectReference Include="..\Stagio.Domain\Stagio.Domain.csproj">
       <Project>{976fe607-b2b5-412f-98b1-b8106d6b610c}</Project>
       <Name>Stagio.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Stagio.TestUtilities\Stagio.TestUtilities.csproj">
+      <Project>{9999bd96-9ae9-4332-9205-86e60ac4ca88}</Project>
+      <Name>Stagio.TestUtilities</Name>
     </ProjectReference>
     <ProjectReference Include="..\Stagio.Utilities\Stagio.Utilities.csproj">
       <Project>{12547a44-ff09-479d-820e-e54a227c939c}</Project>

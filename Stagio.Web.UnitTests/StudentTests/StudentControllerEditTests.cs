@@ -18,7 +18,11 @@ namespace Stagio.Web.UnitTests
         public void edit_should_return_view_with_studentViewModel_when_studentId_is_valid()
         {
             //Arrange 
-            var student = _fixture.Create<Stagio.Domain.Entities.Student>();
+            var student = _fixture.Build<Student>()
+               .Without(x => x.UserName)
+               .Without(x => x.Name)
+               .Without(x => x.Roles)
+               .Create();
             studentRepository.GetById(student.Id).Returns(student);
             var viewModelExpected = Mapper.Map<ViewModels.Student.Edit>(student);
             
@@ -46,7 +50,9 @@ namespace Stagio.Web.UnitTests
         public void edit_post_should_update_student_when_studentId_is_valid()
         {
             //Arrange
-            var student = _fixture.Create<Student>();
+            var student = _fixture.Build<Student>()
+                .Without(x => x.Roles)
+                .Create();
             studentRepository.GetById(student.Id).Returns(student);
             var studentViewModel = Mapper.Map<ViewModels.Student.Edit>(student);
             studentViewModel.OldPassword = student.Password;
@@ -63,7 +69,11 @@ namespace Stagio.Web.UnitTests
         public void edit_post_should_redirect_to_index_on_success()
         {
             //Arrange
-            var student = _fixture.Create<Student>();
+            var student = _fixture.Build<Student>()
+                .Without(x => x.UserName)
+                .Without(x => x.Name)
+                .Without(x => x.Roles)
+                .Create();
 
             studentRepository.GetById(student.Id).Returns(student);
             var studentEditPageViewModel = Mapper.Map<Student, ViewModels.Student.Edit>(student);
@@ -82,6 +92,8 @@ namespace Stagio.Web.UnitTests
         {
             //Arrange
             var student = _fixture.Create<Student>();
+
+
             var studentEditPageViewModel = _fixture.Build<ViewModels.Student.Edit>()
                                                       .With(x => x.Id, student.Id)
                                                       .Create();
