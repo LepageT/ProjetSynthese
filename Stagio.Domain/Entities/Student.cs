@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 
 namespace Stagio.Domain.Entities
 {
@@ -22,6 +23,9 @@ namespace Stagio.Domain.Entities
         [Required(ErrorMessage = "Requis")]
         [MinLength(8)]
         public string Password { get; set; }
+
+        [DefaultValue(false)]
+        public bool Activated { get; set; }
 
 
     }

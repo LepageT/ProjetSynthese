@@ -40,17 +40,31 @@ namespace Stagio.Web.Controllers
 
         // POST: Student/Create
         [HttpPost]
-        public virtual ActionResult Create(FormCollection collection)
+        public virtual ActionResult Create(ViewModels.Student.Create createStudentViewModel)
         {
-            try
-            {
+            var student = _studentRepository.GetAll().FirstOrDefault(x => x.Matricule == createStudentViewModel.Matricule);
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if(student == null)
             {
-                return View();
+                ModelState.AddModelError("Matricule", "Votre matricule ne figure pas dans la liste des matricules autorisés.");
             }
+
+            if(student.FirstName != createStudentViewModel.FirstName)
+            {
+                ModelState.AddModelError("FirstName", "Votre nom ne correspond pas à celui associé à votre matricule.");
+            }
+
+            if (student.LastName != createStudentViewModel.LastName)
+            {
+                ModelState.AddModelError("LastName", "Votre prénom ne correspond pas à celui associé à votre matricule.");
+            }
+
+            if(student.Activated)
+            {
+                ModelState.AddModelError("Matricule", "Votre matricule est déja utilisé.");
+            }
+
+            return View();
         }
 
         // GET: Student/Edit/5
