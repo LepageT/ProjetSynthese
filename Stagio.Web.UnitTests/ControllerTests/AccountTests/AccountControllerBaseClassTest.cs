@@ -1,12 +1,9 @@
-﻿
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using Ploeh.AutoFixture;
 using Stagio.Web.Controllers;
-using Stagio.Web.Mappers;
 using Stagio.Web.Services;
 
-namespace Stagio.Web.UnitTests
+namespace Stagio.Web.UnitTests.ControllerTests.AccountTests
 {
     public class AccountControllerBaseClassTest : AllControllersBaseClassTests
     {

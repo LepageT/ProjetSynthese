@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Security.Claims;
 using System.Web.Mvc;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using Ploeh.AutoFixture;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
-using Ploeh.AutoFixture;
 
-
-namespace Stagio.Web.UnitTests
+namespace Stagio.Web.UnitTests.ControllerTests.AccountTests
 {
     [TestClass]
     public class AccountControllerLoginTests : AccountControllerBaseClassTest
@@ -104,6 +102,34 @@ namespace Stagio.Web.UnitTests
 
             //Assert
             _httpContext.Received().AuthenticationSignIn(Arg.Any<ClaimsIdentity>());
+
+        }
+
+        [TestMethod]
+        public void logout_should_logout_an_authentificated_user()
+        {
+            //Arrange
+            var user = _fixture.Create<ApplicationUser>();
+            user.Roles = new List<UserRole>()
+            {
+                new UserRole() {RoleName = RoleName.Coordonnateur}
+            };
+            var loginViewModel = new ViewModels.Account.Login()
+            {
+                Username = user.UserName,
+                Password = user.Password
+
+            };
+
+            var valideUser = new MayBe<ApplicationUser>(user);
+            _accountService.ValidateUser(loginViewModel.Username, loginViewModel.Password).Returns(valideUser);
+
+            //Action    
+            _accountController.Login(loginViewModel);
+            _accountController.Logout();
+
+            //Assert
+            _httpContext.Received().AuthenticationSignOut();
 
         }
     }

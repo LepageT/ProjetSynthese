@@ -2,6 +2,7 @@
 {
     <ul class="nav navbar-nav navbar-right">
         <li>@Html.ActionLink(@User.Identity.Name, MVC.Home.Index())</li>
+        <li>@Html.ActionLink("Se déconnecter", MVC.Account.Logout(), new { id = "logout-link" })</li>
     </ul>
 }
 else

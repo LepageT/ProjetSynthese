@@ -72,6 +72,7 @@ namespace Stagio.Web.Controllers
         {
             public readonly string Index = "Index";
             public readonly string Login = "Login";
+            public readonly string Logout = "Logout";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -79,6 +80,7 @@ namespace Stagio.Web.Controllers
         {
             public const string Index = "Index";
             public const string Login = "Login";
+            public const string Logout = "Logout";
         }
 
 
@@ -142,6 +144,17 @@ namespace Stagio.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Login);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "accountLoginViewModel", accountLoginViewModel);
             LoginOverride(callInfo, accountLoginViewModel);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void LogoutOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Logout()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Logout);
+            LogoutOverride(callInfo);
             return callInfo;
         }
 

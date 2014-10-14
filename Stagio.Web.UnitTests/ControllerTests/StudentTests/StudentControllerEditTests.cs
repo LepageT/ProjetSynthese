@@ -1,15 +1,13 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using AutoMapper;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using Stagio.Domain.Entities;
 using Ploeh.AutoFixture;
-using FluentAssertions;
+using Stagio.Domain.Entities;
 using Stagio.Utilities.Encryption;
-using Stagio.Web.UnitTests.StudentTests;
 
-namespace Stagio.Web.UnitTests
+namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 {
     [TestClass]
     public class StudentControllerEditTests : StudentBaseClassTests

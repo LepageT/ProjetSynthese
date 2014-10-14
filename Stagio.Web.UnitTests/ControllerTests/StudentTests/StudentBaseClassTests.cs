@@ -1,12 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using Ploeh.AutoFixture;
 using Stagio.DataLayer;
 using Stagio.Web.Controllers;
-using Stagio.Web.Mappers;
 
-
-namespace Stagio.Web.UnitTests.StudentTests
+namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 {
     public class StudentBaseClassTests : AllControllersBaseClassTests
     {

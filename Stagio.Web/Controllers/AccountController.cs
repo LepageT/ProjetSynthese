@@ -54,6 +54,13 @@ namespace Stagio.Web.Controllers
 
             return RedirectToAction(MVC.Home.Index());
         }
+
+        public virtual ActionResult Logout()
+        {
+            _httpContext.AuthenticationSignOut();
+            return RedirectToAction(Views.ViewNames.Login);
+        }
+
         private void AuthentificateUser(ApplicationUser applicationUser)
         {
             var identity = new ClaimsIdentity(new[]
