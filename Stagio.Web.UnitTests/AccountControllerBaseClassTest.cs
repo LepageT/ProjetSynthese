@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using Ploeh.AutoFixture;
-using Stagio.TestUtility.AutoFixture;
 using Stagio.Web.Controllers;
 using Stagio.Web.Mappers;
 using Stagio.Web.Services;

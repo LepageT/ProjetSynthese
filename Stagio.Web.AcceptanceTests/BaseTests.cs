@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ploeh.AutoFixture;
-using Stagio.TestUtility.AutoFixture;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 

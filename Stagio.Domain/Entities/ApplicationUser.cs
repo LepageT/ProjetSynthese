@@ -18,8 +18,13 @@ namespace Stagio.Domain.Entities
         [Required]
         public string Name { get; set; }
 
-
-        
+        [Required]
+        public string LastName { get; set; }
+        [Required]
+        public string FirstName { get; set; }
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Entrez un numéro valide.")]
+        [Required(ErrorMessage = "Requis")]
+        public string Telephone { get; set; }
         /*Si nombre X maximum de connexions echoues, ajouter un fail counter + timestamp de quand le counter est rendu a 4
          */ 
         

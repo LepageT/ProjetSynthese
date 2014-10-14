@@ -2,9 +2,9 @@
 using NSubstitute;
 using Ploeh.AutoFixture;
 using Stagio.DataLayer;
-using Stagio.TestUtility.AutoFixture;
 using Stagio.Web.Controllers;
 using Stagio.Web.Mappers;
+
 
 namespace Stagio.Web.UnitTests.StudentTests
 {
@@ -14,7 +14,7 @@ namespace Stagio.Web.UnitTests.StudentTests
         protected IEntityRepository<Stagio.Domain.Entities.Student> studentRepository;
             
         [TestInitialize]
-        public void ControllerTestInit()
+        public void StudentControllerTestInit()
         {
 
             studentRepository = Substitute.For<IEntityRepository<Stagio.Domain.Entities.Student>>();
