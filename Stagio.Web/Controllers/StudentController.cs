@@ -12,11 +12,13 @@ namespace Stagio.Web.Controllers
     public partial class StudentController : Controller
     {
         private readonly IEntityRepository<Student> _studentRepository;
+        private readonly IEntityRepository<Activation> _activationRepository;
 
 
-        public StudentController(IEntityRepository<Student> studentRepository)
+        public StudentController(IEntityRepository<Student> studentRepository, IEntityRepository<Activation> activationRepository)
         {
             _studentRepository = studentRepository;
+            _activationRepository = activationRepository;
         }
 
 
@@ -48,23 +50,71 @@ namespace Stagio.Web.Controllers
             {
                 ModelState.AddModelError("Matricule", "Votre matricule ne figure pas dans la liste des matricules autorisés.");
             }
-
-            if(student.FirstName != createStudentViewModel.FirstName)
+            else
             {
-                ModelState.AddModelError("FirstName", "Votre nom ne correspond pas à celui associé à votre matricule.");
+                if (student.FirstName != createStudentViewModel.FirstName)
+                {
+                    ModelState.AddModelError("FirstName", "Votre nom ne correspond pas à celui associé à votre matricule.");
+                }
+
+                if (student.LastName != createStudentViewModel.LastName)
+                {
+                    ModelState.AddModelError("LastName", "Votre prénom ne correspond pas à celui associé à votre matricule.");
+                }
+
+                if (student.Activated)
+                {
+                    ModelState.AddModelError("Matricule", "Votre matricule est déja utilisé.");
+                }
             }
 
-            if (student.LastName != createStudentViewModel.LastName)
+
+
+            if(!ModelState.IsValid)
             {
-                ModelState.AddModelError("LastName", "Votre prénom ne correspond pas à celui associé à votre matricule.");
+                return View(createStudentViewModel);
             }
 
-            if(student.Activated)
-            {
-                ModelState.AddModelError("Matricule", "Votre matricule est déja utilisé.");
-            }
+            Mapper.Map(createStudentViewModel, student);
 
-            return View();
+            _studentRepository.Update(student);
+
+            //TODO Send an activation email.
+
+           /* System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
+
+            try
+            {
+                message.To.Add(createStudentViewModel.Email);
+                message.Subject = "Activation";
+                message.From = new System.Net.Mail.MailAddress("thomarellau@hotmail.com");
+                message.IsBodyHtml = true;
+                message.Body = "Merci d'avoir créer votre compte Stagio. Vous devez l'activer en cliquant sur le lien suivant.";
+                var token = "123456";
+
+                String invitationUrl = "<br/><a href=stagio.local/Activation/" + token + ">Créer un compte</a>";
+
+                message.Body += invitationUrl;
+                System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.live.com");
+
+                smtp.Port = 587;
+                smtp.Credentials = new System.Net.NetworkCredential("thomarellau@hotmail.com", "LesPommesRouge2");
+                smtp.EnableSsl = true;
+                smtp.Send(message);
+
+                _activationRepository.Add(new Activation()
+                {
+                    Token = token,
+                    AccountId = createStudentViewModel.Id,
+                    AccountType = 1
+                });
+            }
+            catch (Exception e)
+            {
+               
+            }*/
+
+            return RedirectToAction(MVC.Home.Index());
         }
 
         // GET: Student/Edit/5
@@ -90,15 +140,12 @@ namespace Stagio.Web.Controllers
             {
                 return HttpNotFound();
             }
-
-           
+                     
             
             if (editStudentViewModel.OldPassword != student.Password)
             {
                 ModelState.AddModelError("OldPassword", "L'ancien mot de passe n'est pas valide.");
             }
-            
-
             
 
             if (!ModelState.IsValid)

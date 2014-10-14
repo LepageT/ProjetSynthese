@@ -54,6 +54,13 @@ namespace Stagio.Web.Controllers
                     Telephone = "123-456-7890",
                     Matricule = 1234560,
                     Password = "qwerty98"
+                },
+                new Student()
+                {
+                    Id = 2,
+                    FirstName = "Thomas",
+                    LastName = "Lepage",
+                    Matricule = 1031739,
                 }
             };
             foreach (var studentItem in studentItems)

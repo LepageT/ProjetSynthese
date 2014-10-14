@@ -41,5 +41,11 @@ namespace Stagio.Web.ViewModels.Student
         [DataType(DataType.Password)]
         [System.ComponentModel.DataAnnotations.CompareAttribute("Password", ErrorMessage = "Les mot de passes ne correspondent pas")]
         public string PasswordConfirmation { get; set; }
+
+        [DisplayName("Courriel")]
+        [Required(ErrorMessage = "Requis")]
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
+
     }
 }

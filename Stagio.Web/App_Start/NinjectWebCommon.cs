@@ -67,6 +67,8 @@ namespace Stagio.Web.App_Start
         {
 
             kernel.Bind<IEntityRepository<Student>>().To<EfEntityRepository<Student>>().InRequestScope();
+            kernel.Bind<IEntityRepository<Activation>>().To<EfEntityRepository<Activation>>().InRequestScope();
+
             kernel.Bind<IDatabaseHelper>().To<EfDatabaseHelper>().InRequestScope();
         }        
     }
