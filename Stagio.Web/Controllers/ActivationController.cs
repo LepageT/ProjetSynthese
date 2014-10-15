@@ -6,11 +6,10 @@ using System.Web.Mvc;
 using AutoMapper;
 using Stagio.DataLayer;
 using Stagio.Domain.Entities;
-using AutoMapper;
 
 namespace Stagio.Web.Controllers
 {
-    public class ActivationController : Controller
+    public partial class ActivationController : Controller
     {
 
         private readonly IEntityRepository<Activation> _activationRepository;
@@ -23,7 +22,7 @@ namespace Stagio.Web.Controllers
             _studentRepository = studentRepository;
         }
         // GET: Activation
-        public ActionResult Index(string token)
+        public virtual ActionResult Index(string token)
         {
             if (!String.IsNullOrEmpty(token))
             {

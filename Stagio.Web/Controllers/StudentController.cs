@@ -12,13 +12,13 @@ namespace Stagio.Web.Controllers
     public partial class StudentController : Controller
     {
         private readonly IEntityRepository<Student> _studentRepository;
-        private readonly IEntityRepository<Activation> _activationRepository;
+       // private readonly IEntityRepository<Activation> _activationRepository;
 
 
-        public StudentController(IEntityRepository<Student> studentRepository, IEntityRepository<Activation> activationRepository)
+        public StudentController(IEntityRepository<Student> studentRepository)
         {
             _studentRepository = studentRepository;
-            _activationRepository = activationRepository;
+            //_activationRepository = activationRepository;
         }
 
 
