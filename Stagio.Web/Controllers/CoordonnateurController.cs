@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using AutoMapper;
 using Stagio.DataLayer;
 using Stagio.Domain.Entities;
-using AutoMapper;
 using System.Text;
 
 namespace Stagio.Web.Controllers
@@ -109,38 +108,25 @@ namespace Stagio.Web.Controllers
             }
 
             System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
+            
+            string token = generateToken();
 
-            try
-            {
-
-                string token = generateToken();
-
-                message.To.Add(createdInvite.Email);
-                message.Subject = "Création d'un compte coordonnateur";
-                message.From = new System.Net.Mail.MailAddress("thomarellau@hotmail.com");
-                message.IsBodyHtml = true;
-                message.Body = "<h3>Stagio</h3>" +
+            //Sending invitation with the Mailler class
+            string messageText = "<h3>Stagio</h3>" +
                     "<p> Bonjour, </p>" +
                     "<p>Vous avez &eacute;t&eacute; inviter à vous cr&eacute;er un compte en tant que coordonnateur.</p>" +
                     "<p>Pour cr&eacute;er votre compte, veuillez cliquer sur le lien ci-dessous: </p>";
-                String invitationUrl = "<a href=stagio.local/Coordonnateur/Create/" + token + ">Créer un compte</a>";
+             String invitationUrl = "<a href=stagio.local/Coordonnateur/Create/" + token + ">Créer un compte</a>";
 
-                message.Body += invitationUrl;
+                messageText += invitationUrl;
 
                 if (createdInvite.Message != null)
                 {
-                    message.Body += "</br></br> <h3>Message:</h3></br>";
-                    message.Body += createdInvite.Message;
+                    messageText += "</br></br> <h3>Message:</h3></br>";
+                    messageText += createdInvite.Message;
                 }
 
-                System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.live.com");
-
-                smtp.Port = 587;
-                smtp.Credentials = new System.Net.NetworkCredential("thomarellau@hotmail.com", "LesPommesRouge2");
-                smtp.EnableSsl = true;
-                smtp.Send(message);
-            }
-            catch (Exception e)
+            if (!Mailler.Instance.SendEmail(createdInvite.Email, "Création d'un compte coordonnateur",messageText))
             {
                 ModelState.AddModelError("Email", "Error");
                 return View(createdInvite);

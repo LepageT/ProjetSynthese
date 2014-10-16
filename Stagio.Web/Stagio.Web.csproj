@@ -170,6 +170,7 @@
     <Compile Include="Controllers\CIController.cs" />
     <Compile Include="Controllers\CoordonnateurController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Services\Mailler.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="CoordonnateurController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
