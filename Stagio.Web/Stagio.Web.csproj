@@ -170,7 +170,6 @@
     <Compile Include="CIController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\ActivationController.cs" />
     <Compile Include="Controllers\CIController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
@@ -250,7 +249,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Activation\" />
     <Folder Include="Views\CI\" />
   </ItemGroup>
   <ItemGroup>

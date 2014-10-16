@@ -21,7 +21,6 @@ namespace Stagio.Web.Controllers
             //_activationRepository = activationRepository;
         }
 
-
         // GET: Student
         public virtual ActionResult Index()
         {
@@ -68,51 +67,15 @@ namespace Stagio.Web.Controllers
                 }
             }
 
-
-
             if(!ModelState.IsValid)
             {
                 return View(createStudentViewModel);
             }
+            student.Activated = true;
 
             Mapper.Map(createStudentViewModel, student);
 
             _studentRepository.Update(student);
-
-            //TODO Send an activation email.
-
-           /* System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
-
-            try
-            {
-                message.To.Add(createStudentViewModel.Email);
-                message.Subject = "Activation";
-                message.From = new System.Net.Mail.MailAddress("thomarellau@hotmail.com");
-                message.IsBodyHtml = true;
-                message.Body = "Merci d'avoir créer votre compte Stagio. Vous devez l'activer en cliquant sur le lien suivant.";
-                var token = "123456";
-
-                String invitationUrl = "<br/><a href=stagio.local/Activation/" + token + ">Créer un compte</a>";
-
-                message.Body += invitationUrl;
-                System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.live.com");
-
-                smtp.Port = 587;
-                smtp.Credentials = new System.Net.NetworkCredential("thomarellau@hotmail.com", "LesPommesRouge2");
-                smtp.EnableSsl = true;
-                smtp.Send(message);
-
-                _activationRepository.Add(new Activation()
-                {
-                    Token = token,
-                    AccountId = createStudentViewModel.Id,
-                    AccountType = 1
-                });
-            }
-            catch (Exception e)
-            {
-               
-            }*/
 
             return RedirectToAction(MVC.Home.Index());
         }
