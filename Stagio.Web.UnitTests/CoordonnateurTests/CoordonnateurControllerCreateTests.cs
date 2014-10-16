@@ -80,7 +80,7 @@ namespace Stagio.Web.UnitTests.CoordonnateurTests
         }
 
         [TestMethod]
-        public void coordonnateur_create_get_should_return_default_view_when_modelState_is_not_valid()
+        public void coordonnateur_create_post_should_return_default_view_when_modelState_is_not_valid()
         {
             var invitations = _fixture.CreateMany<Invitation>(3);
             var invitation = invitations.First();

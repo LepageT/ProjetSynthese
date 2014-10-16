@@ -107,7 +107,6 @@ namespace Stagio.Web.Controllers
 
             System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
 
-            
             try
             {
                 message.To.Add(createdInvite.Email);
