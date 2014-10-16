@@ -7,6 +7,7 @@ using AutoMapper;
 using Stagio.DataLayer;
 using Stagio.Domain.Entities;
 using AutoMapper;
+using System.Text;
 
 namespace Stagio.Web.Controllers
 {
@@ -14,7 +15,9 @@ namespace Stagio.Web.Controllers
     {
 
         private readonly IEntityRepository<Coordonnateur> _coordonnateurRepository;
-        private readonly IEntityRepository<Invitation> _invitationRepository; 
+        private readonly IEntityRepository<Invitation> _invitationRepository;
+        private static Random random = new Random((int)DateTime.Now.Ticks);//thanks to McAden
+
         public CoordonnateurController(IEntityRepository<Coordonnateur> coordonnateurRepository, IEntityRepository<Invitation> invitationRepository)
         {
             _coordonnateurRepository = coordonnateurRepository;
@@ -35,7 +38,7 @@ namespace Stagio.Web.Controllers
 
                 var invitation = _invitationRepository.GetAll().FirstOrDefault(x => x.Token == token);
 
-                if (invitation == null )
+                if (invitation == null)
                 {
                     return HttpNotFound();
                 }
@@ -66,7 +69,7 @@ namespace Stagio.Web.Controllers
                 }
 
             }
-           
+
             if (!ModelState.IsValid)
             {
                 return View(createdCoordonnateur);
@@ -109,14 +112,27 @@ namespace Stagio.Web.Controllers
 
             try
             {
+
+                string token = generateToken();
+
                 message.To.Add(createdInvite.Email);
                 message.Subject = "Création d'un compte coordonnateur";
                 message.From = new System.Net.Mail.MailAddress("thomarellau@hotmail.com");
                 message.IsBodyHtml = true;
-                message.Body = createdInvite.Message;
-                String invitationUrl = "<br/><a href=stagio.local/Coordonnateur/Create/123456>Créer un compte</a>";
+                message.Body = "<h3>Stagio</h3>" +
+                    "<p> Bonjour, </p>" +
+                    "<p>Vous avez &eacute;t&eacute; inviter à vous cr&eacute;er un compte en tant que coordonnateur.</p>" +
+                    "<p>Pour cr&eacute;er votre compte, veuillez cliquer sur le lien ci-dessous: </p>";
+                String invitationUrl = "<a href=stagio.local/Coordonnateur/Create/" + token + ">Créer un compte</a>";
 
                 message.Body += invitationUrl;
+
+                if (createdInvite.Message != null)
+                {
+                    message.Body += "</br></br> <h3>Message:</h3></br>";
+                    message.Body += createdInvite.Message;
+                }
+
                 System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.live.com");
 
                 smtp.Port = 587;
@@ -132,7 +148,7 @@ namespace Stagio.Web.Controllers
 
             _invitationRepository.Add(new Invitation()
             {
-                Token = "123456",
+                Token = token,
                 Email = createdInvite.Email,
                 Used = false
             });
@@ -140,5 +156,22 @@ namespace Stagio.Web.Controllers
             return RedirectToAction(MVC.Coordonnateur.Index());
 
         }
+
+
+        private string generateToken()
+        {
+            StringBuilder builder = new StringBuilder();
+            char ch;
+            for (int i = 0; i < 15; i++)
+            {
+                ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26 * random.NextDouble() + 65)));
+                builder.Append(ch);
+            }
+
+            return builder.ToString();
+        }
     }
+
 }
+
+  

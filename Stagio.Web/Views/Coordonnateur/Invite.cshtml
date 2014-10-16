@@ -4,14 +4,13 @@
     ViewBag.Title = "Inviter un coordonnateur";
 }
 
-<h2 id="coordonnateur-invite">Invite</h2>
+<h2 id="coordonnateur-invite">Inviter un coordonnateur</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Invite</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
