@@ -100,6 +100,7 @@
     <Compile Include="StudentTests\StudentControllerEditTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StudentTests\StudentControllerCreateListTests.cs" />
+    <Compile Include="StudentTests\StudentControllerUploadTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

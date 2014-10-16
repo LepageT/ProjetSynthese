@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Stagio.Web.AcceptanceTests.StudentTests
 {
     [TestClass]
-    public class StudentControllerCreateTests
+    public class StudentControllerCreateTests : BaseTests
     {
         [TestMethod]
         public void TestMethod1()

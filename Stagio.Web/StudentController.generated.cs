@@ -56,6 +56,12 @@ namespace Stagio.Web.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult UploadPost()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UploadPost);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult Edit()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
@@ -77,6 +83,7 @@ namespace Stagio.Web.Controllers
         public class ActionNamesClass
         {
             public readonly string Upload = "Upload";
+            public readonly string UploadPost = "Upload";
             public readonly string ResultCreateList = "ResultCreateList";
             public readonly string PostResultCreateList = "ResultCreateList";
             public readonly string CreateList = "CreateList";
@@ -88,6 +95,7 @@ namespace Stagio.Web.Controllers
         public class ActionNameConstants
         {
             public const string Upload = "Upload";
+            public const string UploadPost = "Upload";
             public const string ResultCreateList = "ResultCreateList";
             public const string PostResultCreateList = "ResultCreateList";
             public const string CreateList = "CreateList";
@@ -96,11 +104,11 @@ namespace Stagio.Web.Controllers
         }
 
 
-        static readonly ActionParamsClass_Upload s_params_Upload = new ActionParamsClass_Upload();
+        static readonly ActionParamsClass_UploadPost s_params_UploadPost = new ActionParamsClass_UploadPost();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Upload UploadParams { get { return s_params_Upload; } }
+        public ActionParamsClass_UploadPost UploadPostParams { get { return s_params_UploadPost; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Upload
+        public class ActionParamsClass_UploadPost
         {
             public readonly string file = "file";
         }
@@ -152,14 +160,14 @@ namespace Stagio.Web.Controllers
         }
 
         [NonAction]
-        partial void UploadOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Web.HttpPostedFileBase file);
+        partial void UploadPostOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Web.HttpPostedFileBase file);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Upload(System.Web.HttpPostedFileBase file)
+        public override System.Web.Mvc.ActionResult UploadPost(System.Web.HttpPostedFileBase file)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Upload);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UploadPost);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "file", file);
-            UploadOverride(callInfo, file);
+            UploadPostOverride(callInfo, file);
             return callInfo;
         }
 

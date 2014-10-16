@@ -28,8 +28,8 @@ namespace Stagio.Web.Controllers
             return View();
         }
 
-        [HttpPost]
-        public virtual ActionResult Upload(HttpPostedFileBase file)
+        [HttpPost, ActionName("Upload")]
+        public virtual ActionResult UploadPost(HttpPostedFileBase file)
         {
             var listStudentToCreate = new List<Student>();
 
@@ -90,7 +90,7 @@ namespace Stagio.Web.Controllers
         
         public virtual ActionResult CreateList()
         {
-            var listStudentToCreate = TempData["list"] as List<Student>;
+            var listStudentToCreate = TempData["listStudent"] as List<Student>;
             TempData["listStudent"] = listStudentToCreate;
             return View(listStudentToCreate);
         }
@@ -114,9 +114,9 @@ namespace Stagio.Web.Controllers
             }
             if (ModelState.IsValid)
             {
+                var student = _studentRepository.GetAll().ToList();
                 foreach (var studentCreate in listOfStudentToCreate)
                 {
-                    var student = _studentRepository.GetAll().ToList();
                     for (int i = 0; i < student.Count(); i++)
                     {
                         if (student[i].Matricule == studentCreate.Matricule)
@@ -131,10 +131,11 @@ namespace Stagio.Web.Controllers
                     }
                     alreadyInDb = false;
                 }
-                
+                TempData["listStudentNotAdded"] = listStudentNotAdded;
+                return RedirectToAction(MVC.Student.ResultCreateList());
             }
-            TempData["listStudentNotAdded"] = listStudentNotAdded;
-            return RedirectToAction(MVC.Student.ResultCreateList());
+
+            return RedirectToAction("");
         }
 
         // GET: Student/Edit/5
