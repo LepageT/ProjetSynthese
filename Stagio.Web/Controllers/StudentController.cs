@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using Stagio.DataLayer;
 using Stagio.Domain.Entities;
+using Stagio.Web.Module;
 using Stagio.Web.ViewModels.Student;
 
 
@@ -40,36 +41,21 @@ namespace Stagio.Web.Controllers
             }
             if (ModelState.IsValid)
             {
+                
+
                 if (file.ContentLength > 0)
                 {
                     var fileName = Path.GetFileName(file.FileName);
                     var path = Path.Combine(Server.MapPath("~/App_Data/UploadedFiles"), fileName);
-                    file.SaveAs(path);
+                    var readFile = new ReadFile<Student>();
 
-                    using (var rd = new StreamReader(path))
-                    {
-                        rd.ReadLine().Split(',');
-                        while (!rd.EndOfStream)
-                        {
-                            var splits = rd.ReadLine().Split(',');
-                            var createStudent = new Student();
-
-                            createStudent.Matricule = Convert.ToInt32(splits[0]);
-                            createStudent.LastName = splits[1];
-                            createStudent.FirstName = splits[2];
-
-                            createStudent.LastName = createStudent.LastName.Replace('"', ' ');
-                            createStudent.FirstName = createStudent.FirstName.Replace('"', ' ');
-                            listStudentToCreate.Add(createStudent);
-                            ViewBag.Message = "Le fichier a été importé avec succès";
-                        }
-                    }
+                    listStudentToCreate = readFile.ReadFileCsv(file, path); 
                 }
 
-                TempData["list"] = listStudentToCreate;
+                TempData["listStudent"] = listStudentToCreate;
                 return RedirectToAction(MVC.Student.CreateList());
             }
-            return View("");
+            return RedirectToAction("");
         }
 
         public virtual ActionResult ResultCreateList()
@@ -179,7 +165,5 @@ namespace Stagio.Web.Controllers
             return RedirectToAction(MVC.Home.Index());
 
         }
-
-       
     }
 }
