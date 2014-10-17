@@ -15,14 +15,14 @@ namespace Stagio.Web.Controllers
 
         private readonly IEntityRepository<Coordonnateur> _coordonnateurRepository;
         private readonly IEntityRepository<Invitation> _invitationRepository;
-        private static Random random = new Random((int)DateTime.Now.Ticks);//thanks to McAden
+
+        //For the token generation.
+        private static Random random = new Random((int)DateTime.Now.Ticks);
 
         public CoordonnateurController(IEntityRepository<Coordonnateur> coordonnateurRepository, IEntityRepository<Invitation> invitationRepository)
         {
             _coordonnateurRepository = coordonnateurRepository;
             _invitationRepository = invitationRepository;
-
-
         }
         // GET: Coordonnateur
         public virtual ActionResult Index()
@@ -34,7 +34,6 @@ namespace Stagio.Web.Controllers
         {
             if (!String.IsNullOrEmpty(token))
             {
-
                 var invitation = _invitationRepository.GetAll().FirstOrDefault(x => x.Token == token);
 
                 if (invitation == null)
@@ -57,7 +56,6 @@ namespace Stagio.Web.Controllers
         [HttpPost]
         public virtual ActionResult Create(ViewModels.Coordonnateur.Create createdCoordonnateur)
         {
-
             var list = _coordonnateurRepository.GetAll();
             if (list != null)
             {
@@ -143,7 +141,7 @@ namespace Stagio.Web.Controllers
 
         }
 
-
+        //TODO -- Maybe it need to be moved in services...
         private string generateToken()
         {
             StringBuilder builder = new StringBuilder();
