@@ -102,18 +102,9 @@ namespace Stagio.Web.Controllers
         // GET: Coordinator/InviteEnterprise
         public virtual ActionResult InviteEnterprise()
         {
-            /*Enterprise test = new Enterprise();
-            test.Email = "test@test.com";
-            test.EnterpriseName = "test";
-            test.FirstName = "test";
-            test.LastName = "test";
-            test.Telephone = "123-456-7890";
-            test.Password = "qwerty12";
-            test.Id = 3;
-          
-            _enterpriseRepository.Add(test);*/
+            
             var allEnterprise = _enterpriseRepository.GetAll().ToList();
-
+            
             var enterpriseInviteViewModels = Mapper.Map<IEnumerable<ViewModels.Enterprise.Create>>(allEnterprise);
 
             return View(enterpriseInviteViewModels);
@@ -125,12 +116,13 @@ namespace Stagio.Web.Controllers
         [ActionName("InviteEnterprise")]
         public virtual ActionResult InviteEnterprise(IEnumerable<int> selectedObjects, string message)
         {
-          
+            if (selectedObjects != null)
+            {
                 foreach (int id in selectedObjects)
                 {
-                   
+
                     Enterprise enterpriseToSendMessage = _enterpriseRepository.GetById(id);
- 
+
                     if (!ModelState.IsValid)
                     {
                         return View(InviteEnterprise());
@@ -138,7 +130,12 @@ namespace Stagio.Web.Controllers
 
 
                     string messageText = "Un coordonateur de stage vous invite à vous inscrire au site Stagio: ";
-                    string invitationUrl = "http://stagio.local/Enterprise/Create?Email=" + enterpriseToSendMessage.Email + "&EnterpriseName=" + enterpriseToSendMessage.EnterpriseName + "&FirstName=" + enterpriseToSendMessage.FirstName + "&LastName=" + enterpriseToSendMessage.LastName + "&Telephone=" + enterpriseToSendMessage.Telephone + "&Poste=" + enterpriseToSendMessage.Poste;
+                    string invitationUrl = "http://stagio.local/Enterprise/Create?Email=" +
+                                           enterpriseToSendMessage.Email + "&EnterpriseName=" +
+                                           enterpriseToSendMessage.EnterpriseName + "&FirstName=" +
+                                           enterpriseToSendMessage.FirstName + "&LastName=" +
+                                           enterpriseToSendMessage.LastName + "&Telephone=" +
+                                           enterpriseToSendMessage.Telephone + "&Poste=" + enterpriseToSendMessage.Poste;
 
                     messageText += invitationUrl;
 
@@ -148,15 +145,18 @@ namespace Stagio.Web.Controllers
                         messageText += message;
                     }
 
-                    if (!Mailler.Instance.SendEmail(enterpriseToSendMessage.Email, "Invitation du Cégep de Sainte-Foy", messageText))
+                    if (
+                        !Mailler.Instance.SendEmail(enterpriseToSendMessage.Email, "Invitation du Cégep de Sainte-Foy",
+                            messageText))
                     {
                         ModelState.AddModelError("Email", "Error");
                         return View(InviteEnterprise());
                     }
-                    
-                }
 
-                return RedirectToAction(MVC.Home.Index());
+                }
+            }
+
+            return RedirectToAction(MVC.Home.Index());
            
           
         }

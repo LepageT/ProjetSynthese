@@ -67,6 +67,7 @@ namespace Stagio.Web.Controllers
                 new Enterprise()
                 {
                     Id = 1,
+                    EnterpriseName = "test",
                     FirstName = "Quentin",
                     LastName = "Tarantino",
                     Telephone = "123-456-7890",
@@ -76,6 +77,7 @@ namespace Stagio.Web.Controllers
                 new Enterprise()
                 {
                     Id = 2,
+                    EnterpriseName = "Stagio",
                     FirstName = "Christopher",
                     LastName = "Nolan",
                     Telephone = "123-456-7890",
@@ -83,9 +85,9 @@ namespace Stagio.Web.Controllers
                     Password = "qwerty98"
                 }
             };
-            foreach (var studentItem in studentItems)
+            foreach (var enterpriseItem in enterpriseItems)
             {
-                _studentDbContext.Students.Add(studentItem);
+                _studentDbContext.Enterprises.Add(enterpriseItem);
             }
 
             _studentDbContext.SaveChanges();
