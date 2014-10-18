@@ -17,6 +17,7 @@ namespace Stagio.Web.UnitTests
         protected IEntityRepository<Stagio.Domain.Entities.Student> studentRepository;
         protected IEntityRepository<Stagio.Domain.Entities.Enterprise> enterpriseRepository;
         protected EnterpriseController enterpriseController;
+        protected CoordinatorController coordinatorController;
             
         [TestInitialize]
         public void ControllerTestInit()
@@ -31,6 +32,8 @@ namespace Stagio.Web.UnitTests
 
             enterpriseRepository = Substitute.For<IEntityRepository<Stagio.Domain.Entities.Enterprise>>();
             enterpriseController = new EnterpriseController(enterpriseRepository);
+
+            coordinatorController = new CoordinatorController(enterpriseRepository);
         }
     }
 }

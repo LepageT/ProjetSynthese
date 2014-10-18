@@ -153,7 +153,9 @@ namespace Stagio.Web.Controllers
                         ModelState.AddModelError("Email", "Error");
                         return View(InviteEnterprise());
                     }
+                    
                 }
+
                 return RedirectToAction(MVC.Home.Index());
            
           
