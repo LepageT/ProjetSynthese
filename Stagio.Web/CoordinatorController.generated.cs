@@ -26,9 +26,6 @@ namespace Stagio.Web.Controllers
     public partial class CoordinatorController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public CoordinatorController() { }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected CoordinatorController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -151,8 +148,8 @@ namespace Stagio.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_InviteEnterprise
         {
-            public readonly string id = "id";
-            public readonly string collection = "collection";
+            public readonly string selectedObjects = "selectedObjects";
+            public readonly string message = "message";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -283,15 +280,15 @@ namespace Stagio.Web.Controllers
         }
 
         [NonAction]
-        partial void InviteEnterpriseOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id, System.Web.Mvc.FormCollection collection);
+        partial void InviteEnterpriseOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Collections.Generic.IEnumerable<int> selectedObjects, string message);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult InviteEnterprise(int id, System.Web.Mvc.FormCollection collection)
+        public override System.Web.Mvc.ActionResult InviteEnterprise(System.Collections.Generic.IEnumerable<int> selectedObjects, string message)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InviteEnterprise);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "collection", collection);
-            InviteEnterpriseOverride(callInfo, id, collection);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "selectedObjects", selectedObjects);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "message", message);
+            InviteEnterpriseOverride(callInfo, selectedObjects, message);
             return callInfo;
         }
 

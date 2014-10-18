@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 using AutoMapper;
 using Stagio.DataLayer;
 using Stagio.Domain.Entities;
+using System.Net.Mail;
 
 namespace Stagio.Web.Controllers
 {
@@ -99,6 +102,16 @@ namespace Stagio.Web.Controllers
         // GET: Coordinator/InviteEnterprise
         public virtual ActionResult InviteEnterprise()
         {
+            /*Enterprise test = new Enterprise();
+            test.Email = "test@test.com";
+            test.EnterpriseName = "test";
+            test.FirstName = "test";
+            test.LastName = "test";
+            test.Telephone = "123-456-7890";
+            test.Password = "qwerty12";
+            test.Id = 3;
+          
+            _enterpriseRepository.Add(test);*/
             var allEnterprise = _enterpriseRepository.GetAll().ToList();
 
             var enterpriseInviteViewModels = Mapper.Map<IEnumerable<ViewModels.Enterprise.Create>>(allEnterprise);
@@ -109,17 +122,41 @@ namespace Stagio.Web.Controllers
 
         // POST: Coordinator/InviteEnterprise
         [HttpPost]
-        public virtual ActionResult InviteEnterprise(int id, FormCollection collection)
+        [ActionName("InviteEnterprise")]
+        public virtual ActionResult InviteEnterprise(IEnumerable<int> selectedObjects, string message)
         {
-            try
-            {
-               
+          
+                foreach (int id in selectedObjects)
+                {
+                   
+                    Enterprise enterpriseToSendMessage = _enterpriseRepository.GetById(id);
+ 
+                    if (!ModelState.IsValid)
+                    {
+                        return View(InviteEnterprise());
+                    }
+
+
+                    string messageText = "Un coordonateur de stage vous invite à vous inscrire au site Stagio: ";
+                    string invitationUrl = "http://stagio.local/Enterprise/Create?Email=" + enterpriseToSendMessage.Email + "&EnterpriseName=" + enterpriseToSendMessage.EnterpriseName + "&FirstName=" + enterpriseToSendMessage.FirstName + "&LastName=" + enterpriseToSendMessage.LastName + "&Telephone=" + enterpriseToSendMessage.Telephone + "&Poste=" + enterpriseToSendMessage.Poste;
+
+                    messageText += invitationUrl;
+
+                    if (message != null)
+                    {
+                        messageText += "</br></br> <h3>Message:</h3></br>";
+                        messageText += message;
+                    }
+
+                    if (!Mailler.Instance.SendEmail(enterpriseToSendMessage.Email, "Invitation du Cégep de Sainte-Foy", messageText))
+                    {
+                        ModelState.AddModelError("Email", "Error");
+                        return View(InviteEnterprise());
+                    }
+                }
                 return RedirectToAction(MVC.Home.Index());
-            }
-            catch
-            {
-                return View();
-            }
+           
+          
         }
     }
 }

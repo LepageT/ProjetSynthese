@@ -48,21 +48,16 @@ namespace Stagio.Web.Controllers
         [HttpPost]
         public virtual ActionResult Create(ViewModels.Enterprise.Create createViewModel)
         {
-            try
+
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    var enterprise = Mapper.Map<Enterprise>(createViewModel);
-                    _enterpriseRepository.Add(enterprise);
-                    //ADD NOTIFICATIONS: À la coordination et aux autres employés de l'entreprise.
-                    return RedirectToAction(MVC.Home.Index());
-                }
-                return View(createViewModel);
+                var enterprise = Mapper.Map<Enterprise>(createViewModel);
+                _enterpriseRepository.Add(enterprise);
+                //ADD NOTIFICATIONS: À la coordination et aux autres employés de l'entreprise.
+                return RedirectToAction(MVC.Home.Index());
             }
-            catch
-            {
-                return View();
-            }
+            return View(createViewModel);
+           
         }
 
         // GET: Enterprise/Edit/5

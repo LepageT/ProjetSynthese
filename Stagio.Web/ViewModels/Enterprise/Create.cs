@@ -15,7 +15,7 @@ namespace Stagio.Web.ViewModels.Enterprise
         [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
 
-        [DisplayName("Email")]
+        [DisplayName("Courriel")]
         [Required(ErrorMessage = "Requis")]
         [DataType(DataType.EmailAddress)]
         [ValidationVerifyIfEmailIsUnique]
