@@ -97,6 +97,18 @@ namespace Stagio.Web.Controllers
             {
                 ModelState.AddModelError("Error", "Error");
             }
+            else
+            {
+                {
+                    foreach (var listStudent in listOfStudentToCreate)
+                    {
+                        if (Convert.ToInt32(listStudent.Matricule) < 1000000 || Convert.ToInt32(listStudent.Matricule) > 9999999)
+                        {
+                            ModelState.AddModelError("Error", "Matricule incorrect");
+                        }
+                    }
+                }
+            }
             if (ModelState.IsValid)
             {
                 var listStudentInDb = _studentRepository.GetAll().ToList();
