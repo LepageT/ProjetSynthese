@@ -2,6 +2,7 @@
 using NSubstitute;
 using Stagio.DataLayer;
 using Stagio.Web.Controllers;
+using Stagio.Web.Services;
 
 namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 {
@@ -9,11 +10,10 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
     {
         protected StudentController studentController;
         protected IEntityRepository<Stagio.Domain.Entities.Student> studentRepository;
-            
+
         [TestInitialize]
         public void StudentControllerTestInit()
         {
-
             studentRepository = Substitute.For<IEntityRepository<Stagio.Domain.Entities.Student>>();
             studentController = new StudentController(studentRepository);
         }

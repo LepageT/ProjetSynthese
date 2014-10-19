@@ -69,6 +69,8 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
             var studentEditPageViewModel = Mapper.Map<Student, ViewModels.Student.Edit>(student);
             studentEditPageViewModel.OldPassword = student.Password;
             student.Password = PasswordHash.CreateHash(student.Password);
+            studentEditPageViewModel.Password = "Qwerty67";
+            studentEditPageViewModel.PasswordConfirmation = studentEditPageViewModel.Password;
             //Act
             var routeResult = studentController.Edit(studentEditPageViewModel) as RedirectToRouteResult;
             var routeAction = routeResult.RouteValues["Action"];

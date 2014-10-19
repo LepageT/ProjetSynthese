@@ -30,7 +30,7 @@ namespace Stagio.Web.UnitTests.Services
             var nonHashedPassword = users.First().Password;
             foreach (var appUser in users)
             {
-                appUser.Password = PasswordHash.CreateHash(appUser.Password);
+                appUser.Password = _accountService.HashPassword(appUser.Password);
             }
             _userRepository.GetAll().Returns(users);
 
@@ -45,7 +45,7 @@ namespace Stagio.Web.UnitTests.Services
             var users = _fixture.CreateMany<ApplicationUser>(3).AsQueryable();
             foreach (var appUser in users)
             {
-                appUser.Password = PasswordHash.CreateHash(appUser.Password);
+                appUser.Password = _accountService.HashPassword(appUser.Password);
             }
             _userRepository.GetAll().Returns(users);
 
@@ -63,6 +63,20 @@ namespace Stagio.Web.UnitTests.Services
             var user = _accountService.ValidateUser("INVALID EMAIL", users.First().Password);
 
             user.Should().BeEmpty();
+        }
+
+        [TestMethod]
+        public void HashPassword_should_hash_the_password()
+        {
+            var users = _fixture.CreateMany<ApplicationUser>(3).AsQueryable();
+            var nonHashedPassword = users.First().Password;
+            foreach (var appUser in users)
+            {
+                appUser.Password = _accountService.HashPassword(appUser.Password);
+            }
+            _userRepository.GetAll().Returns(users);
+
+            nonHashedPassword.Should().NotBeSameAs(users.First().Password);
         }
 
     }

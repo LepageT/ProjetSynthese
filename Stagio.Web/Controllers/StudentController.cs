@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿
 using System.Web.Mvc;
 using AutoMapper;
 using Stagio.DataLayer;
 using Stagio.Domain.Entities;
 using Stagio.Utilities.Encryption;
+using Stagio.Web.Services;
 
 namespace Stagio.Web.Controllers
 {
@@ -14,10 +12,10 @@ namespace Stagio.Web.Controllers
     {
         private readonly IEntityRepository<Student> _studentRepository;
 
-
         public StudentController(IEntityRepository<Student> studentRepository)
         {
             _studentRepository = studentRepository;
+
         }
 
 

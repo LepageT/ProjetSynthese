@@ -38,6 +38,11 @@ namespace Stagio.Web.Services
             return PasswordHash.CreateHash(password);
         }
 
+        public bool validatePassword(string hashedPassword, string passwordToValidate)
+        {
+            return PasswordHash.ValidatePassword(passwordToValidate, hashedPassword);
+        }
+
         public bool UserEmailExist(string email)
         {
             throw new System.NotImplementedException();
