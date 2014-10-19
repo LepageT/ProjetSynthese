@@ -1,16 +1,14 @@
 ﻿@using Stagio.Domain.Entities
 
-@model IEnumerable<Stagio.Domain.Entities.Student>
+@model IEnumerable<Stagio.Web.ViewModels.Student.ListStudent>
 
 @{
     ViewBag.Title = "Liste des étudiants qui seront ajoutés";
 }
 
-@{
-    var listStudent = new List<Student>();
-}
 
-<h2>Liste des étudiants qui seront ajoutés</h2>
+
+<h2 id="createList-page">Liste des étudiants qui seront ajoutés</h2>
 
 <table class="table">
     <tr>
@@ -28,7 +26,7 @@
 
     @foreach (var item in Model)
     {
-        listStudent.Add(item);
+        
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Matricule)
@@ -51,7 +49,7 @@
     @Html.ValidationSummary(true)
     <div class="panel-body">
 
-        <input id="submit_button" type="submit" value="Confirmer" />
+        <input id="createList-button" type="submit" value="Confirmer" />
 
     </div>
 }

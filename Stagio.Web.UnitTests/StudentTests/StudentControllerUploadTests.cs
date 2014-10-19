@@ -30,10 +30,9 @@ namespace Stagio.Web.UnitTests.StudentTests
 
             studentController.ModelState.AddModelError("Error", "Error");
             
-            var result = studentController.UploadPost(postedfile) as RedirectToRouteResult;
-            var action = result.RouteValues["Action"];
-
-            action.ShouldBeEquivalentTo("");
+            var result = studentController.UploadPost(postedfile) as ViewResult;
+            
+            result.ViewName.ShouldBeEquivalentTo("");
         }
 
         [TestMethod]
@@ -43,40 +42,24 @@ namespace Stagio.Web.UnitTests.StudentTests
 
             postedfile = null;
 
-            var result = studentController.UploadPost(postedfile) as RedirectToRouteResult;
-            var action = result.RouteValues["Action"];
+            var result = studentController.UploadPost(postedfile) as ViewResult;
 
-            action.ShouldBeEquivalentTo("");
+            result.ViewName.ShouldBeEquivalentTo("");
         }
 
+        //Il faudrait mettre le nom avec une extension .csv
+        //Il n'est pas possible de mettre un nom spécifique en c# à un HttpPostedFileBase
 
-        [TestMethod]
-        public void upload_post_should_return_view_createList_if_modelState_is_valid()
-        {
-            var postedfile = Substitute.For<HttpPostedFileBase>();
+        //[TestMethod]
+        //public void upload_post_should_return_view_createList_if_modelState_is_valid()
+        //{
+        //    var postedfile = Substitute.For<HttpPostedFileBase>();
 
-            var result = studentController.UploadPost(postedfile) as RedirectToRouteResult;
-            var action = result.RouteValues["Action"];
+        //    var result = studentController.UploadPost(postedfile) as RedirectToRouteResult;
+        //    var action = result.RouteValues["Action"];
 
-            action.ShouldBeEquivalentTo("CreateList");
-        }
-
-
-        [TestMethod]
-        public void upload_post_should_read_file_if_file_is_valid()
-        {
-            //We'll need mocks (fake) of Context, Request and a fake PostedFile
-            var request = Substitute.For<HttpRequestBase>();
-            var context = Substitute.For<HttpContextBase>();
-            var postedfile = Substitute.For<HttpPostedFileBase>();
-
-            //Someone is going to ask for Request.File and we'll need a mock (fake) of that.
-            var postedfilesKeyCollection = Substitute.For<HttpFileCollectionBase>();
-            var fakeFileKeys = new List<string>() { "file" };
-
-            
-            
-        }
+        //    action.ShouldBeEquivalentTo("CreateList");
+        //}
 
     }
 }

@@ -1,10 +1,10 @@
-﻿@model IEnumerable<Stagio.Domain.Entities.Student>
+﻿@model IEnumerable<Stagio.Web.ViewModels.Student.ListStudent>
 
 @{
     ViewBag.Title = "ResultCreateList";
 }
 
-<h2>Les étudiants suivants n'ont pas pu être ajouté car ils sont déjà inscrits</h2>
+<h2 id ="resultCreateList-page">Les étudiants suivants n'ont pas pu être ajouté car ils sont déjà inscrits</h2>
 
 
 <table class="table">
@@ -41,7 +41,7 @@
     @Html.ValidationSummary(true)
     <div class="panel-body">
 
-        <input id="submit_button" type="submit" value="Ok" />
+        <input id="resultCreateList-button" type="submit" value="Ok" />
 
     </div>
 }

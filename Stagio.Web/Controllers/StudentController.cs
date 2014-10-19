@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
+using Microsoft.Ajax.Utilities;
 using Stagio.DataLayer;
 using Stagio.Domain.Entities;
 using Stagio.Web.Module;
@@ -32,35 +33,39 @@ namespace Stagio.Web.Controllers
         [HttpPost, ActionName("Upload")]
         public virtual ActionResult UploadPost(HttpPostedFileBase file)
         {
-            var listStudentToCreate = new List<Student>();
+            var listStudentToCreate = new List<ListStudent>();
 
             if (file == null)
             {
                 ModelState.AddModelError("Fichier", "Il n'y a pas de fichier à importer");
                 ViewBag.Message = "Il n'y a pas de fichier à importer";
             }
+            else
+            {
+                {
+                    if (!file.FileName.Contains(".csv"))
+                    {
+                        ModelState.AddModelError("Fichier", "Il n'y a pas de fichier à importer");
+                        ViewBag.Message = "Ce n'est pas un fichier csv";
+                    }
+                }
+            }
+         
             if (ModelState.IsValid)
             {
-                
+                var readFile = new ReadFile<ListStudent>();
 
-                if (file.ContentLength > 0)
-                {
-                    var fileName = Path.GetFileName(file.FileName);
-                    var path = Path.Combine(Server.MapPath("~/App_Data/UploadedFiles"), fileName);
-                    var readFile = new ReadFile<Student>();
-
-                    listStudentToCreate = readFile.ReadFileCsv(file, path); 
-                }
-
+                listStudentToCreate = readFile.ReadFileCsv(file); 
                 TempData["listStudent"] = listStudentToCreate;
+
                 return RedirectToAction(MVC.Student.CreateList());
             }
-            return RedirectToAction("");
+            return View("");
         }
 
         public virtual ActionResult ResultCreateList()
         {
-            var listStudentNotAdded = TempData["listStudentNotAdded"] as List<Student>;
+            var listStudentNotAdded = TempData["listStudentNotAdded"] as List<ListStudent>;
            
             return View(listStudentNotAdded);
         }
@@ -71,27 +76,21 @@ namespace Stagio.Web.Controllers
         {
             return RedirectToAction(MVC.Home.Index());
         }
-       
-        // GET: Student/Create
         
         public virtual ActionResult CreateList()
         {
-            var listStudentToCreate = TempData["listStudent"] as List<Student>;
+            var listStudentToCreate = TempData["listStudent"] as List<ListStudent>;
             TempData["listStudent"] = listStudentToCreate;
             return View(listStudentToCreate);
         }
-
-
-        // POST: Student/Create
      
         [HttpPost]
         [ActionName("CreateList")]
        
         public virtual ActionResult CreateListPost()
         {
-            var listStudentNotAdded = new List<Student>();
-            var listOfStudentToCreate = new List<Student>();
-            listOfStudentToCreate = TempData["listStudent"] as List<Student>;
+            var listStudentNotAdded = new List<ListStudent>();
+            var listOfStudentToCreate = TempData["listStudent"] as List<ListStudent>;
             var alreadyInDb = false;
 
             if (listOfStudentToCreate == null)
@@ -100,20 +99,22 @@ namespace Stagio.Web.Controllers
             }
             if (ModelState.IsValid)
             {
-                var student = _studentRepository.GetAll().ToList();
-                foreach (var studentCreate in listOfStudentToCreate)
+                var listStudentInDb = _studentRepository.GetAll().ToList();
+                foreach (var listStudentCreate in listOfStudentToCreate)
                 {
-                    for (int i = 0; i < student.Count(); i++)
+                    for (int i = 0; i < listStudentInDb.Count(); i++)
                     {
-                        if (student[i].Matricule == studentCreate.Matricule)
+                        if (listStudentInDb[i].Matricule == listStudentCreate.Matricule)
                         {
-                            listStudentNotAdded.Add(studentCreate);
+                          
+                            listStudentNotAdded.Add(listStudentCreate);
                             alreadyInDb = true;
                         }
                     }
                     if (!alreadyInDb)
                     {
-                        _studentRepository.Add(studentCreate);
+                        var studentToAdd = Mapper.Map<Student>(listStudentCreate);
+                        _studentRepository.Add(studentToAdd);
                     }
                     alreadyInDb = false;
                 }
@@ -163,7 +164,6 @@ namespace Stagio.Web.Controllers
             _studentRepository.Update(student);
 
             return RedirectToAction(MVC.Home.Index());
-
         }
     }
 }

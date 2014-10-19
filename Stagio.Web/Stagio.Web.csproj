@@ -195,6 +195,7 @@
       <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="ViewModels\Student\Edit.cs" />
+    <Compile Include="ViewModels\Student\ListStudent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />

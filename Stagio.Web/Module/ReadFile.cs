@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using System.IO;
 using System.Web;
 using Stagio.Domain.Entities;
+using Stagio.Web.ViewModels.Student;
 
 namespace Stagio.Web.Module
 {
     public class ReadFile<T>
     {
-        public List<Student> ReadFileCsv(HttpPostedFileBase file, string path)
+        public List<ListStudent> ReadFileCsv(HttpPostedFileBase file)
         {
-            var listStudentToCreate = new List<Student>();
+            var listStudentToCreate = new List<ListStudent>();
             if (file.ContentLength > 0)
             {
-              
+                var server = HttpContext.Current.Server;
+                var fileName = Path.GetFileName(file.FileName);
+                var path = Path.Combine(server.MapPath("~/App_Data/UploadedFiles"), fileName);
+                //var readFile = new ReadFile<Student>();
                 file.SaveAs(path);
 
                 using (var rd = new StreamReader(path))
@@ -22,7 +26,7 @@ namespace Stagio.Web.Module
                     while (!rd.EndOfStream)
                     {
                         var splits = rd.ReadLine().Split(',');
-                        var createStudent = new Student();
+                        var createStudent = new ListStudent();
 
                         createStudent.Matricule = Convert.ToInt32(splits[0]);
                         createStudent.LastName = splits[1];
