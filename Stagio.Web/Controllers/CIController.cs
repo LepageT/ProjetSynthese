@@ -11,19 +11,19 @@ namespace Stagio.Web.Controllers
 {
     public partial class CIController : Controller
     {
-        private StagioDbContext _studentDbContext;
+        //private StagioDbContext _studentDbContext;
 
         public CIController()
         {
-            _studentDbContext = new StagioDbContext();
+            //_studentDbContext = new StagioDbContext();
         }
 
         public virtual ActionResult Index()
         {
             try
             {
-                _studentDbContext.Database.Delete();
-                _studentDbContext.Database.CreateIfNotExists();
+               // _studentDbContext.Database.Delete();
+               // _studentDbContext.Database.CreateIfNotExists();
             }
             catch (Exception ex)
             {
@@ -65,10 +65,26 @@ namespace Stagio.Web.Controllers
             };
             foreach (var studentItem in studentItems)
             {
-                _studentDbContext.Students.Add(studentItem);
+               // _studentDbContext.Students.Add(studentItem);
             }
-            _studentDbContext.SaveChanges();
 
+            /*_studentDbContext.Coordonnateurs.Add(new Coordonnateur()
+            {
+                Id = 1,
+                FirstName = "Test",
+                LastName = "Test2",
+                Password = "12345678",
+                Email = "admin@admin.com"
+            });
+
+            _studentDbContext.Invitations.Add(new Invitation()
+            {
+                Id = 1,
+                Email =  "testemail@admin.com",
+                Token = "123456"
+            });
+            _studentDbContext.SaveChanges();
+            */
         }
     }
 }

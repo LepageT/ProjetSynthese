@@ -47,14 +47,6 @@
     <Reference Include="AutoMapper.Net4">
       <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -168,8 +160,13 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\CIController.cs" />
+    <Compile Include="Controllers\CoordonnateurController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Services\Mailler.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="CoordonnateurController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -193,6 +190,8 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Student\Create.cs" />
+    <Compile Include="ViewModels\Coordonnateur\Create.cs" />
+    <Compile Include="ViewModels\Coordonnateur\Invite.cs" />
     <Compile Include="ViewModels\Student\Edit.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -243,6 +242,9 @@
     </None>
     <Content Include="Views\Student\Edit.cshtml" />
     <Content Include="Views\Student\Create.cshtml" />
+    <Content Include="Views\Coordonnateur\Index.cshtml" />
+    <Content Include="Views\Coordonnateur\Create.cshtml" />
+    <Content Include="Views\Coordonnateur\Invite.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

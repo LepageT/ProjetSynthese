@@ -1,5 +1,4 @@
 ﻿using System.Data.Entity;
-using System.Data.Entity.SqlServerCompact;
 
 namespace Stagio.DataLayer.EntityFramework
 {
@@ -7,9 +6,9 @@ namespace Stagio.DataLayer.EntityFramework
     {
         public EfDatabaseConfiguration()
         {
-            SetProviderServices(SqlCeProviderServices.ProviderInvariantName,
-                                SqlCeProviderServices.Instance);
-            
+            SetProviderServices("System.Data.SqlClient",
+                System.Data.Entity.SqlServer.SqlProviderServices.Instance);
+
         }
     }
 }
