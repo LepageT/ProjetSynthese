@@ -30,7 +30,7 @@ namespace Stagio.TestUtilities.Database
 
         #region Student1 - Quentin Tarantino
 
-        static public Student sudent1
+        static public Student student1
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Stagio.TestUtilities.Database
 
         #region Student2 - Christopher Nolan
 
-        static public Student sudent2
+        static public Student student2
         {
             get
             {
@@ -79,7 +79,68 @@ namespace Stagio.TestUtilities.Database
             }
         }
         #endregion
- 
+        #region Student3 - Christopher Nolan
+
+        static public Student student3
+        {
+            get
+            {
+                var student = new Student()
+                {
+                    Roles = new List<UserRole>()
+                             {
+                                 new UserRole() {RoleName = RoleName.Student}
+                             },
+                    FirstName = "Thomas",
+                    LastName = "Lepage",
+                    Matricule = 1031739,
+                };
+
+                student.Name = student.FirstName + " " + student.LastName;
+                student.UserName = student.Matricule.ToString();
+                return student;
+            }
+        }
+        #endregion
+        #region Coordonnateur1
+
+        public static Coordonnateur coordonnateur1
+        {
+            get
+            {
+                var coordonnate = new Coordonnateur()
+                {
+                    Id = 1,
+                    FirstName = "Test",
+                    LastName = "Test2",
+                    Password = "12345678",
+                    Email = "admin@admin.com"
+                };
+
+                return coordonnate;
+            }
+
+        }
+                #endregion
+#region Invitation 1
+
+        static public Invitation invitation1
+        {
+            get
+            {
+                var invitation = new Invitation()
+                {
+                    Id = 1,
+                    Email = "testemail@admin.com",
+                    Token = "123456"
+                };
+
+                return invitation;
+            }
+        }
+
+        #endregion
+
 
     }
 }

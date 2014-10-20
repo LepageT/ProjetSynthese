@@ -39,62 +39,14 @@ namespace Stagio.Web.Controllers
         {
             SqlConnection.ClearAllPools();
             _dbHelper.DeleteAll();
-        }
+                }
 
         private void SeedDb()
-        {
+            {
             var testData = new DataBaseTestHelper();
             testData.SeedTables();
             
-            //var studentItems = new List<Student>()
-            //{
-            //    new Student()
-            //    {
-            //        Roles = new List<UserRole>()
-            //                 {
-            //                     new UserRole() {RoleName = RoleName.Student}
-            //                 },
-            //        FirstName = "Quentin",
-            //        LastName = "Tarantino",
-            //        Telephone = "123-456-7890",
-            //        Matricule = 1234567,
-            //        Password = PasswordHash.CreateHash("qwerty12")
-            //    },
-            //    new Student()
-            //    {
-            //         Roles = new List<UserRole>()
-            //                 {
-            //                     new UserRole() {RoleName = RoleName.Student}
-            //                 },
-            //        FirstName = "Christopher",
-            //        LastName = "Nolan",
-            //        Telephone = "123-456-7890",
-            //        Matricule = 1234560,
-            //        Password = PasswordHash.CreateHash("qwerty98")
-            //    }
-            //};
-            //foreach (var studentItem in studentItems)
-            //{
-            //    studentItem.UserName = studentItem.Matricule.ToString();
-            //    studentItem.Name = studentItem.FirstName + " " + studentItem.LastName;
-            //    _studentDbContext.Students.Add(studentItem);
-            //    //_accountDbContext.Users.Add(studentItem);
-            //}
-
-            //var user = new ApplicationUser()//temporary
-
-            //{
-            //    Roles = new List<UserRole>()
-            //                 {
-            //                     new UserRole() {RoleName = RoleName.Coordonnateur}
-            //                 },
-            //    Password = PasswordHash.CreateHash("test4test"),
-            //    UserName = "coordonnateur@stagio.com",
-            //    Name = "Super admin coordonnateur Tux"
-            //};
-            //_accountDbContext.Users.Add(user);//temporary
-            //_studentDbContext.SaveChanges();
-            //_accountDbContext.SaveChanges();
+            
 
         }
     }

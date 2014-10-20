@@ -9,7 +9,6 @@ namespace Stagio.Domain.Entities
 {
     public class ApplicationUser : Entity
     {
-        [Required]
         //[Required(ErrorMessage = "Requis")]
         [MinLength(8)]
         public string Password { get; set; }
