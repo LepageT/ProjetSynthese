@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,19 +11,19 @@ namespace Stagio.Web.Controllers
 {
     public partial class CIController : Controller
     {
-        private StagioDbContext _studentDbContext;
+        //private StagioDbContext _studentDbContext;
 
         public CIController()
         {
-            _studentDbContext = new StagioDbContext();
+            //_studentDbContext = new StagioDbContext();
         }
 
         public virtual ActionResult Index()
         {
             try
             {
-                _studentDbContext.Database.Delete();
-                _studentDbContext.Database.CreateIfNotExists();
+               // _studentDbContext.Database.Delete();
+               // _studentDbContext.Database.CreateIfNotExists();
             }
             catch (Exception ex)
             {
@@ -59,10 +58,10 @@ namespace Stagio.Web.Controllers
             };
             foreach (var studentItem in studentItems)
             {
-                _studentDbContext.Students.Add(studentItem);
+               // _studentDbContext.Students.Add(studentItem);
             }
 
-            _studentDbContext.Coordonnateurs.Add(new Coordonnateur()
+            /*_studentDbContext.Coordonnateurs.Add(new Coordonnateur()
             {
                 Id = 1,
                 FirstName = "Test",
@@ -78,7 +77,7 @@ namespace Stagio.Web.Controllers
                 Token = "123456"
             });
             _studentDbContext.SaveChanges();
-
+            */
         }
     }
 }
