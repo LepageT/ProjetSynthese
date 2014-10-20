@@ -18,10 +18,10 @@ namespace Stagio.Web.Controllers
         const string PASSWORD = "LesPommesRouge2";
 
         static Mailler()
-        {
-
+        { 
+        
         }
-        private Mailler()
+        private Mailler() 
         {
             smtp = new SmtpClient("smtp.live.com");
             smtp.Port = 587;
@@ -31,13 +31,13 @@ namespace Stagio.Web.Controllers
 
         public static Mailler Instance
         {
-            get
+            get 
             {
                 return instance;
             }
         }
 
-        public bool SendEmail(string destination, string subject, string content)
+        public bool SendEmail(string destination,string subject, string content)
         {
             try
             {

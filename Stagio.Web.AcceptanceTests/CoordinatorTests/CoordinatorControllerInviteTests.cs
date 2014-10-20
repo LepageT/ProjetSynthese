@@ -14,7 +14,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
         [TestMethod]
         public void coordinator_should_be_able_to_access_invite_enterprise_page()
         {
-            _driver.Navigate().GoToUrl("http://stagio.local/Coordinator/InviteEnterprise");
+            _driver.Navigate().GoToUrl("http://thomarelau.local/Coordinator/InviteEnterprise");
 
             try
             {
@@ -31,7 +31,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
         public void coordinator_should_be_able_to_invite_enterprise()
         {
             const string MESSAGE = "test";
-            _driver.Navigate().GoToUrl("http://stagio.local/Coordinator/InviteEnterprise");
+            _driver.Navigate().GoToUrl("http://thomarelau.local/Coordinator/InviteEnterprise");
             _driver.FindElement(By.Id("Message")).SendKeys(MESSAGE);
             _driver.FindElement(By.Id("send-button")).Click();
             try

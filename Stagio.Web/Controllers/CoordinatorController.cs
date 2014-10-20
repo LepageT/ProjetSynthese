@@ -130,7 +130,7 @@ namespace Stagio.Web.Controllers
 
 
                     string messageText = "Un coordonateur de stage vous invite à vous inscrire au site Stagio: ";
-                    string invitationUrl = "http://stagio.local/Enterprise/Create?Email=" +
+                    string invitationUrl = "http://thomarelau.local/Enterprise/Create?Email=" +
                                            enterpriseToSendMessage.Email + "&EnterpriseName=" +
                                            enterpriseToSendMessage.EnterpriseName + "&FirstName=" +
                                            enterpriseToSendMessage.FirstName + "&LastName=" +
