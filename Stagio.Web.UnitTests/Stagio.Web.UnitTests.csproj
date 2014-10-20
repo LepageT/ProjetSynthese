@@ -78,6 +78,7 @@
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Mvc, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Stagio.Web\bin\System.Web.Mvc.dll</HintPath>
@@ -100,6 +101,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AllControllersBaseClassTests.cs" />
+    <Compile Include="CoordonnateurTests\CoordonnateurControllerBaseClassTests.cs" />
+    <Compile Include="CoordonnateurTests\CoordonnateurControllerCreateTests.cs" />
+    <Compile Include="CoordonnateurTests\CoordonnateurControllerInviteTest.cs" />
     <Compile Include="StudentTests\StudentControllerEditTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -126,6 +130,7 @@
       <Name>Stagio.Web</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
