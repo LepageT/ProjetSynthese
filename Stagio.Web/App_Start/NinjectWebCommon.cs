@@ -66,11 +66,11 @@ namespace Stagio.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-
             kernel.Bind<IEntityRepository<Student>>().To<EfEntityRepository<Student>>().InRequestScope();
             kernel.Bind<IEntityRepository<Coordonnateur>>().To<EfEntityRepository<Coordonnateur>>().InRequestScope();
             kernel.Bind<IEntityRepository<Invitation>>().To<EfEntityRepository<Invitation>>().InRequestScope();
             kernel.Bind<IEntityRepository<ApplicationUser>>().To<EfEntityRepository<ApplicationUser>>().InRequestScope();
+            kernel.Bind<IEntityRepository<Enterprise>>().To<EfEntityRepository<Enterprise>>().InRequestScope();
 
             kernel.Bind<IDatabaseHelper>().To<EfDatabaseHelper>().InRequestScope();
 

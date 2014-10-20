@@ -72,6 +72,8 @@
   <ItemGroup>
     <Compile Include="AccountTests\AccountControllerLoginTests.cs" />
     <Compile Include="BaseTests.cs" />
+    <Compile Include="CoordinatorTests\CoordinatorControllerInviteTests.cs" />
+    <Compile Include="EnterpriseTests\EnterpriseControllerCreateTests.cs" />
     <Compile Include="CoordonnateurControllerTests\CoordonnateurCreateTests.cs" />
     <Compile Include="CoordonnateurControllerTests\CoordonnateurInviteTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

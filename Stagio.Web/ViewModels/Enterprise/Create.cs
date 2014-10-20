@@ -3,20 +3,23 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using Stagio.DataLayer;
 using Stagio.Web.Validations;
 
-namespace Stagio.Web.ViewModels.Student
+namespace Stagio.Web.ViewModels.Enterprise
 {
     public class Create
     {
         [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
 
-        [DisplayName("Matricule")]
+        [DisplayName("Courriel")]
         [Required(ErrorMessage = "Requis")]
-        public int Matricule { get; set; }
+        [DataType(DataType.EmailAddress)]
+        [ValidationVerifyIfEmailIsUnique]
+        public string Email { get; set; }
 
         [DisplayName("Nom")]
         [Required(ErrorMessage = "Requis")]
@@ -26,10 +29,17 @@ namespace Stagio.Web.ViewModels.Student
         [Required(ErrorMessage = "Requis")]
         public string FirstName { get; set; }
 
+        [DisplayName("Nom de l'entreprise")]
+        [Required(ErrorMessage = "Requis")]
+        public string EnterpriseName { get; set; }
+
         [DisplayName("Téléphone")]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Entrez un numéro valide.")]
         [Required(ErrorMessage = "Requis")]
         public string Telephone { get; set; }
+
+        [DisplayName("Poste")]
+        public int? Poste { get; set; }
 
         [DisplayName("Mot de passe")]
         [Required(ErrorMessage = "Requis")]
@@ -42,11 +52,8 @@ namespace Stagio.Web.ViewModels.Student
         [DataType(DataType.Password)]
         [System.ComponentModel.DataAnnotations.CompareAttribute("Password", ErrorMessage = "Les mot de passes ne correspondent pas")]
         public string PasswordConfirmation { get; set; }
-
-        [DisplayName("Courriel")]
-        [Required(ErrorMessage = "Requis")]
-        [DataType(DataType.EmailAddress)]
-        public string Email { get; set; }
-
     }
+
+    
+   
 }

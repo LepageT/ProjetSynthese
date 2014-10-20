@@ -16,9 +16,12 @@ namespace Stagio.Web.Mappers
         {
             Mapper.CreateMap<Student, ViewModels.Student.Edit>()
                 .ForMember(dest => dest.PasswordConfirmation, opt => opt.Ignore())
-                .ForMember(dest => dest.OldPassword, opt => opt.Ignore());
+                .ForMember(dest => dest.OldPassword, opt => opt.Ignore())
+                .IgnoreAllNonExisting();
+
             Mapper.CreateMap<Student, ViewModels.Student.Create>()
-                .ForMember(dest => dest.PasswordConfirmation, opt => opt.Ignore());
+                .ForMember(dest => dest.PasswordConfirmation, opt => opt.Ignore())
+                .IgnoreAllNonExisting();
 
             Mapper.CreateMap<Invitation, ViewModels.Coordonnateur.Create>()
                 .ForMember(dest => dest.FirstName, opt => opt.Ignore())
@@ -34,6 +37,9 @@ namespace Stagio.Web.Mappers
             
 
 
+
+            Mapper.CreateMap<Enterprise, ViewModels.Enterprise.Create>()
+                .ForMember(dest => dest.PasswordConfirmation, opt => opt.Ignore());
 
         }
     }

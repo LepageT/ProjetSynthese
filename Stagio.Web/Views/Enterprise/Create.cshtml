@@ -1,36 +1,42 @@
-﻿@model Stagio.Web.ViewModels.Student.Edit
+﻿@model Stagio.Web.ViewModels.Enterprise.Create
 
-@using (Html.BeginForm())
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4 id="edit-page">Modifier mon profil</h4>
+        <h4 id="create-page">Créer votre profil d'enterprise</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
-
         <div class="form-group">
-            @Html.LabelFor(model => model.Matricule, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.HiddenFor(model => model.Matricule)
-                @Html.DisplayFor(model => model.Matricule)
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.HiddenFor(model => model.LastName)
-                @Html.DisplayFor(model => model.LastName)
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.HiddenFor(model => model.FirstName)
-                @Html.DisplayFor(model => model.FirstName)
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EnterpriseName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EnterpriseName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EnterpriseName, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -40,21 +46,10 @@
                 @Html.EditorFor(model => model.Telephone, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Telephone, "", new { @class = "text-danger" })
             </div>
-        </div>
-        
-        <div class="form-group">
             @Html.LabelFor(model => model.Poste, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Poste, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Poste, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        
-        <div class="form-group">
-            @Html.LabelFor(model => model.OldPassword, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.OldPassword, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OldPassword, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -73,11 +68,10 @@
                 @Html.ValidationMessageFor(model => model.PasswordConfirmation, "", new { @class = "text-danger" })
             </div>
         </div>
-      
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" id="edit-button" value="Sauvegarder" class="btn btn-default" />
+                <input type="submit" id="create-button" value="Créer" class="btn btn-default" />
             </div>
         </div>
     </div>

@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Enterprise.cs" />
     <Compile Include="Application\MayBe.cs" />
     <Compile Include="Application\RoleName.cs" />
     <Compile Include="Entities\ApplicationUser.cs" />

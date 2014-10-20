@@ -31,6 +31,8 @@ namespace Stagio.Web.Mappers
 
             Mapper.CreateMap<ViewModels.Coordonnateur.Create, Coordonnateur>()
                 .IgnoreAllNonExisting();
+
+            Mapper.CreateMap<ViewModels.Enterprise.Create, Enterprise>();
         }
     }
 }
