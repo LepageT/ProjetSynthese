@@ -12,7 +12,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         [TestMethod]
         public void student_should_be_able_to_create_his_profil()
         {
-            _driver.Navigate().GoToUrl("http://stagio.local/Student/Create");
+            _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Create");
 
             try
             {
@@ -33,7 +33,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             const string PHONE = "1234567890";
             const string PASSWORD = "123456ABC";
             const string EMAIL = "bob@hotmail.com";
-            _driver.Navigate().GoToUrl("http://stagio.local/Student/Create");
+            _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Create");
             _driver.FindElement(By.Id("Matricule")).Clear();
             _driver.FindElement(By.Id("Matricule")).SendKeys(MATRICULE);
             _driver.FindElement(By.Id("FirstName")).Clear();

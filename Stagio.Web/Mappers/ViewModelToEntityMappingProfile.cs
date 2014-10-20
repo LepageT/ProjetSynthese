@@ -3,7 +3,7 @@ using Stagio.Domain.Entities;
 
 namespace Stagio.Web.Mappers
 {
-    class ViewModelToEntityMappingProfile : Profile
+    internal class ViewModelToEntityMappingProfile : Profile
     {
         public override string ProfileName
         {
@@ -19,7 +19,7 @@ namespace Stagio.Web.Mappers
                 .ForMember(dest => dest.Activated, opt => opt.Ignore())
                 .IgnoreAllNonExisting();
 
-            
+
             Mapper.CreateMap<ViewModels.Student.Create, Student>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .IgnoreAllNonExisting();

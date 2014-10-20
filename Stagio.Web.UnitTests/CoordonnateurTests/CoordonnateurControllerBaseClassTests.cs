@@ -4,7 +4,7 @@ using Ploeh.AutoFixture;
 using Stagio.DataLayer;
 using Stagio.DataLayer.EntityFramework;
 using Stagio.Domain.Entities;
-using Stagio.TestUtility.AutoFixture;
+using Stagio.TestUtilities.AutoFixture;
 using Stagio.Web.Controllers;
 using Stagio.Web.Mappers;
 using NSubstitute;
