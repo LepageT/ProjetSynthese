@@ -189,6 +189,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Student\Create.cs" />
     <Compile Include="ViewModels\Coordonnateur\Create.cs" />
     <Compile Include="ViewModels\Coordonnateur\Invite.cs" />
     <Compile Include="ViewModels\Student\Edit.cs" />
@@ -240,6 +241,7 @@
       <LastGenOutput>T4MVC.cs</LastGenOutput>
     </None>
     <Content Include="Views\Student\Edit.cshtml" />
+    <Content Include="Views\Student\Create.cshtml" />
     <Content Include="Views\Coordonnateur\Index.cshtml" />
     <Content Include="Views\Coordonnateur\Create.cshtml" />
     <Content Include="Views\Coordonnateur\Invite.cshtml" />

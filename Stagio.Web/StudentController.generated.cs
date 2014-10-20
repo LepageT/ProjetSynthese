@@ -120,7 +120,7 @@ namespace Stagio.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Create
         {
-            public readonly string collection = "collection";
+            public readonly string createStudentViewModel = "createStudentViewModel";
         }
         static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -150,8 +150,10 @@ namespace Stagio.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string Create = "Create";
                 public readonly string Edit = "Edit";
             }
+            public readonly string Create = "~/Views/Student/Create.cshtml";
             public readonly string Edit = "~/Views/Student/Edit.cshtml";
         }
     }
@@ -196,14 +198,14 @@ namespace Stagio.Web.Controllers
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Web.Mvc.FormCollection collection);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Stagio.Web.ViewModels.Student.Create createStudentViewModel);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create(System.Web.Mvc.FormCollection collection)
+        public override System.Web.Mvc.ActionResult Create(Stagio.Web.ViewModels.Student.Create createStudentViewModel)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "collection", collection);
-            CreateOverride(callInfo, collection);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "createStudentViewModel", createStudentViewModel);
+            CreateOverride(callInfo, createStudentViewModel);
             return callInfo;
         }
 

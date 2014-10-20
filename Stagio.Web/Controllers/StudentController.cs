@@ -12,13 +12,14 @@ namespace Stagio.Web.Controllers
     public partial class StudentController : Controller
     {
         private readonly IEntityRepository<Student> _studentRepository;
+       // private readonly IEntityRepository<Activation> _activationRepository;
 
 
         public StudentController(IEntityRepository<Student> studentRepository)
         {
             _studentRepository = studentRepository;
+            //_activationRepository = activationRepository;
         }
-
 
         // GET: Student
         public virtual ActionResult Index()
@@ -40,17 +41,43 @@ namespace Stagio.Web.Controllers
 
         // POST: Student/Create
         [HttpPost]
-        public virtual ActionResult Create(FormCollection collection)
+        public virtual ActionResult Create(ViewModels.Student.Create createStudentViewModel)
         {
-            try
-            {
+            var student = _studentRepository.GetAll().FirstOrDefault(x => x.Matricule == createStudentViewModel.Matricule);
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if(student == null)
             {
-                return View();
+                ModelState.AddModelError("Matricule", "Votre matricule ne figure pas dans la liste des matricules autorisés.");
             }
+            else
+            {
+                if (student.FirstName != createStudentViewModel.FirstName)
+                {
+                    ModelState.AddModelError("FirstName", "Votre nom ne correspond pas à celui associé à votre matricule.");
+                }
+
+                if (student.LastName != createStudentViewModel.LastName)
+                {
+                    ModelState.AddModelError("LastName", "Votre prénom ne correspond pas à celui associé à votre matricule.");
+                }
+
+                if (student.Activated)
+                {
+                    ModelState.AddModelError("Matricule", "Votre matricule est déja utilisé.");
+                }
+            }
+
+            if(!ModelState.IsValid)
+            {
+                return View(createStudentViewModel);
+            }
+            student.Activated = true;
+
+            Mapper.Map(createStudentViewModel, student);
+
+            _studentRepository.Update(student);
+
+            return RedirectToAction(MVC.Home.Index());
         }
 
         // GET: Student/Edit/5
@@ -76,15 +103,12 @@ namespace Stagio.Web.Controllers
             {
                 return HttpNotFound();
             }
-
-           
+                     
             
             if (editStudentViewModel.OldPassword != student.Password)
             {
                 ModelState.AddModelError("OldPassword", "L'ancien mot de passe n'est pas valide.");
             }
-            
-
             
 
             if (!ModelState.IsValid)

@@ -6,8 +6,6 @@ namespace Stagio.DataLayer
     public class StagioDbContext : DbContext
     {
         public DbSet<Student> Students { get; set; }
-        public DbSet<Coordonnateur> Coordonnateurs { get; set; }
-        public DbSet<Invitation> Invitations { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

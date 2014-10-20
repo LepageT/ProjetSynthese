@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 
 namespace Stagio.Domain.Entities
 {
@@ -16,13 +17,17 @@ namespace Stagio.Domain.Entities
         public string FirstName { get; set; }
 
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Entrez un numéro valide.")]
-        [Required(ErrorMessage = "Requis")]
+        //[Required(ErrorMessage = "Requis")]
         public string Telephone { get; set; }
 
-        [Required(ErrorMessage = "Requis")]
+        //[Required(ErrorMessage = "Requis")]
         [MinLength(8)]
         public string Password { get; set; }
 
+        [DefaultValue(false)]
+        public bool Activated { get; set; }
+
+        public string Email { get; set; }
 
     }
 }
