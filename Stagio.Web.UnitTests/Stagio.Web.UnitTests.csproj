@@ -71,10 +71,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.0\lib\net45\System.Web.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.0\lib\net45\System.Web.Razor.dll</HintPath>
@@ -105,6 +101,9 @@
     <Compile Include="ControllerTests\StudentTests\StudentBaseClassTests.cs" />
     <Compile Include="ControllerTests\StudentTests\StudentControllerEditTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StudentTests\StudentControllerCreateListTests.cs" />
+    <Compile Include="StudentTests\StudentControllerUploadTests.cs" />
+    <Compile Include="StudentTests\StudentControllerResultCreateList.cs" />
     <Compile Include="Services\UserServicesTests.cs" />
     <Compile Include="AllControllersBaseClassTests.cs" />
     <Compile Include="CoordonnateurTests\CoordonnateurControllerBaseClassTests.cs" />

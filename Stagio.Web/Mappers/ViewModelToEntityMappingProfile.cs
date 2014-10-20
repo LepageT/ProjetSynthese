@@ -19,6 +19,11 @@ namespace Stagio.Web.Mappers
                 .ForMember(dest => dest.Activated, opt => opt.Ignore())
                 .IgnoreAllNonExisting();
 
+            Mapper.CreateMap<ViewModels.Student.ListStudent, Student>()
+                  .ForMember(dest => dest.Telephone, opt => opt.Ignore())
+                  .ForMember(dest => dest.Id, opt => opt.Ignore())
+                  .IgnoreAllNonExisting();
+
 
             Mapper.CreateMap<ViewModels.Student.Create, Student>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
