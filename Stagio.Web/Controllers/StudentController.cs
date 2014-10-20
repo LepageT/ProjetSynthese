@@ -105,6 +105,7 @@ namespace Stagio.Web.Controllers
                         if (Convert.ToInt32(listStudent.Matricule) < 1000000 || Convert.ToInt32(listStudent.Matricule) > 9999999)
                         {
                             ModelState.AddModelError("Error", "Matricule incorrect");
+                           
                         }
                     }
                 }
@@ -134,7 +135,7 @@ namespace Stagio.Web.Controllers
                 return RedirectToAction(MVC.Student.ResultCreateList());
             }
 
-            return RedirectToAction("");
+            return RedirectToAction(MVC.Student.Upload());
         }
 
         // GET: Student/Edit/5

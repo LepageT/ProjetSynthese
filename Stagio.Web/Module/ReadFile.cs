@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Web;
 using Stagio.Domain.Entities;
 using Stagio.Web.ViewModels.Student;
@@ -27,8 +28,8 @@ namespace Stagio.Web.Module
                     {
                         var splits = rd.ReadLine().Split(',');
                         var createStudent = new ListStudent();
-
-                        createStudent.Matricule = Convert.ToInt32(splits[0]);
+                        string matriculeString = Regex.Replace(splits[0], "[^0-9]", "");
+                        createStudent.Matricule = Convert.ToInt32(matriculeString);
                         createStudent.LastName = splits[1];
                         createStudent.FirstName = splits[2];
 
