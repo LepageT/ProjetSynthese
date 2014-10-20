@@ -66,7 +66,7 @@ namespace Stagio.Web.UnitTests.StudentTests
             var result = studentController.CreateListPost() as RedirectToRouteResult;
             var action = result.RouteValues["Action"];
 
-            action.ShouldBeEquivalentTo("");
+            action.ShouldBeEquivalentTo("Upload");
         }
 
         [TestMethod]
@@ -105,7 +105,7 @@ namespace Stagio.Web.UnitTests.StudentTests
             var result = studentController.CreateListPost() as RedirectToRouteResult;
             var action = result.RouteValues["Action"];
 
-            action.ShouldBeEquivalentTo("");
+            action.ShouldBeEquivalentTo("Upload");
         }
 
         [TestMethod]

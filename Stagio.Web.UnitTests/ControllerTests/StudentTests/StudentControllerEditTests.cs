@@ -1,22 +1,23 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using AutoMapper;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using Stagio.Domain.Entities;
 using Ploeh.AutoFixture;
-using FluentAssertions;
+using Stagio.Domain.Entities;
+using Stagio.Utilities.Encryption;
 
-namespace Stagio.Web.UnitTests
+namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 {
     [TestClass]
-    public class StudentControllerEditTests : AllControllersBaseClassTests
+    public class StudentControllerEditTests : StudentBaseClassTests
     {
         [TestMethod]
         public void edit_should_return_view_with_studentViewModel_when_studentId_is_valid()
         {
             //Arrange 
-            var student = _fixture.Create<Stagio.Domain.Entities.Student>();
+            var student = _fixture.Create<Student>();
+
             studentRepository.GetById(student.Id).Returns(student);
             var viewModelExpected = Mapper.Map<ViewModels.Student.Edit>(student);
             
@@ -45,10 +46,11 @@ namespace Stagio.Web.UnitTests
         {
             //Arrange
             var student = _fixture.Create<Student>();
+
             studentRepository.GetById(student.Id).Returns(student);
             var studentViewModel = Mapper.Map<ViewModels.Student.Edit>(student);
             studentViewModel.OldPassword = student.Password;
-
+            student.Password = PasswordHash.CreateHash(student.Password);
 
             //Action
             var actionResult = studentController.Edit(studentViewModel);
@@ -66,6 +68,9 @@ namespace Stagio.Web.UnitTests
             studentRepository.GetById(student.Id).Returns(student);
             var studentEditPageViewModel = Mapper.Map<Student, ViewModels.Student.Edit>(student);
             studentEditPageViewModel.OldPassword = student.Password;
+            student.Password = PasswordHash.CreateHash(student.Password);
+            studentEditPageViewModel.Password = "Qwerty67";
+            studentEditPageViewModel.PasswordConfirmation = studentEditPageViewModel.Password;
             //Act
             var routeResult = studentController.Edit(studentEditPageViewModel) as RedirectToRouteResult;
             var routeAction = routeResult.RouteValues["Action"];
@@ -79,12 +84,14 @@ namespace Stagio.Web.UnitTests
         {
             //Arrange
             var student = _fixture.Create<Student>();
+
+
             var studentEditPageViewModel = _fixture.Build<ViewModels.Student.Edit>()
                                                       .With(x => x.Id, student.Id)
                                                       .Create();
             studentRepository.GetById(student.Id).Returns(student);
             studentController.ModelState.AddModelError("Error", "Error");
-
+            student.Password = PasswordHash.CreateHash(student.Password);
             //Act
             var result = studentController.Edit(studentEditPageViewModel) as ViewResult;
 

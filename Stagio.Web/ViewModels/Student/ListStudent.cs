@@ -10,7 +10,7 @@ namespace Stagio.Web.ViewModels.Student
     public class ListStudent
     {
         [DisplayName("Matricule")]
-       
+        [Range(1000000, 9999999)]
         public int Matricule { get; set; }
 
         [DisplayName("Nom")]

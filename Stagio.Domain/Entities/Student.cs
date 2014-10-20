@@ -5,24 +5,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 
 namespace Stagio.Domain.Entities
 {
-    public class Student : Entity
+    public class Student : ApplicationUser
     {
+        [Required]
 
         public int Matricule { get; set; }
 
-        [DisplayName("Nom")]
-        public string LastName { get; set; }
 
-        [DisplayName("Prénom")]
-        public string FirstName { get; set; }
-       
-        public string Telephone { get; set; }
-        
-        public string Password { get; set; }
+        [DefaultValue(false)]
+        public bool Activated { get; set; }
 
+        public string Email { get; set; }
 
     }
 }

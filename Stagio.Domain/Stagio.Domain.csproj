@@ -40,8 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\MayBe.cs" />
+    <Compile Include="Application\RoleName.cs" />
+    <Compile Include="Entities\ApplicationUser.cs" />
+    <Compile Include="Entities\Activation.cs" />
+    <Compile Include="Entities\Coordonnateur.cs" />
     <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\Invitation.cs" />
     <Compile Include="Entities\Student.cs" />
+    <Compile Include="Entities\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

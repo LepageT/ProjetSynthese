@@ -11,6 +11,8 @@ using Stagio.DataLayer;
 using Stagio.Domain.Entities;
 using Stagio.Web.Module;
 using Stagio.Web.ViewModels.Student;
+using Stagio.Utilities.Encryption;
+using Stagio.Web.Services;
 
 
 namespace Stagio.Web.Controllers
@@ -18,17 +20,21 @@ namespace Stagio.Web.Controllers
     public partial class StudentController : Controller
     {
         private readonly IEntityRepository<Student> _studentRepository;
-
+       // private readonly IEntityRepository<Activation> _activationRepository;
 
         public StudentController(IEntityRepository<Student> studentRepository)
         {
             _studentRepository = studentRepository;
         }
 
-        public virtual ActionResult Upload()
+                public virtual ActionResult Index()
         {
             return View();
         }
+        public virtual ActionResult Upload()
+        {
+            return View();
+        }        // GET: Student
 
         [HttpPost, ActionName("Upload")]
         public virtual ActionResult UploadPost(HttpPostedFileBase file)
@@ -39,7 +45,7 @@ namespace Stagio.Web.Controllers
             {
                 ModelState.AddModelError("Fichier", "Il n'y a pas de fichier à importer");
                 ViewBag.Message = "Il n'y a pas de fichier à importer";
-            }
+        }
             else
             {
                 {
@@ -50,16 +56,16 @@ namespace Stagio.Web.Controllers
                     }
                 }
             }
-         
+
             if (ModelState.IsValid)
-            {
+        {
                 var readFile = new ReadFile<ListStudent>();
 
                 listStudentToCreate = readFile.ReadFileCsv(file); 
                 TempData["listStudent"] = listStudentToCreate;
 
                 return RedirectToAction(MVC.Student.CreateList());
-            }
+        }
             return View("");
         }
 
@@ -76,17 +82,17 @@ namespace Stagio.Web.Controllers
         {
             return RedirectToAction(MVC.Home.Index());
         }
-        
+
         public virtual ActionResult CreateList()
         {
             var listStudentToCreate = TempData["listStudent"] as List<ListStudent>;
             TempData["listStudent"] = listStudentToCreate;
             return View(listStudentToCreate);
         }
-     
+
         [HttpPost]
         [ActionName("CreateList")]
-       
+
         public virtual ActionResult CreateListPost()
         {
             var listStudentNotAdded = new List<ListStudent>();
@@ -118,7 +124,7 @@ namespace Stagio.Web.Controllers
                     {
                         if (listStudentInDb[i].Matricule == listStudentCreate.Matricule)
                         {
-                          
+
                             listStudentNotAdded.Add(listStudentCreate);
                             alreadyInDb = true;
                         }
@@ -134,9 +140,54 @@ namespace Stagio.Web.Controllers
                 return RedirectToAction(MVC.Student.ResultCreateList());
             }
 
-            return RedirectToAction("");
+            return RedirectToAction(MVC.Student.Upload());
         }
 
+        // GET: Student/Create
+        public virtual ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public virtual ActionResult Create(ViewModels.Student.Create createStudentViewModel)
+        {
+            var student = _studentRepository.GetAll().FirstOrDefault(x => x.Matricule == createStudentViewModel.Matricule);
+
+            if (student == null)
+            {
+                ModelState.AddModelError("Matricule", "Votre matricule ne figure pas dans la liste des matricules autorisés.");
+            }
+            else
+            {
+                if (student.FirstName != createStudentViewModel.FirstName)
+                {
+                    ModelState.AddModelError("FirstName", "Votre nom ne correspond pas à celui associé à votre matricule.");
+                }
+
+                if (student.LastName != createStudentViewModel.LastName)
+                {
+                    ModelState.AddModelError("LastName", "Votre prénom ne correspond pas à celui associé à votre matricule.");
+                }
+
+                if (student.Activated)
+                {
+                    ModelState.AddModelError("Matricule", "Votre matricule est déja utilisé.");
+                }
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(createStudentViewModel);
+            }
+            student.Activated = true;
+
+            Mapper.Map(createStudentViewModel, student);
+
+            _studentRepository.Update(student);
+
+            return RedirectToAction(MVC.Home.Index());
+        }
         // GET: Student/Edit/5
         public virtual ActionResult Edit(int id)
         {
@@ -160,8 +211,8 @@ namespace Stagio.Web.Controllers
             {
                 return HttpNotFound();
             }
-            
-            if (editStudentViewModel.OldPassword != student.Password)
+
+            if (!PasswordHash.ValidatePassword(editStudentViewModel.OldPassword, student.Password))
             {
                 ModelState.AddModelError("OldPassword", "L'ancien mot de passe n'est pas valide.");
             }
@@ -169,6 +220,10 @@ namespace Stagio.Web.Controllers
             if (!ModelState.IsValid)
             {
                 return View(editStudentViewModel);
+            }
+            if (editStudentViewModel.PasswordConfirmation != null)
+            {
+                editStudentViewModel.PasswordConfirmation = PasswordHash.CreateHash(editStudentViewModel.PasswordConfirmation);
             }
 
             Mapper.Map(editStudentViewModel, student);

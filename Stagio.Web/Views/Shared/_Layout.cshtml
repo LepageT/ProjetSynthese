@@ -10,6 +10,25 @@
 </head>
 <body>
    
+    <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div>@Html.ActionLink("Home", MVC.Home.Index(), new { @class = "navbar-brand", id = "home-link" })</div>
+            </div>
+            <div class="navbar-collapse collapse">
+                @Html.Partial("_LoginPartial")
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+
+
     <div class="container body-content">
         @RenderBody()
     

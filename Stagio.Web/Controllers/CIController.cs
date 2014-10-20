@@ -5,62 +5,48 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.SqlClient;
 using Stagio.DataLayer;
+using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
+using Stagio.Utilities.Encryption;
+using Stagio.TestUtilities.Database;
 
 namespace Stagio.Web.Controllers
 {
     public partial class CIController : Controller
     {
-        private StagioDbContext _studentDbContext;
+        private IDatabaseHelper _dbHelper;
 
-        public CIController()
+        public CIController(IDatabaseHelper dbHelper)
         {
-            _studentDbContext = new StagioDbContext();
+            _dbHelper = dbHelper;
         }
 
         public virtual ActionResult Index()
         {
             try
             {
-                _studentDbContext.Database.Delete();
-                _studentDbContext.Database.CreateIfNotExists();
+                DeleteDB();
+                SeedDb();
             }
             catch (Exception ex)
             {
                 return Content(ex.Message);
             }
-            SeedDb();
             return Content("BD remplie avec données de tests </Br> <a href=\"\\\" id='go_home'>Go home</a> ");
         }
 
-        private void SeedDb()
+        private void DeleteDB()
         {
-            var studentItems = new List<Student>()
-            {
-                new Student()
-                {
-                    Id = 1,
-                    FirstName = "Quentin",
-                    LastName = "Tarantino",
-                    Telephone = "123-456-7890",
-                    Matricule = 1234567,
-                    Password = "qwerty12"
-                },
-                new Student()
-                {
-                    Id = 2,
-                    FirstName = "Christopher",
-                    LastName = "Nolan",
-                    Telephone = "123-456-7890",
-                    Matricule = 1234560,
-                    Password = "qwerty98"
+            SqlConnection.ClearAllPools();
+            _dbHelper.DeleteAll();
                 }
-            };
-            foreach (var studentItem in studentItems)
+
+        private void SeedDb()
             {
-                _studentDbContext.Students.Add(studentItem);
-            }
-            _studentDbContext.SaveChanges();
+            var testData = new DataBaseTestHelper();
+            testData.SeedTables();
+            
+            
 
         }
     }
