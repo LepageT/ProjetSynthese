@@ -10,7 +10,7 @@ namespace Stagio.Web.AcceptanceTests.CoordonnateurControllerTests
         [TestMethod]
         public void coordonnateur_should_be_able_to_create_an_account_with_valid_invitation()
         {
-            _driver.Navigate().GoToUrl("http://stagio.local/Coordonnateur/Create?token=123456");
+            _driver.Navigate().GoToUrl("http://thomarelau.local/Coordonnateur/Create?token=123456");
 
             try
             {
@@ -31,7 +31,7 @@ namespace Stagio.Web.AcceptanceTests.CoordonnateurControllerTests
             const string PASSWORD = "Bobino1234";
             const string CONFIRMED_PASSWORD = "Bobino1234";
 
-            _driver.Navigate().GoToUrl("http://stagio.local/Coordonnateur/Create?token=123456");
+            _driver.Navigate().GoToUrl("http://thomarelau.local/Coordonnateur/Create?token=123456");
             _driver.FindElement(By.Id("FirstName")).Clear();
             _driver.FindElement(By.Id("FirstName")).SendKeys(FIRST_NAME);
             _driver.FindElement(By.Id("LastName")).Clear();
