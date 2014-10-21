@@ -1,8 +1,7 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 
-namespace Stagio.Web.AcceptanceTests.CoordinatorControllerTests
+namespace Stagio.Web.AcceptanceTests.CoordinatorTests
 {
     [TestClass]
     public class CoordinatorInviteTests : BaseTests
@@ -15,18 +14,18 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorControllerTests
            
             try
             {
-                _driver.FindElement(By.Id("coordonnateur-invite"));
+                _driver.FindElement(By.Id("coordinator-invite"));
             }
             catch (NoSuchElementException)
             {
-                Assert.Fail("Identifiant coordonnateur-invite non trouvé sur la page.");
+                Assert.Fail("Identifiant coordinator-invite non trouvé sur la page.");
             }
         }
 
         [TestMethod]
         public void coordinator_invite_should_create_an_invitation()
         {
-            const string EMAIL = "test@test.com";
+            const string EMAIL = "thomarelau@hotmail.com";
             const string TEXT = "Tremblay";
 
 
@@ -38,11 +37,11 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorControllerTests
             _driver.FindElement(By.Id("btn-invite")).Click();
             try
             {
-                _driver.FindElement(By.Id("coordonnateur-home"));
+                _driver.FindElement(By.Id("coordinator-home"));
             }
             catch (NoSuchElementException)
             {
-                Assert.Fail("Identifiant coordonnateur-home non trouvé sur la page");
+                Assert.Fail("Identifiant coordinator-home non trouvé sur la page");
             }
         }
     }

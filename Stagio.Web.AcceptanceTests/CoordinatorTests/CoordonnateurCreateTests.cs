@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 
-namespace Stagio.Web.AcceptanceTests.CoordinatorControllerTests
+namespace Stagio.Web.AcceptanceTests.CoordinatorTests
 {
     [TestClass]
     public class CoordinatorCreateTests : BaseTests
@@ -14,11 +14,11 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorControllerTests
 
             try
             {
-                _driver.FindElement(By.Id("create-coordonnateur-page"));
+                _driver.FindElement(By.Id("create-coordinator-page"));
             }
             catch (NoSuchElementException)
             {
-                Assert.Fail("Identifiant create-coordonnateur-page non trouvé sur la page");
+                Assert.Fail("Identifiant create-coordinator-page non trouvé sur la page");
             }
         }
 
@@ -45,11 +45,11 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorControllerTests
             _driver.FindElement(By.Id("btn-create")).Click();
             try
             {
-                _driver.FindElement(By.Id("coordonnateur-home"));
+                _driver.FindElement(By.Id("coordinator-home"));
             }
             catch (NoSuchElementException)
             {
-                Assert.Fail("Identifiant coordonnateur-home non trouvé sur la page");
+                Assert.Fail("Identifiant coordinator-home non trouvé sur la page");
             }
         }
 
