@@ -9,7 +9,7 @@ using Ploeh.AutoFixture;
 using System;
 using Stagio.Web.ViewModels.Student;
 
-namespace Stagio.Web.UnitTests.StudentTests
+namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 {
     [TestClass]
     public class StudentControllerCreateListTests : AllControllersBaseClassTests

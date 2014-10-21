@@ -11,7 +11,7 @@ using NSubstitute;
 using Stagio.Domain.Entities;
 using Ploeh.AutoFixture;
 
-namespace Stagio.Web.UnitTests.EnterpriseTests
+namespace Stagio.Web.UnitTests.ControllerTests.EnterpriseTests
 {
     [TestClass]
     public class EnterpriseControllerCreateTests : AllControllersBaseClassTests
