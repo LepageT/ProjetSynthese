@@ -6,6 +6,7 @@ using Stagio.TestUtilities.AutoFixture;
 using Stagio.Web.Controllers;
 using Stagio.DataLayer;
 using Stagio.Web.Mappers;
+using Stagio.Web.Services;
 
 
 namespace Stagio.Web.UnitTests
@@ -16,6 +17,8 @@ namespace Stagio.Web.UnitTests
         protected Fixture _fixture;
         protected IEntityRepository<Stagio.Domain.Entities.Student> studentRepository;
         protected IEntityRepository<Stagio.Domain.Entities.Enterprise> enterpriseRepository;
+        protected IMailler mailler;
+
         protected EnterpriseController enterpriseController;
         protected CoordinatorController coordinatorController;
             
@@ -35,7 +38,9 @@ namespace Stagio.Web.UnitTests
             enterpriseRepository = Substitute.For<IEntityRepository<Stagio.Domain.Entities.Enterprise>>();
             enterpriseController = new EnterpriseController(enterpriseRepository);
 
-            coordinatorController = new CoordinatorController(enterpriseRepository);
+            mailler = Substitute.For<IMailler>();
+
+            coordinatorController = new CoordinatorController(enterpriseRepository, mailler);
         }
     }
 }

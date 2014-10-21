@@ -54,6 +54,8 @@ namespace Stagio.Web.UnitTests.CoordinatorTests
             enterpriseRepository.GetById(enterprise1.Id).Returns(enterprise1);
             IEnumerable<int> selectedObjects = new int[] { enterprise1.Id };
             string message = "test";
+            mailler.SendEmail(enterprise1.Email, "Test", message).ReturnsForAnyArgs(true);
+
 
             //Action
             var routeResult = coordinatorController.InviteEnterprise(selectedObjects, message) as RedirectToRouteResult;

@@ -71,6 +71,8 @@ namespace Stagio.Web.App_Start
             kernel.Bind<IEntityRepository<Invitation>>().To<EfEntityRepository<Invitation>>().InRequestScope();
             kernel.Bind<IEntityRepository<ApplicationUser>>().To<EfEntityRepository<ApplicationUser>>().InRequestScope();
             kernel.Bind<IEntityRepository<Enterprise>>().To<EfEntityRepository<Enterprise>>().InRequestScope();
+            kernel.Bind<IMailler>().ToConstant(Mailler.Instance);
+
 
             kernel.Bind<IDatabaseHelper>().To<EfDatabaseHelper>().InRequestScope();
 
