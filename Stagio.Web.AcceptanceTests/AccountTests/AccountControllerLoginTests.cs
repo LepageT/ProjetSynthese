@@ -10,14 +10,13 @@ namespace Stagio.Web.AcceptanceTests.AccountTests
         [TestInitialize]
         public void initialize()
         {
-            //var menuElement = _driver.FindElement(By.Id("login-link"));
-            //menuElement.Click();
+            var menuElement = _driver.FindElement(By.Id("login-link"));
+            menuElement.Click();
         }
 
         [TestMethod]
         public void application_user_can_log_in()
         {
-            _driver.FindElement(By.Id("login-link")).Click();
             var user = TestData.applicationUser;
 
             var loginInput = _driver.FindElement(By.Id("Username"));
@@ -37,8 +36,6 @@ namespace Stagio.Web.AcceptanceTests.AccountTests
         [TestMethod]
         public void application_user_should_be_able_to_view_the_login_page()
         {
-            _driver.FindElement(By.Id("login-link")).Click();
-
             try
             {
                 _driver.FindElement(By.Id("login-page"));
@@ -52,8 +49,6 @@ namespace Stagio.Web.AcceptanceTests.AccountTests
         [TestMethod]
         public void authentificated_user_should_be_able_to_logout_after_valid_login()
         {
-            _driver.FindElement(By.Id("login-link")).Click();
-
             var user = TestData.applicationUser;
 
             var loginInput = _driver.FindElement(By.Id("Username"));
