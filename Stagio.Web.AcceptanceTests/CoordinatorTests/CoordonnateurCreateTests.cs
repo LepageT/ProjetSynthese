@@ -2,28 +2,28 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 
-namespace Stagio.Web.AcceptanceTests.CoordonnateurControllerTests
+namespace Stagio.Web.AcceptanceTests.CoordinatorTests
 {
     [TestClass]
-    public class CoordonnateurCreateTests : BaseTests
+    public class CoordinatorCreateTests : BaseTests
     {
         [TestMethod]
-        public void coordonnateur_should_be_able_to_create_an_account_with_valid_invitation()
+        public void coordinator_should_be_able_to_create_an_account_with_valid_invitation()
         {
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Coordonnateur/Create?token=123456");
+            _driver.Navigate().GoToUrl("http://thomarelau.local/Coordinator/Create?token=123456");
 
             try
             {
-                _driver.FindElement(By.Id("create-coordonnateur-page"));
+                _driver.FindElement(By.Id("create-coordinator-page"));
             }
             catch (NoSuchElementException)
             {
-                Assert.Fail("Identifiant create-coordonnateur-page non trouvé sur la page");
+                Assert.Fail("Identifiant create-coordinator-page non trouvé sur la page");
             }
         }
 
         [TestMethod]
-        public void coordonnateur_create_should_create_account_if_invitation_is_valid()
+        public void coordinator_create_should_create_account_if_invitation_is_valid()
         {
             const string FIRST_NAME = "Bobino";
             const string LAST_NAME = "Tremblay";
@@ -31,7 +31,7 @@ namespace Stagio.Web.AcceptanceTests.CoordonnateurControllerTests
             const string PASSWORD = "Bobino1234";
             const string CONFIRMED_PASSWORD = "Bobino1234";
 
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Coordonnateur/Create?token=123456");
+            _driver.Navigate().GoToUrl("http://thomarelau.local/Coordinator/Create?token=123456");
             _driver.FindElement(By.Id("FirstName")).Clear();
             _driver.FindElement(By.Id("FirstName")).SendKeys(FIRST_NAME);
             _driver.FindElement(By.Id("LastName")).Clear();
@@ -45,11 +45,11 @@ namespace Stagio.Web.AcceptanceTests.CoordonnateurControllerTests
             _driver.FindElement(By.Id("btn-create")).Click();
             try
             {
-                _driver.FindElement(By.Id("coordonnateur-home"));
+                _driver.FindElement(By.Id("coordinator-home"));
             }
             catch (NoSuchElementException)
             {
-                Assert.Fail("Identifiant coordonnateur-home non trouvé sur la page");
+                Assert.Fail("Identifiant coordinator-home non trouvé sur la page");
             }
         }
 

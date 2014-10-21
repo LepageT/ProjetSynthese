@@ -9,7 +9,7 @@ using Ploeh.AutoFixture;
 using NSubstitute;
 using Stagio.Domain.Entities;
 
-namespace Stagio.Web.UnitTests.StudentTests
+namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 {
     [TestClass]
     public class StudentControllerUploadTests : AllControllersBaseClassTests

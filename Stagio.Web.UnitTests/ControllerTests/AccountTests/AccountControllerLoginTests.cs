@@ -84,7 +84,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.AccountTests
             var user = _fixture.Create<ApplicationUser>();
             user.Roles = new List<UserRole>()
             {
-                new UserRole() {RoleName = RoleName.Coordonnateur}
+                new UserRole() {RoleName = RoleName.Coordinator}
             };
             var loginViewModel = new ViewModels.Account.Login()
             {
@@ -112,7 +112,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.AccountTests
             var user = _fixture.Create<ApplicationUser>();
             user.Roles = new List<UserRole>()
             {
-                new UserRole() {RoleName = RoleName.Coordonnateur}
+                new UserRole() {RoleName = RoleName.Coordinator}
             };
             var loginViewModel = new ViewModels.Account.Login()
             {

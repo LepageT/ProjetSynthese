@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ploeh.AutoFixture;
 using Stagio.Domain.Entities;
 
-namespace Stagio.Web.UnitTests.StudentTests
+namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 {
     [TestClass]
     public class StudentControllerResultCreateList : AllControllersBaseClassTests

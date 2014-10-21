@@ -26,7 +26,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         }
 
         [TestMethod]
-        public void coordinator_creatList_should_redirect_on_home_index()
+        public void coordinator_createList_should_redirect_on_home_index()
         {
             _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Upload");
             _driver.FindElement(By.Id("file")).SendKeys("C:\\dev\\abc.csv");

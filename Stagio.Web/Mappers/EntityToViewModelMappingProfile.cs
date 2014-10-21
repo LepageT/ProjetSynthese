@@ -23,7 +23,7 @@ namespace Stagio.Web.Mappers
                 .ForMember(dest => dest.PasswordConfirmation, opt => opt.Ignore())
                 .IgnoreAllNonExisting();
 
-            Mapper.CreateMap<Invitation, ViewModels.Coordonnateur.Create>()
+            Mapper.CreateMap<Invitation, ViewModels.Coordinator.Create>()
                 .ForMember(dest => dest.FirstName, opt => opt.Ignore())
                 .ForMember(dest => dest.LastName, opt => opt.Ignore())
                 .ForMember(dest => dest.Password, opt => opt.Ignore())

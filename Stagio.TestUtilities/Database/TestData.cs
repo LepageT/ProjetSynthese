@@ -17,7 +17,7 @@ namespace Stagio.TestUtilities.Database
 
                     Roles = new List<UserRole>()
                    {
-                       new UserRole() {RoleName = RoleName.Coordonnateur}
+                       new UserRole() {RoleName = RoleName.Coordinator}
                    },
                     Password = PasswordHash.CreateHash("test4test"),
                     UserName = "coordonnateur@stagio.com",
@@ -102,13 +102,13 @@ namespace Stagio.TestUtilities.Database
             }
         }
         #endregion
-        #region Coordonnateur1
+        #region Coordinator1
 
-        public static Coordonnateur coordonnateur1
+        public static Coordinator coordonnateur1
         {
             get
             {
-                var coordonnate = new Coordonnateur()
+                var coordonnate = new Coordinator()
                 {
                     Id = 1,
                     FirstName = "Test",

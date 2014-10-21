@@ -28,7 +28,6 @@ public static partial class MVC
     public static Stagio.Web.Controllers.AccountController Account = new Stagio.Web.Controllers.T4MVC_AccountController();
     public static Stagio.Web.Controllers.CIController CI = new Stagio.Web.Controllers.T4MVC_CIController();
     public static Stagio.Web.Controllers.CoordinatorController Coordinator = new Stagio.Web.Controllers.T4MVC_CoordinatorController();
-    public static Stagio.Web.Controllers.CoordonnateurController Coordonnateur = new Stagio.Web.Controllers.T4MVC_CoordonnateurController();
     public static Stagio.Web.Controllers.EnterpriseController Enterprise = new Stagio.Web.Controllers.T4MVC_EnterpriseController();
     public static Stagio.Web.Controllers.HomeController Home = new Stagio.Web.Controllers.T4MVC_HomeController();
     public static Stagio.Web.Controllers.StudentController Student = new Stagio.Web.Controllers.T4MVC_StudentController();

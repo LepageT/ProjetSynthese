@@ -12,7 +12,7 @@ using Stagio.Domain.Entities;
 using Ploeh.AutoFixture;
 using Stagio.Web.Controllers;
 
-namespace Stagio.Web.UnitTests.CoordinatorTests
+namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
 {
     [TestClass]
     public class CoordinatorControllerInviteTests : AllControllersBaseClassTests

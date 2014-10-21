@@ -29,7 +29,7 @@ namespace Stagio.Web.Mappers
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .IgnoreAllNonExisting();
 
-            Mapper.CreateMap<ViewModels.Coordonnateur.Create, Coordonnateur>()
+            Mapper.CreateMap<ViewModels.Coordinator.Create, Coordinator>()
                 .IgnoreAllNonExisting();
 
             Mapper.CreateMap<ViewModels.Enterprise.Create, Enterprise>();

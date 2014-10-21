@@ -1,13 +1,16 @@
 ﻿<h2 id="home-page">Bienvenue</h2>
 <div>
-@Html.ActionLink("Modifier le profil 1", MVC.Student.Edit(1), new { id = "edit-student" })
-<br/>
-@Html.ActionLink("Créer profil étudiant", MVC.Student.Create(), new { id = "create-student" })
+    @Html.ActionLink("Modifier le profil 1", MVC.Student.Edit(1), new { id = "edit-student" })
+</div>
+<div>
+    @Html.ActionLink("Créer profil étudiant", MVC.Student.Create(), new { id = "create-student" })
 
-<br/>
-@Html.ActionLink("Coordonnateur", MVC.Coordonnateur.Index(), new { id = "index-coordonnateur" })
-
-@Html.ActionLink("Ajouter des étudiants", MVC.Student.Upload(), new { id = "upload-student" })
+</div>
+<div>
+    @Html.ActionLink("Coordinator", MVC.Coordinator.Index(), new { id = "index-coordonnateur" })
+</div>
+<div>
+    @Html.ActionLink("Ajouter des étudiants", MVC.Student.Upload(), new { id = "upload-student" })
 </div>
 <div>
     @Html.ActionLink("Créer un profil entreprise", MVC.Enterprise.Create(), new { id = "create-enterprise" })

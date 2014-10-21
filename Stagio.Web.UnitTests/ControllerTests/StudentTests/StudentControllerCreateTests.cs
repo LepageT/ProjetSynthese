@@ -10,7 +10,7 @@ using Stagio.Domain.Entities;
 using AutoMapper;
 using FluentAssertions;
 
-namespace Stagio.Web.UnitTests.StudentTests
+namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 {
     [TestClass]
     public class StudentControllerCreateTests : AllControllersBaseClassTests

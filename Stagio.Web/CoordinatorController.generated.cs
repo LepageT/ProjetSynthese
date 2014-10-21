@@ -72,6 +72,12 @@ namespace Stagio.Web.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Create()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public CoordinatorController Actions { get { return MVC.Coordinator; } }
@@ -90,10 +96,11 @@ namespace Stagio.Web.Controllers
         {
             public readonly string Index = "Index";
             public readonly string Details = "Details";
-            public readonly string Create = "Create";
             public readonly string Edit = "Edit";
             public readonly string Delete = "Delete";
             public readonly string InviteEnterprise = "InviteEnterprise";
+            public readonly string Create = "Create";
+            public readonly string Invite = "Invite";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -101,10 +108,11 @@ namespace Stagio.Web.Controllers
         {
             public const string Index = "Index";
             public const string Details = "Details";
-            public const string Create = "Create";
             public const string Edit = "Edit";
             public const string Delete = "Delete";
             public const string InviteEnterprise = "InviteEnterprise";
+            public const string Create = "Create";
+            public const string Invite = "Invite";
         }
 
 
@@ -115,14 +123,6 @@ namespace Stagio.Web.Controllers
         public class ActionParamsClass_Details
         {
             public readonly string id = "id";
-        }
-        static readonly ActionParamsClass_Create s_params_Create = new ActionParamsClass_Create();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Create CreateParams { get { return s_params_Create; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Create
-        {
-            public readonly string collection = "collection";
         }
         static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -151,6 +151,23 @@ namespace Stagio.Web.Controllers
             public readonly string selectedObjects = "selectedObjects";
             public readonly string message = "message";
         }
+        static readonly ActionParamsClass_Create s_params_Create = new ActionParamsClass_Create();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Create CreateParams { get { return s_params_Create; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Create
+        {
+            public readonly string token = "token";
+            public readonly string createdCoordinator = "createdCoordinator";
+        }
+        static readonly ActionParamsClass_Invite s_params_Invite = new ActionParamsClass_Invite();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Invite InviteParams { get { return s_params_Invite; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Invite
+        {
+            public readonly string createdInvite = "createdInvite";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -161,8 +178,14 @@ namespace Stagio.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string Create = "Create";
+                public readonly string Index = "Index";
+                public readonly string Invite = "Invite";
                 public readonly string InviteEnterprise = "InviteEnterprise";
             }
+            public readonly string Create = "~/Views/Coordinator/Create.cshtml";
+            public readonly string Index = "~/Views/Coordinator/Index.cshtml";
+            public readonly string Invite = "~/Views/Coordinator/Invite.cshtml";
             public readonly string InviteEnterprise = "~/Views/Coordinator/InviteEnterprise.cshtml";
         }
     }
@@ -192,29 +215,6 @@ namespace Stagio.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             DetailsOverride(callInfo, id);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Create()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            CreateOverride(callInfo);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Web.Mvc.FormCollection collection);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Create(System.Web.Mvc.FormCollection collection)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "collection", collection);
-            CreateOverride(callInfo, collection);
             return callInfo;
         }
 
@@ -289,6 +289,53 @@ namespace Stagio.Web.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "selectedObjects", selectedObjects);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "message", message);
             InviteEnterpriseOverride(callInfo, selectedObjects, message);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string token);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Create(string token)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "token", token);
+            CreateOverride(callInfo, token);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Stagio.Web.ViewModels.Coordinator.Create createdCoordinator);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Create(Stagio.Web.ViewModels.Coordinator.Create createdCoordinator)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "createdCoordinator", createdCoordinator);
+            CreateOverride(callInfo, createdCoordinator);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void InviteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Invite()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Invite);
+            InviteOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void InviteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Stagio.Web.ViewModels.Coordinator.Invite createdInvite);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Invite(Stagio.Web.ViewModels.Coordinator.Invite createdInvite)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Invite);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "createdInvite", createdInvite);
+            InviteOverride(callInfo, createdInvite);
             return callInfo;
         }
 

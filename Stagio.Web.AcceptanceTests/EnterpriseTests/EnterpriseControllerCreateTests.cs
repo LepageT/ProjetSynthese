@@ -65,7 +65,7 @@ namespace Stagio.Web.AcceptanceTests.EnterpriseTests
             const string LAST_NAME = "Gates";
             const string TELEPHONE = "111-111-1111";
             const string PASSWORD = "asdfgh12";
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Enterprise/Create?Email=test@test.com&EnterpriseName=test");
+            _driver.Navigate().GoToUrl("http://thomarelau.local/Enterprise/Create?Email=thomarelau@hotmail.com&EnterpriseName=test");
             _driver.FindElement(By.Id("FirstName")).SendKeys(FIRST_NAME);
             _driver.FindElement(By.Id("LastName")).SendKeys(LAST_NAME);
             _driver.FindElement(By.Id("Telephone")).SendKeys(TELEPHONE);
