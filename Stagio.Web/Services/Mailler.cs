@@ -8,7 +8,7 @@ using System.Net;
 
 namespace Stagio.Web.Services
 {
-    public class Mailler : IMailler
+    public sealed class Mailler : IMailler
     {
         private static Mailler instance = new Mailler();
         private SmtpClient smtp;
@@ -18,7 +18,7 @@ namespace Stagio.Web.Services
 
         static Mailler()
         { 
-        
+            
         }
         private Mailler() 
         {
