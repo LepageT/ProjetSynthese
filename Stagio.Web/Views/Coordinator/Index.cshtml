@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "Coordinator";
+}
+
+<h2 id="coordonnateur-home">Coordination</h2>
+
+@Html.ActionLink("Créer un coordonnateur", MVC.Coordinator.Create(), new { id = "create-coordonnateur" })
+<br/>
+@Html.ActionLink("Envoyer une inviation", MVC.Coordinator.Invite(), new { id = "create-coordonnateur" })
+

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Stagio.DataLayer;
 
-namespace Stagio.Web.ViewModels.Coordonnateur
+namespace Stagio.Web.ViewModels.Coordinator
 {
     public class Create
     {

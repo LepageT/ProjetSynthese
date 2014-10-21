@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace Stagio.Domain.Entities
 {
-    public class Coordonnateur : Entity
+    public class Coordinator : Entity
     {
         public string LastName { get; set; }
 

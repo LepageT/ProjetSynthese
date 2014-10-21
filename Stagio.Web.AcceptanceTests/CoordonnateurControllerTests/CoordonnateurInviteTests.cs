@@ -2,16 +2,16 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 
-namespace Stagio.Web.AcceptanceTests.CoordonnateurControllerTests
+namespace Stagio.Web.AcceptanceTests.CoordinatorControllerTests
 {
     [TestClass]
-    public class CoordonnateurInviteTests : BaseTests
+    public class CoordinatorInviteTests : BaseTests
     {
 
         [TestMethod]
-        public void coordonnateur_should_be_able_to_send_invitation()
+        public void coordinator_should_be_able_to_send_invitation()
         {
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Coordonnateur/Invite");
+            _driver.Navigate().GoToUrl("http://thomarelau.local/Coordinator/Invite");
            
             try
             {
@@ -24,13 +24,13 @@ namespace Stagio.Web.AcceptanceTests.CoordonnateurControllerTests
         }
 
         [TestMethod]
-        public void coordonnateur_invite_should_create_an_invitation()
+        public void coordinator_invite_should_create_an_invitation()
         {
             const string EMAIL = "test@test.com";
             const string TEXT = "Tremblay";
 
 
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Coordonnateur/Invite");
+            _driver.Navigate().GoToUrl("http://thomarelau.local/Coordinator/Invite");
             _driver.FindElement(By.Id("Email")).Clear();
             _driver.FindElement(By.Id("Email")).SendKeys(EMAIL);
             _driver.FindElement(By.Id("Message")).Clear();

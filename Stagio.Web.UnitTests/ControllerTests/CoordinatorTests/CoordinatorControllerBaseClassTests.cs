@@ -1,4 +1,5 @@
 ﻿using System;
+using AutoMapper.Internal;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ploeh.AutoFixture;
 using Stagio.DataLayer;
@@ -15,10 +16,12 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
     [TestClass]
     public class CoordinatorControllerBaseClassTests
     {
-        protected CoordonnateurController coordonnateurController;
+        protected CoordinatorController coordinatorController;
         protected Fixture _fixture;
-        protected IEntityRepository<Coordonnateur> coordonnateurRepository;
+        protected IEntityRepository<Coordinator> coordinatorRepository;
         protected IEntityRepository<Invitation> invitationRepository;
+        protected IEntityRepository<Enterprise> enterpriseRepository;
+
         protected IMailler mailler;
 
         [TestInitialize]
@@ -29,12 +32,13 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
             _fixture = new Fixture();
             _fixture.Customizations.Add(new VirtualMembersOmitter());
 
-            coordonnateurRepository = Substitute.For<IEntityRepository<Coordonnateur>>();
+            coordinatorRepository = Substitute.For<IEntityRepository<Coordinator>>();
             invitationRepository = Substitute.For<IEntityRepository<Invitation>>();
+            enterpriseRepository = Substitute.For<IEntityRepository<Enterprise>>();
 
             mailler = Substitute.For<IMailler>();
 
-            coordonnateurController = new CoordonnateurController(coordonnateurRepository, invitationRepository, mailler);
+            coordinatorController = new CoordinatorController(enterpriseRepository, coordinatorRepository, invitationRepository, mailler);
         }
     }
 }

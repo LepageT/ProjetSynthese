@@ -8,7 +8,7 @@ namespace Stagio.Domain.Application
 {
     public static class RoleName
     {
-        public const string Coordonnateur = "Coordonnateur";
+        public const string Coordinator = "Coordinator";
         public const string Student = "Étudiant";
     }
 }

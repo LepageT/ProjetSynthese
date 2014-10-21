@@ -7,14 +7,14 @@ namespace Stagio.TestUtilities.Database
     {
         private EfEntityRepository<ApplicationUser> _userRepository;
         private EfEntityRepository<Student> _studentRepository;
-        private EfEntityRepository<Coordonnateur> _coordonnatorRepository;
+        private EfEntityRepository<Coordinator> _coordonnatorRepository;
         private EfEntityRepository<Invitation> _invitationRepository; 
 
          public DataBaseTestHelper()
         {
              _studentRepository = new EfEntityRepository<Student>();
             _userRepository = new EfEntityRepository<ApplicationUser>();
-             _coordonnatorRepository = new EfEntityRepository<Coordonnateur>();
+             _coordonnatorRepository = new EfEntityRepository<Coordinator>();
              _invitationRepository = new EfEntityRepository<Invitation>();
         }
 
