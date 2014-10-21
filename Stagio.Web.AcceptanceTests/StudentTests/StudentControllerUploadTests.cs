@@ -10,7 +10,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         [TestMethod]
         public void coordinator_should_be_able_to_see_the_page_upload_student()
         {
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Upload");
+            _driver.Navigate().GoToUrl("http://stagio.local/Student/Upload");
 
             try
             {
@@ -25,7 +25,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         [TestMethod]
         public void coordinator_should_be_able_to_choose_a_file_csv()
         {
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Upload");
+            _driver.Navigate().GoToUrl("http://stagio.local/Student/Upload");
      
             try
             {
@@ -44,7 +44,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         [TestMethod]
         public void coordinator_should_not_be_able_to_import_an_another_file_than_csv()
         {
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Upload");
+            _driver.Navigate().GoToUrl("http://stagio.local/Student/Upload");
             _driver.FindElement(By.Id("file")).SendKeys("C:\\dev\\abc.txt");
             _driver.FindElement(By.Id("button-upload")).Click();
             try
@@ -60,7 +60,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         [TestMethod]
         public void coordinator_upload_should_redirect_to_CreateList_is_valid()
         {
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Upload");
+            _driver.Navigate().GoToUrl("http://stagio.local/Student/Upload");
             _driver.FindElement(By.Id("file")).SendKeys("C:\\dev\\abc.csv");
             _driver.FindElement(By.Id("button-upload")).Click();
             try
@@ -78,7 +78,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         {
             const string PATH = "abc.csv";
 
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Upload");
+            _driver.Navigate().GoToUrl("http://stagio.local/Student/Upload");
             _driver.FindElement(By.Id("button-upload")).Click();
 
             try

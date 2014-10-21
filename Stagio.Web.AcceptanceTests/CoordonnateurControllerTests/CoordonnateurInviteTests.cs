@@ -11,7 +11,7 @@ namespace Stagio.Web.AcceptanceTests.CoordonnateurControllerTests
         [TestMethod]
         public void coordonnateur_should_be_able_to_send_invitation()
         {
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Coordonnateur/Invite");
+            _driver.Navigate().GoToUrl("http://stagio.local/Coordonnateur/Invite");
            
             try
             {
@@ -30,7 +30,7 @@ namespace Stagio.Web.AcceptanceTests.CoordonnateurControllerTests
             const string TEXT = "Tremblay";
 
 
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Coordonnateur/Invite");
+            _driver.Navigate().GoToUrl("http://stagio.local/Coordonnateur/Invite");
             _driver.FindElement(By.Id("Email")).Clear();
             _driver.FindElement(By.Id("Email")).SendKeys(EMAIL);
             _driver.FindElement(By.Id("Message")).Clear();

@@ -15,7 +15,7 @@ namespace Stagio.Web.AcceptanceTests.EnterpriseTests
         [TestMethod]
         public void enterprise_should_be_able_to_access_create_profil_page()
         {
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Enterprise/Create");
+            _driver.Navigate().GoToUrl("http://stagio.local/Enterprise/Create");
 
             try
             {
@@ -36,7 +36,7 @@ namespace Stagio.Web.AcceptanceTests.EnterpriseTests
             const string ENTERPRISE = "Microsost";
             const string TELEPHONE = "111-111-1111";
             const string PASSWORD = "asdfgh12";
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Enterprise/Create");
+            _driver.Navigate().GoToUrl("http://stagio.local/Enterprise/Create");
             _driver.FindElement(By.Id("Email")).SendKeys(EMAIL);
             _driver.FindElement(By.Id("FirstName")).SendKeys(FIRST_NAME);
             _driver.FindElement(By.Id("LastName")).SendKeys(LAST_NAME);
@@ -65,7 +65,7 @@ namespace Stagio.Web.AcceptanceTests.EnterpriseTests
             const string LAST_NAME = "Gates";
             const string TELEPHONE = "111-111-1111";
             const string PASSWORD = "asdfgh12";
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Enterprise/Create?Email=test@test.com&EnterpriseName=test");
+            _driver.Navigate().GoToUrl("http://stagio.local/Enterprise/Create?Email=test@test.com&EnterpriseName=test");
             _driver.FindElement(By.Id("FirstName")).SendKeys(FIRST_NAME);
             _driver.FindElement(By.Id("LastName")).SendKeys(LAST_NAME);
             _driver.FindElement(By.Id("Telephone")).SendKeys(TELEPHONE);

@@ -114,7 +114,7 @@ namespace Stagio.Web.Controllers
                     "<p> Bonjour, </p>" +
                     "<p>Vous avez &eacute;t&eacute; inviter à vous cr&eacute;er un compte en tant que coordonnateur.</p>" +
                     "<p>Pour cr&eacute;er votre compte, veuillez cliquer sur le lien ci-dessous: </p>";
-             String invitationUrl = "<a href=thomarelau.local/Coordonnateur/Create/" + token + ">Créer un compte</a>";
+             String invitationUrl = "<a href=stagio.local/Coordonnateur/Create/" + token + ">Créer un compte</a>";
 
                 messageText += invitationUrl;
 

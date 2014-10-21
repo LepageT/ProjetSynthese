@@ -12,7 +12,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         [TestMethod]
         public void student_should_be_able_to_edit_his_profil_if_id_is_valid()
         {
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Edit?id=1");
+            _driver.Navigate().GoToUrl("http://stagio.local/Student/Edit?id=1");
             
             try
             {
@@ -30,7 +30,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             const string NEW_TELEPHONE = "444-444-4444";
             const string OLD_PASSWORD = "qwerty12";
             const string NEW_PASSWORD = "asdfgh12";
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Edit?id=1");
+            _driver.Navigate().GoToUrl("http://stagio.local/Student/Edit?id=1");
             _driver.FindElement(By.Id("Telephone")).Clear();
             _driver.FindElement(By.Id("Telephone")).SendKeys(NEW_TELEPHONE);
             _driver.FindElement(By.Id("OldPassword")).Clear();
@@ -51,7 +51,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             const string NEW_TELEPHONE = "444-444-4444";
             const string OLD_PASSWORD = "qwerty12";
             const string NEW_PASSWORD = "asdfgh12";
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Edit?id=1");
+            _driver.Navigate().GoToUrl("http://stagio.local/Student/Edit?id=1");
             _driver.FindElement(By.Id("Telephone")).Clear();
             _driver.FindElement(By.Id("Telephone")).SendKeys(NEW_TELEPHONE);
             _driver.FindElement(By.Id("OldPassword")).Clear();
