@@ -15,7 +15,7 @@ namespace Stagio.Web.Controllers
         private SmtpClient smtp;
 
         const string FROM = "thomarellau@hotmail.com";
-        const string PASSWORD = "LesPommesRouge2";
+        const string PASSWORD = "LesPommesRouge3";
 
         static Mailler()
         { 
