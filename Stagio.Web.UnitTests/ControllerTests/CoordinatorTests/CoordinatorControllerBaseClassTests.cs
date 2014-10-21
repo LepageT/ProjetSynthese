@@ -10,10 +10,10 @@ using Stagio.Web.Mappers;
 using NSubstitute;
 using Stagio.Web.Services;
 
-namespace Stagio.Web.UnitTests.CoordonnateurTests
+namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
 {
     [TestClass]
-    public class CoordonnateurControllerBaseClassTests
+    public class CoordinatorControllerBaseClassTests
     {
         protected CoordonnateurController coordonnateurController;
         protected Fixture _fixture;

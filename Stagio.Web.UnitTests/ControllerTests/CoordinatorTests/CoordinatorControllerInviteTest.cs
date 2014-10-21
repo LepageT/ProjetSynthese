@@ -10,10 +10,10 @@ using Stagio.Domain.Entities;
 using AutoMapper;
 using FluentAssertions;
 
-namespace Stagio.Web.UnitTests.CoordonnateurTests
+namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
 {
     [TestClass]
-    public class CoordonnateurControllerInviteTest : CoordonnateurControllerBaseClassTests
+    public class CoordinatorControllerInviteTest : CoordinatorControllerBaseClassTests
     {
         [TestMethod]
         public void coordonnateur_invite_get_should_returnview_default_view()
