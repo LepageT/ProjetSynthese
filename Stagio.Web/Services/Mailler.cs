@@ -6,10 +6,9 @@ using System.Net.Mail;
 using System.Net;
 
 
-//TODO Must be moved to Stagio.Utilities
-namespace Stagio.Web.Controllers
+namespace Stagio.Web.Services
 {
-    public sealed class Mailler
+    public class Mailler : IMailler
     {
         private static Mailler instance = new Mailler();
         private SmtpClient smtp;

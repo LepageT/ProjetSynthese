@@ -10,16 +10,20 @@ using AutoMapper;
 using Stagio.DataLayer;
 using Stagio.Domain.Entities;
 using System.Net.Mail;
+using Stagio.Web.Services;
 
 namespace Stagio.Web.Controllers
 {
     public partial class CoordinatorController : Controller
     {
         private readonly IEntityRepository<Enterprise> _enterpriseRepository;
+        private readonly IMailler _mailler; 
 
-        public CoordinatorController(IEntityRepository<Enterprise> enterpriseRepository)
+        public CoordinatorController(IEntityRepository<Enterprise> enterpriseRepository, IMailler mailler)
         {
             _enterpriseRepository = enterpriseRepository;
+            _mailler = mailler;
+
         }
         // GET: Coordinator
         public virtual ActionResult Index()
@@ -146,7 +150,7 @@ namespace Stagio.Web.Controllers
                     }
 
                     if (
-                        !Mailler.Instance.SendEmail(enterpriseToSendMessage.Email, "Invitation du Cégep de Sainte-Foy",
+                        !_mailler.SendEmail(enterpriseToSendMessage.Email, "Invitation du Cégep de Sainte-Foy",
                             messageText))
                     {
                         ModelState.AddModelError("Email", "Error");

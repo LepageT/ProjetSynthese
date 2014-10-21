@@ -8,6 +8,7 @@ using Stagio.TestUtilities.AutoFixture;
 using Stagio.Web.Controllers;
 using Stagio.Web.Mappers;
 using NSubstitute;
+using Stagio.Web.Services;
 
 namespace Stagio.Web.UnitTests.CoordonnateurTests
 {
@@ -18,6 +19,7 @@ namespace Stagio.Web.UnitTests.CoordonnateurTests
         protected Fixture _fixture;
         protected IEntityRepository<Coordonnateur> coordonnateurRepository;
         protected IEntityRepository<Invitation> invitationRepository;
+        protected IMailler mailler;
 
         [TestInitialize]
         public void ControllerTestInit()
@@ -30,7 +32,9 @@ namespace Stagio.Web.UnitTests.CoordonnateurTests
             coordonnateurRepository = Substitute.For<IEntityRepository<Coordonnateur>>();
             invitationRepository = Substitute.For<IEntityRepository<Invitation>>();
 
-            coordonnateurController = new CoordonnateurController(coordonnateurRepository, invitationRepository);
+            mailler = Substitute.For<IMailler>();
+
+            coordonnateurController = new CoordonnateurController(coordonnateurRepository, invitationRepository, mailler);
         }
     }
 }

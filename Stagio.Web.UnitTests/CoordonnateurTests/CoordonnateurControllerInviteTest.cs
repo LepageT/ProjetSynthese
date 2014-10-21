@@ -50,7 +50,7 @@ namespace Stagio.Web.UnitTests.CoordonnateurTests
             var invitation = _fixture.Create<ViewModels.Coordonnateur.Invite>();
             invitation.Email = "admin@admin.com";
 
-            var viewResult = coordonnateurController.Invite(invitation) as ViewResult;
+            mailler.SendEmail(invitation.Email, "Test", invitation.Message).ReturnsForAnyArgs(true);
 
             var routeResult = coordonnateurController.Invite(invitation) as RedirectToRouteResult;
             var routeAction = routeResult.RouteValues["Action"];

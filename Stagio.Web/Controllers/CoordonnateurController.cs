@@ -7,6 +7,7 @@ using AutoMapper;
 using Stagio.DataLayer;
 using Stagio.Domain.Entities;
 using System.Text;
+using Stagio.Web.Services;
 
 namespace Stagio.Web.Controllers
 {
@@ -15,14 +16,16 @@ namespace Stagio.Web.Controllers
 
         private readonly IEntityRepository<Coordonnateur> _coordonnateurRepository;
         private readonly IEntityRepository<Invitation> _invitationRepository;
+        private readonly IMailler _mailler;
 
         //For the token generation.
         private static Random random = new Random((int)DateTime.Now.Ticks);
 
-        public CoordonnateurController(IEntityRepository<Coordonnateur> coordonnateurRepository, IEntityRepository<Invitation> invitationRepository)
+        public CoordonnateurController(IEntityRepository<Coordonnateur> coordonnateurRepository, IEntityRepository<Invitation> invitationRepository, IMailler mailler)
         {
             _coordonnateurRepository = coordonnateurRepository;
             _invitationRepository = invitationRepository;
+            _mailler = mailler;
         }
         // GET: Coordonnateur
         public virtual ActionResult Index()
@@ -124,7 +127,7 @@ namespace Stagio.Web.Controllers
                     messageText += createdInvite.Message;
                 }
 
-            if (!Mailler.Instance.SendEmail(createdInvite.Email, "Création d'un compte coordonnateur",messageText))
+            if (!_mailler.SendEmail(createdInvite.Email, "Création d'un compte coordonnateur",messageText))
             {
                 ModelState.AddModelError("Email", "Error");
                 return View(createdInvite);
