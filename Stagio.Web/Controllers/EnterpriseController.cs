@@ -12,10 +12,12 @@ namespace Stagio.Web.Controllers
     public partial class EnterpriseController : Controller
     {
         private readonly IEntityRepository<Enterprise> _enterpriseRepository;
+        private readonly IEntityRepository<Stage> _stageRepository;
 
-        public EnterpriseController(IEntityRepository<Enterprise> enterpriseRepository)
+        public EnterpriseController(IEntityRepository<Enterprise> enterpriseRepository, IEntityRepository<Stage> stageRepository )
         {
             _enterpriseRepository = enterpriseRepository;
+            _stageRepository = stageRepository;
         }
 
         // GET: Enterprise
@@ -41,6 +43,7 @@ namespace Stagio.Web.Controllers
             enterprise.Telephone = telephone;
             enterprise.Poste = poste;
             var enterpriseCreatePageViewModel = Mapper.Map<ViewModels.Enterprise.Create>(enterprise);
+
             return View(enterpriseCreatePageViewModel);
         }
 
@@ -102,6 +105,27 @@ namespace Stagio.Web.Controllers
             {
                 return View();
             }
+        }
+
+        public virtual ActionResult CreateStage()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public virtual ActionResult CreateStage(ViewModels.Stage.Create createdStage)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return View(createdStage);
+            }
+
+            var stage = Mapper.Map<Stage>(createdStage);
+            stage.publicationDate = DateTime.Now;
+
+            _stageRepository.Add(stage);
+            return RedirectToAction(MVC.Home.Index());
         }
     }
 }

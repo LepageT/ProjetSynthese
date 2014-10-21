@@ -53,5 +53,7 @@ namespace Stagio.Domain.Entities
 
         public String submitToEmail { get; set; }
 
+        public DateTime limitDate { get; set; }
+
     }
 }
