@@ -1,22 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Text;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using AutoMapper;
 using Stagio.DataLayer;
 using Stagio.Domain.Entities;
-using System.Net.Mail;
 using Stagio.Web.Services;
 
 namespace Stagio.Web.Controllers
 {
     public partial class CoordinatorController : Controller
     {
+        private readonly IAccountService _accountService;
         private readonly IEntityRepository<Enterprise> _enterpriseRepository;
         private readonly IEntityRepository<Coordinator> _coordinatorRepository;
         private readonly IEntityRepository<Invitation> _invitationRepository;
@@ -28,12 +24,14 @@ namespace Stagio.Web.Controllers
         public CoordinatorController(IEntityRepository<Enterprise> enterpriseRepository,
             IEntityRepository<Coordinator> coordinatorRepository,
             IEntityRepository<Invitation> invitationRepository, 
-            IMailler mailler)
+            IMailler mailler,
+            IAccountService accountService)
         {
             _enterpriseRepository = enterpriseRepository;
             _coordinatorRepository = coordinatorRepository;
             _invitationRepository = invitationRepository;
             _mailler = mailler;
+            _accountService = accountService;
         }
         // GET: Coordinator
         public virtual ActionResult Index()
@@ -206,7 +204,8 @@ namespace Stagio.Web.Controllers
                     _invitationRepository.Update(invitation);
 
                     var coordinator = Mapper.Map<Coordinator>(createdCoordinator);
-
+                    coordinator.UserName = coordinator.Email;
+                    coordinator.Password = _accountService.HashPassword(coordinator.Password);
                     _coordinatorRepository.Add(coordinator);
                     return RedirectToAction(Views.ViewNames.Index);
                 }

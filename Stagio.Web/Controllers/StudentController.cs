@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
-using Microsoft.Ajax.Utilities;
 using Stagio.DataLayer;
 using Stagio.Domain.Entities;
 using Stagio.Web.Module;
 using Stagio.Web.ViewModels.Student;
 using Stagio.Utilities.Encryption;
-using Stagio.Web.Services;
-
 
 namespace Stagio.Web.Controllers
 {
@@ -152,6 +147,7 @@ namespace Stagio.Web.Controllers
         [HttpPost]
         public virtual ActionResult Create(ViewModels.Student.Create createStudentViewModel)
         {
+
             var student = _studentRepository.GetAll().FirstOrDefault(x => x.Matricule == createStudentViewModel.Matricule);
 
             if (student == null)
@@ -180,6 +176,7 @@ namespace Stagio.Web.Controllers
             {
                 return View(createStudentViewModel);
             }
+           
             student.Activated = true;
 
             Mapper.Map(createStudentViewModel, student);

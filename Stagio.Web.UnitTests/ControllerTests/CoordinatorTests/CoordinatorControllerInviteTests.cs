@@ -11,11 +11,12 @@ using NSubstitute;
 using Stagio.Domain.Entities;
 using Ploeh.AutoFixture;
 using Stagio.Web.Controllers;
+using Stagio.Web.UnitTests.ControllerTests.EnterpriseTests;
 
 namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
 {
     [TestClass]
-    public class CoordinatorControllerInviteTests : AllControllersBaseClassTests
+    public class CoordinatorControllerInviteTests : CoordinatorControllerBaseClassTests
     {
         [TestMethod]
         public void invite_get_should_render_default_view()
