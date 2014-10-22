@@ -7,6 +7,7 @@ using Stagio.DataLayer;
 using Stagio.Domain.Entities;
 using Stagio.Utilities.Encryption;
 using Stagio.Web.Services;
+using Stagio.Web.UnitTests.ControllerTests.EnterpriseTests;
 
 namespace Stagio.Web.UnitTests.Services
 {

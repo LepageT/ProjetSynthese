@@ -1,31 +1,22 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NSubstitute;
 using Ploeh.AutoFixture;
-using Stagio.Domain.Entities;
 using Stagio.TestUtilities.AutoFixture;
-using Stagio.Web.Controllers;
-using Stagio.DataLayer;
 using Stagio.Web.Mappers;
-using Stagio.Web.Services;
-
 
 namespace Stagio.Web.UnitTests
 {
     public class AllControllersBaseClassTests
     {
-        protected StudentController studentController;
+ 
         protected Fixture _fixture;
-        protected IEntityRepository<Student> studentRepository;
-        protected IMailler mailler;
 
         protected IEntityRepository<Coordinator> coordinatorRepository;
         protected IEntityRepository<Invitation> invitationRepository;
-        protected IEntityRepository<Enterprise> enterpriseRepository;
-        protected IEntityRepository<Stage> stageRepository; 
-
+        protected IEntityRepository<ContactEnterprise> enterpriseRepository; 
 
         protected CoordinatorController coordinatorController;
-        protected EnterpriseController enterpriseController;
+        protected ContactEnterpriseController enterpriseController;
+
             
         [TestInitialize]
         public void ControllerTestInit()
@@ -35,20 +26,17 @@ namespace Stagio.Web.UnitTests
             _fixture = new Fixture();
             _fixture.Customizations.Add(new VirtualMembersOmitter());
 
-            studentRepository = Substitute.For<IEntityRepository<Stagio.Domain.Entities.Student>>();
-            //activationReposity = Substitute.For<IEntityRepository<Stagio.Domain.Entities.Activation>>();
 
             coordinatorRepository = Substitute.For<IEntityRepository<Coordinator>>();
             invitationRepository = Substitute.For<IEntityRepository<Invitation>>();
-            enterpriseRepository = Substitute.For<IEntityRepository<Enterprise>>();
-            stageRepository = Substitute.For<IEntityRepository<Stage>>();
-
+            enterpriseRepository = Substitute.For<IEntityRepository<ContactEnterprise>>();
 
             mailler = Substitute.For<IMailler>();
 
             studentController = new StudentController(studentRepository);
-            enterpriseController = new EnterpriseController(enterpriseRepository, stageRepository);
+            enterpriseController = new ContactEnterpriseController(enterpriseRepository);
             coordinatorController = new CoordinatorController(enterpriseRepository, coordinatorRepository, invitationRepository, mailler);
+
         }
     }
 }

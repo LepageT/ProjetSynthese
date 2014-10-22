@@ -14,7 +14,7 @@ using Ploeh.AutoFixture;
 namespace Stagio.Web.UnitTests.ControllerTests.EnterpriseTests
 {
     [TestClass]
-    public class EnterpriseControllerCreateTests : AllControllersBaseClassTests
+    public class EnterpriseControllerCreateTests : EnterpriseControllerBaseClassTests
     {
         [TestMethod]
         public void create_action_should_render_view_with_email_and_enterprise_name()
@@ -107,7 +107,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.EnterpriseTests
             enterpriseRepository.Received().Add(Arg.Is<Enterprise>(x => x.EnterpriseName == enterprise.EnterpriseName));
             enterpriseRepository.Received().Add(Arg.Is<Enterprise>(x => x.Telephone == enterprise.Telephone));
             enterpriseRepository.Received().Add(Arg.Is<Enterprise>(x => x.Poste == enterprise.Poste));
-            enterpriseRepository.Received().Add(Arg.Is<Enterprise>(x => x.Password == enterprise.Password));
+            enterpriseRepository.Received().Add(Arg.Is<Enterprise>(x => x.Password == accountService.HashPassword(enterprise.Password)));
         }
     }
 }

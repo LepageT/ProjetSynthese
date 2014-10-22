@@ -38,8 +38,10 @@ namespace Stagio.Web.Mappers
 
 
 
-            Mapper.CreateMap<Enterprise, ViewModels.Enterprise.Create>()
-                .ForMember(dest => dest.PasswordConfirmation, opt => opt.Ignore());
+            Mapper.CreateMap<ContactEnterprise, ViewModels.ContactEnterprise.Create>()
+                .ForMember(dest => dest.PasswordConfirmation, opt => opt.Ignore())
+                .IgnoreAllNonExisting();
+
 
         }
     }

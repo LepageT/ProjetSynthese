@@ -49,7 +49,6 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
         {
             var invitation = _fixture.Create<ViewModels.Coordinator.Invite>();
             invitation.Email = "admin@admin.com";
-
             mailler.SendEmail(invitation.Email, "Test", invitation.Message).ReturnsForAnyArgs(true);
 
             var routeResult = coordinatorController.Invite(invitation) as RedirectToRouteResult;

@@ -10,35 +10,36 @@ using Stagio.Web.Controllers;
 using Stagio.Web.Mappers;
 using NSubstitute;
 using Stagio.Web.Services;
+using Stagio.Web.UnitTests.ControllerTests.EnterpriseTests;
 
 namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
 {
     [TestClass]
-    public class CoordinatorControllerBaseClassTests
+    public class CoordinatorControllerBaseClassTests : AllControllersBaseClassTests
     {
         protected CoordinatorController coordinatorController;
-        protected Fixture _fixture;
+
         protected IEntityRepository<Coordinator> coordinatorRepository;
         protected IEntityRepository<Invitation> invitationRepository;
-        protected IEntityRepository<Enterprise> enterpriseRepository;
+        protected IEntityRepository<ContactEnterprise> enterpriseRepository;
 
+        
+        protected IAccountService _accountService;
         protected IMailler mailler;
 
         [TestInitialize]
-        public void ControllerTestInit()
+        public void CoordinatorControllerTestInit()
         {
-            AutoMapperConfiguration.Configure();
-
-            _fixture = new Fixture();
-            _fixture.Customizations.Add(new VirtualMembersOmitter());
 
             coordinatorRepository = Substitute.For<IEntityRepository<Coordinator>>();
             invitationRepository = Substitute.For<IEntityRepository<Invitation>>();
-            enterpriseRepository = Substitute.For<IEntityRepository<Enterprise>>();
+            enterpriseRepository = Substitute.For<IEntityRepository<ContactEnterprise>>();
+            _accountService = Substitute.For<IAccountService>();
+            
 
             mailler = Substitute.For<IMailler>();
 
-            coordinatorController = new CoordinatorController(enterpriseRepository, coordinatorRepository, invitationRepository, mailler);
+            coordinatorController = new CoordinatorController(enterpriseRepository, coordinatorRepository, invitationRepository, mailler, _accountService);
         }
     }
 }

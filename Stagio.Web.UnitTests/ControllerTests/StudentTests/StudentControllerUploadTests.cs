@@ -8,11 +8,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ploeh.AutoFixture;
 using NSubstitute;
 using Stagio.Domain.Entities;
+using Stagio.Web.UnitTests.ControllerTests.EnterpriseTests;
 
 namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 {
     [TestClass]
-    public class StudentControllerUploadTests : AllControllersBaseClassTests
+    public class StudentControllerUploadTests : StudentControllerBaseClassTests
     {
         [TestMethod]
         public void upload_action_should_render_default_view()

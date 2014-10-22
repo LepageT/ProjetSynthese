@@ -2,6 +2,7 @@
 using NSubstitute;
 using Stagio.Web.Controllers;
 using Stagio.Web.Services;
+using Stagio.Web.UnitTests.ControllerTests.EnterpriseTests;
 
 namespace Stagio.Web.UnitTests.ControllerTests.AccountTests
 {
