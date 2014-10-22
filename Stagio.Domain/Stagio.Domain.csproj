@@ -48,6 +48,7 @@
     <Compile Include="Entities\Coordinator.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\Invitation.cs" />
+    <Compile Include="Entities\Stage.cs" />
     <Compile Include="Entities\Student.cs" />
     <Compile Include="Entities\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
