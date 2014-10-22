@@ -1,38 +1,73 @@
-﻿@model IEnumerable<Stagio.Web.ViewModels.Student.ListStudent>
+﻿@model Stagio.Web.ViewModels.Student.ResultCreateList
 
 @{
     ViewBag.Title = "ResultCreateList";
 }
 
-<h2 id ="resultCreateList-page">Les étudiants suivants n'ont pas pu être ajouté car ils sont déjà inscrits</h2>
+<h2 id="resultCreateList-page"></h2>
 
+<p>Étudiants qui ont  été ajoutés</p>
+<table class="table">
+    <tr class="row">
+        <th class="col-md-2">
+
+            Matricule
+        </th>
+        <th class="col-md-4">
+            Nom
+        </th>
+        <th class="col-md-4">
+            Prénom
+        </th>
+    </tr>
+
+    @foreach (var item in Model.ListStudentAdded)
+    {
+        <tr class="row">
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.Matricule)
+            </td>
+            <td class="col-md-4">
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td class="col-md-4">
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<p>Étudiants qui n'ont pas été ajoutés</p>
 
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Matricule)
+    <tr class="row">
+        <th class="col-md-2">
+
+            Matricule
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
+        <th class="col-md-4">
+            Nom
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+        <th class="col-md-4">
+            Prénom
         </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Matricule)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-    </tr>
-}
+    @foreach (var item in Model.ListStudentNotAdded)
+    {
+        <tr class="row">
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.Matricule)
+            </td>
+            <td class="col-md-4">
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td class="col-md-4">
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+        </tr>
+    }
 
 </table>
 

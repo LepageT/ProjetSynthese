@@ -228,6 +228,7 @@
     <Compile Include="ViewModels\Coordinator\Invite.cs" />
     <Compile Include="ViewModels\Student\Edit.cs" />
     <Compile Include="ViewModels\Student\ListStudent.cs" />
+    <Compile Include="ViewModels\Student\ResultCreateList.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
