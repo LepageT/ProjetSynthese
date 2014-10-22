@@ -299,6 +299,7 @@
     <Content Include="Views\Enterprise\Create.cshtml" />
     <Content Include="Views\Coordinator\InviteEnterprise.cshtml" />
     <Content Include="Views\Enterprise\CreateStage.cshtml" />
+    <Content Include="Views\Coordinator\InvitationSucceed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt.settings.xml" />

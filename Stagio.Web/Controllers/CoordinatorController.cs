@@ -253,8 +253,13 @@ namespace Stagio.Web.Controllers
                 Used = false
             });
 
-            return RedirectToAction(MVC.Coordinator.Index());
+            return RedirectToAction(MVC.Coordinator.InvitationSucceed());
 
+        }
+
+        public virtual ActionResult InvitationSucceed()
+        {
+            return View();
         }
 
     }

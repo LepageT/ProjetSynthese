@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing.Imaging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ploeh.AutoFixture;
 using OpenQA.Selenium;
@@ -26,5 +27,7 @@ namespace Stagio.Web.AcceptanceTests
         {
             _driver.Close();
         }
+
+        
     }
 }
