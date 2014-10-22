@@ -20,7 +20,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
         protected Fixture _fixture;
         protected IEntityRepository<Coordinator> coordinatorRepository;
         protected IEntityRepository<Invitation> invitationRepository;
-        protected IEntityRepository<Enterprise> enterpriseRepository;
+        protected IEntityRepository<ContactEnterprise> enterpriseRepository;
 
         protected IMailler mailler;
 
@@ -34,7 +34,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
 
             coordinatorRepository = Substitute.For<IEntityRepository<Coordinator>>();
             invitationRepository = Substitute.For<IEntityRepository<Invitation>>();
-            enterpriseRepository = Substitute.For<IEntityRepository<Enterprise>>();
+            enterpriseRepository = Substitute.For<IEntityRepository<ContactEnterprise>>();
 
             mailler = Substitute.For<IMailler>();
 

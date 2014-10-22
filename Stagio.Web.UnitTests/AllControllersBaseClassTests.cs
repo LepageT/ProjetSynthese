@@ -20,10 +20,11 @@ namespace Stagio.Web.UnitTests
 
         protected IEntityRepository<Coordinator> coordinatorRepository;
         protected IEntityRepository<Invitation> invitationRepository;
-        protected IEntityRepository<Enterprise> enterpriseRepository; 
+        protected IEntityRepository<ContactEnterprise> enterpriseRepository; 
 
         protected CoordinatorController coordinatorController;
-        protected EnterpriseController enterpriseController;
+        protected ContactEnterpriseController enterpriseController;
+
             
         [TestInitialize]
         public void ControllerTestInit()
@@ -38,13 +39,14 @@ namespace Stagio.Web.UnitTests
 
             coordinatorRepository = Substitute.For<IEntityRepository<Coordinator>>();
             invitationRepository = Substitute.For<IEntityRepository<Invitation>>();
-            enterpriseRepository = Substitute.For<IEntityRepository<Enterprise>>();
+            enterpriseRepository = Substitute.For<IEntityRepository<ContactEnterprise>>();
 
             mailler = Substitute.For<IMailler>();
 
             studentController = new StudentController(studentRepository);
-            enterpriseController = new EnterpriseController(enterpriseRepository);
+            enterpriseController = new ContactEnterpriseController(enterpriseRepository);
             coordinatorController = new CoordinatorController(enterpriseRepository, coordinatorRepository, invitationRepository, mailler);
+
         }
     }
 }
