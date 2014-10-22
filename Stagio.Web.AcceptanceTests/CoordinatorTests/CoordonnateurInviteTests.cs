@@ -37,7 +37,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
             _driver.FindElement(By.Id("btn-invite")).Click();
             try
             {
-                _driver.FindElement(By.Id("coordinator-home"));
+                _driver.FindElement(By.Id("invite-succeed"));
             }
             catch (NoSuchElementException)
             {

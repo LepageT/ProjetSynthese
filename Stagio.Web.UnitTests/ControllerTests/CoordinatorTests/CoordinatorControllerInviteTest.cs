@@ -55,7 +55,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
             var routeResult = coordinatorController.Invite(invitation) as RedirectToRouteResult;
             var routeAction = routeResult.RouteValues["Action"];
 
-            routeAction.Should().Be(MVC.Coordinator.Views.ViewNames.Index);
+            routeAction.Should().Be(MVC.Coordinator.Views.ViewNames.InvitationSucceed);
 
         }
     }

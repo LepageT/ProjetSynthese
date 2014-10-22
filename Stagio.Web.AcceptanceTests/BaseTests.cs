@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing.Imaging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ploeh.AutoFixture;
 using OpenQA.Selenium;
@@ -16,6 +17,9 @@ namespace Stagio.Web.AcceptanceTests
         public void Initialize()
         {
             _driver = new FirefoxDriver();
+
+            _driver.Manage().Window.Maximize();
+
             _driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
             _driver.Navigate().GoToUrl("http://thomarelau.local/Ci");
             _driver.FindElement(By.Id("go_home")).Click();
@@ -26,5 +30,7 @@ namespace Stagio.Web.AcceptanceTests
         {
             _driver.Close();
         }
+
+        
     }
 }
