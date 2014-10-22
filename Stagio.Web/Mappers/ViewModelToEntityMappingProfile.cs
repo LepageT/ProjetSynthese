@@ -34,6 +34,10 @@ namespace Stagio.Web.Mappers
 
             Mapper.CreateMap<ViewModels.Enterprise.Create, Enterprise>()
                 .IgnoreAllNonExisting();
+
+            Mapper.CreateMap<ViewModels.Stage.Create, Stage>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.publicationDate, opt => opt.Ignore());
         }
     }
 }

@@ -10,7 +10,9 @@ namespace Stagio.DataLayer
         public DbSet<UserRole> Roles { get; set; }
         public DbSet<Coordinator> Coordonators { get; set; }
         public DbSet<Invitation> Invitations { get; set; }
-        public DbSet<Enterprise> Enterprises { get; set; } 
+        public DbSet<Enterprise> Enterprises { get; set; }
+        public DbSet<Stage> Stages { get; set; } 
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -11,6 +11,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.EnterpriseTests
     public class EnterpriseControllerBaseClassTests : AllControllersBaseClassTests
     {
         protected IEntityRepository<Enterprise> enterpriseRepository;
+        protected IEntityRepository<Stage> stageRepository; 
         protected EnterpriseController enterpriseController;
         protected IAccountService accountService;
         
@@ -18,8 +19,9 @@ namespace Stagio.Web.UnitTests.ControllerTests.EnterpriseTests
         public void EnterpriseControllerInitTest()
         {
             enterpriseRepository = Substitute.For<IEntityRepository<Enterprise>>();
+            stageRepository = Substitute.For<IEntityRepository<Stage>>();
             accountService = Substitute.For<IAccountService>();
-            enterpriseController = new EnterpriseController(enterpriseRepository, accountService);
+            enterpriseController = new EnterpriseController(enterpriseRepository, stageRepository, accountService);
         }
     }
 }

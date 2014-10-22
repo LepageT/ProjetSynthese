@@ -9,8 +9,8 @@ namespace Stagio.Web.UnitTests
     {
  
         protected Fixture _fixture;
- 
-            
+
+
         [TestInitialize]
         public void ControllerTestInit()
         {
@@ -19,7 +19,7 @@ namespace Stagio.Web.UnitTests
             _fixture = new Fixture();
             _fixture.Customizations.Add(new VirtualMembersOmitter());
 
-           
+
         }
     }
 }

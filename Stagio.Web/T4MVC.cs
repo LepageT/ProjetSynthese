@@ -103,6 +103,8 @@ namespace Links
              
         public static readonly string bootstrap_css_map = Url("bootstrap.css.map");
         public static readonly string bootstrap_min_css = Url("bootstrap.min.css");
+        public static readonly string signin_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/signin.min.css") ? Url("signin.min.css") : Url("signin.css");
+             
         public static readonly string Site_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/Site.min.css") ? Url("Site.min.css") : Url("Site.css");
              
     }
