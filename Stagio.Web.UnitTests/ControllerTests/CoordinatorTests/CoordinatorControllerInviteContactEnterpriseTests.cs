@@ -62,7 +62,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
             var routeAction = routeResult.RouteValues["Action"];
 
             //Assert
-            routeAction.Should().Be("Index");
+            routeAction.Should().Be("InviteContactEnterpriseConfirmation");
         }
 
         [TestMethod]

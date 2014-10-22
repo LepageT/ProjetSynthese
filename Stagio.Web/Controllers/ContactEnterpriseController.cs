@@ -31,7 +31,7 @@ namespace Stagio.Web.Controllers
         }
 
         // GET: Enterprise/Create
-        public virtual ActionResult Create(string email, string firstName, string lastName, string enterpriseName, string telephone, int? poste)
+        public virtual ActionResult Reactivate(string email, string firstName, string lastName, string enterpriseName, string telephone, int? poste)
         {
             var contactEnterprise = new ContactEnterprise();
             contactEnterprise.Email = email;
@@ -46,7 +46,7 @@ namespace Stagio.Web.Controllers
 
         // POST: Enterprise/Create
         [HttpPost]
-        public virtual ActionResult Create(ViewModels.ContactEnterprise.Create createViewModel)
+        public virtual ActionResult Reactivate(ViewModels.ContactEnterprise.Create createViewModel)
         {
 
             if (ModelState.IsValid)
