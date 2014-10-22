@@ -189,6 +189,9 @@
     <Compile Include="CoordinatorController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="EnterpriseController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -237,7 +240,7 @@
     </Compile>
     <Compile Include="Validations\ValidationPassword.cs" />
     <Compile Include="Validations\ValidationVerifyIfEmailIsUnique.cs" />
-    <Compile Include="ViewModels\ContactEnterprise\Create.cs" />
+    <Compile Include="ViewModels\ContactEnterprise\Reactive.cs" />
     <Compile Include="ViewModels\Account\Login.cs" />
     <Compile Include="ViewModels\Stage\Create.cs" />
     <Compile Include="ViewModels\Student\Create.cs" />
@@ -302,7 +305,6 @@
     <Content Include="Views\Coordinator\InviteContactEnterprise.cshtml" />
     <Content Include="Views\Coordinator\InviteContactEnterpriseConfirmation.cshtml" />
     <Content Include="Views\ContactEnterprise\CreateConfirmation.cshtml" />
-    <Content Include="Views\Enterprise\Create.cshtml" />
     <Content Include="Views\Coordinator\InviteEnterprise.cshtml" />
     <Content Include="Views\Enterprise\CreateStage.cshtml" />
     <Content Include="Views\Coordinator\InvitationSucceed.cshtml" />
@@ -318,8 +320,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\UploadedFiles\" />
-    <Folder Include="ViewModels\Stage\" />
-    <Folder Include="Views\CI\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

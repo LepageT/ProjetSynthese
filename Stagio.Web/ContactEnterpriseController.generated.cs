@@ -218,10 +218,10 @@ namespace Stagio.Web.Controllers
         }
 
         [NonAction]
-        partial void ReactivateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Stagio.Web.ViewModels.ContactEnterprise.Create createViewModel);
+        partial void ReactivateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Stagio.Web.ViewModels.ContactEnterprise.Reactive createViewModel);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Reactivate(Stagio.Web.ViewModels.ContactEnterprise.Create createViewModel)
+        public override System.Web.Mvc.ActionResult Reactivate(Stagio.Web.ViewModels.ContactEnterprise.Reactive createViewModel)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Reactivate);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "createViewModel", createViewModel);

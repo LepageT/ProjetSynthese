@@ -40,13 +40,13 @@ namespace Stagio.Web.Controllers
             contactEnterprise.EnterpriseName = enterpriseName;
             contactEnterprise.Telephone = telephone;
             contactEnterprise.Poste = poste;
-            var contactEnterpriseCreatePageViewModel = Mapper.Map<ViewModels.ContactEnterprise.Create>(contactEnterprise);
+            var contactEnterpriseCreatePageViewModel = Mapper.Map<ViewModels.ContactEnterprise.Reactive>(contactEnterprise);
             return View(contactEnterpriseCreatePageViewModel);
         }
 
         // POST: Enterprise/Create
         [HttpPost]
-        public virtual ActionResult Reactivate(ViewModels.ContactEnterprise.Create createViewModel)
+        public virtual ActionResult Reactivate(ViewModels.ContactEnterprise.Reactive createViewModel)
         {
 
             if (ModelState.IsValid)
