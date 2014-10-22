@@ -79,7 +79,7 @@ namespace Stagio.TestUtilities.Database
             }
         }
         #endregion
-        #region Student3 - Christopher Nolan
+        #region Student3 - Thomas Lepage
 
         static public Student student3
         {
@@ -113,7 +113,7 @@ namespace Stagio.TestUtilities.Database
                     Id = 1,
                     FirstName = "Test",
                     LastName = "Test2",
-                    Password = "12345678",
+                    Password = PasswordHash.CreateHash("123456QW"),
                     Email = "admin@admin.com"
                 };
 
@@ -121,8 +121,8 @@ namespace Stagio.TestUtilities.Database
             }
 
         }
-                #endregion
-#region Invitation 1
+        #endregion
+        #region Invitation 1
 
         static public Invitation invitation1
         {
