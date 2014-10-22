@@ -282,6 +282,7 @@
     <Content Include="Views\ContactEnterprise\Create.cshtml" />
     <Content Include="Views\Coordinator\InviteContactEnterprise.cshtml" />
     <Content Include="Views\Coordinator\InviteContactEnterpriseConfirmation.cshtml" />
+    <Content Include="Views\ContactEnterprise\CreateConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt.settings.xml" />

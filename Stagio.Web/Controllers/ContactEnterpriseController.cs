@@ -54,11 +54,19 @@ namespace Stagio.Web.Controllers
                 var contactEnterprise = Mapper.Map<ContactEnterprise>(createViewModel);
                 _contactEnterpriseRepository.Add(contactEnterprise);
                 //ADD NOTIFICATIONS: À la coordination et aux autres employés de l'entreprise.
-                return RedirectToAction(MVC.Home.Index());
+                return RedirectToAction(MVC.ContactEnterprise.CreateConfirmation());
             }
             return View(createViewModel);
            
         }
+
+
+        public virtual ActionResult CreateConfirmation()
+        {
+            return View();
+        }
+
+
 
         // GET: Enterprise/Edit/5
         public virtual ActionResult Edit(int id)

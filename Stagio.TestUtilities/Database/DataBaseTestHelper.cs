@@ -26,6 +26,7 @@ namespace Stagio.TestUtilities.Database
             addUser();
             addCoordonnator();
             addInvitation();
+            addEnterprises();
       
         }
 

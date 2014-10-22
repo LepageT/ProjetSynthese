@@ -140,7 +140,7 @@ namespace Stagio.Web.Controllers
                 return RedirectToAction(MVC.Coordinator.InviteContactEnterpriseConfirmation());
             }
 
-            return View(InviteContactEnterprise());
+            return RedirectToAction(MVC.Coordinator.InviteContactEnterprise());
 
         }
 
