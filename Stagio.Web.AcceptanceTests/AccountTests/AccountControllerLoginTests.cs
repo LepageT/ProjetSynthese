@@ -8,7 +8,7 @@ namespace Stagio.Web.AcceptanceTests.AccountTests
     public class AccountControllerLoginTests : BaseTests
     {
         [TestInitialize]
-        public void initialize()
+        public void InitializeAccountController()
         {
             var menuElement = _driver.FindElement(By.Id("login-link"));
             menuElement.Click();
