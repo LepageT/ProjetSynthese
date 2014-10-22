@@ -155,7 +155,8 @@ namespace Stagio.TestUtilities.Database
                     LastName = "Tarantino",
                     Telephone = "123-456-7890",
                     Email = "blabla@hotmail.com",
-                    Password = "qwerty12"
+                    Password = "qwerty12",
+                    Active = false
                 };
 
                 return enterprise;
@@ -177,7 +178,8 @@ namespace Stagio.TestUtilities.Database
                     LastName = "Nolan",
                     Telephone = "123-456-7890",
                     Email = "toto@hotmail.com",
-                    Password = "qwerty98"
+                    Password = "qwerty98",
+                    Active = false
                 };
 
                

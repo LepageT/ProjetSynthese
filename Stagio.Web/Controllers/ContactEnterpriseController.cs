@@ -51,10 +51,26 @@ namespace Stagio.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                var contactEnterprise = Mapper.Map<ContactEnterprise>(createViewModel);
-                _contactEnterpriseRepository.Add(contactEnterprise);
-                //ADD NOTIFICATIONS: À la coordination et aux autres employés de l'entreprise.
-                return RedirectToAction(MVC.ContactEnterprise.CreateConfirmation());
+
+                var contactEnterprise = _contactEnterpriseRepository.GetAll().FirstOrDefault(x => x.Email == createViewModel.Email);
+                if (contactEnterprise != null)
+                {
+                    contactEnterprise.Active = true;
+                    contactEnterprise.Password = createViewModel.Password;
+                    contactEnterprise.Telephone = createViewModel.Telephone;
+                    contactEnterprise.Poste = createViewModel.Poste;
+                    _contactEnterpriseRepository.Update(contactEnterprise);
+                    //ADD NOTIFICATIONS: À la coordination et aux autres employés de l'entreprise.
+                    return RedirectToAction(MVC.ContactEnterprise.CreateConfirmation());
+                }
+                else
+                {
+                    var newContactEnterprise = Mapper.Map<ContactEnterprise>(createViewModel);
+                    _contactEnterpriseRepository.Add(newContactEnterprise);
+                    //ADD NOTIFICATIONS: À la coordination et aux autres employés de l'entreprise.
+                    return RedirectToAction(MVC.ContactEnterprise.CreateConfirmation());
+                }
+
             }
             return View(createViewModel);
            

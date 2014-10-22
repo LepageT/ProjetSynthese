@@ -22,12 +22,12 @@ namespace Stagio.Web.UnitTests.ControllerTests.EnterpriseTests
             //Arrange 
             var enterprise = _fixture.Create<Stagio.Domain.Entities.ContactEnterprise>();
             enterpriseRepository.GetById(enterprise.Id).Returns(enterprise);
-            var viewModelExpected = Mapper.Map<ViewModels.Enterprise.Create>(enterprise);
+            var viewModelExpected = Mapper.Map<ViewModels.ContactEnterprise.Create>(enterprise);
 
 
             //Action
             var viewResult = enterpriseController.Create(enterprise.Email, null, null, enterprise.EnterpriseName, null, null) as ViewResult;
-            var viewModelObtained = viewResult.ViewData.Model as ViewModels.Enterprise.Create;
+            var viewModelObtained = viewResult.ViewData.Model as ViewModels.ContactEnterprise.Create;
 
             //Assert 
             Assert.AreEqual(viewModelExpected.Email, viewModelObtained.Email);
@@ -36,24 +36,26 @@ namespace Stagio.Web.UnitTests.ControllerTests.EnterpriseTests
         }
 
         [TestMethod]
-        public void create_post_should_add_enterprise_to_repository()
+        public void create_post_should_update_enterprise_to_repository()
         {
             // Arrange   
-            var enterprise = _fixture.Create<ContactEnterprise>();
-            var enterpriseViewModel = Mapper.Map<ViewModels.Enterprise.Create>(enterprise);
+            var enterprise = _fixture.CreateMany<ContactEnterprise>(1).ToList();
+            var enterpriseViewModel = Mapper.Map<ViewModels.ContactEnterprise.Create>(enterprise[0]);
+            enterpriseRepository.GetAll().Returns(enterprise.AsQueryable());
+
 
             // Action
             enterpriseController.Create(enterpriseViewModel);
 
             // Assert
-            EnterpriseRepositoryAddMethodShouldHaveReceived(enterprise);
+            EnterpriseRepositoryUpdateMethodShouldHaveReceived(enterprise[0]);
         }
 
         [TestMethod]
         public void create_post_should_return_default_view_when_modelState_is_not_valid()
         {
             //Arrange
-            var enterpriseViewModel = _fixture.Create<ViewModels.Enterprise.Create>();
+            var enterpriseViewModel = _fixture.Create<ViewModels.ContactEnterprise.Create>();
             enterpriseController.ModelState.AddModelError("Error", "Error");
 
             //Act
@@ -64,10 +66,16 @@ namespace Stagio.Web.UnitTests.ControllerTests.EnterpriseTests
         }
 
         [TestMethod]
-        public void create_post_should_redirect_to_home_index_on_success()
+        public void create_post_should_redirect_to_confirmation_on_success()
         {
             //Arrange
-            var enterpriseViewModel = _fixture.Create<ViewModels.Enterprise.Create>();
+            var enterpriseViewModel = _fixture.Create<ViewModels.ContactEnterprise.Create>();
+            enterpriseViewModel.Email = "blabla@hotmail.com";
+            var enterprise = _fixture.CreateMany<ContactEnterprise>(2).ToList();
+            var enterpriseToTest = _fixture.Create<ContactEnterprise>();
+            enterpriseToTest.Email = "blabla@hotmail.com";
+            enterprise.Add(enterpriseToTest);
+            enterpriseRepository.GetAll().Returns(enterprise.AsQueryable());
 
             //Act
             var result = enterpriseController.Create(enterpriseViewModel) as RedirectToRouteResult;
@@ -75,7 +83,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.EnterpriseTests
 
 
             //Assert
-            action.ShouldBeEquivalentTo(MVC.Home.Views.ViewNames.Index);
+            action.ShouldBeEquivalentTo(MVC.ContactEnterprise.Views.ViewNames.CreateConfirmation);
 
         }
 
@@ -84,11 +92,15 @@ namespace Stagio.Web.UnitTests.ControllerTests.EnterpriseTests
         {
             // Arrange   
             var enterprise1 = _fixture.Create<ContactEnterprise>();
-            var enterpriseViewModel1 = Mapper.Map<ViewModels.Enterprise.Create>(enterprise1);
+            var enterpriseViewModel1 = Mapper.Map<ViewModels.ContactEnterprise.Create>(enterprise1);
             var email = enterpriseViewModel1.Email;
             var enterprise2 = _fixture.Create<ContactEnterprise>();
-            var enterpriseViewModel2 = Mapper.Map<ViewModels.Enterprise.Create>(enterprise2);
+            var enterpriseViewModel2 = Mapper.Map<ViewModels.ContactEnterprise.Create>(enterprise2);
             enterpriseViewModel2.Email = email;
+            List<ContactEnterprise> listEnterprises = new List<ContactEnterprise>();
+            listEnterprises.Add(enterprise1);
+            listEnterprises.Add(enterprise2);
+            enterpriseRepository.GetAll().Returns(listEnterprises.AsQueryable());
 
             // Action
             enterpriseController.Create(enterpriseViewModel1);
@@ -108,6 +120,19 @@ namespace Stagio.Web.UnitTests.ControllerTests.EnterpriseTests
             enterpriseRepository.Received().Add(Arg.Is<ContactEnterprise>(x => x.Telephone == enterprise.Telephone));
             enterpriseRepository.Received().Add(Arg.Is<ContactEnterprise>(x => x.Poste == enterprise.Poste));
             enterpriseRepository.Received().Add(Arg.Is<ContactEnterprise>(x => x.Password == enterprise.Password));
+        }
+
+
+        private void EnterpriseRepositoryUpdateMethodShouldHaveReceived(ContactEnterprise enterprise)
+        {
+            enterpriseRepository.Received().Update(Arg.Is<ContactEnterprise>(x => x.Id == enterprise.Id));
+            enterpriseRepository.Received().Update(Arg.Is<ContactEnterprise>(x => x.Email == enterprise.Email));
+            enterpriseRepository.Received().Update(Arg.Is<ContactEnterprise>(x => x.FirstName == enterprise.FirstName));
+            enterpriseRepository.Received().Update(Arg.Is<ContactEnterprise>(x => x.LastName == enterprise.LastName));
+            enterpriseRepository.Received().Update(Arg.Is<ContactEnterprise>(x => x.EnterpriseName == enterprise.EnterpriseName));
+            enterpriseRepository.Received().Update(Arg.Is<ContactEnterprise>(x => x.Telephone == enterprise.Telephone));
+            enterpriseRepository.Received().Update(Arg.Is<ContactEnterprise>(x => x.Poste == enterprise.Poste));
+            enterpriseRepository.Received().Update(Arg.Is<ContactEnterprise>(x => x.Password == enterprise.Password));
         }
     }
 }

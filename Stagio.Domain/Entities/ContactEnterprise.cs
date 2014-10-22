@@ -31,5 +31,7 @@ namespace Stagio.Domain.Entities
         [Required(ErrorMessage = "Requis")]
         [MinLength(8)]
         public string Password { get; set; }
+
+        public bool Active { get; set; }
     }
 }
