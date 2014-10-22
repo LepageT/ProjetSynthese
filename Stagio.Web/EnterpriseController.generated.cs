@@ -78,6 +78,7 @@ namespace Stagio.Web.Controllers
         {
             public readonly string Create = "Create";
             public readonly string CreateStage = "CreateStage";
+            public readonly string CreateStageSucceed = "CreateStageSucceed";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -85,6 +86,7 @@ namespace Stagio.Web.Controllers
         {
             public const string Create = "Create";
             public const string CreateStage = "CreateStage";
+            public const string CreateStageSucceed = "CreateStageSucceed";
         }
 
 
@@ -122,9 +124,11 @@ namespace Stagio.Web.Controllers
             {
                 public readonly string Create = "Create";
                 public readonly string CreateStage = "CreateStage";
+                public readonly string CreateStageSucceed = "CreateStageSucceed";
             }
             public readonly string Create = "~/Views/Enterprise/Create.cshtml";
             public readonly string CreateStage = "~/Views/Enterprise/CreateStage.cshtml";
+            public readonly string CreateStageSucceed = "~/Views/Enterprise/CreateStageSucceed.cshtml";
         }
     }
 
@@ -182,6 +186,17 @@ namespace Stagio.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateStage);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "createdStage", createdStage);
             CreateStageOverride(callInfo, createdStage);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CreateStageSucceedOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult CreateStageSucceed()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateStageSucceed);
+            CreateStageSucceedOverride(callInfo);
             return callInfo;
         }
 

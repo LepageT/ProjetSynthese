@@ -302,6 +302,7 @@
     <Content Include="Views\Coordinator\InviteEnterprise.cshtml" />
     <Content Include="Views\Enterprise\CreateStage.cshtml" />
     <Content Include="Views\Coordinator\InvitationSucceed.cshtml" />
+    <Content Include="Views\Enterprise\CreateStageSucceed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt.settings.xml" />
@@ -314,7 +315,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\UploadedFiles\" />
-    <Folder Include="ViewModels\Stage\" />
     <Folder Include="Views\CI\" />
   </ItemGroup>
   <ItemGroup>

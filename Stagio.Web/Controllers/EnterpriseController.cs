@@ -66,10 +66,15 @@ namespace Stagio.Web.Controllers
             }
 
             var stage = Mapper.Map<Stage>(createdStage);
-            stage.publicationDate = DateTime.Now;
+            stage.PublicationDate = DateTime.Now;
 
             _stageRepository.Add(stage);
-            return RedirectToAction(MVC.Home.Index());
+            return RedirectToAction(MVC.Enterprise.CreateStageSucceed());
+        }
+
+        public virtual ActionResult CreateStageSucceed()
+        {
+            return View();
         }
     }
 }

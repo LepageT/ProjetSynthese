@@ -10,7 +10,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.EnterpriseTests
     public class EnterpriseControllerCreateStageTests : AllControllersBaseClassTests
     {
         [TestMethod]
-        public void coordinator_createStage_get_should_return_createStage_view()
+        public void enterprise_createStage_get_should_return_createStage_view()
         {
             var result = enterpriseController.CreateStage() as ViewResult;
 
@@ -18,7 +18,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.EnterpriseTests
         }
 
         [TestMethod]
-        public void coordinator_createStage_post_should_return_default_view_when_modelState_is_not_valid()
+        public void enterprise_createStage_post_should_return_default_view_when_modelState_is_not_valid()
         {
             var stageViewModel = _fixture.Create<ViewModels.Stage.Create>();
             enterpriseController.ModelState.AddModelError("Error", "Error");
@@ -29,14 +29,14 @@ namespace Stagio.Web.UnitTests.ControllerTests.EnterpriseTests
         }
 
         [TestMethod]
-        public void coordinator_createStage_post_should_return_index_on_success()
+        public void enterprise_createStage_post_should_return_index_on_success()
         {
             var stageViewModel = _fixture.Create<ViewModels.Stage.Create>();
 
             var result = enterpriseController.CreateStage(stageViewModel) as RedirectToRouteResult;
             var action = result.RouteValues["Action"];
 
-            action.ShouldBeEquivalentTo(MVC.Home.Views.ViewNames.Index);
+            action.ShouldBeEquivalentTo(MVC.Enterprise.Views.ViewNames.CreateStageSucceed);
         }
     }
 }
