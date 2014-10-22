@@ -7,16 +7,12 @@ namespace Stagio.Web.AcceptanceTests.AccountTests
     [TestClass]
     public class AccountControllerLoginTests : BaseTests
     {
-        [TestInitialize]
-        public void InitializeAccountController()
-        {
-            var menuElement = _driver.FindElement(By.Id("login-link"));
-            menuElement.Click();
-        }
 
         [TestMethod]
         public void application_user_can_log_in()
         {
+            var menuElement = _driver.FindElement(By.Id("login-link"));
+            menuElement.Click();
             var user = TestData.applicationUser;
 
             var loginInput = _driver.FindElement(By.Id("Username"));
@@ -36,6 +32,8 @@ namespace Stagio.Web.AcceptanceTests.AccountTests
         [TestMethod]
         public void application_user_should_be_able_to_view_the_login_page()
         {
+            var menuElement = _driver.FindElement(By.Id("login-link"));
+            menuElement.Click();
             try
             {
                 _driver.FindElement(By.Id("login-page"));
@@ -49,6 +47,8 @@ namespace Stagio.Web.AcceptanceTests.AccountTests
         [TestMethod]
         public void authentificated_user_should_be_able_to_logout_after_valid_login()
         {
+            var menuElement = _driver.FindElement(By.Id("login-link"));
+            menuElement.Click();
             var user = TestData.applicationUser;
 
             var loginInput = _driver.FindElement(By.Id("Username"));
