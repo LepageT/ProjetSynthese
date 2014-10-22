@@ -32,7 +32,7 @@ namespace Stagio.Web.Mappers
             Mapper.CreateMap<ViewModels.Coordinator.Create, Coordinator>()
                 .IgnoreAllNonExisting();
 
-            Mapper.CreateMap<ViewModels.Enterprise.Create, Enterprise>();
+            Mapper.CreateMap<ViewModels.ContactEnterprise.Create, ContactEnterprise>();
         }
     }
 }

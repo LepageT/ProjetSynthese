@@ -30,9 +30,9 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
         [TestMethod]
         public void coordinator_should_be_able_to_invite_enterprise()
         {
-            const string MESSAGE = "test";
+            const string MESSAGE_INVITATION = "test";
             _driver.Navigate().GoToUrl("http://thomarelau.local/Coordinator/InviteEnterprise");
-            _driver.FindElement(By.Id("Message")).SendKeys(MESSAGE);
+            _driver.FindElement(By.Id("Message")).SendKeys(MESSAGE_INVITATION);
             _driver.FindElement(By.Id("send-button")).Click();
             try
             {
