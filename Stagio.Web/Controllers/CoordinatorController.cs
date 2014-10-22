@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Text;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+using System.Web.Security;
 using AutoMapper;
+using Microsoft.Ajax.Utilities;
 using Stagio.DataLayer;
 using Stagio.Domain.Entities;
-using System.Net.Mail;
+using Stagio.Web.Module.Strings;
+using Stagio.Web.Module.Strings.Controller;
+using Stagio.Web.Module.Strings.Email;
 using Stagio.Web.Services;
+using Stagio.Web.Module;
 
 namespace Stagio.Web.Controllers
 {
@@ -22,12 +22,9 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<Invitation> _invitationRepository;
         private readonly IMailler _mailler;
 
-        //For the token generation.
-        private static Random random = new Random((int)DateTime.Now.Ticks);
-
         public CoordinatorController(IEntityRepository<Enterprise> enterpriseRepository,
             IEntityRepository<Coordinator> coordinatorRepository,
-            IEntityRepository<Invitation> invitationRepository, 
+            IEntityRepository<Invitation> invitationRepository,
             IMailler mailler)
         {
             _enterpriseRepository = enterpriseRepository;
@@ -94,13 +91,13 @@ namespace Stagio.Web.Controllers
         // GET: Coordinator/InviteEnterprise
         public virtual ActionResult InviteEnterprise()
         {
-            
+
             var allEnterprise = _enterpriseRepository.GetAll().ToList();
-            
+
             var enterpriseInviteViewModels = Mapper.Map<IEnumerable<ViewModels.Enterprise.Create>>(allEnterprise);
 
             return View(enterpriseInviteViewModels);
-           
+
         }
 
         // POST: Coordinator/InviteEnterprise
@@ -121,8 +118,8 @@ namespace Stagio.Web.Controllers
                     }
 
 
-                    string messageText = "Un coordonateur de stage vous invite à vous inscrire au site Stagio: ";
-                    string invitationUrl = "http://thomarelau.local/Enterprise/Create?Email=" +
+                    string messageText = EmailEnterpriseResources.InviteMessageBody;
+                    string invitationUrl = EmailEnterpriseResources.InviteLink +
                                            enterpriseToSendMessage.Email + "&EnterpriseName=" +
                                            enterpriseToSendMessage.EnterpriseName + "&FirstName=" +
                                            enterpriseToSendMessage.FirstName + "&LastName=" +
@@ -133,12 +130,12 @@ namespace Stagio.Web.Controllers
 
                     if (message != null)
                     {
-                        messageText += "</br></br> <h3>Message:</h3></br>";
+                        messageText += EmailEnterpriseResources.MessageHeader;
                         messageText += message;
                     }
 
                     if (
-                        !_mailler.SendEmail(enterpriseToSendMessage.Email, "Invitation du Cégep de Sainte-Foy",
+                        !_mailler.SendEmail(enterpriseToSendMessage.Email, EmailEnterpriseResources.InviteSubject,
                             messageText))
                     {
                         ModelState.AddModelError("Email", "Error");
@@ -149,11 +146,11 @@ namespace Stagio.Web.Controllers
             }
 
             return RedirectToAction(MVC.Home.Index());
-           
-          
+
+
         }
 
-                public virtual ActionResult Create(string token)
+        public virtual ActionResult Create(string token)
         {
             if (!String.IsNullOrEmpty(token))
             {
@@ -185,7 +182,7 @@ namespace Stagio.Web.Controllers
                 var email = list.FirstOrDefault(x => x.Email == createdCoordinator.Email);
                 if (email != null)
                 {
-                    ModelState.AddModelError("Email", "Un autre coordonnateur utilise la même courriel. Veuillez en utiliser un autre.");
+                    ModelState.AddModelError("Email", CoordinatorResources.CoordinatorUseSameEmail);
                 }
 
             }
@@ -229,25 +226,24 @@ namespace Stagio.Web.Controllers
             }
 
             System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
-            
-            string token = generateToken();
+
+            TokenGenerator tokenGenerator = new TokenGenerator();
+
+            string token = tokenGenerator.GenerateToken();
 
             //Sending invitation with the Mailler class
-            string messageText = "<h3>Stagio</h3>" +
-                    "<p> Bonjour, </p>" +
-                    "<p>Vous avez &eacute;t&eacute; inviter à vous cr&eacute;er un compte en tant que coordonnateur.</p>" +
-                    "<p>Pour cr&eacute;er votre compte, veuillez cliquer sur le lien ci-dessous: </p>";
-             String invitationUrl = "<a href=thomarelau/Coordinator/Create/" + token + ">Créer un compte</a>";
+            String messageText = EmailCoordinatorResources.CoordinatorInviteMessageBody;
+            String invitationUrl = EmailCoordinatorResources.CoordinatorInviteLink + token + ">Créer un compte</a>";
 
-                messageText += invitationUrl;
+            messageText += invitationUrl;
 
-                if (createdInvite.Message != null)
-                {
-                    messageText += "</br></br> <h3>Message:</h3></br>";
-                    messageText += createdInvite.Message;
-                }
+            if (createdInvite.Message != null)
+            {
+                messageText += EmailCoordinatorResources.MessageHeader;
+                messageText += createdInvite.Message;
+            }
 
-            if (!_mailler.SendEmail(createdInvite.Email, "Création d'un compte coordonnateur",messageText))
+            if (!_mailler.SendEmail(createdInvite.Email, EmailCoordinatorResources.CoordinatorInviteSubject, messageText))
             {
                 ModelState.AddModelError("Email", "Error");
                 return View(createdInvite);
@@ -264,19 +260,5 @@ namespace Stagio.Web.Controllers
 
         }
 
-        //TODO -- Maybe it need to be moved in services...
-        private string generateToken()
-        {
-            StringBuilder builder = new StringBuilder();
-            char ch;
-            for (int i = 0; i < 15; i++)
-            {
-                ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26 * random.NextDouble() + 65)));
-                builder.Append(ch);
-            }
-
-            return builder.ToString();
-        }
-    
     }
 }
