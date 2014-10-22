@@ -10,7 +10,7 @@ using Stagio.Utilities.Encryption;
 namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 {
     [TestClass]
-    public class StudentControllerEditTests : StudentBaseClassTests
+    public class StudentControllerEditTests : AllControllersBaseClassTests
     {
         [TestMethod]
         public void edit_should_return_view_with_studentViewModel_when_studentId_is_valid()
