@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using System.Drawing.Imaging;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using Stagio.TestUtilities.Database;
 
@@ -10,13 +12,29 @@ namespace Stagio.Web.AcceptanceTests.AccountTests
         [TestInitialize]
         public void InitializeAccountController()
         {
+            GetScreenShoot("Avant");
+
             var menuElement = _driver.FindElement(By.Id("login-link"));
             menuElement.Click();
+
+            GetScreenShoot("Après");
+
+        }
+
+        public void GetScreenShoot(string screenShootName)
+        {
+            var screenShoot = ((ITakesScreenshot)_driver).GetScreenshot();
+            screenShoot.SaveAsFile(screenShootName + "_" +
+                                   DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") +
+                                   ".png",
+                                   ImageFormat.Png);
         }
 
         [TestMethod]
         public void application_user_can_log_in()
         {
+            GetScreenShoot("Avant");
+
             var user = TestData.applicationUser;
 
             var loginInput = _driver.FindElement(By.Id("Username"));
@@ -31,11 +49,15 @@ namespace Stagio.Web.AcceptanceTests.AccountTests
             var body = _driver.FindElement(By.ClassName("navbar"));
            
             Assert.IsTrue(body.Text.Contains("Super admin coordonnateur Tux"), "L'administrateur n'est pas connecté.");
+            GetScreenShoot("Après");
+
         }
 
         [TestMethod]
         public void application_user_should_be_able_to_view_the_login_page()
         {
+            GetScreenShoot("Avant");
+
             try
             {
                 _driver.FindElement(By.Id("login-page"));
@@ -44,11 +66,15 @@ namespace Stagio.Web.AcceptanceTests.AccountTests
             {
                 Assert.Fail("Identifiant login-page non trouvé sur la page.");
             }
+            GetScreenShoot("Après");
+
         }
 
         [TestMethod]
         public void authentificated_user_should_be_able_to_logout_after_valid_login()
         {
+            GetScreenShoot("Avant");
+
             var user = TestData.applicationUser;
 
             var loginInput = _driver.FindElement(By.Id("Username"));
@@ -66,6 +92,8 @@ namespace Stagio.Web.AcceptanceTests.AccountTests
             
 
             Assert.IsTrue(body.Text.Contains("Se connecter"), "Déconnexion à échoué");
+            GetScreenShoot("Après");
+
         }
     
     }

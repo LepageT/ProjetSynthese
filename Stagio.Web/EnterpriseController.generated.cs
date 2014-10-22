@@ -99,6 +99,7 @@ namespace Stagio.Web.Controllers
             public readonly string Create = "Create";
             public readonly string Edit = "Edit";
             public readonly string Delete = "Delete";
+            public readonly string CreateStage = "CreateStage";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -109,6 +110,7 @@ namespace Stagio.Web.Controllers
             public const string Create = "Create";
             public const string Edit = "Edit";
             public const string Delete = "Delete";
+            public const string CreateStage = "CreateStage";
         }
 
 
@@ -152,6 +154,14 @@ namespace Stagio.Web.Controllers
             public readonly string id = "id";
             public readonly string collection = "collection";
         }
+        static readonly ActionParamsClass_CreateStage s_params_CreateStage = new ActionParamsClass_CreateStage();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_CreateStage CreateStageParams { get { return s_params_CreateStage; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_CreateStage
+        {
+            public readonly string createdStage = "createdStage";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -163,8 +173,10 @@ namespace Stagio.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Create = "Create";
+                public readonly string CreateStage = "CreateStage";
             }
             public readonly string Create = "~/Views/Enterprise/Create.cshtml";
+            public readonly string CreateStage = "~/Views/Enterprise/CreateStage.cshtml";
         }
     }
 
@@ -272,6 +284,29 @@ namespace Stagio.Web.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "collection", collection);
             DeleteOverride(callInfo, id, collection);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CreateStageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult CreateStage()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateStage);
+            CreateStageOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CreateStageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Stagio.Web.ViewModels.Stage.Create createdStage);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult CreateStage(Stagio.Web.ViewModels.Stage.Create createdStage)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateStage);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "createdStage", createdStage);
+            CreateStageOverride(callInfo, createdStage);
             return callInfo;
         }
 

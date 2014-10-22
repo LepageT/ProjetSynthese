@@ -1,7 +1,9 @@
 ﻿@using System.Runtime.InteropServices
 @model Stagio.Web.ViewModels.Account.Login
 
-
+@section SectionCss{
+    <link href="@Url.Content("~/content/signin.css")" rel="stylesheet" type="text/css" />
+}
 
 <div class="container" id="login-page">
 
@@ -14,7 +16,7 @@
         @Html.ValidationMessage("loginError")
 
         @Html.ValidationMessageFor(model => model.Username)
-        @Html.TextBoxFor(model => model.Username, new { @class = "form-control", placeholder = "Username", type = "username" })
+        @Html.TextBoxFor(model => model.Username, new { @class = "form-control", placeholder = "Identifiant", type = "username" })
 
 
         @Html.ValidationMessageFor(model => model.Password)
@@ -24,5 +26,5 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit" id="login-submit">Se connecter</button>
     }
 
-</div> 
+</div>
 

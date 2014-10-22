@@ -3,10 +3,11 @@ using NSubstitute;
 using Stagio.DataLayer;
 using Stagio.Web.Controllers;
 using Stagio.Web.Services;
+using Stagio.Web.UnitTests.ControllerTests.EnterpriseTests;
 
 namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 {
-    public class StudentBaseClassTests : AllControllersBaseClassTests
+    public class StudentControllerBaseClassTests : AllControllersBaseClassTests
     {
         protected StudentController studentController;
         protected IEntityRepository<Stagio.Domain.Entities.Student> studentRepository;

@@ -5,11 +5,12 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ploeh.AutoFixture;
 using Stagio.Domain.Entities;
+using Stagio.Web.UnitTests.ControllerTests.EnterpriseTests;
 
 namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 {
     [TestClass]
-    public class StudentControllerResultCreateList : AllControllersBaseClassTests
+    public class StudentControllerResultCreateList :StudentControllerBaseClassTests
     {
 
         [TestMethod]
@@ -17,7 +18,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         {
             var result = studentController.ResultCreateList() as ViewResult;
 
-            Assert.AreEqual("", result.ViewName);
+            result.ViewName.Should().Be("");
         }
 
         [TestMethod]

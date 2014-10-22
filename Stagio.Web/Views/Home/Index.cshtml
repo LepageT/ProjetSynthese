@@ -1,4 +1,6 @@
 ﻿<h2 id="home-page">Bienvenue</h2>
+
+<h4>Étudiant</h4>
 <div>
     @Html.ActionLink("Modifier le profil 1", MVC.Student.Edit(1), new { id = "edit-student" })
 </div>
@@ -6,12 +8,14 @@
     @Html.ActionLink("Créer profil étudiant", MVC.Student.Create(), new { id = "create-student" })
 
 </div>
+<h4>Coordonnateur</h4>
 <div>
     @Html.ActionLink("Coordinator", MVC.Coordinator.Index(), new { id = "index-coordonnateur" })
 </div>
 <div>
     @Html.ActionLink("Ajouter des étudiants", MVC.Student.Upload(), new { id = "upload-student" })
 </div>
+<h4>Employé d'une entreprise</h4>
 <div>
     @Html.ActionLink("Créer un profil entreprise", MVC.ContactEnterprise.Reactivate(), new { id = "create-enterprise" })
 </div>

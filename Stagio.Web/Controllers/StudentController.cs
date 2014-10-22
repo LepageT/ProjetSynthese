@@ -1,51 +1,42 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
-using Microsoft.Ajax.Utilities;
 using Stagio.DataLayer;
 using Stagio.Domain.Entities;
 using Stagio.Web.Module;
 using Stagio.Web.ViewModels.Student;
 using Stagio.Utilities.Encryption;
-using Stagio.Web.Services;
-
 
 namespace Stagio.Web.Controllers
 {
     public partial class StudentController : Controller
     {
         private readonly IEntityRepository<Student> _studentRepository;
-       // private readonly IEntityRepository<Activation> _activationRepository;
+        // private readonly IEntityRepository<Activation> _activationRepository;
 
         public StudentController(IEntityRepository<Student> studentRepository)
         {
             _studentRepository = studentRepository;
         }
 
-                public virtual ActionResult Index()
-        {
-            return View();
-        }
         public virtual ActionResult Upload()
         {
             return View();
-        }        // GET: Student
+        }
 
         [HttpPost, ActionName("Upload")]
         public virtual ActionResult UploadPost(HttpPostedFileBase file)
         {
-            var listStudentToCreate = new List<ListStudent>();
+            var listStudents = new List<ListStudent>();
 
             if (file == null)
             {
                 ModelState.AddModelError("Fichier", "Il n'y a pas de fichier à importer");
                 ViewBag.Message = "Il n'y a pas de fichier à importer";
-        }
+            }
             else
             {
                 {
@@ -58,22 +49,24 @@ namespace Stagio.Web.Controllers
             }
 
             if (ModelState.IsValid)
-        {
+            {
                 var readFile = new ReadFile<ListStudent>();
 
-                listStudentToCreate = readFile.ReadFileCsv(file); 
-                TempData["listStudent"] = listStudentToCreate;
+                listStudents = readFile.ReadFileCsv(file);
+                TempData["listStudent"] = listStudents;
 
                 return RedirectToAction(MVC.Student.CreateList());
-        }
+            }
             return View("");
         }
 
         public virtual ActionResult ResultCreateList()
         {
-            var listStudentNotAdded = TempData["listStudentNotAdded"] as List<ListStudent>;
-           
-            return View(listStudentNotAdded);
+            var resultCreateList = new ResultCreateList();
+            resultCreateList.ListStudentAdded = TempData["listStudentAdded"] as List<ListStudent>;
+            resultCreateList.ListStudentNotAdded = TempData["listStudentNotAdded"] as List<ListStudent>;
+
+            return View(resultCreateList);
         }
 
         [HttpPost]
@@ -85,9 +78,9 @@ namespace Stagio.Web.Controllers
 
         public virtual ActionResult CreateList()
         {
-            var listStudentToCreate = TempData["listStudent"] as List<ListStudent>;
-            TempData["listStudent"] = listStudentToCreate;
-            return View(listStudentToCreate);
+            var listStudents = TempData["listStudent"] as List<ListStudent>;
+            TempData["listStudent"] = listStudents;
+            return View(listStudents);
         }
 
         [HttpPost]
@@ -96,47 +89,50 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult CreateListPost()
         {
             var listStudentNotAdded = new List<ListStudent>();
-            var listOfStudentToCreate = TempData["listStudent"] as List<ListStudent>;
+            var listStudentAdded = new List<ListStudent>();
+            var listStudentInDb = _studentRepository.GetAll().ToList();
+            var listStudents = TempData["listStudent"] as List<ListStudent>;
             var alreadyInDb = false;
 
-            if (listOfStudentToCreate == null)
+            if (listStudents == null)
             {
                 ModelState.AddModelError("Error", "Error");
             }
-            else
-            {
-                {
-                    foreach (var listStudent in listOfStudentToCreate)
-                    {
-                        if (Convert.ToInt32(listStudent.Matricule) < 1000000 || Convert.ToInt32(listStudent.Matricule) > 9999999)
-                        {
-                            ModelState.AddModelError("Error", "Matricule incorrect");
-                        }
-                    }
-                }
-            }
+
             if (ModelState.IsValid)
             {
-                var listStudentInDb = _studentRepository.GetAll().ToList();
-                foreach (var listStudentCreate in listOfStudentToCreate)
+                foreach (var listStudentCreate in listStudents)
                 {
                     for (int i = 0; i < listStudentInDb.Count(); i++)
                     {
-                        if (listStudentInDb[i].Matricule == listStudentCreate.Matricule)
+                        if (!alreadyInDb)
                         {
+                            if (listStudentInDb[i].Matricule == listStudentCreate.Matricule)
+                            {
 
-                            listStudentNotAdded.Add(listStudentCreate);
-                            alreadyInDb = true;
+                                listStudentNotAdded.Add(listStudentCreate);
+                                alreadyInDb = true;
+                            }
+
                         }
+                    }
+                    if (Convert.ToInt32(listStudentCreate.Matricule) < 1000000 || Convert.ToInt32(listStudentCreate.Matricule) > 9999999)
+                    {
+                        listStudentNotAdded.Add(listStudentCreate);
+                        alreadyInDb = true;
                     }
                     if (!alreadyInDb)
                     {
-                        var studentToAdd = Mapper.Map<Student>(listStudentCreate);
-                        _studentRepository.Add(studentToAdd);
+
+                        var student = Mapper.Map<Student>(listStudentCreate);
+                        listStudentAdded = listStudents;
+                        _studentRepository.Add(student);
                     }
                     alreadyInDb = false;
                 }
+
                 TempData["listStudentNotAdded"] = listStudentNotAdded;
+                TempData["listStudentAdded"] = listStudentAdded;
                 return RedirectToAction(MVC.Student.ResultCreateList());
             }
 
@@ -152,6 +148,7 @@ namespace Stagio.Web.Controllers
         [HttpPost]
         public virtual ActionResult Create(ViewModels.Student.Create createStudentViewModel)
         {
+
             var student = _studentRepository.GetAll().FirstOrDefault(x => x.Matricule == createStudentViewModel.Matricule);
 
             if (student == null)
@@ -180,6 +177,7 @@ namespace Stagio.Web.Controllers
             {
                 return View(createStudentViewModel);
             }
+           
             student.Activated = true;
 
             Mapper.Map(createStudentViewModel, student);
@@ -216,7 +214,7 @@ namespace Stagio.Web.Controllers
             {
                 ModelState.AddModelError("OldPassword", "L'ancien mot de passe n'est pas valide.");
             }
-            
+
             if (!ModelState.IsValid)
             {
                 return View(editStudentViewModel);

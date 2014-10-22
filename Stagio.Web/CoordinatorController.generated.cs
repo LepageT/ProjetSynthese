@@ -102,6 +102,7 @@ namespace Stagio.Web.Controllers
             public readonly string InviteContactEnterpriseConfirmation = "InviteContactEnterpriseConfirmation";
             public readonly string Create = "Create";
             public readonly string Invite = "Invite";
+            public readonly string InvitationSucceed = "InvitationSucceed";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -115,6 +116,7 @@ namespace Stagio.Web.Controllers
             public const string InviteContactEnterpriseConfirmation = "InviteContactEnterpriseConfirmation";
             public const string Create = "Create";
             public const string Invite = "Invite";
+            public const string InvitationSucceed = "InvitationSucceed";
         }
 
 
@@ -182,12 +184,14 @@ namespace Stagio.Web.Controllers
             {
                 public readonly string Create = "Create";
                 public readonly string Index = "Index";
+                public readonly string InvitationSucceed = "InvitationSucceed";
                 public readonly string Invite = "Invite";
                 public readonly string InviteContactEnterprise = "InviteContactEnterprise";
                 public readonly string InviteContactEnterpriseConfirmation = "InviteContactEnterpriseConfirmation";
             }
             public readonly string Create = "~/Views/Coordinator/Create.cshtml";
             public readonly string Index = "~/Views/Coordinator/Index.cshtml";
+            public readonly string InvitationSucceed = "~/Views/Coordinator/InvitationSucceed.cshtml";
             public readonly string Invite = "~/Views/Coordinator/Invite.cshtml";
             public readonly string InviteContactEnterprise = "~/Views/Coordinator/InviteContactEnterprise.cshtml";
             public readonly string InviteContactEnterpriseConfirmation = "~/Views/Coordinator/InviteContactEnterpriseConfirmation.cshtml";
@@ -351,6 +355,17 @@ namespace Stagio.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Invite);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "createdInvite", createdInvite);
             InviteOverride(callInfo, createdInvite);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void InvitationSucceedOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult InvitationSucceed()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InvitationSucceed);
+            InvitationSucceedOverride(callInfo);
             return callInfo;
         }
 

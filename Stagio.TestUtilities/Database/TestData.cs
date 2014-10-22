@@ -23,6 +23,7 @@ namespace Stagio.TestUtilities.Database
                     UserName = "coordonnateur@stagio.com",
                     Name = "Super admin coordonnateur Tux"
                 };
+                user.Email = user.UserName;
                 return user;
             }
         }
@@ -116,7 +117,7 @@ namespace Stagio.TestUtilities.Database
                     Password = PasswordHash.CreateHash("123456QW"),
                     Email = "admin@admin.com"
                 };
-
+                coordonnate.UserName = coordonnate.Email;
                 return coordonnate;
             }
 
