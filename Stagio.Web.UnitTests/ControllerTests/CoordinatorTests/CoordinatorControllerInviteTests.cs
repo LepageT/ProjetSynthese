@@ -15,7 +15,7 @@ using Stagio.Web.Controllers;
 namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
 {
     [TestClass]
-    public class CoordinatorControllerInviteTests : CoordinatorControllerBaseClassTests
+    public class CoordinatorControllerInviteTests : AllControllersBaseClassTests
     {
         [TestMethod]
         public void invite_get_should_render_default_view()

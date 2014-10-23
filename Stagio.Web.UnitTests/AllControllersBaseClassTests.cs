@@ -15,7 +15,22 @@ namespace Stagio.Web.UnitTests
  
         protected Fixture _fixture;
 
-            
+        protected IEntityRepository<Coordinator> coordinatorRepository;
+        protected IEntityRepository<Invitation> invitationRepository;
+        protected IEntityRepository<ContactEnterprise> enterpriseRepository;
+        protected IEntityRepository<Student> studentRepository;
+        protected IEntityRepository<Stage> stageRepository;
+
+        protected StageController stageController;
+        protected CoordinatorController coordinatorController;
+        protected ContactEnterpriseController enterpriseController;
+        protected StudentController studentController;
+        protected AccountController accountController;
+        protected IHttpContextService httpContext;
+        protected IAccountService accountService;
+
+        protected IMailler mailler;
+
         [TestInitialize]
         public void ControllerTestInit()
         {
@@ -24,6 +39,24 @@ namespace Stagio.Web.UnitTests
             _fixture = new Fixture();
             _fixture.Customizations.Add(new VirtualMembersOmitter());
 
+            studentRepository = Substitute.For<IEntityRepository<Stagio.Domain.Entities.Student>>();
+            //activationReposity = Substitute.For<IEntityRepository<Stagio.Domain.Entities.Activation>>();
+
+            coordinatorRepository = Substitute.For<IEntityRepository<Coordinator>>();
+            invitationRepository = Substitute.For<IEntityRepository<Invitation>>();
+            enterpriseRepository = Substitute.For<IEntityRepository<ContactEnterprise>>();
+            stageRepository = Substitute.For<IEntityRepository<Stage>>();
+
+
+            mailler = Substitute.For<IMailler>();
+
+            stageController = new StageController(stageRepository);
+            studentController = new StudentController(studentRepository);
+            httpContext = Substitute.For<IHttpContextService>();
+            accountService = Substitute.For<IAccountService>();
+            accountController = new AccountController(httpContext, accountService); 
+            enterpriseController = new ContactEnterpriseController(enterpriseRepository, stageRepository, accountService);
+            coordinatorController = new CoordinatorController(enterpriseRepository, coordinatorRepository, invitationRepository, mailler, accountService);
         }
     }
 }

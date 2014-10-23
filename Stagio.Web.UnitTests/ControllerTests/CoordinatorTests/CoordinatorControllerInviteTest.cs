@@ -13,7 +13,7 @@ using FluentAssertions;
 namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
 {
     [TestClass]
-    public class CoordinatorControllerInviteTest : CoordinatorControllerBaseClassTests
+    public class CoordinatorControllerInviteTest : AllControllersBaseClassTests
     {
         [TestMethod]
         public void coordinator_invite_get_should_returnview_default_view()

@@ -13,7 +13,7 @@ using FluentAssertions;
 namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 {
     [TestClass]
-    public class StudentControllerCreateTests : StudentControllerBaseClassTests
+    public class StudentControllerCreateTests : AllControllersBaseClassTests
     {
         [TestMethod]
         public void student_create_get_should_return_create_view()
