@@ -127,5 +127,27 @@ namespace Stagio.Web.Controllers
                 return View();
             }
         }
+
+
+        public virtual ActionResult InviteContactEnterprise()
+        {
+            return View();
+        }
+
+        // POST: Enterprise/Delete/5
+        [HttpPost]
+        public virtual ActionResult InviteContactEnterprise(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
     }
 }
