@@ -76,6 +76,7 @@
     <Compile Include="ContactEnterpriseTests\EnterpriseControllerCreateTests.cs" />
     <Compile Include="CoordinatorTests\CoordonnateurCreateTests.cs" />
     <Compile Include="CoordinatorTests\CoordonnateurInviteTests.cs" />
+    <Compile Include="EnterpriseTests\EnterpriseControllerCreateStageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StageTests\StudentControllerListNewStages.cs" />
     <Compile Include="StudentTests\StudentControllerEditTests.cs" />

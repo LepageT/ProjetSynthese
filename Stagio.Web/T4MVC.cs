@@ -32,7 +32,6 @@ public static partial class MVC
     public static Stagio.Web.Controllers.HomeController Home = new Stagio.Web.Controllers.T4MVC_HomeController();
     public static Stagio.Web.Controllers.StageController Stage = new Stagio.Web.Controllers.T4MVC_StageController();
     public static Stagio.Web.Controllers.StudentController Student = new Stagio.Web.Controllers.T4MVC_StudentController();
-    public static T4MVC.EnterpriseController Enterprise = new T4MVC.EnterpriseController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
 }
 

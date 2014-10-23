@@ -132,5 +132,30 @@ namespace Stagio.Web.Controllers
                 return View();
             }
         }
+        public virtual ActionResult CreateStage()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public virtual ActionResult CreateStage(ViewModels.Stage.Create createdStage)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return View(createdStage);
+            }
+
+            var stage = Mapper.Map<Stage>(createdStage);
+            stage.PublicationDate = DateTime.Now;
+
+            _stageRepository.Add(stage);
+            return RedirectToAction(MVC.ContactEnterprise.CreateStageSucceed());
+        }
+
+        public virtual ActionResult CreateStageSucceed()
+        {
+            return View();
+        }
     }
 }

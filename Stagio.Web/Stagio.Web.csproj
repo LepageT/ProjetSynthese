@@ -190,9 +190,6 @@
     <Compile Include="CoordinatorController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="EnterpriseController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -306,8 +303,9 @@
     <Content Include="Views\Coordinator\InviteContactEnterpriseConfirmation.cshtml" />
     <Content Include="Views\ContactEnterprise\CreateConfirmation.cshtml" />
     <Content Include="Views\Coordinator\InviteEnterprise.cshtml" />
-    <Content Include="Views\Enterprise\CreateStage.cshtml" />
+    <Content Include="Views\ContactEnterprise\CreateStage.cshtml" />
     <Content Include="Views\Coordinator\InvitationSucceed.cshtml" />
+    <Content Include="Views\ContactEnterprise\CreateStageSucceed.cshtml" />
     <Content Include="Views\Stage\ListNewStages.cshtml" />
   </ItemGroup>
   <ItemGroup>
