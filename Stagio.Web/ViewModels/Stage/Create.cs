@@ -59,6 +59,9 @@ namespace Stagio.Web.ViewModels.Stage
         [DisplayName("Poste")]
         public int? contactToPoste { get; set; }
 
+        [DisplayName("Titre du poste")]
+        [Required(ErrorMessage = "Requis")]
+        public String stageTitle { get; set; }
 
         [DisplayName("Description du projet")]
         [Required(ErrorMessage = "Requis")]

@@ -15,9 +15,10 @@ namespace Stagio.Web.Controllers
     public partial class StudentController : Controller
     {
         private readonly IEntityRepository<Student> _studentRepository;
+        private readonly IEntityRepository<Stage> _stageRepository; 
         // private readonly IEntityRepository<Activation> _activationRepository;
 
-        public StudentController(IEntityRepository<Student> studentRepository)
+        public StudentController(IEntityRepository<Student> studentRepository, IEntityRepository<Stage> stageRepository)
         {
             _studentRepository = studentRepository;
         }
@@ -229,6 +230,13 @@ namespace Stagio.Web.Controllers
             _studentRepository.Update(student);
 
             return RedirectToAction(MVC.Home.Index());
+        }
+
+        public virtual ActionResult ViewStageList()
+        {
+            var stages = _stageRepository.GetAll().ToList();
+            var studentStageListViewModels = Mapper.Map<IEnumerable<ViewModels.Student.StageList>>(stages);
+            return View(studentStageListViewModels);
         }
     }
 }

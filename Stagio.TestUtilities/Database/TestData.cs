@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
 using Stagio.Utilities.Encryption;
@@ -156,7 +157,7 @@ namespace Stagio.TestUtilities.Database
                     LastName = "Tarantino",
                     Telephone = "123-456-7890",
                     Email = "blabla@hotmail.com",
-                    Password = "qwerty12",
+                    Password = PasswordHash.CreateHash("qwerty12"),
                     Active = false
                 };
 
@@ -183,11 +184,30 @@ namespace Stagio.TestUtilities.Database
                     Active = false
                 };
 
-               
+
                 return enterprise;
             }
         }
         #endregion
+
+        #region Stage1
+
+        static public Stage Stage1
+        {
+            get
+            {
+                var stage = new Stage()
+                {
+                    companyName = "Bomboula",
+                    stageTitle = "Programmeur python",
+                    limitDate = new DateTime(14,10,22)
+                };
+
+                return stage;
+            }
+        }
+        #endregion
+
 
 
     }

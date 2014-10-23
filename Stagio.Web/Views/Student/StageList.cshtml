@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Stagio.Web.ViewModels.Student.StageList>
+
+@{
+    ViewBag.Title = "StageList";
+}
+
+<h2 id="student-StageList">StageList</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.companyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.stageTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.limitDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.companyName)
+            </td>
+            <td>
+                @Html.ActionLink(item.stageTitle, MVC.Student.CreateList()) <!--Create list is here has a placeholder... should be stage details...-->
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.limitDate)
+            </td>
+            <td></td>
+        </tr>
+    }
+
+</table>

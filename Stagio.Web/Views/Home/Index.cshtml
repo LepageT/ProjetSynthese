@@ -8,6 +8,10 @@
     @Html.ActionLink("Créer profil étudiant", MVC.Student.Create(), new { id = "create-student" })
 
 </div>
+<div>
+    @Html.ActionLink("Voir les offres de stages", MVC.Student.ViewStageList(), new { id = "stageList-student" })
+
+</div>
 <h4>Coordonnateur</h4>
 <div>
     @Html.ActionLink("Coordinator", MVC.Coordinator.Index(), new { id = "index-coordonnateur" })

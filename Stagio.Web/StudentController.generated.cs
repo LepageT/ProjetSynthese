@@ -90,6 +90,7 @@ namespace Stagio.Web.Controllers
             public readonly string CreateListPost = "CreateList";
             public readonly string Create = "Create";
             public readonly string Edit = "Edit";
+            public readonly string ViewStageList = "ViewStageList";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -103,6 +104,7 @@ namespace Stagio.Web.Controllers
             public const string CreateListPost = "CreateList";
             public const string Create = "Create";
             public const string Edit = "Edit";
+            public const string ViewStageList = "ViewStageList";
         }
 
 
@@ -146,6 +148,7 @@ namespace Stagio.Web.Controllers
                 public readonly string Edit = "Edit";
                 public readonly string Edit_cshtml = "Edit_cshtml";
                 public readonly string ResultCreateList = "ResultCreateList";
+                public readonly string StageList = "StageList";
                 public readonly string Upload = "Upload";
             }
             public readonly string Create = "~/Views/Student/Create.cshtml";
@@ -153,6 +156,7 @@ namespace Stagio.Web.Controllers
             public readonly string Edit = "~/Views/Student/Edit.cshtml";
             public readonly string Edit_cshtml = "~/Views/Student/Edit.cshtml";
             public readonly string ResultCreateList = "~/Views/Student/ResultCreateList.cshtml";
+            public readonly string StageList = "~/Views/Student/StageList.cshtml";
             public readonly string Upload = "~/Views/Student/Upload.cshtml";
         }
     }
@@ -273,6 +277,17 @@ namespace Stagio.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "editStudentViewModel", editStudentViewModel);
             EditOverride(callInfo, editStudentViewModel);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ViewStageListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ViewStageList()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ViewStageList);
+            ViewStageListOverride(callInfo);
             return callInfo;
         }
 

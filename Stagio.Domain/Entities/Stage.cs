@@ -39,7 +39,8 @@ namespace Stagio.Domain.Entities
 
         public int? contactToPoste { get; set; }
 
-
+        //Stage information
+        public string stageTitle { get; set; }
         public String stageDescription { get; set; }
 
         public String environnementDescription { get; set; }
