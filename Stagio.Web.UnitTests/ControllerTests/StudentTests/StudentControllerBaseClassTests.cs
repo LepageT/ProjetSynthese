@@ -3,7 +3,7 @@ using NSubstitute;
 using Stagio.DataLayer;
 using Stagio.Web.Controllers;
 using Stagio.Web.Services;
-using Stagio.Web.UnitTests.ControllerTests.EnterpriseTests;
+using Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests;
 
 namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 {

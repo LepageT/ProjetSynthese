@@ -113,6 +113,8 @@
     <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerCreateTests.cs" />
     <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerInviteTest.cs" />
     <Compile Include="ControllerTests\StudentTests\StudentControllerCreateTests.cs" />
+    <Compile Include="ValidationTests\ValidationPasswordTests.cs" />
+    <Compile Include="ValidationTests\ValidationVerifyIfEmailIsUniqueTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

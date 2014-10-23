@@ -10,7 +10,7 @@ using Stagio.Web.Controllers;
 using Stagio.Web.Mappers;
 using NSubstitute;
 using Stagio.Web.Services;
-using Stagio.Web.UnitTests.ControllerTests.EnterpriseTests;
+using Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests;
 
 namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
 {
