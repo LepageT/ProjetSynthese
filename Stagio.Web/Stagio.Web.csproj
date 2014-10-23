@@ -189,6 +189,9 @@
     <Compile Include="CoordinatorController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="EnterpriseController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -239,6 +242,7 @@
     <Compile Include="Validations\ValidationVerifyIfEmailIsUnique.cs" />
     <Compile Include="ViewModels\ContactEnterprise\Create.cs" />
     <Compile Include="ViewModels\Account\Login.cs" />
+    <Compile Include="ViewModels\ContactEnterprise\Reactive.cs" />
     <Compile Include="ViewModels\Stage\Create.cs" />
     <Compile Include="ViewModels\Student\Create.cs" />
     <Compile Include="ViewModels\Coordinator\Create.cs" />
@@ -318,7 +322,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\UploadedFiles\" />
-    <Folder Include="ViewModels\Stage\" />
     <Folder Include="Views\CI\" />
   </ItemGroup>
   <ItemGroup>

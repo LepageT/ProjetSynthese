@@ -6,16 +6,21 @@ using System.Web.Mvc;
 using AutoMapper;
 using Stagio.DataLayer;
 using Stagio.Domain.Entities;
+using Stagio.Web.Services;
 
 namespace Stagio.Web.Controllers
 {
     public partial class ContactEnterpriseController : Controller
     {
         private readonly IEntityRepository<ContactEnterprise> _contactEnterpriseRepository;
+        private readonly IEntityRepository<Stage> _stageRepository;
+        private readonly IAccountService _accountService;
 
-        public ContactEnterpriseController(IEntityRepository<ContactEnterprise> contactEnterpriseRepository)
+        public ContactEnterpriseController(IEntityRepository<ContactEnterprise> enterpriseRepository, IEntityRepository<Stage> stageRepository, IAccountService accountService)
         {
-            _contactEnterpriseRepository = contactEnterpriseRepository;
+            _contactEnterpriseRepository = enterpriseRepository;
+            _accountService = accountService;
+            _stageRepository = stageRepository;
         }
 
         // GET: Enterprise

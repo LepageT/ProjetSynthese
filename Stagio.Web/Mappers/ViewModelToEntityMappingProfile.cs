@@ -34,6 +34,8 @@ namespace Stagio.Web.Mappers
 
             Mapper.CreateMap<ViewModels.ContactEnterprise.Reactive, ContactEnterprise>()
                 .IgnoreAllNonExisting();
+            Mapper.CreateMap<ViewModels.ContactEnterprise.Create, ContactEnterprise>()
+                .IgnoreAllNonExisting();
 
             Mapper.CreateMap<ViewModels.Stage.Create, Stage>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())

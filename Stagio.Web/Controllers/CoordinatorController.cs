@@ -127,7 +127,7 @@ namespace Stagio.Web.Controllers
                     }
 
                     if (
-                        !_mailler.SendEmail(enterpriseToSendMessage.Email, EmailEnterpriseResources.InviteSubject,
+                        !_mailler.SendEmail(contactEnterpriseToSendMessage.Email, EmailEnterpriseResources.InviteSubject,
                             messageText))
                     {
                         ModelState.AddModelError("Email", "Error");
