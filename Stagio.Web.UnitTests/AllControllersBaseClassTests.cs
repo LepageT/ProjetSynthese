@@ -55,7 +55,7 @@ namespace Stagio.Web.UnitTests
             httpContext = Substitute.For<IHttpContextService>();
             accountService = Substitute.For<IAccountService>();
             accountController = new AccountController(httpContext, accountService); 
-            enterpriseController = new ContactEnterpriseController(enterpriseRepository, stageRepository, accountService);
+            enterpriseController = new ContactEnterpriseController(enterpriseRepository, stageRepository, accountService, mailler);
             coordinatorController = new CoordinatorController(enterpriseRepository, coordinatorRepository, invitationRepository, mailler, accountService);
         }
     }

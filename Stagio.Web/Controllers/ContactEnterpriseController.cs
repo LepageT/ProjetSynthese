@@ -7,6 +7,7 @@ using AutoMapper;
 using Stagio.DataLayer;
 using Stagio.Domain.Entities;
 using Stagio.Web.Services;
+using Stagio.Web.Module.Strings.Email;
 
 namespace Stagio.Web.Controllers
 {
@@ -15,12 +16,14 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<ContactEnterprise> _contactEnterpriseRepository;
         private readonly IEntityRepository<Stage> _stageRepository;
         private readonly IAccountService _accountService;
+        private readonly IMailler _mailler;
 
-        public ContactEnterpriseController(IEntityRepository<ContactEnterprise> enterpriseRepository, IEntityRepository<Stage> stageRepository, IAccountService accountService)
+        public ContactEnterpriseController(IEntityRepository<ContactEnterprise> enterpriseRepository, IEntityRepository<Stage> stageRepository, IAccountService accountService, IMailler mailler)
         {
             _contactEnterpriseRepository = enterpriseRepository;
             _accountService = accountService;
             _stageRepository = stageRepository;
+            _mailler = mailler;
         }
 
         // GET: Enterprise
@@ -78,7 +81,7 @@ namespace Stagio.Web.Controllers
 
             }
             return View(createViewModel);
-           
+
         }
 
 
@@ -157,5 +160,60 @@ namespace Stagio.Web.Controllers
         {
             return View();
         }
+
+        public virtual ActionResult InviteContactEnterprise()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public virtual ActionResult InviteContactEnterprise(ViewModels.ContactEnterprise.Reactive createContactEnterpriseViewModel)
+        {
+           
+
+            if (createContactEnterpriseViewModel.Email != null)
+            {
+                var contactEnterpriseToSendMessage = Mapper.Map<ContactEnterprise>(createContactEnterpriseViewModel);
+                string messageInvitation = null;
+                if (Request != null)
+                {
+                    messageInvitation = Request.Form["Message"];
+                }
+
+                string messageText = generateURLInvitationContactEnterprise(contactEnterpriseToSendMessage);
+
+                if (messageInvitation != null)
+                {
+                    messageText += EmailEnterpriseResources.MessageHeader;
+                    messageText += messageInvitation;
+                }
+
+                if (
+                    !_mailler.SendEmail(contactEnterpriseToSendMessage.Email, EmailEnterpriseResources.InviteSubject,
+                        messageText))
+                {
+                    ModelState.AddModelError("Email", "Error");
+                    return View(InviteContactEnterprise());
+                }
+                return RedirectToAction(MVC.Coordinator.InviteContactEnterpriseConfirmation());
+            }
+            return View(createContactEnterpriseViewModel);
+        }
+
+
+        private string generateURLInvitationContactEnterprise(ContactEnterprise contactEnterpriseToSendMessage)
+        {
+            string messageText = "Un employé de votre entreprise vous invite à vous inscrire au site Stagio: ";
+            string invitationUrl = "http://thomarelau.local/ContactEnterprise/Reactivate?Email=" +
+                                   contactEnterpriseToSendMessage.Email + "&EnterpriseName=" +
+                                   contactEnterpriseToSendMessage.EnterpriseName + "&FirstName=" +
+                                   contactEnterpriseToSendMessage.FirstName + "&LastName=" +
+                                   contactEnterpriseToSendMessage.LastName + "&Telephone=" +
+                                   contactEnterpriseToSendMessage.Telephone + "&Poste=" + contactEnterpriseToSendMessage.Poste;
+
+            messageText += invitationUrl;
+            return messageText;
+        }
+    
     }
 }
