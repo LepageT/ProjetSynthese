@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using AutoMapper;
 using Stagio.DataLayer;
 using Stagio.Domain.Entities;
@@ -15,7 +16,6 @@ namespace Stagio.Web.Controllers
     public partial class StudentController : Controller
     {
         private readonly IEntityRepository<Student> _studentRepository;
-        // private readonly IEntityRepository<Activation> _activationRepository;
 
         public StudentController(IEntityRepository<Student> studentRepository)
         {
@@ -230,5 +230,6 @@ namespace Stagio.Web.Controllers
 
             return RedirectToAction(MVC.Home.Index());
         }
+
     }
 }

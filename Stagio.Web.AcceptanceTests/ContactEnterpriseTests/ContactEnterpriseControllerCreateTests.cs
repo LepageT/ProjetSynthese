@@ -7,10 +7,10 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 
-namespace Stagio.Web.AcceptanceTests.EnterpriseTests
+namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
 {
     [TestClass]
-    public class EnterpriseControllerCreateTests : BaseTests
+    public class ContactEnterpriseControllerCreateTests : BaseTests
     {
         [TestMethod]
         public void contact_enterprise_should_be_able_to_access_create_profil_page()

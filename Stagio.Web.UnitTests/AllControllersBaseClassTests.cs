@@ -40,8 +40,6 @@ namespace Stagio.Web.UnitTests
             _fixture.Customizations.Add(new VirtualMembersOmitter());
 
             studentRepository = Substitute.For<IEntityRepository<Stagio.Domain.Entities.Student>>();
-            //activationReposity = Substitute.For<IEntityRepository<Stagio.Domain.Entities.Activation>>();
-
             coordinatorRepository = Substitute.For<IEntityRepository<Coordinator>>();
             invitationRepository = Substitute.For<IEntityRepository<Invitation>>();
             enterpriseRepository = Substitute.For<IEntityRepository<ContactEnterprise>>();
