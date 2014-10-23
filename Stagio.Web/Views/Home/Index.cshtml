@@ -19,3 +19,8 @@
 <div>
     @Html.ActionLink("Créer un profil entreprise", MVC.Enterprise.Create(), new { id = "create-enterprise" })
 </div>
+<h4>Stage</h4>
+<div>
+   @Html.ActionLink("Liste des stages qui ne sont pas encore approuvés par un coordonnateur", MVC.Stage.ListNewStages(), new { id = "list" })
+</div>
+

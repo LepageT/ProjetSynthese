@@ -76,8 +76,6 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         [TestMethod]
         public void coordinator_upload_should_rest_on_to_upload_is_not_valid()
         {
-            const string PATH = "abc.csv";
-
             _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Upload");
             _driver.FindElement(By.Id("button-upload")).Click();
 

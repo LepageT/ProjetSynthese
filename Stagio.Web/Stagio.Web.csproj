@@ -182,6 +182,7 @@
     <Compile Include="Controllers\CoordinatorController.cs" />
     <Compile Include="Controllers\EnterpriseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StageController.cs" />
     <Compile Include="EnterpriseController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -226,6 +227,9 @@
     <Compile Include="SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="StageController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="StartUp.cs" />
     <Compile Include="StudentController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -240,6 +244,7 @@
     <Compile Include="ViewModels\Enterprise\Create.cs" />
     <Compile Include="ViewModels\Account\Login.cs" />
     <Compile Include="ViewModels\Stage\Create.cs" />
+    <Compile Include="ViewModels\Stage\ListNewStages.cs" />
     <Compile Include="ViewModels\Student\Create.cs" />
     <Compile Include="ViewModels\Coordinator\Create.cs" />
     <Compile Include="ViewModels\Coordinator\Invite.cs" />
@@ -302,6 +307,7 @@
     <Content Include="Views\Coordinator\InviteEnterprise.cshtml" />
     <Content Include="Views\Enterprise\CreateStage.cshtml" />
     <Content Include="Views\Coordinator\InvitationSucceed.cshtml" />
+    <Content Include="Views\Stage\ListNewStages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt.settings.xml" />
@@ -314,7 +320,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\UploadedFiles\" />
-    <Folder Include="ViewModels\Stage\" />
     <Folder Include="Views\CI\" />
   </ItemGroup>
   <ItemGroup>
