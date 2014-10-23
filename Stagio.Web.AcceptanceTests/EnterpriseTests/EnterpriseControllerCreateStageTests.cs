@@ -11,7 +11,7 @@ namespace Stagio.Web.AcceptanceTests.EnterpriseTests
         [TestMethod]
         public void enterprise_should_be_able_to_see_the_page_to_create_stage()
         {
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Enterprise/CreateStage");
+            _driver.Navigate().GoToUrl("http://thomarelau.local/ContactEnterprise/CreateStage");
 
             try
             {
@@ -46,7 +46,7 @@ namespace Stagio.Web.AcceptanceTests.EnterpriseTests
             const string SUBMIT_TO_EMAIL = "yoda@r2d2.com";
             const string SUBMIT_LIMIT_DATE = "2301-10-31";
 
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Enterprise/CreateStage");
+            _driver.Navigate().GoToUrl("http://thomarelau.local/ContactEnterprise/CreateStage");
 
             _driver.FindElement(By.Id("CompanyName")).SendKeys(ENTERPRISE_NAME);
             _driver.FindElement(By.Id("Adresse")).SendKeys(ENTERPRISE_ADRESSE);

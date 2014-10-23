@@ -174,7 +174,11 @@ namespace Stagio.Web.Controllers
             if (createContactEnterpriseViewModel.Email != null)
             {
                 var contactEnterpriseToSendMessage = Mapper.Map<ContactEnterprise>(createContactEnterpriseViewModel);
-                string messageInvitation = Request.Form["Message"].ToString();
+                string messageInvitation = null;
+                if (Request != null)
+                {
+                    messageInvitation = Request.Form["Message"];
+                }
 
                 string messageText = generateURLInvitationContactEnterprise(contactEnterpriseToSendMessage);
 
