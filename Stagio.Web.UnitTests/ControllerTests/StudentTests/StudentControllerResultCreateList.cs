@@ -5,12 +5,11 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ploeh.AutoFixture;
 using Stagio.Domain.Entities;
-using Stagio.Web.UnitTests.ControllerTests.EnterpriseTests;
 
 namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 {
     [TestClass]
-    public class StudentControllerResultCreateList :StudentControllerBaseClassTests
+    public class StudentControllerResultCreateList : AllControllersBaseClassTests
     {
 
         [TestMethod]

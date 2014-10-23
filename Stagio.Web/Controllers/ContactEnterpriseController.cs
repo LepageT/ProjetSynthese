@@ -6,16 +6,21 @@ using System.Web.Mvc;
 using AutoMapper;
 using Stagio.DataLayer;
 using Stagio.Domain.Entities;
+using Stagio.Web.Services;
 
 namespace Stagio.Web.Controllers
 {
     public partial class ContactEnterpriseController : Controller
     {
         private readonly IEntityRepository<ContactEnterprise> _contactEnterpriseRepository;
+        private readonly IEntityRepository<Stage> _stageRepository;
+        private readonly IAccountService _accountService;
 
-        public ContactEnterpriseController(IEntityRepository<ContactEnterprise> contactEnterpriseRepository)
+        public ContactEnterpriseController(IEntityRepository<ContactEnterprise> enterpriseRepository, IEntityRepository<Stage> stageRepository, IAccountService accountService)
         {
-            _contactEnterpriseRepository = contactEnterpriseRepository;
+            _contactEnterpriseRepository = enterpriseRepository;
+            _accountService = accountService;
+            _stageRepository = stageRepository;
         }
 
         // GET: Enterprise
@@ -40,13 +45,13 @@ namespace Stagio.Web.Controllers
             contactEnterprise.EnterpriseName = enterpriseName;
             contactEnterprise.Telephone = telephone;
             contactEnterprise.Poste = poste;
-            var contactEnterpriseCreatePageViewModel = Mapper.Map<ViewModels.ContactEnterprise.Create>(contactEnterprise);
+            var contactEnterpriseCreatePageViewModel = Mapper.Map<ViewModels.ContactEnterprise.Reactive>(contactEnterprise);
             return View(contactEnterpriseCreatePageViewModel);
         }
 
         // POST: Enterprise/Create
         [HttpPost]
-        public virtual ActionResult Reactivate(ViewModels.ContactEnterprise.Create createViewModel)
+        public virtual ActionResult Reactivate(ViewModels.ContactEnterprise.Reactive createViewModel)
         {
 
             if (ModelState.IsValid)
@@ -126,6 +131,31 @@ namespace Stagio.Web.Controllers
             {
                 return View();
             }
+        }
+        public virtual ActionResult CreateStage()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public virtual ActionResult CreateStage(ViewModels.Stage.Create createdStage)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return View(createdStage);
+            }
+
+            var stage = Mapper.Map<Stage>(createdStage);
+            stage.PublicationDate = DateTime.Now;
+
+            _stageRepository.Add(stage);
+            return RedirectToAction(MVC.ContactEnterprise.CreateStageSucceed());
+        }
+
+        public virtual ActionResult CreateStageSucceed()
+        {
+            return View();
         }
     }
 }

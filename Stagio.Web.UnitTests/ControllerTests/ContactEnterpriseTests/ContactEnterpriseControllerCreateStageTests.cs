@@ -4,10 +4,10 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ploeh.AutoFixture;
 
-namespace Stagio.Web.UnitTests.ControllerTests.EnterpriseTests
+namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
 {
     [TestClass]
-    public class EnterpriseControllerCreateStageTests : AllControllersBaseClassTests
+    public class ContactEnterpriseControllerCreateStageTests : AllControllersBaseClassTests
     {
         [TestMethod]
         public void enterprise_createStage_get_should_return_createStage_view()
@@ -36,7 +36,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.EnterpriseTests
             var result = enterpriseController.CreateStage(stageViewModel) as RedirectToRouteResult;
             var action = result.RouteValues["Action"];
 
-            action.ShouldBeEquivalentTo(MVC.Enterprise.Views.ViewNames.CreateStageSucceed);
+            action.ShouldBeEquivalentTo(MVC.ContactEnterprise.Views.ViewNames.CreateStageSucceed);
         }
     }
 }

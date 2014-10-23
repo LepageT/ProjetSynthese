@@ -11,10 +11,10 @@ using NSubstitute;
 using Stagio.Domain.Entities;
 using Ploeh.AutoFixture;
 
-namespace Stagio.Web.UnitTests.ControllerTests.EnterpriseTests
+namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
 {
     [TestClass]
-    public class EnterpriseControllerCreateTests : AllControllersBaseClassTests
+    public class ContactEnterpriseControllerReactivate : AllControllersBaseClassTests
     {
         [TestMethod]
         public void reactivate_action_should_render_view_with_email_and_enterprise_name()
@@ -22,12 +22,12 @@ namespace Stagio.Web.UnitTests.ControllerTests.EnterpriseTests
             //Arrange 
             var enterprise = _fixture.Create<Stagio.Domain.Entities.ContactEnterprise>();
             enterpriseRepository.GetById(enterprise.Id).Returns(enterprise);
-            var viewModelExpected = Mapper.Map<ViewModels.ContactEnterprise.Create>(enterprise);
+            var viewModelExpected = Mapper.Map<ViewModels.ContactEnterprise.Reactive>(enterprise);
 
 
             //Action
             var viewResult = enterpriseController.Reactivate(enterprise.Email, null, null, enterprise.EnterpriseName, null, null) as ViewResult;
-            var viewModelObtained = viewResult.ViewData.Model as ViewModels.ContactEnterprise.Create;
+            var viewModelObtained = viewResult.ViewData.Model as ViewModels.ContactEnterprise.Reactive;
 
             //Assert 
             Assert.AreEqual(viewModelExpected.Email, viewModelObtained.Email);
@@ -40,7 +40,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.EnterpriseTests
         {
             // Arrange   
             var enterprise = _fixture.CreateMany<ContactEnterprise>(1).ToList();
-            var enterpriseViewModel = Mapper.Map<ViewModels.ContactEnterprise.Create>(enterprise[0]);
+            var enterpriseViewModel = Mapper.Map<ViewModels.ContactEnterprise.Reactive>(enterprise[0]);
             enterpriseRepository.GetAll().Returns(enterprise.AsQueryable());
 
 
@@ -56,7 +56,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.EnterpriseTests
         {
             // Arrange   
             var enterprise1 = _fixture.CreateMany<ContactEnterprise>(1).ToList();
-            var enterpriseViewModel = Mapper.Map<ViewModels.ContactEnterprise.Create>(enterprise1[0]);
+            var enterpriseViewModel = Mapper.Map<ViewModels.ContactEnterprise.Reactive>(enterprise1[0]);
             var enterprise2 = _fixture.CreateMany<ContactEnterprise>(1).ToList();
             enterpriseRepository.GetAll().Returns(enterprise2.AsQueryable());
 
@@ -72,21 +72,21 @@ namespace Stagio.Web.UnitTests.ControllerTests.EnterpriseTests
         public void reactivate_post_should_return_default_view_when_modelState_is_not_valid()
         {
             //Arrange
-            var enterpriseViewModel = _fixture.Create<ViewModels.ContactEnterprise.Create>();
+            var enterpriseViewModel = _fixture.Create<ViewModels.ContactEnterprise.Reactive>();
             enterpriseController.ModelState.AddModelError("Error", "Error");
 
             //Act
-            var result = enterpriseController.Reactivate(enterpriseViewModel) as ViewResult;
+            var viewResult = enterpriseController.Reactivate(enterpriseViewModel) as ViewResult;
 
             //Assert
-            Assert.AreEqual(result.ViewName, "");
+            viewResult.ViewName.Should().Be("");
         }
 
         [TestMethod]
         public void reactivate_post_should_redirect_to_confirmation_on_success()
         {
             //Arrange
-            var enterpriseViewModel = _fixture.Create<ViewModels.ContactEnterprise.Create>();
+            var enterpriseViewModel = _fixture.Create<ViewModels.ContactEnterprise.Reactive>();
             enterpriseViewModel.Email = "blabla@hotmail.com";
             var enterprise = _fixture.CreateMany<ContactEnterprise>(2).ToList();
             var enterpriseToTest = _fixture.Create<ContactEnterprise>();
@@ -109,10 +109,10 @@ namespace Stagio.Web.UnitTests.ControllerTests.EnterpriseTests
         {
             // Arrange   
             var enterprise1 = _fixture.Create<ContactEnterprise>();
-            var enterpriseViewModel1 = Mapper.Map<ViewModels.ContactEnterprise.Create>(enterprise1);
+            var enterpriseViewModel1 = Mapper.Map<ViewModels.ContactEnterprise.Reactive>(enterprise1);
             var email = enterpriseViewModel1.Email;
             var enterprise2 = _fixture.Create<ContactEnterprise>();
-            var enterpriseViewModel2 = Mapper.Map<ViewModels.ContactEnterprise.Create>(enterprise2);
+            var enterpriseViewModel2 = Mapper.Map<ViewModels.ContactEnterprise.Reactive>(enterprise2);
             enterpriseViewModel2.Email = email;
             List<ContactEnterprise> listEnterprises = new List<ContactEnterprise>();
             listEnterprises.Add(enterprise1);

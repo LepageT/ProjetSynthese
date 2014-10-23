@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace Stagio.Domain.Entities
 {
     public class Stage : Entity
     {
+        [DisplayName("Date de publication")]
         public DateTime PublicationDate { get; set; }
 
         //Maybe an enterprise entity must be created.
@@ -54,6 +56,8 @@ namespace Stagio.Domain.Entities
         public String SubmitToEmail { get; set; }
 
         public DateTime LimitDate { get; set; }
+
+        public Boolean AcceptedByCoordinator { get; set; }
 
     }
 }
