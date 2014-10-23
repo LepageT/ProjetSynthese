@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Data.SqlClient;
 using Stagio.DataLayer;
-using Stagio.Domain.Application;
-using Stagio.Domain.Entities;
-using Stagio.Utilities.Encryption;
 using Stagio.TestUtilities.Database;
 
 namespace Stagio.Web.Controllers

@@ -148,6 +148,7 @@ namespace Stagio.Web.Controllers
         [HttpPost]
         public virtual ActionResult Create(ViewModels.Student.Create createStudentViewModel)
         {
+
             var student = _studentRepository.GetAll().FirstOrDefault(x => x.Matricule == createStudentViewModel.Matricule);
 
             if (student == null)
@@ -176,6 +177,7 @@ namespace Stagio.Web.Controllers
             {
                 return View(createStudentViewModel);
             }
+           
             student.Activated = true;
 
             Mapper.Map(createStudentViewModel, student);

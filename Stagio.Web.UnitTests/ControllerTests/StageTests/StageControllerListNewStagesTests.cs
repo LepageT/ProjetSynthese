@@ -19,6 +19,9 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
         [TestMethod]
         public void stage_listNewStages_should_render_view()
         {
+            var stages = _fixture.CreateMany<Stage>(5).AsQueryable();
+            stageRepository.GetAll().Returns(stages);
+
             var result = stageController.ListNewStages() as ViewResult;
 
             result.ViewName.Should().Be("");

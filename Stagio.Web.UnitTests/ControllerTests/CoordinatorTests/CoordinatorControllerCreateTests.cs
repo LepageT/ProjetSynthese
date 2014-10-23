@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using System.Linq;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using Ploeh.AutoFixture;
@@ -13,7 +11,7 @@ using FluentAssertions;
 namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
 {
     [TestClass]
-    public class CoordinatorControllerCreateTests : CoordinatorControllerBaseClassTests
+    public class CoordinatorControllerCreateTests : AllControllersBaseClassTests
     {
         [TestMethod]
         public void coordinator_create_get_should_return_view_with_createCoordinator_viewModels_when_invitation_is_valid()
@@ -27,7 +25,6 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
             var viewResult = coordinatorController.Create(invitation.Token) as ViewResult;
             var viewModelObtained = viewResult.ViewData.Model as ViewModels.Coordinator.Create;
 
-            //Assert 
             viewModelObtained.ShouldBeEquivalentTo(viewModelExpected); 
 
         }
@@ -75,7 +72,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
             var viewModelExpected = Mapper.Map<ViewModels.Coordinator.Create>(invitation);
 
             var viewResult = coordinatorController.Create(invitation.Token) as ViewResult;
-            //Assert 
+
             viewResult.ViewName.Should().Be("");
         }
 
@@ -90,7 +87,6 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
             coordinatorController.ModelState.AddModelError("Error", "Error");
             var viewResult = coordinatorController.Create(invitation.Token) as ViewResult;
 
-            //Assert 
             viewResult.ViewName.Should().Be("");
         }
 
@@ -101,18 +97,14 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
             var invitation = invitations.First();
             invitation.Used = false;
             invitationRepository.GetAll().Returns(invitations.AsQueryable());
-
             var coordinators = _fixture.CreateMany<Coordinator>(2);
             var coordinator = coordinators.First();
             coordinator.Email = invitation.Email;
             coordinatorRepository.GetAll().Returns(coordinators.AsQueryable());
 
-
-
             var viewModel = Mapper.Map<ViewModels.Coordinator.Create>(invitation);
             var viewResult = coordinatorController.Create(viewModel) as ViewResult;
 
-            //Assert 
             viewResult.ViewName.Should().Be("");
         }
 
@@ -134,13 +126,10 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
         {
             var invitations = _fixture.CreateMany<Invitation>(3);
             var invitation = invitations.First();
-            invitation.Used = false;
-            
-            invitationRepository.GetAll().Returns(invitations.AsQueryable());
-           
+            invitation.Used = false;            
+            invitationRepository.GetAll().Returns(invitations.AsQueryable());           
             var coordinators = _fixture.CreateMany<Coordinator>(2);
             coordinatorRepository.GetAll().Returns(coordinators.AsQueryable());
-
             var viewModel = _fixture.Create<ViewModels.Coordinator.Create>();
             viewModel.Email = "1234567";
 
@@ -154,23 +143,17 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
         {
             var invitation = _fixture.Create<Invitation>();
             invitation.Used = false;
-
             invitationRepository.GetById(invitation.Id).Returns(invitation);
-
             var coordinators = _fixture.CreateMany<Coordinator>(2);
             coordinatorRepository.GetAll().Returns(coordinators.AsQueryable());
-
             var viewModel = _fixture.Create<ViewModels.Coordinator.Create>();
             viewModel.InvitationId = invitation.Id;
             viewModel.Email = invitation.Email;
-
             viewModel.ConfirmedPassword = viewModel.Password;
-
 
             var routeResult = coordinatorController.Create(viewModel) as RedirectToRouteResult;
             var routeAction = routeResult.RouteValues["Action"];
 
-            //Assert
             routeAction.Should().Be(MVC.Coordinator.Views.ViewNames.Index);
         }
     }

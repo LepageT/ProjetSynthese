@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿
+using System;
 using System.Web.Mvc;
 using AutoMapper;
 using Stagio.DataLayer;
 using Stagio.Domain.Entities;
+using Stagio.Web.Services;
 
 namespace Stagio.Web.Controllers
 {
@@ -13,10 +12,12 @@ namespace Stagio.Web.Controllers
     {
         private readonly IEntityRepository<Enterprise> _enterpriseRepository;
         private readonly IEntityRepository<Stage> _stageRepository;
+        private readonly IAccountService _accountService;
 
-        public EnterpriseController(IEntityRepository<Enterprise> enterpriseRepository, IEntityRepository<Stage> stageRepository )
+        public EnterpriseController(IEntityRepository<Enterprise> enterpriseRepository, IEntityRepository<Stage> stageRepository, IAccountService accountService )
         {
             _enterpriseRepository = enterpriseRepository;
+            _accountService = accountService;
             _stageRepository = stageRepository;
         }
 
@@ -55,6 +56,8 @@ namespace Stagio.Web.Controllers
             if (ModelState.IsValid)
             {
                 var enterprise = Mapper.Map<Enterprise>(createViewModel);
+                enterprise.Password = _accountService.HashPassword(enterprise.Password);
+                enterprise.UserName = enterprise.Email;
                 _enterpriseRepository.Add(enterprise);
                 //ADD NOTIFICATIONS: À la coordination et aux autres employés de l'entreprise.
                 return RedirectToAction(MVC.Home.Index());

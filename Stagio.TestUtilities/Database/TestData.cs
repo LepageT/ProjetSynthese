@@ -24,6 +24,7 @@ namespace Stagio.TestUtilities.Database
                     UserName = "coordonnateur@stagio.com",
                     Name = "Super admin coordonnateur Tux"
                 };
+                user.Email = user.UserName;
                 return user;
             }
         }
@@ -117,7 +118,7 @@ namespace Stagio.TestUtilities.Database
                     Password = PasswordHash.CreateHash("123456QW"),
                     Email = "admin@admin.com"
                 };
-
+                coordonnate.UserName = coordonnate.Email;
                 return coordonnate;
             }
 
@@ -140,6 +141,53 @@ namespace Stagio.TestUtilities.Database
             }
         }
 
+        #endregion
+
+        #region ContactEnterprise1 - Quentin Tarantino
+
+        static public ContactEnterprise contactEnterprise1
+        {
+            get
+            {
+                var enterprise = new ContactEnterprise()
+                {
+                    Id = 1,
+                    EnterpriseName = "test",
+                    FirstName = "Quentin",
+                    LastName = "Tarantino",
+                    Telephone = "123-456-7890",
+                    Email = "blabla@hotmail.com",
+                    Password = "qwerty12",
+                    Active = false
+                };
+
+                return enterprise;
+            }
+        }
+        #endregion
+
+        #region ContactEnterprise2 - Christopher Nolan
+
+        static public ContactEnterprise contactEnterprise2
+        {
+            get
+            {
+                var enterprise = new ContactEnterprise()
+                {
+                    Id = 2,
+                    EnterpriseName = "Stagio",
+                    FirstName = "Christopher",
+                    LastName = "Nolan",
+                    Telephone = "123-456-7890",
+                    Email = "toto@hotmail.com",
+                    Password = "qwerty98",
+                    Active = false
+                };
+
+               
+                return enterprise;
+            }
+        }
         #endregion
 
         #region Stage 1

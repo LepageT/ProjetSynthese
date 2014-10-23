@@ -13,7 +13,7 @@ using FluentAssertions;
 namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
 {
     [TestClass]
-    public class CoordinatorControllerInviteTest : CoordinatorControllerBaseClassTests
+    public class CoordinatorControllerInviteTest : AllControllersBaseClassTests
     {
         [TestMethod]
         public void coordinator_invite_get_should_returnview_default_view()
@@ -49,7 +49,6 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
         {
             var invitation = _fixture.Create<ViewModels.Coordinator.Invite>();
             invitation.Email = "admin@admin.com";
-
             mailler.SendEmail(invitation.Email, "Test", invitation.Message).ReturnsForAnyArgs(true);
 
             var routeResult = coordinatorController.Invite(invitation) as RedirectToRouteResult;

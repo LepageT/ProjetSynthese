@@ -20,7 +20,6 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         {
             var result = studentController.Create() as ViewResult;
 
-            //Assert
             Assert.AreEqual(result.ViewName, "");
         }
 
@@ -30,20 +29,16 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
             var students = _fixture.CreateMany<Student>(3);
             var student = students.First();
             student.Activated = false;
-
             studentRepository.GetAll().Returns(students.AsQueryable());
-
             var viewModel = _fixture.Create<ViewModels.Student.Create>();
             viewModel.Matricule = student.Matricule;
             viewModel.FirstName = student.FirstName;
             viewModel.LastName = student.LastName;
             viewModel.PasswordConfirmation = viewModel.Password;
-
             studentController.ModelState.AddModelError("Error", "Error");
 
             var result = studentController.Create(viewModel) as ViewResult;
 
-            //Assert
             Assert.AreEqual(result.ViewName, "");
         }
 
@@ -53,14 +48,11 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
             var students = _fixture.CreateMany<Student>(3);
             var student = students.First();
             student.Activated = false;
-
             studentRepository.GetAll().Returns(students.AsQueryable());
-
             var viewModel = _fixture.Create<ViewModels.Student.Create>();
 
             var result = studentController.Create(viewModel) as ViewResult;
 
-            //Assert
             Assert.AreEqual(result.ViewName, "");
         }
 
@@ -70,9 +62,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
             var students = _fixture.CreateMany<Student>(3);
             var student = students.First();
             student.Activated = false;
-
             studentRepository.GetAll().Returns(students.AsQueryable());
-
             var viewModel = _fixture.Create<ViewModels.Student.Create>();
             viewModel.Matricule = student.Matricule;
             viewModel.LastName = student.LastName;
@@ -80,7 +70,6 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 
             var result = studentController.Create(viewModel) as ViewResult;
 
-            //Assert
             Assert.AreEqual(result.ViewName, "");
         }
 
@@ -90,9 +79,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
             var students = _fixture.CreateMany<Student>(3);
             var student = students.First();
             student.Activated = false;
-
             studentRepository.GetAll().Returns(students.AsQueryable());
-
             var viewModel = _fixture.Create<ViewModels.Student.Create>();
             viewModel.Matricule = student.Matricule;
             viewModel.FirstName = student.FirstName;
@@ -100,7 +87,6 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 
             var result = studentController.Create(viewModel) as ViewResult;
 
-            //Assert
             Assert.AreEqual(result.ViewName, "");
         }
 
@@ -110,9 +96,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
             var students = _fixture.CreateMany<Student>(3);
             var student = students.First();
             student.Activated = false;
-
             studentRepository.GetAll().Returns(students.AsQueryable());
-
             var viewModel = _fixture.Create<ViewModels.Student.Create>();
             viewModel.Matricule = student.Matricule;
             viewModel.FirstName = student.FirstName;
@@ -131,9 +115,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
             var students = _fixture.CreateMany<Student>(3);
             var student = students.First();
             student.Activated = true;
-
-            studentRepository.GetAll().Returns(students.AsQueryable());
-
+          studentRepository.GetAll().Returns(students.AsQueryable());
             var viewModel = _fixture.Create<ViewModels.Student.Create>();
             viewModel.Matricule = student.Matricule;
             viewModel.FirstName = student.FirstName;
@@ -142,7 +124,6 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 
             var result = studentController.Create(viewModel) as ViewResult;
 
-            //Assert
             Assert.AreEqual(result.ViewName, "");
         }
     }

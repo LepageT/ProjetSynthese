@@ -1,32 +1,36 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using Ploeh.AutoFixture;
+using Stagio.DataLayer;
 using Stagio.Domain.Entities;
 using Stagio.TestUtilities.AutoFixture;
 using Stagio.Web.Controllers;
-using Stagio.DataLayer;
 using Stagio.Web.Mappers;
 using Stagio.Web.Services;
-
 
 namespace Stagio.Web.UnitTests
 {
     public class AllControllersBaseClassTests
     {
-        protected StudentController studentController;
+ 
         protected Fixture _fixture;
-        protected IEntityRepository<Student> studentRepository;
-        protected IMailler mailler;
 
         protected IEntityRepository<Coordinator> coordinatorRepository;
         protected IEntityRepository<Invitation> invitationRepository;
-        protected IEntityRepository<Enterprise> enterpriseRepository;
+        protected IEntityRepository<ContactEnterprise> enterpriseRepository;
+        protected IEntityRepository<Student> studentRepository;
         protected IEntityRepository<Stage> stageRepository;
-        protected StageController stageController;
 
+        protected StageController stageController;
         protected CoordinatorController coordinatorController;
-        protected EnterpriseController enterpriseController;
-            
+        protected ContactEnterpriseController enterpriseController;
+        protected StudentController studentController;
+        protected AccountController accountController;
+        protected IHttpContextService httpContext;
+        protected IAccountService accountService;
+
+        protected IMailler mailler;
+
         [TestInitialize]
         public void ControllerTestInit()
         {
@@ -40,7 +44,7 @@ namespace Stagio.Web.UnitTests
 
             coordinatorRepository = Substitute.For<IEntityRepository<Coordinator>>();
             invitationRepository = Substitute.For<IEntityRepository<Invitation>>();
-            enterpriseRepository = Substitute.For<IEntityRepository<Enterprise>>();
+            enterpriseRepository = Substitute.For<IEntityRepository<ContactEnterprise>>();
             stageRepository = Substitute.For<IEntityRepository<Stage>>();
 
 
@@ -48,8 +52,11 @@ namespace Stagio.Web.UnitTests
 
             stageController = new StageController(stageRepository);
             studentController = new StudentController(studentRepository);
-            enterpriseController = new EnterpriseController(enterpriseRepository, stageRepository);
-            coordinatorController = new CoordinatorController(enterpriseRepository, coordinatorRepository, invitationRepository, mailler);
+            httpContext = Substitute.For<IHttpContextService>();
+            accountService = Substitute.For<IAccountService>();
+            accountController = new AccountController(httpContext, accountService); 
+            enterpriseController = new ContactEnterpriseController(enterpriseRepository, stageRepository, accountService);
+            coordinatorController = new CoordinatorController(enterpriseRepository, coordinatorRepository, invitationRepository, mailler, accountService);
         }
     }
 }
