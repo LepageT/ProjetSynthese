@@ -3,7 +3,7 @@
     ViewBag.Title = "InviteContactEnterprise";
 }
 
-<h2>Inviter un autre employé d'entreprise à s'inscrire</h2>
+<h2 id="inviteContact-page">Inviter un autre employé d'entreprise à s'inscrire</h2>
 
 @using (Html.BeginForm())
 {
@@ -60,7 +60,7 @@
 
         <div class="col-lg-12">
             Message:
-            @Html.TextBox("Message", "", new { @class = "form-control", size = "25" })
+            @Html.TextBox("Message", "", new { @class = "form-control", size = "25", name = "messageInvitation"})
         </div>
 
         <div class="form-group">
