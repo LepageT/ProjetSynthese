@@ -37,10 +37,8 @@ namespace Stagio.TestUtilities.Database
         {
             var stage1 = TestData.stage1;
             var stage2 = TestData.stage2;
-            var stage3 = TestData.stage3;
             _stageRepository.Add(stage1);
             _stageRepository.Add(stage2);
-            _stageRepository.Add(stage3);
         }
 
         private void addUser()

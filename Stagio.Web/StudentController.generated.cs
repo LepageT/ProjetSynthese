@@ -90,7 +90,7 @@ namespace Stagio.Web.Controllers
             public readonly string CreateListPost = "CreateList";
             public readonly string Create = "Create";
             public readonly string Edit = "Edit";
-            public readonly string ViewStageList = "ViewStageList";
+            public readonly string StageList = "StageList";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -104,7 +104,7 @@ namespace Stagio.Web.Controllers
             public const string CreateListPost = "CreateList";
             public const string Create = "Create";
             public const string Edit = "Edit";
-            public const string ViewStageList = "ViewStageList";
+            public const string StageList = "StageList";
         }
 
 
@@ -281,13 +281,13 @@ namespace Stagio.Web.Controllers
         }
 
         [NonAction]
-        partial void ViewStageListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void StageListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult ViewStageList()
+        public override System.Web.Mvc.ActionResult StageList()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ViewStageList);
-            ViewStageListOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.StageList);
+            StageListOverride(callInfo);
             return callInfo;
         }
 

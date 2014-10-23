@@ -204,6 +204,7 @@ namespace Stagio.TestUtilities.Database
                     PublicationDate = DateTime.Now,
                     AcceptedByCoordinator = false,
                     NbrStagiaire = 3,
+                    stageTitle = "[Inserer titre ici]",
                     CompanyName = "Bonbon inc",
                     Adresse = "1234 rue des bonbons, Québec"   
                 };
@@ -226,6 +227,7 @@ namespace Stagio.TestUtilities.Database
                     PublicationDate = DateTime.Now,
                     AcceptedByCoordinator = true,
                     NbrStagiaire = 2,
+                    stageTitle = "[Inserer titre ici]",
                     CompanyName = "Musique inc",
                     Adresse = "1234 rue de la guitare, Québec"
                 };
@@ -236,22 +238,5 @@ namespace Stagio.TestUtilities.Database
 
         #endregion
 
-        #region Stage 3
-
-        static public Stage stage3
-        {
-            get
-            {
-                var stage = new Stage()
-                {
-                   CompanyName = "Bomboula",
-                   stageTitle = "Programmeur",
-                   LimitDate = DateTime.Now
-                };
-
-                return stage;
-            }
-        }
-        #endregion
     }
 }
