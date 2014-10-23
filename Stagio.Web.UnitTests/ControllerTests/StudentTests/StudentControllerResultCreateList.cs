@@ -1,15 +1,11 @@
-﻿using System;
-using System.Linq;
+﻿
 using System.Web.Mvc;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Ploeh.AutoFixture;
-using Stagio.Domain.Entities;
-
 namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 {
     [TestClass]
-    public class StudentControllerResultCreateList : AllControllersBaseClassTests
+    public class StudentControllerResultCreateList :StudentControllerBaseClassTests
     {
 
         [TestMethod]

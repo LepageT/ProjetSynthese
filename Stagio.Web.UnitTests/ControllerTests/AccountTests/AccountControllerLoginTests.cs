@@ -11,7 +11,7 @@ using Stagio.Domain.Entities;
 namespace Stagio.Web.UnitTests.ControllerTests.AccountTests
 {
     [TestClass]
-    public class AccountControllerLoginTests : AllControllersBaseClassTests
+    public class AccountControllerLoginTests : AccountControllerBaseClassTests
     {
         [TestMethod]
         public void login_should_render_default_view()

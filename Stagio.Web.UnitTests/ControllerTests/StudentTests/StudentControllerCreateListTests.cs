@@ -4,16 +4,14 @@ using System.Web.Mvc;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using NSubstitute.Core;
 using Stagio.Domain.Entities;
 using Ploeh.AutoFixture;
-using System;
 using Stagio.Web.ViewModels.Student;
 
 namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 {
     [TestClass]
-    public class StudentControllerCreateListTests : AllControllersBaseClassTests
+    public class StudentControllerCreateListTests : StudentControllerBaseClassTests
     {
         [TestMethod]
         public void createlist_action_should_render_default_view()

@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿
 using System.Web;
 using System.Web.Mvc;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Ploeh.AutoFixture;
 using NSubstitute;
-using Stagio.Domain.Entities;
 
 namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 {
     [TestClass]
-    public class StudentControllerUploadTests : AllControllersBaseClassTests
+    public class StudentControllerUploadTests : StudentControllerBaseClassTests
     {
         [TestMethod]
         public void upload_action_should_render_default_view()

@@ -160,7 +160,7 @@ namespace Stagio.TestUtilities.Database
                     Password = PasswordHash.CreateHash("qwerty12"),
                     Active = false
                 };
-
+                enterprise.UserName = enterprise.Email;
                 return enterprise;
             }
         }
@@ -180,33 +180,17 @@ namespace Stagio.TestUtilities.Database
                     LastName = "Nolan",
                     Telephone = "123-456-7890",
                     Email = "toto@hotmail.com",
-                    Password = "qwerty98",
+                    Password = PasswordHash.CreateHash("qwerty98"),
                     Active = false
                 };
-
+                enterprise.UserName = enterprise.Email;
                
                 return enterprise;
             }
         }
         #endregion
 
-        #region Stage1
-
-        static public Stage Stage1
-        {
-            get
-            {
-                var stage = new Stage()
-                {
-                    companyName = "Bomboula",
-                    stageTitle = "Programmeur python",
-                    limitDate = new DateTime(14,10,22)
-                };
-
-                return stage;
-            }
-        }
-        #endregion
+       
 
         #region Stage 1
 
@@ -238,7 +222,7 @@ namespace Stagio.TestUtilities.Database
             {
                 var stage = new Stage()
                 {
-                   LimitDate = DateTime.Now,
+                    LimitDate = DateTime.Now,
                     PublicationDate = DateTime.Now,
                     AcceptedByCoordinator = true,
                     NbrStagiaire = 2,
@@ -250,6 +234,24 @@ namespace Stagio.TestUtilities.Database
             }
         }
 
+        #endregion
+
+        #region Stage 3
+
+        static public Stage stage3
+        {
+            get
+            {
+                var stage = new Stage()
+                {
+                   CompanyName = "Bomboula",
+                   stageTitle = "Programmeur",
+                   LimitDate = DateTime.Now
+                };
+
+                return stage;
+            }
+        }
         #endregion
     }
 }
