@@ -9,7 +9,6 @@ using Ploeh.AutoFixture;
 using Stagio.Domain.Entities;
 using AutoMapper;
 using FluentAssertions;
-using Stagio.Web.UnitTests.ControllerTests.EnterpriseTests;
 
 namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 {

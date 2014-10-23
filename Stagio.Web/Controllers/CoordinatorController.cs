@@ -16,18 +16,18 @@ namespace Stagio.Web.Controllers
     public partial class CoordinatorController : Controller
     {
         private readonly IAccountService _accountService;
-        private readonly IEntityRepository<Enterprise> _enterpriseRepository;
+        private readonly IEntityRepository<ContactEnterprise> _enterpriseContactRepository;
         private readonly IEntityRepository<Coordinator> _coordinatorRepository;
         private readonly IEntityRepository<Invitation> _invitationRepository;
         private readonly IMailler _mailler;
 
-        public CoordinatorController(IEntityRepository<Enterprise> enterpriseRepository,
+        public CoordinatorController(IEntityRepository<ContactEnterprise> enterpriseContactRepository,
             IEntityRepository<Coordinator> coordinatorRepository,
             IEntityRepository<Invitation> invitationRepository, 
             IMailler mailler,
             IAccountService accountService)
         {
-            _enterpriseRepository = enterpriseRepository;
+            _enterpriseContactRepository = enterpriseContactRepository;
             _coordinatorRepository = coordinatorRepository;
             _invitationRepository = invitationRepository;
             _mailler = mailler;
@@ -90,64 +90,77 @@ namespace Stagio.Web.Controllers
         }
 
         // GET: Coordinator/InviteEnterprise
-        public virtual ActionResult InviteEnterprise()
+        public virtual ActionResult InviteContactEnterprise()
         {
             
-            var allEnterprise = _enterpriseRepository.GetAll().ToList();
+            var allContactEnterprise = _enterpriseContactRepository.GetAll().ToList();
             
-            var enterpriseInviteViewModels = Mapper.Map<IEnumerable<ViewModels.Enterprise.Create>>(allEnterprise);
+            var contactEnterpriseInviteViewModels = Mapper.Map<IEnumerable<ViewModels.ContactEnterprise.Reactive>>(allContactEnterprise);
 
-            return View(enterpriseInviteViewModels);
+            return View(contactEnterpriseInviteViewModels);
            
         }
 
         // POST: Coordinator/InviteEnterprise
         [HttpPost]
-        [ActionName("InviteEnterprise")]
-        public virtual ActionResult InviteEnterprise(IEnumerable<int> selectedObjects, string message)
+        [ActionName("InviteContactEnterprise")]
+        public virtual ActionResult InviteContactEnterprise(IEnumerable<int> selectedIdContactEnterprise, string messageInvitation)
         {
-            if (selectedObjects != null)
+            if (selectedIdContactEnterprise != null)
             {
-                foreach (int id in selectedObjects)
+                foreach (int id in selectedIdContactEnterprise)
                 {
 
-                    Enterprise enterpriseToSendMessage = _enterpriseRepository.GetById(id);
+                    ContactEnterprise contactEnterpriseToSendMessage = _enterpriseContactRepository.GetById(id);
 
                     if (!ModelState.IsValid)
                     {
-                        return View(InviteEnterprise());
+                        return View(InviteContactEnterprise());
                     }
 
+                    string messageText = generateURLInvitationContactEnterprise(contactEnterpriseToSendMessage);
 
-                    string messageText = EmailEnterpriseResources.InviteMessageBody;
-                    string invitationUrl = EmailEnterpriseResources.InviteLink +
-                                           enterpriseToSendMessage.Email + "&EnterpriseName=" +
-                                           enterpriseToSendMessage.EnterpriseName + "&FirstName=" +
-                                           enterpriseToSendMessage.FirstName + "&LastName=" +
-                                           enterpriseToSendMessage.LastName + "&Telephone=" +
-                                           enterpriseToSendMessage.Telephone + "&Poste=" + enterpriseToSendMessage.Poste;
-
-                    messageText += invitationUrl;
-
-                    if (message != null)
+                    if (messageInvitation != null)
                     {
                         messageText += EmailEnterpriseResources.MessageHeader;
-                        messageText += message;
+                        messageText += messageInvitation;
                     }
 
                     if (
-                        !_mailler.SendEmail(enterpriseToSendMessage.Email, EmailEnterpriseResources.InviteSubject,
+                        !_mailler.SendEmail(contactEnterpriseToSendMessage.Email, EmailEnterpriseResources.InviteSubject,
                             messageText))
                     {
                         ModelState.AddModelError("Email", "Error");
-                        return View(InviteEnterprise());
+                        return View(InviteContactEnterprise());
                     }
 
                 }
+                return RedirectToAction(MVC.Coordinator.InviteContactEnterpriseConfirmation());
+                    }
+
+            return RedirectToAction(MVC.Coordinator.InviteContactEnterprise());
+
+                }
+
+        private string generateURLInvitationContactEnterprise(ContactEnterprise contactEnterpriseToSendMessage)
+        {
+            string messageText = "Un coordonnateur de stage vous invite à vous inscrire au site Stagio: ";
+            string invitationUrl = "http://thomarelau.local/ContactEnterprise/Reactivate?Email=" +
+                                   contactEnterpriseToSendMessage.Email + "&EnterpriseName=" +
+                                   contactEnterpriseToSendMessage.EnterpriseName + "&FirstName=" +
+                                   contactEnterpriseToSendMessage.FirstName + "&LastName=" +
+                                   contactEnterpriseToSendMessage.LastName + "&Telephone=" +
+                                   contactEnterpriseToSendMessage.Telephone + "&Poste=" + contactEnterpriseToSendMessage.Poste;
+
+            messageText += invitationUrl;
+            return messageText;
             }
 
-            return RedirectToAction(MVC.Home.Index());
+        // GET: Coordinator/InviteContactEnterpriseConfirmation
+        public virtual ActionResult InviteContactEnterpriseConfirmation()
+        {
            
+            return View();
           
         }
 

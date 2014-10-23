@@ -9,12 +9,12 @@ using OpenQA.Selenium;
 namespace Stagio.Web.AcceptanceTests.CoordinatorTests
 {
     [TestClass]
-    public class CoordinatorControllerInviteTests : BaseTests
+    public class CoordinatorControllerInviteEnterpriseTests : BaseTests
     {
         [TestMethod]
         public void coordinator_should_be_able_to_access_invite_enterprise_page()
         {
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Coordinator/InviteEnterprise");
+            _driver.Navigate().GoToUrl("http://thomarelau.local/Coordinator/InviteContactEnterprise");
 
             try
             {
@@ -31,16 +31,16 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
         public void coordinator_should_be_able_to_invite_enterprise()
         {
             const string MESSAGE_INVITATION = "test";
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Coordinator/InviteEnterprise");
+            _driver.Navigate().GoToUrl("http://thomarelau.local/Coordinator/InviteContactEnterprise");
             _driver.FindElement(By.Id("Message")).SendKeys(MESSAGE_INVITATION);
             _driver.FindElement(By.Id("send-button")).Click();
             try
             {
-                _driver.FindElement(By.Id("home-page"));
+                _driver.FindElement(By.Id("confirmationInvitationContact-page"));
             }
             catch (NoSuchElementException)
             {
-                Assert.Fail("Identifiant home-page non trouvé sur la page.");
+                Assert.Fail("Identifiant confirmationInvitationContact-page non trouvé sur la page.");
             }
            
 

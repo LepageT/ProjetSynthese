@@ -1,7 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NSubstitute;
 using Ploeh.AutoFixture;
+using Stagio.DataLayer;
+using Stagio.Domain.Entities;
 using Stagio.TestUtilities.AutoFixture;
+using Stagio.Web.Controllers;
 using Stagio.Web.Mappers;
+using Stagio.Web.Services;
 
 namespace Stagio.Web.UnitTests
 {
@@ -10,7 +15,7 @@ namespace Stagio.Web.UnitTests
  
         protected Fixture _fixture;
 
-
+            
         [TestInitialize]
         public void ControllerTestInit()
         {
@@ -18,7 +23,6 @@ namespace Stagio.Web.UnitTests
 
             _fixture = new Fixture();
             _fixture.Customizations.Add(new VirtualMembersOmitter());
-
 
         }
     }

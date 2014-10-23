@@ -34,13 +34,14 @@ namespace Stagio.Web.Mappers
                 .IgnoreAllNonExisting();
 
 
+            
 
 
 
-
-            Mapper.CreateMap<Enterprise, ViewModels.Enterprise.Create>()
+            Mapper.CreateMap<ContactEnterprise, ViewModels.ContactEnterprise.Reactive>()
                 .ForMember(dest => dest.PasswordConfirmation, opt => opt.Ignore())
                 .IgnoreAllNonExisting();
+
 
         }
     }

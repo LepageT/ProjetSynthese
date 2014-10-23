@@ -8,7 +8,8 @@ namespace Stagio.TestUtilities.Database
         private EfEntityRepository<ApplicationUser> _userRepository;
         private EfEntityRepository<Student> _studentRepository;
         private EfEntityRepository<Coordinator> _coordonnatorRepository;
-        private EfEntityRepository<Invitation> _invitationRepository; 
+        private EfEntityRepository<Invitation> _invitationRepository;
+        private EfEntityRepository<ContactEnterprise> _contactEnterpriseRepository; 
 
          public DataBaseTestHelper()
         {
@@ -16,6 +17,7 @@ namespace Stagio.TestUtilities.Database
             _userRepository = new EfEntityRepository<ApplicationUser>();
              _coordonnatorRepository = new EfEntityRepository<Coordinator>();
              _invitationRepository = new EfEntityRepository<Invitation>();
+             _contactEnterpriseRepository = new EfEntityRepository<ContactEnterprise>();
         }
 
         public void SeedTables()
@@ -24,6 +26,7 @@ namespace Stagio.TestUtilities.Database
             addUser();
             addCoordonnator();
             addInvitation();
+            addEnterprises();
       
         }
 
@@ -54,6 +57,12 @@ namespace Stagio.TestUtilities.Database
         private void addInvitation()
         {
             _invitationRepository.Add(TestData.invitation1);
+        }
+
+        private void addEnterprises()
+        {
+            _contactEnterpriseRepository.Add(TestData.contactEnterprise1);
+            _contactEnterpriseRepository.Add(TestData.contactEnterprise2);
         }
 
     }

@@ -8,9 +8,9 @@ using System.Web.Mvc;
 using Stagio.DataLayer;
 using Stagio.Web.Validations;
 
-namespace Stagio.Web.ViewModels.Enterprise
+namespace Stagio.Web.ViewModels.ContactEnterprise
 {
-    public class Create
+    public class Reactive
     {
         [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
@@ -52,8 +52,11 @@ namespace Stagio.Web.ViewModels.Enterprise
         [DataType(DataType.Password)]
         [System.ComponentModel.DataAnnotations.CompareAttribute("Password", ErrorMessage = "Les mot de passes ne correspondent pas")]
         public string PasswordConfirmation { get; set; }
+
+        [HiddenInput(DisplayValue = false)]
+        public bool Active { get; set; }
     }
 
-    
-   
+
+
 }

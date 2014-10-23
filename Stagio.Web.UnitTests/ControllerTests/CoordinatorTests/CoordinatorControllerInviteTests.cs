@@ -11,7 +11,6 @@ using NSubstitute;
 using Stagio.Domain.Entities;
 using Ploeh.AutoFixture;
 using Stagio.Web.Controllers;
-using Stagio.Web.UnitTests.ControllerTests.EnterpriseTests;
 
 namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
 {
@@ -21,7 +20,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
         [TestMethod]
         public void invite_get_should_render_default_view()
         {
-            var result = coordinatorController.InviteEnterprise() as ViewResult;
+            var result = coordinatorController.InviteContactEnterprise() as ViewResult;
 
             result.ViewName.Should().Be("");
         }
@@ -33,37 +32,37 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
             string message = "test";
             coordinatorController.ModelState.AddModelError("Error", "Error");
 
-            var result = coordinatorController.InviteEnterprise(selectedObjects, message) as ViewResult;
+            var result = coordinatorController.InviteContactEnterprise(selectedObjects, message) as ViewResult;
 
             result.ViewName.Should().Be("");
         }
 
         [TestMethod]
-        public void invite__post_should_return_index_view_after_sending_if_email_is_valid()
+        public void invite_post_should_return_index_view_after_sending_if_email_is_valid()
         {
-            var enterprise1 = _fixture.Create<Enterprise>();
+            var enterprise1 = _fixture.Create<ContactEnterprise>();
             enterprise1.Email = "test@test.com";
             enterpriseRepository.GetById(enterprise1.Id).Returns(enterprise1);
             IEnumerable<int> selectedObjects = new int[] { enterprise1.Id };
             string message = "test";
             mailler.SendEmail(enterprise1.Email, "Test", message).ReturnsForAnyArgs(true);
 
-            var routeResult = coordinatorController.InviteEnterprise(selectedObjects, message) as RedirectToRouteResult;
+            var routeResult = coordinatorController.InviteContactEnterprise(selectedObjects, message) as RedirectToRouteResult;
             var routeAction = routeResult.RouteValues["Action"];
 
-            routeAction.Should().Be("Index");
+            routeAction.Should().Be("InviteContactEnterpriseConfirmation");
         }
 
         [TestMethod]
         public void invite__post_should_return_default_view_if_email_is_invalid()
         {
-            var enterprise1 = _fixture.Create<Enterprise>();
+            var enterprise1 = _fixture.Create<ContactEnterprise>();
             enterprise1.Email = "invalidEmail";
             enterpriseRepository.GetById(enterprise1.Id).Returns(enterprise1);
             IEnumerable<int> selectedObjects = new int[] { enterprise1.Id };
             string message = "test";
 
-            var result = coordinatorController.InviteEnterprise(selectedObjects, message) as ViewResult;
+            var result = coordinatorController.InviteContactEnterprise(selectedObjects, message) as ViewResult;
 
             result.ViewName.Should().Be("");
         }
