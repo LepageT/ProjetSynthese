@@ -185,11 +185,9 @@
     <Compile Include="Controllers\CoordinatorController.cs" />
     <Compile Include="Controllers\ContactEnterpriseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StageController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="CoordinatorController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EnterpriseController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -229,20 +227,24 @@
     <Compile Include="SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="StageController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="StartUp.cs" />
     <Compile Include="StudentController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="T4MVC.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Validations\ValidationPassword.cs" />
     <Compile Include="Validations\ValidationVerifyIfEmailIsUnique.cs" />
     <Compile Include="ViewModels\ContactEnterprise\Reactive.cs" />
     <Compile Include="ViewModels\Account\Login.cs" />
     <Compile Include="ViewModels\Stage\Create.cs" />
+    <Compile Include="ViewModels\Stage\ListNewStages.cs" />
     <Compile Include="ViewModels\Student\Create.cs" />
     <Compile Include="ViewModels\Coordinator\Create.cs" />
     <Compile Include="ViewModels\Coordinator\Invite.cs" />
@@ -295,22 +297,24 @@
     <Content Include="Views\Student\Upload.cshtml" />
     <Content Include="Views\Student\CreateList.cshtml" />
     <Content Include="Views\Student\ResultCreateList.cshtml" />
-    <None Include="T4MVC.tt.hooks.t4" />
-    <None Include="T4MVC.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>T4MVC.cs</LastGenOutput>
-    </None>
     <Content Include="Views\Student\Edit.cshtml" />
     <Content Include="Views\ContactEnterprise\Reactivate.cshtml" />
     <Content Include="Views\Coordinator\InviteContactEnterprise.cshtml" />
     <Content Include="Views\Coordinator\InviteContactEnterpriseConfirmation.cshtml" />
     <Content Include="Views\ContactEnterprise\CreateConfirmation.cshtml" />
     <Content Include="Views\Coordinator\InviteEnterprise.cshtml" />
-    <Content Include="Views\Enterprise\CreateStage.cshtml" />
+    <Content Include="Views\ContactEnterprise\CreateStage.cshtml" />
     <Content Include="Views\Coordinator\InvitationSucceed.cshtml" />
     <Content Include="Views\ContactEnterprise\InviteContactEnterprise.cshtml" />
+    <Content Include="Views\ContactEnterprise\CreateStageSucceed.cshtml" />
+    <Content Include="Views\Stage\ListNewStages.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="T4MVC.tt.hooks.t4" />
+    <None Include="T4MVC.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>T4MVC.cs</LastGenOutput>
+    </None>
     <None Include="T4MVC.tt.settings.xml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
@@ -321,6 +325,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\UploadedFiles\" />
+    <Folder Include="Views\CI\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

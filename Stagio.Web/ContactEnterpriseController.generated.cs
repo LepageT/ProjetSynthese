@@ -165,9 +165,15 @@ namespace Stagio.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string CreateConfirmation = "CreateConfirmation";
+                public readonly string CreateStage = "CreateStage";
+                public readonly string CreateStageSucceed = "CreateStageSucceed";
+                public readonly string InviteContactEnterprise = "InviteContactEnterprise";
                 public readonly string Reactivate = "Reactivate";
             }
             public readonly string CreateConfirmation = "~/Views/ContactEnterprise/CreateConfirmation.cshtml";
+            public readonly string CreateStage = "~/Views/ContactEnterprise/CreateStage.cshtml";
+            public readonly string CreateStageSucceed = "~/Views/ContactEnterprise/CreateStageSucceed.cshtml";
+            public readonly string InviteContactEnterprise = "~/Views/ContactEnterprise/InviteContactEnterprise.cshtml";
             public readonly string Reactivate = "~/Views/ContactEnterprise/Reactivate.cshtml";
         }
     }

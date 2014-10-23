@@ -7,10 +7,11 @@ using Ploeh.AutoFixture;
 using Stagio.Domain.Entities;
 using Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests;
 
+
 namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 {
     [TestClass]
-    public class StudentControllerResultCreateList :StudentControllerBaseClassTests
+    public class StudentControllerResultCreateList : AllControllersBaseClassTests
     {
 
         [TestMethod]

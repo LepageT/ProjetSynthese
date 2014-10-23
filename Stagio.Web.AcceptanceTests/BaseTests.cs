@@ -31,6 +31,15 @@ namespace Stagio.Web.AcceptanceTests
             _driver.Close();
         }
 
+        public void GetScreenShoot(string screenShootName)
+        {
+            var screenShoot = ((ITakesScreenshot)_driver).GetScreenshot();
+            screenShoot.SaveAsFile(screenShootName + "_" +
+                                   DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") +
+                                   ".png",
+                                   ImageFormat.Png);
+        }
+
         
     }
 }

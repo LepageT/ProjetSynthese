@@ -57,6 +57,6 @@ namespace Stagio.Web.ViewModels.ContactEnterprise
         public bool Active { get; set; }
     }
 
-    
-   
+
+
 }

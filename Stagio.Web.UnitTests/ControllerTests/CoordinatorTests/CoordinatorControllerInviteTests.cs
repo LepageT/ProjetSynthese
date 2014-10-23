@@ -13,10 +13,11 @@ using Ploeh.AutoFixture;
 using Stagio.Web.Controllers;
 using Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests;
 
+
 namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
 {
     [TestClass]
-    public class CoordinatorControllerInviteTests : CoordinatorControllerBaseClassTests
+    public class CoordinatorControllerInviteTests : AllControllersBaseClassTests
     {
         [TestMethod]
         public void invite_get_should_render_default_view()
@@ -39,7 +40,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
         }
 
         [TestMethod]
-        public void invite__post_should_return_index_view_after_sending_if_email_is_valid()
+        public void invite_post_should_return_index_view_after_sending_if_email_is_valid()
         {
             var enterprise1 = _fixture.Create<ContactEnterprise>();
             enterprise1.Email = "test@test.com";

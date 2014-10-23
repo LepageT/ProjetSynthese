@@ -14,11 +14,15 @@ namespace Stagio.Web.Controllers
     public partial class ContactEnterpriseController : Controller
     {
         private readonly IEntityRepository<ContactEnterprise> _contactEnterpriseRepository;
+        private readonly IEntityRepository<Stage> _stageRepository;
+        private readonly IAccountService _accountService;
         private readonly IMailler _mailler;
 
-        public ContactEnterpriseController(IEntityRepository<ContactEnterprise> contactEnterpriseRepository, IMailler mailler)
+        public ContactEnterpriseController(IEntityRepository<ContactEnterprise> enterpriseRepository, IEntityRepository<Stage> stageRepository, IAccountService accountService, IMailler mailler)
         {
-            _contactEnterpriseRepository = contactEnterpriseRepository;
+            _contactEnterpriseRepository = enterpriseRepository;
+            _accountService = accountService;
+            _stageRepository = stageRepository;
             _mailler = mailler;
         }
 
@@ -77,7 +81,7 @@ namespace Stagio.Web.Controllers
 
             }
             return View(createViewModel);
-           
+
         }
 
 
@@ -131,7 +135,31 @@ namespace Stagio.Web.Controllers
                 return View();
             }
         }
+        public virtual ActionResult CreateStage()
+        {
+            return View();
+        }
 
+        [HttpPost]
+        public virtual ActionResult CreateStage(ViewModels.Stage.Create createdStage)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return View(createdStage);
+            }
+
+            var stage = Mapper.Map<Stage>(createdStage);
+            stage.PublicationDate = DateTime.Now;
+
+            _stageRepository.Add(stage);
+            return RedirectToAction(MVC.ContactEnterprise.CreateStageSucceed());
+        }
+
+        public virtual ActionResult CreateStageSucceed()
+        {
+            return View();
+        }
 
         public virtual ActionResult InviteContactEnterprise()
         {
@@ -182,5 +210,6 @@ namespace Stagio.Web.Controllers
             messageText += invitationUrl;
             return messageText;
         }
+    
     }
 }
