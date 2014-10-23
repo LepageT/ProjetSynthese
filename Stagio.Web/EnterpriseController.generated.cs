@@ -36,10 +36,8 @@ namespace T4MVC
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string Create = "Create";
                 public readonly string CreateStage = "CreateStage";
             }
-            public readonly string Create = "~/Views/Enterprise/Create.cshtml";
             public readonly string CreateStage = "~/Views/Enterprise/CreateStage.cshtml";
         }
     }

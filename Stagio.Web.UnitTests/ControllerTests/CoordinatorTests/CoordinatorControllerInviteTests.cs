@@ -21,7 +21,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
         public void invite_get_should_render_default_view()
         {
             var result = coordinatorController.InviteContactEnterprise() as ViewResult;
-            
+
             result.ViewName.Should().Be("");
         }
 

@@ -95,7 +95,7 @@ namespace Stagio.Web.Controllers
             
             var allContactEnterprise = _enterpriseContactRepository.GetAll().ToList();
             
-            var contactEnterpriseInviteViewModels = Mapper.Map<IEnumerable<ViewModels.ContactEnterprise.Create>>(allContactEnterprise);
+            var contactEnterpriseInviteViewModels = Mapper.Map<IEnumerable<ViewModels.ContactEnterprise.Reactive>>(allContactEnterprise);
 
             return View(contactEnterpriseInviteViewModels);
            

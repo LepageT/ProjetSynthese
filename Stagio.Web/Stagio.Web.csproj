@@ -240,9 +240,8 @@
     </Compile>
     <Compile Include="Validations\ValidationPassword.cs" />
     <Compile Include="Validations\ValidationVerifyIfEmailIsUnique.cs" />
-    <Compile Include="ViewModels\ContactEnterprise\Create.cs" />
-    <Compile Include="ViewModels\Account\Login.cs" />
     <Compile Include="ViewModels\ContactEnterprise\Reactive.cs" />
+    <Compile Include="ViewModels\Account\Login.cs" />
     <Compile Include="ViewModels\Stage\Create.cs" />
     <Compile Include="ViewModels\Student\Create.cs" />
     <Compile Include="ViewModels\Coordinator\Create.cs" />
@@ -306,7 +305,6 @@
     <Content Include="Views\Coordinator\InviteContactEnterprise.cshtml" />
     <Content Include="Views\Coordinator\InviteContactEnterpriseConfirmation.cshtml" />
     <Content Include="Views\ContactEnterprise\CreateConfirmation.cshtml" />
-    <Content Include="Views\Enterprise\Create.cshtml" />
     <Content Include="Views\Coordinator\InviteEnterprise.cshtml" />
     <Content Include="Views\Enterprise\CreateStage.cshtml" />
     <Content Include="Views\Coordinator\InvitationSucceed.cshtml" />

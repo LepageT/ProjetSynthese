@@ -15,6 +15,7 @@ namespace Stagio.Web.UnitTests
  
         protected Fixture _fixture;
 
+            
         [TestInitialize]
         public void ControllerTestInit()
         {
