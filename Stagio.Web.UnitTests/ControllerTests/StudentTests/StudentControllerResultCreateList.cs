@@ -9,7 +9,7 @@ using Stagio.Domain.Entities;
 namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 {
     [TestClass]
-    public class StudentControllerResultCreateList :StudentControllerBaseClassTests
+    public class StudentControllerResultCreateList : AllControllersBaseClassTests
     {
 
         [TestMethod]

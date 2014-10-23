@@ -184,7 +184,7 @@ namespace Stagio.TestUtilities.Database
                     Active = false
                 };
 
-
+               
                 return enterprise;
             }
         }
@@ -208,7 +208,48 @@ namespace Stagio.TestUtilities.Database
         }
         #endregion
 
+        #region Stage 1
 
+        static public Stage stage1
+        {
+            get
+            {
+                var stage = new Stage()
+                {
+                    LimitDate = DateTime.Now,
+                    PublicationDate = DateTime.Now,
+                    AcceptedByCoordinator = false,
+                    NbrStagiaire = 3,
+                    CompanyName = "Bonbon inc",
+                    Adresse = "1234 rue des bonbons, Québec"   
+                };
 
+                return stage;
+            }
+        }
+
+        #endregion
+
+        #region Stage 2
+
+        static public Stage stage2
+        {
+            get
+            {
+                var stage = new Stage()
+                {
+                   LimitDate = DateTime.Now,
+                    PublicationDate = DateTime.Now,
+                    AcceptedByCoordinator = true,
+                    NbrStagiaire = 2,
+                    CompanyName = "Musique inc",
+                    Adresse = "1234 rue de la guitare, Québec"
+                };
+
+                return stage;
+            }
+        }
+
+        #endregion
     }
 }

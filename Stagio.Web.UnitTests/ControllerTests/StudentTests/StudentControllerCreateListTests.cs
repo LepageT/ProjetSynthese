@@ -13,7 +13,7 @@ using Stagio.Web.ViewModels.Student;
 namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 {
     [TestClass]
-    public class StudentControllerCreateListTests : StudentControllerBaseClassTests
+    public class StudentControllerCreateListTests : AllControllersBaseClassTests
     {
         [TestMethod]
         public void createlist_action_should_render_default_view()
