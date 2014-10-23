@@ -11,6 +11,21 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            Offre de stage publiée le:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PublicationDate)
+        </dd>
+
+        <dt>
+            Date limite pour postuler:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LimitDate)
+        </dd>
+        <h4>Stage offert par:</h4>
+        <dt>
             @Html.DisplayNameFor(model => model.CompanyName)
         </dt>
 
@@ -25,7 +40,7 @@
         <dd>
             @Html.DisplayFor(model => model.Adresse)
         </dd>
-
+        <h4>Responsable du stage:</h4>
         <dt>
             @Html.DisplayNameFor(model => model.ResponsableToName)
         </dt>
@@ -65,47 +80,51 @@
         <dd>
             @Html.DisplayFor(model => model.ResponsableToPoste)
         </dd>
+        @if (Model.ContactToName != null)
+        {
+            <h4>Autre contact:</h4>
+            <dt>
+                @Html.DisplayNameFor(model => model.ContactToName)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ContactToName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ContactToName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ContactToName)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ContactToTitle)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ContactToTitle)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ContactToTitle)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ContactToTitle)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ContactToEmail)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ContactToEmail)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ContactToEmail)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ContactToEmail)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ContactToPhone)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ContactToPhone)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ContactToPhone)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ContactToPhone)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ContactToPoste)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ContactToPoste)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ContactToPoste)
+            </dd>
+        }
 
-        <dd>
-            @Html.DisplayFor(model => model.ContactToPoste)
-        </dd>
-
+        <h4>Description du stage:</h4>
         <dt>
             @Html.DisplayNameFor(model => model.StageDescription)
         </dt>
@@ -129,7 +148,7 @@
         <dd>
             @Html.DisplayFor(model => model.NbrStagiaire)
         </dd>
-
+        <h4>Soummettre les candidatures à:</h4>
         <dt>
             @Html.DisplayNameFor(model => model.SubmitToName)
         </dt>
@@ -153,18 +172,9 @@
         <dd>
             @Html.DisplayFor(model => model.SubmitToEmail)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LimitDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LimitDate)
-        </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @*//TODO changer le lien de retour.*@
+    @Html.ActionLink("Retour à la liste de stages", MVC.Home.Index())
 </p>

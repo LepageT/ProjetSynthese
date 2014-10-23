@@ -203,7 +203,22 @@ namespace Stagio.TestUtilities.Database
                     AcceptedByCoordinator = false,
                     NbrStagiaire = 3,
                     CompanyName = "Bonbon inc",
-                    Adresse = "1234 rue des bonbons, Québec"   
+                    Adresse = "1234 rue des bonbons, Québec",
+                    ResponsableToName = "Robert",
+                    ResponsableToEmail = "robert@bonbon.com",
+                    ResponsableToPhone = "432-432-4324",
+                    ResponsableToPoste = 333,
+                    ResponsableToTitle = "CEO",
+                    ContactToName =  "Luc",
+                    ContactToEmail = "luc@bonbon.com",
+                    ContactToPhone = "123-223-3456",
+                    ContactToPoste = 2,
+                    ContactToTitle = "Maitre des bonbons",
+                    StageDescription = "Faire des bonbons, Manger des bonbons...",
+                    EnvironnementDescription = "Sucre, Mélangeur",
+                    SubmitToEmail = "robert@bonbon.com",
+                    SubmitToName = "Robert LeBrun",
+                    SubmitToTitle = "CEO"
                 };
 
                 return stage;
