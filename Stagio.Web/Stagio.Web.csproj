@@ -246,6 +246,7 @@
     <Compile Include="ViewModels\Student\Edit.cs" />
     <Compile Include="ViewModels\Student\ListStudent.cs" />
     <Compile Include="ViewModels\Student\ResultCreateList.cs" />
+    <Compile Include="ViewModels\Student\StageList.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -314,7 +315,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\UploadedFiles\" />
-    <Folder Include="ViewModels\Stage\" />
     <Folder Include="Views\CI\" />
   </ItemGroup>
   <ItemGroup>
