@@ -40,11 +40,5 @@ namespace Stagio.Web.Controllers
 			}
 			return HttpNotFound();
 		}
-
-	    [HttpPost]
-	    public virtual ActionResult ViewStageInfo()
-	    {
-	        return RedirectToAction(MVC.Home.Index());
-	    }
 	}
 }

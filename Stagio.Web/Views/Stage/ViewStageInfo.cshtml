@@ -4,10 +4,9 @@
     ViewBag.Title = "Description";
 }
 
-<h2>Description</h2>
+<h2 id="view-stage-info">Description</h2>
 
 <div>
-    <h4>ViewInfo</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -24,7 +23,10 @@
         <dd>
             @Html.DisplayFor(model => model.LimitDate)
         </dd>
-        <h4>Stage offert par:</h4>
+    </dl>
+    <h4>Stage offert par:</h4>
+
+    <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.CompanyName)
         </dt>
@@ -40,7 +42,10 @@
         <dd>
             @Html.DisplayFor(model => model.Adresse)
         </dd>
-        <h4>Responsable du stage:</h4>
+    </dl>
+    <h4>Responsable du stage:</h4>
+    <dl class="dl-horizontal">
+
         <dt>
             @Html.DisplayNameFor(model => model.ResponsableToName)
         </dt>
@@ -80,9 +85,12 @@
         <dd>
             @Html.DisplayFor(model => model.ResponsableToPoste)
         </dd>
-        @if (Model.ContactToName != null)
-        {
-            <h4>Autre contact:</h4>
+    </dl>
+    @if (Model.ContactToName != null)
+    {
+        <h4>Autre contact:</h4>
+        <dl class="dl-horizontal">
+
             <dt>
                 @Html.DisplayNameFor(model => model.ContactToName)
             </dt>
@@ -122,9 +130,12 @@
             <dd>
                 @Html.DisplayFor(model => model.ContactToPoste)
             </dd>
-        }
 
-        <h4>Description du stage:</h4>
+        </dl>
+    }
+    <h4>Description du stage:</h4>
+
+    <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.StageDescription)
         </dt>
@@ -148,7 +159,9 @@
         <dd>
             @Html.DisplayFor(model => model.NbrStagiaire)
         </dd>
-        <h4>Soummettre les candidatures à:</h4>
+    </dl>
+    <h4>Soummettre les candidatures à:</h4>
+    <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.SubmitToName)
         </dt>

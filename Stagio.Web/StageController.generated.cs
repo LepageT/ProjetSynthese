@@ -54,6 +54,12 @@ namespace Stagio.Web.Controllers
             return RedirectToActionPermanent(taskResult.Result);
         }
 
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult ViewStageInfo()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ViewStageInfo);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public StageController Actions { get { return MVC.Stage; } }
@@ -100,11 +106,11 @@ namespace Stagio.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string Description = "Description";
                 public readonly string ListNewStages = "ListNewStages";
+                public readonly string ViewStageInfo = "ViewStageInfo";
             }
-            public readonly string Description = "~/Views/Stage/Description.cshtml";
             public readonly string ListNewStages = "~/Views/Stage/ListNewStages.cshtml";
+            public readonly string ViewStageInfo = "~/Views/Stage/ViewStageInfo.cshtml";
         }
     }
 
@@ -133,17 +139,6 @@ namespace Stagio.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ViewStageInfo);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             ViewStageInfoOverride(callInfo, id);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void ViewStageInfoOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult ViewStageInfo()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ViewStageInfo);
-            ViewStageInfoOverride(callInfo);
             return callInfo;
         }
 
