@@ -54,6 +54,12 @@ namespace Stagio.Web.Controllers
             return RedirectToActionPermanent(taskResult.Result);
         }
 
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult ViewStageInfo()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ViewStageInfo);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public StageController Actions { get { return MVC.Stage; } }
@@ -71,15 +77,25 @@ namespace Stagio.Web.Controllers
         public class ActionNamesClass
         {
             public readonly string ListNewStages = "ListNewStages";
+            public readonly string ViewStageInfo = "ViewStageInfo";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string ListNewStages = "ListNewStages";
+            public const string ViewStageInfo = "ViewStageInfo";
         }
 
 
+        static readonly ActionParamsClass_ViewStageInfo s_params_ViewStageInfo = new ActionParamsClass_ViewStageInfo();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ViewStageInfo ViewStageInfoParams { get { return s_params_ViewStageInfo; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ViewStageInfo
+        {
+            public readonly string id = "id";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -91,8 +107,10 @@ namespace Stagio.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string ListNewStages = "ListNewStages";
+                public readonly string ViewStageInfo = "ViewStageInfo";
             }
             public readonly string ListNewStages = "~/Views/Stage/ListNewStages.cshtml";
+            public readonly string ViewStageInfo = "~/Views/Stage/ViewStageInfo.cshtml";
         }
     }
 
@@ -109,6 +127,18 @@ namespace Stagio.Web.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ListNewStages);
             ListNewStagesOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ViewStageInfoOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ViewStageInfo(int id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ViewStageInfo);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ViewStageInfoOverride(callInfo, id);
             return callInfo;
         }
 

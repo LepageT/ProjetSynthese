@@ -4,12 +4,13 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-using Stagio.Web.Validations;
 
 namespace Stagio.Web.ViewModels.Stage
 {
-    public class Create
+    public class ViewInfo
     {
+        public int Id { get; set; }
+
         [DisplayName("Entreprise ou Organisation")]
         [Required(ErrorMessage = "Requis")]
         //Maybe an enterprise entity must be created.
@@ -38,7 +39,6 @@ namespace Stagio.Web.ViewModels.Stage
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Entrez un numéro valide.")]
         public String ResponsableToPhone { get; set; }
 
-        [ValidationRequireField("ResponsableToPhone", ErrorMessage = "Vous devez spécifier un numéro de téléphone.")]
         [DisplayName("Poste")]
         public int? ResponsableToPoste { get; set; }
 
@@ -47,21 +47,17 @@ namespace Stagio.Web.ViewModels.Stage
         [DisplayName("Nom")]
         public String ContactToName { get; set; }
 
-        [ValidationRequireField("ContactToName", ErrorMessage = "Vous devez spécifier le nom du contact.")]
         [DisplayName("Titre")]
         public String ContactToTitle { get; set; }
 
-        [ValidationRequireField("ContactToName", ErrorMessage = "Vous devez spécifier le nom du contact.")]
         [DisplayName("Courriel")]
         [DataType(DataType.EmailAddress)]
         public String ContactToEmail { get; set; }
 
-        [ValidationRequireField("ContactToName", ErrorMessage = "Vous devez spécifier le nom du contact.")]
         [DisplayName("Téléphone")]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Entrez un numéro valide.")]
         public String ContactToPhone { get; set; }
 
-        [ValidationRequireField("ContactToPhone", ErrorMessage = "Vous devez spécifier un numéro de téléphone.")]
         [DisplayName("Poste")]
         public int? ContactToPoste { get; set; }
 
@@ -95,6 +91,8 @@ namespace Stagio.Web.ViewModels.Stage
         [DisplayName("Date limite pour soumettre une candidature")]
         [Required(ErrorMessage = "Requis")]
         public DateTime LimitDate { get; set; }
+
+        public DateTime PublicationDate { get; set; }
 
     }
 }

@@ -1,0 +1,193 @@
+﻿@model Stagio.Web.ViewModels.Stage.ViewInfo
+
+@{
+    ViewBag.Title = "Description";
+}
+
+<h2 id="view-stage-info">Description</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Offre de stage publiée le:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PublicationDate)
+        </dd>
+
+        <dt>
+            Date limite pour postuler:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LimitDate)
+        </dd>
+    </dl>
+    <h4>Stage offert par:</h4>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adresse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adresse)
+        </dd>
+    </dl>
+    <h4>Responsable du stage:</h4>
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResponsableToName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResponsableToName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResponsableToTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResponsableToTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResponsableToEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResponsableToEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResponsableToPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResponsableToPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResponsableToPoste)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResponsableToPoste)
+        </dd>
+    </dl>
+    @if (Model.ContactToName != null)
+    {
+        <h4>Autre contact:</h4>
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ContactToName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ContactToName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ContactToTitle)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ContactToTitle)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ContactToEmail)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ContactToEmail)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ContactToPhone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ContactToPhone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ContactToPoste)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ContactToPoste)
+            </dd>
+
+        </dl>
+    }
+    <h4>Description du stage:</h4>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.StageDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StageDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EnvironnementDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EnvironnementDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NbrStagiaire)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NbrStagiaire)
+        </dd>
+    </dl>
+    <h4>Soummettre les candidatures à:</h4>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SubmitToName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubmitToName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubmitToTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubmitToTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubmitToEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubmitToEmail)
+        </dd>
+    </dl>
+</div>
+<p>
+    @*//TODO changer le lien de retour.*@
+    @Html.ActionLink("Retour à la liste de stages", MVC.Home.Index())
+</p>
