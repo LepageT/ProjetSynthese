@@ -307,6 +307,7 @@
     <Content Include="Views\Coordinator\InviteEnterprise.cshtml" />
     <Content Include="Views\ContactEnterprise\CreateStage.cshtml" />
     <Content Include="Views\Coordinator\InvitationSucceed.cshtml" />
+    <Content Include="Views\ContactEnterprise\InviteContactEnterprise.cshtml" />
     <Content Include="Views\ContactEnterprise\CreateStageSucceed.cshtml" />
     <Content Include="Views\Stage\ListNewStages.cshtml" />
     <Content Include="Views\Stage\ViewStageInfo.cshtml" />

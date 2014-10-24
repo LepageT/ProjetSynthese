@@ -5,6 +5,8 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ploeh.AutoFixture;
 using Stagio.Domain.Entities;
+using Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests;
+
 
 namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 {
