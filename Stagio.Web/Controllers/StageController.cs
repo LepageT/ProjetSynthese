@@ -34,9 +34,9 @@ namespace Stagio.Web.Controllers
         {
             var stage = _stageRepository.GetById(id);
 
-            var detailViewModel = Mapper.Map<Details>(stage);
+            var details = Mapper.Map<Details>(stage);
             
-            return View(detailViewModel);
+            return View(details);
         }
 
 	}
