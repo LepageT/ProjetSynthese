@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using Stagio.DataLayer;
 using Stagio.Domain.Entities;
+using Stagio.Web.ViewModels.Stage;
 
 namespace Stagio.Web.Controllers
 {
@@ -40,5 +41,15 @@ namespace Stagio.Web.Controllers
 			}
 			return HttpNotFound();
 		}
+
+        public virtual ActionResult Details(int id)
+        {
+            var stage = _stageRepository.GetById(id);
+
+            var details = Mapper.Map<Details>(stage);
+            
+            return View(details);
+        }
+
 	}
 }

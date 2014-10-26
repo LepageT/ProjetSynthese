@@ -2,6 +2,7 @@
 using AutoMapper;
 using Ninject.Infrastructure.Language;
 using Stagio.Domain.Entities;
+using Stagio.Web.ViewModels.Stage;
 
 namespace Stagio.Web.Mappers
 {
@@ -35,6 +36,12 @@ namespace Stagio.Web.Mappers
                 .ForMember(dest => dest.Token, opt => opt.Ignore())
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .IgnoreAllNonExisting();
+
+            Mapper.CreateMap<Stage, Details>()
+              .IgnoreAllNonExisting();
+            
+
+
 
             Mapper.CreateMap<ContactEnterprise, ViewModels.ContactEnterprise.Reactive>()
                 .ForMember(dest => dest.PasswordConfirmation, opt => opt.Ignore())
