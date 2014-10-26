@@ -9,6 +9,8 @@ namespace Stagio.Web.ViewModels.Stage
 {
     public class ListNewStages
     {
+
+        public int Id { get; set; }
         public DateTime PublicationDate { get; set; }
 
         [DisplayName("Entreprise ou Organisation")]

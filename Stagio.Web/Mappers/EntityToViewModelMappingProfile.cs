@@ -2,6 +2,7 @@
 using AutoMapper;
 using Ninject.Infrastructure.Language;
 using Stagio.Domain.Entities;
+using Stagio.Web.ViewModels.Stage;
 
 namespace Stagio.Web.Mappers
 {
@@ -36,7 +37,8 @@ namespace Stagio.Web.Mappers
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .IgnoreAllNonExisting();
 
-
+            Mapper.CreateMap<Stage, Details>()
+              .IgnoreAllNonExisting();
             
 
 

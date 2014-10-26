@@ -247,6 +247,7 @@
     <Compile Include="ViewModels\ContactEnterprise\Reactive.cs" />
     <Compile Include="ViewModels\Account\Login.cs" />
     <Compile Include="ViewModels\Stage\Create.cs" />
+    <Compile Include="ViewModels\Stage\Details.cs" />
     <Compile Include="ViewModels\Stage\ListNewStages.cs" />
     <Compile Include="ViewModels\Student\Create.cs" />
     <Compile Include="ViewModels\Coordinator\Create.cs" />
@@ -309,6 +310,7 @@
     <Content Include="Views\Enterprise\CreateStage.cshtml" />
     <Content Include="Views\Coordinator\InvitationSucceed.cshtml" />
     <Content Include="Views\Stage\ListNewStages.cshtml" />
+    <Content Include="Views\Stage\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt.hooks.t4" />

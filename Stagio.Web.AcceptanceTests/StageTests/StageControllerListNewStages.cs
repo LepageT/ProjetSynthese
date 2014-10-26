@@ -6,7 +6,7 @@ using OpenQA.Selenium;
 namespace Stagio.Web.AcceptanceTests.StageTests
 {
     [TestClass]
-    public class StudentControllerListNewStages : BaseTests
+    public class StageControllerListNewStages : BaseTests
     {
 
         [TestMethod]
