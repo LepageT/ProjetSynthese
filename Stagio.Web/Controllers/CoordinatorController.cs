@@ -23,7 +23,7 @@ namespace Stagio.Web.Controllers
 
         public CoordinatorController(IEntityRepository<ContactEnterprise> enterpriseContactRepository,
             IEntityRepository<Coordinator> coordinatorRepository,
-            IEntityRepository<Invitation> invitationRepository, 
+            IEntityRepository<Invitation> invitationRepository,
             IMailler mailler,
             IAccountService accountService)
         {
@@ -92,13 +92,13 @@ namespace Stagio.Web.Controllers
         // GET: Coordinator/InviteEnterprise
         public virtual ActionResult InviteContactEnterprise()
         {
-            
+
             var allContactEnterprise = _enterpriseContactRepository.GetAll().ToList();
-            
+
             var contactEnterpriseInviteViewModels = Mapper.Map<IEnumerable<ViewModels.ContactEnterprise.Reactive>>(allContactEnterprise);
 
             return View(contactEnterpriseInviteViewModels);
-           
+
         }
 
         // POST: Coordinator/InviteEnterprise
@@ -136,11 +136,11 @@ namespace Stagio.Web.Controllers
 
                 }
                 return RedirectToAction(MVC.Coordinator.InviteContactEnterpriseConfirmation());
-                    }
+            }
 
             return RedirectToAction(MVC.Coordinator.InviteContactEnterprise());
 
-                }
+        }
 
         private string generateURLInvitationContactEnterprise(ContactEnterprise contactEnterpriseToSendMessage)
         {
@@ -160,17 +160,17 @@ namespace Stagio.Web.Controllers
 
             messageText += invitationUrl;
             return messageText;
-            }
+        }
 
         // GET: Coordinator/InviteContactEnterpriseConfirmation
         public virtual ActionResult InviteContactEnterpriseConfirmation()
         {
-           
+
             return View();
-          
+
         }
 
-                public virtual ActionResult Create(string token)
+        public virtual ActionResult Create(string token)
         {
             if (!String.IsNullOrEmpty(token))
             {
@@ -247,7 +247,7 @@ namespace Stagio.Web.Controllers
             }
 
             System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
-            
+
             TokenGenerator tokenGenerator = new TokenGenerator();
 
             string token = tokenGenerator.GenerateToken();
@@ -256,13 +256,13 @@ namespace Stagio.Web.Controllers
             String messageText = EmailCoordinatorResources.CoordinatorInviteMessageBody;
             String invitationUrl = EmailCoordinatorResources.CoordinatorInviteLink + token + ">Créer un compte</a>";
 
-                messageText += invitationUrl;
+            messageText += invitationUrl;
 
-                if (createdInvite.Message != null)
-                {
+            if (createdInvite.Message != null)
+            {
                 messageText += EmailCoordinatorResources.MessageHeader;
-                    messageText += createdInvite.Message;
-                }
+                messageText += createdInvite.Message;
+            }
 
             if (!_mailler.SendEmail(createdInvite.Email, EmailCoordinatorResources.CoordinatorInviteSubject, messageText))
             {
@@ -282,9 +282,9 @@ namespace Stagio.Web.Controllers
         }
 
         public virtual ActionResult InvitationSucceed()
-            {
+        {
             return View();
         }
-    
+
     }
 }

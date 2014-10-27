@@ -10,5 +10,6 @@ namespace Stagio.Domain.Application
     {
         public const string Coordinator = "Coordinator";
         public const string Student = "Étudiant";
+        public const string ContactEnterprise = "Contact entreprise";
     }
 }

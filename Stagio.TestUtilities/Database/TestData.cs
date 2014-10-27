@@ -8,7 +8,7 @@ namespace Stagio.TestUtilities.Database
 {
     public class TestData
     {
-        #region User (coordonnateur)
+        #region User (Test user, this user has all access for testing purpose)
         static public ApplicationUser applicationUser
         {
             get
@@ -18,7 +18,9 @@ namespace Stagio.TestUtilities.Database
 
                     Roles = new List<UserRole>()
                    {
-                       new UserRole() {RoleName = RoleName.Coordinator}
+                       new UserRole() {RoleName = RoleName.Coordinator},
+                       new UserRole() {RoleName = RoleName.Student},
+                       new UserRole() {RoleName = RoleName.ContactEnterprise}
                    },
                     Password = PasswordHash.CreateHash("test4test"),
                     UserName = "coordonnateur@stagio.com",
