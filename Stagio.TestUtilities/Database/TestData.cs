@@ -200,7 +200,7 @@ namespace Stagio.TestUtilities.Database
                 {
                     LimitDate = DateTime.Now,
                     PublicationDate = DateTime.Now,
-                    AcceptedByCoordinator = false,
+                    AcceptedByCoordinator = 0,
                     NbrStagiaire = 3,
                     CompanyName = "Bonbon inc",
                     Adresse = "1234 rue des bonbons, Québec",
@@ -237,7 +237,7 @@ namespace Stagio.TestUtilities.Database
                 {
                    LimitDate = DateTime.Now,
                     PublicationDate = DateTime.Now,
-                    AcceptedByCoordinator = true,
+                    AcceptedByCoordinator = 1,
                     NbrStagiaire = 2,
                     CompanyName = "Musique inc",
                     Adresse = "1234 rue de la guitare, Québec"
@@ -278,7 +278,7 @@ namespace Stagio.TestUtilities.Database
                     SubmitToTitle = "Coordinatrice aux développements APTIC",
                     SubmitToEmail = "Denyse.Gilbert",
                     LimitDate = new DateTime(2008,12,10),
-                    AcceptedByCoordinator = false
+                    AcceptedByCoordinator = 0
                     
                     
                 };

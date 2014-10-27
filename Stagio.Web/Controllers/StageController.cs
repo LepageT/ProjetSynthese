@@ -22,11 +22,17 @@ namespace Stagio.Web.Controllers
 		public virtual ActionResult ListNewStages()
 		{
 			var stages = _stageRepository.GetAll();
-			var stagesNotAcceptedByCoordinator = stages.Where(stage => !stage.AcceptedByCoordinator).ToList();
+		    var listAllStages = new ListAllStages();
+			var stagesNotAcceptedByCoordinator = stages.Where(stage => stage.AcceptedByCoordinator == 0).ToList();
+            var stagesAcceptedByCoordinator = stages.Where(stage => stage.AcceptedByCoordinator == 1).ToList();
+            var stagesRefusedByCoordinator = stages.Where(stage => stage.AcceptedByCoordinator == 2).ToList();
 
-			var stagesViewModels = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesNotAcceptedByCoordinator);
+			listAllStages.ListNewStages = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesNotAcceptedByCoordinator).ToList();
+            listAllStages.ListStagesAccepted = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesAcceptedByCoordinator).ToList();
+            listAllStages.ListStagesRefused = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesRefusedByCoordinator).ToList();
 
-			return View(stagesViewModels);
+
+			return View(listAllStages);
 		}
 
 		public virtual ActionResult ViewStageInfo(int id)
@@ -49,6 +55,18 @@ namespace Stagio.Web.Controllers
             var details = Mapper.Map<Details>(stage);
             
             return View(details);
+        }
+
+        [HttpPost, ActionName("Details")]
+        public virtual ActionResult DetailsPost(string button)
+        {
+
+            string allo = " ";
+           // var stage = _stageRepository.GetById(id);
+
+           // var details = Mapper.Map<Details>(stage);
+
+            return View();
         }
 
 	}

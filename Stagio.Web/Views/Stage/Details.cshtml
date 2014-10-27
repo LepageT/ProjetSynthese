@@ -19,7 +19,7 @@
                 </div>
 
                 <div class="col-md-offset-1 col-md-2">
-                     @Html.DisplayFor(model => model.PublicationDate)
+                    @Html.DisplayFor(model => model.PublicationDate)
                     
                 </div>
             </div>
@@ -205,8 +205,20 @@
 
         </div>
     </div>
+    
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <div class="col-md-2">
+    
+            <input type="submit" id="accept-button" value="Accepter" class="btn btn-default" />
+               
+        </div>
+    </div>
+}
     <p>
         @Html.ActionLink("Retourner à la liste", MVC.Stage.ListNewStages())
     </p>
+
 </body>
 </html>
