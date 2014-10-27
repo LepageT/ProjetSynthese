@@ -56,6 +56,12 @@ namespace Stagio.Web.Controllers
         {
             var stage = _stageRepository.GetById(id);
 
+
+            if (stage == null)
+            {
+                return View();
+            }
+
             if (command.Equals("Accepter"))
             {
                 stage.Status = 1; //1 = Accepter;
