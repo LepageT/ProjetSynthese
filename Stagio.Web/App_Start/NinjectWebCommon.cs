@@ -1,3 +1,4 @@
+using FluentAssertions.Specialized;
 using Stagio.DataLayer;
 using Stagio.DataLayer.EntityFramework;
 using Stagio.Domain.Entities;
