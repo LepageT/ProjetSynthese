@@ -246,6 +246,7 @@
     <Compile Include="ViewModels\Account\Login.cs" />
     <Compile Include="ViewModels\Stage\Create.cs" />
     <Compile Include="ViewModels\Stage\Details.cs" />
+    <Compile Include="ViewModels\Stage\ListAllStages.cs" />
     <Compile Include="ViewModels\Stage\ListNewStages.cs" />
     <Compile Include="ViewModels\Stage\ViewInfo.cs" />
     <Compile Include="ViewModels\Student\Create.cs" />
