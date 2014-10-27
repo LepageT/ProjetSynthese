@@ -144,10 +144,16 @@ namespace Stagio.Web.Controllers
 
         private string generateURLInvitationContactEnterprise(ContactEnterprise contactEnterpriseToSendMessage)
         {
+            string enterpriseName = contactEnterpriseToSendMessage.EnterpriseName;
+            if (enterpriseName.Contains(" "))
+            {
+                enterpriseName.Replace(" ", "%20");
+            }
+
             string messageText = "Un coordonnateur de stage vous invite à vous inscrire au site Stagio: ";
             string invitationUrl = "http://thomarelau.local/ContactEnterprise/Reactivate?Email=" +
                                    contactEnterpriseToSendMessage.Email + "&EnterpriseName=" +
-                                   contactEnterpriseToSendMessage.EnterpriseName + "&FirstName=" +
+                                   enterpriseName + "&FirstName=" +
                                    contactEnterpriseToSendMessage.FirstName + "&LastName=" +
                                    contactEnterpriseToSendMessage.LastName + "&Telephone=" +
                                    contactEnterpriseToSendMessage.Telephone + "&Poste=" + contactEnterpriseToSendMessage.Poste;

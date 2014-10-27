@@ -206,7 +206,7 @@ namespace Stagio.Web.Controllers
             string enterpriseName = contactEnterpriseToSendMessage.EnterpriseName;
             if (enterpriseName.Contains(" "))
             {
-                enterpriseName.Replace(" ", "&nbsp;");
+                enterpriseName.Replace(" ", "%20");
             }
             string messageText = "Un employé de votre entreprise vous invite à vous inscrire au site Stagio: ";
             string invitationUrl = "http://thomarelau.local/ContactEnterprise/Reactivate?Email=" +
