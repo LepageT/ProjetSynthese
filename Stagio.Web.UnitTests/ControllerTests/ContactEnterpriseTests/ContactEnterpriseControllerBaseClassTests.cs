@@ -23,8 +23,9 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
             enterpriseRepository = Substitute.For<IEntityRepository<ContactEnterprise>>();
             stageRepository = Substitute.For<IEntityRepository<Stage>>();
             mailler = Substitute.For<IMailler>();
-            enterpriseController = new ContactEnterpriseController(enterpriseRepository, stageRepository, accountService, mailler);
             accountService = Substitute.For<IAccountService>();
+            enterpriseController = new ContactEnterpriseController(enterpriseRepository, stageRepository, accountService, mailler);
+
         }
     }
 }

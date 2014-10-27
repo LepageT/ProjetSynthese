@@ -81,5 +81,27 @@ namespace Stagio.Web.UnitTests.Services
             nonHashedPassword.Should().NotBeSameAs(users.First().Password);
         }
 
+        [TestMethod]
+        public void UserEmailExist_should_return_true_if_email_exist()
+        {
+            var users = _fixture.CreateMany<ApplicationUser>(3).AsQueryable();
+            _userRepository.GetAll().Returns(users);
+
+            var user = _accountService.UserEmailExist(users.First().Email);
+
+            user.Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void UserEmailExist_should_return_false_if_email_doesnt_exist()
+        {
+            var users = _fixture.CreateMany<ApplicationUser>(3).AsQueryable();
+            _userRepository.GetAll().Returns(users);
+
+            var user = _accountService.UserEmailExist("test@hotmail.com");
+
+            user.Should().BeFalse();
+        }
+
     }
 }
