@@ -1,12 +1,10 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using NSubstitute.Core;
-using Ploeh;
 using Ploeh.AutoFixture;
 using Stagio.Domain.Entities;
 using Stagio.Web.ViewModels.Stage;
@@ -14,7 +12,7 @@ using Stagio.Web.ViewModels.Stage;
 namespace Stagio.Web.UnitTests.ControllerTests.StageTests
 {
     [TestClass]
-    public class StageControllerListNewStagesTests : AllControllersBaseClassTests
+    public class StageControllerListNewStagesTests : StageControllerBaseClassTests
     {
         [TestMethod]
         public void stage_listNewStages_should_render_view()

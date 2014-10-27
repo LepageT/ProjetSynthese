@@ -14,7 +14,7 @@ using Ploeh.AutoFixture;
 namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
 {
     [TestClass]
-    public class ContactEnterpriseControllerReactivate : AllControllersBaseClassTests
+    public class ContactEnterpriseControllerReactivate : ContactEnterpriseControllerBaseClassTests
     {
         [TestMethod]
         public void reactivate_action_should_render_view_with_email_and_enterprise_name()
