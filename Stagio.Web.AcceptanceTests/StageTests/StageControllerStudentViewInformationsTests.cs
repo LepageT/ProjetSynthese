@@ -15,11 +15,11 @@ namespace Stagio.Web.AcceptanceTests.StageTests
 
             try
             {
-                _driver.FindElement(By.Id("view-stage-info"));
+                _driver.FindElement(By.Id("details-stage-page"));
             }
             catch (NoSuchElementException)
             {
-                Assert.Fail("Identifiant view-stage-info non trouvé sur la page.");
+                Assert.Fail("Identifiant details-stage-page non trouvé sur la page.");
             }
         }
     }

@@ -62,7 +62,7 @@ namespace Stagio.Web.Controllers
             }
             else if (command.Equals("Refuser"))
             {
-                stage.Status = 2; //2 = Accepter;
+                stage.Status = 2; //2 = Refuser;
             }
 
             _stageRepository.Update(stage);

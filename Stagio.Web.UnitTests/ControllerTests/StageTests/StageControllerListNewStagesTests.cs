@@ -31,7 +31,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
         public void stage_listNewStages_should_render_view_with_ListNewStages()
         {
             var stages = _fixture.CreateMany<Stage>(5).AsQueryable();
-
+            stages.First().Status = 0;
             stageRepository.GetAll().Returns(stages);
 
             var result = stageController.ListNewStages() as ViewResult;

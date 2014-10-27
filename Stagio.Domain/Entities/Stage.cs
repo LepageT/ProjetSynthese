@@ -63,8 +63,9 @@ namespace Stagio.Domain.Entities
         public DateTime LimitDate { get; set; }
 
         //0 => Nouveau
-        //1 => Refuser
-        //2 => Accepter
+        //1 => Accepter
+        //2 => Refuser
+        [DefaultValue(0)]
         public int Status  { get; set; }
 
     }
