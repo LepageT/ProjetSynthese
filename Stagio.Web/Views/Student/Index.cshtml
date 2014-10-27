@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNet.Identity
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<div>
+    @if (Request.IsAuthenticated)
+    {
+    @Html.ActionLink("Modifier le profil 1", MVC.Student.Edit(Int32.Parse(@User.Identity.GetUserId())), new {id = "edit-student"})
+    }
+</div>
+<div>
+    @Html.ActionLink("Créer profil étudiant", MVC.Student.Create(), new { id = "create-student" })
+
+</div>
+<div>
+    @Html.ActionLink("Voir les offres de stages", MVC.Student.StageList(), new { id = "stageList-student" })
+
+</div>

@@ -28,6 +28,12 @@ namespace Stagio.Web.Controllers
             _stageRepository = stageRepository;
         }
 
+        public virtual ActionResult Index()
+        {
+            return View(MVC.Student.Views.ViewNames.Index);
+        }
+
+
         [Authorize(Roles = RoleName.Coordinator)]
         public virtual ActionResult Upload()
         {

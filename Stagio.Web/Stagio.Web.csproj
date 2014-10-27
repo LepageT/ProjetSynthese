@@ -315,6 +315,8 @@
     <Content Include="Views\Stage\ListNewStages.cshtml" />
     <Content Include="Views\Stage\ViewStageInfo.cshtml" />
     <Content Include="Views\Stage\Details.cshtml" />
+    <Content Include="Views\Student\Index.cshtml" />
+    <Content Include="Views\ContactEnterprise\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt.hooks.t4" />

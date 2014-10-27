@@ -182,6 +182,10 @@ namespace Stagio.TestUtilities.Database
                 var enterprise = new ContactEnterprise()
                 {
                     Id = 1007,
+                    Roles = new List<UserRole>()
+                             {
+                                 new UserRole() {RoleName = RoleName.ContactEnterprise}
+                             },
                     EnterpriseName = "MI6",
                     FirstName = "James",
                     LastName = "Bond",

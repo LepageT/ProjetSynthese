@@ -82,6 +82,7 @@ namespace Stagio.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
+            public readonly string Index = "Index";
             public readonly string Upload = "Upload";
             public readonly string UploadPost = "Upload";
             public readonly string ResultCreateList = "ResultCreateList";
@@ -96,6 +97,7 @@ namespace Stagio.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
+            public const string Index = "Index";
             public const string Upload = "Upload";
             public const string UploadPost = "Upload";
             public const string ResultCreateList = "ResultCreateList";
@@ -146,7 +148,7 @@ namespace Stagio.Web.Controllers
                 public readonly string Create = "Create";
                 public readonly string CreateList = "CreateList";
                 public readonly string Edit = "Edit";
-                public readonly string Edit_cshtml = "Edit_cshtml";
+                public readonly string Index = "Index";
                 public readonly string ResultCreateList = "ResultCreateList";
                 public readonly string StageList = "StageList";
                 public readonly string Upload = "Upload";
@@ -154,7 +156,7 @@ namespace Stagio.Web.Controllers
             public readonly string Create = "~/Views/Student/Create.cshtml";
             public readonly string CreateList = "~/Views/Student/CreateList.cshtml";
             public readonly string Edit = "~/Views/Student/Edit.cshtml";
-            public readonly string Edit_cshtml = "~/Views/Student/Edit.cshtml";
+            public readonly string Index = "~/Views/Student/Index.cshtml";
             public readonly string ResultCreateList = "~/Views/Student/ResultCreateList.cshtml";
             public readonly string StageList = "~/Views/Student/StageList.cshtml";
             public readonly string Upload = "~/Views/Student/Upload.cshtml";
@@ -165,6 +167,17 @@ namespace Stagio.Web.Controllers
     public partial class T4MVC_StudentController : Stagio.Web.Controllers.StudentController
     {
         public T4MVC_StudentController() : base(Dummy.Instance) { }
+
+        [NonAction]
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Index()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
+            IndexOverride(callInfo);
+            return callInfo;
+        }
 
         [NonAction]
         partial void UploadOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);

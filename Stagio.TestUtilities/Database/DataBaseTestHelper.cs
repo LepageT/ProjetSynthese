@@ -76,6 +76,7 @@ namespace Stagio.TestUtilities.Database
         {
             _contactEnterpriseRepository.Add(TestData.contactEnterprise1);
             _contactEnterpriseRepository.Add(TestData.contactEnterprise2);
+            _contactEnterpriseRepository.Add(TestData.contactEnterprise3);
         }
 
     }
