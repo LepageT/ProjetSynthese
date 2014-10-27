@@ -246,6 +246,7 @@
     <Compile Include="ViewModels\Account\Login.cs" />
     <Compile Include="ViewModels\Stage\Create.cs" />
     <Compile Include="ViewModels\Stage\Details.cs" />
+    <Compile Include="ViewModels\Stage\ListAllStages.cs" />
     <Compile Include="ViewModels\Stage\ListNewStages.cs" />
     <Compile Include="ViewModels\Stage\ViewInfo.cs" />
     <Compile Include="ViewModels\Student\Create.cs" />
@@ -254,6 +255,7 @@
     <Compile Include="ViewModels\Student\Edit.cs" />
     <Compile Include="ViewModels\Student\ListStudent.cs" />
     <Compile Include="ViewModels\Student\ResultCreateList.cs" />
+    <Compile Include="ViewModels\Student\StageList.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -308,6 +310,7 @@
     <Content Include="Views\Coordinator\InviteEnterprise.cshtml" />
     <Content Include="Views\ContactEnterprise\CreateStage.cshtml" />
     <Content Include="Views\Coordinator\InvitationSucceed.cshtml" />
+    <Content Include="Views\Student\StageList.cshtml" />
     <Content Include="Views\ContactEnterprise\InviteContactEnterprise.cshtml" />
     <Content Include="Views\ContactEnterprise\CreateStageSucceed.cshtml" />
     <Content Include="Views\Stage\ListNewStages.cshtml" />

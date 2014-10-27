@@ -11,7 +11,7 @@ using Ploeh;
 namespace Stagio.Web.UnitTests.ControllerTests.StageTests
 {
     [TestClass]
-    public class StageControllerDetails : AllControllersBaseClassTests
+    public class StageControllerDetails : StageControllerBaseClassTests
     {
         [TestMethod]
         public void details_stage_should_render_a_view_details()

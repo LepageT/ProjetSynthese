@@ -37,6 +37,7 @@ namespace Stagio.Web.Mappers
 
             Mapper.CreateMap<ViewModels.Stage.Create, Stage>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => 0))
                 .ForMember(dest => dest.PublicationDate, opt => opt.Ignore())
                 .IgnoreAllNonExisting();
         }

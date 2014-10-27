@@ -8,6 +8,10 @@
     @Html.ActionLink("Créer profil étudiant", MVC.Student.Create(), new { id = "create-student" })
 
 </div>
+<div>
+    @Html.ActionLink("Voir les offres de stages", MVC.Student.StageList(), new { id = "stageList-student" })
+
+</div>
 <h4>Coordonnateur</h4>
 <div>
     @Html.ActionLink("Coordinator", MVC.Coordinator.Index(), new { id = "index-coordonnateur" })
@@ -15,13 +19,19 @@
 <div>
     @Html.ActionLink("Ajouter des étudiants", MVC.Student.Upload(), new { id = "upload-student" })
 </div>
+<div>
+    @Html.ActionLink("Inviter les employés d'entreprises", MVC.Coordinator.InviteContactEnterprise(), new { id = "invite-enterprise" })
+</div>
 <h4>Employé d'une entreprise</h4>
 <div>
     @Html.ActionLink("Créer un profil entreprise", MVC.ContactEnterprise.Reactivate(), new { id = "create-enterprise" })
 </div>
+<div>
+    @Html.ActionLink("Inviter un autre employé", MVC.ContactEnterprise.InviteContactEnterprise(), new { id = "invite-contact-enterprise" })
+</div>
 <h4>Stage</h4>
 <div>
-    @Html.ActionLink("Liste des stages qui ne sont pas encore approuvés par un coordonnateur", MVC.Stage.ListNewStages(), new { id = "list" })
+    @Html.ActionLink("Liste des stages pour un coordonnateur", MVC.Stage.ListNewStages(), new { id = "list" })
 </div>
 <div>
     @Html.ActionLink("Visualiser la description du stage 1", MVC.Stage.ViewStageInfo(1), new { id = "stage-1" })

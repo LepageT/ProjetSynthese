@@ -157,10 +157,10 @@ namespace Stagio.TestUtilities.Database
                     LastName = "Tarantino",
                     Telephone = "123-456-7890",
                     Email = "blabla@hotmail.com",
-                    Password = "qwerty12",
+                    Password = PasswordHash.CreateHash("qwerty12"),
                     Active = false
                 };
-
+                enterprise.UserName = enterprise.Email;
                 return enterprise;
             }
         }
@@ -180,15 +180,17 @@ namespace Stagio.TestUtilities.Database
                     LastName = "Nolan",
                     Telephone = "123-456-7890",
                     Email = "toto@hotmail.com",
-                    Password = "qwerty98",
+                    Password = PasswordHash.CreateHash("qwerty98"),
                     Active = false
                 };
+                enterprise.UserName = enterprise.Email;
 
-               
                 return enterprise;
             }
         }
         #endregion
+
+
 
         #region Stage 1
 
@@ -202,6 +204,7 @@ namespace Stagio.TestUtilities.Database
                     PublicationDate = DateTime.Now,
                     Status = 0,
                     NbrStagiaire = 3,
+                    StageTitle = "[Inserer titre ici]",
                     CompanyName = "Bonbon inc",
                     Adresse = "1234 rue des bonbons, Québec",
                     ResponsableToName = "Robert",
@@ -209,7 +212,7 @@ namespace Stagio.TestUtilities.Database
                     ResponsableToPhone = "432-432-4324",
                     ResponsableToPoste = 333,
                     ResponsableToTitle = "CEO",
-                    ContactToName =  "Luc",
+                    ContactToName = "Luc",
                     ContactToEmail = "luc@bonbon.com",
                     ContactToPhone = "123-223-3456",
                     ContactToPoste = 2,
@@ -235,10 +238,11 @@ namespace Stagio.TestUtilities.Database
             {
                 var stage = new Stage()
                 {
-                   LimitDate = DateTime.Now,
+                    LimitDate = DateTime.Now,
                     PublicationDate = DateTime.Now,
                     Status = 2,
                     NbrStagiaire = 2,
+                    StageTitle = "[Inserer titre ici]",
                     CompanyName = "Musique inc",
                     Adresse = "1234 rue de la guitare, Québec"
                 };
@@ -272,15 +276,16 @@ namespace Stagio.TestUtilities.Database
                                         "d'applications pédagogiques multimédias",
                     EnvironnementDescription = "asdkjlh wef yuijshd jefy wfu scj hldsjyt wu jhlgyaej hhj uiytolral  aluir" +
                                                 " laksdjh z;l sdutypa fhhjyla GFHELA /n kkhjgdkhjfL GFOIA /n saut de ligne",
+                    StageTitle = "patate",
                     NbrStagiaire = 2,
                     StagiaireIfKnew = "",
                     SubmitToName = "Denyse Gilbert",
                     SubmitToTitle = "Coordinatrice aux développements APTIC",
                     SubmitToEmail = "Denyse.Gilbert",
-                    LimitDate = new DateTime(2008,12,10),
-                    Status = 0
-                    
-                    
+                    LimitDate = new DateTime(2008, 12, 10),
+                    Status = 1
+
+
                 };
 
                 return stage;
