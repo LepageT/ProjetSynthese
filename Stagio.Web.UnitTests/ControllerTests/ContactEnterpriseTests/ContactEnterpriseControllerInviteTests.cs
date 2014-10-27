@@ -14,7 +14,7 @@ using Ploeh.AutoFixture;
 namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
 {
     [TestClass]
-    public class ContactEnterpriseControllerInviteTests : AllControllersBaseClassTests
+    public class ContactEnterpriseControllerInviteTests : ContactEnterpriseControllerBaseClassTests
     {
         [TestMethod]
         public void contact_enterprise_inviteContactEnteprise_get_should_return_inviteContactEnterprise_view()

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿
 using System.Web.Mvc;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -11,7 +10,7 @@ using Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests;
 namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 {
     [TestClass]
-    public class StudentControllerResultCreateList : AllControllersBaseClassTests
+    public class StudentControllerResultCreateList :StudentControllerBaseClassTests
     {
 
         [TestMethod]

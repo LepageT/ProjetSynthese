@@ -40,6 +40,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             const string ENTERPRISE_CONTACT_POSTE = "42";
             const string STAGE_DESC = "Résister au dark side, trouver 2 droids";
             const string STAGE_ENVIRONNEMENT = "Sabre laser, vaisseaux, droids, clones, Death Star...";
+            const string STAGE_TITLE = "Résister au dark side, trouver 2 droids";
             const string NBR_STAGE = "10000";
             const string SUBMIT_TO_NAME = "Yoda";
             const string SUBMIT_TO_TITLE = "Maitre";
@@ -60,6 +61,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             _driver.FindElement(By.Id("ContactToEmail")).SendKeys(ENTERPRISE_CONTACT_EMAIL);
             _driver.FindElement(By.Id("ContactToPhone")).SendKeys(ENTERPRISE_CONTACT_PHONE);
             _driver.FindElement(By.Id("ContactToPoste")).SendKeys(ENTERPRISE_CONTACT_POSTE);
+            _driver.FindElement(By.Id("StageTitle")).SendKeys(STAGE_TITLE);
             _driver.FindElement(By.Id("StageDescription")).SendKeys(STAGE_DESC);
             _driver.FindElement(By.Id("EnvironnementDescription")).SendKeys(STAGE_ENVIRONNEMENT);
             _driver.FindElement(By.Id("NbrStagiaire")).SendKeys(NBR_STAGE);

@@ -18,7 +18,6 @@ namespace Stagio.Domain.Entities
         [DefaultValue(false)]
         public bool Activated { get; set; }
 
-        public string Email { get; set; }
 
     }
 }

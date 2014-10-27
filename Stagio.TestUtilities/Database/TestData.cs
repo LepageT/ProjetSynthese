@@ -157,10 +157,10 @@ namespace Stagio.TestUtilities.Database
                     LastName = "Tarantino",
                     Telephone = "123-456-7890",
                     Email = "blabla@hotmail.com",
-                    Password = "qwerty12",
+                    Password = PasswordHash.CreateHash("qwerty12"),
                     Active = false
                 };
-
+                enterprise.UserName = enterprise.Email;
                 return enterprise;
             }
         }
@@ -180,15 +180,17 @@ namespace Stagio.TestUtilities.Database
                     LastName = "Nolan",
                     Telephone = "123-456-7890",
                     Email = "toto@hotmail.com",
-                    Password = "qwerty98",
+                    Password = PasswordHash.CreateHash("qwerty98"),
                     Active = false
                 };
-
+                enterprise.UserName = enterprise.Email;
                
                 return enterprise;
             }
         }
         #endregion
+
+       
 
         #region Stage 1
 
@@ -202,6 +204,7 @@ namespace Stagio.TestUtilities.Database
                     PublicationDate = DateTime.Now,
                     AcceptedByCoordinator = false,
                     NbrStagiaire = 3,
+                    StageTitle = "[Inserer titre ici]",
                     CompanyName = "Bonbon inc",
                     Adresse = "1234 rue des bonbons, Québec",
                     ResponsableToName = "Robert",
@@ -239,6 +242,7 @@ namespace Stagio.TestUtilities.Database
                     PublicationDate = DateTime.Now,
                     AcceptedByCoordinator = true,
                     NbrStagiaire = 2,
+                    StageTitle = "[Inserer titre ici]",
                     CompanyName = "Musique inc",
                     Adresse = "1234 rue de la guitare, Québec"
                 };
