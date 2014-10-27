@@ -18,7 +18,6 @@ namespace Stagio.Web.ViewModels.ContactEnterprise
         [DisplayName("Courriel")]
         [Required(ErrorMessage = "Requis")]
         [DataType(DataType.EmailAddress)]
-        [ValidationVerifyIfEmailIsUnique]
         public string Email { get; set; }
 
         [DisplayName("Nom")]

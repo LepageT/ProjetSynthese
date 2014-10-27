@@ -36,7 +36,7 @@
                 @Html.DisplayFor(modelItem => item.companyName)
             </td>
             <td>
-                @Html.ActionLink(item.stageTitle, "../Stage/ViewStageInfo", new { id = item.Id }, new { id = "details-stages" + item.Id })
+                @Html.ActionLink(item.stageTitle, MVC.Stage.ViewStageInfo().AddRouteValues(new { id = item.Id }), new { id = "details-stages" + item.Id })
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.limitDate)

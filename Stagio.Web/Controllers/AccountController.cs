@@ -63,7 +63,7 @@ namespace Stagio.Web.Controllers
             var identity = new ClaimsIdentity(new[]
             {
                 new Claim(ClaimTypes.Name, applicationUser.Name),
-                new Claim(ClaimTypes.NameIdentifier, applicationUser.Id.ToString()),
+                new Claim(ClaimTypes.NameIdentifier, applicationUser.Id.ToString())
             },
                 DefaultAuthenticationTypes.ApplicationCookie);
 

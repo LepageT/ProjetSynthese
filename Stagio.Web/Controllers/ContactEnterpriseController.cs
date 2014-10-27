@@ -57,10 +57,12 @@ namespace Stagio.Web.Controllers
         [HttpPost]
         public virtual ActionResult Reactivate(ViewModels.ContactEnterprise.Reactive createViewModel)
         {
-
+            if (_accountService.UserEmailExist(createViewModel.Email))
+            {
+                ModelState.AddModelError("Email", "Ce email est déjà utilisé pour un compte entreprise.");
+            }
             if (ModelState.IsValid)
             {
-
                 var contactEnterprise = _contactEnterpriseRepository.GetAll().FirstOrDefault(x => x.Email == createViewModel.Email);
                 if (contactEnterprise != null)
                 {

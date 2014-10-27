@@ -19,7 +19,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
             var stages = _fixture.CreateMany<Stage>(3);
             foreach (var stage in stages)
             {
-                stage.AcceptedByCoordinator = 1;
+                stage.Status = 1;
             }
             stageRepository.GetAll().Returns(stages.AsQueryable());
 

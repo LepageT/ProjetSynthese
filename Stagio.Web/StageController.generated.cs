@@ -119,6 +119,7 @@ namespace Stagio.Web.Controllers
         public class ActionParamsClass_Details
         {
             public readonly string id = "id";
+            public readonly string command = "command";
         }
         static readonly ActionParamsClass_DetailsPost s_params_DetailsPost = new ActionParamsClass_DetailsPost();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -189,14 +190,15 @@ namespace Stagio.Web.Controllers
         }
 
         [NonAction]
-        partial void DetailsPostOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string button);
+        partial void DetailsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string command, int id);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult DetailsPost(string button)
+        public override System.Web.Mvc.ActionResult Details(string command, int id)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DetailsPost);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "button", button);
-            DetailsPostOverride(callInfo, button);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "command", command);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            DetailsOverride(callInfo, command, id);
             return callInfo;
         }
 

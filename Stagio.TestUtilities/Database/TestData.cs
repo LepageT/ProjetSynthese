@@ -202,7 +202,7 @@ namespace Stagio.TestUtilities.Database
                 {
                     LimitDate = DateTime.Now,
                     PublicationDate = DateTime.Now,
-                    AcceptedByCoordinator = 0,
+                    Status = 0,
                     NbrStagiaire = 3,
                     StageTitle = "[Inserer titre ici]",
                     CompanyName = "Bonbon inc",
@@ -212,7 +212,7 @@ namespace Stagio.TestUtilities.Database
                     ResponsableToPhone = "432-432-4324",
                     ResponsableToPoste = 333,
                     ResponsableToTitle = "CEO",
-                    ContactToName =  "Luc",
+                    ContactToName = "Luc",
                     ContactToEmail = "luc@bonbon.com",
                     ContactToPhone = "123-223-3456",
                     ContactToPoste = 2,
@@ -240,7 +240,7 @@ namespace Stagio.TestUtilities.Database
                 {
                    LimitDate = DateTime.Now,
                     PublicationDate = DateTime.Now,
-                    AcceptedByCoordinator = 1,
+                    Status = 1,
                     NbrStagiaire = 2,
                     StageTitle = "[Inserer titre ici]",
                     CompanyName = "Musique inc",
@@ -276,13 +276,14 @@ namespace Stagio.TestUtilities.Database
                                         "d'applications pédagogiques multimédias",
                     EnvironnementDescription = "asdkjlh wef yuijshd jefy wfu scj hldsjyt wu jhlgyaej hhj uiytolral  aluir" +
                                                 " laksdjh z;l sdutypa fhhjyla GFHELA /n kkhjgdkhjfL GFOIA /n saut de ligne",
+                    StageTitle = "patate",
                     NbrStagiaire = 2,
                     StagiaireIfKnew = "",
                     SubmitToName = "Denyse Gilbert",
                     SubmitToTitle = "Coordinatrice aux développements APTIC",
                     SubmitToEmail = "Denyse.Gilbert",
                     LimitDate = new DateTime(2008,12,10),
-                    AcceptedByCoordinator = 0
+                    Status = 0
                     
                     
                 };
