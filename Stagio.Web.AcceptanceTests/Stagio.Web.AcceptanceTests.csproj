@@ -84,6 +84,7 @@
     <Compile Include="StudentTests\StudentControllerUploadTests.cs" />
     <Compile Include="StudentTests\StudentControllerResultCreateList.cs" />
     <Compile Include="StudentTests\StudentControllerCreateTests.cs" />
+    <Compile Include="StudentTests\StudentControllerStageListTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
