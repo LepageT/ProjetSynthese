@@ -247,16 +247,30 @@ namespace Stagio.Web.Controllers
 
         public virtual ActionResult Apply(int id)
         {
-            var applyViewModel = new ViewModels.Student.Apply();
-            applyViewModel.IdStage = id;
-            //Get ID Student with login. For now, temp value idStudent = 1
-            applyViewModel.IdStudent = 1;
-            return View(applyViewModel);
+            var stage = _stageRepository.GetById(id);
+
+            if (stage != null)
+            {
+                var applyViewModel = new ViewModels.Student.Apply();
+                applyViewModel.IdStage = id;
+                //Get ID Student with login. For now, temp value idStudent = 1
+                applyViewModel.IdStudent = 1;
+                return View(applyViewModel);
+            }
+            return HttpNotFound();
+            
         }
 
         [HttpPost]
         public virtual ActionResult Apply(ViewModels.Student.Apply applyStudentViewModel)
         {
+            var stage = _stageRepository.GetById(applyStudentViewModel.IdStage);
+
+            if (stage == null)
+            {
+                return HttpNotFound();
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(applyStudentViewModel);
