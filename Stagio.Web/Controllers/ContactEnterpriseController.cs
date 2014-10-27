@@ -48,6 +48,7 @@ namespace Stagio.Web.Controllers
             contactEnterprise.EnterpriseName = enterpriseName;
             contactEnterprise.Telephone = telephone;
             contactEnterprise.Poste = poste;
+            contactEnterprise.UserName = email;
             var contactEnterpriseCreatePageViewModel = Mapper.Map<ViewModels.ContactEnterprise.Reactive>(contactEnterprise);
             return View(contactEnterpriseCreatePageViewModel);
         }
@@ -74,6 +75,7 @@ namespace Stagio.Web.Controllers
                 else
                 {
                     var newContactEnterprise = Mapper.Map<ContactEnterprise>(createViewModel);
+                    newContactEnterprise.UserName = newContactEnterprise.Email;
                     _contactEnterpriseRepository.Add(newContactEnterprise);
                     //ADD NOTIFICATIONS: À la coordination et aux autres employés de l'entreprise.
                     return RedirectToAction(MVC.ContactEnterprise.CreateConfirmation());
@@ -203,10 +205,15 @@ namespace Stagio.Web.Controllers
 
         private string generateURLInvitationContactEnterprise(ContactEnterprise contactEnterpriseToSendMessage)
         {
+            string enterpriseName = contactEnterpriseToSendMessage.EnterpriseName;
+            if (enterpriseName.Contains(" "))
+            {
+                enterpriseName.Replace(" ", "%20");
+            }
             string messageText = "Un employé de votre entreprise vous invite à vous inscrire au site Stagio: ";
             string invitationUrl = "http://thomarelau.local/ContactEnterprise/Reactivate?Email=" +
                                    contactEnterpriseToSendMessage.Email + "&EnterpriseName=" +
-                                   contactEnterpriseToSendMessage.EnterpriseName + "&FirstName=" +
+                                   enterpriseName + "&FirstName=" +
                                    contactEnterpriseToSendMessage.FirstName + "&LastName=" +
                                    contactEnterpriseToSendMessage.LastName + "&Telephone=" +
                                    contactEnterpriseToSendMessage.Telephone + "&Poste=" + contactEnterpriseToSendMessage.Poste;

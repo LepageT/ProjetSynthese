@@ -205,8 +205,19 @@
 
         </div>
     </div>
+    @using (Html.BeginForm("Details", "Stage"))
+    {
+        @Html.HiddenFor(model => model.Id)
+        <input type="submit" value="Accepter" name="command" id="accept-stage" />
+        <input type="submit" value="Refuser" name="command" id="refuse-stage" />
+    }
     <p>
         @Html.ActionLink("Retourner à la liste", MVC.Stage.ListNewStages())
     </p>
+
 </body>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
 </html>

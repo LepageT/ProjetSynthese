@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using System.Web.Mvc;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -7,7 +7,7 @@ using Ploeh.AutoFixture;
 namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
 {
     [TestClass]
-    public class ContactEnterpriseControllerCreateStageTests : AllControllersBaseClassTests
+    public class ContactEnterpriseControllerCreateStageTests : ContactEnterpriseControllerBaseClassTests
     {
         [TestMethod]
         public void enterprise_createStage_get_should_return_createStage_view()

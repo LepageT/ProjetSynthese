@@ -11,7 +11,7 @@ using FluentAssertions;
 namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
 {
     [TestClass]
-    public class CoordinatorControllerCreateTests : AllControllersBaseClassTests
+    public class CoordinatorControllerCreateTests : CoordinatorControllerBaseClassTests
     {
         [TestMethod]
         public void coordinator_create_get_should_return_view_with_createCoordinator_viewModels_when_invitation_is_valid()

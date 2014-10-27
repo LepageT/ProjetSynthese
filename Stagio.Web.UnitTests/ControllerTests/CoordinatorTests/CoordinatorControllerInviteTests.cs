@@ -1,11 +1,7 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Web.Mvc;
-using AutoMapper;
 using FluentAssertions;
 using NSubstitute;
 using Stagio.Domain.Entities;
@@ -17,7 +13,7 @@ using Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests;
 namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
 {
     [TestClass]
-    public class CoordinatorControllerInviteTests : AllControllersBaseClassTests
+    public class CoordinatorControllerInviteTests : CoordinatorControllerBaseClassTests
     {
         [TestMethod]
         public void invite_get_should_render_default_view()

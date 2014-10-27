@@ -22,11 +22,17 @@ namespace Stagio.Web.Controllers
 		public virtual ActionResult ListNewStages()
 		{
 			var stages = _stageRepository.GetAll();
-			var stagesNotAcceptedByCoordinator = stages.Where(stage => !stage.AcceptedByCoordinator).ToList();
+		    var listAllStages = new ListAllStages();
+			var stagesNotAcceptedByCoordinator = stages.Where(stage => stage.Status == 0).ToList();
+            var stagesAcceptedByCoordinator = stages.Where(stage => stage.Status == 1).ToList();
+            var stagesRefusedByCoordinator = stages.Where(stage => stage.Status == 2).ToList();
 
-			var stagesViewModels = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesNotAcceptedByCoordinator);
+			listAllStages.ListNewStages = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesNotAcceptedByCoordinator).ToList();
+            listAllStages.ListStagesAccepted = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesAcceptedByCoordinator).ToList();
+            listAllStages.ListStagesRefused = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesRefusedByCoordinator).ToList();
 
-			return View(stagesViewModels);
+
+			return View(listAllStages);
 		}
 
 		public virtual ActionResult ViewStageInfo(int id)
@@ -49,6 +55,31 @@ namespace Stagio.Web.Controllers
             var details = Mapper.Map<Details>(stage);
             
             return View(details);
+        }
+
+        [HttpPost]
+        public virtual ActionResult Details(string command, int id)
+        {
+            var stage = _stageRepository.GetById(id);
+
+
+            if (stage == null)
+            {
+                return View();
+            }
+
+            if (command.Equals("Accepter"))
+            {
+                stage.Status = 1; //1 = Accepter;
+            }
+            else if (command.Equals("Refuser"))
+            {
+                stage.Status = 2; //2 = Refuser;
+            }
+
+            _stageRepository.Update(stage);
+
+            return RedirectToAction(MVC.Stage.ListNewStages());
         }
 
 	}
