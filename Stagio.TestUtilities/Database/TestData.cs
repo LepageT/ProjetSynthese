@@ -202,7 +202,7 @@ namespace Stagio.TestUtilities.Database
                 {
                     LimitDate = DateTime.Now,
                     PublicationDate = DateTime.Now,
-                    AcceptedByCoordinator = 0,
+                    Status = 0,
                     NbrStagiaire = 3,
                     StageTitle = "[Inserer titre ici]",
                     CompanyName = "Bonbon inc",
@@ -240,7 +240,7 @@ namespace Stagio.TestUtilities.Database
                 {
                    LimitDate = DateTime.Now,
                     PublicationDate = DateTime.Now,
-                    AcceptedByCoordinator = 1,
+                    Status = 1,
                     NbrStagiaire = 2,
                     StageTitle = "[Inserer titre ici]",
                     CompanyName = "Musique inc",
@@ -282,7 +282,7 @@ namespace Stagio.TestUtilities.Database
                     SubmitToTitle = "Coordinatrice aux développements APTIC",
                     SubmitToEmail = "Denyse.Gilbert",
                     LimitDate = new DateTime(2008,12,10),
-                    AcceptedByCoordinator = 0
+                    Status = 0
                     
                     
                 };
