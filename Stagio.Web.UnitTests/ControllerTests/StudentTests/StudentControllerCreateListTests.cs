@@ -6,6 +6,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using Stagio.Domain.Entities;
 using Ploeh.AutoFixture;
+using System;
+using Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests;
 using Stagio.Web.ViewModels.Student;
 
 namespace Stagio.Web.UnitTests.ControllerTests.StudentTests

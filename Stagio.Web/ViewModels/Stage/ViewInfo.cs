@@ -1,72 +1,98 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace Stagio.Domain.Entities
+namespace Stagio.Web.ViewModels.Stage
 {
-    public class Stage : Entity
+    public class ViewInfo
     {
-        [DisplayName("Date de l'offre")]
-        public DateTime PublicationDate { get; set; }
+        public int Id { get; set; }
 
-        //Maybe an enterprise entity must be created.
         [DisplayName("Entreprise ou Organisation")]
+        [Required(ErrorMessage = "Requis")]
+        //Maybe an enterprise entity must be created.
         public String CompanyName { get; set; }
 
+        [DisplayName("Adresse")]
+        [Required(ErrorMessage = "Requis")]
         public String Adresse { get; set; }
 
-
-        //Responsable
+        //Responsable 
         [DisplayName("Nom")]
+        [Required(ErrorMessage = "Requis")]
         public String ResponsableToName { get; set; }
+
         [DisplayName("Titre")]
+        [Required(ErrorMessage = "Requis")]
         public String ResponsableToTitle { get; set; }
+
         [DisplayName("Courriel")]
+        [DataType(DataType.EmailAddress)]
+        [Required(ErrorMessage = "Requis")]
         public String ResponsableToEmail { get; set; }
+
         [DisplayName("Téléphone")]
+        [Required(ErrorMessage = "Requis")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Entrez un numéro valide.")]
         public String ResponsableToPhone { get; set; }
+
         [DisplayName("Poste")]
         public int? ResponsableToPoste { get; set; }
 
         //Contact
+
         [DisplayName("Nom")]
         public String ContactToName { get; set; }
+
         [DisplayName("Titre")]
         public String ContactToTitle { get; set; }
+
         [DisplayName("Courriel")]
+        [DataType(DataType.EmailAddress)]
         public String ContactToEmail { get; set; }
+
         [DisplayName("Téléphone")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Entrez un numéro valide.")]
         public String ContactToPhone { get; set; }
+
         [DisplayName("Poste")]
         public int? ContactToPoste { get; set; }
 
-        [DisplayName("Description du projet pour le stage")]
-        public String StageDescription { get; set; }
-        [DisplayName("Environnement matériel et logiciel spécifique au projet")]
-        //Stage information
-        public string stageTitle { get; set; }
-        public String stageDescription { get; set; }
 
+        [DisplayName("Description du projet")]
+        [Required(ErrorMessage = "Requis")]
+        public String StageDescription { get; set; }
+
+        [DisplayName("Environnement matériel et logiciel spécifique au projet")]
+        [Required(ErrorMessage = "Requis")]
         public String EnvironnementDescription { get; set; }
+
         [DisplayName("Nombre de stagiaires")]
+        [Required(ErrorMessage = "Requis")]
         public int NbrStagiaire { get; set; }
-        [DisplayName("Stagiaire si connu:")]
-        public string StagiaireIfKnew { get; set; }
-        [DisplayName("Nom")]
 
         //Submit to:
+        [DisplayName("Nom")]
+        [Required(ErrorMessage = "Requis")]
         public String SubmitToName { get; set; }
+
         [DisplayName("Titre")]
+        [Required(ErrorMessage = "Requis")]
         public String SubmitToTitle { get; set; }
+
         [DisplayName("Courriel")]
+        [Required(ErrorMessage = "Requis")]
+        [DataType(DataType.EmailAddress)]
         public String SubmitToEmail { get; set; }
-        [DisplayName("Date limite pour soummettre une candidature")]
+
+        [DisplayName("Date limite pour soumettre une candidature")]
+        [Required(ErrorMessage = "Requis")]
         public DateTime LimitDate { get; set; }
 
-        public Boolean AcceptedByCoordinator { get; set; }
+        public DateTime PublicationDate { get; set; }
 
     }
 }

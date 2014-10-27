@@ -6,6 +6,8 @@ using FluentAssertions;
 using NSubstitute;
 using Stagio.Domain.Entities;
 using Ploeh.AutoFixture;
+using Stagio.Web.Controllers;
+using Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests;
 
 
 namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests

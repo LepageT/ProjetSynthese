@@ -2,10 +2,10 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 
-namespace Stagio.Web.AcceptanceTests.EnterpriseTests
+namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
 {
     [TestClass]
-    public class EnterpriseControllerCreateStageTests : BaseTests
+    public class ContactEnterpriseControllerCreateStageTests : BaseTests
     {
 
         [TestMethod]

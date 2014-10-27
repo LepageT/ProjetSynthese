@@ -102,6 +102,7 @@ namespace Stagio.Web.Controllers
             public readonly string Delete = "Delete";
             public readonly string CreateStage = "CreateStage";
             public readonly string CreateStageSucceed = "CreateStageSucceed";
+            public readonly string InviteContactEnterprise = "InviteContactEnterprise";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -115,6 +116,7 @@ namespace Stagio.Web.Controllers
             public const string Delete = "Delete";
             public const string CreateStage = "CreateStage";
             public const string CreateStageSucceed = "CreateStageSucceed";
+            public const string InviteContactEnterprise = "InviteContactEnterprise";
         }
 
 
@@ -166,6 +168,14 @@ namespace Stagio.Web.Controllers
         {
             public readonly string createdStage = "createdStage";
         }
+        static readonly ActionParamsClass_InviteContactEnterprise s_params_InviteContactEnterprise = new ActionParamsClass_InviteContactEnterprise();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_InviteContactEnterprise InviteContactEnterpriseParams { get { return s_params_InviteContactEnterprise; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_InviteContactEnterprise
+        {
+            public readonly string createContactEnterpriseViewModel = "createContactEnterpriseViewModel";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -179,11 +189,13 @@ namespace Stagio.Web.Controllers
                 public readonly string CreateConfirmation = "CreateConfirmation";
                 public readonly string CreateStage = "CreateStage";
                 public readonly string CreateStageSucceed = "CreateStageSucceed";
+                public readonly string InviteContactEnterprise = "InviteContactEnterprise";
                 public readonly string Reactivate = "Reactivate";
             }
             public readonly string CreateConfirmation = "~/Views/ContactEnterprise/CreateConfirmation.cshtml";
             public readonly string CreateStage = "~/Views/ContactEnterprise/CreateStage.cshtml";
             public readonly string CreateStageSucceed = "~/Views/ContactEnterprise/CreateStageSucceed.cshtml";
+            public readonly string InviteContactEnterprise = "~/Views/ContactEnterprise/InviteContactEnterprise.cshtml";
             public readonly string Reactivate = "~/Views/ContactEnterprise/Reactivate.cshtml";
         }
     }
@@ -337,6 +349,29 @@ namespace Stagio.Web.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateStageSucceed);
             CreateStageSucceedOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void InviteContactEnterpriseOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult InviteContactEnterprise()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InviteContactEnterprise);
+            InviteContactEnterpriseOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void InviteContactEnterpriseOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Stagio.Web.ViewModels.ContactEnterprise.Reactive createContactEnterpriseViewModel);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult InviteContactEnterprise(Stagio.Web.ViewModels.ContactEnterprise.Reactive createContactEnterpriseViewModel)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InviteContactEnterprise);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "createContactEnterpriseViewModel", createContactEnterpriseViewModel);
+            InviteContactEnterpriseOverride(callInfo, createContactEnterpriseViewModel);
             return callInfo;
         }
 

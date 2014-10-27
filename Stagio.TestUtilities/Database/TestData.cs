@@ -206,7 +206,22 @@ namespace Stagio.TestUtilities.Database
                     NbrStagiaire = 3,
                     stageTitle = "[Inserer titre ici]",
                     CompanyName = "Bonbon inc",
-                    Adresse = "1234 rue des bonbons, Québec"   
+                    Adresse = "1234 rue des bonbons, Québec",
+                    ResponsableToName = "Robert",
+                    ResponsableToEmail = "robert@bonbon.com",
+                    ResponsableToPhone = "432-432-4324",
+                    ResponsableToPoste = 333,
+                    ResponsableToTitle = "CEO",
+                    ContactToName =  "Luc",
+                    ContactToEmail = "luc@bonbon.com",
+                    ContactToPhone = "123-223-3456",
+                    ContactToPoste = 2,
+                    ContactToTitle = "Maitre des bonbons",
+                    StageDescription = "Faire des bonbons, Manger des bonbons...",
+                    EnvironnementDescription = "Sucre, Mélangeur",
+                    SubmitToEmail = "robert@bonbon.com",
+                    SubmitToName = "Robert LeBrun",
+                    SubmitToTitle = "CEO"
                 };
 
                 return stage;
@@ -223,7 +238,7 @@ namespace Stagio.TestUtilities.Database
             {
                 var stage = new Stage()
                 {
-                    LimitDate = DateTime.Now,
+                   LimitDate = DateTime.Now,
                     PublicationDate = DateTime.Now,
                     AcceptedByCoordinator = true,
                     NbrStagiaire = 2,
@@ -238,5 +253,44 @@ namespace Stagio.TestUtilities.Database
 
         #endregion
 
+        #region Stage 3 - Complet
+
+        static public Stage stage3
+        {
+            get
+            {
+                var stage = new Stage()
+                {
+                    PublicationDate = new DateTime(2008, 9, 28, 16, 5, 7, 123),
+                    CompanyName = "Centre de développement pédagogique",
+                    Adresse = "Faculté de médecine, 3358 B pav. Vandry, Université Laval, G1K 7P4",
+                    ResponsableToName = "Denyse Gilbert",
+                    ResponsableToTitle = "Coordonnatrice aux développements",
+                    ResponsableToPhone = "656-2131",
+                    ResponsableToPoste = null,
+                    ResponsableToEmail = "Denyse.Gilbert",
+                    StageDescription = "Notre centre de dévoloppe des applications pédagogiques multimédias pour" +
+                                        " l'enseignement et l'apprentissage dans le domaine des sciences de la santé au niveau" +
+                                        " universitaire. Nous avons remporté le prix du Ministre de l'éducation pour notre application" +
+                                        " pédagogique en cardiopédiatrie ainsi que de nombreux prix d'excelloence en développement " +
+                                        "d'applications pédagogiques multimédias",
+                    EnvironnementDescription = "asdkjlh wef yuijshd jefy wfu scj hldsjyt wu jhlgyaej hhj uiytolral  aluir" +
+                                                " laksdjh z;l sdutypa fhhjyla GFHELA /n kkhjgdkhjfL GFOIA /n saut de ligne",
+                    NbrStagiaire = 2,
+                    StagiaireIfKnew = "",
+                    SubmitToName = "Denyse Gilbert",
+                    SubmitToTitle = "Coordinatrice aux développements APTIC",
+                    SubmitToEmail = "Denyse.Gilbert",
+                    LimitDate = new DateTime(2008,12,10),
+                    AcceptedByCoordinator = false
+                    
+                    
+                };
+
+                return stage;
+            }
+        }
+
+        #endregion
     }
 }

@@ -2,71 +2,65 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Security.Policy;
+using System.Web;
 
-namespace Stagio.Domain.Entities
+namespace Stagio.Web.ViewModels.Stage
 {
-    public class Stage : Entity
+    public class Details
     {
-        [DisplayName("Date de l'offre")]
+
+        [DisplayName("Date de l'offre:")]
         public DateTime PublicationDate { get; set; }
 
         //Maybe an enterprise entity must be created.
-        [DisplayName("Entreprise ou Organisation")]
+        [DisplayName("Entreprise ou Organisation:")]
         public String CompanyName { get; set; }
-
+        [DisplayName("Adresse:")]
         public String Adresse { get; set; }
 
 
         //Responsable
-        [DisplayName("Nom")]
+        [DisplayName("Nom:")]
         public String ResponsableToName { get; set; }
-        [DisplayName("Titre")]
+        [DisplayName("Titre:")]
         public String ResponsableToTitle { get; set; }
-        [DisplayName("Courriel")]
+        [DisplayName("Courriel:")]
         public String ResponsableToEmail { get; set; }
-        [DisplayName("Téléphone")]
+        [DisplayName("Téléphone:")]
         public String ResponsableToPhone { get; set; }
-        [DisplayName("Poste")]
+        [DisplayName("Poste:")]
         public int? ResponsableToPoste { get; set; }
 
         //Contact
-        [DisplayName("Nom")]
+        [DisplayName("Nom:")]
         public String ContactToName { get; set; }
-        [DisplayName("Titre")]
+        [DisplayName("Titre:")]
         public String ContactToTitle { get; set; }
-        [DisplayName("Courriel")]
+        [DisplayName("Courriel:")]
         public String ContactToEmail { get; set; }
-        [DisplayName("Téléphone")]
+        [DisplayName("Téléphone:")]
         public String ContactToPhone { get; set; }
-        [DisplayName("Poste")]
+        [DisplayName("Poste:")]
         public int? ContactToPoste { get; set; }
 
         [DisplayName("Description du projet pour le stage")]
         public String StageDescription { get; set; }
         [DisplayName("Environnement matériel et logiciel spécifique au projet")]
-        //Stage information
-        public string stageTitle { get; set; }
-        public String stageDescription { get; set; }
-
         public String EnvironnementDescription { get; set; }
-        [DisplayName("Nombre de stagiaires")]
+        [DisplayName("Nombre de stagiaires:")]
         public int NbrStagiaire { get; set; }
+
         [DisplayName("Stagiaire si connu:")]
         public string StagiaireIfKnew { get; set; }
-        [DisplayName("Nom")]
-
+        [DisplayName("Nom:")]
         //Submit to:
         public String SubmitToName { get; set; }
-        [DisplayName("Titre")]
+        [DisplayName("Titre:")]
         public String SubmitToTitle { get; set; }
-        [DisplayName("Courriel")]
+        [DisplayName("Courriel:")]
         public String SubmitToEmail { get; set; }
-        [DisplayName("Date limite pour soummettre une candidature")]
+        [DisplayName("Date limite pour soummettre une candidature:")]
         public DateTime LimitDate { get; set; }
-
-        public Boolean AcceptedByCoordinator { get; set; }
-
     }
 }
