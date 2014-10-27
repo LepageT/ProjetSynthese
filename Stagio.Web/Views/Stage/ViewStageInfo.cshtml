@@ -1,193 +1,212 @@
 ﻿@model Stagio.Web.ViewModels.Stage.ViewInfo
 
-@{
-    ViewBag.Title = "Description";
-}
+<!DOCTYPE html>
 
-<h2 id="view-stage-info">Description</h2>
+<html>
+<head>
+    <title>Formulaire d'offre de stage</title>
+</head>
+<body>
+    <div>
+        <h4 id="details-stage-page" style="text-align:center">Formulaire d'offre de stage</h4>
+        <h4 style="text-align:center">Stage en entreprise de 11 semaines</h4>
+        <h4 style="text-align:center">Département d'informatique du Cégep de Sainte-Foy</h4>
+        <hr />
+        <div class="dl-horizontal">
+            <div class="row">
+                <div class="col-md-2">
+                    <b> @Html.DisplayNameFor(model => model.PublicationDate)</b>
+                </div>
 
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Offre de stage publiée le:
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PublicationDate)
-        </dd>
+                <div class="col-md-offset-1 col-md-2">
+                    @Html.DisplayFor(model => model.PublicationDate)
 
-        <dt>
-            Date limite pour postuler:
-        </dt>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <b>@Html.DisplayNameFor(model => model.CompanyName)</b>
+                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.LimitDate)
-        </dd>
-    </dl>
-    <h4>Stage offert par:</h4>
+                <div class="col-md-9">
+                    @Html.DisplayFor(model => model.CompanyName)
+                </div>
+            </div>
 
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CompanyName)
-        </dt>
+            <div class="row">
+                <div class="col-md-2">
+                    <b>@Html.DisplayNameFor(model => model.Adresse)</b>
+                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.CompanyName)
-        </dd>
+                <div class="col-md-offset-1 col-md-6">
+                    @Html.DisplayFor(model => model.Adresse)
+                </div>
+            </div>
+            <h5><b>Responsable du stage:</b></h5>
+            <div>
+                <div class="row">
+                    <div class="col-md-1">
+                        @Html.DisplayNameFor(model => model.ResponsableToName)
+                    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Adresse)
-        </dt>
+                    <div class="col-md-2">
+                        @Html.DisplayFor(model => model.ResponsableToName)
+                    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Adresse)
-        </dd>
-    </dl>
-    <h4>Responsable du stage:</h4>
-    <dl class="dl-horizontal">
+                    <div class="col-md-1">
+                        @Html.DisplayNameFor(model => model.ResponsableToTitle)
+                    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ResponsableToName)
-        </dt>
+                    <div class="col-md-4">
+                        @Html.DisplayFor(model => model.ResponsableToTitle)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">
+                        @Html.DisplayNameFor(model => model.ResponsableToPhone)
+                    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.ResponsableToName)
-        </dd>
+                    <div class="col-md-2">
+                        @Html.DisplayFor(model => model.ResponsableToPhone)
+                    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ResponsableToTitle)
-        </dt>
+                    <div class="col-md-1">
+                        @Html.DisplayNameFor(model => model.ResponsableToPoste)
+                    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.ResponsableToTitle)
-        </dd>
+                    <div class="col-md-1">
+                        @Html.DisplayFor(model => model.ResponsableToPoste)
+                    </div>
+                    <div class="col-md-1">
+                        @Html.DisplayNameFor(model => model.ResponsableToEmail)
+                    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ResponsableToEmail)
-        </dt>
+                    <div class="col-md-5">
+                        @Html.DisplayFor(model => model.ResponsableToEmail)
+                    </div>
+                </div>
+            </div>
+            <h5><b>Autre contact pour le stage:</b></h5>
+            <div>
+                <div class="row">
+                    <div class="col-md-1">
+                        @Html.DisplayNameFor(model => model.ContactToName)
+                    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.ResponsableToEmail)
-        </dd>
+                    <div class="col-md-2">
+                        @Html.DisplayFor(model => model.ContactToName)
+                    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ResponsableToPhone)
-        </dt>
+                    <div class="col-md-4">
+                        @Html.DisplayNameFor(model => model.ContactToTitle)
+                    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.ResponsableToPhone)
-        </dd>
+                    <div class="col-md-2">
+                        @Html.DisplayFor(model => model.ContactToTitle)
+                    </div>
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ResponsableToPoste)
-        </dt>
+                <div class="row">
 
-        <dd>
-            @Html.DisplayFor(model => model.ResponsableToPoste)
-        </dd>
-    </dl>
-    @if (Model.ContactToName != null)
-    {
-        <h4>Autre contact:</h4>
-        <dl class="dl-horizontal">
 
-            <dt>
-                @Html.DisplayNameFor(model => model.ContactToName)
-            </dt>
+                    <div class="col-md-1">
+                        @Html.DisplayNameFor(model => model.ContactToPhone)
+                    </div>
 
-            <dd>
-                @Html.DisplayFor(model => model.ContactToName)
-            </dd>
+                    <div class="col-md-2">
+                        @Html.DisplayFor(model => model.ContactToPhone)
+                    </div>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.ContactToTitle)
-            </dt>
+                    <div class="col-md-1">
+                        @Html.DisplayNameFor(model => model.ContactToPoste)
+                    </div>
 
-            <dd>
-                @Html.DisplayFor(model => model.ContactToTitle)
-            </dd>
+                    <div class="col-md-1">
+                        @Html.DisplayFor(model => model.ContactToPoste)
+                    </div>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.ContactToEmail)
-            </dt>
+                    <div class="col-md-1">
+                        @Html.DisplayNameFor(model => model.ContactToEmail)
+                    </div>
 
-            <dd>
-                @Html.DisplayFor(model => model.ContactToEmail)
-            </dd>
+                    <div class="col-md-5">
+                        @Html.DisplayFor(model => model.ContactToEmail)
+                    </div>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.ContactToPhone)
-            </dt>
+                </div>
+            </div>
+            <br>
+            <h5><b>@Html.DisplayNameFor(model => model.StageDescription)</b></h5>
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.DisplayFor(model => model.StageDescription)
+                </div>
+            </div>
+            <h5><b>@Html.DisplayNameFor(model => model.EnvironnementDescription)</b></h5>
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.DisplayFor(model => model.EnvironnementDescription)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <b>@Html.DisplayNameFor(model => model.NbrStagiaire)</b>
+                </div>
 
-            <dd>
-                @Html.DisplayFor(model => model.ContactToPhone)
-            </dd>
+                <div class="col-md-2">
+                    @Html.DisplayFor(model => model.NbrStagiaire)
+                </div>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.ContactToPoste)
-            </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.ContactToPoste)
-            </dd>
+                <div class="col-md-2">
+                    @Html.DisplayNameFor(model => model.StagiaireIfKnew)
+                </div>
 
-        </dl>
-    }
-    <h4>Description du stage:</h4>
+                <div class="col-md-3">
+                    @Html.DisplayFor(model => model.StagiaireIfKnew)
+                </div>
+            </div>
+            <h5><b>Soumettre les candidatures à</b></h5>
+            <div class="row">
+                <div class="col-md-1">
+                    @Html.DisplayNameFor(model => model.SubmitToName)
+                </div>
 
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.StageDescription)
-        </dt>
+                <div class="col-md-2">
+                    @Html.DisplayFor(model => model.SubmitToName)
+                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.StageDescription)
-        </dd>
+                <div class="col-md-1">
+                    @Html.DisplayNameFor(model => model.SubmitToTitle)
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EnvironnementDescription)
-        </dt>
+                <div class="col-md-4">
+                    @Html.DisplayFor(model => model.SubmitToTitle)
+                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.EnvironnementDescription)
-        </dd>
+                <div class="col-md-1">
+                    @Html.DisplayNameFor(model => model.SubmitToEmail)
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NbrStagiaire)
-        </dt>
+                <div class="col-md-3">
+                    @Html.DisplayFor(model => model.SubmitToEmail)
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-4">
+                    <b>@Html.DisplayNameFor(model => model.LimitDate)</b>
+                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.NbrStagiaire)
-        </dd>
-    </dl>
-    <h4>Soummettre les candidatures à:</h4>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.SubmitToName)
-        </dt>
+                <div class="col-md-2">
+                    @Html.DisplayFor(model => model.LimitDate)
+                </div>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.SubmitToName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SubmitToTitle)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SubmitToTitle)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SubmitToEmail)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SubmitToEmail)
-        </dd>
-    </dl>
-</div>
-<p>
-    @*//TODO changer le lien de retour.*@
-    @Html.ActionLink("Retour à la liste de stages", MVC.Home.Index())
-</p>
+        </div>
+    </div>
+    <p>
+        @Html.ActionLink("Retourner à la liste", MVC.Stage.ListNewStages())
+    </p>
+</body>
+</html>

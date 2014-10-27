@@ -94,5 +94,7 @@ namespace Stagio.Web.ViewModels.Stage
 
         public DateTime PublicationDate { get; set; }
 
+        [DisplayName("Stagiaire si connu:")]
+        public string StagiaireIfKnew { get; set; }
     }
 }

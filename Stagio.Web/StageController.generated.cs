@@ -66,6 +66,12 @@ namespace Stagio.Web.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult ChangeStatus()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ChangeStatus);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public StageController Actions { get { return MVC.Stage; } }
@@ -85,6 +91,7 @@ namespace Stagio.Web.Controllers
             public readonly string ListNewStages = "ListNewStages";
             public readonly string ViewStageInfo = "ViewStageInfo";
             public readonly string Details = "Details";
+            public readonly string ChangeStatus = "ChangeStatus";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -93,6 +100,7 @@ namespace Stagio.Web.Controllers
             public const string ListNewStages = "ListNewStages";
             public const string ViewStageInfo = "ViewStageInfo";
             public const string Details = "Details";
+            public const string ChangeStatus = "ChangeStatus";
         }
 
 
@@ -110,6 +118,15 @@ namespace Stagio.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Details
         {
+            public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_ChangeStatus s_params_ChangeStatus = new ActionParamsClass_ChangeStatus();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ChangeStatus ChangeStatusParams { get { return s_params_ChangeStatus; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ChangeStatus
+        {
+            public readonly string command = "command";
             public readonly string id = "id";
         }
         static readonly ViewsClass s_views = new ViewsClass();
@@ -169,6 +186,19 @@ namespace Stagio.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             DetailsOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ChangeStatusOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string command, int id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Details(string command, int id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ChangeStatus);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "command", command);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ChangeStatusOverride(callInfo, command, id);
             return callInfo;
         }
 

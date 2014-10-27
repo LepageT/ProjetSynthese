@@ -62,7 +62,10 @@ namespace Stagio.Domain.Entities
         [DisplayName("Date limite pour soummettre une candidature")]
         public DateTime LimitDate { get; set; }
 
-        public Boolean AcceptedByCoordinator { get; set; }
+        //0 => Nouveau
+        //1 => Refuser
+        //2 => Accepter
+        public int Status  { get; set; }
 
     }
 }

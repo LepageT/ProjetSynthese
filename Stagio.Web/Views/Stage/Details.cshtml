@@ -19,8 +19,8 @@
                 </div>
 
                 <div class="col-md-offset-1 col-md-2">
-                     @Html.DisplayFor(model => model.PublicationDate)
-                    
+                    @Html.DisplayFor(model => model.PublicationDate)
+
                 </div>
             </div>
             <div class="row">
@@ -208,5 +208,15 @@
     <p>
         @Html.ActionLink("Retourner à la liste", MVC.Stage.ListNewStages())
     </p>
+    @using (Html.BeginForm("Details", "Stage"))
+    {
+        @Html.HiddenFor(model => model.Id)
+        <input type="submit" value="Accepter" name="command" />
+        <input type="submit" value="Refuser" name="command" />
+    }
 </body>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
 </html>

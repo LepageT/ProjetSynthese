@@ -9,6 +9,7 @@ namespace Stagio.Web.ViewModels.Stage
 {
     public class Details
     {
+        public int Id { get; set; }
 
         [DisplayName("Date de l'offre:")]
         public DateTime PublicationDate { get; set; }
