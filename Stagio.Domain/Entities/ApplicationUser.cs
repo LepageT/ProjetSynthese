@@ -31,7 +31,7 @@ namespace Stagio.Domain.Entities
         
         //Navigation properties
         public virtual ICollection<UserRole> Roles { get; set; }
-
+        public bool Active { get; set; }
         public ApplicationUser()
         {
             Roles = new List<UserRole>();

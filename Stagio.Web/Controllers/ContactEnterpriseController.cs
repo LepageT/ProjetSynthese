@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using Stagio.DataLayer;
+using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
 using Stagio.Web.Services;
 using Stagio.Web.Module.Strings.Email;
@@ -49,6 +51,10 @@ namespace Stagio.Web.Controllers
             contactEnterprise.Telephone = telephone;
             contactEnterprise.Poste = poste;
             contactEnterprise.UserName = email;
+            contactEnterprise.Roles = new List<UserRole>()
+            {
+                new UserRole() {RoleName = RoleName.ContactEnterprise}
+            };
             var contactEnterpriseCreatePageViewModel = Mapper.Map<ViewModels.ContactEnterprise.Reactive>(contactEnterprise);
             return View(contactEnterpriseCreatePageViewModel);
         }
@@ -76,6 +82,10 @@ namespace Stagio.Web.Controllers
                 {
                     var newContactEnterprise = Mapper.Map<ContactEnterprise>(createViewModel);
                     newContactEnterprise.UserName = newContactEnterprise.Email;
+                    newContactEnterprise.Roles = new List<UserRole>()
+            {
+                new UserRole() {RoleName = RoleName.ContactEnterprise}
+            };
                     _contactEnterpriseRepository.Add(newContactEnterprise);
                     //ADD NOTIFICATIONS: À la coordination et aux autres employés de l'entreprise.
                     return RedirectToAction(MVC.ContactEnterprise.CreateConfirmation());
@@ -137,11 +147,14 @@ namespace Stagio.Web.Controllers
                 return View();
             }
         }
+
+        [Authorize(Roles = RoleName.ContactEnterprise)]
         public virtual ActionResult CreateStage()
         {
             return View();
         }
 
+        [Authorize(Roles = RoleName.ContactEnterprise)]
         [HttpPost]
         public virtual ActionResult CreateStage(ViewModels.Stage.Create createdStage)
         {
@@ -158,21 +171,22 @@ namespace Stagio.Web.Controllers
             return RedirectToAction(MVC.ContactEnterprise.CreateStageSucceed());
         }
 
+        [Authorize(Roles = RoleName.ContactEnterprise)]
         public virtual ActionResult CreateStageSucceed()
         {
             return View();
         }
 
+        [Authorize(Roles = RoleName.ContactEnterprise)]
         public virtual ActionResult InviteContactEnterprise()
         {
             return View();
         }
 
+        [Authorize(Roles = RoleName.ContactEnterprise)]
         [HttpPost]
         public virtual ActionResult InviteContactEnterprise(ViewModels.ContactEnterprise.Reactive createContactEnterpriseViewModel)
         {
-           
-
             if (createContactEnterpriseViewModel.Email != null)
             {
                 var contactEnterpriseToSendMessage = Mapper.Map<ContactEnterprise>(createContactEnterpriseViewModel);
@@ -221,6 +235,6 @@ namespace Stagio.Web.Controllers
             messageText += invitationUrl;
             return messageText;
         }
-    
+
     }
 }

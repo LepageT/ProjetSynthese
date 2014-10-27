@@ -5,6 +5,7 @@ using System.Text;
 using System.Web.Mvc;
 using AutoMapper;
 using Stagio.DataLayer;
+using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
 using Stagio.Web.Module.Strings.Controller;
 using Stagio.Web.Module.Strings.Email;
@@ -89,6 +90,7 @@ namespace Stagio.Web.Controllers
             }
         }
 
+        [Authorize(Roles = RoleName.Coordinator)]
         // GET: Coordinator/InviteEnterprise
         public virtual ActionResult InviteContactEnterprise()
         {
@@ -101,6 +103,7 @@ namespace Stagio.Web.Controllers
 
         }
 
+        [Authorize(Roles = RoleName.Coordinator)]
         // POST: Coordinator/InviteEnterprise
         [HttpPost]
         [ActionName("InviteContactEnterprise")]
@@ -142,6 +145,7 @@ namespace Stagio.Web.Controllers
 
         }
 
+        [Authorize(Roles = RoleName.Coordinator)]
         private string generateURLInvitationContactEnterprise(ContactEnterprise contactEnterpriseToSendMessage)
         {
             string enterpriseName = contactEnterpriseToSendMessage.EnterpriseName;
@@ -233,11 +237,13 @@ namespace Stagio.Web.Controllers
             return HttpNotFound();
         }
 
+        [Authorize(Roles = RoleName.Coordinator)]
         public virtual ActionResult Invite()
         {
             return View();
         }
 
+        [Authorize(Roles = RoleName.Coordinator)]
         [HttpPost]
         public virtual ActionResult Invite(ViewModels.Coordinator.Invite createdInvite)
         {

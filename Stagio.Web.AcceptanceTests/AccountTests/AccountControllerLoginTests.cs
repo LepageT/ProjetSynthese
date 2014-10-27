@@ -20,16 +20,7 @@ namespace Stagio.Web.AcceptanceTests.AccountTests
         [TestMethod]
         public void application_user_can_log_in()
         {
-            var user = TestData.applicationUser;
-
-            var loginInput = _driver.FindElement(By.Id("Username"));
-            loginInput.SendKeys(user.UserName);
-
-            var passwordInput = _driver.FindElement(By.Id("Password"));
-            passwordInput.SendKeys("test4test");
-
-            var loginButton = _driver.FindElement(By.Id("login-submit"));
-            loginButton.Click();
+           AuthentificateTestUser();
 
             var body = _driver.FindElement(By.ClassName("navbar"));
            

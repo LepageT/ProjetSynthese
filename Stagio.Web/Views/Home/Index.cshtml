@@ -1,8 +1,13 @@
-﻿<h2 id="home-page">Bienvenue</h2>
+﻿@using System.Configuration
+@using Microsoft.AspNet.Identity
+<h2 id="home-page">Bienvenue</h2>
 
 <h4>Étudiant</h4>
 <div>
-    @Html.ActionLink("Modifier le profil 1", MVC.Student.Edit(1), new { id = "edit-student" })
+    @if (Request.IsAuthenticated)
+    {
+        @Html.ActionLink("Modifier le profil 1", MVC.Student.Edit(Int32.Parse(@User.Identity.GetUserId())), new {id = "edit-student"})
+    }
 </div>
 <div>
     @Html.ActionLink("Créer profil étudiant", MVC.Student.Create(), new { id = "create-student" })

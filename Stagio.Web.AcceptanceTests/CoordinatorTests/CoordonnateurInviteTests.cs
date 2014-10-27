@@ -10,6 +10,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
         [TestMethod]
         public void coordinator_should_be_able_to_send_invitation()
         {
+            AuthentificateTestUser();
             _driver.Navigate().GoToUrl("http://thomarelau.local/Coordinator/Invite");
            
             try
@@ -27,7 +28,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
         {
             const string EMAIL = "thomarelau@hotmail.com";
             const string TEXT = "Tremblay";
-
+            AuthentificateTestUser();
 
             _driver.Navigate().GoToUrl("http://thomarelau.local/Coordinator/Invite");
             _driver.FindElement(By.Id("Email")).Clear();

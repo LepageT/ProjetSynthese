@@ -25,6 +25,10 @@ namespace Stagio.Web.Services
             {
                 return new MayBe<ApplicationUser>();
             }
+            if (user.Active == false)
+            {
+                return new MayBe<ApplicationUser>();
+            }
             if (!PasswordHash.ValidatePassword(password, user.Password))
             {
                 return new MayBe<ApplicationUser>();

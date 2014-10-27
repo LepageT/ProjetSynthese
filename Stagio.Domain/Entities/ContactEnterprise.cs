@@ -14,6 +14,6 @@ namespace Stagio.Domain.Entities
         public string EnterpriseName { get; set; }
 
         public int? Poste { get; set; }
-        public bool Active { get; set; }
+       
     }
 }

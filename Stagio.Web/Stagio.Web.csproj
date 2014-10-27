@@ -302,7 +302,6 @@
     <Content Include="Views\Student\Upload.cshtml" />
     <Content Include="Views\Student\CreateList.cshtml" />
     <Content Include="Views\Student\ResultCreateList.cshtml" />
-    <Content Include="Views\Student\Edit.cshtml" />
     <Content Include="Views\ContactEnterprise\Reactivate.cshtml" />
     <Content Include="Views\Coordinator\InviteContactEnterprise.cshtml" />
     <Content Include="Views\Coordinator\InviteContactEnterpriseConfirmation.cshtml" />

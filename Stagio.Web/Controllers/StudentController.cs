@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using AutoMapper;
+using Microsoft.AspNet.Identity;
 using Stagio.DataLayer;
+using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
 using Stagio.Web.Module;
 using Stagio.Web.ViewModels.Student;
@@ -25,11 +28,13 @@ namespace Stagio.Web.Controllers
             _stageRepository = stageRepository;
         }
 
+        [Authorize(Roles = RoleName.Coordinator)]
         public virtual ActionResult Upload()
         {
             return View();
         }
 
+        [Authorize(Roles = RoleName.Coordinator)]
         [HttpPost, ActionName("Upload")]
         public virtual ActionResult UploadPost(HttpPostedFileBase file)
         {
@@ -63,6 +68,7 @@ namespace Stagio.Web.Controllers
             return View("");
         }
 
+        [Authorize(Roles = RoleName.Coordinator)]
         public virtual ActionResult ResultCreateList()
         {
             var resultCreateList = new ResultCreateList();
@@ -72,6 +78,7 @@ namespace Stagio.Web.Controllers
             return View(resultCreateList);
         }
 
+        [Authorize(Roles = RoleName.Coordinator)]
         [HttpPost]
         [ActionName("ResultCreateList")]
         public virtual ActionResult PostResultCreateList()
@@ -79,6 +86,7 @@ namespace Stagio.Web.Controllers
             return RedirectToAction(MVC.Home.Index());
         }
 
+        [Authorize(Roles = RoleName.Coordinator)]
         public virtual ActionResult CreateList()
         {
             var listStudents = TempData["listStudent"] as List<ListStudent>;
@@ -86,6 +94,7 @@ namespace Stagio.Web.Controllers
             return View(listStudents);
         }
 
+        [Authorize(Roles = RoleName.Coordinator)]
         [HttpPost]
         [ActionName("CreateList")]
 
@@ -189,11 +198,20 @@ namespace Stagio.Web.Controllers
 
             return RedirectToAction(MVC.Home.Index());
         }
+       
+        [Authorize(Roles = RoleName.Student)]
+        
         // GET: Student/Edit/5
         public virtual ActionResult Edit(int id)
         {
+            var identity = (ClaimsIdentity)User.Identity; 
+            var userID = identity.FindFirst(ClaimTypes.NameIdentifier).Value;
+            if (id != int.Parse(userID))
+            {
+                id = int.Parse(userID);
+            }
             var student = _studentRepository.GetById(id);
-
+            
             if (student != null)
             {
                 var studentEditPageViewModel = Mapper.Map<ViewModels.Student.Edit>(student);
@@ -203,6 +221,8 @@ namespace Stagio.Web.Controllers
             return HttpNotFound();
         }
 
+
+        [Authorize(Roles = RoleName.Student)]
         // POST: Student/Edit/5
         [HttpPost]
         public virtual ActionResult Edit(ViewModels.Student.Edit editStudentViewModel)
@@ -234,12 +254,18 @@ namespace Stagio.Web.Controllers
             return RedirectToAction(MVC.Home.Index());
         }
 
+        [Authorize(Roles = RoleName.Student)]
         public virtual ActionResult StageList()
         {
             var stages = _stageRepository.GetAll().ToList();
             var stagesAccepted = stages.Where(x => x.AcceptedByCoordinator == 1);
             var studentStageListViewModels = Mapper.Map<IEnumerable<ViewModels.Student.StageList>>(stagesAccepted);
+          
+            var identity = (ClaimsIdentity) User.Identity;
+            var email = identity.FindFirst(ClaimTypes.Email).Value;
+            
             return View(studentStageListViewModels);
+            
         }
     }
 }

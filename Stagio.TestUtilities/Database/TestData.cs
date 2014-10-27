@@ -74,6 +74,7 @@ namespace Stagio.TestUtilities.Database
                     LastName = "Nolan",
                     Telephone = "123-456-7890",
                     Matricule = 1234560,
+                    Email = "1234@stagio.web",
                     Password = PasswordHash.CreateHash("qwerty98")
                 };
 
@@ -154,6 +155,10 @@ namespace Stagio.TestUtilities.Database
                 var enterprise = new ContactEnterprise()
                 {
                     Id = 1,
+                    Roles = new List<UserRole>()
+                             {
+                                 new UserRole() {RoleName = RoleName.ContactEnterprise}
+                             },
                     EnterpriseName = "test",
                     FirstName = "Quentin",
                     LastName = "Tarantino",
@@ -161,6 +166,29 @@ namespace Stagio.TestUtilities.Database
                     Email = "blabla@hotmail.com",
                     Password = PasswordHash.CreateHash("qwerty12"),
                     Active = false
+                };
+                enterprise.UserName = enterprise.Email;
+                return enterprise;
+            }
+        }
+        #endregion
+
+        #region ContactEnterprise3 - activated
+
+        static public ContactEnterprise contactEnterprise3
+        {
+            get
+            {
+                var enterprise = new ContactEnterprise()
+                {
+                    Id = 1007,
+                    EnterpriseName = "MI6",
+                    FirstName = "James",
+                    LastName = "Bond",
+                    Telephone = "007-007-7000",
+                    Email = "bond.james.007@hotmail.com",
+                    Password = PasswordHash.CreateHash("qwerty12"),
+                    Active = true
                 };
                 enterprise.UserName = enterprise.Email;
                 return enterprise;

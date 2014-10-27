@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ploeh.AutoFixture;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
+using Stagio.TestUtilities.Database;
 
 
 namespace Stagio.Web.AcceptanceTests
@@ -40,6 +41,24 @@ namespace Stagio.Web.AcceptanceTests
                                    ImageFormat.Png);
         }
 
+
+        public void AuthentificateTestUser()//User with all access for testing purpose on controller with roles authorize
+        {
+            var menuElement = _driver.FindElement(By.Id("login-link"));
+            menuElement.Click();
+
+            var user = TestData.applicationUser;
+
+            var loginInput = _driver.FindElement(By.Id("Username"));
+            loginInput.SendKeys(user.UserName);
+
+            var passwordInput = _driver.FindElement(By.Id("Password"));
+            passwordInput.SendKeys("test4test");
+
+            var loginButton = _driver.FindElement(By.Id("login-submit"));
+            loginButton.Click();
+        } 
+        
         
     }
 }

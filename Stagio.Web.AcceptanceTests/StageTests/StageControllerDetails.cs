@@ -10,6 +10,7 @@ namespace Stagio.Web.AcceptanceTests.StageTests
         [TestMethod]
         public void coordinator_can_see_details_stage_page()
         {
+            AuthentificateTestUser();
             _driver.FindElement(By.Id("list")).Click();
             _driver.FindElement(By.Id("details-stages1")).Click();
             try

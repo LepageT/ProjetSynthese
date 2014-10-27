@@ -14,6 +14,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
         [TestMethod]
         public void contact_enterprise_should_be_able_to_access_invite_another_contact_page()
         {
+            AuthentificateTestUser();
             _driver.Navigate().GoToUrl("http://thomarelau.local/ContactEnterprise/InviteContactEnterprise");
 
             try
@@ -29,6 +30,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
         [TestMethod]
         public void contact_enterprise_should_be_able_to_invite_another_contact_enterprise()
         {
+            AuthentificateTestUser();
             const string MESSAGE_INVITATION = "test";
             const string EMAIL = "test@test.com";
             const string FIRST_NAME = "Bob";
@@ -57,6 +59,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
         [TestMethod]
         public void contact_enterprise_should_not_be_able_to_invite_another_contact_enterprise_if_there_is_no_email()
         {
+            AuthentificateTestUser();
             _driver.Navigate().GoToUrl("http://thomarelau.local/ContactEnterprise/InviteContactEnterprise");
             _driver.FindElement(By.Id("send-button")).Click();
             try
