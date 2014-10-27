@@ -17,15 +17,15 @@ namespace Stagio.Web.UnitTests.ValidationTests
     {
 
 
-        [TestMethod]
-        public void email_should_be_valid_if_it_is_not_in_db()
-        {
-            const string emailValid = "testEmail@hotmail.com";
+        //[TestMethod]
+        //public void email_should_be_valid_if_it_is_not_in_db()
+        //{
+        //    const string emailValid = "testEmail@hotmail.com";
 
-              var resultValidEmail = IsValid(emailValid);
+        //      var resultValidEmail = IsValid(emailValid);
 
-              resultValidEmail.ShouldBeEquivalentTo(true);
-        }
+        //      resultValidEmail.ShouldBeEquivalentTo(true);
+        //}
 
        
         //[TestMethod]
