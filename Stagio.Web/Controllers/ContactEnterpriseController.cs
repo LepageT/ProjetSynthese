@@ -17,12 +17,16 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<Stage> _stageRepository;
         private readonly IAccountService _accountService;
         private readonly IMailler _mailler;
+        private readonly  IEntityRepository<Apply> _applyRepository;
+        private readonly IEntityRepository<Student> _studentRepository;
 
-        public ContactEnterpriseController(IEntityRepository<ContactEnterprise> enterpriseRepository, IEntityRepository<Stage> stageRepository, IAccountService accountService, IMailler mailler)
+        public ContactEnterpriseController(IEntityRepository<ContactEnterprise> enterpriseRepository, IEntityRepository<Stage> stageRepository, IAccountService accountService, IMailler mailler, IEntityRepository<Apply> applyRepository, IEntityRepository<Student> studentRepository )
         {
             _contactEnterpriseRepository = enterpriseRepository;
             _accountService = accountService;
             _stageRepository = stageRepository;
+            _applyRepository = applyRepository;
+            _studentRepository = studentRepository;
             _mailler = mailler;
         }
 
@@ -202,6 +206,39 @@ namespace Stagio.Web.Controllers
             return View(createContactEnterpriseViewModel);
         }
 
+        public virtual ActionResult ListStudentApply(int id)
+        {
+            var students = _applyRepository.GetAll().Where(x => x.IdStage == id).Select(x=> x.IdStudent);
+            var listStudents = new List<Student>();
+
+            foreach (var student in students)
+            {
+                listStudents.Add(_studentRepository.GetById(student));
+            }
+
+            var listStudentsApply = Mapper.Map<IEnumerable<ViewModels.Student.ListStudent>>(listStudents).ToList();
+            return View(listStudentsApply);
+        }
+
+        [HttpPost]
+        public virtual ActionResult ListStudentApply()
+        {  
+            return View();
+        }
+
+        public virtual ActionResult ListStage()
+        {
+            
+            var stages = _stageRepository.GetAll();
+            var listStages =  Mapper.Map<IEnumerable<ViewModels.ContactEnterprise.ListStage>>(stages).ToList();
+            return View(listStages);
+        }
+
+        [HttpPost]
+        public virtual ActionResult ListStage(int id)
+        {
+            return View();
+        }
 
         private string generateURLInvitationContactEnterprise(ContactEnterprise contactEnterpriseToSendMessage)
         {
@@ -224,3 +261,4 @@ namespace Stagio.Web.Controllers
     
     }
 }
+

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Stagio.Web.ViewModels.ContactEnterprise.ListStage>
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+        <title>ListStage</title>
+</head>
+<body>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PublicationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NbApply)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PublicationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NbApply)
+            </td>
+            <td>
+                @Html.ActionLink("Afficher les postulants", "ListStudentApply", new { id = item.Id }, new { id = "list-stages" + item.Id })
+                
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

@@ -103,6 +103,8 @@ namespace Stagio.Web.Controllers
             public readonly string CreateStage = "CreateStage";
             public readonly string CreateStageSucceed = "CreateStageSucceed";
             public readonly string InviteContactEnterprise = "InviteContactEnterprise";
+            public readonly string ListStudentApply = "ListStudentApply";
+            public readonly string ListStage = "ListStage";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -117,6 +119,8 @@ namespace Stagio.Web.Controllers
             public const string CreateStage = "CreateStage";
             public const string CreateStageSucceed = "CreateStageSucceed";
             public const string InviteContactEnterprise = "InviteContactEnterprise";
+            public const string ListStudentApply = "ListStudentApply";
+            public const string ListStage = "ListStage";
         }
 
 
@@ -176,6 +180,22 @@ namespace Stagio.Web.Controllers
         {
             public readonly string createContactEnterpriseViewModel = "createContactEnterpriseViewModel";
         }
+        static readonly ActionParamsClass_ListStudentApply s_params_ListStudentApply = new ActionParamsClass_ListStudentApply();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ListStudentApply ListStudentApplyParams { get { return s_params_ListStudentApply; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ListStudentApply
+        {
+            public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_ListStage s_params_ListStage = new ActionParamsClass_ListStage();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ListStage ListStageParams { get { return s_params_ListStage; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ListStage
+        {
+            public readonly string id = "id";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -190,12 +210,16 @@ namespace Stagio.Web.Controllers
                 public readonly string CreateStage = "CreateStage";
                 public readonly string CreateStageSucceed = "CreateStageSucceed";
                 public readonly string InviteContactEnterprise = "InviteContactEnterprise";
+                public readonly string ListStage = "ListStage";
+                public readonly string ListStudentApply = "ListStudentApply";
                 public readonly string Reactivate = "Reactivate";
             }
             public readonly string CreateConfirmation = "~/Views/ContactEnterprise/CreateConfirmation.cshtml";
             public readonly string CreateStage = "~/Views/ContactEnterprise/CreateStage.cshtml";
             public readonly string CreateStageSucceed = "~/Views/ContactEnterprise/CreateStageSucceed.cshtml";
             public readonly string InviteContactEnterprise = "~/Views/ContactEnterprise/InviteContactEnterprise.cshtml";
+            public readonly string ListStage = "~/Views/ContactEnterprise/ListStage.cshtml";
+            public readonly string ListStudentApply = "~/Views/ContactEnterprise/ListStudentApply.cshtml";
             public readonly string Reactivate = "~/Views/ContactEnterprise/Reactivate.cshtml";
         }
     }
@@ -372,6 +396,52 @@ namespace Stagio.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InviteContactEnterprise);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "createContactEnterpriseViewModel", createContactEnterpriseViewModel);
             InviteContactEnterpriseOverride(callInfo, createContactEnterpriseViewModel);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ListStudentApplyOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ListStudentApply()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ListStudentApply);
+            ListStudentApplyOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ListStudentApplyOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ListStudentApply(int id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ListStudentApply);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ListStudentApplyOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ListStageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ListStage()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ListStage);
+            ListStageOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ListStageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ListStage(int id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ListStage);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ListStageOverride(callInfo, id);
             return callInfo;
         }
 
