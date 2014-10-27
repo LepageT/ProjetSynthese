@@ -117,6 +117,7 @@
     <Compile Include="ControllerTests\StudentTests\StudentControllerCreateListTests.cs" />
     <Compile Include="ControllerTests\StudentTests\StudentControllerUploadTests.cs" />
     <Compile Include="ControllerTests\StudentTests\StudentControllerResultCreateList.cs" />
+    <Compile Include="Services\MaillerTests.cs" />
     <Compile Include="Services\UserServicesTests.cs" />
     <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerCreateTests.cs" />
     <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerInviteTest.cs" />
