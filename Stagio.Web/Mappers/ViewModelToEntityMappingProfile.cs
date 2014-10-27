@@ -40,6 +40,9 @@ namespace Stagio.Web.Mappers
                 .ForMember(dest => dest.AcceptedByCoordinator, opt => opt.MapFrom(src => 0))
                 .ForMember(dest => dest.PublicationDate, opt => opt.Ignore())
                 .IgnoreAllNonExisting();
+
+            Mapper.CreateMap<ViewModels.Student.Apply, Apply>()
+               .IgnoreAllNonExisting();
         }
     }
 }

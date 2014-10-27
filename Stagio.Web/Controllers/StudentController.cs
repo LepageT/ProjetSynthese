@@ -16,13 +16,15 @@ namespace Stagio.Web.Controllers
     public partial class StudentController : Controller
     {
         private readonly IEntityRepository<Student> _studentRepository;
-        private readonly IEntityRepository<Stage> _stageRepository; 
+        private readonly IEntityRepository<Stage> _stageRepository;
+        private readonly IEntityRepository<Stagio.Domain.Entities.Apply> _applyRepository;
         // private readonly IEntityRepository<Activation> _activationRepository;
 
-        public StudentController(IEntityRepository<Student> studentRepository, IEntityRepository<Stage> stageRepository)
+        public StudentController(IEntityRepository<Student> studentRepository, IEntityRepository<Stage> stageRepository, IEntityRepository<Stagio.Domain.Entities.Apply> applyRepository)
         {
             _studentRepository = studentRepository;
             _stageRepository = stageRepository;
+            _applyRepository = applyRepository;
         }
 
         public virtual ActionResult Upload()
@@ -240,6 +242,35 @@ namespace Stagio.Web.Controllers
             var stagesAccepted = stages.Where(x => x.AcceptedByCoordinator == 1);
             var studentStageListViewModels = Mapper.Map<IEnumerable<ViewModels.Student.StageList>>(stagesAccepted);
             return View(studentStageListViewModels);
+        }
+
+
+        public virtual ActionResult Apply(int id)
+        {
+            var applyViewModel = new ViewModels.Student.Apply();
+            applyViewModel.IdStage = id;
+            //Get ID Student with login. For now, temp value idStudent = 1
+            applyViewModel.IdStudent = 1;
+            return View(applyViewModel);
+        }
+
+        [HttpPost]
+        public virtual ActionResult Apply(ViewModels.Student.Apply applyStudentViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(applyStudentViewModel);
+            }
+            var newApplicationStudent = Mapper.Map<Stagio.Domain.Entities.Apply>(applyStudentViewModel);
+           
+            _applyRepository.Add(newApplicationStudent);
+
+            return RedirectToAction(MVC.Student.ApplyConfirmation());
+        }
+
+        public virtual ActionResult ApplyConfirmation()
+        {
+            return View();
         }
     }
 }

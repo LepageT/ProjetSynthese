@@ -50,6 +50,9 @@ namespace Stagio.Web.Mappers
 
             Mapper.CreateMap<Stage, ViewModels.Stage.ViewInfo>();
 
+            Mapper.CreateMap<Student, ViewModels.Student.Apply>()
+                .IgnoreAllNonExisting();
+
 
         }
     }

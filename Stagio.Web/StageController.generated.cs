@@ -66,6 +66,12 @@ namespace Stagio.Web.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult DetailsPost()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DetailsPost);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public StageController Actions { get { return MVC.Stage; } }
@@ -85,6 +91,7 @@ namespace Stagio.Web.Controllers
             public readonly string ListNewStages = "ListNewStages";
             public readonly string ViewStageInfo = "ViewStageInfo";
             public readonly string Details = "Details";
+            public readonly string DetailsPost = "Details";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -93,6 +100,7 @@ namespace Stagio.Web.Controllers
             public const string ListNewStages = "ListNewStages";
             public const string ViewStageInfo = "ViewStageInfo";
             public const string Details = "Details";
+            public const string DetailsPost = "Details";
         }
 
 
@@ -111,6 +119,14 @@ namespace Stagio.Web.Controllers
         public class ActionParamsClass_Details
         {
             public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_DetailsPost s_params_DetailsPost = new ActionParamsClass_DetailsPost();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_DetailsPost DetailsPostParams { get { return s_params_DetailsPost; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_DetailsPost
+        {
+            public readonly string button = "button";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -169,6 +185,18 @@ namespace Stagio.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             DetailsOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void DetailsPostOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string button);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult DetailsPost(string button)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DetailsPost);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "button", button);
+            DetailsPostOverride(callInfo, button);
             return callInfo;
         }
 
