@@ -14,10 +14,12 @@ namespace Stagio.Web.ViewModels.Student
         public int Id { get; set; }
 
         [DisplayName("CV")]
+        [DataType(DataType.MultilineText)]
         [Required(ErrorMessage = "Requis")]
         public string Cv { get; set; }
 
         [DisplayName("Lettre de présentation")]
+        [DataType(DataType.MultilineText)]
         [Required(ErrorMessage = "Requis")]
         public string Letter { get; set; }
 

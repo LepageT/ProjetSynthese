@@ -82,6 +82,7 @@
     <Compile Include="StageTests\StageControllerStudentViewInformationsTests.cs" />
     <Compile Include="StageTests\StageControllerListNewStages.cs" />
     <Compile Include="StageTests\StageControllerDetails.cs" />
+    <Compile Include="StudentTests\StudentControllerApplyTests.cs" />
     <Compile Include="StudentTests\StudentControllerEditTests.cs" />
     <Compile Include="StudentTests\StudentControllerCreateListTests.cs" />
     <Compile Include="StudentTests\StudentControllerUploadTests.cs" />

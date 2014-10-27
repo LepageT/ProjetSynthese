@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
@@ -253,7 +254,9 @@ namespace Stagio.Web.Controllers
             {
                 var applyViewModel = new ViewModels.Student.Apply();
                 applyViewModel.IdStage = id;
-                //Get ID Student with login. For now, temp value idStudent = 1
+                //Get ID Student with login when login implemented. For now, temp value idStudent = 1
+                /*var identity = (ClaimsIdentity)User.Identity; 
+                var idStudent = identity; //.FindFirst(ClaimTypes.Email).Value;*/
                 applyViewModel.IdStudent = 1;
                 return View(applyViewModel);
             }
