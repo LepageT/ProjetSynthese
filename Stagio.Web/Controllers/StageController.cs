@@ -56,14 +56,27 @@ namespace Stagio.Web.Controllers
             
             return View(details);
         }
+
         [HttpPost]
         public virtual ActionResult Details(string command, int id)
         {
             var stage = _stageRepository.GetById(id);
+
+
             if (stage == null)
             {
                 return View();
             }
+
+            if (command.Equals("Accepter"))
+            {
+                stage.Status = 1; //1 = Accepter;
+            }
+            else if (command.Equals("Refuser"))
+            {
+                stage.Status = 2; //2 = Refuser;
+            }
+
             if (command.Equals("Accepter"))
             {
                 stage.Status = 1; //1 = Accepter;

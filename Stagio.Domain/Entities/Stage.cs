@@ -65,6 +65,11 @@ namespace Stagio.Domain.Entities
         public String SubmitToEmail { get; set; }
         [DisplayName("Date limite pour soummettre une candidature")]
         public DateTime LimitDate { get; set; }
+
+        //0 => Nouveau
+        //1 => Accepter
+        //2 => Refuser
+        [DefaultValue(0)]
         [Range(0,3)]
         public int Status { get; set; }
 

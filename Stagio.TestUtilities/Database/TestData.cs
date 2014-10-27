@@ -212,7 +212,7 @@ namespace Stagio.TestUtilities.Database
                     ResponsableToPhone = "432-432-4324",
                     ResponsableToPoste = 333,
                     ResponsableToTitle = "CEO",
-                    ContactToName =  "Luc",
+                    ContactToName = "Luc",
                     ContactToEmail = "luc@bonbon.com",
                     ContactToPhone = "123-223-3456",
                     ContactToPoste = 2,
@@ -276,6 +276,7 @@ namespace Stagio.TestUtilities.Database
                                         "d'applications pédagogiques multimédias",
                     EnvironnementDescription = "asdkjlh wef yuijshd jefy wfu scj hldsjyt wu jhlgyaej hhj uiytolral  aluir" +
                                                 " laksdjh z;l sdutypa fhhjyla GFHELA /n kkhjgdkhjfL GFOIA /n saut de ligne",
+                    StageTitle = "patate",
                     NbrStagiaire = 2,
                     StagiaireIfKnew = "",
                     SubmitToName = "Denyse Gilbert",
