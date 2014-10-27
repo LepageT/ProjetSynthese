@@ -21,7 +21,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         public void student_should_be_able_to_access_stage_descritpion()
         {
             _driver.Navigate().GoToUrl("http://thomarelau.local/Student/StageList");
-            _driver.FindElement(By.Id("details-stages2")).Click();
+            _driver.FindElement(By.Id("details-stages3")).Click();
             try
             {
                 _driver.FindElement(By.Id("view-stage-info"));

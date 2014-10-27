@@ -184,13 +184,13 @@ namespace Stagio.TestUtilities.Database
                     Active = false
                 };
                 enterprise.UserName = enterprise.Email;
-
+               
                 return enterprise;
             }
         }
         #endregion
 
-
+       
 
         #region Stage 1
 
@@ -238,9 +238,9 @@ namespace Stagio.TestUtilities.Database
             {
                 var stage = new Stage()
                 {
-                    LimitDate = DateTime.Now,
+                   LimitDate = DateTime.Now,
                     PublicationDate = DateTime.Now,
-                    Status = 2,
+                    Status = 1,
                     NbrStagiaire = 2,
                     StageTitle = "[Inserer titre ici]",
                     CompanyName = "Musique inc",
@@ -282,10 +282,10 @@ namespace Stagio.TestUtilities.Database
                     SubmitToName = "Denyse Gilbert",
                     SubmitToTitle = "Coordinatrice aux développements APTIC",
                     SubmitToEmail = "Denyse.Gilbert",
-                    LimitDate = new DateTime(2008, 12, 10),
-                    Status = 1
-
-
+                    LimitDate = new DateTime(2008,12,10),
+                    Status = 0
+                    
+                    
                 };
 
                 return stage;

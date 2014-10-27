@@ -7,6 +7,7 @@ using NSubstitute;
 using Ploeh.AutoFixture;
 using Stagio.Domain.Entities;
 using Ploeh;
+using Stagio.Web.Controllers;
 
 namespace Stagio.Web.UnitTests.ControllerTests.StageTests
 {

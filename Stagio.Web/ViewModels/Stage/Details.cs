@@ -63,5 +63,7 @@ namespace Stagio.Web.ViewModels.Stage
         public String SubmitToEmail { get; set; }
         [DisplayName("Date limite pour soummettre une candidature:")]
         public DateTime LimitDate { get; set; }
+
+        public int Status { get; set; }
     }
 }

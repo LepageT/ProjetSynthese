@@ -71,6 +71,7 @@ namespace Stagio.Domain.Entities
         //2 => Refuser
         [DefaultValue(0)]
         [Range(0,3)]
-        public int Status  { get; set; }
+        public int Status { get; set; }
+
     }
 }
