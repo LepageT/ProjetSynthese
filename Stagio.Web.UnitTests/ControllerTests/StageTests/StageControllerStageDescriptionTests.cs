@@ -13,7 +13,7 @@ using Stagio.Domain.Entities;
 namespace Stagio.Web.UnitTests.ControllerTests.StageTests
 {
     [TestClass]
-    public class StageControllerStageDescriptionTests : AllControllersBaseClassTests
+    public class StageControllerStageDescriptionTests : StageControllerBaseClassTests
     {
         [TestMethod]
         public void stage_viewStageInfo_should_render_view()
