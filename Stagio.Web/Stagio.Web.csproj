@@ -250,7 +250,6 @@
     </Compile>
     <Compile Include="Validations\ValidationPassword.cs" />
     <Compile Include="Validations\ValidationRequireField.cs" />
-    <Compile Include="Validations\ValidationVerifyIfEmailIsUnique.cs" />
     <Compile Include="ViewModels\ContactEnterprise\Reactive.cs" />
     <Compile Include="ViewModels\Account\Login.cs" />
     <Compile Include="ViewModels\Stage\Create.cs" />
