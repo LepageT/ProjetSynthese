@@ -13,14 +13,14 @@ using Stagio.Web.Validations;
 namespace Stagio.Web.UnitTests.ValidationTests
 {
     [TestClass]
-    public class ValidationVerifyIfEmailIsUniqueTest : ValidationVerifyIfEmailIsUnique 
+    public class ValidationVerifyIfEmailIsUniqueTest : ValidationVerifyIfEmailIsUnique
     {
 
 
         [TestMethod]
         public void email_should_be_valid_if_it_is_not_in_db()
         {
-          /*const string emailValid = "testEmail@hotmail.com";
+            /*const string emailValid = "testEmail@hotmail.com";
 
             var resultValidEmail = IsValid(emailValid);
 

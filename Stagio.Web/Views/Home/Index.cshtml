@@ -15,9 +15,15 @@
 <div>
     @Html.ActionLink("Ajouter des étudiants", MVC.Student.Upload(), new { id = "upload-student" })
 </div>
+<div>
+    @Html.ActionLink("Inviter les employés d'entreprises", MVC.Coordinator.InviteContactEnterprise(), new { id = "invite-enterprise" })
+</div>
 <h4>Employé d'une entreprise</h4>
 <div>
     @Html.ActionLink("Créer un profil entreprise", MVC.ContactEnterprise.Reactivate(), new { id = "create-enterprise" })
+</div>
+<div>
+    @Html.ActionLink("Inviter un autre employé", MVC.ContactEnterprise.InviteContactEnterprise(), new { id = "invite-contact-enterprise" })
 </div>
 <h4>Stage</h4>
 <div>
