@@ -35,11 +35,12 @@
                 @Html.DisplayFor(modelItem => item.companyName)
             </td>
             <td>
-                @Html.ActionLink(item.stageTitle, MVC.Home.Index()) <!--index is here has a placeholder... should be stage details...-->
+                @Html.ActionLink(item.stageTitle, "../Stage/ViewStageInfo", new { id = item.Id }, new { id = "details-stages" + item.Id })
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.limitDate)
             </td>
+            
             <td></td>
         </tr>
     }
