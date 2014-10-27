@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -64,8 +65,8 @@ namespace Stagio.Domain.Entities
         public String SubmitToEmail { get; set; }
         [DisplayName("Date limite pour soummettre une candidature")]
         public DateTime LimitDate { get; set; }
-
-        public Boolean AcceptedByCoordinator { get; set; }
+        [Range(0,3)]
+        public int AcceptedByCoordinator { get; set; }
 
     }
 }
