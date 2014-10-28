@@ -19,7 +19,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Cv, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Cv)
+                @Html.TextAreaFor(model => model.Cv, new { cols = 50, @rows = 15 })
                 @Html.DisplayFor(model => model.Cv)
                 @Html.ValidationMessageFor(model => model.Cv, "", new { @class = "text-danger" })
             </div>
@@ -28,7 +28,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Letter, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Letter)
+                @Html.TextAreaFor(model => model.Letter, new { cols = 50, @rows = 15 })
                 @Html.DisplayFor(model => model.Letter)
                 @Html.ValidationMessageFor(model => model.Letter, "", new { @class = "text-danger" })
             </div>
