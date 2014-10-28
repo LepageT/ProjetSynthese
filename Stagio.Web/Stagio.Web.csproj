@@ -257,6 +257,7 @@
     <Compile Include="ViewModels\Stage\ListAllStages.cs" />
     <Compile Include="ViewModels\Stage\ListNewStages.cs" />
     <Compile Include="ViewModels\Stage\ViewInfo.cs" />
+    <Compile Include="ViewModels\Student\Apply.cs" />
     <Compile Include="ViewModels\Student\Create.cs" />
     <Compile Include="ViewModels\Coordinator\Create.cs" />
     <Compile Include="ViewModels\Coordinator\Invite.cs" />
@@ -301,7 +302,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -315,7 +315,6 @@
     <Content Include="Views\Coordinator\InviteContactEnterprise.cshtml" />
     <Content Include="Views\Coordinator\InviteContactEnterpriseConfirmation.cshtml" />
     <Content Include="Views\ContactEnterprise\CreateConfirmation.cshtml" />
-    <Content Include="Views\Coordinator\InviteEnterprise.cshtml" />
     <Content Include="Views\ContactEnterprise\CreateStage.cshtml" />
     <Content Include="Views\Coordinator\InvitationSucceed.cshtml" />
     <Content Include="Views\Student\StageList.cshtml" />
@@ -324,6 +323,9 @@
     <Content Include="Views\Stage\ListNewStages.cshtml" />
     <Content Include="Views\Stage\ViewStageInfo.cshtml" />
     <Content Include="Views\Stage\Details.cshtml" />
+    <Content Include="Views\Student\Apply.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Student\ApplyConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt.hooks.t4" />

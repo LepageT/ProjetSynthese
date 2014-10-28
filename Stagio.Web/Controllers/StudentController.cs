@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
@@ -16,13 +17,15 @@ namespace Stagio.Web.Controllers
     public partial class StudentController : Controller
     {
         private readonly IEntityRepository<Student> _studentRepository;
-        private readonly IEntityRepository<Stage> _stageRepository; 
+        private readonly IEntityRepository<Stage> _stageRepository;
+        private readonly IEntityRepository<Stagio.Domain.Entities.Apply> _applyRepository;
         // private readonly IEntityRepository<Activation> _activationRepository;
 
-        public StudentController(IEntityRepository<Student> studentRepository, IEntityRepository<Stage> stageRepository)
+        public StudentController(IEntityRepository<Student> studentRepository, IEntityRepository<Stage> stageRepository, IEntityRepository<Stagio.Domain.Entities.Apply> applyRepository)
         {
             _studentRepository = studentRepository;
             _stageRepository = stageRepository;
+            _applyRepository = applyRepository;
         }
 
         public virtual ActionResult Upload()
@@ -240,6 +243,51 @@ namespace Stagio.Web.Controllers
             var stagesAccepted = stages.Where(x => x.Status == 1);
             var studentStageListViewModels = Mapper.Map<IEnumerable<ViewModels.Student.StageList>>(stagesAccepted);
             return View(studentStageListViewModels);
+        }
+
+
+        public virtual ActionResult Apply(int id)
+        {
+            var stage = _stageRepository.GetById(id);
+
+            if (stage != null)
+            {
+                var applyViewModel = new ViewModels.Student.Apply();
+                applyViewModel.IdStage = id;
+                //Get ID Student with login when login implemented. For now, temp value idStudent = 1
+                /*var identity = (ClaimsIdentity)User.Identity; 
+                var idStudent = identity; //.FindFirst(ClaimTypes.Email).Value;*/
+                applyViewModel.IdStudent = 1;
+                return View(applyViewModel);
+            }
+            return HttpNotFound();
+            
+        }
+
+        [HttpPost]
+        public virtual ActionResult Apply(ViewModels.Student.Apply applyStudentViewModel)
+        {
+            var stage = _stageRepository.GetById(applyStudentViewModel.IdStage);
+
+            if (stage == null)
+            {
+                return HttpNotFound();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(applyStudentViewModel);
+            }
+            var newApplicationStudent = Mapper.Map<Stagio.Domain.Entities.Apply>(applyStudentViewModel);
+           
+            _applyRepository.Add(newApplicationStudent);
+
+            return RedirectToAction(MVC.Student.ApplyConfirmation());
+        }
+
+        public virtual ActionResult ApplyConfirmation()
+        {
+            return View();
         }
     }
 }

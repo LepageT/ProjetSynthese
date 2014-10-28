@@ -188,7 +188,6 @@ namespace Stagio.Web.Controllers
                 public readonly string Invite = "Invite";
                 public readonly string InviteContactEnterprise = "InviteContactEnterprise";
                 public readonly string InviteContactEnterpriseConfirmation = "InviteContactEnterpriseConfirmation";
-                public readonly string InviteEnterprise = "InviteEnterprise";
             }
             public readonly string Create = "~/Views/Coordinator/Create.cshtml";
             public readonly string Index = "~/Views/Coordinator/Index.cshtml";
@@ -196,7 +195,6 @@ namespace Stagio.Web.Controllers
             public readonly string Invite = "~/Views/Coordinator/Invite.cshtml";
             public readonly string InviteContactEnterprise = "~/Views/Coordinator/InviteContactEnterprise.cshtml";
             public readonly string InviteContactEnterpriseConfirmation = "~/Views/Coordinator/InviteContactEnterpriseConfirmation.cshtml";
-            public readonly string InviteEnterprise = "~/Views/Coordinator/InviteEnterprise.cshtml";
         }
     }
 
