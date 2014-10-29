@@ -54,5 +54,15 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
 
             model.Count.Should().NotBe(0);
         }
+
+
+        [TestMethod]
+        public void contactEnterpriseController_listStudentApply_should_render_view_with_0_student_if_list_empty()
+        {
+            var result = enterpriseController.ListStudentApply(999999999);
+
+            result.Should().BeOfType<HttpNotFoundResult>();
+
+        }
     }
 }

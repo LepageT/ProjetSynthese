@@ -208,7 +208,19 @@ namespace Stagio.Web.Controllers
 
         public virtual ActionResult ListStudentApply(int id)
         {
-            var applies = _applyRepository.GetAll().Where(x => x.IdStage == id).ToList();
+
+            var applies = new List<Apply>();
+
+            try
+            {
+                applies = _applyRepository.GetAll().Where(x => x.IdStage == id).ToList();
+            }
+            catch (Exception)
+            {
+                
+                return  HttpNotFound();
+            }
+          
             var listStudents = new List<Student>();
             var students = _studentRepository.GetAll().ToList();
 
