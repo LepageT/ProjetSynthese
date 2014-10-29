@@ -14,6 +14,12 @@ namespace Stagio.Web.AcceptanceTests
     {
         protected IWebDriver _driver { get; set; }
 
+        protected const string CoordonatorUsername = "coordonnateur@stagio.com";
+        protected const string CoordonatorPassword = "test4test";
+
+        protected const string StudentUsername = "1234567";
+        protected const string StudentPassword = "qwerty12";
+
         [TestInitialize]
         public void Initialize()
         {
@@ -42,23 +48,21 @@ namespace Stagio.Web.AcceptanceTests
         }
 
 
-        public void AuthentificateTestUser()//User with all access for testing purpose on controller with roles authorize
+        public void AuthentificateTestUser(string username, string password)//User with all access for testing purpose on controller with roles authorize
         {
             var menuElement = _driver.FindElement(By.Id("login-link"));
             menuElement.Click();
 
-            var user = TestData.applicationUser;
+           // var user = TestData.applicationUser;
 
             var loginInput = _driver.FindElement(By.Id("Username"));
-            loginInput.SendKeys(user.UserName);
+            loginInput.SendKeys(username);
 
             var passwordInput = _driver.FindElement(By.Id("Password"));
-            passwordInput.SendKeys("test4test");
+            passwordInput.SendKeys(password);
 
             var loginButton = _driver.FindElement(By.Id("login-submit"));
             loginButton.Click();
-        } 
-        
-        
+        }
     }
 }

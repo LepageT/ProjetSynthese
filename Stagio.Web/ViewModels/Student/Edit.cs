@@ -36,7 +36,6 @@ namespace Stagio.Web.ViewModels.Student
         public string OldPassword { get; set; }
 
         [DisplayName("Mot de passe")]
-        [Required(ErrorMessage = "Requis")]
         [DataType(DataType.Password)]
         [MinLength(8)]
         [ValidationPassword]

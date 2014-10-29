@@ -20,7 +20,7 @@ namespace Stagio.Web.AcceptanceTests.AccountTests
         [TestMethod]
         public void application_user_can_log_in()
         {
-           AuthentificateTestUser();
+           AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
 
             var body = _driver.FindElement(By.ClassName("navbar"));
            
@@ -43,16 +43,7 @@ namespace Stagio.Web.AcceptanceTests.AccountTests
         [TestMethod]
         public void authentificated_user_should_be_able_to_logout_after_valid_login()
         {
-            var user = TestData.applicationUser;
-
-            var loginInput = _driver.FindElement(By.Id("Username"));
-            loginInput.SendKeys(user.UserName);
-
-            var passwordInput = _driver.FindElement(By.Id("Password"));
-            passwordInput.SendKeys("test4test");
-
-            var loginButton = _driver.FindElement(By.Id("login-submit"));
-            loginButton.Click();
+            AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
 
             var logOut = _driver.FindElement(By.Id("logout-link"));
             logOut.Click();

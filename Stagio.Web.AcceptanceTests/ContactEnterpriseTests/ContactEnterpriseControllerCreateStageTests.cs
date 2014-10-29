@@ -11,7 +11,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
         [TestMethod]
         public void enterprise_should_be_able_to_see_the_page_to_create_stage()
         {
-            AuthentificateTestUser();
+            AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
             _driver.Navigate().GoToUrl("http://thomarelau.local/ContactEnterprise/CreateStage");
 
             try
@@ -27,7 +27,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
         [TestMethod]
         public void enterprise_should_be_able_to_create_a_stage()
         {
-            AuthentificateTestUser();
+            AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
             const string ENTERPRISE_NAME = "Les lapins joyeux";
             const string ENTERPRISE_ADRESSE = "10 rue des Bucherons";
             const string ENTERPRISE_RESP_NAME = "Luke";

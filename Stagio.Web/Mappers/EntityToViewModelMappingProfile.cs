@@ -18,6 +18,7 @@ namespace Stagio.Web.Mappers
             Mapper.CreateMap<Student, ViewModels.Student.Edit>()
                 .ForMember(dest => dest.PasswordConfirmation, opt => opt.Ignore())
                 .ForMember(dest => dest.OldPassword, opt => opt.Ignore())
+                .ForMember(dest => dest.Password, opt => opt.Ignore())
                 .IgnoreAllNonExisting();
 
             Mapper.CreateMap<Student, ViewModels.Student.Create>()

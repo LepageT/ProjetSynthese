@@ -2,7 +2,7 @@
 @using Microsoft.AspNet.Identity
 <h2 id="home-page">Bienvenue</h2>
 <div>Users<br/>
-    Coordonnateur (compte de tests, sauf pour le edit de student) 
+    Coordonnateur (compte de tests, sauf pour les edit) 
     <br/> Username: coordonnateur@stagio.com
     <br/> Password: test4test
     <br/><br/>
@@ -13,20 +13,35 @@
     Contact Entreprise
     <br/>Username: bond.james.007@hotmail.com
     <br/>Password: qwerty12
-</div>
-<h4>Étudiant</h4>
-<div>
-    @Html.ActionLink("Student", MVC.Student.Index(), new { id = "index-Student" })
-</div>
-<h4>Coordonnateur</h4>
-<div>
-    @Html.ActionLink("Coordinator", MVC.Coordinator.Index(), new { id = "index-coordonnateur" })
-</div>
+</div><br/>
 
-<h4>Employé d'une entreprise</h4>
-<div>
-    @Html.ActionLink("Enterprise", MVC.ContactEnterprise.Index(), new { id = "index-enterprise" })
-</div>
+@Html.ActionLink("Créer un profil étudiant", MVC.Student.Create(), new { id = "create-student" })<br/>
+@Html.ActionLink("Créer un profil coordonnateur", MVC.Coordinator.Create(), new { id = "create-coordinator" })<br/>
+@Html.ActionLink("Créer un profil entreprise", MVC.ContactEnterprise.Reactivate(), new { id = "create-enterprise" })<br/>
+
+@if(@User.IsInRole("Étudiant"))
+{
+    <h4>Étudiant</h4>
+    <div>  
+        @Html.ActionLink("Student", MVC.Student.Index(), new { id = "index-Student" })     
+    </div>
+}
+
+@if(@User.IsInRole("Coordonnateur"))
+{
+    <h4>Coordonnateur</h4>
+    <div>
+        @Html.ActionLink("Coordinator", MVC.Coordinator.Index(), new { id = "index-coordonnateur" })
+    </div>
+}
+
+@if(@User.IsInRole("Contact entreprise"))
+{ 
+    <h4>Employé d'une entreprise</h4>
+    <div>
+        @Html.ActionLink("Enterprise", MVC.ContactEnterprise.Index(), new { id = "index-enterprise" })
+    </div>
+}
 <h4>Stage</h4>
 <div>
     @Html.ActionLink("Liste des stages pour un coordonnateur", MVC.Stage.ListNewStages(), new { id = "list" })
@@ -34,4 +49,5 @@
 <div>
     @Html.ActionLink("Visualiser la description du stage 1", MVC.Stage.ViewStageInfo(1), new { id = "stage-1" })
 </div>
+
 

@@ -24,7 +24,8 @@ namespace Stagio.TestUtilities.Database
                    },
                     Password = PasswordHash.CreateHash("test4test"),
                     UserName = "coordonnateur@stagio.com",
-                    Name = "Super admin coordonnateur Tux"
+                    Name = "Super admin coordonnateur Tux",
+                    Active = true
                 };
                 user.Email = user.UserName;
                 return user;
@@ -48,7 +49,8 @@ namespace Stagio.TestUtilities.Database
                     LastName = "Tarantino",
                     Telephone = "123-456-7890",
                     Matricule = 1234567,
-                    Password = PasswordHash.CreateHash("qwerty12")
+                    Password = PasswordHash.CreateHash("qwerty12"),
+                    Active = true
                 };
 
                 student.Name = student.FirstName + " " + student.LastName;

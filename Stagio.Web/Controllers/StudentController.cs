@@ -205,17 +205,20 @@ namespace Stagio.Web.Controllers
             return RedirectToAction(MVC.Home.Index());
         }
        
-        [Authorize(Roles = RoleName.Student)]
-        
+        [Authorize(Roles = RoleName.Student)] 
         // GET: Student/Edit/5
         public virtual ActionResult Edit(int id)
         {
-            var identity = (ClaimsIdentity)User.Identity; 
-            var userID = identity.FindFirst(ClaimTypes.NameIdentifier).Value;
-            if (id != int.Parse(userID))
+            if(User != null)
             {
-                id = int.Parse(userID);
+                var identity = (ClaimsIdentity)User.Identity;
+                var userID = identity.FindFirst(ClaimTypes.NameIdentifier).Value;
+                if (id != int.Parse(userID))
+                {
+                    id = int.Parse(userID);
+                }
             }
+
             var student = _studentRepository.GetById(id);
             
             if (student != null)
@@ -239,9 +242,12 @@ namespace Stagio.Web.Controllers
                 return HttpNotFound();
             }
 
-            if (!PasswordHash.ValidatePassword(editStudentViewModel.OldPassword, student.Password))
+            if (editStudentViewModel.OldPassword != null)
             {
-                ModelState.AddModelError("OldPassword", "L'ancien mot de passe n'est pas valide.");
+                if (!PasswordHash.ValidatePassword(editStudentViewModel.OldPassword, student.Password))
+                {
+                    ModelState.AddModelError("OldPassword", "L'ancien mot de passe n'est pas valide.");
+                }
             }
 
             if (!ModelState.IsValid)
@@ -250,7 +256,7 @@ namespace Stagio.Web.Controllers
             }
             if (editStudentViewModel.PasswordConfirmation != null)
             {
-                editStudentViewModel.PasswordConfirmation = PasswordHash.CreateHash(editStudentViewModel.PasswordConfirmation);
+                editStudentViewModel.Password = PasswordHash.CreateHash(editStudentViewModel.PasswordConfirmation);
             }
 
             Mapper.Map(editStudentViewModel, student);
@@ -267,8 +273,7 @@ namespace Stagio.Web.Controllers
             var stagesAccepted = stages.Where(x => x.AcceptedByCoordinator == 1);
             var studentStageListViewModels = Mapper.Map<IEnumerable<ViewModels.Student.StageList>>(stagesAccepted);
           
-            var identity = (ClaimsIdentity) User.Identity;
-            var email = identity.FindFirst(ClaimTypes.Email).Value;
+            
             
             return View(studentStageListViewModels);
             
