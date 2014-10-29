@@ -281,6 +281,9 @@ namespace Stagio.Web.Controllers
             var newApplicationStudent = Mapper.Map<Stagio.Domain.Entities.Apply>(applyStudentViewModel);
             newApplicationStudent.Status = 0;   //0 = En attente
             _applyRepository.Add(newApplicationStudent);
+            int nbApplyCurrently = stage.NbApply;
+            stage.NbApply = nbApplyCurrently + 1;
+            _stageRepository.Update(stage);
 
             return RedirectToAction(MVC.Student.ApplyConfirmation());
         }

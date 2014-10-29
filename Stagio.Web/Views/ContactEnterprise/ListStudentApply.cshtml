@@ -18,6 +18,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.FirstName)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
             <th></th>
         </tr>
 
@@ -30,6 +33,24 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.FirstName)
                 </td>
+                @if (item.Status == 0)
+                {
+                <td>
+                    En attente
+                </td>
+                }
+                else if (item.Status == 1)
+                {
+                <td>
+                    Acceptée
+                </td>
+                }
+                else if (item.Status == 2)
+                {
+                <td>
+                    Refusée
+                </td>
+                }
                 <td>
                     @Html.ActionLink("Afficher le cv et la lettre de la présentation de l'étudiant", MVC.ContactEnterprise.DetailsStudentApply(item.Id))
                 </td>

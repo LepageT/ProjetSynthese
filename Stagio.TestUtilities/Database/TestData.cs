@@ -200,6 +200,8 @@ namespace Stagio.TestUtilities.Database
             {
                 var stage = new Stage()
                 {
+                    Id = 1,
+                    NbApply = 1,
                     LimitDate = DateTime.Now,
                     PublicationDate = DateTime.Now,
                     Status = 0,
