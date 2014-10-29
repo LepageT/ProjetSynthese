@@ -72,10 +72,10 @@
   <ItemGroup>
     <Compile Include="AccountTests\AccountControllerLoginTests.cs" />
     <Compile Include="BaseTests.cs" />
+    <Compile Include="ContactEnterpriseTests\ContactEnterpriseControllerDetailsStudentApplyTests.cs" />
     <Compile Include="ContactEnterpriseTests\ContactEnterpriseInviteTests.cs" />
     <Compile Include="ContactEnterpriseTests\ContactEnterpriseControllerListStage.cs" />
     <Compile Include="ContactEnterpriseTests\ConntactEnterpriseListStudentApplyTests.cs" />
-    <Compile Include="ContactEnterpriseTests\ContactEnterpriseControllerDetailsStudentApplyTests.cs" />
     <Compile Include="CoordinatorTests\CoordinatorControllerInviteEnterpriseTests.cs" />
     <Compile Include="ContactEnterpriseTests\ContactEnterpriseControllerCreateTests.cs" />
     <Compile Include="CoordinatorTests\CoordonnateurCreateTests.cs" />
@@ -85,6 +85,7 @@
     <Compile Include="StageTests\StageControllerStudentViewInformationsTests.cs" />
     <Compile Include="StageTests\StageControllerListNewStages.cs" />
     <Compile Include="StageTests\StageControllerDetails.cs" />
+    <Compile Include="StudentTests\StudentControllerApplyTests.cs" />
     <Compile Include="StudentTests\StudentControllerEditTests.cs" />
     <Compile Include="StudentTests\StudentControllerCreateListTests.cs" />
     <Compile Include="StudentTests\StudentControllerUploadTests.cs" />

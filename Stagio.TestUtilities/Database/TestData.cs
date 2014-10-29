@@ -200,6 +200,8 @@ namespace Stagio.TestUtilities.Database
             {
                 var stage = new Stage()
                 {
+                    Id = 1,
+                    NbApply = 1,
                     LimitDate = DateTime.Now,
                     PublicationDate = DateTime.Now,
                     Status = 0,
@@ -210,12 +212,12 @@ namespace Stagio.TestUtilities.Database
                     ResponsableToName = "Robert",
                     ResponsableToEmail = "robert@bonbon.com",
                     ResponsableToPhone = "432-432-4324",
-                    ResponsableToPoste = 333,
+                    ResponsableToPoste = "333",
                     ResponsableToTitle = "CEO",
                     ContactToName = "Luc",
                     ContactToEmail = "luc@bonbon.com",
                     ContactToPhone = "123-223-3456",
-                    ContactToPoste = 2,
+                    ContactToPoste = "2",
                     ContactToTitle = "Maitre des bonbons",
                     StageDescription = "Faire des bonbons, Manger des bonbons...",
                     EnvironnementDescription = "Sucre, Mélangeur",

@@ -11,13 +11,15 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         protected StudentController studentController;
         protected IEntityRepository<Student> studentRepository;
         protected IEntityRepository<Stage> stageRepository;
+        protected IEntityRepository<Apply> applyRepository;
         
         [TestInitialize]
         public void StudentControllerTestInit()
         {
             studentRepository = Substitute.For<IEntityRepository<Student>>();
             stageRepository = Substitute.For<IEntityRepository<Stage>>();
-            studentController = new StudentController(studentRepository, stageRepository);
+            applyRepository = Substitute.For<IEntityRepository<Apply>>();
+            studentController = new StudentController(studentRepository, stageRepository, applyRepository);
         }
     }
 }

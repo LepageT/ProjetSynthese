@@ -111,6 +111,7 @@
     <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerBaseClassTests.cs" />
     <Compile Include="ControllerTests\StageTests\StageControllerListNewStagesTests.cs" />
     <Compile Include="ControllerTests\StageTests\StageControllerBaseClassTests.cs" />
+    <Compile Include="ControllerTests\StudentTests\StudentControllerApplyTests.cs" />
     <Compile Include="ControllerTests\StudentTests\StudentControllerBaseClassTests.cs" />
     <Compile Include="ControllerTests\StageTests\StageControllerStageDescriptionTests.cs" />
     <Compile Include="ControllerTests\StageTests\StageControllerDetails.cs" />
@@ -126,7 +127,6 @@
     <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerInviteTest.cs" />
     <Compile Include="ControllerTests\StudentTests\StudentControllerCreateTests.cs" />
     <Compile Include="ValidationTests\ValidationPasswordTests.cs" />
-    <Compile Include="ValidationTests\ValidationVerifyIfEmailIsUniqueTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

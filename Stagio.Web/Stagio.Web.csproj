@@ -55,6 +55,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="FluentAssertions">
+      <HintPath>..\packages\FluentAssertions.3.2.1\lib\net45\FluentAssertions.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentAssertions.Core">
+      <HintPath>..\packages\FluentAssertions.3.2.1\lib\net45\FluentAssertions.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -93,6 +99,9 @@
     </Reference>
     <Reference Include="Ninject.Web.Mvc">
       <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="NSubstitute">
+      <HintPath>..\packages\NSubstitute.1.7.2.0\lib\NET45\NSubstitute.dll</HintPath>
     </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -245,10 +254,9 @@
     </Compile>
     <Compile Include="Validations\ValidationPassword.cs" />
     <Compile Include="Validations\ValidationRequireField.cs" />
-    <Compile Include="Validations\ValidationVerifyIfEmailIsUnique.cs" />
     <Compile Include="ViewModels\Apply\StudentApply.cs" />
-    <Compile Include="ViewModels\ContactEnterprise\ListStage.cs" />
     <Compile Include="ViewModels\ContactEnterprise\ListStudentApply.cs" />
+    <Compile Include="ViewModels\ContactEnterprise\ListStage.cs" />
     <Compile Include="ViewModels\ContactEnterprise\Reactive.cs" />
     <Compile Include="ViewModels\Account\Login.cs" />
     <Compile Include="ViewModels\Stage\Create.cs" />
@@ -256,6 +264,7 @@
     <Compile Include="ViewModels\Stage\ListAllStages.cs" />
     <Compile Include="ViewModels\Stage\ListNewStages.cs" />
     <Compile Include="ViewModels\Stage\ViewInfo.cs" />
+    <Compile Include="ViewModels\Student\Apply.cs" />
     <Compile Include="ViewModels\Student\Create.cs" />
     <Compile Include="ViewModels\Coordinator\Create.cs" />
     <Compile Include="ViewModels\Coordinator\Invite.cs" />
@@ -300,7 +309,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -314,7 +322,6 @@
     <Content Include="Views\Coordinator\InviteContactEnterprise.cshtml" />
     <Content Include="Views\Coordinator\InviteContactEnterpriseConfirmation.cshtml" />
     <Content Include="Views\ContactEnterprise\CreateConfirmation.cshtml" />
-    <Content Include="Views\Coordinator\InviteEnterprise.cshtml" />
     <Content Include="Views\ContactEnterprise\CreateStage.cshtml" />
     <Content Include="Views\Coordinator\InvitationSucceed.cshtml" />
     <Content Include="Views\Student\StageList.cshtml" />
@@ -327,6 +334,11 @@
     <Content Include="Views\ContactEnterprise\ListStudentApply.cshtml" />
     <Content Include="Views\Apply\Index.cshtml" />
     <Content Include="Views\ContactEnterprise\DetailsStudentApply.cshtml" />
+    <Content Include="Views\Student\Apply.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Student\ApplyConfirmation.cshtml" />
+    <Content Include="Views\ContactEnterprise\AcceptApplyConfirmation.cshtml" />
+    <Content Include="Views\ContactEnterprise\RefuseApplyConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt.hooks.t4" />

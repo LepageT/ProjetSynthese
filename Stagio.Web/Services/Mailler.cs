@@ -42,6 +42,7 @@ namespace Stagio.Web.Services
             try
             {
                 MailMessage mail = new MailMessage("noreply@" + SERVER, destination);
+                mail.IsBodyHtml = true;
                 mail.Subject = subject;
                 mail.Body = content;
 

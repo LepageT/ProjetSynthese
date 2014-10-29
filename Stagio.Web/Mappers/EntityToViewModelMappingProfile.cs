@@ -46,14 +46,19 @@ namespace Stagio.Web.Mappers
 
             Mapper.CreateMap<Stage, Details>()
               .IgnoreAllNonExisting();
-
+            
             Mapper.CreateMap<Stage, ViewModels.Student.StageList>()
                 .IgnoreAllNonExisting();
             Mapper.CreateMap<Apply, ViewModels.Apply.StudentApply>()
             .IgnoreAllNonExisting();
 
-            Mapper.CreateMap<Student, ViewModels.Apply.StudentApply>()
-       .IgnoreAllNonExisting();
+            Mapper.CreateMap<Apply, ViewModels.Apply.StudentApply>()
+                .IgnoreAllNonExisting();
+
+            Mapper.CreateMap<Apply, ViewModels.Student.Apply>()
+               .IgnoreAllNonExisting();
+
+
             Mapper.CreateMap<ContactEnterprise, ViewModels.ContactEnterprise.Reactive>()
                 .ForMember(dest => dest.PasswordConfirmation, opt => opt.Ignore())
                 .IgnoreAllNonExisting();

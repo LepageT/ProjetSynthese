@@ -1,3 +1,4 @@
+using FluentAssertions.Specialized;
 using Stagio.DataLayer;
 using Stagio.DataLayer.EntityFramework;
 using Stagio.Domain.Entities;
@@ -73,6 +74,7 @@ namespace Stagio.Web.App_Start
             kernel.Bind<IEntityRepository<ContactEnterprise>>().To<EfEntityRepository<ContactEnterprise>>().InRequestScope();
             kernel.Bind<IEntityRepository<Stage>>().To<EfEntityRepository<Stage>>().InRequestScope();
             kernel.Bind<IEntityRepository<Apply>>().To<EfEntityRepository<Apply>>().InRequestScope();
+
             kernel.Bind<IMailler>().ToConstant(Mailler.Instance);
 
             kernel.Bind<IDatabaseHelper>().To<EfDatabaseHelper>().InRequestScope();

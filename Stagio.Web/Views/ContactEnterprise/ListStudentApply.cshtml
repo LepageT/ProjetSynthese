@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<Stagio.Web.ViewModels.Apply.StudentApply>
-                                                 
+
 
 <!DOCTYPE html>
 
@@ -7,35 +7,56 @@
 <head>
     <title>ListStudentApply</title>
 </head>
-    <body>
-        <h2 id="list-student-stage">Liste des étudiants ayant postulé pour ce stage</h2>
-        <div class="text-right" id="stages-count">@Model.Count() étudiant(s)</div>
-        <table class="table">
+<body>
+    <h2 id="list-student-stage">Liste des étudiants ayant postulé pour ce stage</h2>
+    <table class="table">
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
             <tr>
-           
-                <th>
-                    @Html.DisplayNameFor(model => model.LastName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstName)
-                </th>
-                <th></th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                @if (item.Status == 0)
+                {
+                <td>
+                    En attente
+                </td>
+                }
+                else if (item.Status == 1)
+                {
+                <td>
+                    Acceptée
+                </td>
+                }
+                else if (item.Status == 2)
+                {
+                <td>
+                    Refusée
+                </td>
+                }
+                <td>
+                    @Html.ActionLink("Afficher le cv et la lettre de la présentation de l'étudiant", MVC.ContactEnterprise.DetailsStudentApply(item.Id), new { id = "list-student" + item.Id } )
+                </td>
             </tr>
-    
-            @foreach (var item in Model) {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LastName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FirstName)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Afficher le cv et la lettre de la présentation de l'étudiant", MVC.ContactEnterprise.DetailsStudentApply(item.Id), new { id = "list-student" + item.Id } )
-                    </td>
-                </tr>
-            }
-    
-        </table>
-    </body>
+        }
+
+    </table>
+</body>
 </html>

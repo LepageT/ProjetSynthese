@@ -1,4 +1,5 @@
-﻿@model Stagio.Web.ViewModels.Stage.Details
+﻿@using System.Web.Mvc.Html
+@model Stagio.Web.ViewModels.Stage.Details
 
 <!DOCTYPE html>
 
@@ -219,7 +220,7 @@
             <input type="submit" value="Refuser" name="command" id="refuse-stage" />
         }
         else if (Model.Status == 2)
-{
+        {
             <input type="submit" value="Accepter" name="command" id="accept-stage" />
         }
 
