@@ -208,16 +208,29 @@ namespace Stagio.Web.Controllers
 
         public virtual ActionResult ListStudentApply(int id)
         {
-            var students = _applyRepository.GetAll().Where(x => x.IdStage == id).Select(x=> x.IdStudent);
+            //var students = _applyRepository.GetAll().Where(x => x.IdStage == id).Select(x=> x.IdStudent).ToList();
+            var applies = _applyRepository.GetAll().Where(x => x.IdStage == id).ToList();
             var listStudents = new List<Student>();
 
-            foreach (var student in students)
+            foreach (var apply in applies)
             {
-                listStudents.Add(_studentRepository.GetById(student));
+                listStudents.Add(_studentRepository.GetById(apply.IdStudent));
             }
 
-            TempData["idStage"] = id.ToString();
-            var listStudentsApply = Mapper.Map<IEnumerable<ViewModels.Student.ListStudent>>(listStudents).ToList();
+            var listStudentsApply = Mapper.Map<IEnumerable<ViewModels.Apply.StudentApply>>(applies).ToList();
+
+            foreach (var studentApply in listStudentsApply)
+            {
+                foreach (var listStudent in listStudents)
+                {
+                    if (listStudent.Id == studentApply.IdStudent)
+                    {
+                        studentApply.FirstName = listStudent.FirstName;
+                        studentApply.LastName = listStudent.LastName;
+                    }
+                }
+            }
+            
             return View(listStudentsApply);
         }
 
@@ -232,11 +245,8 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult DetailsStudentApply(int id)
         {
 
-           var into = Convert.ToInt32(TempData["idStage"] as String);
-
-            var apply = _applyRepository.GetAll().FirstOrDefault(x => x.IdStudent == id && x.IdStage == into);
+            var apply = _applyRepository.GetAll().FirstOrDefault(x => x.Id == id);
           
-
             var applyModel = Mapper.Map<ViewModels.Apply.StudentApply>(apply);
 
             return View(applyModel);
