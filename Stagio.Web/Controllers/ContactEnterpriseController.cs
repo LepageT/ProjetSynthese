@@ -16,13 +16,17 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<ContactEnterprise> _contactEnterpriseRepository;
         private readonly IEntityRepository<Stage> _stageRepository;
         private readonly IAccountService _accountService;
+        private readonly IEntityRepository<Apply> _applyRepository;
         private readonly IMailler _mailler;
+        private readonly IEntityRepository<Student> _studentRepository;
 
-        public ContactEnterpriseController(IEntityRepository<ContactEnterprise> enterpriseRepository, IEntityRepository<Stage> stageRepository, IAccountService accountService, IMailler mailler)
+        public ContactEnterpriseController(IEntityRepository<ContactEnterprise> enterpriseRepository, IEntityRepository<Stage> stageRepository, IAccountService accountService, IMailler mailler, IEntityRepository<Apply> applyRepository, IEntityRepository<Student> studentRepository)
         {
             _contactEnterpriseRepository = enterpriseRepository;
             _accountService = accountService;
+            _applyRepository = applyRepository;
             _stageRepository = stageRepository;
+            _studentRepository = studentRepository;
             _mailler = mailler;
         }
 
@@ -227,9 +231,91 @@ namespace Stagio.Web.Controllers
             return messageText;
         }
 
+        public virtual ActionResult ListStudentApply(int id)
+        {
+            //var students = _applyRepository.GetAll().Where(x => x.IdStage == id).Select(x=> x.IdStudent).ToList();
+            var applies = _applyRepository.GetAll().Where(x => x.IdStage == id).ToList();
+            var listStudents = new List<Student>();
+
+            foreach (var apply in applies)
+            {
+                listStudents.Add(_studentRepository.GetById(apply.IdStudent));
+            }
+
+            var listStudentsApply = Mapper.Map<IEnumerable<ViewModels.Apply.StudentApply>>(applies).ToList();
+
+            foreach (var studentApply in listStudentsApply)
+            {
+                foreach (var listStudent in listStudents)
+                {
+                    if (listStudent.Id == studentApply.IdStudent)
+                    {
+                        studentApply.FirstName = listStudent.FirstName;
+                        studentApply.LastName = listStudent.LastName;
+                    }
+                }
+            }
+
+            return View(listStudentsApply);
+        }
+
+        public virtual ActionResult ListStage()
+        {
+
+            var stages = _stageRepository.GetAll();
+            var listStages = Mapper.Map<IEnumerable<ViewModels.ContactEnterprise.ListStage>>(stages).ToList();
+            return View(listStages);
+        }
+
+        public virtual ActionResult DetailsStudentApply(int id)
+        {
+
+            var apply = _applyRepository.GetAll().FirstOrDefault(x => x.Id == id);
+
+            var applyModel = Mapper.Map<ViewModels.Apply.StudentApply>(apply);
+
+            return View(applyModel);
+        }
+
+        [HttpPost, ActionName("DetailsStudentApply")]
+        public virtual ActionResult DetailsStudentApplyPost(string command, int id)
+        {
+            var apply = _applyRepository.GetById(id);
+
+            if (apply == null)
+            {
+                return View();
+            }
+
+            //Change status
+            if (command.Equals("Accepter"))
+            {
+                apply.Status = 1; //1 = Accepter;
+                _applyRepository.Update(apply);
+                return RedirectToAction(MVC.ContactEnterprise.AcceptApplyConfirmation());
+            }
+            else if (command.Equals("Refuser"))
+            {
+                apply.Status = 2; //1 = Accepter;
+                _applyRepository.Update(apply);
+                return RedirectToAction(MVC.ContactEnterprise.RefuseApplyConfirmation());
+            }
+            else
+            {
+                return View("");
+            }
+           
+        }
 
         public virtual ActionResult AcceptApplyConfirmation()
         {
+
+            return View();
+        }
+
+        public virtual ActionResult RefuseApplyConfirmation()
+        {
+
             return View();
         }
     

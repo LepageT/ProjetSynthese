@@ -1,14 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace Stagio.Domain.Entities
+namespace Stagio.Web.ViewModels.Apply
 {
-    public class Apply : Entity
+    public class StudentApply
     {
+        [DisplayName("Matricule")]
+        [Range(1000000, 9999999)]
+        public int Matricule { get; set; }
+
+        [DisplayName("Nom")]
+        public string LastName { get; set; }
+
+        [DisplayName("Prénom")]
+        public string FirstName { get; set; }
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "Requis")]
         public string Cv { get; set; }
 
@@ -20,6 +31,5 @@ namespace Stagio.Domain.Entities
         public int IdStage { get; set; }
 
         public int Status { get; set; }
-
     }
 }

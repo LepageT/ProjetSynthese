@@ -279,7 +279,7 @@ namespace Stagio.Web.Controllers
                 return View(applyStudentViewModel);
             }
             var newApplicationStudent = Mapper.Map<Stagio.Domain.Entities.Apply>(applyStudentViewModel);
-           
+            newApplicationStudent.Status = 0;   //0 = En attente
             _applyRepository.Add(newApplicationStudent);
 
             return RedirectToAction(MVC.Student.ApplyConfirmation());
