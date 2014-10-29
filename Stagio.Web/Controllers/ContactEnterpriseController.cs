@@ -208,13 +208,19 @@ namespace Stagio.Web.Controllers
 
         public virtual ActionResult ListStudentApply(int id)
         {
-            //var students = _applyRepository.GetAll().Where(x => x.IdStage == id).Select(x=> x.IdStudent).ToList();
             var applies = _applyRepository.GetAll().Where(x => x.IdStage == id).ToList();
             var listStudents = new List<Student>();
+            var students = _studentRepository.GetAll().ToList();
 
             foreach (var apply in applies)
             {
-                listStudents.Add(_studentRepository.GetById(apply.IdStudent));
+                foreach (var student in students)
+                {
+                    if (student.Id == apply.Id)
+                    {
+                        listStudents.Add(student);
+                    }
+                }
             }
 
             var listStudentsApply = Mapper.Map<IEnumerable<ViewModels.Apply.StudentApply>>(applies).ToList();

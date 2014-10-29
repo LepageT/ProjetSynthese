@@ -18,5 +18,6 @@ namespace Stagio.Domain.Entities
         public int IdStudent { get; set; }
 
         public int IdStage { get; set; }
+
     }
 }

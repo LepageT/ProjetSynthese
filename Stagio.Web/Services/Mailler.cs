@@ -52,7 +52,6 @@ namespace Stagio.Web.Services
                 return false;
             }
 
-
             return true;
         }
     }
