@@ -16,19 +16,20 @@ namespace Stagio.Web.ViewModels.Apply
         [DisplayName("Nom")]
         public string LastName { get; set; }
 
-        [DisplayName("Prénom")]
+        [DisplayName("Pr�nom")]
         public string FirstName { get; set; }
         public int Id { get; set; }
-
+         [DisplayName("CV")]
         [Required(ErrorMessage = "Requis")]
         public string Cv { get; set; }
-
+        [DisplayName("Lettre de pr�sentation")]
         [Required(ErrorMessage = "Requis")]
         public string Letter { get; set; }
 
         public int IdStudent { get; set; }
 
         public int IdStage { get; set; }
+        public string StageTitle { get; set; }
 
         public int Status { get; set; }
     }

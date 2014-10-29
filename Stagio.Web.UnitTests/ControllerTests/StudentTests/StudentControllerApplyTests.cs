@@ -5,11 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using AutoMapper;
+using Stagio.Web.ViewModels.Student;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using Stagio.Domain.Entities;
 using Ploeh.AutoFixture;
+using Apply = Stagio.Domain.Entities.Apply;
 
 namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 {

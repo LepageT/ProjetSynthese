@@ -12,7 +12,7 @@ namespace Stagio.Domain.Entities
         //[Required(ErrorMessage = "Requis")]
         [MinLength(8)]
         public string Password { get; set; }
-        [Required]
+       // [Required]
         public string UserName { get; set; }
 
         public string Name { get; set; }

@@ -8,7 +8,7 @@
     <title>ListStudentApply</title>
 </head>
 <body>
-
+    <h2 id="list-student-stage">Liste des étudiants ayant postulé pour ce stage</h2>
     <table class="table">
         <tr>
 
@@ -52,7 +52,7 @@
                 </td>
                 }
                 <td>
-                    @Html.ActionLink("Afficher le cv et la lettre de la présentation de l'étudiant", MVC.ContactEnterprise.DetailsStudentApply(item.Id))
+                    @Html.ActionLink("Afficher le cv et la lettre de la présentation de l'étudiant", MVC.ContactEnterprise.DetailsStudentApply(item.Id), new { id = "list-student" + item.Id } )
                 </td>
             </tr>
         }

@@ -10,7 +10,7 @@ namespace Stagio.TestUtilities.Database
         private EfEntityRepository<Coordinator> _coordonnatorRepository;
         private EfEntityRepository<Invitation> _invitationRepository; 
         private EfEntityRepository<ContactEnterprise> _contactEnterpriseRepository; 
-        private EfEntityRepository<Stage> _stageRepository;
+        private EfEntityRepository<Stage> _stageRepository; 
         private EfEntityRepository<Apply> _applyRepository;
 
          public DataBaseTestHelper()
@@ -33,8 +33,9 @@ namespace Stagio.TestUtilities.Database
             addEnterprises();
             addStages();
             addApplies();
-        }
 
+        }
+      
         private void addApplies()
         {
             var apply1 = TestData.apply1;

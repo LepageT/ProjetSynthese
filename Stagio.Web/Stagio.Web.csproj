@@ -179,6 +179,9 @@
     <Compile Include="AccountController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="ApplyController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
@@ -190,6 +193,7 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApplyController.cs" />
     <Compile Include="Controllers\CIController.cs" />
     <Compile Include="Controllers\CoordinatorController.cs" />
     <Compile Include="Controllers\ContactEnterpriseController.cs" />
@@ -251,6 +255,7 @@
     <Compile Include="Validations\ValidationPassword.cs" />
     <Compile Include="Validations\ValidationRequireField.cs" />
     <Compile Include="ViewModels\Apply\StudentApply.cs" />
+    <Compile Include="ViewModels\ContactEnterprise\ListStudentApply.cs" />
     <Compile Include="ViewModels\ContactEnterprise\ListStage.cs" />
     <Compile Include="ViewModels\ContactEnterprise\Reactive.cs" />
     <Compile Include="ViewModels\Account\Login.cs" />
@@ -325,13 +330,14 @@
     <Content Include="Views\Stage\ListNewStages.cshtml" />
     <Content Include="Views\Stage\ViewStageInfo.cshtml" />
     <Content Include="Views\Stage\Details.cshtml" />
+    <Content Include="Views\ContactEnterprise\ListStage.cshtml" />
+    <Content Include="Views\ContactEnterprise\ListStudentApply.cshtml" />
+    <Content Include="Views\Apply\Index.cshtml" />
+    <Content Include="Views\ContactEnterprise\DetailsStudentApply.cshtml" />
     <Content Include="Views\Student\Apply.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Student\ApplyConfirmation.cshtml" />
     <Content Include="Views\ContactEnterprise\AcceptApplyConfirmation.cshtml" />
-    <Content Include="Views\ContactEnterprise\ListStudentApply.cshtml" />
-    <Content Include="Views\ContactEnterprise\ListStage.cshtml" />
-    <Content Include="Views\ContactEnterprise\DetailsStudentApply.cshtml" />
     <Content Include="Views\ContactEnterprise\RefuseApplyConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
