@@ -216,8 +216,7 @@ namespace Stagio.Web.Controllers
                 applies = _applyRepository.GetAll().Where(x => x.IdStage == id).ToList();
             }
             catch (Exception)
-            {
-                
+            { 
                 return  HttpNotFound();
             }
           
@@ -262,11 +261,22 @@ namespace Stagio.Web.Controllers
 
         public virtual ActionResult DetailsStudentApply(int id)
         {
+            var apply = new Apply();
+            try
+            {
+                apply = _applyRepository.GetAll().FirstOrDefault(x => x.Id == id);
+            }
+            catch (Exception)
+            {
 
-            var apply = _applyRepository.GetAll().FirstOrDefault(x => x.Id == id);
-          
+                return HttpNotFound();
+            }
+           
             var applyModel = Mapper.Map<ViewModels.Apply.StudentApply>(apply);
 
+            applyModel.FirstName = _studentRepository.GetAll().FirstOrDefault(x => x.Id == apply.IdStudent).FirstName;
+            applyModel.LastName = _studentRepository.GetAll().FirstOrDefault(x => x.Id == apply.IdStudent).LastName;
+            applyModel.StageTitle = _stageRepository.GetAll().FirstOrDefault(x => x.Id == apply.IdStage).StageTitle;
             return View(applyModel);
         }
 

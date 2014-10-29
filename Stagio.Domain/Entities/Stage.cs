@@ -19,7 +19,6 @@ namespace Stagio.Domain.Entities
 
         public String Adresse { get; set; }
 
-
         //Responsable
         [DisplayName("Nom")]
         public String ResponsableToName { get; set; }

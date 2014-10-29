@@ -57,7 +57,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
 
 
         [TestMethod]
-        public void contactEnterpriseController_listStudentApply_should_render_view_with_0_student_if_list_empty()
+        public void contactEnterpriseController_listStudentApply_with_invalid_id_should_return_httpnotfound()
         {
             var result = enterpriseController.ListStudentApply(999999999);
 

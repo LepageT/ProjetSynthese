@@ -19,10 +19,10 @@ namespace Stagio.Web.ViewModels.Apply
         [DisplayName("Prénom")]
         public string FirstName { get; set; }
         public int Id { get; set; }
-
+         [DisplayName("CV")]
         [Required(ErrorMessage = "Requis")]
         public string Cv { get; set; }
-
+        [DisplayName("Lettre de présentation")]
         [Required(ErrorMessage = "Requis")]
         public string Letter { get; set; }
 
