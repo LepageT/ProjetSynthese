@@ -223,6 +223,12 @@ namespace Stagio.Web.Controllers
             messageText += invitationUrl;
             return messageText;
         }
+
+
+        public virtual ActionResult AcceptApplyConfirmation()
+        {
+            return View();
+        }
     
     }
 }
