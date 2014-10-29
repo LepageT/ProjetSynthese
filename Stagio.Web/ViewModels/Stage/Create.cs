@@ -40,7 +40,7 @@ namespace Stagio.Web.ViewModels.Stage
 
         [ValidationRequireField("ResponsableToPhone", ErrorMessage = "Vous devez spécifier un numéro de téléphone.")]
         [DisplayName("Poste")]
-        public int? ResponsableToPoste { get; set; }
+        public string ResponsableToPoste { get; set; }
 
         //Contact
 
@@ -63,7 +63,7 @@ namespace Stagio.Web.ViewModels.Stage
 
         [ValidationRequireField("ContactToPhone", ErrorMessage = "Vous devez spécifier un numéro de téléphone.")]
         [DisplayName("Poste")]
-        public int? ContactToPoste { get; set; }
+        public string ContactToPoste { get; set; }
 
         [DisplayName("Titre du poste")]
         [Required(ErrorMessage = "Requis")]

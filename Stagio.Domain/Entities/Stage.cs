@@ -30,7 +30,7 @@ namespace Stagio.Domain.Entities
         [DisplayName("Téléphone")]
         public String ResponsableToPhone { get; set; }
         [DisplayName("Poste")]
-        public int? ResponsableToPoste { get; set; }
+        public string ResponsableToPoste { get; set; }
 
         //Contact
         [DisplayName("Nom")]
@@ -42,7 +42,7 @@ namespace Stagio.Domain.Entities
         [DisplayName("Téléphone")]
         public String ContactToPhone { get; set; }
         [DisplayName("Poste")]
-        public int? ContactToPoste { get; set; }
+        public string ContactToPoste { get; set; }
 
         [DisplayName("Description du projet pour le stage")]
         public String StageDescription { get; set; }

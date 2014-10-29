@@ -229,10 +229,10 @@ namespace Stagio.Web.Controllers
         }
 
         [NonAction]
-        partial void ReactivateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string email, string firstName, string lastName, string enterpriseName, string telephone, int? poste);
+        partial void ReactivateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string email, string firstName, string lastName, string enterpriseName, string telephone, string poste);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Reactivate(string email, string firstName, string lastName, string enterpriseName, string telephone, int? poste)
+        public override System.Web.Mvc.ActionResult Reactivate(string email, string firstName, string lastName, string enterpriseName, string telephone, string poste)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Reactivate);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "email", email);

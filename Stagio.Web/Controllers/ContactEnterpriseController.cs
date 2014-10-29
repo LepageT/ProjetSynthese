@@ -39,7 +39,7 @@ namespace Stagio.Web.Controllers
         }
 
         // GET: Enterprise/Create
-        public virtual ActionResult Reactivate(string email, string firstName, string lastName, string enterpriseName, string telephone, int? poste)
+        public virtual ActionResult Reactivate(string email, string firstName, string lastName, string enterpriseName, string telephone, string poste)
         {
             var contactEnterprise = new ContactEnterprise();
             contactEnterprise.Email = email;
