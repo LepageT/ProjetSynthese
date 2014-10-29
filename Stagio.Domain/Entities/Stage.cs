@@ -73,5 +73,8 @@ namespace Stagio.Domain.Entities
         [Range(0,3)]
         public int Status { get; set; }
 
+        [DefaultValue(0)]
+        public int NbApply { get; set; }
+
     }
 }

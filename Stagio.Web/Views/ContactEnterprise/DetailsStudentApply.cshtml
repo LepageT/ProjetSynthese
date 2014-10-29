@@ -33,8 +33,11 @@
 
     @using (Html.BeginForm("DetailsStudentApply", "ContactEnterprise"))
     {
-        <input type="submit" value="Accepter" name="command" id="accept-stage" />
-        <input type="submit" value="Refuser" name="command" id="refuse-stage" />
+        if (Model.Status == 0)
+        {
+            <input type="submit" value="Accepter" name="command" id="accept-stage" />
+            <input type="submit" value="Refuser" name="command" id="refuse-stage" />
+        }
     }
     <p>
         @Html.ActionLink("Retour à la liste des stages", MVC.ContactEnterprise.ListStage())
