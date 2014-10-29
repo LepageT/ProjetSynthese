@@ -29,5 +29,6 @@ namespace Stagio.Web.ViewModels.Apply
         public int IdStudent { get; set; }
 
         public int IdStage { get; set; }
+        public string StageTitle { get; set; }
     }
 }

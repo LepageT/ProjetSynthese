@@ -48,9 +48,8 @@ namespace Stagio.Domain.Entities
         public String StageDescription { get; set; }
         [DisplayName("Environnement matériel et logiciel spécifique au projet")]
         //Stage information
-        public string StageTitle { get; set; }
-
         public String EnvironnementDescription { get; set; }
+        public string StageTitle { get; set; }
         [DisplayName("Nombre de stagiaires")]
         public int NbrStagiaire { get; set; }
         [DisplayName("Stagiaire si connu:")]
