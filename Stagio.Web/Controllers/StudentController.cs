@@ -263,7 +263,7 @@ namespace Stagio.Web.Controllers
 
             _studentRepository.Update(student);
 
-            return RedirectToAction(MVC.Home.Index());
+            return RedirectToAction(MVC.Student.Index());
         }
 
         [Authorize(Roles = RoleName.Student)]

@@ -12,7 +12,7 @@ namespace Stagio.Web.AcceptanceTests.StageTests
         [TestMethod]
         public void coordinator_can_see_listNewStages_page()
         {
-            AuthentificateTestUser();
+            AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
             _driver.FindElement(By.Id("list")).Click();
             try
             {
@@ -27,7 +27,7 @@ namespace Stagio.Web.AcceptanceTests.StageTests
         [TestMethod]
         public void coordinator_can_see_listNewStages_with_stages()
         {
-            AuthentificateTestUser();
+            AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
             _driver.FindElement(By.Id("list")).Click();
             var countText = _driver.FindElement(By.Id("stages-count")).Text;
             var stagesCount = int.Parse(countText.Split(' ')[0]);

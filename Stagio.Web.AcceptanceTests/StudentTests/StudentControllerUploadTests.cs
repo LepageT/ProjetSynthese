@@ -10,7 +10,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         [TestMethod]
         public void coordinator_should_be_able_to_see_the_page_upload_student()
         {
-            AuthentificateTestUser();
+            AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
             _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Upload");
 
             try
@@ -26,7 +26,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         [TestMethod]
         public void coordinator_should_be_able_to_choose_a_file_csv()
         {
-            AuthentificateTestUser();
+            AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
             _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Upload");
      
             try
@@ -46,7 +46,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         [TestMethod]
         public void coordinator_should_not_be_able_to_import_an_another_file_than_csv()
         {
-            AuthentificateTestUser();
+            AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
             _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Upload");
             _driver.FindElement(By.Id("file")).SendKeys("C:\\dev\\abc.txt");
             _driver.FindElement(By.Id("button-upload")).Click();
@@ -63,7 +63,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         [TestMethod]
         public void coordinator_upload_should_redirect_to_CreateList_is_valid()
         {
-            AuthentificateTestUser();
+            AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
             _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Upload");
             _driver.FindElement(By.Id("file")).SendKeys("C:\\dev\\abc.csv");
             _driver.FindElement(By.Id("button-upload")).Click();
@@ -80,7 +80,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         [TestMethod]
         public void coordinator_upload_should_rest_on_to_upload_is_not_valid()
         {
-            AuthentificateTestUser();
+            AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
             _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Upload");
             _driver.FindElement(By.Id("button-upload")).Click();
 

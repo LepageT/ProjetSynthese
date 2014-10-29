@@ -10,7 +10,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         [TestMethod]
         public void coordinator_should_be_able_to_see_the_page_resultCreateList_student()
         {
-            AuthentificateTestUser();
+            AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
             _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Upload");
             _driver.FindElement(By.Id("file")).SendKeys("C:\\dev\\abc.csv");
             _driver.FindElement(By.Id("button-upload")).Click();
@@ -29,7 +29,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         [TestMethod]
         public void coordinator_createList_should_redirect_on_home_index()
         {
-            AuthentificateTestUser();
+            AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
             _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Upload");
             _driver.FindElement(By.Id("file")).SendKeys("C:\\dev\\abc.csv");
             _driver.FindElement(By.Id("button-upload")).Click();
