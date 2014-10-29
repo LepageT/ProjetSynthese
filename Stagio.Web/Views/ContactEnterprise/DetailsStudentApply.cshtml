@@ -1,0 +1,43 @@
+﻿@model Stagio.Web.ViewModels.Apply.StudentApply
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>DetailsStudentApply</title>
+</head>
+<body>
+    <div>
+        <h4>StudentApply</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Cv)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Cv)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Letter)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Letter)
+            </dd>
+    
+        </dl>
+    </div>
+    <hr />
+
+    @using (Html.BeginForm("DetailsStudentApply", "ContactEnterprise"))
+    {
+        <input type="submit" value="Accepter" name="command" id="accept-stage" />
+        <input type="submit" value="Refuser" name="command" id="refuse-stage" />
+    }
+    <p>
+        @Html.ActionLink("Retour à la liste des stages", MVC.ContactEnterprise.ListStage())
+    </p>
+</body>
+</html>

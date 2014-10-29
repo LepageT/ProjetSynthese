@@ -293,5 +293,25 @@ namespace Stagio.TestUtilities.Database
         }
 
         #endregion
+
+        #region Apply 1
+
+        static public Apply apply1
+        {
+            get
+            {
+                var apply = new Apply()
+                {
+                    IdStage = 1,
+                    IdStudent = 1,
+                    Cv = "jfdhvldshgsdljhk",
+                    Letter = "xljvbvdsve efhnboseif ierhgtbcwl gkf kg fdi"
+                };
+
+                return apply;
+            }
+        }
+
+        #endregion
     }
 }
