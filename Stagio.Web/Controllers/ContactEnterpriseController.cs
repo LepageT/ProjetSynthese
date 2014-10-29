@@ -180,7 +180,7 @@ namespace Stagio.Web.Controllers
         [HttpPost]
         public virtual ActionResult InviteContactEnterprise(ViewModels.ContactEnterprise.Reactive createContactEnterpriseViewModel)
         {
-           
+
 
             if (createContactEnterpriseViewModel.Email != null)
             {
@@ -223,10 +223,9 @@ namespace Stagio.Web.Controllers
             string invitationUrl = "http://thomarelau.local/ContactEnterprise/Reactivate?Email=" +
                                    contactEnterpriseToSendMessage.Email + "&EnterpriseName=" +
                                    enterpriseName + "&FirstName=" +
-                                   contactEnterpriseToSendMessage.FirstName + "&LastName=" +
-                                   contactEnterpriseToSendMessage.LastName + "&Telephone=" +
-                                   contactEnterpriseToSendMessage.Telephone + "&Poste=" + contactEnterpriseToSendMessage.Poste;
-
+                                   contactEnterpriseToSendMessage.FirstName.Replace(" ", "%20") + "&LastName=" +
+                                   contactEnterpriseToSendMessage.LastName.Replace(" ", "%20") + "&Telephone=" +
+                                   contactEnterpriseToSendMessage.Telephone.Replace(" ", "%20") + "&Poste=" + contactEnterpriseToSendMessage.Poste.Replace(" ", "%20");
             messageText += invitationUrl;
             return messageText;
         }
@@ -304,7 +303,7 @@ namespace Stagio.Web.Controllers
             {
                 return View("");
             }
-           
+
         }
 
         public virtual ActionResult AcceptApplyConfirmation()
@@ -318,6 +317,6 @@ namespace Stagio.Web.Controllers
 
             return View();
         }
-    
+
     }
 }
