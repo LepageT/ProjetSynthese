@@ -38,7 +38,7 @@ namespace Stagio.Web.ViewModels.ContactEnterprise
         public string Telephone { get; set; }
 
         [DisplayName("Poste")]
-        public int? Poste { get; set; }
+        public string Poste { get; set; }
 
         [DisplayName("Mot de passe")]
         [Required(ErrorMessage = "Requis")]
