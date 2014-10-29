@@ -5,41 +5,48 @@
     ViewBag.Title = "List";
 }
 
-<h2 id="listNewStages-page">Liste des stages qui ne sont pas encore approuvés</h2>
+<h2 id="listNewStages-page">Liste des stages <mark>à approuver</mark></h2> 
 <div id="stages-count">@(Model.ListNewStages.Count()+ Model.ListStagesAccepted.Count() + Model.ListStagesRefused.Count()) Stage(s)</div>
                      
 <table class="table">
-    <tr>
-        <th>
+    <tr class="row">
+        <th class="col-md-2">
             @Html.DisplayNameFor(model => model.ListNewStages[0].PublicationDate)
         </th>
-        <th>
+        <th class="col-md-3">
             @Html.DisplayNameFor(model => model.ListNewStages[0].CompanyName)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ListNewStages[0].Adresse)
+        <th class="col-md-3">
+            @Html.DisplayNameFor(model => model.ListNewStages[0].StageTitle)
         </th>
-        <th>
+        <th class="col-md-2">
+            @Html.DisplayNameFor(model => model.ListNewStages[0].LimitDate)
+        </th>
+        <th class="col-md-2">
             @Html.DisplayNameFor(model => model.ListNewStages[0].NbrStagiaire)
         </th>
         <th></th>
     </tr>
 
-    @foreach (var item in Model.ListNewStages) {
-        <tr>
-            <td>
+    @foreach (var item in Model.ListNewStages)
+    {
+        <tr class="row">
+            <td class="col-md-2">
                 @Html.DisplayFor(modelItem => item.PublicationDate)
             </td>
-            <td>
+            <td class="col-md-3">
                 @Html.DisplayFor(modelItem => item.CompanyName)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Adresse)
+            <td class="col-md-3">
+                @Html.DisplayFor(modelItem => item.StageTitle)
             </td>
-            <td>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.LimitDate)
+            </td>
+            <td class="col-md-2">
                 @Html.DisplayFor(modelItem => item.NbrStagiaire)
             </td>
-            <td>
+            <td class="col-md-7">
                 @Html.ActionLink("Détails", "Details", new { id = item.Id }, new { id = "details-stages" + item.Id }) |
             </td>
         </tr>
@@ -50,17 +57,20 @@
 <h2 id="listNewStages-page">Liste des stages acceptés</h2>
 
 <table class="table">
-    <tr>
-        <th>
+    <tr class="row">
+        <th class="col-md-2">
             @Html.DisplayNameFor(model => model.ListStagesAccepted[0].PublicationDate)
         </th>
-        <th>
+        <th class="col-md-3">
             @Html.DisplayNameFor(model => model.ListStagesAccepted[0].CompanyName)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ListStagesAccepted[0].Adresse)
+        <th class="col-md-3">
+            @Html.DisplayNameFor(model => model.ListStagesAccepted[0].StageTitle)
         </th>
-        <th>
+        <th class="col-md-2">
+            @Html.DisplayNameFor(model => model.ListStagesAccepted[0].LimitDate)
+        </th>
+        <th class="col-md-2">
             @Html.DisplayNameFor(model => model.ListStagesAccepted[0].NbrStagiaire)
         </th>
         <th></th>
@@ -68,17 +78,20 @@
 
     @foreach (var item in Model.ListStagesAccepted)
     {
-        <tr>
-            <td>
+        <tr class="row">
+            <td class="col-md-2">
                 @Html.DisplayFor(modelItem => item.PublicationDate)
             </td>
-            <td>
+            <td class="col-md-3">
                 @Html.DisplayFor(modelItem => item.CompanyName)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Adresse)
+            <td class="col-md-3">
+                @Html.DisplayFor(modelItem => item.StageTitle)
             </td>
-            <td>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.LimitDate)
+            </td>
+            <td class="col-md-2">
                 @Html.DisplayFor(modelItem => item.NbrStagiaire)
             </td>
             <td>
@@ -92,17 +105,20 @@
 <h2 id="listNewStages-page">Liste des stages refusés</h2>
 
 <table class="table">
-    <tr>
-        <th>
+    <tr class="row">
+        <th class="col-md-2">
             @Html.DisplayNameFor(model => model.ListStagesRefused[0].PublicationDate)
         </th>
-        <th>
+        <th class="col-md-3">
             @Html.DisplayNameFor(model => model.ListStagesRefused[0].CompanyName)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ListStagesRefused[0].Adresse)
+        <th class="col-md-3">
+            @Html.DisplayNameFor(model => model.ListStagesRefused[0].StageTitle)
         </th>
-        <th>
+        <th class="col-md-2">
+            @Html.DisplayNameFor(model => model.ListStagesRefused[0].LimitDate)
+        </th>
+        <th class="col-md-2">
             @Html.DisplayNameFor(model => model.ListStagesRefused[0].NbrStagiaire)
         </th>
         <th></th>
@@ -110,17 +126,20 @@
 
     @foreach (var item in Model.ListStagesRefused)
     {
-        <tr>
-            <td>
+        <tr class="row">
+            <td class="col-md-2">
                 @Html.DisplayFor(modelItem => item.PublicationDate)
             </td>
-            <td>
+            <td class="col-md-3">
                 @Html.DisplayFor(modelItem => item.CompanyName)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Adresse)
+            <td class="col-md-3">
+                @Html.DisplayFor(modelItem => item.StageTitle)
             </td>
-            <td>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.LimitDate)
+            </td>
+            <td class="col-md-2">
                 @Html.DisplayFor(modelItem => item.NbrStagiaire)
             </td>
             <td>
