@@ -72,15 +72,16 @@ namespace Stagio.Web.Controllers
                     contactEnterprise.Poste = createViewModel.Poste;
                     _contactEnterpriseRepository.Update(contactEnterprise);
                     //ADD NOTIFICATIONS: À la coordination et aux autres employés de l'entreprise.
-                    return RedirectToAction(MVC.ContactEnterprise.CreateConfirmation());
+                    return RedirectToAction(MVC.ContactEnterprise.CreateConfirmation(contactEnterprise.Id));
                 }
                 else
                 {
                     var newContactEnterprise = Mapper.Map<ContactEnterprise>(createViewModel);
+                    newContactEnterprise.Active = true;
                     newContactEnterprise.UserName = newContactEnterprise.Email;
                     _contactEnterpriseRepository.Add(newContactEnterprise);
                     //ADD NOTIFICATIONS: À la coordination et aux autres employés de l'entreprise.
-                    return RedirectToAction(MVC.ContactEnterprise.CreateConfirmation());
+                    return RedirectToAction(MVC.ContactEnterprise.CreateConfirmation(newContactEnterprise.Id));
                 }
 
             }
@@ -89,9 +90,11 @@ namespace Stagio.Web.Controllers
         }
 
 
-        public virtual ActionResult CreateConfirmation()
+        public virtual ActionResult CreateConfirmation(int idContactEnterprise)
         {
-            return View();
+            var newContactEnterprise = _contactEnterpriseRepository.GetById(idContactEnterprise);
+            var newContactEntepriseViewModels = Mapper.Map<ViewModels.ContactEnterprise.Reactive>(newContactEnterprise);
+            return View(newContactEntepriseViewModels);
         }
 
 
