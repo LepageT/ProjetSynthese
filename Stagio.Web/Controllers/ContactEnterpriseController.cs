@@ -284,7 +284,7 @@ namespace Stagio.Web.Controllers
 
             if (apply == null)
             {
-                return View();
+                return View("");
             }
 
             //Change status

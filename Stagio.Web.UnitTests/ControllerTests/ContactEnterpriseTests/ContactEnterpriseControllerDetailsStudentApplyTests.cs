@@ -64,5 +64,14 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
             
             applyRepository.Update(Arg.Is<Apply>(x => x.Status == 2));
         }
+
+        [TestMethod]
+        public void contact_enterprise_DetailsStudentApply_post_should_return_default_view_when_apply_is_invalid()
+        {
+            var viewResult = enterpriseController.DetailsStudentApplyPost("Accepter", 999999999) as ViewResult;
+            var viewModelObtained = viewResult.ViewData.Model as ViewModels.Apply.StudentApply;
+
+            Assert.AreEqual(viewResult.ViewName, "");
+        }
     }
 }
