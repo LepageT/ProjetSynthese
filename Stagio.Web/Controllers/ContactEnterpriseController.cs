@@ -219,13 +219,29 @@ namespace Stagio.Web.Controllers
             {
                 enterpriseName.Replace(" ", "%20");
             }
+            if (contactEnterpriseToSendMessage.FirstName != null)
+            {
+                contactEnterpriseToSendMessage.FirstName = contactEnterpriseToSendMessage.FirstName.Replace(" ", "%20");
+            }
+            if (contactEnterpriseToSendMessage.LastName != null)
+            {
+                contactEnterpriseToSendMessage.LastName = contactEnterpriseToSendMessage.LastName.Replace(" ", "%20");
+            }
+            if (contactEnterpriseToSendMessage.Telephone != null)
+            {
+                contactEnterpriseToSendMessage.Telephone = contactEnterpriseToSendMessage.Telephone.Replace(" ", "%20");
+            }
+            if (contactEnterpriseToSendMessage.Poste != null)
+            {
+                contactEnterpriseToSendMessage.Poste = contactEnterpriseToSendMessage.Poste.Replace(" ", "%20");
+            }
             string messageText = "Un employé de votre entreprise vous invite à vous inscrire au site Stagio: ";
             string invitationUrl = "http://thomarelau.local/ContactEnterprise/Reactivate?Email=" +
                                    contactEnterpriseToSendMessage.Email + "&EnterpriseName=" +
                                    enterpriseName + "&FirstName=" +
-                                   contactEnterpriseToSendMessage.FirstName.Replace(" ", "%20") + "&LastName=" +
-                                   contactEnterpriseToSendMessage.LastName.Replace(" ", "%20") + "&Telephone=" +
-                                   contactEnterpriseToSendMessage.Telephone.Replace(" ", "%20") + "&Poste=" + contactEnterpriseToSendMessage.Poste.Replace(" ", "%20");
+                                   contactEnterpriseToSendMessage.FirstName + "&LastName=" +
+                                   contactEnterpriseToSendMessage.LastName + "&Telephone=" +
+                                   contactEnterpriseToSendMessage.Telephone + "&Poste=" + contactEnterpriseToSendMessage.Poste;
             messageText += invitationUrl;
             return messageText;
         }
