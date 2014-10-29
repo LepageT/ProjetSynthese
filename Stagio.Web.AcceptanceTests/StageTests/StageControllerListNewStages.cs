@@ -10,13 +10,27 @@ namespace Stagio.Web.AcceptanceTests.StageTests
     {
 
         [TestMethod]
-        public void coordinator_can_see_listNewStages_page()
+        public void coordinator_can_see_listNewStages_page_if_logged_in()
         {
             AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
             _driver.FindElement(By.Id("list")).Click();
             try
             {
                 _driver.FindElement(By.Id("listNewStages-page"));
+            }
+            catch (NoSuchElementException)
+            {
+                Assert.Fail("Identifiant listNewStages-page non trouvé sur la page.");
+            }
+        }
+
+        [TestMethod]
+        public void coordinator_can_not_see_listNewStages_page_if_not_logged_in()
+        {
+            _driver.FindElement(By.Id("list")).Click();
+            try
+            {
+                _driver.FindElement(By.Id("login-page"));
             }
             catch (NoSuchElementException)
             {

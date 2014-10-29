@@ -9,7 +9,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
     {
 
         [TestMethod]
-        public void enterprise_should_be_able_to_see_the_page_to_create_stage()
+        public void enterprise_should_be_able_to_see_the_page_to_create_stage_if_logged_in()
         {
             AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
             _driver.Navigate().GoToUrl("http://thomarelau.local/ContactEnterprise/CreateStage");
@@ -21,6 +21,22 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             catch (NoSuchElementException)
             {
                 Assert.Fail("Identifiant create-stage non trouvé sur la page.");
+            }
+        }
+        
+        [TestMethod]
+        public void enterprise_should_not_be_able_to_see_the_page_to_create_stage_if_not_logged_in_and_redirected_to_login()
+        {
+          
+            _driver.Navigate().GoToUrl("http://thomarelau.local/ContactEnterprise/CreateStage");
+
+            try
+            {
+                _driver.FindElement(By.Id("login-page"));
+            }
+            catch (NoSuchElementException)
+            {
+                Assert.Fail("Identifiant login-page non trouvé sur la page.");
             }
         }
 

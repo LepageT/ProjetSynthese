@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Security.Principal;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using Stagio.DataLayer;
 using Stagio.Web.Controllers;
@@ -11,6 +12,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         protected StudentController studentController;
         protected IEntityRepository<Student> studentRepository;
         protected IEntityRepository<Stage> stageRepository;
+        protected IPrincipal User;
         
         [TestInitialize]
         public void StudentControllerTestInit()
@@ -18,6 +20,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
             studentRepository = Substitute.For<IEntityRepository<Student>>();
             stageRepository = Substitute.For<IEntityRepository<Stage>>();
             studentController = new StudentController(studentRepository, stageRepository);
+            User = Substitute.For<IPrincipal>();
         }
     }
 }

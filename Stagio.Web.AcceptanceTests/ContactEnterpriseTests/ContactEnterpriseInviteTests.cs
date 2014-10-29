@@ -12,7 +12,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
     public class ContactEnterpriseInviteTests : BaseTests
     {
         [TestMethod]
-        public void contact_enterprise_should_be_able_to_access_invite_another_contact_page()
+        public void contact_enterprise_should_be_able_to_access_invite_another_contact_page_if_logged_in()
         {
             AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
             _driver.Navigate().GoToUrl("http://thomarelau.local/ContactEnterprise/InviteContactEnterprise");
@@ -20,6 +20,21 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             try
             {
                 _driver.FindElement(By.Id("inviteContact-page"));
+            }
+            catch (NoSuchElementException)
+            {
+                Assert.Fail("Identifiant inviteContact-page non trouvé sur la page.");
+            }
+        }
+
+        public void contact_enterprise_should_not_be_able_to_access_invite_another_contact_page_if_not_logged_in()
+        {
+            
+            _driver.Navigate().GoToUrl("http://thomarelau.local/ContactEnterprise/InviteContactEnterprise");
+
+            try
+            {
+                _driver.FindElement(By.Id("login-page"));
             }
             catch (NoSuchElementException)
             {

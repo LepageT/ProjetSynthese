@@ -52,6 +52,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         public void edit_post_should_redirect_to_index_on_success()
         {
             var student = _fixture.Create<Student>();
+           
             studentRepository.GetById(student.Id).Returns(student);
             var studentEditPageViewModel = Mapper.Map<Student, ViewModels.Student.Edit>(student);
             studentEditPageViewModel.OldPassword = student.Password;

@@ -9,7 +9,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
     public class StudentControllerCreateListTests : BaseTests
     {
         [TestMethod]
-        public void coordinator_should_be_able_to_see_the_page_createList_student()
+        public void coordinator_should_be_able_to_see_the_page_createList_student_if_logged_in()
         {
             AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
             _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Upload");
@@ -19,6 +19,22 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             try
             {
                 _driver.FindElement(By.Id("createList-page"));
+            }
+            catch (NoSuchElementException)
+            {
+                Assert.Fail("Identifiant createList-page non trouvé sur la page.");
+            }
+        }
+
+        [TestMethod]
+        public void coordinator_not_should_be_able_to_see_the_page_createList_student_not_if_logged_in()
+        {
+           ;
+            _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Upload");
+
+            try
+            {
+                _driver.FindElement(By.Id("login-page"));
             }
             catch (NoSuchElementException)
             {

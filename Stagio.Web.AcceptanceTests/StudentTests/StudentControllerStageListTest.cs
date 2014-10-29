@@ -8,7 +8,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
     public class StudentControllerStageListTest : BaseTests
     {
         [TestMethod]
-        public void student_home_page_should_display_stages()
+        public void student_home_page_should_display_stages_if_logged_in()
         {
             AuthentificateTestUser(StudentUsername, StudentPassword);
             _driver.Navigate().GoToUrl("http://thomarelau.local/Student/StageList");
@@ -16,6 +16,20 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             var stageCount =  int.Parse(countText.Split(' ')[0]);
 
             Assert.IsTrue(stageCount > 0);
+        }
+
+        [TestMethod]
+        public void student_home_page_not_should_display_stages_not_if_logged_in()
+        {
+            _driver.Navigate().GoToUrl("http://thomarelau.local/Student/StageList");
+            try
+            {
+                _driver.FindElement(By.Id("login-page"));
+            }
+            catch (NoSuchElementException)
+            {
+                Assert.Fail("Identifiant resultCreateList-page non trouvé sur la page.");
+            }
         }
 
         [TestMethod]

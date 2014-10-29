@@ -8,7 +8,7 @@ namespace Stagio.Web.AcceptanceTests.StageTests
     public class StageControllerDetails : BaseTests
     {
         [TestMethod]
-        public void coordinator_can_see_details_stage_page()
+        public void coordinator_can_see_details_stage_page_if_logged_in()
         {
             AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
             _driver.FindElement(By.Id("list")).Click();
@@ -22,5 +22,6 @@ namespace Stagio.Web.AcceptanceTests.StageTests
                 Assert.Fail("Identifiant details-stage-page non trouvé sur la page.");
             }
         }
+
     }
 }
