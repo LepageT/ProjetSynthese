@@ -73,6 +73,9 @@
     <Compile Include="AccountTests\AccountControllerLoginTests.cs" />
     <Compile Include="BaseTests.cs" />
     <Compile Include="ContactEnterpriseTests\ContactEnterpriseInviteTests.cs" />
+    <Compile Include="ContactEnterpriseTests\ContactEnterpriseControllerListStage.cs" />
+    <Compile Include="ContactEnterpriseTests\ConntactEnterpriseListStudentApplyTests.cs" />
+    <Compile Include="ContactEnterpriseTests\ContactEnterpriseControllerDetailsStudentApplyTests.cs" />
     <Compile Include="CoordinatorTests\CoordinatorControllerInviteEnterpriseTests.cs" />
     <Compile Include="ContactEnterpriseTests\ContactEnterpriseControllerCreateTests.cs" />
     <Compile Include="CoordinatorTests\CoordonnateurCreateTests.cs" />
