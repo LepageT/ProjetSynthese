@@ -86,12 +86,6 @@ namespace Stagio.Web.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult ListStudentApplyPost()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ListStudentApplyPost);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult DetailsStudentApply()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DetailsStudentApply);
@@ -128,10 +122,9 @@ namespace Stagio.Web.Controllers
             public readonly string CreateStageSucceed = "CreateStageSucceed";
             public readonly string InviteContactEnterprise = "InviteContactEnterprise";
             public readonly string ListStudentApply = "ListStudentApply";
-            public readonly string ListStudentApplyPost = "ListStudentApply";
             public readonly string ListStage = "ListStage";
             public readonly string DetailsStudentApply = "DetailsStudentApply";
-            public readonly string DetailsStudentApplyPost = "DetailsStudentApplyPost";
+            public readonly string DetailsStudentApplyPost = "DetailsStudentApply";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -147,10 +140,9 @@ namespace Stagio.Web.Controllers
             public const string CreateStageSucceed = "CreateStageSucceed";
             public const string InviteContactEnterprise = "InviteContactEnterprise";
             public const string ListStudentApply = "ListStudentApply";
-            public const string ListStudentApplyPost = "ListStudentApply";
             public const string ListStage = "ListStage";
             public const string DetailsStudentApply = "DetailsStudentApply";
-            public const string DetailsStudentApplyPost = "DetailsStudentApplyPost";
+            public const string DetailsStudentApplyPost = "DetailsStudentApply";
         }
 
 
@@ -215,14 +207,6 @@ namespace Stagio.Web.Controllers
         public ActionParamsClass_ListStudentApply ListStudentApplyParams { get { return s_params_ListStudentApply; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_ListStudentApply
-        {
-            public readonly string id = "id";
-        }
-        static readonly ActionParamsClass_ListStudentApplyPost s_params_ListStudentApplyPost = new ActionParamsClass_ListStudentApplyPost();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_ListStudentApplyPost ListStudentApplyPostParams { get { return s_params_ListStudentApplyPost; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_ListStudentApplyPost
         {
             public readonly string id = "id";
         }
@@ -454,18 +438,6 @@ namespace Stagio.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ListStudentApply);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             ListStudentApplyOverride(callInfo, id);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void ListStudentApplyPostOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult ListStudentApplyPost(int id)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ListStudentApplyPost);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            ListStudentApplyPostOverride(callInfo, id);
             return callInfo;
         }
 

@@ -8,6 +8,8 @@ namespace Stagio.Web.ViewModels.Apply
 {
     public class StudentApply
     {
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "Requis")]
         public string Cv { get; set; }
 

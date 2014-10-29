@@ -29,7 +29,7 @@
                 @Html.DisplayFor(modelItem => item.FirstName)
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) 
+                @Html.ActionLink("Afficher le cv et la lettre de la présentation de l'étudiant", MVC.ContactEnterprise.DetailsStudentApply(), new { id = item.Id })
             </td>
         </tr>
     }

@@ -216,15 +216,9 @@ namespace Stagio.Web.Controllers
                 listStudents.Add(_studentRepository.GetById(student));
             }
 
-            TempData["idStage"] = id;
+            TempData["idStage"] = id.ToString();
             var listStudentsApply = Mapper.Map<IEnumerable<ViewModels.Student.ListStudent>>(listStudents).ToList();
             return View(listStudentsApply);
-        }
-
-        [HttpPost, ActionName("ListStudentApply")]
-        public virtual ActionResult ListStudentApplyPost(int id)
-        {
-            return View();
         }
 
         public virtual ActionResult ListStage()
@@ -237,16 +231,18 @@ namespace Stagio.Web.Controllers
 
         public virtual ActionResult DetailsStudentApply(int id)
         {
-            var apply = _applyRepository.GetAll()
-                           .Where(x => x.IdStudent == id)
-                           .Where(x => x.IdStudent == Convert.ToInt32(TempData["idStage"]));
+
+           var into = Convert.ToInt32(TempData["idStage"] as String);
+
+            var apply = _applyRepository.GetAll().FirstOrDefault(x => x.IdStudent == id && x.IdStage == into);
+          
 
             var applyModel = Mapper.Map<ViewModels.Apply.StudentApply>(apply);
 
             return View(applyModel);
         }
 
-        [HttpPost]
+        [HttpPost, ActionName("DetailsStudentApply")]
         public virtual ActionResult DetailsStudentApplyPost(int id)
         {
             return View();

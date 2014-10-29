@@ -326,6 +326,7 @@
     <Content Include="Views\ContactEnterprise\ListStage.cshtml" />
     <Content Include="Views\ContactEnterprise\ListStudentApply.cshtml" />
     <Content Include="Views\Apply\Index.cshtml" />
+    <Content Include="Views\ContactEnterprise\DetailsStudentApply.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt.hooks.t4" />
