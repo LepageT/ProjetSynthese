@@ -12,6 +12,7 @@ namespace Stagio.Web.AcceptanceTests.StageTests
         public void coordinator_can_see_details_stage_page_if_logged_in()
         {
             AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
+            _driver.FindElement(By.Id("index-coordonnateur")).Click();
             _driver.FindElement(By.Id("list")).Click();
             _driver.FindElement(By.Id("details-stages1")).Click();
             try
@@ -28,6 +29,7 @@ namespace Stagio.Web.AcceptanceTests.StageTests
         public void coordinator_can_see_remove_button_if_stage_accepted()
         {
             AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
+            _driver.FindElement(By.Id("index-coordonnateur")).Click();
             _driver.FindElement(By.Id("list")).Click();
             _driver.FindElement(By.Id("details-stages3")).Click();
             try
@@ -44,6 +46,7 @@ namespace Stagio.Web.AcceptanceTests.StageTests
         public void coordinator_can_not_see_remove_button_if_stage_Not_accepted()
         {
             AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
+            _driver.FindElement(By.Id("index-coordonnateur")).Click();
             _driver.FindElement(By.Id("list")).Click();
             _driver.FindElement(By.Id("details-stages1")).Click();
             try
@@ -60,6 +63,7 @@ namespace Stagio.Web.AcceptanceTests.StageTests
         public void coordinator_can_remove_stage_of_listStageAccepted()
         {
             AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
+            _driver.FindElement(By.Id("index-coordonnateur")).Click();
             _driver.FindElement(By.Id("list")).Click();
             _driver.FindElement(By.Id("details-stages3")).Click();
             _driver.FindElement(By.Id("remove-stage")).Click();
@@ -77,6 +81,7 @@ namespace Stagio.Web.AcceptanceTests.StageTests
         public void coordinator_can_refuse_a_stage()
         {
             AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
+            _driver.FindElement(By.Id("index-coordonnateur")).Click();
             _driver.FindElement(By.Id("list")).Click();
             _driver.FindElement(By.Id("details-stages1")).Click();
             _driver.FindElement(By.Id("refuse-stage")).Click();
@@ -95,6 +100,7 @@ namespace Stagio.Web.AcceptanceTests.StageTests
         public void coordinator_can_accept_a_stage()
         {
             AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
+            _driver.FindElement(By.Id("index-coordonnateur")).Click();
             _driver.FindElement(By.Id("list")).Click();
             _driver.FindElement(By.Id("details-stages1")).Click();
             _driver.FindElement(By.Id("accept-stage")).Click();

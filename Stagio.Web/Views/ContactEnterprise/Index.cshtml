@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
 
@@ -7,5 +6,9 @@
 
 
 <div>
-    @Html.ActionLink("Inviter un autre employé", MVC.ContactEnterprise.InviteContactEnterprise(), new { id = "invite-contact-enterprise" })
+    @Html.ActionLink("Inviter un autre employé", MVC.ContactEnterprise.InviteContactEnterprise(), new { id = "invite-contact-enterprise" })<br/>
+    @Html.ActionLink("Crée un stage", MVC.ContactEnterprise.CreateStage(), new { id = "create-stage-enterprise" })
+</div>
+<div>
+    @Html.ActionLink("Liste des stages pour une entreprise", MVC.ContactEnterprise.ListStage(), new { id = "listContact" })
 </div>

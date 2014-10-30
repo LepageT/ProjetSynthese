@@ -11,19 +11,19 @@
 <table class="table">
     <tr class="row">
         <th class="col-md-2">
-            @Html.DisplayNameFor(model => model.ListNewStages[0].PublicationDate)
+            @Html.DisplayNameFor(model => model.ListNewStages[0].StageTitle)
         </th>
         <th class="col-md-3">
             @Html.DisplayNameFor(model => model.ListNewStages[0].CompanyName)
         </th>
         <th class="col-md-3">
-            @Html.DisplayNameFor(model => model.ListNewStages[0].StageTitle)
+            @Html.DisplayNameFor(model => model.ListNewStages[0].NbrStagiaire)
+        </th>
+        <th class="col-md-2">
+            @Html.DisplayNameFor(model => model.ListNewStages[0].PublicationDate)
         </th>
         <th class="col-md-2">
             @Html.DisplayNameFor(model => model.ListNewStages[0].LimitDate)
-        </th>
-        <th class="col-md-2">
-            @Html.DisplayNameFor(model => model.ListNewStages[0].NbrStagiaire)
         </th>
         <th></th>
     </tr>
@@ -32,22 +32,22 @@
     {
         <tr class="row">
             <td class="col-md-2">
-                @Html.DisplayFor(modelItem => item.PublicationDate)
+                @Html.DisplayFor(modelItem => item.StageTitle)
             </td>
             <td class="col-md-3">
                 @Html.DisplayFor(modelItem => item.CompanyName)
             </td>
             <td class="col-md-3">
-                @Html.DisplayFor(modelItem => item.StageTitle)
+                @Html.DisplayFor(modelItem => item.NbrStagiaire)
+            </td>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.PublicationDate)
             </td>
             <td class="col-md-2">
                 @Html.DisplayFor(modelItem => item.LimitDate)
             </td>
-            <td class="col-md-2">
-                @Html.DisplayFor(modelItem => item.NbrStagiaire)
-            </td>
-            <td class="col-md-7">
-                @Html.ActionLink("Détails", "Details", new { id = item.Id }, new { id = "details-stages" + item.Id }) |
+            <td>
+                @Html.ActionLink("Détails", "Details", new { id = item.Id }, new { id = "details-stages" + item.Id })
             </td>
         </tr>
     }
@@ -59,19 +59,19 @@
 <table class="table">
     <tr class="row">
         <th class="col-md-2">
-            @Html.DisplayNameFor(model => model.ListStagesAccepted[0].PublicationDate)
+            @Html.DisplayNameFor(model => model.ListStagesAccepted[0].StageTitle)
         </th>
         <th class="col-md-3">
             @Html.DisplayNameFor(model => model.ListStagesAccepted[0].CompanyName)
         </th>
         <th class="col-md-3">
-            @Html.DisplayNameFor(model => model.ListStagesAccepted[0].StageTitle)
+            @Html.DisplayNameFor(model => model.ListStagesAccepted[0].NbrStagiaire)
+        </th>
+        <th class="col-md-2">
+            @Html.DisplayNameFor(model => model.ListStagesAccepted[0].PublicationDate)   
         </th>
         <th class="col-md-2">
             @Html.DisplayNameFor(model => model.ListStagesAccepted[0].LimitDate)
-        </th>
-        <th class="col-md-2">
-            @Html.DisplayNameFor(model => model.ListStagesAccepted[0].NbrStagiaire)
         </th>
         <th></th>
     </tr>
@@ -80,19 +80,19 @@
     {
         <tr class="row">
             <td class="col-md-2">
-                @Html.DisplayFor(modelItem => item.PublicationDate)
+                @Html.DisplayFor(modelItem => item.StageTitle)
             </td>
             <td class="col-md-3">
                 @Html.DisplayFor(modelItem => item.CompanyName)
             </td>
             <td class="col-md-3">
-                @Html.DisplayFor(modelItem => item.StageTitle)
+                @Html.DisplayFor(modelItem => item.NbrStagiaire)
+            </td>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.PublicationDate)
             </td>
             <td class="col-md-2">
                 @Html.DisplayFor(modelItem => item.LimitDate)
-            </td>
-            <td class="col-md-2">
-                @Html.DisplayFor(modelItem => item.NbrStagiaire)
             </td>
             <td>
                 @Html.ActionLink("Détails", "Details", new { id = item.Id }, new { id = "details-stages" + item.Id }) 
@@ -107,19 +107,19 @@
 <table class="table">
     <tr class="row">
         <th class="col-md-2">
-            @Html.DisplayNameFor(model => model.ListStagesRefused[0].PublicationDate)
+            @Html.DisplayNameFor(model => model.ListStagesRefused[0].StageTitle)
         </th>
         <th class="col-md-3">
             @Html.DisplayNameFor(model => model.ListStagesRefused[0].CompanyName)
         </th>
         <th class="col-md-3">
-            @Html.DisplayNameFor(model => model.ListStagesRefused[0].StageTitle)
+            @Html.DisplayNameFor(model => model.ListStagesRefused[0].NbrStagiaire)
+        </th>
+        <th class="col-md-2">
+            @Html.DisplayNameFor(model => model.ListStagesRefused[0].PublicationDate)
         </th>
         <th class="col-md-2">
             @Html.DisplayNameFor(model => model.ListStagesRefused[0].LimitDate)
-        </th>
-        <th class="col-md-2">
-            @Html.DisplayNameFor(model => model.ListStagesRefused[0].NbrStagiaire)
         </th>
         <th></th>
     </tr>
@@ -128,25 +128,25 @@
     {
         <tr class="row">
             <td class="col-md-2">
-                @Html.DisplayFor(modelItem => item.PublicationDate)
+                @Html.DisplayFor(modelItem => item.StageTitle)
             </td>
             <td class="col-md-3">
                 @Html.DisplayFor(modelItem => item.CompanyName)
             </td>
             <td class="col-md-3">
-                @Html.DisplayFor(modelItem => item.StageTitle)
+                @Html.DisplayFor(modelItem => item.NbrStagiaire)
+            </td>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.PublicationDate)
             </td>
             <td class="col-md-2">
                 @Html.DisplayFor(modelItem => item.LimitDate)
             </td>
-            <td class="col-md-2">
-                @Html.DisplayFor(modelItem => item.NbrStagiaire)
-            </td>
             <td>
-                @Html.ActionLink("Détails", "Details", new { id = item.Id }, new { id = "details-stages" + item.Id }) |
+                @Html.ActionLink("Détails", "Details", new { id = item.Id }, new { id = "details-stages" + item.Id })
             </td>
         </tr>
     }
 
 </table>
-
+@Html.ActionLink("Retour à l'acceuil", MVC.Coordinator.Index())

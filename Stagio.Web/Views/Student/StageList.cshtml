@@ -2,7 +2,7 @@
 @model IEnumerable<Stagio.Web.ViewModels.Student.StageList>
 
 @{
-    ViewBag.Title = "StageList";
+    ViewBag.Title = "Liste des stages";
 }
 
 <h2 id="student-StageList">Liste des offres de stages</h2>
@@ -50,3 +50,4 @@
     }
 
 </table>
+@Html.ActionLink("Retour à l'accueil", MVC.Student.Index())
