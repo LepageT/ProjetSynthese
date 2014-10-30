@@ -54,6 +54,9 @@ namespace Stagio.Web.ViewModels.ContactEnterprise
 
         [HiddenInput(DisplayValue = false)]
         public bool Active { get; set; }
+
+        [DisplayName("Message")]
+        public String Message { get; set; }
     }
 
 
