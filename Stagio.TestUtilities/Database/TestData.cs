@@ -234,9 +234,11 @@ namespace Stagio.TestUtilities.Database
             {
                 var stage = new Stage()
                 {
+                    Id = 1,
+                    NbApply = 1,
                     LimitDate = DateTime.Now,
                     PublicationDate = DateTime.Now,
-                    AcceptedByCoordinator = 0,
+                    Status = 0,
                     NbrStagiaire = 3,
                     StageTitle = "[Inserer titre ici]",
                     CompanyName = "Bonbon inc",
@@ -244,12 +246,12 @@ namespace Stagio.TestUtilities.Database
                     ResponsableToName = "Robert",
                     ResponsableToEmail = "robert@bonbon.com",
                     ResponsableToPhone = "432-432-4324",
-                    ResponsableToPoste = 333,
+                    ResponsableToPoste = "333",
                     ResponsableToTitle = "CEO",
-                    ContactToName =  "Luc",
+                    ContactToName = "Luc",
                     ContactToEmail = "luc@bonbon.com",
                     ContactToPhone = "123-223-3456",
-                    ContactToPoste = 2,
+                    ContactToPoste = "2",
                     ContactToTitle = "Maitre des bonbons",
                     StageDescription = "Faire des bonbons, Manger des bonbons...",
                     EnvironnementDescription = "Sucre, Mélangeur",
@@ -274,7 +276,7 @@ namespace Stagio.TestUtilities.Database
                 {
                    LimitDate = DateTime.Now,
                     PublicationDate = DateTime.Now,
-                    AcceptedByCoordinator = 1,
+                    Status = 1,
                     NbrStagiaire = 2,
                     StageTitle = "[Inserer titre ici]",
                     CompanyName = "Musique inc",
@@ -310,13 +312,14 @@ namespace Stagio.TestUtilities.Database
                                         "d'applications pédagogiques multimédias",
                     EnvironnementDescription = "asdkjlh wef yuijshd jefy wfu scj hldsjyt wu jhlgyaej hhj uiytolral  aluir" +
                                                 " laksdjh z;l sdutypa fhhjyla GFHELA /n kkhjgdkhjfL GFOIA /n saut de ligne",
+                    StageTitle = "patate",
                     NbrStagiaire = 2,
                     StagiaireIfKnew = "",
                     SubmitToName = "Denyse Gilbert",
                     SubmitToTitle = "Coordinatrice aux développements APTIC",
                     SubmitToEmail = "Denyse.Gilbert",
                     LimitDate = new DateTime(2008,12,10),
-                    AcceptedByCoordinator = 0
+                    Status = 0
                     
                     
                 };
@@ -326,5 +329,29 @@ namespace Stagio.TestUtilities.Database
         }
 
         #endregion
+
+        #region Apply 1
+
+        static public Apply apply1
+        {
+            get
+            {
+                var apply = new Apply()
+                {
+                    IdStage = 1,
+                    IdStudent = 1,
+                    Cv = "jfdhvldshgsdljhk",
+                    Letter = "xljvbvdsve efhnboseif ierhgtbcwl gkf kg fdi"
+                };
+
+                return apply;
+            }
+        }
+
+        #endregion
+    
+    
     }
+
+
 }

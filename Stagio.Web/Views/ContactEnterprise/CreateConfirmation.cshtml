@@ -1,4 +1,6 @@
-﻿
+﻿@using System.Web.Mvc
+@model Stagio.Web.ViewModels.ContactEnterprise.Reactive
+
 @{
     ViewBag.Title = "CreateConfirmation";
 }
@@ -6,6 +8,69 @@
 <h2 id="confirmationCreateContact-page">Confirmation</h2>
 <p>Vous avez bien créer votre compte en tant qu'employé d'entreprise.</p>
 
+<p>Vos informations:</p>
+
+<div class="row">
+    <div class="form-group">
+        @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.HiddenFor(model => model.FirstName)
+            @Html.DisplayFor(model => model.FirstName)
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="form-group">
+        @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.HiddenFor(model => model.LastName)
+            @Html.DisplayFor(model => model.LastName)
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.HiddenFor(model => model.Email)
+            @Html.DisplayFor(model => model.Email)
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="form-group">
+        @Html.LabelFor(model => model.EnterpriseName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.HiddenFor(model => model.EnterpriseName)
+            @Html.DisplayFor(model => model.EnterpriseName)
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="form-group">
+        @Html.LabelFor(model => model.Telephone, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.HiddenFor(model => model.Telephone)
+            @Html.DisplayFor(model => model.Telephone)
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="form-group">
+        @Html.LabelFor(model => model.Poste, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.HiddenFor(model => model.Poste)
+            @Html.DisplayFor(model => model.Poste)
+        </div>
+    </div>
+</div>
+
+<br>
 <div>
     @Html.ActionLink("Retour à l'accueil", MVC.Home.Index())
 </div>

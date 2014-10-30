@@ -21,26 +21,26 @@
 
 @if(@User.IsInRole("Étudiant"))
 {
-    <h4>Étudiant</h4>
-    <div>  
+<h4>Étudiant</h4>
+<div>
         @Html.ActionLink("Student", MVC.Student.Index(), new { id = "index-Student" })     
-    </div>
+</div>
 }
 
 @if(@User.IsInRole("Coordonnateur"))
 {
-    <h4>Coordonnateur</h4>
-    <div>
-        @Html.ActionLink("Coordinator", MVC.Coordinator.Index(), new { id = "index-coordonnateur" })
-    </div>
+<h4>Coordonnateur</h4>
+<div>
+    @Html.ActionLink("Coordinator", MVC.Coordinator.Index(), new { id = "index-coordonnateur" })
+</div>
 }
 
 @if(@User.IsInRole("Contact entreprise"))
 { 
-    <h4>Employé d'une entreprise</h4>
-    <div>
+<h4>Employé d'une entreprise</h4>
+<div>
         @Html.ActionLink("Enterprise", MVC.ContactEnterprise.Index(), new { id = "index-enterprise" })
-    </div>
+</div>
 }
 <h4>Stage</h4>
 <div>
@@ -48,6 +48,9 @@
 </div>
 <div>
     @Html.ActionLink("Visualiser la description du stage 1", MVC.Stage.ViewStageInfo(1), new { id = "stage-1" })
+</div>
+<div>
+    @Html.ActionLink("Liste des stages pour une entreprise", MVC.ContactEnterprise.ListStage(), new { id = "listContact" })
 </div>
 
 

@@ -18,12 +18,18 @@ namespace Stagio.Web.ViewModels.Stage
         
         public String CompanyName { get; set; }
 
-        [DisplayName("Adresse")]
+        [DisplayName("Titre du stage")]
         [Required(ErrorMessage = "Requis")]
-        public String Adresse { get; set; }
+        public String StageTitle { get; set; }
+
+        [DisplayName("Date de fin de soumission")]
+        [Required(ErrorMessage = "Requis")]
+        public DateTime LimitDate { get; set; }
 
         [DisplayName("Nombre de stagiaires")]
         [Required(ErrorMessage = "Requis")]
         public int NbrStagiaire { get; set; }
+
+       
     }
 }

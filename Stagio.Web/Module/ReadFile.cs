@@ -15,18 +15,12 @@ namespace Stagio.Web.Module
             var listStudentToCreate = new List<ListStudent>();
             if (file.ContentLength > 0)
             {
-                var server = HttpContext.Current.Server;
-                var fileName = Path.GetFileName(file.FileName);
-                var path = Path.Combine(server.MapPath("~/App_Data/UploadedFiles"), fileName);
-                //var readFile = new ReadFile<Student>();
-                file.SaveAs(path);
-
-                using (var rd = new StreamReader(path))
-                {
-                    rd.ReadLine().Split(',');
-                    while (!rd.EndOfStream)
+                var fileToRead = new StreamReader(file.InputStream);
+ 
+                    fileToRead.ReadLine().Split(',');
+                    while (!fileToRead.EndOfStream)
                     {
-                        var splits = rd.ReadLine().Split(',');
+                        var splits = fileToRead.ReadLine().Split(',');
                         var createStudent = new ListStudent();
 
                         string matricule = Regex.Replace(splits[0], "[^0-9]", "");
@@ -38,8 +32,6 @@ namespace Stagio.Web.Module
                         createStudent.FirstName = createStudent.FirstName.Replace('"', ' ');
 
                         listStudentToCreate.Add(createStudent);
-
-                    }
                 }
             }
 

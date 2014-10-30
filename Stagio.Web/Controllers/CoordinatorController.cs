@@ -153,6 +153,22 @@ namespace Stagio.Web.Controllers
             {
                 enterpriseName.Replace(" ", "%20");
             }
+            if (contactEnterpriseToSendMessage.FirstName != null)
+            {
+                contactEnterpriseToSendMessage.FirstName = contactEnterpriseToSendMessage.FirstName.Replace(" ", "%20");
+            }
+            if (contactEnterpriseToSendMessage.LastName != null)
+            {
+                contactEnterpriseToSendMessage.LastName = contactEnterpriseToSendMessage.LastName.Replace(" ", "%20");
+            }
+            if (contactEnterpriseToSendMessage.Telephone != null)
+            {
+                contactEnterpriseToSendMessage.Telephone = contactEnterpriseToSendMessage.Telephone.Replace(" ", "%20");
+            }
+            if (contactEnterpriseToSendMessage.Poste != null)
+            {
+                contactEnterpriseToSendMessage.Poste = contactEnterpriseToSendMessage.Poste.Replace(" ", "%20");
+            }
 
             string messageText = "Un coordonnateur de stage vous invite à vous inscrire au site Stagio: ";
             string invitationUrl = "http://thomarelau.local/ContactEnterprise/Reactivate?Email=" +

@@ -1,4 +1,5 @@
-﻿
+﻿@using System.Web.Mvc
+
 @{
     ViewBag.Title = "Coordinator";
 }
@@ -6,7 +7,7 @@
 <h2 id="coordinator-home">Coordination</h2>
 
 <br/>
-@Html.ActionLink("Envoyer une inviation", MVC.Coordinator.Invite(), new { id = "create-coordinator" })
+@Html.ActionLink("Envoyer une invitation", MVC.Coordinator.Invite(), new { id = "create-coordinator" })
 
 <div>
     @Html.ActionLink("Ajouter des étudiants", MVC.Student.Upload(), new { id = "upload-student" })

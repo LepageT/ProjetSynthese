@@ -40,7 +40,7 @@ namespace Stagio.Web.ViewModels.Stage
         public String ResponsableToPhone { get; set; }
 
         [DisplayName("Poste")]
-        public int? ResponsableToPoste { get; set; }
+        public string ResponsableToPoste { get; set; }
 
         //Contact
 
@@ -59,7 +59,7 @@ namespace Stagio.Web.ViewModels.Stage
         public String ContactToPhone { get; set; }
 
         [DisplayName("Poste")]
-        public int? ContactToPoste { get; set; }
+        public string ContactToPoste { get; set; }
 
 
         [DisplayName("Description du projet")]
@@ -94,5 +94,7 @@ namespace Stagio.Web.ViewModels.Stage
 
         public DateTime PublicationDate { get; set; }
 
+        [DisplayName("Stagiaire si connu:")]
+        public string StagiaireIfKnew { get; set; }
     }
 }

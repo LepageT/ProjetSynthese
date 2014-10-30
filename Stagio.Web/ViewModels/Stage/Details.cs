@@ -9,6 +9,7 @@ namespace Stagio.Web.ViewModels.Stage
 {
     public class Details
     {
+        public int Id { get; set; }
 
         [DisplayName("Date de l'offre:")]
         public DateTime PublicationDate { get; set; }
@@ -30,7 +31,7 @@ namespace Stagio.Web.ViewModels.Stage
         [DisplayName("Téléphone:")]
         public String ResponsableToPhone { get; set; }
         [DisplayName("Poste:")]
-        public int? ResponsableToPoste { get; set; }
+        public string ResponsableToPoste { get; set; }
 
         //Contact
         [DisplayName("Nom:")]
@@ -42,7 +43,7 @@ namespace Stagio.Web.ViewModels.Stage
         [DisplayName("Téléphone:")]
         public String ContactToPhone { get; set; }
         [DisplayName("Poste:")]
-        public int? ContactToPoste { get; set; }
+        public string ContactToPoste { get; set; }
 
         [DisplayName("Description du projet pour le stage")]
         public String StageDescription { get; set; }
@@ -62,5 +63,7 @@ namespace Stagio.Web.ViewModels.Stage
         public String SubmitToEmail { get; set; }
         [DisplayName("Date limite pour soummettre une candidature:")]
         public DateTime LimitDate { get; set; }
+
+        public int Status { get; set; }
     }
 }

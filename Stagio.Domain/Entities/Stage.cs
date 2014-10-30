@@ -19,7 +19,6 @@ namespace Stagio.Domain.Entities
 
         public String Adresse { get; set; }
 
-
         //Responsable
         [DisplayName("Nom")]
         public String ResponsableToName { get; set; }
@@ -30,7 +29,7 @@ namespace Stagio.Domain.Entities
         [DisplayName("Téléphone")]
         public String ResponsableToPhone { get; set; }
         [DisplayName("Poste")]
-        public int? ResponsableToPoste { get; set; }
+        public string ResponsableToPoste { get; set; }
 
         //Contact
         [DisplayName("Nom")]
@@ -42,15 +41,14 @@ namespace Stagio.Domain.Entities
         [DisplayName("Téléphone")]
         public String ContactToPhone { get; set; }
         [DisplayName("Poste")]
-        public int? ContactToPoste { get; set; }
+        public string ContactToPoste { get; set; }
 
         [DisplayName("Description du projet pour le stage")]
         public String StageDescription { get; set; }
         [DisplayName("Environnement matériel et logiciel spécifique au projet")]
         //Stage information
-        public string StageTitle { get; set; }
-
         public String EnvironnementDescription { get; set; }
+        public string StageTitle { get; set; }
         [DisplayName("Nombre de stagiaires")]
         public int NbrStagiaire { get; set; }
         [DisplayName("Stagiaire si connu:")]
@@ -65,8 +63,16 @@ namespace Stagio.Domain.Entities
         public String SubmitToEmail { get; set; }
         [DisplayName("Date limite pour soummettre une candidature")]
         public DateTime LimitDate { get; set; }
+
+        //0 => Nouveau
+        //1 => Accepter
+        //2 => Refuser
+        [DefaultValue(0)]
         [Range(0,3)]
-        public int AcceptedByCoordinator { get; set; }
+        public int Status { get; set; }
+
+        [DefaultValue(0)]
+        public int NbApply { get; set; }
 
     }
 }

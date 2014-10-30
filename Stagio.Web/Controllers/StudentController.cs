@@ -20,15 +20,17 @@ namespace Stagio.Web.Controllers
     public partial class StudentController : Controller
     {
         private readonly IEntityRepository<Student> _studentRepository;
-        private readonly IEntityRepository<Stage> _stageRepository;
+        private readonly IEntityRepository<Stage> _stageRepository; 
         private readonly IHttpContextService _httpContextService;
+        private readonly IEntityRepository<Stagio.Domain.Entities.Apply> _applyRepository;
         // private readonly IEntityRepository<Activation> _activationRepository;
 
-        public StudentController(IEntityRepository<Student> studentRepository, IEntityRepository<Stage> stageRepository, IHttpContextService httpContextService)
+        public StudentController(IEntityRepository<Student> studentRepository, IEntityRepository<Stage> stageRepository, IEntityRepository<Stagio.Domain.Entities.Apply> applyRepository, IHttpContextService httpContextService)
         {
             _studentRepository = studentRepository;
             _stageRepository = stageRepository;
             _httpContextService = httpContextService;
+            _applyRepository = applyRepository;
         }
 
         public virtual ActionResult Index()
@@ -220,7 +222,7 @@ namespace Stagio.Web.Controllers
             }
 
             var student = _studentRepository.GetById(id);
-            
+
             if (student != null)
             {
                 var studentEditPageViewModel = Mapper.Map<ViewModels.Student.Edit>(student);
@@ -244,10 +246,10 @@ namespace Stagio.Web.Controllers
 
             if (editStudentViewModel.OldPassword != null)
             {
-                if (!PasswordHash.ValidatePassword(editStudentViewModel.OldPassword, student.Password))
-                {
-                    ModelState.AddModelError("OldPassword", "L'ancien mot de passe n'est pas valide.");
-                }
+            if (!PasswordHash.ValidatePassword(editStudentViewModel.OldPassword, student.Password))
+            {
+                ModelState.AddModelError("OldPassword", "L'ancien mot de passe n'est pas valide.");
+            }
             }
 
             if (!ModelState.IsValid)
@@ -270,13 +272,61 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult StageList()
         {
             var stages = _stageRepository.GetAll().ToList();
-            var stagesAccepted = stages.Where(x => x.AcceptedByCoordinator == 1);
+            var stagesAccepted = stages.Where(x => x.Status == 1);
             var studentStageListViewModels = Mapper.Map<IEnumerable<ViewModels.Student.StageList>>(stagesAccepted);
           
             
             
             return View(studentStageListViewModels);
             
+        }
+
+
+        public virtual ActionResult Apply(int id)
+        {
+            var stage = _stageRepository.GetById(id);
+
+            if (stage != null)
+            {
+                var applyViewModel = new ViewModels.Student.Apply();
+                applyViewModel.IdStage = id;
+                //Get ID Student with login when login implemented. For now, temp value idStudent = 1
+                /*var identity = (ClaimsIdentity)User.Identity; 
+                var idStudent = identity; //.FindFirst(ClaimTypes.Email).Value;*/
+                applyViewModel.IdStudent = 1;
+                return View(applyViewModel);
+            }
+            return HttpNotFound();
+            
+        }
+
+        [HttpPost]
+        public virtual ActionResult Apply(ViewModels.Student.Apply applyStudentViewModel)
+        {
+            var stage = _stageRepository.GetById(applyStudentViewModel.IdStage);
+
+            if (stage == null)
+            {
+                return HttpNotFound();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(applyStudentViewModel);
+            }
+            var newApplicationStudent = Mapper.Map<Stagio.Domain.Entities.Apply>(applyStudentViewModel);
+            newApplicationStudent.Status = 0;   //0 = En attente
+            _applyRepository.Add(newApplicationStudent);
+            int nbApplyCurrently = stage.NbApply;
+            stage.NbApply = nbApplyCurrently + 1;
+            _stageRepository.Update(stage);
+
+            return RedirectToAction(MVC.Student.ApplyConfirmation());
+        }
+
+        public virtual ActionResult ApplyConfirmation()
+        {
+            return View();
         }
     }
 }

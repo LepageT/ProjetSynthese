@@ -53,7 +53,13 @@ namespace Stagio.Web.Services
 
         public bool UserEmailExist(string email)
         {
-            throw new System.NotImplementedException();
+
+            IEnumerable<string> emails = _userRepository.GetAll().Where(x => x.Email != null).Select(x => x.Email);
+            if (emails.Contains(email))
+            {
+                return true;
+            }
+            return false;
         }
 
         public bool UserMatriculeExist(string matricule)

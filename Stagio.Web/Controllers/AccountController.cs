@@ -38,7 +38,7 @@ namespace Stagio.Web.Controllers
             {
                 return View("");
             }
-            
+
             var user = _accountService.ValidateUser(accountLoginViewModel.Username, accountLoginViewModel.Password);
 
             if (!user.Any())
@@ -72,7 +72,7 @@ namespace Stagio.Web.Controllers
             {
                 identity.AddClaim(new Claim(ClaimTypes.Role, role.RoleName));
             }
-            
+
             _httpContext.AuthenticationSignIn(identity);
         }
     }
