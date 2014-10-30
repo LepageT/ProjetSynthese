@@ -14,11 +14,11 @@ namespace Stagio.Domain.Entities
 
         public int Matricule { get; set; }
 
+        public string Poste { get; set; }
 
         [DefaultValue(false)]
         public bool Activated { get; set; }
 
-        public string Email { get; set; }
 
     }
 }

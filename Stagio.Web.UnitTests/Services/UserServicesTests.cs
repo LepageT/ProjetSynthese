@@ -7,7 +7,8 @@ using Stagio.DataLayer;
 using Stagio.Domain.Entities;
 using Stagio.Utilities.Encryption;
 using Stagio.Web.Services;
-using Stagio.Web.UnitTests.ControllerTests.EnterpriseTests;
+using Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests;
+
 
 namespace Stagio.Web.UnitTests.Services
 {
@@ -78,6 +79,28 @@ namespace Stagio.Web.UnitTests.Services
             _userRepository.GetAll().Returns(users);
 
             nonHashedPassword.Should().NotBeSameAs(users.First().Password);
+        }
+
+        [TestMethod]
+        public void UserEmailExist_should_return_true_if_email_exist()
+        {
+            var users = _fixture.CreateMany<ApplicationUser>(3).AsQueryable();
+            _userRepository.GetAll().Returns(users);
+
+            var user = _accountService.UserEmailExist(users.First().Email);
+
+            user.Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void UserEmailExist_should_return_false_if_email_doesnt_exist()
+        {
+            var users = _fixture.CreateMany<ApplicationUser>(3).AsQueryable();
+            _userRepository.GetAll().Returns(users);
+
+            var user = _accountService.UserEmailExist("test@hotmail.com");
+
+            user.Should().BeFalse();
         }
 
     }

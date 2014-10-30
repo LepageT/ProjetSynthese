@@ -5,6 +5,7 @@ using System.Text;
 using System.Web.Mvc;
 using AutoMapper;
 using Stagio.DataLayer;
+using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
 using Stagio.Web.Module.Strings.Controller;
 using Stagio.Web.Module.Strings.Email;
@@ -16,18 +17,18 @@ namespace Stagio.Web.Controllers
     public partial class CoordinatorController : Controller
     {
         private readonly IAccountService _accountService;
-        private readonly IEntityRepository<Enterprise> _enterpriseRepository;
+        private readonly IEntityRepository<ContactEnterprise> _enterpriseContactRepository;
         private readonly IEntityRepository<Coordinator> _coordinatorRepository;
         private readonly IEntityRepository<Invitation> _invitationRepository;
         private readonly IMailler _mailler;
 
-        public CoordinatorController(IEntityRepository<Enterprise> enterpriseRepository,
+        public CoordinatorController(IEntityRepository<ContactEnterprise> enterpriseContactRepository,
             IEntityRepository<Coordinator> coordinatorRepository,
-            IEntityRepository<Invitation> invitationRepository, 
+            IEntityRepository<Invitation> invitationRepository,
             IMailler mailler,
             IAccountService accountService)
         {
-            _enterpriseRepository = enterpriseRepository;
+            _enterpriseContactRepository = enterpriseContactRepository;
             _coordinatorRepository = coordinatorRepository;
             _invitationRepository = invitationRepository;
             _mailler = mailler;
@@ -89,69 +90,107 @@ namespace Stagio.Web.Controllers
             }
         }
 
+        [Authorize(Roles = RoleName.Coordinator)]
         // GET: Coordinator/InviteEnterprise
-        public virtual ActionResult InviteEnterprise()
+        public virtual ActionResult InviteContactEnterprise()
         {
-            
-            var allEnterprise = _enterpriseRepository.GetAll().ToList();
-            
-            var enterpriseInviteViewModels = Mapper.Map<IEnumerable<ViewModels.Enterprise.Create>>(allEnterprise);
 
-            return View(enterpriseInviteViewModels);
-           
+            var allContactEnterprise = _enterpriseContactRepository.GetAll().ToList();
+
+            var contactEnterpriseInviteViewModels = Mapper.Map<IEnumerable<ViewModels.ContactEnterprise.Reactive>>(allContactEnterprise);
+
+            return View(contactEnterpriseInviteViewModels);
+
         }
 
+        [Authorize(Roles = RoleName.Coordinator)]
         // POST: Coordinator/InviteEnterprise
         [HttpPost]
-        [ActionName("InviteEnterprise")]
-        public virtual ActionResult InviteEnterprise(IEnumerable<int> selectedObjects, string message)
+        [ActionName("InviteContactEnterprise")]
+        public virtual ActionResult InviteContactEnterprise(IEnumerable<int> selectedIdContactEnterprise, string messageInvitation)
         {
-            if (selectedObjects != null)
+            if (selectedIdContactEnterprise != null)
             {
-                foreach (int id in selectedObjects)
+                foreach (int id in selectedIdContactEnterprise)
                 {
 
-                    Enterprise enterpriseToSendMessage = _enterpriseRepository.GetById(id);
+                    ContactEnterprise contactEnterpriseToSendMessage = _enterpriseContactRepository.GetById(id);
 
                     if (!ModelState.IsValid)
                     {
-                        return View(InviteEnterprise());
+                        return View(InviteContactEnterprise());
                     }
 
+                    string messageText = generateURLInvitationContactEnterprise(contactEnterpriseToSendMessage);
 
-                    string messageText = EmailEnterpriseResources.InviteMessageBody;
-                    string invitationUrl = EmailEnterpriseResources.InviteLink +
-                                           enterpriseToSendMessage.Email + "&EnterpriseName=" +
-                                           enterpriseToSendMessage.EnterpriseName + "&FirstName=" +
-                                           enterpriseToSendMessage.FirstName + "&LastName=" +
-                                           enterpriseToSendMessage.LastName + "&Telephone=" +
-                                           enterpriseToSendMessage.Telephone + "&Poste=" + enterpriseToSendMessage.Poste;
-
-                    messageText += invitationUrl;
-
-                    if (message != null)
+                    if (messageInvitation != null)
                     {
                         messageText += EmailEnterpriseResources.MessageHeader;
-                        messageText += message;
+                        messageText += messageInvitation;
                     }
 
                     if (
-                        !_mailler.SendEmail(enterpriseToSendMessage.Email, EmailEnterpriseResources.InviteSubject,
+                        !_mailler.SendEmail(contactEnterpriseToSendMessage.Email, EmailEnterpriseResources.InviteSubject,
                             messageText))
                     {
                         ModelState.AddModelError("Email", "Error");
-                        return View(InviteEnterprise());
+                        return View(InviteContactEnterprise());
                     }
 
                 }
+                return RedirectToAction(MVC.Coordinator.InviteContactEnterpriseConfirmation());
             }
 
-            return RedirectToAction(MVC.Home.Index());
-           
-          
+            return RedirectToAction(MVC.Coordinator.InviteContactEnterprise());
+
         }
 
-                public virtual ActionResult Create(string token)
+        [Authorize(Roles = RoleName.Coordinator)]
+        private string generateURLInvitationContactEnterprise(ContactEnterprise contactEnterpriseToSendMessage)
+        {
+            string enterpriseName = contactEnterpriseToSendMessage.EnterpriseName;
+            if (enterpriseName.Contains(" "))
+            {
+                enterpriseName.Replace(" ", "%20");
+            }
+            if (contactEnterpriseToSendMessage.FirstName != null)
+            {
+                contactEnterpriseToSendMessage.FirstName = contactEnterpriseToSendMessage.FirstName.Replace(" ", "%20");
+            }
+            if (contactEnterpriseToSendMessage.LastName != null)
+            {
+                contactEnterpriseToSendMessage.LastName = contactEnterpriseToSendMessage.LastName.Replace(" ", "%20");
+            }
+            if (contactEnterpriseToSendMessage.Telephone != null)
+            {
+                contactEnterpriseToSendMessage.Telephone = contactEnterpriseToSendMessage.Telephone.Replace(" ", "%20");
+            }
+            if (contactEnterpriseToSendMessage.Poste != null)
+            {
+                contactEnterpriseToSendMessage.Poste = contactEnterpriseToSendMessage.Poste.Replace(" ", "%20");
+            }
+
+            string messageText = "Un coordonnateur de stage vous invite à vous inscrire au site Stagio: ";
+            string invitationUrl = "http://thomarelau.local/ContactEnterprise/Reactivate?Email=" +
+                                   contactEnterpriseToSendMessage.Email + "&EnterpriseName=" +
+                                   enterpriseName + "&FirstName=" +
+                                   contactEnterpriseToSendMessage.FirstName + "&LastName=" +
+                                   contactEnterpriseToSendMessage.LastName + "&Telephone=" +
+                                   contactEnterpriseToSendMessage.Telephone + "&Poste=" + contactEnterpriseToSendMessage.Poste;
+
+            messageText += invitationUrl;
+            return messageText;
+        }
+
+        // GET: Coordinator/InviteContactEnterpriseConfirmation
+        public virtual ActionResult InviteContactEnterpriseConfirmation()
+        {
+
+            return View();
+
+        }
+
+        public virtual ActionResult Create(string token)
         {
             if (!String.IsNullOrEmpty(token))
             {
@@ -214,11 +253,13 @@ namespace Stagio.Web.Controllers
             return HttpNotFound();
         }
 
+        [Authorize(Roles = RoleName.Coordinator)]
         public virtual ActionResult Invite()
         {
             return View();
         }
 
+        [Authorize(Roles = RoleName.Coordinator)]
         [HttpPost]
         public virtual ActionResult Invite(ViewModels.Coordinator.Invite createdInvite)
         {
@@ -228,7 +269,7 @@ namespace Stagio.Web.Controllers
             }
 
             System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
-            
+
             TokenGenerator tokenGenerator = new TokenGenerator();
 
             string token = tokenGenerator.GenerateToken();
@@ -237,13 +278,13 @@ namespace Stagio.Web.Controllers
             String messageText = EmailCoordinatorResources.CoordinatorInviteMessageBody;
             String invitationUrl = EmailCoordinatorResources.CoordinatorInviteLink + token + ">Créer un compte</a>";
 
-                messageText += invitationUrl;
+            messageText += invitationUrl;
 
-                if (createdInvite.Message != null)
-                {
+            if (createdInvite.Message != null)
+            {
                 messageText += EmailCoordinatorResources.MessageHeader;
-                    messageText += createdInvite.Message;
-                }
+                messageText += createdInvite.Message;
+            }
 
             if (!_mailler.SendEmail(createdInvite.Email, EmailCoordinatorResources.CoordinatorInviteSubject, messageText))
             {
@@ -263,9 +304,9 @@ namespace Stagio.Web.Controllers
         }
 
         public virtual ActionResult InvitationSucceed()
-            {
+        {
             return View();
         }
-    
+
     }
 }

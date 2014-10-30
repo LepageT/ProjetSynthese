@@ -1,0 +1,38 @@
+﻿@using System.Web.Mvc.Html
+@model IEnumerable<Stagio.Web.ViewModels.ContactEnterprise.Reactive>
+<h4 id="invite-enterprise-page">Inviter des employés d'entreprise à s'inscrire</h4>
+Cochez les employés à inviter
+@using (Html.BeginForm())
+{
+    <ul class="list-group">
+        @foreach (var contactEnterprise in Model)
+        {
+            <li class="list-group-item">
+                <h4>
+                    @contactEnterprise.EnterpriseName
+                    <input type="checkbox" name="selectedIdContactEnterprise" value=@contactEnterprise.Id checked="true">
+                </h4>
+
+                <div>@contactEnterprise.Email</div>
+                <div>@contactEnterprise.FirstName</div>
+                <div>@contactEnterprise.LastName</div>
+                <div>@contactEnterprise.Telephone</div>
+                .
+            </li>
+
+        }
+    </ul>
+
+    <div class="col-lg-12">
+        Message:
+        @Html.TextBox("Message", "", new { @class = "form-control", size = "25" })
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-md-2">
+            <input type="submit" id="send-button" value="Envoyer" class="btn btn-default" />
+        </div>
+    </div>
+}

@@ -72,16 +72,26 @@
   <ItemGroup>
     <Compile Include="AccountTests\AccountControllerLoginTests.cs" />
     <Compile Include="BaseTests.cs" />
-    <Compile Include="CoordinatorTests\CoordinatorControllerInviteTests.cs" />
-    <Compile Include="EnterpriseTests\EnterpriseControllerCreateTests.cs" />
+    <Compile Include="ContactEnterpriseTests\ContactEnterpriseControllerDetailsStudentApplyTests.cs" />
+    <Compile Include="ContactEnterpriseTests\ContactEnterpriseInviteTests.cs" />
+    <Compile Include="ContactEnterpriseTests\ContactEnterpriseControllerListStage.cs" />
+    <Compile Include="ContactEnterpriseTests\ConntactEnterpriseListStudentApplyTests.cs" />
+    <Compile Include="CoordinatorTests\CoordinatorControllerInviteEnterpriseTests.cs" />
+    <Compile Include="ContactEnterpriseTests\ContactEnterpriseControllerCreateTests.cs" />
     <Compile Include="CoordinatorTests\CoordonnateurCreateTests.cs" />
     <Compile Include="CoordinatorTests\CoordonnateurInviteTests.cs" />
+    <Compile Include="ContactEnterpriseTests\ContactEnterpriseControllerCreateStageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StageTests\StageControllerStudentViewInformationsTests.cs" />
+    <Compile Include="StageTests\StageControllerListNewStages.cs" />
+    <Compile Include="StageTests\StageControllerDetails.cs" />
+    <Compile Include="StudentTests\StudentControllerApplyTests.cs" />
     <Compile Include="StudentTests\StudentControllerEditTests.cs" />
     <Compile Include="StudentTests\StudentControllerCreateListTests.cs" />
     <Compile Include="StudentTests\StudentControllerUploadTests.cs" />
     <Compile Include="StudentTests\StudentControllerResultCreateList.cs" />
     <Compile Include="StudentTests\StudentControllerCreateTests.cs" />
+    <Compile Include="StudentTests\StudentControllerStageListTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

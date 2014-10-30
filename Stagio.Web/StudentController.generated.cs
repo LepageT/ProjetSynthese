@@ -66,6 +66,12 @@ namespace Stagio.Web.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Apply()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Apply);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public StudentController Actions { get { return MVC.Student; } }
@@ -82,6 +88,7 @@ namespace Stagio.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
+			public readonly string Index = "Index";
             public readonly string Upload = "Upload";
             public readonly string UploadPost = "Upload";
             public readonly string ResultCreateList = "ResultCreateList";
@@ -90,11 +97,15 @@ namespace Stagio.Web.Controllers
             public readonly string CreateListPost = "CreateList";
             public readonly string Create = "Create";
             public readonly string Edit = "Edit";
+            public readonly string StageList = "StageList";
+            public readonly string Apply = "Apply";
+            public readonly string ApplyConfirmation = "ApplyConfirmation";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
+			public const string Index = "Index";
             public const string Upload = "Upload";
             public const string UploadPost = "Upload";
             public const string ResultCreateList = "ResultCreateList";
@@ -103,6 +114,9 @@ namespace Stagio.Web.Controllers
             public const string CreateListPost = "CreateList";
             public const string Create = "Create";
             public const string Edit = "Edit";
+            public const string StageList = "StageList";
+            public const string Apply = "Apply";
+            public const string ApplyConfirmation = "ApplyConfirmation";
         }
 
 
@@ -131,6 +145,15 @@ namespace Stagio.Web.Controllers
             public readonly string id = "id";
             public readonly string editStudentViewModel = "editStudentViewModel";
         }
+        static readonly ActionParamsClass_Apply s_params_Apply = new ActionParamsClass_Apply();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Apply ApplyParams { get { return s_params_Apply; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Apply
+        {
+            public readonly string id = "id";
+            public readonly string applyStudentViewModel = "applyStudentViewModel";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -141,18 +164,24 @@ namespace Stagio.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string Apply = "Apply";
+                public readonly string ApplyConfirmation = "ApplyConfirmation";
                 public readonly string Create = "Create";
                 public readonly string CreateList = "CreateList";
                 public readonly string Edit = "Edit";
-                public readonly string Edit_cshtml = "Edit_cshtml";
+                public readonly string Index = "Index";
                 public readonly string ResultCreateList = "ResultCreateList";
+                public readonly string StageList = "StageList";
                 public readonly string Upload = "Upload";
             }
+            public readonly string Apply = "~/Views/Student/Apply.cshtml";
+            public readonly string ApplyConfirmation = "~/Views/Student/ApplyConfirmation.cshtml";
             public readonly string Create = "~/Views/Student/Create.cshtml";
             public readonly string CreateList = "~/Views/Student/CreateList.cshtml";
             public readonly string Edit = "~/Views/Student/Edit.cshtml";
-            public readonly string Edit_cshtml = "~/Views/Student/Edit.cshtml";
+            public readonly string Index = "~/Views/Student/Index.cshtml";
             public readonly string ResultCreateList = "~/Views/Student/ResultCreateList.cshtml";
+            public readonly string StageList = "~/Views/Student/StageList.cshtml";
             public readonly string Upload = "~/Views/Student/Upload.cshtml";
         }
     }
@@ -163,6 +192,17 @@ namespace Stagio.Web.Controllers
         public T4MVC_StudentController() : base(Dummy.Instance) { }
 
         [NonAction]
+		partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult Index()
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
+			IndexOverride(callInfo);
+			return callInfo;
+		}
+
+		[NonAction]
         partial void UploadOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
@@ -273,6 +313,52 @@ namespace Stagio.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "editStudentViewModel", editStudentViewModel);
             EditOverride(callInfo, editStudentViewModel);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void StageListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult StageList()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.StageList);
+            StageListOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ApplyOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Apply(int id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Apply);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ApplyOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ApplyOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Stagio.Web.ViewModels.Student.Apply applyStudentViewModel);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Apply(Stagio.Web.ViewModels.Student.Apply applyStudentViewModel)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Apply);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "applyStudentViewModel", applyStudentViewModel);
+            ApplyOverride(callInfo, applyStudentViewModel);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ApplyConfirmationOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult ApplyConfirmation()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ApplyConfirmation);
+            ApplyConfirmationOverride(callInfo);
             return callInfo;
         }
 

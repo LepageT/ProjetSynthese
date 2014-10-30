@@ -11,47 +11,47 @@ namespace Stagio.Web.Services
     public sealed class Mailler : IMailler
     {
         private static Mailler instance = new Mailler();
-        private SmtpClient smtp;
 
-        const string FROM = "thomarellau@hotmail.com";
-        const string PASSWORD = "LesPommesRouge3";
+        private SmtpClient client;
+
+        const string SERVER = "jenkinssmtp.cegep-ste-foy.qc.ca";
 
         static Mailler()
-        { 
-            
-        }
-        private Mailler() 
         {
-            smtp = new SmtpClient("smtp.live.com");
-            smtp.Port = 587;
-            smtp.Credentials = new NetworkCredential(FROM, PASSWORD);
-            smtp.EnableSsl = true;
+
+        }
+        private Mailler()
+        {
+            client = new SmtpClient();
+            client.Port = 25;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.UseDefaultCredentials = false;
+            client.Host = SERVER;
         }
 
         public static Mailler Instance
         {
-            get 
+            get
             {
                 return instance;
             }
         }
 
-        public bool SendEmail(string destination,string subject, string content)
+        public bool SendEmail(string destination, string subject, string content)
         {
             try
             {
-                MailMessage message = new MailMessage(FROM, destination);
-                message.Subject = subject;
-                message.IsBodyHtml = true;
-                message.Body = content;
+                MailMessage mail = new MailMessage("noreply@" + SERVER, destination);
+                mail.IsBodyHtml = true;
+                mail.Subject = subject;
+                mail.Body = content;
 
-                smtp.Send(message);
+                client.Send(mail);
             }
-            catch
+            catch(Exception e)
             {
                 return false;
             }
-
 
             return true;
         }

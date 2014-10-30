@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
 using Stagio.Utilities.Encryption;
@@ -7,7 +8,7 @@ namespace Stagio.TestUtilities.Database
 {
     public class TestData
     {
-        #region User (coordonnateur)
+        #region User (Test user, this user has all access for testing purpose)
         static public ApplicationUser applicationUser
         {
             get
@@ -17,11 +18,15 @@ namespace Stagio.TestUtilities.Database
 
                     Roles = new List<UserRole>()
                    {
-                       new UserRole() {RoleName = RoleName.Coordinator}
+                       new UserRole() {RoleName = RoleName.Coordinator},
+                       new UserRole() {RoleName = RoleName.Student},
+                       new UserRole() {RoleName = RoleName.ContactEnterprise}
                    },
                     Password = PasswordHash.CreateHash("test4test"),
                     UserName = "coordonnateur@stagio.com",
-                    Name = "Super admin coordonnateur Tux"
+                    FirstName = "Super admin coordonnateur Tux",
+                    LastName = " ",
+                    Active = true
                 };
                 user.Email = user.UserName;
                 return user;
@@ -45,10 +50,10 @@ namespace Stagio.TestUtilities.Database
                     LastName = "Tarantino",
                     Telephone = "123-456-7890",
                     Matricule = 1234567,
-                    Password = PasswordHash.CreateHash("qwerty12")
+                    Password = PasswordHash.CreateHash("qwerty12"),
+                    Active = true
                 };
 
-                student.Name = student.FirstName + " " + student.LastName;
                 student.UserName = student.Matricule.ToString();
                 return student;
             }
@@ -71,10 +76,10 @@ namespace Stagio.TestUtilities.Database
                     LastName = "Nolan",
                     Telephone = "123-456-7890",
                     Matricule = 1234560,
+                    Email = "1234@stagio.web",
                     Password = PasswordHash.CreateHash("qwerty98")
                 };
 
-                student.Name = student.FirstName + " " + student.LastName;
                 student.UserName = student.Matricule.ToString();
                 return student;
             }
@@ -97,7 +102,6 @@ namespace Stagio.TestUtilities.Database
                     Matricule = 1031739,
                 };
 
-                student.Name = student.FirstName + " " + student.LastName;
                 student.UserName = student.Matricule.ToString();
                 return student;
             }
@@ -142,6 +146,212 @@ namespace Stagio.TestUtilities.Database
 
         #endregion
 
+        #region ContactEnterprise1 - Quentin Tarantino
 
+        static public ContactEnterprise contactEnterprise1
+        {
+            get
+            {
+                var enterprise = new ContactEnterprise()
+                {
+                    Id = 1,
+                    Roles = new List<UserRole>()
+                             {
+                                 new UserRole() {RoleName = RoleName.ContactEnterprise}
+                             },
+                    EnterpriseName = "test",
+                    FirstName = "Quentin",
+                    LastName = "Tarantino",
+                    Telephone = "123-456-7890",
+                    Email = "blabla@hotmail.com",
+                    Password = PasswordHash.CreateHash("qwerty12"),
+                    Active = false
+                };
+                enterprise.UserName = enterprise.Email;
+                return enterprise;
+            }
+        }
+        #endregion
+
+        #region ContactEnterprise3 - activated
+
+        static public ContactEnterprise contactEnterprise3
+        {
+            get
+            {
+                var enterprise = new ContactEnterprise()
+                {
+                    Id = 1007,
+                    Roles = new List<UserRole>()
+                             {
+                                 new UserRole() {RoleName = RoleName.ContactEnterprise}
+                             },
+                    EnterpriseName = "MI6",
+                    FirstName = "James",
+                    LastName = "Bond",
+                    Telephone = "007-007-7000",
+                    Email = "bond.james.007@hotmail.com",
+                    Password = PasswordHash.CreateHash("qwerty12"),
+                    Active = true
+                };
+                enterprise.UserName = enterprise.Email;
+                return enterprise;
+            }
+        }
+        #endregion
+
+        #region ContactEnterprise2 - Christopher Nolan
+
+        static public ContactEnterprise contactEnterprise2
+        {
+            get
+            {
+                var enterprise = new ContactEnterprise()
+                {
+                    Id = 2,
+                    EnterpriseName = "Stagio",
+                    FirstName = "Christopher",
+                    LastName = "Nolan",
+                    Telephone = "123-456-7890",
+                    Email = "toto@hotmail.com",
+                    Password = PasswordHash.CreateHash("qwerty98"),
+                    Active = false
+                };
+                enterprise.UserName = enterprise.Email;
+               
+                return enterprise;
+            }
+        }
+        #endregion
+
+       
+
+        #region Stage 1
+
+        static public Stage stage1
+        {
+            get
+            {
+                var stage = new Stage()
+                {
+                    Id = 1,
+                    NbApply = 1,
+                    LimitDate = DateTime.Now,
+                    PublicationDate = DateTime.Now,
+                    Status = 0,
+                    NbrStagiaire = 3,
+                    StageTitle = "[Inserer titre ici]",
+                    CompanyName = "Bonbon inc",
+                    Adresse = "1234 rue des bonbons, Québec",
+                    ResponsableToName = "Robert",
+                    ResponsableToEmail = "robert@bonbon.com",
+                    ResponsableToPhone = "432-432-4324",
+                    ResponsableToPoste = "333",
+                    ResponsableToTitle = "CEO",
+                    ContactToName = "Luc",
+                    ContactToEmail = "luc@bonbon.com",
+                    ContactToPhone = "123-223-3456",
+                    ContactToPoste = "2",
+                    ContactToTitle = "Maitre des bonbons",
+                    StageDescription = "Faire des bonbons, Manger des bonbons...",
+                    EnvironnementDescription = "Sucre, Mélangeur",
+                    SubmitToEmail = "robert@bonbon.com",
+                    SubmitToName = "Robert LeBrun",
+                    SubmitToTitle = "CEO"
+                };
+
+                return stage;
+            }
+        }
+
+        #endregion
+
+        #region Stage 2
+
+        static public Stage stage2
+        {
+            get
+            {
+                var stage = new Stage()
+                {
+                   LimitDate = DateTime.Now,
+                    PublicationDate = DateTime.Now,
+                    Status = 1,
+                    NbrStagiaire = 2,
+                    StageTitle = "[Inserer titre ici]",
+                    CompanyName = "Musique inc",
+                    Adresse = "1234 rue de la guitare, Québec"
+                };
+
+                return stage;
+            }
+        }
+
+        #endregion
+
+        #region Stage 3 - Complet
+
+        static public Stage stage3
+        {
+            get
+            {
+                var stage = new Stage()
+                {
+                    PublicationDate = new DateTime(2008, 9, 28, 16, 5, 7, 123),
+                    CompanyName = "Centre de développement pédagogique",
+                    Adresse = "Faculté de médecine, 3358 B pav. Vandry, Université Laval, G1K 7P4",
+                    ResponsableToName = "Denyse Gilbert",
+                    ResponsableToTitle = "Coordonnatrice aux développements",
+                    ResponsableToPhone = "656-2131",
+                    ResponsableToPoste = null,
+                    ResponsableToEmail = "Denyse.Gilbert",
+                    StageDescription = "Notre centre de dévoloppe des applications pédagogiques multimédias pour" +
+                                        " l'enseignement et l'apprentissage dans le domaine des sciences de la santé au niveau" +
+                                        " universitaire. Nous avons remporté le prix du Ministre de l'éducation pour notre application" +
+                                        " pédagogique en cardiopédiatrie ainsi que de nombreux prix d'excelloence en développement " +
+                                        "d'applications pédagogiques multimédias",
+                    EnvironnementDescription = "asdkjlh wef yuijshd jefy wfu scj hldsjyt wu jhlgyaej hhj uiytolral  aluir" +
+                                                " laksdjh z;l sdutypa fhhjyla GFHELA /n kkhjgdkhjfL GFOIA /n saut de ligne",
+                    StageTitle = "patate",
+                    NbrStagiaire = 2,
+                    StagiaireIfKnew = "",
+                    SubmitToName = "Denyse Gilbert",
+                    SubmitToTitle = "Coordinatrice aux développements APTIC",
+                    SubmitToEmail = "Denyse.Gilbert",
+                    LimitDate = new DateTime(2008,12,10),
+                    Status = 0
+                    
+                    
+                };
+
+                return stage;
+            }
+        }
+
+        #endregion
+
+        #region Apply 1
+
+        static public Apply apply1
+        {
+            get
+            {
+                var apply = new Apply()
+                {
+                    IdStage = 1,
+                    IdStudent = 1,
+                    Cv = "jfdhvldshgsdljhk",
+                    Letter = "xljvbvdsve efhnboseif ierhgtbcwl gkf kg fdi"
+                };
+
+                return apply;
+            }
+        }
+
+        #endregion
+    
+    
     }
+
+
 }

@@ -22,12 +22,9 @@ namespace Stagio.Web.Validations
                 {
                     return new ValidationResult("Le mot de passe doit contenir deux chiffres et deux lettres.");
                 }
-                return null;
+                
             }
-            else
-            {
-                return new ValidationResult("Le mot de passe est obligatoire.");
-            }
+            return null;
         }
     }
 }

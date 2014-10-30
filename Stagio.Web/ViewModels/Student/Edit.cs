@@ -29,14 +29,13 @@ namespace Stagio.Web.ViewModels.Student
         public string Telephone { get; set; }
 
         [DisplayName("Poste")]
-        public int? Poste { get; set; }
+        public string Poste { get; set; }
 
         [DisplayName("Ancien mot de passe")]
         [DataType(DataType.Password)]
         public string OldPassword { get; set; }
 
         [DisplayName("Mot de passe")]
-        [Required(ErrorMessage = "Requis")]
         [DataType(DataType.Password)]
         [MinLength(8)]
         [ValidationPassword]

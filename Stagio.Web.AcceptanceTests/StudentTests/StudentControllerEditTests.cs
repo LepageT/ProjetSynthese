@@ -10,8 +10,9 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
     public class StudentControllerEditTests : BaseTests
     {
         [TestMethod]
-        public void student_should_be_able_to_edit_his_profil_if_id_is_valid()
+        public void student_should_be_able_to_edit_his_profil_if_id_is_valid_and_student_is_connected()
         {
+            AuthentificateTestUser(StudentUsername, StudentPassword);
             _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Edit?id=1");
             
             try
@@ -25,8 +26,24 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         }
 
         [TestMethod]
+        public void student_not_should_be_able_to_edit_his_profil_if_not_logged_in()
+        {
+            _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Edit?id=1");
+
+            try
+            {
+                _driver.FindElement(By.Id("login-page"));
+            }
+            catch (NoSuchElementException)
+            {
+                Assert.Fail("Identifiant login-page non trouvé sur la page.");
+            }
+        }
+
+        [TestMethod]
         public void student_edit_should_update_his_profil_if_id_is_valid()
         {
+            AuthentificateTestUser(StudentUsername, StudentPassword);
             const string NEW_TELEPHONE = "444-444-4444";
             const string OLD_PASSWORD = "qwerty12";
             const string NEW_PASSWORD = "asdfgh12";
@@ -48,6 +65,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         [TestMethod]
         public void student_edit_should_redirect_to_index_if_updated()
         {
+            AuthentificateTestUser(StudentUsername, StudentPassword);
             const string NEW_TELEPHONE = "444-444-4444";
             const string OLD_PASSWORD = "qwerty12";
             const string NEW_PASSWORD = "asdfgh12";
@@ -63,7 +81,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             _driver.FindElement(By.Id("edit-button")).Click();
             try
             {
-                _driver.FindElement(By.Id("home-page"));
+                _driver.FindElement(By.Id("student-home-page"));
             }
             catch (NoSuchElementException)
             {

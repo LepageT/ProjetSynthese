@@ -25,6 +25,14 @@ namespace Stagio.Web.Services
             {
                 return new MayBe<ApplicationUser>();
             }
+            if (user.Active == false)
+            {
+                return new MayBe<ApplicationUser>();
+            }
+            if (user.Password == null)
+            {
+                return new MayBe<ApplicationUser>();
+            }
             if (!PasswordHash.ValidatePassword(password, user.Password))
             {
                 return new MayBe<ApplicationUser>();
@@ -45,7 +53,13 @@ namespace Stagio.Web.Services
 
         public bool UserEmailExist(string email)
         {
-            throw new System.NotImplementedException();
+
+            IEnumerable<string> emails = _userRepository.GetAll().Where(x => x.Email != null).Select(x => x.Email);
+            if (emails.Contains(email))
+            {
+                return true;
+            }
+            return false;
         }
 
         public bool UserMatriculeExist(string matricule)

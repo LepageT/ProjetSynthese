@@ -9,6 +9,9 @@ namespace Stagio.TestUtilities.Database
         private EfEntityRepository<Student> _studentRepository;
         private EfEntityRepository<Coordinator> _coordonnatorRepository;
         private EfEntityRepository<Invitation> _invitationRepository; 
+        private EfEntityRepository<ContactEnterprise> _contactEnterpriseRepository; 
+        private EfEntityRepository<Stage> _stageRepository; 
+        private EfEntityRepository<Apply> _applyRepository;
 
          public DataBaseTestHelper()
         {
@@ -16,6 +19,9 @@ namespace Stagio.TestUtilities.Database
             _userRepository = new EfEntityRepository<ApplicationUser>();
              _coordonnatorRepository = new EfEntityRepository<Coordinator>();
              _invitationRepository = new EfEntityRepository<Invitation>();
+             _contactEnterpriseRepository = new EfEntityRepository<ContactEnterprise>();
+             _stageRepository = new EfEntityRepository<Stage>();
+             _applyRepository = new EfEntityRepository<Apply>();
         }
 
         public void SeedTables()
@@ -24,7 +30,26 @@ namespace Stagio.TestUtilities.Database
             addUser();
             addCoordonnator();
             addInvitation();
+            addEnterprises();
+            addStages();
+            addApplies();
+
+        }
       
+        private void addApplies()
+        {
+            var apply1 = TestData.apply1;
+            _applyRepository.Add(apply1);
+        }
+
+        private void addStages()
+        {
+            var stage1 = TestData.stage1;
+            var stage2 = TestData.stage2;
+            var stage3 = TestData.stage3;
+            _stageRepository.Add(stage1);
+            _stageRepository.Add(stage3);
+            _stageRepository.Add(stage2);
         }
 
         private void addUser()
@@ -54,6 +79,13 @@ namespace Stagio.TestUtilities.Database
         private void addInvitation()
         {
             _invitationRepository.Add(TestData.invitation1);
+        }
+
+        private void addEnterprises()
+        {
+            _contactEnterpriseRepository.Add(TestData.contactEnterprise1);
+            _contactEnterpriseRepository.Add(TestData.contactEnterprise2);
+            _contactEnterpriseRepository.Add(TestData.contactEnterprise3);
         }
 
     }

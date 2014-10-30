@@ -11,12 +11,12 @@ using Stagio.Domain.Entities;
 namespace Stagio.Web.UnitTests.ControllerTests.AccountTests
 {
     [TestClass]
-    public class AccountControllerLoginTests : AccountControllerBaseClassTest
+    public class AccountControllerLoginTests : AccountControllerBaseClassTests
     {
         [TestMethod]
         public void login_should_render_default_view()
         {    
-            var result = _accountController.Login() as ViewResult;
+            var result = accountController.Login() as ViewResult;
             var viewName = result.ViewName;
 
             viewName.Should().Be("");
@@ -27,9 +27,9 @@ namespace Stagio.Web.UnitTests.ControllerTests.AccountTests
         {
             var loginViewModel = _fixture.Create<ViewModels.Account.Login>();
             var invalidUser = new MayBe<ApplicationUser>();
-            _accountService.ValidateUser(loginViewModel.Username, loginViewModel.Password).Returns(invalidUser);
+            accountService.ValidateUser(loginViewModel.Username, loginViewModel.Password).Returns(invalidUser);
    
-            var result = _accountController.Login(loginViewModel) as ViewResult;
+            var result = accountController.Login(loginViewModel) as ViewResult;
             var viewName = result.ViewName;
 
             viewName.Should().Be("");
@@ -39,9 +39,9 @@ namespace Stagio.Web.UnitTests.ControllerTests.AccountTests
         public void login_post_should_render_view_with_error_if_model_is_not_valid()
         {
             var loginViewModel = _fixture.Create<ViewModels.Account.Login>();
-            _accountController.ModelState.AddModelError("Error", "Error");
+            accountController.ModelState.AddModelError("Error", "Error");
    
-            var result = _accountController.Login(loginViewModel) as ViewResult;
+            var result = accountController.Login(loginViewModel) as ViewResult;
             var viewName = result.ViewName;
 
             viewName.Should().Be("");
@@ -58,9 +58,9 @@ namespace Stagio.Web.UnitTests.ControllerTests.AccountTests
                 Password = user.Password
             };
             var valideUser = new MayBe<ApplicationUser>(user);
-            _accountService.ValidateUser(loginViewModel.Username, loginViewModel.Password).Returns(valideUser);
+            accountService.ValidateUser(loginViewModel.Username, loginViewModel.Password).Returns(valideUser);
    
-            var routeResult = _accountController.Login(loginViewModel) as RedirectToRouteResult;
+            var routeResult = accountController.Login(loginViewModel) as RedirectToRouteResult;
             var routeAction = routeResult.RouteValues["Action"];
 
             routeAction.Should().Be(MVC.Home.Views.ViewNames.Index);
@@ -81,11 +81,11 @@ namespace Stagio.Web.UnitTests.ControllerTests.AccountTests
                 
             };
             var valideUser = new MayBe<ApplicationUser>(user);
-            _accountService.ValidateUser(loginViewModel.Username, loginViewModel.Password).Returns(valideUser);
+            accountService.ValidateUser(loginViewModel.Username, loginViewModel.Password).Returns(valideUser);
     
-            _accountController.Login(loginViewModel);
+            accountController.Login(loginViewModel);
 
-            _httpContext.Received().AuthenticationSignIn(Arg.Any<ClaimsIdentity>());
+            httpContext.Received().AuthenticationSignIn(Arg.Any<ClaimsIdentity>());
 
         }
 
@@ -104,12 +104,12 @@ namespace Stagio.Web.UnitTests.ControllerTests.AccountTests
 
             };
             var valideUser = new MayBe<ApplicationUser>(user);
-            _accountService.ValidateUser(loginViewModel.Username, loginViewModel.Password).Returns(valideUser);
+            accountService.ValidateUser(loginViewModel.Username, loginViewModel.Password).Returns(valideUser);
    
-            _accountController.Login(loginViewModel);
-            _accountController.Logout();
+            accountController.Login(loginViewModel);
+            accountController.Logout();
 
-            _httpContext.Received().AuthenticationSignOut();
+            httpContext.Received().AuthenticationSignOut();
 
         }
     }

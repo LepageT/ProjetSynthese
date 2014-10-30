@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CoordinatorInviteLink" xml:space="preserve">
-    <value>&lt;a href=thomarelau/Coordinator/Create/</value>
+    <value>&lt;a href=thomarelau.local/Coordinator/Create/</value>
   </data>
   <data name="CoordinatorInviteMessageBody" xml:space="preserve">
     <value>&lt;h3&gt;Stagio&lt;/h3&gt;&lt;p&gt; Bonjour, &lt;/p&gt;&lt;p&gt;Vous avez &amp;eacute;t&amp;eacute; inviter à vous cr&amp;eacute;er un compte en tant que coordonnateur.&lt;/p&gt;&lt;p&gt;Pour cr&amp;eacute;er votre compte, veuillez cliquer sur le lien ci-dessous: &lt;/p&gt;</value>

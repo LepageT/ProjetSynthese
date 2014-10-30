@@ -2,6 +2,7 @@
 using AutoMapper;
 using Ninject.Infrastructure.Language;
 using Stagio.Domain.Entities;
+using Stagio.Web.ViewModels.Stage;
 
 namespace Stagio.Web.Mappers
 {
@@ -17,11 +18,22 @@ namespace Stagio.Web.Mappers
             Mapper.CreateMap<Student, ViewModels.Student.Edit>()
                 .ForMember(dest => dest.PasswordConfirmation, opt => opt.Ignore())
                 .ForMember(dest => dest.OldPassword, opt => opt.Ignore())
+                .ForMember(dest => dest.Password, opt => opt.Ignore())
                 .IgnoreAllNonExisting();
 
             Mapper.CreateMap<Student, ViewModels.Student.Create>()
                 .ForMember(dest => dest.PasswordConfirmation, opt => opt.Ignore())
                 .IgnoreAllNonExisting();
+
+
+            Mapper.CreateMap<Student, ViewModels.Student.ListStudent>()
+                .IgnoreAllNonExisting();
+
+            Mapper.CreateMap<Stage, ViewModels.Stage.ListNewStages>()
+                .IgnoreAllNonExisting();
+
+            Mapper.CreateMap<Stage, ViewModels.ContactEnterprise.ListStage>()
+               .IgnoreAllNonExisting();
 
             Mapper.CreateMap<Invitation, ViewModels.Coordinator.Create>()
                 .ForMember(dest => dest.FirstName, opt => opt.Ignore())
@@ -33,14 +45,27 @@ namespace Stagio.Web.Mappers
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .IgnoreAllNonExisting();
 
+            Mapper.CreateMap<Stage, Details>()
+              .IgnoreAllNonExisting();
+            
+            Mapper.CreateMap<Stage, ViewModels.Student.StageList>()
+                .IgnoreAllNonExisting();
+            Mapper.CreateMap<Apply, ViewModels.Apply.StudentApply>()
+            .IgnoreAllNonExisting();
+
+            Mapper.CreateMap<Apply, ViewModels.Apply.StudentApply>()
+                .IgnoreAllNonExisting();
+
+            Mapper.CreateMap<Apply, ViewModels.Student.Apply>()
+               .IgnoreAllNonExisting();
 
 
-
-
-
-            Mapper.CreateMap<Enterprise, ViewModels.Enterprise.Create>()
+            Mapper.CreateMap<ContactEnterprise, ViewModels.ContactEnterprise.Reactive>()
                 .ForMember(dest => dest.PasswordConfirmation, opt => opt.Ignore())
                 .IgnoreAllNonExisting();
+
+            Mapper.CreateMap<Stage, ViewModels.Stage.ViewInfo>();
+
 
         }
     }
