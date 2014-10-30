@@ -11,6 +11,7 @@ using Stagio.DataLayer;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
 using Stagio.Web.Module;
+using Stagio.Web.Services;
 using Stagio.Web.ViewModels.Student;
 using Stagio.Utilities.Encryption;
 
@@ -19,13 +20,15 @@ namespace Stagio.Web.Controllers
     public partial class StudentController : Controller
     {
         private readonly IEntityRepository<Student> _studentRepository;
-        private readonly IEntityRepository<Stage> _stageRepository; 
+        private readonly IEntityRepository<Stage> _stageRepository;
+        private readonly IHttpContextService _httpContextService;
         // private readonly IEntityRepository<Activation> _activationRepository;
 
-        public StudentController(IEntityRepository<Student> studentRepository, IEntityRepository<Stage> stageRepository)
+        public StudentController(IEntityRepository<Student> studentRepository, IEntityRepository<Stage> stageRepository, IHttpContextService httpContextService)
         {
             _studentRepository = studentRepository;
             _stageRepository = stageRepository;
+            _httpContextService = httpContextService;
         }
 
         public virtual ActionResult Index()
@@ -209,14 +212,11 @@ namespace Stagio.Web.Controllers
         // GET: Student/Edit/5
         public virtual ActionResult Edit(int id)
         {
-            if(User != null)
+            var userID = _httpContextService.GetUserId();
+
+            if (id != userID)
             {
-                var identity = (ClaimsIdentity)User.Identity;
-                var userID = identity.FindFirst(ClaimTypes.NameIdentifier).Value;
-                if (id != int.Parse(userID))
-                {
-                    id = int.Parse(userID);
-                }
+                id = userID;
             }
 
             var student = _studentRepository.GetById(id);

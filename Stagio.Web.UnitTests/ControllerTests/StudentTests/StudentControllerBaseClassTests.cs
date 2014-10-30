@@ -4,6 +4,7 @@ using NSubstitute;
 using Stagio.DataLayer;
 using Stagio.Web.Controllers;
 using Stagio.Domain.Entities;
+using Stagio.Web.Services;
 
 namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 {
@@ -12,15 +13,16 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         protected StudentController studentController;
         protected IEntityRepository<Student> studentRepository;
         protected IEntityRepository<Stage> stageRepository;
-        protected IPrincipal User;
+        protected IHttpContextService httpContextService;
         
         [TestInitialize]
         public void StudentControllerTestInit()
         {
             studentRepository = Substitute.For<IEntityRepository<Student>>();
             stageRepository = Substitute.For<IEntityRepository<Stage>>();
-            studentController = new StudentController(studentRepository, stageRepository);
-            User = Substitute.For<IPrincipal>();
+            httpContextService = Substitute.For<IHttpContextService>();
+            studentController = new StudentController(studentRepository, stageRepository, httpContextService);
+
         }
     }
 }
