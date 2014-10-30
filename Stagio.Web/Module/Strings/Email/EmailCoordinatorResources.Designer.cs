@@ -61,7 +61,7 @@ namespace Stagio.Web.Module.Strings.Email {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;a href=thomarelau.local/Coordinator/Create/.
+        ///   Looks up a localized string similar to &lt;a href=jenkins.cegep-ste-foy.qc.ca/thomarelau/Coordinator/Create/.
         /// </summary>
         public static string CoordinatorInviteLink {
             get {

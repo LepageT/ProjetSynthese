@@ -38,6 +38,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             const string PASSWORD = "asdfgh12";
             _driver.Navigate().GoToUrl("http://thomarelau.local/ContactEnterprise/Reactivate");
             _driver.FindElement(By.Id("Email")).SendKeys(EMAIL);
+            _driver.FindElement(By.Id("ConfirmEmail")).SendKeys(EMAIL);
             _driver.FindElement(By.Id("FirstName")).SendKeys(FIRST_NAME);
             _driver.FindElement(By.Id("LastName")).SendKeys(LAST_NAME);
             _driver.FindElement(By.Id("EnterpriseName")).SendKeys(ENTERPRISE);
@@ -65,8 +66,10 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             const string LAST_NAME = "Gates";
             const string TELEPHONE = "111-111-1111";
             const string PASSWORD = "asdfgh12";
+            const string EMAIL = "thomarelau@hotmail.com";
             _driver.Navigate().GoToUrl("http://thomarelau.local/ContactEnterprise/Reactivate?Email=thomarelau@hotmail.com&EnterpriseName=test");
             _driver.FindElement(By.Id("FirstName")).SendKeys(FIRST_NAME);
+            _driver.FindElement(By.Id("ConfirmEmail")).SendKeys(EMAIL);
             _driver.FindElement(By.Id("LastName")).SendKeys(LAST_NAME);
             _driver.FindElement(By.Id("Telephone")).SendKeys(TELEPHONE);
             _driver.FindElement(By.Id("Password")).SendKeys(PASSWORD);

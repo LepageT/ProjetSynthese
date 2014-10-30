@@ -13,6 +13,7 @@ namespace Stagio.Web.AcceptanceTests.StageTests
         public void coordinator_can_see_listNewStages_page_if_logged_in()
         {
             AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
+            _driver.FindElement(By.Id("index-coordonnateur")).Click();
             _driver.FindElement(By.Id("list")).Click();
             try
             {
@@ -27,7 +28,7 @@ namespace Stagio.Web.AcceptanceTests.StageTests
         [TestMethod]
         public void coordinator_can_not_see_listNewStages_page_if_not_logged_in()
         {
-            _driver.FindElement(By.Id("list")).Click();
+            _driver.Navigate().GoToUrl("http://thomarelau.local/Stage/ListNewStages");
             try
             {
                 _driver.FindElement(By.Id("login-page"));
@@ -42,6 +43,7 @@ namespace Stagio.Web.AcceptanceTests.StageTests
         public void coordinator_can_see_listNewStages_with_stages()
         {
             AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
+            _driver.FindElement(By.Id("index-coordonnateur")).Click();
             _driver.FindElement(By.Id("list")).Click();
             var countText = _driver.FindElement(By.Id("stages-count")).Text;
             var stagesCount = int.Parse(countText.Split(' ')[0]);

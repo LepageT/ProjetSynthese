@@ -20,6 +20,12 @@ namespace Stagio.Web.ViewModels.ContactEnterprise
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
+        [DisplayName("Confirmation Courriel")]
+        [Required(ErrorMessage = "Requis")]
+        [DataType(DataType.EmailAddress)]
+        [System.ComponentModel.DataAnnotations.CompareAttribute("Email", ErrorMessage = "Les emails ne correspondent pas")]
+        public string ConfirmEmail { get; set; }
+
         [DisplayName("Nom")]
         [Required(ErrorMessage = "Requis")]
         public string LastName { get; set; }
