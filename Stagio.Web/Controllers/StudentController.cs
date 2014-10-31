@@ -180,16 +180,6 @@ namespace Stagio.Web.Controllers
             }
             else
             {
-                if (student.FirstName != createStudentViewModel.FirstName)
-                {
-                    ModelState.AddModelError("FirstName", "Votre nom ne correspond pas à celui associé à votre matricule.");
-                }
-
-                if (student.LastName != createStudentViewModel.LastName)
-                {
-                    ModelState.AddModelError("LastName", "Votre prénom ne correspond pas à celui associé à votre matricule.");
-                }
-
                 if (student.Activated)
                 {
                     ModelState.AddModelError("Matricule", "Votre matricule est déja utilisé.");
