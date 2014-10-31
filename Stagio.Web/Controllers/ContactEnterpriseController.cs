@@ -349,13 +349,14 @@ namespace Stagio.Web.Controllers
             {
                 contactEnterpriseToSendMessage.Poste = contactEnterpriseToSendMessage.Poste.Replace(" ", "%20");
             }
-            string messageText = "Un employé de votre entreprise vous invite à vous inscrire au site Stagio: ";
+            string messageText = "<a href=Un employé de votre entreprise vous invite à vous inscrire au site Stagio: ";
             string invitationUrl = "http://thomarelau.local/ContactEnterprise/Reactivate?Email=" +
                                    contactEnterpriseToSendMessage.Email + "&EnterpriseName=" +
                                    enterpriseName + "&FirstName=" +
                                    contactEnterpriseToSendMessage.FirstName + "&LastName=" +
                                    contactEnterpriseToSendMessage.LastName + "&Telephone=" +
-                                   contactEnterpriseToSendMessage.Telephone + "&Poste=" + contactEnterpriseToSendMessage.Poste;
+                                   contactEnterpriseToSendMessage.Telephone + "&Poste=" + contactEnterpriseToSendMessage.Poste + 
+                                   "/>";
             messageText += invitationUrl;
             return messageText;
         }
