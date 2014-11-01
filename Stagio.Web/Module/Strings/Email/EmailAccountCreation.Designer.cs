@@ -22,14 +22,14 @@ namespace Stagio.Web.Module.Strings.Email {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class EmailEnterpriseResources {
+    internal class EmailAccountCreation {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal EmailEnterpriseResources() {
+        internal EmailAccountCreation() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Stagio.Web.Module.Strings.Email {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Stagio.Web.Module.Strings.Email.EmailEnterpriseResources", typeof(EmailEnterpriseResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Stagio.Web.Module.Strings.Email.EmailAccountCreation", typeof(EmailAccountCreation).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,29 +61,20 @@ namespace Stagio.Web.Module.Strings.Email {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;a href=jenkins.cegep-ste-foy.qc.ca/thomarelau/Enterprise/Create?Email=.
+        ///   Looks up a localized string similar to &lt;a href=jenkins.cegep-ste-foy.qc.ca/thomarelau/Account/Login /&gt;Se connecter.
         /// </summary>
-        internal static string InviteLink {
+        internal static string EmailLink {
             get {
-                return ResourceManager.GetString("InviteLink", resourceCulture);
+                return ResourceManager.GetString("EmailLink", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;h3&gt;Stagio&lt;/h3&gt;&lt;p&gt; Bonjour, &lt;/p&gt;&lt;br/&gt;Un coordonateur de stage vous invite à vous inscrire au site Stagio:.
+        ///   Looks up a localized string similar to &lt;h3&gt;Stagio&lt;/h3&gt;&lt;p&gt; Bonjour, &lt;/p&gt;&lt;p&gt;Merci d&apos;avoir créer un compte Stagio. Vous pouvez maintenant vous connecter.&lt;/p&gt;.
         /// </summary>
-        internal static string InviteMessageBody {
+        internal static string Message {
             get {
-                return ResourceManager.GetString("InviteMessageBody", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invitation du Cégep de Sainte-Foy.
-        /// </summary>
-        internal static string InviteSubject {
-            get {
-                return ResourceManager.GetString("InviteSubject", resourceCulture);
+                return ResourceManager.GetString("Message", resourceCulture);
             }
         }
         
@@ -93,6 +84,15 @@ namespace Stagio.Web.Module.Strings.Email {
         internal static string MessageHeader {
             get {
                 return ResourceManager.GetString("MessageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Votre compte à été créé.
+        /// </summary>
+        internal static string Subject {
+            get {
+                return ResourceManager.GetString("Subject", resourceCulture);
             }
         }
     }

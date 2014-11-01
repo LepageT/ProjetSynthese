@@ -34,20 +34,14 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             const string PASSWORD = "123456ABC";
             const string EMAIL = "bob@hotmail.com";
             _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Create");
-            _driver.FindElement(By.Id("Matricule")).Clear();
             _driver.FindElement(By.Id("Matricule")).SendKeys(MATRICULE);
-            _driver.FindElement(By.Id("FirstName")).Clear();
             _driver.FindElement(By.Id("FirstName")).SendKeys(FIRSTNAME);
-            _driver.FindElement(By.Id("LastName")).Clear();
             _driver.FindElement(By.Id("LastName")).SendKeys(LASTNAME);
-            _driver.FindElement(By.Id("Telephone")).Clear();
             _driver.FindElement(By.Id("Telephone")).SendKeys(PHONE);
-            _driver.FindElement(By.Id("Password")).Clear();
             _driver.FindElement(By.Id("Password")).SendKeys(PASSWORD);
-            _driver.FindElement(By.Id("PasswordConfirmation")).Clear();
             _driver.FindElement(By.Id("PasswordConfirmation")).SendKeys(PASSWORD);
-            _driver.FindElement(By.Id("Email")).Clear();
             _driver.FindElement(By.Id("Email")).SendKeys(EMAIL);
+            _driver.FindElement(By.Id("ConfirmEmail")).SendKeys(EMAIL);
 
             _driver.FindElement(By.Id("create-button")).Click();
             try

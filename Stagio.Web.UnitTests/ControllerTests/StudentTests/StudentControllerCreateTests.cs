@@ -55,40 +55,6 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         }
 
         [TestMethod]
-        public void student_create_post_should_return_default_view_when_firstname_dont_correspond_with_matricule()
-        {
-            var students = _fixture.CreateMany<Student>(3);
-            var student = students.First();
-            student.Activated = false;
-            studentRepository.GetAll().Returns(students.AsQueryable());
-            var viewModel = _fixture.Create<ViewModels.Student.Create>();
-            viewModel.Matricule = student.Matricule;
-            viewModel.LastName = student.LastName;
-            viewModel.PasswordConfirmation = viewModel.Password;
-
-            var result = studentController.Create(viewModel) as ViewResult;
-
-            Assert.AreEqual(result.ViewName, "");
-        }
-
-        [TestMethod]
-        public void student_create_post_should_return_default_view_when_lastname_dont_correspond_with_matricule()
-        {
-            var students = _fixture.CreateMany<Student>(3);
-            var student = students.First();
-            student.Activated = false;
-            studentRepository.GetAll().Returns(students.AsQueryable());
-            var viewModel = _fixture.Create<ViewModels.Student.Create>();
-            viewModel.Matricule = student.Matricule;
-            viewModel.FirstName = student.FirstName;
-            viewModel.PasswordConfirmation = viewModel.Password;
-
-            var result = studentController.Create(viewModel) as ViewResult;
-
-            Assert.AreEqual(result.ViewName, "");
-        }
-
-        [TestMethod]
         public void student_create_post_should_return_index_on_success()
         {
             var students = _fixture.CreateMany<Student>(3);

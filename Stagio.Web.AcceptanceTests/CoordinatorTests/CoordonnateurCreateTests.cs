@@ -32,15 +32,12 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
             const string CONFIRMED_PASSWORD = "Bobino1234";
 
             _driver.Navigate().GoToUrl("http://thomarelau.local/Coordinator/Create?token=123456");
-            _driver.FindElement(By.Id("FirstName")).Clear();
             _driver.FindElement(By.Id("FirstName")).SendKeys(FIRST_NAME);
-            _driver.FindElement(By.Id("LastName")).Clear();
             _driver.FindElement(By.Id("LastName")).SendKeys(LAST_NAME);
             _driver.FindElement(By.Id("Email")).Clear();
             _driver.FindElement(By.Id("Email")).SendKeys(EMAIL);
-            _driver.FindElement(By.Id("Password")).Clear();
+            _driver.FindElement(By.Id("ConfirmEmail")).SendKeys(EMAIL);
             _driver.FindElement(By.Id("Password")).SendKeys(PASSWORD);
-            _driver.FindElement(By.Id("ConfirmedPassword")).Clear();
             _driver.FindElement(By.Id("ConfirmedPassword")).SendKeys(CONFIRMED_PASSWORD);
             _driver.FindElement(By.Id("btn-create")).Click();
             try

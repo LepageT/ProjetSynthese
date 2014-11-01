@@ -14,6 +14,7 @@ using Stagio.Web.Module;
 using Stagio.Web.Services;
 using Stagio.Web.ViewModels.Student;
 using Stagio.Utilities.Encryption;
+using Stagio.Web.Module.Strings.Email;
 
 namespace Stagio.Web.Controllers
 {
@@ -23,14 +24,15 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<Stage> _stageRepository; 
         private readonly IHttpContextService _httpContextService;
         private readonly IEntityRepository<Stagio.Domain.Entities.Apply> _applyRepository;
-        // private readonly IEntityRepository<Activation> _activationRepository;
+        private readonly IMailler _mailler;
 
-        public StudentController(IEntityRepository<Student> studentRepository, IEntityRepository<Stage> stageRepository, IEntityRepository<Stagio.Domain.Entities.Apply> applyRepository, IHttpContextService httpContextService)
+        public StudentController(IEntityRepository<Student> studentRepository, IEntityRepository<Stage> stageRepository, IEntityRepository<Stagio.Domain.Entities.Apply> applyRepository, IHttpContextService httpContextService, IMailler mailler)
         {
             _studentRepository = studentRepository;
             _stageRepository = stageRepository;
             _httpContextService = httpContextService;
             _applyRepository = applyRepository;
+            _mailler = mailler;
         }
 
         public virtual ActionResult Index()
@@ -196,6 +198,8 @@ namespace Stagio.Web.Controllers
             Mapper.Map(createStudentViewModel, student);
 
             _studentRepository.Update(student);
+
+            _mailler.SendEmail(student.Email, EmailAccountCreation.Subject, EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
 
             return RedirectToAction(MVC.Home.Index());
         }
