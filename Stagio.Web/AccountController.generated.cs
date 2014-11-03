@@ -54,6 +54,12 @@ namespace Stagio.Web.Controllers
 			return RedirectToActionPermanent(taskResult.Result);
 		}
 
+		[NonAction]
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public virtual System.Web.Mvc.ActionResult Details()
+		{
+			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
+		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public AccountController Actions { get { return MVC.Account; } }
@@ -73,6 +79,7 @@ namespace Stagio.Web.Controllers
 			public readonly string Index = "Index";
 			public readonly string Login = "Login";
 			public readonly string Logout = "Logout";
+			public readonly string Details = "Details";
 		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -81,6 +88,7 @@ namespace Stagio.Web.Controllers
 			public const string Index = "Index";
 			public const string Login = "Login";
 			public const string Logout = "Logout";
+			public const string Details = "Details";
 		}
 
 
@@ -92,6 +100,15 @@ namespace Stagio.Web.Controllers
 		{
 			public readonly string accountLoginViewModel = "accountLoginViewModel";
 		}
+		static readonly ActionParamsClass_Details s_params_Details = new ActionParamsClass_Details();
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public ActionParamsClass_Details DetailsParams { get { return s_params_Details; } }
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public class ActionParamsClass_Details
+		{
+			public readonly string id = "id";
+			public readonly string command = "command";
+		}
 		static readonly ViewsClass s_views = new ViewsClass();
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public ViewsClass Views { get { return s_views; } }
@@ -102,8 +119,10 @@ namespace Stagio.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string Details = "Details";
                 public readonly string Login = "Login";
             }
+            public readonly string Details = "~/Views/Account/Details.cshtml";
             public readonly string Login = "~/Views/Account/Login.cshtml";
 		}
 	}
@@ -155,6 +174,31 @@ namespace Stagio.Web.Controllers
 		{
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Logout);
 			LogoutOverride(callInfo);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void DetailsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult Details(int id)
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+			DetailsOverride(callInfo, id);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void DetailsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string command, int id);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult Details(string command, int id)
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "command", command);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+			DetailsOverride(callInfo, command, id);
 			return callInfo;
 		}
 
