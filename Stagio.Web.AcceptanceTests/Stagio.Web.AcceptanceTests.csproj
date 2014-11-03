@@ -71,6 +71,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AccountTests\AccountControllerLoginTests.cs" />
+    <Compile Include="AccountTests\AccountControllerDetailsTests.cs" />
     <Compile Include="BaseTests.cs" />
     <Compile Include="ContactEnterpriseTests\ContactEnterpriseControllerDetailsStudentApplyTests.cs" />
     <Compile Include="ContactEnterpriseTests\ContactEnterpriseInviteTests.cs" />

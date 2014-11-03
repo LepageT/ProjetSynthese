@@ -1,10 +1,14 @@
 ﻿
+using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Web.Mvc;
+using AutoMapper;
 using Microsoft.AspNet.Identity;
+using Stagio.DataLayer;
 using Stagio.Domain.Entities;
 using Stagio.Web.Services;
+using Stagio.Web.ViewModels.Account;
 
 namespace Stagio.Web.Controllers
 {
@@ -12,13 +16,16 @@ namespace Stagio.Web.Controllers
     {
         private readonly IHttpContextService _httpContext;
         private readonly IAccountService _accountService;
+        private readonly IEntityRepository<ApplicationUser> _accountRepository;
 
         public AccountController(IHttpContextService httpContext,
-                                 IAccountService accountService)
+            IAccountService accountService, IEntityRepository<ApplicationUser> accountRepository)
         {
+            _accountRepository = accountRepository;
             _httpContext = httpContext;
             _accountService = accountService;
         }
+
         // GET: Account
         public virtual ActionResult Index()
         {
@@ -64,7 +71,7 @@ namespace Stagio.Web.Controllers
             {
                 new Claim(ClaimTypes.Name, applicationUser.FirstName + " " + applicationUser.LastName),
                 new Claim(ClaimTypes.NameIdentifier, applicationUser.Id.ToString()),
-                
+
             },
                 DefaultAuthenticationTypes.ApplicationCookie);
 
@@ -75,5 +82,20 @@ namespace Stagio.Web.Controllers
 
             _httpContext.AuthenticationSignIn(identity);
         }
+
+        public virtual ActionResult Details(int id)
+        {
+            var account = _accountRepository.GetById(id);
+
+            var details = Mapper.Map<Details>(account);
+
+            if (account == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(details);
+        }
     }
+
 }

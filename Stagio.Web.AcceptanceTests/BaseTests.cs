@@ -17,6 +17,9 @@ namespace Stagio.Web.AcceptanceTests
         protected const string CoordonatorUsername = "coordonnateur@stagio.com";
         protected const string CoordonatorPassword = "test4test";
 
+        protected const string ContactEnterpriseUsername = "bond.james.007@hotmail.com ";
+        protected const string ContactEnterprisePassword = "qwerty12";
+
         protected const string StudentUsername = "1234567";
         protected const string StudentPassword = "qwerty12";
 

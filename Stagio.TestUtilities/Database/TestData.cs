@@ -19,8 +19,6 @@ namespace Stagio.TestUtilities.Database
                     Roles = new List<UserRole>()
                    {
                        new UserRole() {RoleName = RoleName.Coordinator},
-                       new UserRole() {RoleName = RoleName.Student},
-                       new UserRole() {RoleName = RoleName.ContactEnterprise}
                    },
                     Password = PasswordHash.CreateHash("test4test"),
                     UserName = "coordonnateur@stagio.com",
