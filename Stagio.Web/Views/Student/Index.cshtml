@@ -8,7 +8,6 @@
 
 
 <div>
-
     @Html.ActionLink("Modifier le profil 1", MVC.Student.Edit(Int32.Parse(@User.Identity.GetUserId())), new {id = "edit-student"})
 </div>
 
@@ -19,3 +18,4 @@
 <div>
     @Html.ActionLink("Inscrire une date d'entrevue", MVC.Interview.Create(), new { id = "add-entrevue" })
 </div>
+<div>@Html.ActionLink("Afficher les informations du profil", MVC.Account.Details(Int32.Parse(@User.Identity.GetUserId())))</div>

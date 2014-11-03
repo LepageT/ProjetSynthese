@@ -59,6 +59,8 @@ namespace Stagio.Web.Mappers
             Mapper.CreateMap<Apply, ViewModels.Student.Apply>()
                .IgnoreAllNonExisting();
 
+            Mapper.CreateMap<ApplicationUser, ViewModels.Account.Details>()
+        .IgnoreAllNonExisting();
 
             Mapper.CreateMap<ContactEnterprise, ViewModels.ContactEnterprise.Reactive>()
                 .ForMember(dest => dest.PasswordConfirmation, opt => opt.Ignore())

@@ -25,6 +25,8 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
         [TestMethod]
         public void coordinator_create_should_create_account_if_invitation_is_valid()
         {
+
+            AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
             const string FIRST_NAME = "Bobino";
             const string LAST_NAME = "Tremblay";
             const string EMAIL = "testemail@admin.com";
