@@ -110,6 +110,10 @@
       <Project>{9999bd96-9ae9-4332-9205-86e60ac4ca88}</Project>
       <Name>Stagio.TestUtilities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Stagio.Web.Automation\Stagio.Web.Automation.csproj">
+      <Project>{bb170ce2-a741-484b-a14d-519938b351a5}</Project>
+      <Name>Stagio.Web.Automation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Stagio.Web\Stagio.Web.csproj">
       <Project>{f69eb36e-05c6-4680-b6f7-eaf3ca9fa150}</Project>
       <Name>Stagio.Web</Name>

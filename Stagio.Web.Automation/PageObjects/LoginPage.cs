@@ -33,13 +33,13 @@ namespace Stagio.Web.Automation.PageObjects
             Navigation.AllUsers.Login.Select();
         }
 
-        public static void LoginAs(ApplicationUser user)
+        public static void LoginAs(string username, string password)
         {
-            var loginInput = Driver.Instance.FindElement(By.Id("Email"));
-            loginInput.SendKeys(user.Email);
+            var loginInput = Driver.Instance.FindElement(By.Id("Username"));
+            loginInput.SendKeys(username);
 
             var passwordInput = Driver.Instance.FindElement(By.Id("Password"));
-            passwordInput.SendKeys(user.Password);
+            passwordInput.SendKeys(password);
 
             var loginButton = Driver.Instance.FindElement(By.Id("login-submit"));
             loginButton.Click();

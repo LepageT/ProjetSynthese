@@ -9,11 +9,27 @@ namespace Stagio.Web.Automation
     {
         public class Student
         {
+            public class Index
+            {
+                public static void Select()
+                {
+                    MenuSelector.SelectTopLevel("index-Student");
+                }
+            }
+
             public class EditProfil
             {
                 public static void Select()
                 {
                     MenuSelector.Select("index-Student", "edit-student");
+                }
+            }
+
+            public class EditProfilInIndex
+            {
+                public static void Select()
+                {
+                    MenuSelector.SelectTopLevel("edit-student");
                 }
             }
             public class SeeStages
