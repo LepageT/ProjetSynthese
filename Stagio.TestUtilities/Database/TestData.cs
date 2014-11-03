@@ -330,6 +330,29 @@ namespace Stagio.TestUtilities.Database
 
         #endregion
 
+        #region Stage 4
+
+        static public Stage stage4
+        {
+            get
+            {
+                var stage = new Stage()
+                {
+                    LimitDate = DateTime.Now,
+                    PublicationDate = DateTime.Now,
+                    Status = 1,
+                    NbrStagiaire = 2,
+                    StageTitle = "Programmeur Web",
+                    CompanyName = "Coveo",
+                    Adresse = "1234 rue de la guitare, Québec"
+                };
+
+                return stage;
+            }
+        }
+
+        #endregion
+
         #region Apply 1
 
         static public Apply apply1
@@ -342,6 +365,26 @@ namespace Stagio.TestUtilities.Database
                     IdStudent = 1,
                     Cv = "jfdhvldshgsdljhk",
                     Letter = "xljvbvdsve efhnboseif ierhgtbcwl gkf kg fdi"
+                };
+
+                return apply;
+            }
+        }
+
+        #endregion
+
+        #region Apply 2
+
+        static public Apply apply2
+        {
+            get
+            {
+                var apply = new Apply()
+                {
+                    IdStage = 4,
+                    IdStudent = 1,
+                    Cv = "Le cv de l'étudiant",
+                    Letter = "La lettre de présentation."
                 };
 
                 return apply;

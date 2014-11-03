@@ -10,7 +10,8 @@ namespace Stagio.DataLayer
         public DbSet<UserRole> Roles { get; set; }
         public DbSet<Coordinator> Coordonators { get; set; }
         public DbSet<Invitation> Invitations { get; set; }
-        public DbSet<ContactEnterprise> Enterprises { get; set; } 
+        public DbSet<ContactEnterprise> Enterprises { get; set; }
+        public DbSet<Interview> Interviews { get; set; }
 
         public DbSet<Apply> Applies { get; set; }
         
