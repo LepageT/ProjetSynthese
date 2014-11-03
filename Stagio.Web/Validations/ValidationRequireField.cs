@@ -9,23 +9,33 @@ namespace Stagio.Web.Validations
 {
     public class ValidationRequireField : ValidationAttribute
     {
-        private String PropertyName { get; set; }
+       
 
-        public ValidationRequireField(String field)
-        {
-            this.PropertyName = field;
-        }
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-        {
-            Object instance = validationContext.ObjectInstance;
-            Type type = instance.GetType();
-            var proprtyvalue = type.GetProperty((string)PropertyName).GetValue(instance, null);
-            if (proprtyvalue != null && proprtyvalue.ToString() == "")
+      private String PropertyName { get; set; }
+            private Object DesiredValue { get; set; }
+
+            public ValidationRequireField(String propertyName, Object desiredvalue)
             {
-                return new ValidationResult((string)value);
+                PropertyName = propertyName;
+                DesiredValue = desiredvalue;
             }
 
-            return null;
+        protected override ValidationResult IsValid(object value, ValidationContext context)
+        {
+            Object instance = context.ObjectInstance;
+            Type type = instance.GetType();
+            Object proprtyvalue = type.GetProperty(PropertyName).GetValue(instance, null);
+            if (proprtyvalue == null)
+            {
+                return  new ValidationResult("");
+              
+            }
+            if (proprtyvalue.ToString() == DesiredValue.ToString())
+            {
+                  ValidationResult result = base.IsValid(value, context);
+                return result;
+            }
+            return ValidationResult.Success;
         }
         
     }
