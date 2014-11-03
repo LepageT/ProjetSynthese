@@ -38,7 +38,6 @@ namespace Stagio.Web.ViewModels.Stage
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Entrez un numéro valide.")]
         public String ResponsableToPhone { get; set; }
 
-        [ValidationRequireField("ResponsableToPhone", ErrorMessage = "Vous devez spécifier un numéro de téléphone.")]
         [DisplayName("Poste")]
         public string ResponsableToPoste { get; set; }
 
