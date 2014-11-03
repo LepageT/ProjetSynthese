@@ -15,4 +15,7 @@
     @Html.ActionLink("Voir les offres de stages", MVC.Student.StageList(), new { id = "stageList-student" })
 </div>
 
+<div>
+    @Html.ActionLink("Inscrire une date d'entrevue", MVC.Interview.Create(), new { id = "add-entrevue" })
+</div>
 <div>@Html.ActionLink("Afficher les informations du profil", MVC.Account.Details(Int32.Parse(@User.Identity.GetUserId())))</div>

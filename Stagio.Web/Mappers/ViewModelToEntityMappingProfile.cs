@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Security.Cryptography;
+using AutoMapper;
 using Stagio.Domain.Entities;
 
 namespace Stagio.Web.Mappers
@@ -43,6 +44,10 @@ namespace Stagio.Web.Mappers
 
             Mapper.CreateMap<ViewModels.Student.Apply, Apply>()
                .IgnoreAllNonExisting();
+
+            Mapper.CreateMap<ViewModels.Interviews.Create, Interview>()
+                .ForMember(dest => dest.Present, opt => opt.Ignore())
+                .IgnoreAllNonExisting();
         }
     }
 }
