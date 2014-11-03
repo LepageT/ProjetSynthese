@@ -60,10 +60,16 @@ namespace Stagio.Web.Controllers
                 var interview = Mapper.Map<Interview>(createdInterview);
 
                 _interviewRepository.Add(interview);
+
+                return RedirectToAction(MVC.Interview.InterviewConfirmation());
             }
 
-            return RedirectToAction(MVC.Student.Index());
+            return View(createdInterview);
+        }
 
+        public virtual ActionResult InterviewConfirmation()
+        {
+            return View();
         }
     }
 }

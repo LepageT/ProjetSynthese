@@ -11,7 +11,7 @@ namespace Stagio.Web.ViewModels.Interviews
     public class Create
     {
         [DisplayName("Date de l'entrevue")]
-        [Required]
+        [Required(ErrorMessage = "Veuillez spécifier une date d'entrevue.")]
         public DateTime Date { get; set; }
 
         [DisplayName("Stage")]

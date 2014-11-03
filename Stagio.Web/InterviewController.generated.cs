@@ -72,6 +72,7 @@ namespace Stagio.Web.Controllers
 		{
 			public readonly string Index = "Index";
 			public readonly string Create = "Create";
+			public readonly string InterviewConfirmation = "InterviewConfirmation";
 		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -79,6 +80,7 @@ namespace Stagio.Web.Controllers
 		{
 			public const string Index = "Index";
 			public const string Create = "Create";
+			public const string InterviewConfirmation = "InterviewConfirmation";
 		}
 
 
@@ -101,8 +103,10 @@ namespace Stagio.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Create = "Create";
+                public readonly string InterviewConfirmation = "InterviewConfirmation";
             }
             public readonly string Create = "~/Views/Interview/Create.cshtml";
+            public readonly string InterviewConfirmation = "~/Views/Interview/InterviewConfirmation.cshtml";
 		}
 	}
 
@@ -142,6 +146,17 @@ namespace Stagio.Web.Controllers
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
 			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "createdInterview", createdInterview);
 			CreateOverride(callInfo, createdInterview);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void InterviewConfirmationOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult InterviewConfirmation()
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InterviewConfirmation);
+			InterviewConfirmationOverride(callInfo);
 			return callInfo;
 		}
 
