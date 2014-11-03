@@ -8,11 +8,11 @@
 
 
 <div>
-    @Html.ActionLink("Afficher les informations du profil", MVC.Account.Details(Int32.Parse(@User.Identity.GetUserId())))
     @Html.ActionLink("Modifier le profil 1", MVC.Student.Edit(Int32.Parse(@User.Identity.GetUserId())), new {id = "edit-student"})
 </div>
 
 <div>
     @Html.ActionLink("Voir les offres de stages", MVC.Student.StageList(), new { id = "stageList-student" })
-
 </div>
+
+<div>@Html.ActionLink("Afficher les informations du profil", MVC.Account.Details(Int32.Parse(@User.Identity.GetUserId())))</div>

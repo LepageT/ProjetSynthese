@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Web.Mvc;
@@ -18,12 +19,13 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<ApplicationUser> _accountRepository;
 
         public AccountController(IHttpContextService httpContext,
-                                 IAccountService accountService, IEntityRepository<ApplicationUser> accountRepository )
+            IAccountService accountService, IEntityRepository<ApplicationUser> accountRepository)
         {
             _accountRepository = accountRepository;
             _httpContext = httpContext;
             _accountService = accountService;
         }
+
         // GET: Account
         public virtual ActionResult Index()
         {
@@ -69,7 +71,7 @@ namespace Stagio.Web.Controllers
             {
                 new Claim(ClaimTypes.Name, applicationUser.FirstName + " " + applicationUser.LastName),
                 new Claim(ClaimTypes.NameIdentifier, applicationUser.Id.ToString()),
-                
+
             },
                 DefaultAuthenticationTypes.ApplicationCookie);
 
@@ -87,13 +89,13 @@ namespace Stagio.Web.Controllers
 
             var details = Mapper.Map<Details>(account);
 
+            if (account == null)
+            {
+                return HttpNotFound();
+            }
+
             return View(details);
         }
-
-        [HttpPost]
-        public virtual ActionResult Details(string command, int id)
-        {
-            return View();
-        }
     }
+
 }
