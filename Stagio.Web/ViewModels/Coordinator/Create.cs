@@ -36,6 +36,12 @@ namespace Stagio.Web.ViewModels.Coordinator
         [Required]
         public string Email { get; set; }
 
+        [DisplayName("Confirmation Courriel")]
+        [Required(ErrorMessage = "Requis")]
+        [DataType(DataType.EmailAddress)]
+        [System.ComponentModel.DataAnnotations.CompareAttribute("Email", ErrorMessage = "Les emails ne correspondent pas")]
+        public string ConfirmEmail { get; set; }
+
         [HiddenInput(DisplayValue = false)]
         public string Token { get; set; }
 

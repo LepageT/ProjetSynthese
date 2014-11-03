@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Microsoft.Ajax.Utilities;
 
 namespace Stagio.Web.Validations
 {
@@ -18,8 +19,8 @@ namespace Stagio.Web.Validations
         {
             Object instance = validationContext.ObjectInstance;
             Type type = instance.GetType();
-            Object proprtyvalue = type.GetProperty((string)PropertyName).GetValue(instance, null);
-            if (proprtyvalue == null)
+            var proprtyvalue = type.GetProperty((string)PropertyName).GetValue(instance, null);
+            if (proprtyvalue != null && proprtyvalue.ToString() == "")
             {
                 return new ValidationResult((string)value);
             }

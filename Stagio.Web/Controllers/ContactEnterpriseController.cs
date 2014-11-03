@@ -82,6 +82,9 @@ namespace Stagio.Web.Controllers
                     contactEnterprise.Telephone = createViewModel.Telephone;
                     contactEnterprise.Poste = createViewModel.Poste;
                     _contactEnterpriseRepository.Update(contactEnterprise);
+
+                    _mailler.SendEmail(contactEnterprise.Email, EmailAccountCreation.Subject, EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
+
                     //ADD NOTIFICATIONS: À la coordination et aux autres employés de l'entreprise.
                     return RedirectToAction(MVC.ContactEnterprise.CreateConfirmation(contactEnterprise.Id));
                 }
@@ -91,13 +94,17 @@ namespace Stagio.Web.Controllers
                     newContactEnterprise.Active = true;
                     newContactEnterprise.UserName = newContactEnterprise.Email;
                     newContactEnterprise.Roles = new List<UserRole>()
-            {
-                new UserRole() {RoleName = RoleName.ContactEnterprise}
-            };
+                    {
+                        new UserRole() {RoleName = RoleName.ContactEnterprise}
+                    };
                     _contactEnterpriseRepository.Add(newContactEnterprise);
+
+                    _mailler.SendEmail(newContactEnterprise.Email, EmailAccountCreation.Subject, EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
+
                     //ADD NOTIFICATIONS: À la coordination et aux autres employés de l'entreprise.
                     return RedirectToAction(MVC.ContactEnterprise.CreateConfirmation(newContactEnterprise.Id));
                 }
+
 
             }
             return View(createViewModel);
@@ -235,10 +242,10 @@ namespace Stagio.Web.Controllers
                 applies = _applyRepository.GetAll().Where(x => x.IdStage == id).ToList();
             }
             catch (Exception)
-            { 
-                return  HttpNotFound();
+            {
+                return HttpNotFound();
             }
-          
+
             var listStudents = new List<Student>();
             var students = _studentRepository.GetAll().ToList();
 
@@ -266,7 +273,7 @@ namespace Stagio.Web.Controllers
                     }
                 }
             }
-            
+
             return View(listStudentsApply);
         }
 
@@ -274,7 +281,7 @@ namespace Stagio.Web.Controllers
         {
 
             var stages = _stageRepository.GetAll();
-            var listStages =  Mapper.Map<IEnumerable<ViewModels.ContactEnterprise.ListStage>>(stages).ToList();
+            var listStages = Mapper.Map<IEnumerable<ViewModels.ContactEnterprise.ListStage>>(stages).ToList();
             return View(listStages);
         }
 
@@ -349,22 +356,23 @@ namespace Stagio.Web.Controllers
             {
                 contactEnterpriseToSendMessage.Poste = contactEnterpriseToSendMessage.Poste.Replace(" ", "%20");
             }
-            string messageText = "Un employé de votre entreprise vous invite à vous inscrire au site Stagio: ";
+            string messageText = "<a href=Un employé de votre entreprise vous invite à vous inscrire au site Stagio: ";
             string invitationUrl = "http://thomarelau.local/ContactEnterprise/Reactivate?Email=" +
                                    contactEnterpriseToSendMessage.Email + "&EnterpriseName=" +
                                    enterpriseName + "&FirstName=" +
                                    contactEnterpriseToSendMessage.FirstName + "&LastName=" +
                                    contactEnterpriseToSendMessage.LastName + "&Telephone=" +
-                                   contactEnterpriseToSendMessage.Telephone + "&Poste=" + contactEnterpriseToSendMessage.Poste;
+                                   contactEnterpriseToSendMessage.Telephone + "&Poste=" + contactEnterpriseToSendMessage.Poste +
+                                   "/>";
             messageText += invitationUrl;
             return messageText;
         }
-    
+
         public virtual ActionResult AcceptApplyConfirmation()
         {
 
             return View();
-    }
+        }
 
         public virtual ActionResult RefuseApplyConfirmation()
         {

@@ -176,7 +176,8 @@ namespace Stagio.Web.Controllers
                                    enterpriseName + "&FirstName=" +
                                    contactEnterpriseToSendMessage.FirstName + "&LastName=" +
                                    contactEnterpriseToSendMessage.LastName + "&Telephone=" +
-                                   contactEnterpriseToSendMessage.Telephone + "&Poste=" + contactEnterpriseToSendMessage.Poste;
+                                   contactEnterpriseToSendMessage.Telephone + "&Poste=" + contactEnterpriseToSendMessage.Poste + 
+                                   "> Créer un compte</a>";
 
             messageText += invitationUrl;
             return messageText;
@@ -246,6 +247,9 @@ namespace Stagio.Web.Controllers
                     coordinator.UserName = coordinator.Email;
                     coordinator.Password = _accountService.HashPassword(coordinator.Password);
                     _coordinatorRepository.Add(coordinator);
+
+                    _mailler.SendEmail(createdCoordinator.Email, EmailAccountCreation.Subject, EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
+
                     return RedirectToAction(Views.ViewNames.Index);
                 }
             }
