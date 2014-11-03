@@ -46,22 +46,24 @@ namespace Stagio.Web.ViewModels.Stage
         [DisplayName("Nom")]
         public String ContactToName { get; set; }
 
-        [ValidationRequireField("ContactToName", ErrorMessage = "Vous devez spécifier le nom du contact.")]
+
         [DisplayName("Titre")]
+        [ValidationRequireField("ContactToName", ErrorMessage = "Vous devez spécifier le nom du contact.")]
+
         public String ContactToTitle { get; set; }
 
-        [ValidationRequireField("ContactToName", ErrorMessage = "Vous devez spécifier le nom du contact.")]
         [DisplayName("Courriel")]
+        [ValidationRequireField("ContactToName", ErrorMessage = "Vous devez spécifier le nom du contact.")]
         [DataType(DataType.EmailAddress)]
         public String ContactToEmail { get; set; }
 
-        [ValidationRequireField("ContactToName", ErrorMessage = "Vous devez spécifier le nom du contact.")]
         [DisplayName("Téléphone")]
+        [ValidationRequireField("ContactToName", ErrorMessage = "Vous devez spécifier le nom du contact.")]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Entrez un numéro valide.")]
         public String ContactToPhone { get; set; }
 
-        [ValidationRequireField("ContactToPhone", ErrorMessage = "Vous devez spécifier un numéro de téléphone.")]
         [DisplayName("Poste")]
+        [ValidationRequireField("ContactToPhone", ErrorMessage = "Vous devez spécifier un numéro de téléphone.")]
         public string ContactToPoste { get; set; }
 
         [DisplayName("Titre du poste")]
@@ -96,7 +98,27 @@ namespace Stagio.Web.ViewModels.Stage
 
         [DisplayName("Date limite pour soumettre une candidature")]
         [Required(ErrorMessage = "Requis")]
+        [CurrentDate(ErrorMessage = "La date doit être supérieure à aujourd'hui.")]
         public DateTime LimitDate { get; set; }
 
     }
+
+    public class CurrentDateAttribute : ValidationAttribute
+    {
+        public CurrentDateAttribute()
+        {
+        }
+
+        public override bool IsValid(object value)
+        {
+            var currentDate = (DateTime)value;
+            if (currentDate >= DateTime.Now)
+            {
+                return true;
+            }
+            return false;
+        }
+    }
+
+
 }
