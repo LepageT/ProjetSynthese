@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using Stagio.Web.Automation.PageObjects;
+using Stagio.Web.Automation.PageObjects.ContactEnterprise;
+using Stagio.Domain.Entities;
 
 namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
 {
@@ -14,37 +17,32 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
         [TestMethod]
         public void contact_enterprise_should_be_able_to_access_invite_another_contact_page_if_logged_in()
         {
-            /*AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
-            _driver.Navigate().GoToUrl("http://thomarelau.local/ContactEnterprise/InviteContactEnterprise");
+            LoginPage.GoTo();
+            LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
 
-            try
-            {
-                _driver.FindElement(By.Id("inviteContact-page"));
-            }
-            catch (NoSuchElementException)
-            {
-                Assert.Fail("Identifiant inviteContact-page non trouvé sur la page.");
-            }*/
+            InviteContactEnterprisePage.GoTo();
+
+            Assert.IsTrue(InviteContactEnterprisePage.IsDisplayed);
         }
 
+        [TestMethod]
         public void contact_enterprise_should_not_be_able_to_access_invite_another_contact_page_if_not_logged_in()
         {
-            
-            /*_driver.Navigate().GoToUrl("http://thomarelau.local/ContactEnterprise/InviteContactEnterprise");
+            InviteContactEnterprisePage.GoToByUrl();
 
-            try
-            {
-                _driver.FindElement(By.Id("login-page"));
-            }
-            catch (NoSuchElementException)
-            {
-                Assert.Fail("Identifiant inviteContact-page non trouvé sur la page.");
-            }*/
+            Assert.IsTrue(LoginPage.IsDisplayed);
+            
         }
 
         [TestMethod]
         public void contact_enterprise_should_be_able_to_invite_another_contact_enterprise()
         {
+            /*LoginPage.GoTo();
+            LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
+
+            InviteContactEnterprisePage.GoTo();
+            InviteContactEnterprisePage.InviteContactEnterprise();*/
+
             /*AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
             const string MESSAGE_INVITATION = "test";
             const string EMAIL = "test@test.com";

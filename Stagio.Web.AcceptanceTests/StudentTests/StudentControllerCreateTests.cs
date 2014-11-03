@@ -3,6 +3,7 @@ using System.Net.Mime;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using Stagio.Web.Automation.PageObjects;
 
 namespace Stagio.Web.AcceptanceTests.StudentTests
 {
@@ -12,6 +13,8 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         [TestMethod]
         public void student_should_be_able_to_create_his_profil()
         {
+            
+
             /*_driver.Navigate().GoToUrl("http://thomarelau.local/Student/Create");
 
             try

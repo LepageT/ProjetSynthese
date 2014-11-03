@@ -67,8 +67,13 @@
   <ItemGroup>
     <Compile Include="Navigation\MenuSelector.cs" />
     <Compile Include="Navigation\Navigation.cs" />
+    <Compile Include="PageObjects\ContactEnterprise\InviteContactEnterprisePage.cs" />
+    <Compile Include="PageObjects\ContactEnterprise\ListStageContactEnterprisePage.cs" />
+    <Compile Include="PageObjects\Coordinator\AddStudentsCoordinatorPage.cs" />
+    <Compile Include="PageObjects\Coordinator\CreateListStudentsCoordinatorPage.cs" />
     <Compile Include="PageObjects\HomePage.cs" />
     <Compile Include="PageObjects\LoginPage.cs" />
+    <Compile Include="PageObjects\Student\ResultatCreateListStudentPage.cs" />
     <Compile Include="PageObjects\Student\EditStudentPage.cs" />
     <Compile Include="PageObjects\Student\IndexStudentPage.cs" />
     <Compile Include="PageObjects\Student\StageListStudentPage.cs" />
@@ -84,10 +89,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="PageObjects\ContactEnterprise\" />
-    <Folder Include="PageObjects\Coordinator\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Stagio.Domain\Stagio.Domain.csproj">
       <Project>{976fe607-b2b5-412f-98b1-b8106d6b610c}</Project>
