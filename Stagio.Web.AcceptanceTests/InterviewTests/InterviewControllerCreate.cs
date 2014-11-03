@@ -51,7 +51,7 @@ namespace Stagio.Web.AcceptanceTests.InterviewTests
 
             IWebElement oSelection = _driver.FindElement(By.Id("StageId"));
             SelectElement dropdown = new SelectElement(oSelection);
-            dropdown.SelectByIndex(0);
+            dropdown.SelectByIndex(1);
 
             _driver.FindElement(By.Id("Date")).Clear();
             _driver.FindElement(By.Id("Date")).SendKeys(DATE);

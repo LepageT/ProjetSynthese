@@ -15,7 +15,7 @@ namespace Stagio.Web.ViewModels.Interviews
         public DateTime Date { get; set; }
 
         [DisplayName("Stage")]
-        [Required]
+        [Required(ErrorMessage = "Veuillez sélectionner le stage auquel vous avez une entrevue.")]
         public int StageId { get; set; }
 
         public IEnumerable<SelectListItem> Apply { get; set; } 

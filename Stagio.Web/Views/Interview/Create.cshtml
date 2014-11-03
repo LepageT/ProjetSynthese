@@ -26,7 +26,9 @@
             @Html.LabelFor(model => model.StageId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="dropdown">
-                    @Html.DropDownListFor(model => model.StageId, Model.Apply)
+                    @Html.DropDownListFor(model => model.StageId, Model.Apply, "--Sélectionner un stage--")
+                    @Html.ValidationMessageFor(model => model.StageId, "", new { @class = "text-danger" })
+
                 </div>
             </div>
         </div>
