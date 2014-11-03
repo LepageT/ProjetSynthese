@@ -10,6 +10,15 @@ namespace Stagio.Web.ViewModels.Stage
 {
     public class Create
     {
+
+        public enum StageContact
+        {
+            ContactToPhone,
+            ContactToEmail,
+            ContactToName,
+            ContactToTitle
+        }
+
         [DisplayName("Entreprise ou Organisation")]
         [Required(ErrorMessage = "Requis")]
         //Maybe an enterprise entity must be created.
@@ -44,24 +53,26 @@ namespace Stagio.Web.ViewModels.Stage
         //Contact
 
         [DisplayName("Nom")]
+        [ValidationRequireField("ContactToTitle", StageContact.ContactToTitle, ErrorMessage = "Vous devez spécifier le titre du contact.")]
         public String ContactToName { get; set; }
 
-        [ValidationRequireField("ContactToName", ErrorMessage = "Vous devez spécifier le nom du contact.")]
+        [ValidationRequireField("ContactToEmail", StageContact.ContactToEmail, ErrorMessage = "Vous devez spécifier le courriel du contact.")]
         [DisplayName("Titre")]
         public String ContactToTitle { get; set; }
 
-        [ValidationRequireField("ContactToName", ErrorMessage = "Vous devez spécifier le nom du contact.")]
+
+        [ValidationRequireField("ContactToPhone", StageContact.ContactToPhone, ErrorMessage = "Vous devez spécifier le téléphone du contact.")]
         [DisplayName("Courriel")]
         [DataType(DataType.EmailAddress)]
         public String ContactToEmail { get; set; }
 
-        [ValidationRequireField("ContactToName", ErrorMessage = "Vous devez spécifier le nom du contact.")]
+        [ValidationRequireField("ContactToName", StageContact.ContactToName, ErrorMessage = "Vous devez spécifier le nom du contact.")]
         [DisplayName("Téléphone")]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Entrez un numéro valide.")]
         public String ContactToPhone { get; set; }
 
-        [ValidationRequireField("ContactToPhone", ErrorMessage = "Vous devez spécifier un numéro de téléphone.")]
         [DisplayName("Poste")]
+        [ValidationRequireField("ContactToPhone", StageContact.ContactToPhone, ErrorMessage = "Vous devez spécifier le téléphone du contact.")]
         public string ContactToPoste { get; set; }
 
         [DisplayName("Titre du poste")]
