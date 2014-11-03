@@ -26,7 +26,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         {
             var students = _fixture.CreateMany<Student>(3);
             var student = students.First();
-            student.Activated = false;
+            student.Active = false;
             studentRepository.GetAll().Returns(students.AsQueryable());
             var viewModel = _fixture.Create<ViewModels.Student.Create>();
             viewModel.Matricule = student.Matricule;
@@ -45,7 +45,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         {
             var students = _fixture.CreateMany<Student>(3);
             var student = students.First();
-            student.Activated = false;
+            student.Active = false;
             studentRepository.GetAll().Returns(students.AsQueryable());
             var viewModel = _fixture.Create<ViewModels.Student.Create>();
 
@@ -59,7 +59,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         {
             var students = _fixture.CreateMany<Student>(3);
             var student = students.First();
-            student.Activated = false;
+            student.Active= false;
             studentRepository.GetAll().Returns(students.AsQueryable());
             var viewModel = _fixture.Create<ViewModels.Student.Create>();
             viewModel.Matricule = student.Matricule;
@@ -78,7 +78,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         {
             var students = _fixture.CreateMany<Student>(3);
             var student = students.First();
-            student.Activated = true;
+            student.Active = true;
           studentRepository.GetAll().Returns(students.AsQueryable());
             var viewModel = _fixture.Create<ViewModels.Student.Create>();
             viewModel.Matricule = student.Matricule;

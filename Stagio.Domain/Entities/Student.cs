@@ -16,8 +16,7 @@ namespace Stagio.Domain.Entities
 
         public string Poste { get; set; }
 
-        [DefaultValue(false)]
-        public bool Activated { get; set; }
+   
 
 
     }
