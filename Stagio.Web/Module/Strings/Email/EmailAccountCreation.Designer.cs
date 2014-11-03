@@ -61,7 +61,7 @@ namespace Stagio.Web.Module.Strings.Email {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à &lt;a href=jenkins.cegep-ste-foy.qc.ca/thomarelau/Account/Login &gt;Se connecter &lt;/a&gt;.
+        ///   Recherche une chaîne localisée semblable à &lt;a href=http://jenkins.cegep-ste-foy.qc.ca/thomarelau/Account/Login &gt;Se connecter &lt;/a&gt;.
         /// </summary>
         internal static string EmailLink {
             get {
@@ -70,7 +70,7 @@ namespace Stagio.Web.Module.Strings.Email {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à &lt;h3&gt;Stagio&lt;/h3&gt;&lt;p&gt; Bonjour, &lt;/p&gt;&lt;p&gt;Merci d&apos;avoir créer un compte Stagio. Vous pouvez maintenant vous connecter.&lt;/p&gt;.
+        ///   Recherche une chaîne localisée semblable à &lt;h3&gt;Stagio&lt;/h3&gt;&lt;p&gt; Bonjour, &lt;/p&gt;&lt;p&gt;Merci d&apos;avoir créé un compte Stagio. Vous pouvez maintenant vous connecter.&lt;/p&gt;.
         /// </summary>
         internal static string Message {
             get {
