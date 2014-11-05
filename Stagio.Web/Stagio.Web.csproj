@@ -265,6 +265,7 @@
     <Compile Include="Validations\ValidationRequireField.cs" />
     <Compile Include="ViewModels\Account\Details.cs" />
     <Compile Include="ViewModels\Apply\StudentApply.cs" />
+    <Compile Include="ViewModels\ContactEnterprise\AcceptApply.cs" />
     <Compile Include="ViewModels\ContactEnterprise\ListStudentApply.cs" />
     <Compile Include="ViewModels\ContactEnterprise\ListStage.cs" />
     <Compile Include="ViewModels\ContactEnterprise\Reactive.cs" />

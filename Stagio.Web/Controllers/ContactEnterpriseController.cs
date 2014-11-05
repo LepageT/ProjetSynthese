@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using AutoMapper;
 using Stagio.DataLayer;
 using Stagio.Domain.Application;
@@ -319,7 +320,10 @@ namespace Stagio.Web.Controllers
             {
                 apply.Status = 1; //1 = Accepter;
                 _applyRepository.Update(apply);
-                return RedirectToAction(MVC.ContactEnterprise.AcceptApplyConfirmation());
+                var acceptApply =
+                    Mapper.Map<ViewModels.ContactEnterprise.AcceptApply>(
+                        _studentRepository.GetAll().FirstOrDefault(x => x.Id == apply.IdStudent));
+                return View(MVC.ContactEnterprise.Views.ViewNames.AcceptApplyConfirmation, acceptApply);
             }
             else if (command.Equals("Refuser"))
             {
@@ -368,10 +372,10 @@ namespace Stagio.Web.Controllers
             return messageText;
         }
 
-        public virtual ActionResult AcceptApplyConfirmation()
+        public virtual ActionResult AcceptApplyConfirmation(ViewModels.ContactEnterprise.AcceptApply acceptApply)
         {
 
-            return View();
+            return View(acceptApply);
         }
 
         public virtual ActionResult RefuseApplyConfirmation()
