@@ -23,8 +23,8 @@ namespace Stagio.Web.AcceptanceTests.AccountTests
            AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
 
             var body = _driver.FindElement(By.ClassName("navbar"));
-           
-            Assert.IsTrue(body.Text.Contains("Super admin coordonnateur Tux"), "L'administrateur n'est pas connecté.");
+
+            Assert.IsTrue(body.Text.Contains("Jean-Dominic Rousseau"), "L'administrateur n'est pas connecté.");
         }
 
         [TestMethod]

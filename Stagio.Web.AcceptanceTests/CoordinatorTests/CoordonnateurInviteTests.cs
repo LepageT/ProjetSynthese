@@ -58,7 +58,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
             }
             catch (NoSuchElementException)
             {
-                Assert.Fail("Identifiant coordinator-home non trouvé sur la page");
+                Assert.Fail("Identifiant invite-succeed non trouvé sur la page");
             }
         }
     }
