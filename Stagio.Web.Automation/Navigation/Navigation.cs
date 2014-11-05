@@ -47,6 +47,22 @@ namespace Stagio.Web.Automation
                     MenuSelector.Select("index-Student", "add-entrevue");
                 }
             }
+            public class ListApply
+            {
+                public static void Select()
+                {
+                    MenuSelector.Select("index-Student", "list-applies");
+                }
+            }
+
+            public class ApplyStage3
+            {
+                public static void Select()
+                {
+                    MenuSelector.Select("index-Student", "stageList-student");
+                    MenuSelector.Select("details-stages3", "accept-stage");
+                }
+            }
             
         }
 

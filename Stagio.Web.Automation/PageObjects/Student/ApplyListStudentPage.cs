@@ -9,6 +9,11 @@ namespace Stagio.Web.Automation.PageObjects.Student
 {
     public class ApplyListStudentPage
     {
+        public static void GoTo()
+        {
+            Navigation.Student.ListApply.Select();
+        }
+
         public static void GoToByUrl()
         {
             Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/Student/ApplyList");
@@ -41,6 +46,17 @@ namespace Stagio.Web.Automation.PageObjects.Student
                 return false;
             }
 
+        }
+
+        public static void ClickToRemove()
+        {
+            Driver.Instance.FindElement(By.Id("remove-apply")).Click();
+           
+        }
+
+        public static bool ConfirmationRemoveIsDisplayed
+        {
+            get { return Driver.Instance.FindElement(By.Id("confirmationRemoveApplyStudent-page")) != null; }
         }
     }
 }

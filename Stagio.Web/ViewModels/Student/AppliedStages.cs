@@ -20,5 +20,7 @@ namespace Stagio.Web.ViewModels.Student
 
         public int IdStage { get; set; }
 
+        public int Id { get; set; }
+
     }
 }
