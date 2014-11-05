@@ -93,6 +93,7 @@ namespace Stagio.Web.Controllers
                 {
                     var newContactEnterprise = Mapper.Map<ContactEnterprise>(createViewModel);
                     newContactEnterprise.Active = true;
+                    newContactEnterprise.Password = _accountService.HashPassword(newContactEnterprise.Password);
                     newContactEnterprise.UserName = newContactEnterprise.Email;
                     newContactEnterprise.Roles = new List<UserRole>()
                     {
@@ -214,12 +215,14 @@ namespace Stagio.Web.Controllers
                     messageInvitation = Request.Form["Message"];
                 }
 
-                string messageText = generateURLInvitationContactEnterprise(contactEnterpriseToSendMessage);
+                string messageText = "<html>";
 
                 if (messageInvitation != null)
                 {
-                    messageText += EmailEnterpriseResources.MessageHeader;
-                    messageText += messageInvitation;
+                    messageText += EmailEnterpriseResources.InviteCoworker;
+                    messageText += "<br>" + messageInvitation + "<br>";
+                    messageText += generateURLInvitationContactEnterprise(contactEnterpriseToSendMessage);
+                    messageText += "</html>";
                 }
 
                 if (!_mailler.SendEmail(contactEnterpriseToSendMessage.Email, EmailEnterpriseResources.InviteSubject,
@@ -359,14 +362,19 @@ namespace Stagio.Web.Controllers
             {
                 contactEnterpriseToSendMessage.Poste = contactEnterpriseToSendMessage.Poste.Replace(" ", "%20");
             }
-            string messageText = "<a href=Un employé de votre entreprise vous invite à vous inscrire au site Stagio: ";
-            string invitationUrl = "http://thomarelau.local/ContactEnterprise/Reactivate?Email=" +
+            string messageText = "<a href=";
+            string invitationUrl = "jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?Email=" +
                                    contactEnterpriseToSendMessage.Email + "&EnterpriseName=" +
                                    enterpriseName + "&FirstName=" +
                                    contactEnterpriseToSendMessage.FirstName + "&LastName=" +
                                    contactEnterpriseToSendMessage.LastName + "&Telephone=" +
                                    contactEnterpriseToSendMessage.Telephone + "&Poste=" + contactEnterpriseToSendMessage.Poste +
-                                   "/>";
+                                   ">jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?Email=" +
+                                   contactEnterpriseToSendMessage.Email + "&EnterpriseName=" +
+                                   enterpriseName + "&FirstName=" +
+                                   contactEnterpriseToSendMessage.FirstName + "&LastName=" +
+                                   contactEnterpriseToSendMessage.LastName + "&Telephone=" +
+                                   contactEnterpriseToSendMessage.Telephone + "&Poste=" + contactEnterpriseToSendMessage.Poste + "<a/>";
             messageText += invitationUrl;
             return messageText;
         }
