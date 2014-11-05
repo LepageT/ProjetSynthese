@@ -357,14 +357,14 @@ namespace Stagio.Web.Controllers
             {
                 contactEnterpriseToSendMessage.Poste = contactEnterpriseToSendMessage.Poste.Replace(" ", "%20");
             }
-            string messageText = "<a href=";
+            string messageText = "<link href=";
             string invitationUrl = "jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?Email=" +
                                    contactEnterpriseToSendMessage.Email + "&EnterpriseName=" +
                                    enterpriseName + "&FirstName=" +
                                    contactEnterpriseToSendMessage.FirstName + "&LastName=" +
                                    contactEnterpriseToSendMessage.LastName + "&Telephone=" +
                                    contactEnterpriseToSendMessage.Telephone + "&Poste=" + contactEnterpriseToSendMessage.Poste +
-                                   ">Cliquer sur ce lien pour vous inscrire<a/>";
+                                   ">Cliquer sur ce lien pour vous inscrire<link/>";
             messageText += invitationUrl;
             return messageText;
         }
