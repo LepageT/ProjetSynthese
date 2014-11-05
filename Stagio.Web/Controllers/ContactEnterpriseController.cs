@@ -92,6 +92,7 @@ namespace Stagio.Web.Controllers
                 {
                     var newContactEnterprise = Mapper.Map<ContactEnterprise>(createViewModel);
                     newContactEnterprise.Active = true;
+                    _accountService.HashPassword(newContactEnterprise.Password);
                     newContactEnterprise.UserName = newContactEnterprise.Email;
                     newContactEnterprise.Roles = new List<UserRole>()
                     {
