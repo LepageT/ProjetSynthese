@@ -67,8 +67,12 @@
   <ItemGroup>
     <Compile Include="Navigation\MenuSelector.cs" />
     <Compile Include="Navigation\Navigation.cs" />
+    <Compile Include="PageObjects\ContactEnterprise\CreateContactEnterprisePage.cs" />
+    <Compile Include="PageObjects\ContactEnterprise\CreateStageContactEnterprisePage.cs" />
+    <Compile Include="PageObjects\ContactEnterprise\DetailsStudentApplyContactEnterprisePage.cs" />
     <Compile Include="PageObjects\ContactEnterprise\InviteContactEnterprisePage.cs" />
     <Compile Include="PageObjects\ContactEnterprise\ListStageContactEnterprisePage.cs" />
+    <Compile Include="PageObjects\ContactEnterprise\StudentApplyContactEnterprisePage.cs" />
     <Compile Include="PageObjects\Coordinator\AddStudentsCoordinatorPage.cs" />
     <Compile Include="PageObjects\Coordinator\CreateCoordinatorPage.cs" />
     <Compile Include="PageObjects\Coordinator\CreateListStudentsCoordinatorPage.cs" />

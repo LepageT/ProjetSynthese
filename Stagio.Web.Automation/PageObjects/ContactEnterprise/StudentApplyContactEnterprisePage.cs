@@ -7,11 +7,11 @@ using Stagio.Web.Automation.Selenium;
 
 namespace Stagio.Web.Automation.PageObjects.ContactEnterprise
 {
-    public class ListStageContactEnterprisePage
+    public class StudentApplyContactEnterprisePage
     {
         public static bool IsDisplayed
         {
-            get { return Driver.Instance.FindElement(By.Id("list-stage")) != null; }
+            get { return Driver.Instance.FindElement(By.Id("list-student-stage")) != null; }
         }
 
         public static void GoTo()
@@ -19,13 +19,16 @@ namespace Stagio.Web.Automation.PageObjects.ContactEnterprise
             Navigation.ContactEnterprise.ListStages.Select();
         }
 
-       
-
-        public static bool AccessStageDetail()
+        public static void GoToByUrl()
         {
-            try
+            Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/ContactEnterprise/ListStudentApply/1");
+        }
+
+        public static bool ButtonIsDisplayed()
+        {
+             try
             {
-                Driver.Instance.FindElement(By.Id("list-stages1"));
+                Driver.Instance.FindElement(By.Id("list-student1"));
                 return true;
             }
             catch (NoSuchElementException)
