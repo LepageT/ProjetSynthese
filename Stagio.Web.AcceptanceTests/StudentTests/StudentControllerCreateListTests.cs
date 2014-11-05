@@ -2,6 +2,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using Stagio.TestUtilities.Database;
+using Stagio.Web.Automation.PageObjects;
+using Stagio.Web.Automation.PageObjects.Coordinator;
+using Stagio.Web.Automation.PageObjects.Student;
 
 namespace Stagio.Web.AcceptanceTests.StudentTests
 {
@@ -11,54 +14,39 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         [TestMethod]
         public void coordinator_should_be_able_to_see_the_page_createList_student_if_logged_in()
         {
-            AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Upload");
-            _driver.FindElement(By.Id("file")).SendKeys("C:\\dev\\abc.csv");
-            _driver.FindElement(By.Id("button-upload")).Click();
+            LoginPage.GoTo();
+            LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
 
-            try
-            {
-                _driver.FindElement(By.Id("createList-page"));
-            }
-            catch (NoSuchElementException)
-            {
-                Assert.Fail("Identifiant createList-page non trouvé sur la page.");
-            }
+            AddStudentsCoordinatorPage.GoTo();
+            AddStudentsCoordinatorPage.SelectCsvFile("C:\\dev\\abc.csv");
+
+            Assert.IsTrue(CreateListStudentsCoordinatorPage.IsDisplayed);
+           
         }
 
         [TestMethod]
         public void coordinator_not_should_be_able_to_see_the_page_createList_student_not_if_logged_in()
         {
-           ;
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Upload");
+            CreateListStudentsCoordinatorPage.GoToByUrl();
 
-            try
-            {
-                _driver.FindElement(By.Id("login-page"));
-            }
-            catch (NoSuchElementException)
-            {
-                Assert.Fail("Identifiant createList-page non trouvé sur la page.");
-            }
+            Assert.IsTrue(LoginPage.IsDisplayed);
+           
         }
 
         [TestMethod]
         public void coordinator_creatList_should_redirect_on_resultCreateList()
         {
-            AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Upload");
-            _driver.FindElement(By.Id("file")).SendKeys("C:\\dev\\abc.csv");
-            _driver.FindElement(By.Id("button-upload")).Click();
-            _driver.FindElement(By.Id("createList-button")).Click();
+            LoginPage.GoTo();
+            LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
 
-            try
-            {
-                _driver.FindElement(By.Id("resultCreateList-page"));
-            }
-            catch (NoSuchElementException)
-            {
-                Assert.Fail("Identifiant resultCreateList-page non trouvé sur la page.");
-            }
+            AddStudentsCoordinatorPage.GoTo();
+            AddStudentsCoordinatorPage.SelectCsvFile("C:\\dev\\abc.csv");
+           
+            CreateListStudentsCoordinatorPage.ClickToCreatelist();
+
+            Assert.IsTrue(ResultatCreateListStudentPage.IsDisplayed);
+            
+
         }
     }
 }

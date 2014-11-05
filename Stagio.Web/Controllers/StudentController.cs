@@ -23,18 +23,20 @@ namespace Stagio.Web.Controllers
     public partial class StudentController : Controller
     {
         private readonly IEntityRepository<Student> _studentRepository;
-        private readonly IEntityRepository<Stage> _stageRepository;
+        private readonly IEntityRepository<Stage> _stageRepository; 
         private readonly IHttpContextService _httpContextService;
         private readonly IEntityRepository<Stagio.Domain.Entities.Apply> _applyRepository;
         private readonly IMailler _mailler;
+        private readonly IAccountService _accountService;
 
-        public StudentController(IEntityRepository<Student> studentRepository, IEntityRepository<Stage> stageRepository, IEntityRepository<Stagio.Domain.Entities.Apply> applyRepository, IHttpContextService httpContextService, IMailler mailler)
+        public StudentController(IEntityRepository<Student> studentRepository, IEntityRepository<Stage> stageRepository, IEntityRepository<Stagio.Domain.Entities.Apply> applyRepository, IHttpContextService httpContextService, IMailler mailler, IAccountService accountService)
         {
             _studentRepository = studentRepository;
             _stageRepository = stageRepository;
             _httpContextService = httpContextService;
             _applyRepository = applyRepository;
             _mailler = mailler;
+            _accountService = accountService;
         }
 
         public virtual ActionResult Index()
@@ -184,7 +186,7 @@ namespace Stagio.Web.Controllers
             }
             else
             {
-                if (student.Activated)
+                if (student.Active)
                 {
                     ModelState.AddModelError("Matricule", "Votre matricule est déja utilisé.");
                 }
@@ -194,10 +196,15 @@ namespace Stagio.Web.Controllers
             {
                 return View(createStudentViewModel);
             }
-
-            student.Activated = true;
+           
+         
 
             Mapper.Map(createStudentViewModel, student);
+
+ 
+            student.Active = true;
+            student.Password = _accountService.HashPassword(createStudentViewModel.Password);
+
 
             _studentRepository.Update(student);
 
@@ -205,8 +212,8 @@ namespace Stagio.Web.Controllers
 
             return RedirectToAction(MVC.Home.Index());
         }
-
-        [Authorize(Roles = RoleName.Student)]
+       
+        [Authorize(Roles = RoleName.Student)] 
         // GET: Student/Edit/5
         public virtual ActionResult Edit(int id)
         {
@@ -242,10 +249,10 @@ namespace Stagio.Web.Controllers
 
             if (!editStudentViewModel.OldPassword.IsNullOrWhiteSpace())
             {
-                if (!PasswordHash.ValidatePassword(editStudentViewModel.OldPassword, student.Password))
-                {
-                    ModelState.AddModelError("OldPassword", "L'ancien mot de passe n'est pas valide.");
-                }
+            if (!PasswordHash.ValidatePassword(editStudentViewModel.OldPassword, student.Password))
+            {
+                ModelState.AddModelError("OldPassword", "L'ancien mot de passe n'est pas valide.");
+            }
             }
 
             if (!ModelState.IsValid)
@@ -273,11 +280,11 @@ namespace Stagio.Web.Controllers
             var stages = _stageRepository.GetAll().ToList();
             var stagesAccepted = stages.Where(x => x.Status == 1);
             var studentStageListViewModels = Mapper.Map<IEnumerable<ViewModels.Student.StageList>>(stagesAccepted);
-
-
-
+          
+            
+            
             return View(studentStageListViewModels);
-
+            
         }
 
 
@@ -296,7 +303,7 @@ namespace Stagio.Web.Controllers
                 return View(applyViewModel);
             }
             return HttpNotFound();
-
+            
         }
 
         [HttpPost]

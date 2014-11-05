@@ -74,6 +74,7 @@ namespace Stagio.Web.App_Start
             kernel.Bind<IEntityRepository<ContactEnterprise>>().To<EfEntityRepository<ContactEnterprise>>().InRequestScope();
             kernel.Bind<IEntityRepository<Stage>>().To<EfEntityRepository<Stage>>().InRequestScope();
             kernel.Bind<IEntityRepository<Apply>>().To<EfEntityRepository<Apply>>().InRequestScope();
+            kernel.Bind<IEntityRepository<Interview>>().To<EfEntityRepository<Interview>>().InRequestScope();
 
             kernel.Bind<IMailler>().ToConstant(Mailler.Instance);
 

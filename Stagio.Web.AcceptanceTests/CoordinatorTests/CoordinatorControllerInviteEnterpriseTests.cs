@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using Stagio.Web.Automation.PageObjects;
+using Stagio.Web.Automation.PageObjects.Coordinator;
 
 namespace Stagio.Web.AcceptanceTests.CoordinatorTests
 {
@@ -14,53 +16,35 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
         [TestMethod]
         public void coordinator_should_be_able_to_access_invite_enterprise_page_if_logged_in()
         {
-            AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Coordinator/InviteContactEnterprise");
+            LoginPage.GoTo();
+            LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
+            InviteContactEnterpriseCoordinatorPage.GoTo();
 
-            try
-            {
-                _driver.FindElement(By.Id("invite-enterprise-page"));
-            }
-            catch (NoSuchElementException)
-            {
-                Assert.Fail("Identifiant invite-enterprise-page non trouvé sur la page.");
-            }
+            Assert.IsTrue(InviteContactEnterpriseCoordinatorPage.IsDisplayed);
+            
         }
 
         [TestMethod]
         public void coordinator_not_should_be_able_to_access_invite_enterprise_page_if_not_logged_in()
         {
-            
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Coordinator/InviteContactEnterprise");
+            InviteContactEnterpriseCoordinatorPage.GoToByUrl();
 
-            try
-            {
-                _driver.FindElement(By.Id("login-page"));
-            }
-            catch (NoSuchElementException)
-            {
-                Assert.Fail("Identifiant invite-enterprise-page non trouvé sur la page.");
-            }
+            Assert.IsTrue(LoginPage.IsDisplayed);
+           
         }
 
 
         [TestMethod]
         public void coordinator_should_be_able_to_invite_enterprise()
         {
-            AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
+            LoginPage.GoTo();
+            LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
+            InviteContactEnterpriseCoordinatorPage.GoTo();
             const string MESSAGE_INVITATION = "test";
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Coordinator/InviteContactEnterprise");
-            _driver.FindElement(By.Id("Message")).SendKeys(MESSAGE_INVITATION);
-            _driver.FindElement(By.Id("send-button")).Click();
-            try
-            {
-                _driver.FindElement(By.Id("confirmationInvitationContact-page"));
-            }
-            catch (NoSuchElementException)
-            {
-                Assert.Fail("Identifiant confirmationInvitationContact-page non trouvé sur la page.");
-            }
-           
+            InviteContactEnterpriseCoordinatorPage.AddMessageInvitationAndSend(MESSAGE_INVITATION);
+
+            Assert.IsTrue(InviteContactEnterpriseCoordinatorPage.ConfirmationPageIsDisplayed);
+            
 
         }
     }

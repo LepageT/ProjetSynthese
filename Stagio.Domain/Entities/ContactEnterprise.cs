@@ -6,8 +6,6 @@ namespace Stagio.Domain.Entities
     {
         [Required(ErrorMessage = "Requis")]
         public string EnterpriseName { get; set; }
-
-        public string Poste { get; set; }
         
     }
 }

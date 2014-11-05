@@ -1,0 +1,81 @@
+﻿@model Stagio.Web.ViewModels.Account.Details
+
+<!DOCTYPE html>
+
+<html>
+<head>
+ 
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4 id="details-user-page">Profil</h4>
+    	<hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.UserName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.UserName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Telephone)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Telephone)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+    
+        </dl>
+    </div>
+   
+@if(@User.IsInRole("Étudiant"))
+{
+    <div>
+        @Html.ActionLink("Modifier le profil", MVC.Student.Edit(Model.Id), new { id = "edit-Student" })
+    </div>
+}
+ <p>
+        @Html.ActionLink("Retour à l'accueil", MVC.Home.Index())
+ </p>
+@*@if(@User.IsInRole("Coordonnateur"))
+{
+    <div>
+        @Html.ActionLink("Modifier le profil", MVC.Coordinator.Edit(Model.Id), new { id = "edit-coordonnateur" })
+    </div>
+}
+
+@if (@User.IsInRole("Contact entreprise"))
+{
+    <div>
+        @Html.ActionLink("Modifier le profil", MVC.ContactEnterprise.Edit(Model.Id), new {id = "edit-enterprise"})
+    </div>
+}*@
+</body>
+</html>

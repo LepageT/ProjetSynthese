@@ -176,8 +176,7 @@ namespace Stagio.Web.Controllers
                                    enterpriseName + "&FirstName=" +
                                    contactEnterpriseToSendMessage.FirstName + "&LastName=" +
                                    contactEnterpriseToSendMessage.LastName + "&Telephone=" +
-                                   contactEnterpriseToSendMessage.Telephone + "&Poste=" + contactEnterpriseToSendMessage.Poste + 
-                                   "> Créer un compte</a>";
+                                   contactEnterpriseToSendMessage.Telephone + "&Poste=" + contactEnterpriseToSendMessage.Poste;
 
             messageText += invitationUrl;
             return messageText;
@@ -250,7 +249,7 @@ namespace Stagio.Web.Controllers
 
                     _mailler.SendEmail(createdCoordinator.Email, EmailAccountCreation.Subject, EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
 
-                    return RedirectToAction(Views.ViewNames.Index);
+                    return RedirectToAction(MVC.Home.Index());
                 }
             }
 
@@ -280,7 +279,7 @@ namespace Stagio.Web.Controllers
 
             //Sending invitation with the Mailler class
             String messageText = EmailCoordinatorResources.CoordinatorInviteMessageBody;
-            String invitationUrl = EmailCoordinatorResources.CoordinatorInviteLink + token + ">Créer un compte</a>";
+            String invitationUrl = EmailCoordinatorResources.CoordinatorInviteLink + token;
 
             messageText += invitationUrl;
 

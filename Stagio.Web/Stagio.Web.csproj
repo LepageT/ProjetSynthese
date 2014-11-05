@@ -198,6 +198,7 @@
     <Compile Include="Controllers\CoordinatorController.cs" />
     <Compile Include="Controllers\ContactEnterpriseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InterviewController.cs" />
     <Compile Include="Controllers\StageController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="CoordinatorController.generated.cs">
@@ -207,6 +208,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HomeController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InterviewController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Mappers\AutoMapperConfiguration.cs" />
@@ -259,11 +263,14 @@
     </Compile>
     <Compile Include="Validations\ValidationPassword.cs" />
     <Compile Include="Validations\ValidationRequireField.cs" />
+    <Compile Include="ViewModels\Account\Details.cs" />
     <Compile Include="ViewModels\Apply\StudentApply.cs" />
+    <Compile Include="ViewModels\ContactEnterprise\AcceptApply.cs" />
     <Compile Include="ViewModels\ContactEnterprise\ListStudentApply.cs" />
     <Compile Include="ViewModels\ContactEnterprise\ListStage.cs" />
     <Compile Include="ViewModels\ContactEnterprise\Reactive.cs" />
     <Compile Include="ViewModels\Account\Login.cs" />
+    <Compile Include="ViewModels\Interviews\Create.cs" />
     <Compile Include="ViewModels\Stage\Create.cs" />
     <Compile Include="ViewModels\Stage\Details.cs" />
     <Compile Include="ViewModels\Stage\ListAllStages.cs" />
@@ -347,6 +354,9 @@
     <Content Include="Views\ContactEnterprise\AcceptApplyConfirmation.cshtml" />
     <Content Include="Views\ContactEnterprise\RefuseApplyConfirmation.cshtml" />
     <Content Include="Views\Student\ApplyList.cshtml" />
+    <Content Include="Views\Interview\Create.cshtml" />
+    <Content Include="Views\Interview\InterviewConfirmation.cshtml" />
+    <Content Include="Views\Account\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt.hooks.t4" />

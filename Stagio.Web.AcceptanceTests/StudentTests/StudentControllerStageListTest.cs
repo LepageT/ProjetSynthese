@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using Stagio.Web.Automation.PageObjects;
+using Stagio.Web.Automation.PageObjects.Student;
 
 namespace Stagio.Web.AcceptanceTests.StudentTests
 {
@@ -10,42 +12,33 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         [TestMethod]
         public void student_home_page_should_display_stages_if_logged_in()
         {
-            AuthentificateTestUser(StudentUsername, StudentPassword);
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Student/StageList");
-            var countText = _driver.FindElement(By.Id("stages-count")).Text;
-            var stageCount =  int.Parse(countText.Split(' ')[0]);
+            LoginPage.GoTo();
+            LoginPage.LoginAs(StudentUsername, StudentPassword);
 
-            Assert.IsTrue(stageCount > 0);
+            StageListStudentPage.GoTo();
+
+            Assert.IsTrue(StageListStudentPage.HasStage);
+            
         }
 
         [TestMethod]
         public void student_home_page_not_should_display_stages_not_if_logged_in()
         {
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Student/StageList");
-            try
-            {
-                _driver.FindElement(By.Id("login-page"));
-            }
-            catch (NoSuchElementException)
-            {
-                Assert.Fail("Identifiant resultCreateList-page non trouvé sur la page.");
-            }
+            StageListStudentPage.GoToByUrl();
+
+            Assert.IsTrue(LoginPage.IsDisplayed);
+            
         }
 
         [TestMethod]
         public void student_should_be_able_to_access_stage_descritpion()
         {
-            AuthentificateTestUser(StudentUsername, StudentPassword);
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Student/StageList");
-            _driver.FindElement(By.Id("details-stages3")).Click();
-            try
-            {
-                _driver.FindElement(By.Id("view-stage-info"));
-            }
-            catch (NoSuchElementException)
-            {
-                Assert.Fail("Identifiant view-stage-info non trouvé sur la page.");
-            }
+            LoginPage.GoTo();
+            LoginPage.LoginAs(StudentUsername, StudentPassword);
+
+            StageListStudentPage.GoTo();
+            StageListStudentPage.AccessStageDescription();
+           
         }
     }
 }

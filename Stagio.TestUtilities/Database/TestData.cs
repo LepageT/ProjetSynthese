@@ -8,8 +8,8 @@ namespace Stagio.TestUtilities.Database
 {
     public class TestData
     {
-        #region User (Test user, this user has all access for testing purpose)
-        static public ApplicationUser applicationUser
+        #region Coordinator1
+        static public ApplicationUser coordinator1
         {
             get
             {
@@ -19,18 +19,41 @@ namespace Stagio.TestUtilities.Database
                     Roles = new List<UserRole>()
                    {
                        new UserRole() {RoleName = RoleName.Coordinator},
-                       new UserRole() {RoleName = RoleName.Student},
-                       new UserRole() {RoleName = RoleName.ContactEnterprise}
                    },
                     Password = PasswordHash.CreateHash("test4test"),
-                    UserName = "coordonnateur@stagio.com",
-                    FirstName = "Super admin coordonnateur Tux",
-                    LastName = " ",
+                    Email = "coordonnateur@stagio.com",
+                    FirstName = "Jean-Dominic",
+                    LastName = "Rousseau",
                     Active = true
                 };
-                user.Email = user.UserName;
+
+                user.UserName = user.Email;
                 return user;
             }
+        }
+        #endregion
+        #region Coordinator2
+
+        public static Coordinator coordinator2
+        {
+            get
+            {
+                var coordonnate = new Coordinator()
+                {
+                    Roles = new List<UserRole>()
+                   {
+                       new UserRole() {RoleName = RoleName.Coordinator},
+                   },
+                    Password = PasswordHash.CreateHash("123456QW"),
+                    Email = "admin@admin.com",
+                    FirstName = "Nathalie",
+                    LastName = "Leduc",
+                    Active = true
+                };
+                coordonnate.UserName = coordonnate.Email;
+                return coordonnate;
+            }
+
         }
         #endregion
 
@@ -60,7 +83,6 @@ namespace Stagio.TestUtilities.Database
             }
         }
         #endregion
-
         #region Student2 - Christopher Nolan
 
         static public Student student2
@@ -86,7 +108,7 @@ namespace Stagio.TestUtilities.Database
             }
         }
         #endregion
-        #region Student3 - Thomas Lepage
+        #region Student3 - Compte non activé.
 
         static public Student student3
         {
@@ -98,8 +120,8 @@ namespace Stagio.TestUtilities.Database
                              {
                                  new UserRole() {RoleName = RoleName.Student}
                              },
-                    FirstName = "Thomas",
-                    LastName = "Lepage",
+                    FirstName = "Denis",
+                    LastName = "Lebrun",
                     Matricule = 1031739,
                 };
 
@@ -108,26 +130,8 @@ namespace Stagio.TestUtilities.Database
             }
         }
         #endregion
-        #region Coordinator1
 
-        public static Coordinator coordonnateur1
-        {
-            get
-            {
-                var coordonnate = new Coordinator()
-                {
-                    Id = 1,
-                    FirstName = "Test",
-                    LastName = "Test2",
-                    Password = PasswordHash.CreateHash("123456QW"),
-                    Email = "admin@admin.com"
-                };
-                coordonnate.UserName = coordonnate.Email;
-                return coordonnate;
-            }
-
-        }
-        #endregion
+       
         #region Invitation 1
 
         static public Invitation invitation1
@@ -155,12 +159,11 @@ namespace Stagio.TestUtilities.Database
             {
                 var enterprise = new ContactEnterprise()
                 {
-                    Id = 1,
                     Roles = new List<UserRole>()
                              {
                                  new UserRole() {RoleName = RoleName.ContactEnterprise}
                              },
-                    EnterpriseName = "test",
+                    EnterpriseName = "L'industrielle Alliance",
                     FirstName = "Quentin",
                     LastName = "Tarantino",
                     Telephone = "123-456-7890",
@@ -173,7 +176,6 @@ namespace Stagio.TestUtilities.Database
             }
         }
         #endregion
-
         #region ContactEnterprise3 - activated
 
         static public ContactEnterprise contactEnterprise3
@@ -182,7 +184,6 @@ namespace Stagio.TestUtilities.Database
             {
                 var enterprise = new ContactEnterprise()
                 {
-                    Id = 1007,
                     Roles = new List<UserRole>()
                              {
                                  new UserRole() {RoleName = RoleName.ContactEnterprise}
@@ -200,7 +201,6 @@ namespace Stagio.TestUtilities.Database
             }
         }
         #endregion
-
         #region ContactEnterprise2 - Christopher Nolan
 
         static public ContactEnterprise contactEnterprise2
@@ -209,7 +209,6 @@ namespace Stagio.TestUtilities.Database
             {
                 var enterprise = new ContactEnterprise()
                 {
-                    Id = 2,
                     EnterpriseName = "Stagio",
                     FirstName = "Christopher",
                     LastName = "Nolan",
@@ -219,13 +218,13 @@ namespace Stagio.TestUtilities.Database
                     Active = false
                 };
                 enterprise.UserName = enterprise.Email;
-               
+
                 return enterprise;
             }
         }
         #endregion
 
-       
+
 
         #region Stage 1
 
@@ -241,7 +240,7 @@ namespace Stagio.TestUtilities.Database
                     PublicationDate = DateTime.Now,
                     Status = 0,
                     NbrStagiaire = 3,
-                    StageTitle = "[Inserer titre ici]",
+                    StageTitle = "Apprentis",
                     CompanyName = "Bonbon inc",
                     Adresse = "1234 rue des bonbons, Québec",
                     ResponsableToName = "Robert",
@@ -252,7 +251,7 @@ namespace Stagio.TestUtilities.Database
                     ContactToName = "Luc",
                     ContactToEmail = "luc@bonbon.com",
                     ContactToPhone = "123-223-3456",
-                    ContactToPoste = "2",
+                    ContactToPoste = "2a",
                     ContactToTitle = "Maitre des bonbons",
                     StageDescription = "Faire des bonbons, Manger des bonbons...",
                     EnvironnementDescription = "Sucre, Mélangeur",
@@ -266,22 +265,32 @@ namespace Stagio.TestUtilities.Database
         }
 
         #endregion
-
         #region Stage 2
-
         static public Stage stage2
         {
             get
             {
                 var stage = new Stage()
                 {
-                   LimitDate = DateTime.Now,
                     PublicationDate = DateTime.Now,
-                    Status = 1,
-                    NbrStagiaire = 2,
-                    StageTitle = "[Inserer titre ici]",
                     CompanyName = "Musique inc",
-                    Adresse = "1234 rue de la guitare, Québec"
+                    Adresse = "1234 rue de la guitare, Québec",
+                    ResponsableToName = "Denyse Gilbert",
+                    ResponsableToTitle = "Coordonnatrice aux développements",
+                    ResponsableToPhone = "656-2131",
+                    ResponsableToPoste = null,
+                    ResponsableToEmail = "Denyse.Gilbert",
+                    StageDescription = "Notre centre dévoloppe des applications pédagogiques multimédias pour" +
+                                        " l'enseignement et l'apprentissage dans le domaine dede la musique.",
+                    EnvironnementDescription = "Poste de travail Windows 8.1, Visual Studio 2013, SQL Server",
+                    StageTitle = "Programmeur C++",
+                    NbrStagiaire = 2,
+                    StagiaireIfKnew = "",
+                    SubmitToName = "Denyse Gilbert",
+                    SubmitToTitle = "Coordinatrice aux développements APTIC",
+                    SubmitToEmail = "Denyse.Gilbert@musiqueinc.co",
+                    LimitDate = new DateTime(2008, 12, 10),
+                    Status = 0
                 };
 
                 return stage;
@@ -289,7 +298,6 @@ namespace Stagio.TestUtilities.Database
         }
 
         #endregion
-
         #region Stage 3 - Complet
 
         static public Stage stage3
@@ -319,10 +327,43 @@ namespace Stagio.TestUtilities.Database
                     SubmitToName = "Denyse Gilbert",
                     SubmitToTitle = "Coordinatrice aux développements APTIC",
                     SubmitToEmail = "Denyse.Gilbert",
-                    LimitDate = new DateTime(2008,12,10),
+                    LimitDate = new DateTime(2008, 12, 10),
+                    Status = 1
+
+
+                };
+
+                return stage;
+            }
+        }
+
+        #endregion
+        #region Stage 4
+
+        static public Stage stage4
+        {
+            get
+            {
+                var stage = new Stage()
+                {
+                    PublicationDate = DateTime.Now,
+                    CompanyName = "Coveo",
+                    Adresse = "1234 rue du Web, Québec",
+                    ResponsableToName = "Serge Lavoie",
+                    ResponsableToTitle = "Coordonnateur aux développements",
+                    ResponsableToPhone = "656-2131",
+                    ResponsableToPoste = null,
+                    ResponsableToEmail = "serge.lavoie@email.com",
+                    StageDescription = "Notre centre dévoloppe des applications web",
+                    EnvironnementDescription = "Poste de travail Windows 8.1/Mac OS X, Logiciel Adobe CS6, SQL Server, HTML, CSS",
+                    StageTitle = "Programmeur Web",
+                    NbrStagiaire = 2,
+                    StagiaireIfKnew = "",
+                    SubmitToName = "Serge Lavoie",
+                    SubmitToTitle = "Coordinateur aux développements Web",
+                    SubmitToEmail = "serge.lavoie@email.com",
+                    LimitDate = new DateTime(2008, 12, 10),
                     Status = 0
-                    
-                    
                 };
 
                 return stage;
@@ -341,8 +382,8 @@ namespace Stagio.TestUtilities.Database
                 {
                     IdStage = 1,
                     IdStudent = 1,
-                    Cv = "jfdhvldshgsdljhk",
-                    Letter = "xljvbvdsve efhnboseif ierhgtbcwl gkf kg fdi"
+                    Cv = "Le cv de l'étudiant",
+                    Letter = "La lettre de présentation"
                 };
 
                 return apply;
@@ -350,8 +391,27 @@ namespace Stagio.TestUtilities.Database
         }
 
         #endregion
-    
-    
+        #region Apply 2
+
+        static public Apply apply2
+        {
+            get
+            {
+                var apply = new Apply()
+                {
+                    IdStage = 4,
+                    IdStudent = 1,
+                    Cv = "Le cv de l'étudiant",
+                    Letter = "La lettre de présentation."
+                };
+
+                return apply;
+            }
+        }
+
+        #endregion
+
+
     }
 
 

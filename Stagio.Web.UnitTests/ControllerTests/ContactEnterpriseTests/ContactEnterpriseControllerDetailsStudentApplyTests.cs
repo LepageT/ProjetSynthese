@@ -19,10 +19,12 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
         {
             var apply = _fixture.Create<Apply>();
             applyRepository.Add(apply);
+            var student = _fixture.Create<Student>();
+            studentRepository.GetById(apply.IdStudent).Returns(student);
             applyRepository.GetById(apply.Id).Returns(apply);
-            var result = enterpriseController.DetailsStudentApplyPost("Accepter", apply.Id) as RedirectToRouteResult;
-            var action = result.RouteValues["Action"];
-            action.ShouldBeEquivalentTo(MVC.ContactEnterprise.Views.ViewNames.AcceptApplyConfirmation);
+            var result = enterpriseController.DetailsStudentApplyPost("Accepter", apply.Id) as ViewResult;
+
+            result.ViewName.Should().Be(MVC.ContactEnterprise.Views.ViewNames.AcceptApplyConfirmation);
         }
         [TestMethod]
         public void contact_enterprise_DetailsStudentApply_post_should_return_confirmation_refuse_view_on_refuse()
@@ -39,8 +41,10 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
         {
             var apply = _fixture.Create<Apply>();
             applyRepository.Add(apply);
+            var student = _fixture.Create<Student>();
+            studentRepository.GetById(apply.IdStudent).Returns(student);
             applyRepository.GetById(apply.Id).Returns(apply);
-            var result = enterpriseController.DetailsStudentApplyPost("Accepter", apply.Id) as RedirectToRouteResult;
+            var result = enterpriseController.DetailsStudentApplyPost("Accepter", apply.Id) as ViewResult;
             applyRepository.Update(Arg.Is<Apply>(x => x.Status == 1));
         }
         [TestMethod]
@@ -49,8 +53,12 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
             var apply = _fixture.Create<Apply>();
             applyRepository.Add(apply);
             applyRepository.GetById(apply.Id).Returns(apply);
-            var result = enterpriseController.DetailsStudentApplyPost("Accepter", apply.Id) as RedirectToRouteResult;
+            var student = _fixture.Create<Student>();
+            studentRepository.GetById(apply.IdStudent).Returns(student);
+            var result = enterpriseController.DetailsStudentApplyPost("Accepter", apply.Id) as ViewResult;
             applyRepository.Update(Arg.Is<Apply>(x => x.Status == 2));
+
+            
         }
         [TestMethod]
         public void contact_enterprise_DetailsStudentApply_post_should_return_default_view_when_apply_is_invalid()

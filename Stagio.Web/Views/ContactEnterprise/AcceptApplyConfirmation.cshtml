@@ -1,10 +1,61 @@
-﻿
+﻿@model Stagio.Web.ViewModels.ContactEnterprise.AcceptApply
 @{
     ViewBag.Title = "AcceptApplyConfirmation";
 }
 
 <h2 id="confirmationAcceptApply-page">Confirmation</h2>
-<p>Vous avez accepter cette candidature.</p>
+<p>Vous avez accepté cette candidature. Il est de votre responsabilité de contacter l'étudiant pour convenir d'une date d'entrevue.</p>
+
+<div>
+    <h4 id="details-user-page">Profil</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telephone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telephone)
+        </dd>
+        @if (Model.Poste != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Poste)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Poste)
+            </dd>
+        }
+        @if (Model.Email != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+        }
+    </dl>
+</div>
 
 <div>
     @Html.ActionLink("Retour à l'accueil", MVC.Home.Index())

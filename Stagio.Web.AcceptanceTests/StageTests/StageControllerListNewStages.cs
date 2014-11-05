@@ -2,6 +2,8 @@
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using Stagio.Web.Automation.PageObjects;
+using Stagio.Web.Automation.PageObjects.Coordinator;
 
 namespace Stagio.Web.AcceptanceTests.StageTests
 {
@@ -12,44 +14,32 @@ namespace Stagio.Web.AcceptanceTests.StageTests
         [TestMethod]
         public void coordinator_can_see_listNewStages_page_if_logged_in()
         {
-            AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
-            _driver.FindElement(By.Id("index-coordonnateur")).Click();
-            _driver.FindElement(By.Id("list")).Click();
-            try
-            {
-                _driver.FindElement(By.Id("listNewStages-page"));
-            }
-            catch (NoSuchElementException)
-            {
-                Assert.Fail("Identifiant listNewStages-page non trouvé sur la page.");
-            }
+            LoginPage.GoTo();
+            LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
+            ListAllStagesCoordinatorPage.GoTo();
+
+            Assert.IsTrue(ListAllStagesCoordinatorPage.IsDisplayed);
+            
         }
 
         [TestMethod]
         public void coordinator_can_not_see_listNewStages_page_if_not_logged_in()
         {
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Stage/ListNewStages");
-            try
-            {
-                _driver.FindElement(By.Id("login-page"));
-            }
-            catch (NoSuchElementException)
-            {
-                Assert.Fail("Identifiant listNewStages-page non trouvé sur la page.");
-            }
+            ListAllStagesCoordinatorPage.GoToByUrl();
+
+            Assert.IsTrue(LoginPage.IsDisplayed);
+           
         }
 
         [TestMethod]
         public void coordinator_can_see_listNewStages_with_stages()
         {
-            AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
-            _driver.FindElement(By.Id("index-coordonnateur")).Click();
-            _driver.FindElement(By.Id("list")).Click();
-            var countText = _driver.FindElement(By.Id("stages-count")).Text;
-            var stagesCount = int.Parse(countText.Split(' ')[0]);
-            
+            LoginPage.GoTo();
+            LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
+            ListAllStagesCoordinatorPage.GoTo();
 
-            stagesCount.Should().NotBe(0);
+            Assert.AreNotEqual(0, ListAllStagesCoordinatorPage.CountNbStages());
+           
         }
     }
 }
