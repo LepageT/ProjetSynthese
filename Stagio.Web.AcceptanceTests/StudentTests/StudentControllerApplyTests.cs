@@ -24,6 +24,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             {
                 Assert.Fail("Identifiant apply-page non trouvé sur la page.");
             }*/
+            Assert.IsTrue(false);
         }
 
         [TestMethod]
@@ -42,6 +43,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             {
                 Assert.Fail("Identifiant confirmationApplyStudent-page non trouvé sur la page.");
             }*/
+            Assert.IsTrue(false);
         }
     }
 }

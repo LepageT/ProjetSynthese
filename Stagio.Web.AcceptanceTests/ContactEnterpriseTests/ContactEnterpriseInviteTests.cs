@@ -66,7 +66,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             {
                 Assert.Fail("Identifiant confirmationInvitationContact-page non trouvé sur la page.");
             }*/
-
+            Assert.IsTrue(false);
         }
 
         [TestMethod]
@@ -83,7 +83,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             {
                 Assert.Fail("Identifiant inviteContact-page non trouvé sur la page.");
             }*/
-
+            Assert.IsTrue(false);
         }
     }
 }

@@ -22,6 +22,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             {
                 Assert.Fail("Identifiant create-stage non trouvé sur la page.");
             }*/
+            Assert.IsTrue(false);
         }
         
         [TestMethod]
@@ -38,6 +39,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             {
                 Assert.Fail("Identifiant login-page non trouvé sur la page.");
             }*/
+            Assert.IsTrue(false);
         }
 
         [TestMethod]
@@ -98,6 +100,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             {
                 Assert.Fail("Identifiant create-succeed non trouvé sur la page.");
             }*/
+            Assert.IsTrue(false);
         }
 
     }

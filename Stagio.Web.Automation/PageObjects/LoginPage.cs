@@ -44,5 +44,33 @@ namespace Stagio.Web.Automation.PageObjects
             var loginButton = Driver.Instance.FindElement(By.Id("login-submit"));
             loginButton.Click();
         }
+
+        public static bool VerifyCoordinatorLogin()
+        {
+            var body = Driver.Instance.FindElement(By.ClassName("navbar"));
+
+            if (body.Text.Contains("Super admin coordonnateur Tux"))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static void Logout()
+        {
+            var logOut = Driver.Instance.FindElement(By.Id("logout-link"));
+            logOut.Click();
+        }
+
+        public static bool VerifyLogout()
+        {
+             var body = Driver.Instance.FindElement(By.ClassName("navbar"));
+
+            if (body.Text.Contains("Se connecter"))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

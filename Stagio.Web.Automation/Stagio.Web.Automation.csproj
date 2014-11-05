@@ -70,13 +70,20 @@
     <Compile Include="PageObjects\ContactEnterprise\InviteContactEnterprisePage.cs" />
     <Compile Include="PageObjects\ContactEnterprise\ListStageContactEnterprisePage.cs" />
     <Compile Include="PageObjects\Coordinator\AddStudentsCoordinatorPage.cs" />
+    <Compile Include="PageObjects\Coordinator\CreateCoordinatorPage.cs" />
     <Compile Include="PageObjects\Coordinator\CreateListStudentsCoordinatorPage.cs" />
+    <Compile Include="PageObjects\Coordinator\DetailsStageCoordinatorPage.cs" />
+    <Compile Include="PageObjects\Coordinator\InviteContactEnterpriseCoordinatorPage.cs" />
+    <Compile Include="PageObjects\Coordinator\InviteCoordinatorPage.cs" />
+    <Compile Include="PageObjects\Coordinator\ListAllStagesCoordinatorPage.cs" />
+    <Compile Include="PageObjects\Coordinator\ResultCreateListStudentsCoordinatorPage.cs" />
     <Compile Include="PageObjects\HomePage.cs" />
     <Compile Include="PageObjects\LoginPage.cs" />
     <Compile Include="PageObjects\Student\ResultatCreateListStudentPage.cs" />
     <Compile Include="PageObjects\Student\EditStudentPage.cs" />
     <Compile Include="PageObjects\Student\IndexStudentPage.cs" />
     <Compile Include="PageObjects\Student\StageListStudentPage.cs" />
+    <Compile Include="PageObjects\Student\ViewInfoStageStudentPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Selenium\Driver.cs" />
   </ItemGroup>

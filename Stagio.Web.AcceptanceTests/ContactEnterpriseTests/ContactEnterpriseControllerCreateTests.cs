@@ -25,6 +25,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             {
                 Assert.Fail("Identifiant create-page non trouvé sur la page.");
             }*/
+            Assert.IsTrue(false);
         }
 
         [TestMethod]
@@ -54,6 +55,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             {
                 Assert.Fail("Identifiant confirmationCreateContact-page non trouvé sur la page.");
             }*/
+            Assert.IsTrue(false);
             
            
         }
@@ -83,6 +85,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             {
                 Assert.Fail("Identifiant confirmationCreateContact-page non trouvé sur la page.");
             }*/
+            Assert.IsTrue(false);
            
         }
     }

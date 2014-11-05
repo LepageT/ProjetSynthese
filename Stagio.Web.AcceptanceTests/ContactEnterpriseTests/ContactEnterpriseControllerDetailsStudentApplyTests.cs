@@ -24,6 +24,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             {
                 Assert.Fail("Identifiant confirmationAcceptApply-page non trouv� sur la page.");
             }*/
+            Assert.IsTrue(false);
         }
 
         [TestMethod]
@@ -39,8 +40,10 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             {
                 Assert.Fail("Identifiant confirmationRefuseApply-page non trouv� sur la page.");
             }*/
+            Assert.IsTrue(false);
         }
- [TestMethod]
+
+        [TestMethod]
         public void contactEnterprise_can_see_a_page_of_detail_apply()
         {
             /*_driver.Navigate().GoToUrl("http://thomarelau.local/ContactEnterprise/ListStage");
@@ -54,7 +57,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             {
                 Assert.Fail("Identifiant details-apply-student non trouv� sur la page.");
             }*/
-        
+            Assert.IsTrue(false);
         }
 
     }

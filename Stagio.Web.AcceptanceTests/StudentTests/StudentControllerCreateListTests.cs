@@ -45,6 +45,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             CreateListStudentsCoordinatorPage.ClickToCreatelist();
 
             Assert.IsTrue(ResultatCreateListStudentPage.IsDisplayed);
+            
 
         }
     }

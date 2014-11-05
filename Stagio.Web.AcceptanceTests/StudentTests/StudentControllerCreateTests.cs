@@ -25,6 +25,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             {
                 Assert.Fail("Identifiant edit-page non trouvé sur la page.");
             }*/
+            Assert.IsTrue(false);
         }
 
         [TestMethod]
@@ -55,6 +56,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             {
                 Assert.Fail("Identifiant home-page non trouvé sur la page.");
             }*/
+            Assert.IsTrue(false);
         }
     }
 }

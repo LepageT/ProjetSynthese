@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using Stagio.Web.Automation.PageObjects.Student;
 
 namespace Stagio.Web.AcceptanceTests.StageTests
 {
@@ -10,17 +11,10 @@ namespace Stagio.Web.AcceptanceTests.StageTests
         [TestMethod]
         public void student_should_be_able_to_see_description_of_a_stage()
         {
+            ViewInfoStageStudentPage.GoToByUrl();
 
-            /*_driver.Navigate().GoToUrl("http://thomarelau.local/Stage/ViewStageInfo/1");
+            Assert.IsTrue(ViewInfoStageStudentPage.IsDisplayed);
 
-            try
-            {
-                _driver.FindElement(By.Id("view-stage-info"));
-            }
-            catch (NoSuchElementException)
-            {
-                Assert.Fail("Identifiant view-stage-info non trouvé sur la page.");
-            }*/
         }
     }
 }

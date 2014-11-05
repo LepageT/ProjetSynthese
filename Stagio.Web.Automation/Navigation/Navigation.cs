@@ -95,6 +95,34 @@ namespace Stagio.Web.Automation
                 {
                     MenuSelector.Select("index-coordonnateur", "list");
                 }
+
+            }
+
+            public class DetailsStage1
+            {
+                public static void Select()
+                {
+                    MenuSelector.Select("index-coordonnateur", "list");
+                    MenuSelector.SelectTopLevel("details-stages1");
+                }
+
+            }
+            public class DetailsStage3
+            {
+                public static void Select()
+                {
+                    MenuSelector.Select("index-coordonnateur", "list");
+                    MenuSelector.SelectTopLevel("details-stages3");
+                }
+
+            }
+
+            public class Index
+            {
+                public static void Select()
+                {
+                    MenuSelector.SelectTopLevel("index-Coordinator");
+                }
             }
         }
 

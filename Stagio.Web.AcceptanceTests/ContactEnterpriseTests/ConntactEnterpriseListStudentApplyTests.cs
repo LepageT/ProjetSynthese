@@ -20,6 +20,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             {
                 Assert.Fail("Identifiant list-student-stage non trouvé sur la page.");
             }*/
+            Assert.IsTrue(false);
         }
 
         [TestMethod]
@@ -35,6 +36,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             {
                 Assert.Fail("Identifiant list-stage non trouvé sur la page.");
             }*/
+            Assert.IsTrue(false);
         }
     }
 }

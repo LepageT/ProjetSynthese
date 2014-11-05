@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using Stagio.Web.Automation.PageObjects.Coordinator;
 
 namespace Stagio.Web.AcceptanceTests.CoordinatorTests
 {
@@ -10,44 +11,24 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
         [TestMethod]
         public void coordinator_should_be_able_to_create_an_account_with_valid_invitation()
         {
-            /*_driver.Navigate().GoToUrl("http://thomarelau.local/Coordinator/Create?token=123456");
+            CreateCoordinatorPage.GoToByUrl();
 
-            try
-            {
-                _driver.FindElement(By.Id("create-coordinator-page"));
-            }
-            catch (NoSuchElementException)
-            {
-                Assert.Fail("Identifiant create-coordinator-page non trouvé sur la page");
-            }*/
+            Assert.IsTrue(CreateCoordinatorPage.IsDisplayed);
+            
         }
 
         [TestMethod]
         public void coordinator_create_should_create_account_if_invitation_is_valid()
         {
-            /*const string FIRST_NAME = "Bobino";
+            CreateCoordinatorPage.GoToByUrl();
+            const string FIRST_NAME = "Bobino";
             const string LAST_NAME = "Tremblay";
             const string EMAIL = "testemail@admin.com";
             const string PASSWORD = "Bobino1234";
-            const string CONFIRMED_PASSWORD = "Bobino1234";
+            CreateCoordinatorPage.FillFieldsAndSend(FIRST_NAME, LAST_NAME, EMAIL, PASSWORD);
 
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Coordinator/Create?token=123456");
-            _driver.FindElement(By.Id("FirstName")).SendKeys(FIRST_NAME);
-            _driver.FindElement(By.Id("LastName")).SendKeys(LAST_NAME);
-            _driver.FindElement(By.Id("Email")).Clear();
-            _driver.FindElement(By.Id("Email")).SendKeys(EMAIL);
-            _driver.FindElement(By.Id("ConfirmEmail")).SendKeys(EMAIL);
-            _driver.FindElement(By.Id("Password")).SendKeys(PASSWORD);
-            _driver.FindElement(By.Id("ConfirmedPassword")).SendKeys(CONFIRMED_PASSWORD);
-            _driver.FindElement(By.Id("btn-create")).Click();
-            try
-            {
-                _driver.FindElement(By.Id("coordinator-home"));
-            }
-            catch (NoSuchElementException)
-            {
-                Assert.Fail("Identifiant coordinator-home non trouvé sur la page");
-            }*/
+            Assert.IsTrue(CreateCoordinatorPage.CoordinatorHomePageIsDisplayed);
+            
         }
 
        
