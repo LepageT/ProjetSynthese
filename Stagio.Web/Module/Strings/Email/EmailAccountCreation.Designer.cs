@@ -61,7 +61,7 @@ namespace Stagio.Web.Module.Strings.Email {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Pour vous connecter, copier-coller ce lien : jenkins.cegep-ste-foy.qc.ca/thomarelau/Account/Login .
+        ///   Recherche une chaîne localisée semblable à Pour vous connecter, &lt;a href =&quot; jenkins.cegep-ste-foy.qc.ca/thomarelau/Account/Login&quot;  &gt;jenkins.cegep-ste-foy.qc.ca/thomarelau/Account/Login&lt;/a&gt;.
         /// </summary>
         internal static string EmailLink {
             get {

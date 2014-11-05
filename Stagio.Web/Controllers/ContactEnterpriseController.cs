@@ -365,7 +365,12 @@ namespace Stagio.Web.Controllers
                                    contactEnterpriseToSendMessage.FirstName + "&LastName=" +
                                    contactEnterpriseToSendMessage.LastName + "&Telephone=" +
                                    contactEnterpriseToSendMessage.Telephone + "&Poste=" + contactEnterpriseToSendMessage.Poste +
-                                   ">Cliquer sur ce lien pour vous inscrire<a/>";
+                                   ">jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?Email=" +
+                                   contactEnterpriseToSendMessage.Email + "&EnterpriseName=" +
+                                   enterpriseName + "&FirstName=" +
+                                   contactEnterpriseToSendMessage.FirstName + "&LastName=" +
+                                   contactEnterpriseToSendMessage.LastName + "&Telephone=" +
+                                   contactEnterpriseToSendMessage.Telephone + "&Poste=" + contactEnterpriseToSendMessage.Poste + "<a/>";
             messageText += invitationUrl;
             return messageText;
         }

@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="EmailLink" xml:space="preserve">
-    <value>Pour vous connecter, copier-coller ce lien : jenkins.cegep-ste-foy.qc.ca/thomarelau/Account/Login </value>
+    <value>Pour vous connecter, &lt;a href =" jenkins.cegep-ste-foy.qc.ca/thomarelau/Account/Login"  &gt;jenkins.cegep-ste-foy.qc.ca/thomarelau/Account/Login&lt;/a&gt;</value>
   </data>
   <data name="Message" xml:space="preserve">
     <value>&lt;h3&gt;Stagio&lt;/h3&gt;&lt;p&gt; Bonjour, &lt;/p&gt;&lt;p&gt;Merci d'avoir créé un compte Stagio. Vous pouvez maintenant vous connecter.&lt;/p&gt;</value>
