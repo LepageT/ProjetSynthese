@@ -87,6 +87,7 @@
     <Compile Include="PageObjects\DetailsAccountPage.cs" />
     <Compile Include="PageObjects\HomePage.cs" />
     <Compile Include="PageObjects\LoginPage.cs" />
+    <Compile Include="PageObjects\Student\ApplyListStudentPage.cs" />
     <Compile Include="PageObjects\Student\ApplyStudentPage.cs" />
     <Compile Include="PageObjects\Student\CreateInterviewStudentPage.cs" />
     <Compile Include="PageObjects\Student\CreateStudentPage.cs" />

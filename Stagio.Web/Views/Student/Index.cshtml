@@ -6,11 +6,6 @@
 
 <h2 id="student-home-page">Index</h2>
 
-
-<div>
-    @Html.ActionLink("Modifier le profil 1", MVC.Student.Edit(Int32.Parse(@User.Identity.GetUserId())), new {id = "edit-student"})
-</div>
-
 <div>
     @Html.ActionLink("Voir les offres de stages", MVC.Student.StageList(), new { id = "stageList-student" })
 </div>
@@ -18,4 +13,9 @@
 <div>
     @Html.ActionLink("Inscrire une date d'entrevue", MVC.Interview.Create(), new { id = "add-entrevue" })
 </div>
-<div>@Html.ActionLink("Afficher les informations du profil", MVC.Account.Details(Int32.Parse(@User.Identity.GetUserId())))</div>
+<div>
+    @Html.ActionLink("Voir les stages avec postulation", MVC.Student.ApplyList())
+</div>
+<div>
+    @Html.ActionLink("Afficher les informations du profil", MVC.Account.Details(Int32.Parse(@User.Identity.GetUserId())), new { id = "details-user-page" })
+</div>
