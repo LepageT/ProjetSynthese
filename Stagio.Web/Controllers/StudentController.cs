@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -6,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using AutoMapper;
+using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using Stagio.DataLayer;
 using Stagio.Domain.Application;
@@ -21,7 +23,7 @@ namespace Stagio.Web.Controllers
     public partial class StudentController : Controller
     {
         private readonly IEntityRepository<Student> _studentRepository;
-        private readonly IEntityRepository<Stage> _stageRepository; 
+        private readonly IEntityRepository<Stage> _stageRepository;
         private readonly IHttpContextService _httpContextService;
         private readonly IEntityRepository<Stagio.Domain.Entities.Apply> _applyRepository;
         private readonly IMailler _mailler;
@@ -192,7 +194,7 @@ namespace Stagio.Web.Controllers
             {
                 return View(createStudentViewModel);
             }
-           
+
             student.Activated = true;
 
             Mapper.Map(createStudentViewModel, student);
@@ -203,8 +205,8 @@ namespace Stagio.Web.Controllers
 
             return RedirectToAction(MVC.Home.Index());
         }
-       
-        [Authorize(Roles = RoleName.Student)] 
+
+        [Authorize(Roles = RoleName.Student)]
         // GET: Student/Edit/5
         public virtual ActionResult Edit(int id)
         {
@@ -238,23 +240,26 @@ namespace Stagio.Web.Controllers
                 return HttpNotFound();
             }
 
-            if (editStudentViewModel.OldPassword != null)
+            if (!editStudentViewModel.OldPassword.IsNullOrWhiteSpace())
             {
-            if (!PasswordHash.ValidatePassword(editStudentViewModel.OldPassword, student.Password))
-            {
-                ModelState.AddModelError("OldPassword", "L'ancien mot de passe n'est pas valide.");
-            }
+                if (!PasswordHash.ValidatePassword(editStudentViewModel.OldPassword, student.Password))
+                {
+                    ModelState.AddModelError("OldPassword", "L'ancien mot de passe n'est pas valide.");
+                }
             }
 
             if (!ModelState.IsValid)
             {
                 return View(editStudentViewModel);
             }
-            if (editStudentViewModel.PasswordConfirmation != null)
+            if (!editStudentViewModel.PasswordConfirmation.IsNullOrWhiteSpace())
             {
                 editStudentViewModel.Password = PasswordHash.CreateHash(editStudentViewModel.PasswordConfirmation);
             }
-
+            if (editStudentViewModel.Password == null)
+            {
+                editStudentViewModel.Password = student.Password;
+            }
             Mapper.Map(editStudentViewModel, student);
 
             _studentRepository.Update(student);
@@ -268,11 +273,11 @@ namespace Stagio.Web.Controllers
             var stages = _stageRepository.GetAll().ToList();
             var stagesAccepted = stages.Where(x => x.Status == 1);
             var studentStageListViewModels = Mapper.Map<IEnumerable<ViewModels.Student.StageList>>(stagesAccepted);
-          
-            
-            
+
+
+
             return View(studentStageListViewModels);
-            
+
         }
 
 
@@ -291,7 +296,7 @@ namespace Stagio.Web.Controllers
                 return View(applyViewModel);
             }
             return HttpNotFound();
-            
+
         }
 
         [HttpPost]
@@ -322,5 +327,28 @@ namespace Stagio.Web.Controllers
         {
             return View();
         }
+        [Authorize(Roles = RoleName.Student)]
+        public virtual ActionResult ApplyList()
+        {
+            var appliedStages = _applyRepository.GetAll().ToList();
+            var studentSpecificApplies = appliedStages.Where(x => x.IdStudent == _httpContextService.GetUserId());
+            var stages = _stageRepository.GetAll().ToList();
+
+            var studentStageListViewModels = Mapper.Map<IEnumerable<ViewModels.Student.AppliedStages>>(studentSpecificApplies).ToList();
+            
+            foreach (var appliedStage in studentStageListViewModels)
+            {
+                foreach (var stage in stages)
+                {
+                    if (appliedStage.IdStage == stage.Id)
+                    {
+                        appliedStage.stageTitle = stage.StageTitle;
+                    }
+                }
+            }
+          
+            return View(studentStageListViewModels);
+        }
     }
 }
+

@@ -51,9 +51,10 @@ namespace Stagio.TestUtilities.Database
                     Telephone = "123-456-7890",
                     Matricule = 1234567,
                     Password = PasswordHash.CreateHash("qwerty12"),
-                    Active = true
+                    Active = true,
+                    Id = 1
                 };
-
+                
                 student.UserName = student.Matricule.ToString();
                 return student;
             }
