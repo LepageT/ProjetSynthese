@@ -1,5 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using Stagio.Web.Automation.PageObjects;
+using Stagio.Web.Automation.PageObjects.Coordinator;
 
 namespace Stagio.Web.AcceptanceTests.CoordinatorTests
 {
@@ -10,56 +12,35 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
         [TestMethod]
         public void coordinator_should_be_able_to_send_invitation_if_logged_in()
         {
-            AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Coordinator/Invite");
-           
-            try
-            {
-                _driver.FindElement(By.Id("coordinator-invite"));
-            }
-            catch (NoSuchElementException)
-            {
-                Assert.Fail("Identifiant coordinator-invite non trouvé sur la page.");
-            }
+            LoginPage.GoTo();
+            LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
+            InviteCoordinatorPage.GoTo();
+
+            Assert.IsTrue(InviteCoordinatorPage.IsDisplayed);
+
         }
 
         [TestMethod]
         public void coordinator_not_should_be_able_to_send_invitation_if_not_logged_in()
         {
-           
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Coordinator/Invite");
+            InviteCoordinatorPage.GoToByUrl();
 
-            try
-            {
-                _driver.FindElement(By.Id("login-page"));
-            }
-            catch (NoSuchElementException)
-            {
-                Assert.Fail("Identifiant coordinator-invite non trouvé sur la page.");
-            }
+            Assert.IsTrue(LoginPage.IsDisplayed);
+           
         }
 
         [TestMethod]
         public void coordinator_invite_should_create_an_invitation()
         {
-            const string EMAIL = "thomarelau@hotmail.com";
+            const string EMAIL = "testInvite@hotmail.com";
             const string TEXT = "Tremblay";
-            AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
+            LoginPage.GoTo();
+            LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
+            InviteCoordinatorPage.GoTo();
+            InviteCoordinatorPage.SendInvitation(EMAIL, TEXT);
 
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Coordinator/Invite");
-            _driver.FindElement(By.Id("Email")).Clear();
-            _driver.FindElement(By.Id("Email")).SendKeys(EMAIL);
-            _driver.FindElement(By.Id("Message")).Clear();
-            _driver.FindElement(By.Id("Message")).SendKeys(TEXT);
-            _driver.FindElement(By.Id("btn-invite")).Click();
-            try
-            {
-                _driver.FindElement(By.Id("invite-succeed"));
-            }
-            catch (NoSuchElementException)
-            {
-                Assert.Fail("Identifiant coordinator-home non trouvé sur la page");
-            }
+            Assert.IsTrue(InviteCoordinatorPage.ConfirmationInvitationIsDisplayed);
+            
         }
     }
 }

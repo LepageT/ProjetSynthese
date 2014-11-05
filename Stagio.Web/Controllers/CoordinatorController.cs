@@ -249,7 +249,7 @@ namespace Stagio.Web.Controllers
 
                     _mailler.SendEmail(createdCoordinator.Email, EmailAccountCreation.Subject, EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
 
-                    return RedirectToAction(Views.ViewNames.Index);
+                    return RedirectToAction(MVC.Home.Index());
                 }
             }
 

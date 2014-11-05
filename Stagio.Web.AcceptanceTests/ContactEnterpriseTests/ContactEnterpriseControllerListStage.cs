@@ -1,6 +1,9 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using Stagio.Web.Automation.PageObjects;
+using Stagio.Web.Automation.PageObjects.ContactEnterprise;
+using Stagio.Web.Automation.PageObjects.Student;
 
 namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
 {
@@ -10,31 +13,24 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
         [TestMethod]
         public void contactEnterprise_can_see_a_list_of_stage()
         {
-            _driver.Navigate().GoToUrl("http://thomarelau.local/ContactEnterprise/ListStage");
+            LoginPage.GoTo();
+            LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
 
-            try
-            {
-                _driver.FindElement(By.Id("list-stage"));
-            }
-            catch (NoSuchElementException)
-            {
-                Assert.Fail("Identifiant list-stage non trouvé sur la page.");
-            }
+            ListStageContactEnterprisePage.GoTo();
+
+            Assert.IsTrue(ListStageContactEnterprisePage.IsDisplayed);
+            
         }
 
         [TestMethod]
         public void contactEnterprise_can_click_on_a_stage()
-        {
-            _driver.Navigate().GoToUrl("http://thomarelau.local/ContactEnterprise/ListStage");
+        {   
+            LoginPage.GoTo();
+            LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
 
-            try
-            {
-                _driver.FindElement(By.Id("list-stages1"));
-            }
-            catch (NoSuchElementException)
-            {
-                Assert.Fail("Identifiant stage1 non trouvé sur la page.");
-            }
+            ListStageContactEnterprisePage.GoTo();
+            Assert.IsTrue(ListStageContactEnterprisePage.AccessStageDetail());
+            
         }
         
     }

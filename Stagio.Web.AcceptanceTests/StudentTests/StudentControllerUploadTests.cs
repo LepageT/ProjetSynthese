@@ -1,6 +1,9 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using Stagio.Web.Automation.PageObjects;
+using Stagio.Web.Automation.PageObjects.Coordinator;
+using Stagio.Web.Automation.PageObjects.Student;
 
 namespace Stagio.Web.AcceptanceTests.StudentTests
 {
@@ -10,105 +13,75 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         [TestMethod]
         public void coordinator_should_be_able_to_see_the_page_upload_student_if_logged_in()
         {
-            AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Upload");
+            LoginPage.GoTo();
+            LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
 
-            try
-            {
-                _driver.FindElement(By.Id("upload-page"));
-            }
-            catch (NoSuchElementException)
-            {
-                Assert.Fail("Identifiant upload-page non trouvé sur la page.");
-            }
+            AddStudentsCoordinatorPage.GoTo();
+
+            Assert.IsTrue(AddStudentsCoordinatorPage.IsDisplayed);
+            
         }
 
         [TestMethod]
         public void coordinator_not_should_be_able_to_see_the_page_upload_student_if_not_logged_in()
         {
-            
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Upload");
+            AddStudentsCoordinatorPage.GoToByUrl();
 
-            try
-            {
-                _driver.FindElement(By.Id("login-page"));
-            }
-            catch (NoSuchElementException)
-            {
-                Assert.Fail("Identifiant upload-page non trouvé sur la page.");
-            }
+            Assert.IsTrue(LoginPage.IsDisplayed);
+          
         }
 
         [TestMethod]
         public void coordinator_should_be_able_to_choose_a_file_csv()
         {
-            AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Upload");
-     
-            try
-            {
+            LoginPage.GoTo();
+            LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
 
-                _driver.FindElement(By.Id("file")).SendKeys("C:\\dev\\abc.csv");
+            AddStudentsCoordinatorPage.GoTo();
 
-            }
-            catch (Exception)
-            {
-
-                Assert.Fail("Le fichier n'a pas été choisi");
-            }
+            Assert.IsTrue(AddStudentsCoordinatorPage.SelectCsvFile("C:\\dev\\abc.csv"));
             
+
         }
 
         [TestMethod]
         public void coordinator_should_not_be_able_to_import_an_another_file_than_csv()
         {
-            AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Upload");
-            _driver.FindElement(By.Id("file")).SendKeys("C:\\dev\\abc.txt");
-            _driver.FindElement(By.Id("button-upload")).Click();
-            try
-            {
-                _driver.FindElement(By.Id("upload-page"));
-            }
-            catch (NoSuchElementException)
-            {
-                Assert.Fail("Identifiant upload-page non trouvé sur la page.");
-            }
+            LoginPage.GoTo();
+            LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
+
+            AddStudentsCoordinatorPage.GoTo();
+            AddStudentsCoordinatorPage.SelectCsvFile("C:\\dev\\abc.txt");
+            Assert.IsTrue(AddStudentsCoordinatorPage.IsDisplayed);
+            
         }
 
         [TestMethod]
         public void coordinator_upload_should_redirect_to_CreateList_is_valid()
         {
-            AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Upload");
-            _driver.FindElement(By.Id("file")).SendKeys("C:\\dev\\abc.csv");
-            _driver.FindElement(By.Id("button-upload")).Click();
-            try
-            {
-                _driver.FindElement(By.Id("createList-page"));
-            }
-            catch (NoSuchElementException)
-            {
-                Assert.Fail("Identifiant createList-page non trouvé sur la page.");
-            }
+            LoginPage.GoTo();
+            LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
+
+            AddStudentsCoordinatorPage.GoTo();
+
+            AddStudentsCoordinatorPage.SelectCsvFile("C:\\dev\\abc.csv");
+
+            Assert.IsTrue(CreateListStudentsCoordinatorPage.IsDisplayed);
+            
         }
 
         [TestMethod]
         public void coordinator_upload_should_rest_on_to_upload_is_not_valid()
         {
-            AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Upload");
-            _driver.FindElement(By.Id("button-upload")).Click();
+            LoginPage.GoTo();
+            LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
 
-            try
-            {
-                _driver.FindElement(By.Id("upload-page"));
+            AddStudentsCoordinatorPage.GoTo();
 
-            }
-            catch (NoSuchElementException)
-            {
-                Assert.Fail("Identifiant upload-page non trouvé sur la page.");
-            }
+            AddStudentsCoordinatorPage.SelectCsvFile("");
+
+            Assert.IsTrue(AddStudentsCoordinatorPage.IsDisplayed);
+           
         }
 
     }
