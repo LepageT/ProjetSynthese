@@ -213,13 +213,14 @@ namespace Stagio.Web.Controllers
                     messageInvitation = Request.Form["Message"];
                 }
 
-                string messageText = "";
+                string messageText = "<html>";
 
                 if (messageInvitation != null)
                 {
                     messageText += EmailEnterpriseResources.InviteCoworker;
                     messageText += "<br>" + messageInvitation + "<br>";
                     messageText += generateURLInvitationContactEnterprise(contactEnterpriseToSendMessage);
+                    messageText += "</html>";
                 }
 
                 if (!_mailler.SendEmail(contactEnterpriseToSendMessage.Email, EmailEnterpriseResources.InviteSubject,
@@ -357,14 +358,14 @@ namespace Stagio.Web.Controllers
             {
                 contactEnterpriseToSendMessage.Poste = contactEnterpriseToSendMessage.Poste.Replace(" ", "%20");
             }
-            string messageText = "<link href=";
+            string messageText = "<a href=";
             string invitationUrl = "jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?Email=" +
                                    contactEnterpriseToSendMessage.Email + "&EnterpriseName=" +
                                    enterpriseName + "&FirstName=" +
                                    contactEnterpriseToSendMessage.FirstName + "&LastName=" +
                                    contactEnterpriseToSendMessage.LastName + "&Telephone=" +
                                    contactEnterpriseToSendMessage.Telephone + "&Poste=" + contactEnterpriseToSendMessage.Poste +
-                                   ">Cliquer sur ce lien pour vous inscrire<link/>";
+                                   ">Cliquer sur ce lien pour vous inscrire<a/>";
             messageText += invitationUrl;
             return messageText;
         }
