@@ -102,6 +102,12 @@ namespace Stagio.Web.Controllers
 		{
 			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DetailsStudentApplyPost);
 		}
+		[NonAction]
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public virtual System.Web.Mvc.ActionResult AcceptApplyConfirmation()
+		{
+			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AcceptApplyConfirmation);
+		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public ContactEnterpriseController Actions { get { return MVC.ContactEnterprise; } }
@@ -244,6 +250,14 @@ namespace Stagio.Web.Controllers
 		{
 			public readonly string command = "command";
 			public readonly string id = "id";
+		}
+		static readonly ActionParamsClass_AcceptApplyConfirmation s_params_AcceptApplyConfirmation = new ActionParamsClass_AcceptApplyConfirmation();
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public ActionParamsClass_AcceptApplyConfirmation AcceptApplyConfirmationParams { get { return s_params_AcceptApplyConfirmation; } }
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public class ActionParamsClass_AcceptApplyConfirmation
+		{
+			public readonly string acceptApply = "acceptApply";
 		}
 		static readonly ViewsClass s_views = new ViewsClass();
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -506,13 +520,14 @@ namespace Stagio.Web.Controllers
 		}
 
 		[NonAction]
-		partial void AcceptApplyConfirmationOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+		partial void AcceptApplyConfirmationOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Stagio.Web.ViewModels.ContactEnterprise.AcceptApply acceptApply);
 
 		[NonAction]
-		public override System.Web.Mvc.ActionResult AcceptApplyConfirmation()
+		public override System.Web.Mvc.ActionResult AcceptApplyConfirmation(Stagio.Web.ViewModels.ContactEnterprise.AcceptApply acceptApply)
 		{
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AcceptApplyConfirmation);
-			AcceptApplyConfirmationOverride(callInfo);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "acceptApply", acceptApply);
+			AcceptApplyConfirmationOverride(callInfo, acceptApply);
 			return callInfo;
 		}
 

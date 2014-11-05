@@ -49,7 +49,7 @@ namespace Stagio.Web.Automation.PageObjects
         {
             var body = Driver.Instance.FindElement(By.ClassName("navbar"));
 
-            if (body.Text.Contains("Super admin coordonnateur Tux"))
+            if (body.Text.Contains("Jean-Dominic Rousseau"))
             {
                 return true;
             }

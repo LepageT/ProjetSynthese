@@ -17,17 +17,17 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
             InviteCoordinatorPage.GoTo();
 
             Assert.IsTrue(InviteCoordinatorPage.IsDisplayed);
-
-        }
+           
+            }
 
         [TestMethod]
         public void coordinator_not_should_be_able_to_send_invitation_if_not_logged_in()
         {
             InviteCoordinatorPage.GoToByUrl();
-
-            Assert.IsTrue(LoginPage.IsDisplayed);
            
-        }
+            Assert.IsTrue(LoginPage.IsDisplayed);
+
+            }
 
         [TestMethod]
         public void coordinator_invite_should_create_an_invitation()

@@ -68,6 +68,8 @@ namespace Stagio.Web.Mappers
 
             Mapper.CreateMap<Stage, ViewModels.Stage.ViewInfo>();
 
+            Mapper.CreateMap<Student, ViewModels.ContactEnterprise.AcceptApply>()
+                .IgnoreAllNonExisting();
 
         }
     }

@@ -8,26 +8,25 @@ namespace Stagio.TestUtilities.Database
         private EfEntityRepository<ApplicationUser> _userRepository;
         private EfEntityRepository<Student> _studentRepository;
         private EfEntityRepository<Coordinator> _coordonnatorRepository;
-        private EfEntityRepository<Invitation> _invitationRepository; 
-        private EfEntityRepository<ContactEnterprise> _contactEnterpriseRepository; 
-        private EfEntityRepository<Stage> _stageRepository; 
+        private EfEntityRepository<Invitation> _invitationRepository;
+        private EfEntityRepository<ContactEnterprise> _contactEnterpriseRepository;
+        private EfEntityRepository<Stage> _stageRepository;
         private EfEntityRepository<Apply> _applyRepository;
 
-         public DataBaseTestHelper()
+        public DataBaseTestHelper()
         {
-             _studentRepository = new EfEntityRepository<Student>();
+            _studentRepository = new EfEntityRepository<Student>();
             _userRepository = new EfEntityRepository<ApplicationUser>();
-             _coordonnatorRepository = new EfEntityRepository<Coordinator>();
-             _invitationRepository = new EfEntityRepository<Invitation>();
-             _contactEnterpriseRepository = new EfEntityRepository<ContactEnterprise>();
-             _stageRepository = new EfEntityRepository<Stage>();
-             _applyRepository = new EfEntityRepository<Apply>();
+            _coordonnatorRepository = new EfEntityRepository<Coordinator>();
+            _invitationRepository = new EfEntityRepository<Invitation>();
+            _contactEnterpriseRepository = new EfEntityRepository<ContactEnterprise>();
+            _stageRepository = new EfEntityRepository<Stage>();
+            _applyRepository = new EfEntityRepository<Apply>();
         }
 
         public void SeedTables()
         {
             addStudents();
-            addUser();
             addCoordonnator();
             addInvitation();
             addEnterprises();
@@ -35,7 +34,7 @@ namespace Stagio.TestUtilities.Database
             addApplies();
 
         }
-      
+
         private void addApplies()
         {
             var apply1 = TestData.apply1;
@@ -57,28 +56,24 @@ namespace Stagio.TestUtilities.Database
 
         }
 
-        private void addUser()
-        {
-            var user = TestData.applicationUser;
-            _userRepository.Add(user);
- 
-        }
 
         private void addStudents()
         {
             var student1 = TestData.student1;
-            _studentRepository.Add(student1);
-
             var student2 = TestData.student2;
-            _studentRepository.Add(student2);
-
             var student3 = TestData.student3;
+
+            _studentRepository.Add(student1);
+            _studentRepository.Add(student2);
             _studentRepository.Add(student3);
         }
 
         private void addCoordonnator()
         {
-            _coordonnatorRepository.Add(TestData.coordonnateur1);
+            var coordinator1 = TestData.coordinator1;
+            var coordinator2 = TestData.coordinator2;
+            _userRepository.Add(coordinator1);
+            _userRepository.Add(coordinator2);
         }
 
         private void addInvitation()

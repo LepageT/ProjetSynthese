@@ -15,15 +15,14 @@ namespace Stagio.Domain.Entities
        // [Required]
         public string UserName { get; set; }
 
-        public string Name { get; set; }
-
-
         public string LastName { get; set; }
 
         public string FirstName { get; set; }
         
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Entrez un numéro valide.")]
         public string Telephone { get; set; }
+
+        public string Poste { get; set; }
 
         public string Email { get; set; }
         /*Si nombre X maximum de connexions echoues, ajouter un fail counter + timestamp de quand le counter est rendu a 4

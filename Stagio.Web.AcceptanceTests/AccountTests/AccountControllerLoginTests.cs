@@ -18,7 +18,7 @@ namespace Stagio.Web.AcceptanceTests.AccountTests
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
 
             Assert.IsTrue(LoginPage.VerifyCoordinatorLogin());
-          
+           
         }
 
         [TestMethod]
@@ -38,7 +38,7 @@ namespace Stagio.Web.AcceptanceTests.AccountTests
             LoginPage.Logout();
             
             Assert.IsTrue(LoginPage.VerifyLogout());
-            
+
         }
     
     }
