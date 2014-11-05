@@ -14,7 +14,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         {
             LoginPage.GoTo();
             LoginPage.LoginAs(StudentUsername, StudentPassword);
-            ApplyListStudentPage.GoToByUrl();
+            ApplyListStudentPage.GoTo();
 
             Assert.IsTrue(ApplyListStudentPage.HasStage);
         }
@@ -33,8 +33,20 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             LoginPage.GoTo();
             LoginPage.LoginAs(StudentUsername, StudentPassword);
 
-            ApplyListStudentPage.GoToByUrl();
+            ApplyListStudentPage.GoTo();
             ApplyListStudentPage.AccessStageDescription();
+        }
+
+        [TestMethod]
+        public void student_should_see_RemoveApplyConfirmationPage_when_removing_an_apply()
+        {
+            LoginPage.GoTo();
+            LoginPage.LoginAs(StudentUsername, StudentPassword);
+
+            ApplyListStudentPage.GoTo();
+            ApplyListStudentPage.ClickToRemove();
+
+            Assert.IsTrue(ApplyListStudentPage.ConfirmationRemoveIsDisplayed);
         }
     }
 }
