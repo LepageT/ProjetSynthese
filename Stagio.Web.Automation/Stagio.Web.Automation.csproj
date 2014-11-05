@@ -60,6 +60,9 @@
     <Reference Include="WebDriver">
       <HintPath>..\packages\Selenium.WebDriver.2.43.1\lib\net40\WebDriver.dll</HintPath>
     </Reference>
+    <Reference Include="WebDriver.Support">
+      <HintPath>..\packages\Selenium.Support.2.43.1\lib\net40\WebDriver.Support.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config" />
@@ -81,9 +84,11 @@
     <Compile Include="PageObjects\Coordinator\InviteCoordinatorPage.cs" />
     <Compile Include="PageObjects\Coordinator\ListAllStagesCoordinatorPage.cs" />
     <Compile Include="PageObjects\Coordinator\ResultCreateListStudentsCoordinatorPage.cs" />
+    <Compile Include="PageObjects\DetailsAccountPage.cs" />
     <Compile Include="PageObjects\HomePage.cs" />
     <Compile Include="PageObjects\LoginPage.cs" />
     <Compile Include="PageObjects\Student\ApplyStudentPage.cs" />
+    <Compile Include="PageObjects\Student\CreateInterviewStudentPage.cs" />
     <Compile Include="PageObjects\Student\CreateStudentPage.cs" />
     <Compile Include="PageObjects\Student\ResultatCreateListStudentPage.cs" />
     <Compile Include="PageObjects\Student\EditStudentPage.cs" />

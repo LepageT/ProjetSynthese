@@ -23,17 +23,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             StudentApplyContactEnterprisePage.GoToByUrl();
 
             Assert.IsTrue(StudentApplyContactEnterprisePage.ButtonIsDisplayed());
-            /*_driver.Navigate().GoToUrl("http://thomarelau.local/ContactEnterprise/ListStage");
-            _driver.FindElement(By.Id("list-stages1")).Click();
-            try
-            {
-                _driver.FindElement(By.Id("list-student1"));
-            }
-            catch (NoSuchElementException)
-            {
-                Assert.Fail("Identifiant list-stage non trouvé sur la page.");
-            }*/
-            //Assert.IsTrue(false);
+            
         }
     }
 }

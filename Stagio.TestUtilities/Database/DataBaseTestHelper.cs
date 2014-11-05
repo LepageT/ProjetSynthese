@@ -39,7 +39,9 @@ namespace Stagio.TestUtilities.Database
         private void addApplies()
         {
             var apply1 = TestData.apply1;
+            var apply2 = TestData.apply2;
             _applyRepository.Add(apply1);
+            _applyRepository.Add(apply2);
         }
 
         private void addStages()
@@ -47,9 +49,12 @@ namespace Stagio.TestUtilities.Database
             var stage1 = TestData.stage1;
             var stage2 = TestData.stage2;
             var stage3 = TestData.stage3;
+            var stage4 = TestData.stage4;
             _stageRepository.Add(stage1);
-            _stageRepository.Add(stage3);
             _stageRepository.Add(stage2);
+            _stageRepository.Add(stage3);
+            _stageRepository.Add(stage4);
+
         }
 
         private void addUser()

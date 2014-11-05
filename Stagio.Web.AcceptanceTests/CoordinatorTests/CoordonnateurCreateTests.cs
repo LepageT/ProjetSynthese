@@ -14,8 +14,8 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
             CreateCoordinatorPage.GoToByUrl();
 
             Assert.IsTrue(CreateCoordinatorPage.IsDisplayed);
-            
-        }
+
+            }
 
         [TestMethod]
         public void coordinator_create_should_create_account_if_invitation_is_valid()
@@ -28,7 +28,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
             CreateCoordinatorPage.FillFieldsAndSend(FIRST_NAME, LAST_NAME, EMAIL, PASSWORD);
 
             Assert.IsTrue(CreateCoordinatorPage.CoordinatorHomePageIsDisplayed);
-            
+
         }
 
        

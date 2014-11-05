@@ -4,20 +4,16 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
 
 namespace Stagio.Domain.Entities
 {
-    public class Student : ApplicationUser
+    public class Interview : Entity
     {
-        [Required]
+        public DateTime Date { get; set; }
 
-        public int Matricule { get; set; }
+        public int StageId { get; set; }
 
-        public string Poste { get; set; }
-
-   
-
-
+        [DefaultValue(false)]
+        public bool Present { get; set; }
     }
 }

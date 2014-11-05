@@ -1,4 +1,5 @@
 ﻿@using System.Web.Mvc
+@using Microsoft.AspNet.Identity
 
 @{
     ViewBag.Title = "Coordinator";
@@ -21,3 +22,5 @@
 <div>
     @Html.ActionLink("Liste des stages pour un coordonnateur", MVC.Stage.ListNewStages(), new { id = "list" })
 </div>
+<div>@Html.ActionLink("Afficher les informations du profil", MVC.Account.Details(Int32.Parse(@User.Identity.GetUserId())), new { id = "details-coordo" })</div>
+

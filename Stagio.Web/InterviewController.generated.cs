@@ -23,10 +23,10 @@ using System.Web.Routing;
 using T4MVC;
 namespace Stagio.Web.Controllers
 {
-	public partial class AccountController
+	public partial class InterviewController
 	{
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-		protected AccountController(Dummy d) { }
+		protected InterviewController(Dummy d) { }
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -54,21 +54,15 @@ namespace Stagio.Web.Controllers
 			return RedirectToActionPermanent(taskResult.Result);
 		}
 
-		[NonAction]
-		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-		public virtual System.Web.Mvc.ActionResult Details()
-		{
-			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
-		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-		public AccountController Actions { get { return MVC.Account; } }
+		public InterviewController Actions { get { return MVC.Interview; } }
 		[GeneratedCode("T4MVC", "2.0")]
 		public readonly string Area = "";
 		[GeneratedCode("T4MVC", "2.0")]
-		public readonly string Name = "Account";
+		public readonly string Name = "Interview";
 		[GeneratedCode("T4MVC", "2.0")]
-		public const string NameConst = "Account";
+		public const string NameConst = "Interview";
 
 		static readonly ActionNamesClass s_actions = new ActionNamesClass();
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -77,36 +71,26 @@ namespace Stagio.Web.Controllers
 		public class ActionNamesClass
 		{
 			public readonly string Index = "Index";
-			public readonly string Login = "Login";
-			public readonly string Logout = "Logout";
-			public readonly string Details = "Details";
+			public readonly string Create = "Create";
+			public readonly string InterviewConfirmation = "InterviewConfirmation";
 		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public class ActionNameConstants
 		{
 			public const string Index = "Index";
-			public const string Login = "Login";
-			public const string Logout = "Logout";
-			public const string Details = "Details";
+			public const string Create = "Create";
+			public const string InterviewConfirmation = "InterviewConfirmation";
 		}
 
 
-		static readonly ActionParamsClass_Login s_params_Login = new ActionParamsClass_Login();
+		static readonly ActionParamsClass_Create s_params_Create = new ActionParamsClass_Create();
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-		public ActionParamsClass_Login LoginParams { get { return s_params_Login; } }
+		public ActionParamsClass_Create CreateParams { get { return s_params_Create; } }
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-		public class ActionParamsClass_Login
+		public class ActionParamsClass_Create
 		{
-			public readonly string accountLoginViewModel = "accountLoginViewModel";
-		}
-		static readonly ActionParamsClass_Details s_params_Details = new ActionParamsClass_Details();
-		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-		public ActionParamsClass_Details DetailsParams { get { return s_params_Details; } }
-		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-		public class ActionParamsClass_Details
-		{
-			public readonly string id = "id";
+			public readonly string createdInterview = "createdInterview";
 		}
 		static readonly ViewsClass s_views = new ViewsClass();
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -118,18 +102,18 @@ namespace Stagio.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string Details = "Details";
-                public readonly string Login = "Login";
+                public readonly string Create = "Create";
+                public readonly string InterviewConfirmation = "InterviewConfirmation";
             }
-            public readonly string Details = "~/Views/Account/Details.cshtml";
-            public readonly string Login = "~/Views/Account/Login.cshtml";
+            public readonly string Create = "~/Views/Interview/Create.cshtml";
+            public readonly string InterviewConfirmation = "~/Views/Interview/InterviewConfirmation.cshtml";
 		}
 	}
 
 	[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-	public partial class T4MVC_AccountController : Stagio.Web.Controllers.AccountController
+	public partial class T4MVC_InterviewController : Stagio.Web.Controllers.InterviewController
 	{
-		public T4MVC_AccountController() : base(Dummy.Instance) { }
+		public T4MVC_InterviewController() : base(Dummy.Instance) { }
 
 		[NonAction]
 		partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
@@ -143,48 +127,36 @@ namespace Stagio.Web.Controllers
 		}
 
 		[NonAction]
-		partial void LoginOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+		partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
 		[NonAction]
-		public override System.Web.Mvc.ActionResult Login()
+		public override System.Web.Mvc.ActionResult Create()
 		{
-			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Login);
-			LoginOverride(callInfo);
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
+			CreateOverride(callInfo);
 			return callInfo;
 		}
 
 		[NonAction]
-		partial void LoginOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Stagio.Web.ViewModels.Account.Login accountLoginViewModel);
+		partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Stagio.Web.ViewModels.Interviews.Create createdInterview);
 
 		[NonAction]
-		public override System.Web.Mvc.ActionResult Login(Stagio.Web.ViewModels.Account.Login accountLoginViewModel)
+		public override System.Web.Mvc.ActionResult Create(Stagio.Web.ViewModels.Interviews.Create createdInterview)
 		{
-			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Login);
-			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "accountLoginViewModel", accountLoginViewModel);
-			LoginOverride(callInfo, accountLoginViewModel);
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "createdInterview", createdInterview);
+			CreateOverride(callInfo, createdInterview);
 			return callInfo;
 		}
 
 		[NonAction]
-		partial void LogoutOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+		partial void InterviewConfirmationOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
 		[NonAction]
-		public override System.Web.Mvc.ActionResult Logout()
+		public override System.Web.Mvc.ActionResult InterviewConfirmation()
 		{
-			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Logout);
-			LogoutOverride(callInfo);
-			return callInfo;
-		}
-
-		[NonAction]
-		partial void DetailsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
-
-		[NonAction]
-		public override System.Web.Mvc.ActionResult Details(int id)
-		{
-			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
-			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-			DetailsOverride(callInfo, id);
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InterviewConfirmation);
+			InterviewConfirmationOverride(callInfo);
 			return callInfo;
 		}
 

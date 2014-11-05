@@ -23,16 +23,16 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             InviteContactEnterprisePage.GoTo();
 
             Assert.IsTrue(InviteContactEnterprisePage.IsDisplayed);
-        }
+            }
 
         [TestMethod]
         public void contact_enterprise_should_not_be_able_to_access_invite_another_contact_page_if_not_logged_in()
         {
             InviteContactEnterprisePage.GoToByUrl();
-
-            Assert.IsTrue(LoginPage.IsDisplayed);
             
-        }
+            Assert.IsTrue(LoginPage.IsDisplayed);
+
+            }
 
         [TestMethod]
         public void contact_enterprise_should_be_able_to_invite_another_contact_enterprise()
@@ -56,7 +56,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             InviteContactEnterprisePage.SendInvite();
 
             Assert.IsTrue(InviteContactEnterprisePage.IsDisplayed);
-            
+
         }
     }
 }

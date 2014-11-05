@@ -19,16 +19,16 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
 
             Assert.IsTrue(CreateStageContactEnterprisePage.IsDisplayed);
             
-        }
+            }
         
         [TestMethod]
         public void enterprise_should_not_be_able_to_see_the_page_to_create_stage_if_not_logged_in_and_redirected_to_login()
         {
             CreateStageContactEnterprisePage.GoToByUrl();
-
+          
             Assert.IsTrue(LoginPage.IsDisplayed);
-            
-        }
+
+            }
 
         [TestMethod]
         public void enterprise_should_be_able_to_create_a_stage()
@@ -39,7 +39,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             CreateStageContactEnterprisePage.CreateStage();
 
             Assert.IsTrue(CreateStageContactEnterprisePage.ConfirmationPageIsDisplayed);
-            
+
         }
 
     }

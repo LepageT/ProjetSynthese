@@ -25,14 +25,16 @@ namespace Stagio.Web.Controllers
         private readonly IHttpContextService _httpContextService;
         private readonly IEntityRepository<Stagio.Domain.Entities.Apply> _applyRepository;
         private readonly IMailler _mailler;
+        private readonly IAccountService _accountService;
 
-        public StudentController(IEntityRepository<Student> studentRepository, IEntityRepository<Stage> stageRepository, IEntityRepository<Stagio.Domain.Entities.Apply> applyRepository, IHttpContextService httpContextService, IMailler mailler)
+        public StudentController(IEntityRepository<Student> studentRepository, IEntityRepository<Stage> stageRepository, IEntityRepository<Stagio.Domain.Entities.Apply> applyRepository, IHttpContextService httpContextService, IMailler mailler, IAccountService accountService)
         {
             _studentRepository = studentRepository;
             _stageRepository = stageRepository;
             _httpContextService = httpContextService;
             _applyRepository = applyRepository;
             _mailler = mailler;
+            _accountService = accountService;
         }
 
         public virtual ActionResult Index()
@@ -182,7 +184,7 @@ namespace Stagio.Web.Controllers
             }
             else
             {
-                if (student.Activated)
+                if (student.Active)
                 {
                     ModelState.AddModelError("Matricule", "Votre matricule est déja utilisé.");
                 }
@@ -193,9 +195,14 @@ namespace Stagio.Web.Controllers
                 return View(createStudentViewModel);
             }
            
-            student.Activated = true;
+         
 
             Mapper.Map(createStudentViewModel, student);
+
+ 
+            student.Active = true;
+            student.Password = _accountService.HashPassword(createStudentViewModel.Password);
+
 
             _studentRepository.Update(student);
 
