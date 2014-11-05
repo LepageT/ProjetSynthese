@@ -145,6 +145,16 @@ namespace Stagio.Web.Automation
                     MenuSelector.SelectTopLevel("login-link");
                 }
             }
+
+            public class CreateStudent
+            {
+                public static void Select()
+                {
+                    MenuSelector.SelectTopLevel("create-student");
+                }
+            }
+
+            
         }
     }
 }

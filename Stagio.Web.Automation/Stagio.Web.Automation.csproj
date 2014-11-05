@@ -79,6 +79,8 @@
     <Compile Include="PageObjects\Coordinator\ResultCreateListStudentsCoordinatorPage.cs" />
     <Compile Include="PageObjects\HomePage.cs" />
     <Compile Include="PageObjects\LoginPage.cs" />
+    <Compile Include="PageObjects\Student\ApplyStudentPage.cs" />
+    <Compile Include="PageObjects\Student\CreateStudentPage.cs" />
     <Compile Include="PageObjects\Student\ResultatCreateListStudentPage.cs" />
     <Compile Include="PageObjects\Student\EditStudentPage.cs" />
     <Compile Include="PageObjects\Student\IndexStudentPage.cs" />
