@@ -326,7 +326,7 @@ namespace Stagio.Web.Controllers
             }
             else if (command.Equals("Refuser"))
             {
-                apply.Status = 2; //1 = Accepter;
+                apply.Status = 2; //2 = Refuser;
                 _applyRepository.Update(apply);
                 return RedirectToAction(MVC.ContactEnterprise.RefuseApplyConfirmation());
             }
