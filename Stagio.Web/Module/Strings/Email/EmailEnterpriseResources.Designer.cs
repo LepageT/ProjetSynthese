@@ -61,6 +61,15 @@ namespace Stagio.Web.Module.Strings.Email {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à &lt;h3&gt;Stagio&lt;/h3&gt;&lt;p&gt; Bonjour, &lt;/p&gt;&lt;br/&gt;Un collègue vous invite à vous inscrire au site Stagio:.
+        /// </summary>
+        internal static string InviteCoworker {
+            get {
+                return ResourceManager.GetString("InviteCoworker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Pour vous connecter, copier-coller ce lien: jenkins.cegep-ste-foy.qc.ca/thomarelau/Enterprise/Create?Email=.
         /// </summary>
         internal static string InviteLink {
