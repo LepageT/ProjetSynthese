@@ -19,7 +19,7 @@ namespace Stagio.Domain.Entities
 
         public int IdStage { get; set; }
 
-        public int Status { get; set; }
+        public int Status { get; set; }     //0 = En attente    1 = Acceptée    2 = Refusée     3 = Retirée
 
     }
 }

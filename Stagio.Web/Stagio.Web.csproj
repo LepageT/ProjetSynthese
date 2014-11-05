@@ -276,6 +276,7 @@
     <Compile Include="ViewModels\Stage\ListAllStages.cs" />
     <Compile Include="ViewModels\Stage\ListNewStages.cs" />
     <Compile Include="ViewModels\Stage\ViewInfo.cs" />
+    <Compile Include="ViewModels\Student\AppliedStages.cs" />
     <Compile Include="ViewModels\Student\Apply.cs" />
     <Compile Include="ViewModels\Student\Create.cs" />
     <Compile Include="ViewModels\Coordinator\Create.cs" />
@@ -355,6 +356,8 @@
     <Content Include="Views\Interview\Create.cshtml" />
     <Content Include="Views\Interview\InterviewConfirmation.cshtml" />
     <Content Include="Views\Account\Details.cshtml" />
+    <Content Include="Views\Student\ApplyRemoveConfirmation.cshtml" />
+    <Content Include="Views\Student\ApplyList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt.hooks.t4" />
