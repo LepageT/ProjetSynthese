@@ -21,7 +21,8 @@ namespace Stagio.Web.Automation
             {
                 public static void Select()
                 {
-                    MenuSelector.Select("index-Student", "edit-student");
+                    MenuSelector.Select("index-Student", "details-user-page");
+                    MenuSelector.SelectTopLevel("edit-Student");
                 }
             }
 
@@ -29,7 +30,7 @@ namespace Stagio.Web.Automation
             {
                 public static void Select()
                 {
-                    MenuSelector.SelectTopLevel("edit-student");
+                    MenuSelector.Select("details-user-page", "edit-Student") ;
                 }
             }
             public class SeeStages

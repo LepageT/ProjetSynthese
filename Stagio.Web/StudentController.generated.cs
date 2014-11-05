@@ -100,6 +100,7 @@ namespace Stagio.Web.Controllers
 			public readonly string StageList = "StageList";
 			public readonly string Apply = "Apply";
 			public readonly string ApplyConfirmation = "ApplyConfirmation";
+			public readonly string ApplyList = "ApplyList";
 		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -117,6 +118,7 @@ namespace Stagio.Web.Controllers
 			public const string StageList = "StageList";
 			public const string Apply = "Apply";
 			public const string ApplyConfirmation = "ApplyConfirmation";
+			public const string ApplyList = "ApplyList";
 		}
 
 
@@ -166,6 +168,7 @@ namespace Stagio.Web.Controllers
             {
                 public readonly string Apply = "Apply";
                 public readonly string ApplyConfirmation = "ApplyConfirmation";
+                public readonly string ApplyList = "ApplyList";
                 public readonly string Create = "Create";
                 public readonly string CreateList = "CreateList";
                 public readonly string Edit = "Edit";
@@ -176,6 +179,7 @@ namespace Stagio.Web.Controllers
             }
             public readonly string Apply = "~/Views/Student/Apply.cshtml";
             public readonly string ApplyConfirmation = "~/Views/Student/ApplyConfirmation.cshtml";
+            public readonly string ApplyList = "~/Views/Student/ApplyList.cshtml";
             public readonly string Create = "~/Views/Student/Create.cshtml";
             public readonly string CreateList = "~/Views/Student/CreateList.cshtml";
             public readonly string Edit = "~/Views/Student/Edit.cshtml";
@@ -359,6 +363,17 @@ namespace Stagio.Web.Controllers
 		{
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ApplyConfirmation);
 			ApplyConfirmationOverride(callInfo);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void ApplyListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult ApplyList()
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ApplyList);
+			ApplyListOverride(callInfo);
 			return callInfo;
 		}
 
