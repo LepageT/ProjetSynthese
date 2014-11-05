@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using AutoMapper;
 using Stagio.DataLayer;
 using Stagio.Domain.Application;
@@ -92,6 +93,7 @@ namespace Stagio.Web.Controllers
                 {
                     var newContactEnterprise = Mapper.Map<ContactEnterprise>(createViewModel);
                     newContactEnterprise.Active = true;
+                    newContactEnterprise.Password = _accountService.HashPassword(newContactEnterprise.Password);
                     newContactEnterprise.UserName = newContactEnterprise.Email;
                     newContactEnterprise.Roles = new List<UserRole>()
                     {
@@ -213,12 +215,14 @@ namespace Stagio.Web.Controllers
                     messageInvitation = Request.Form["Message"];
                 }
 
-                string messageText = generateURLInvitationContactEnterprise(contactEnterpriseToSendMessage);
+                string messageText = "<html>";
 
                 if (messageInvitation != null)
                 {
-                    messageText += EmailEnterpriseResources.MessageHeader;
-                    messageText += messageInvitation;
+                    messageText += EmailEnterpriseResources.InviteCoworker;
+                    messageText += "<br>" + messageInvitation + "<br>";
+                    messageText += generateURLInvitationContactEnterprise(contactEnterpriseToSendMessage);
+                    messageText += "</html>";
                 }
 
                 if (!_mailler.SendEmail(contactEnterpriseToSendMessage.Email, EmailEnterpriseResources.InviteSubject,
@@ -319,11 +323,13 @@ namespace Stagio.Web.Controllers
             {
                 apply.Status = 1; //1 = Accepter;
                 _applyRepository.Update(apply);
-                return RedirectToAction(MVC.ContactEnterprise.AcceptApplyConfirmation());
+                var acceptApply =
+                    Mapper.Map<ViewModels.ContactEnterprise.AcceptApply>(_studentRepository.GetById(apply.IdStudent));
+                return View(MVC.ContactEnterprise.Views.ViewNames.AcceptApplyConfirmation, acceptApply);
             }
             else if (command.Equals("Refuser"))
             {
-                apply.Status = 2; //1 = Accepter;
+                apply.Status = 2; //2 = Refuser;
                 _applyRepository.Update(apply);
                 return RedirectToAction(MVC.ContactEnterprise.RefuseApplyConfirmation());
             }
@@ -356,22 +362,27 @@ namespace Stagio.Web.Controllers
             {
                 contactEnterpriseToSendMessage.Poste = contactEnterpriseToSendMessage.Poste.Replace(" ", "%20");
             }
-            string messageText = "<a href=Un employé de votre entreprise vous invite à vous inscrire au site Stagio: ";
-            string invitationUrl = "http://thomarelau.local/ContactEnterprise/Reactivate?Email=" +
+            string messageText = "<a href=";
+            string invitationUrl = "jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?Email=" +
                                    contactEnterpriseToSendMessage.Email + "&EnterpriseName=" +
                                    enterpriseName + "&FirstName=" +
                                    contactEnterpriseToSendMessage.FirstName + "&LastName=" +
                                    contactEnterpriseToSendMessage.LastName + "&Telephone=" +
                                    contactEnterpriseToSendMessage.Telephone + "&Poste=" + contactEnterpriseToSendMessage.Poste +
-                                   "/>";
+                                   ">jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?Email=" +
+                                   contactEnterpriseToSendMessage.Email + "&EnterpriseName=" +
+                                   enterpriseName + "&FirstName=" +
+                                   contactEnterpriseToSendMessage.FirstName + "&LastName=" +
+                                   contactEnterpriseToSendMessage.LastName + "&Telephone=" +
+                                   contactEnterpriseToSendMessage.Telephone + "&Poste=" + contactEnterpriseToSendMessage.Poste + "<a/>";
             messageText += invitationUrl;
             return messageText;
         }
 
-        public virtual ActionResult AcceptApplyConfirmation()
+        public virtual ActionResult AcceptApplyConfirmation(ViewModels.ContactEnterprise.AcceptApply acceptApply)
         {
 
-            return View();
+            return View(acceptApply);
         }
 
         public virtual ActionResult RefuseApplyConfirmation()

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using Stagio.Web.Automation.PageObjects.Student;
 
 namespace Stagio.Web.AcceptanceTests.StudentTests
 {
@@ -14,34 +15,20 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         [TestMethod]
         public void student_should_be_able_to_see_the_page_to_apply_to_a_stage()
         {
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Apply/3");
+            ApplyStudentPage.GoToByUrl();
 
-            try
-            {
-                _driver.FindElement(By.Id("apply-page"));
-            }
-            catch (NoSuchElementException)
-            {
-                Assert.Fail("Identifiant apply-page non trouvé sur la page.");
-            }
+            Assert.IsTrue(ApplyStudentPage.IsDisplayed);
+            
         }
 
         [TestMethod]
         public void student_should_see_confirmation_page_after_apply()
         {
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Student/Apply/3");
-            _driver.FindElement(By.Id("Cv")).SendKeys("Test");
-            _driver.FindElement(By.Id("Letter")).SendKeys("Test");
-            _driver.FindElement(By.Id("apply-button")).Click();
+            ApplyStudentPage.GoToByUrl();
+            ApplyStudentPage.ApplyStudent("test", "test");
 
-            try
-            {
-                _driver.FindElement(By.Id("confirmationApplyStudent-page"));
-            }
-            catch (NoSuchElementException)
-            {
-                Assert.Fail("Identifiant confirmationApplyStudent-page non trouvé sur la page.");
-            }
+            Assert.IsTrue(ApplyStudentPage.ConfirmationPageIsDisplayed);
+
         }
     }
 }

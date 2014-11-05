@@ -14,10 +14,5 @@ namespace Stagio.Domain.Entities
 
         public int Matricule { get; set; }
 
-        public string Poste { get; set; }
-
-   
-
-
     }
 }
