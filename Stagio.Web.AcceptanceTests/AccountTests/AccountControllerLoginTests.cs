@@ -17,7 +17,7 @@ namespace Stagio.Web.AcceptanceTests.AccountTests
 
         }
 
-        [TestMethod]
+        [TestMethod] 
         public void application_user_can_log_in()
         {
            AuthentificateTestUser(CoordonatorUsername, CoordonatorPassword);
