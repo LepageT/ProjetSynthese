@@ -106,10 +106,7 @@ namespace Stagio.Web.Controllers
 			public readonly string StageList = "StageList";
 			public readonly string Apply = "Apply";
 			public readonly string ApplyConfirmation = "ApplyConfirmation";
-<<<<<<< HEAD
 			public readonly string ApplyRemoveConfirmation = "ApplyRemoveConfirmation";
-=======
->>>>>>> 2b29837f623b5727a2254730655231e0dfdeda11
 			public readonly string ApplyList = "ApplyList";
 		}
 
@@ -128,10 +125,7 @@ namespace Stagio.Web.Controllers
 			public const string StageList = "StageList";
 			public const string Apply = "Apply";
 			public const string ApplyConfirmation = "ApplyConfirmation";
-<<<<<<< HEAD
 			public const string ApplyRemoveConfirmation = "ApplyRemoveConfirmation";
-=======
->>>>>>> 2b29837f623b5727a2254730655231e0dfdeda11
 			public const string ApplyList = "ApplyList";
 		}
 
@@ -191,10 +185,7 @@ namespace Stagio.Web.Controllers
                 public readonly string Apply = "Apply";
                 public readonly string ApplyConfirmation = "ApplyConfirmation";
                 public readonly string ApplyList = "ApplyList";
-<<<<<<< HEAD
                 public readonly string ApplyRemoveConfirmation = "ApplyRemoveConfirmation";
-=======
->>>>>>> 2b29837f623b5727a2254730655231e0dfdeda11
                 public readonly string Create = "Create";
                 public readonly string CreateList = "CreateList";
                 public readonly string Edit = "Edit";
@@ -206,10 +197,7 @@ namespace Stagio.Web.Controllers
             public readonly string Apply = "~/Views/Student/Apply.cshtml";
             public readonly string ApplyConfirmation = "~/Views/Student/ApplyConfirmation.cshtml";
             public readonly string ApplyList = "~/Views/Student/ApplyList.cshtml";
-<<<<<<< HEAD
             public readonly string ApplyRemoveConfirmation = "~/Views/Student/ApplyRemoveConfirmation.cshtml";
-=======
->>>>>>> 2b29837f623b5727a2254730655231e0dfdeda11
             public readonly string Create = "~/Views/Student/Create.cshtml";
             public readonly string CreateList = "~/Views/Student/CreateList.cshtml";
             public readonly string Edit = "~/Views/Student/Edit.cshtml";
@@ -397,7 +385,6 @@ namespace Stagio.Web.Controllers
 		}
 
 		[NonAction]
-<<<<<<< HEAD
 		partial void ApplyRemoveConfirmationOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
 
 		[NonAction]
@@ -410,8 +397,6 @@ namespace Stagio.Web.Controllers
 		}
 
 		[NonAction]
-=======
->>>>>>> 2b29837f623b5727a2254730655231e0dfdeda11
 		partial void ApplyListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
 		[NonAction]

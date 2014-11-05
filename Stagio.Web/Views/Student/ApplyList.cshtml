@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-﻿@using System.Web.Mvc
-﻿
-@model IEnumerable<Stagio.Web.ViewModels.Student.AppliedStages>
-=======
 ﻿@model IEnumerable<Stagio.Web.ViewModels.Student.AppliedStages>
->>>>>>> 2b29837f623b5727a2254730655231e0dfdeda11
 
 @{
     ViewBag.Title = "ApplyList";
@@ -24,58 +18,48 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.ActionLink(item.stageTitle, MVC.Stage.ViewStageInfo().AddRouteValues(new { id = item.IdStage }), new { id = "details-stages" + item.IdStage })
-        </td>
-        @if (item.Status == 0)
-        {
+    @foreach (var item in Model)
+    {
+        <tr>
             <td>
-                En attente
+                @Html.ActionLink(item.stageTitle, MVC.Stage.ViewStageInfo().AddRouteValues(new { id = item.IdStage }), new { id = "details-stages" + item.IdStage })
             </td>
-        }
-        else if (item.Status == 1)
-        {
-            <td>
-                Acceptée
-            </td>
-        }
-        else if (item.Status == 2)
-        {
-            <td>
-                Refusée
-            </td>
-        }
-<<<<<<< HEAD
-        else if (item.Status == 3)
-        {
-            <td>
-                Retirée
-            </td>
-        }
-        
-        <td>
-            @if (item.Status != 3)
+            @if (item.Status == 0)
             {
-                using (Html.BeginForm("ApplyRemoveConfirmation", "Student", new {id = item.Id}, FormMethod.Get))
-                 {
-                     <input type="submit" value="Retirer" id="accept-stage" />
-                 }
+                <td>
+                    En attente
+                </td>
             }
-        </td>
-    </tr>
-    
-    
-        
-   
-}
+            else if (item.Status == 1)
+            {
+                <td>
+                    Acceptée
+                </td>
+            }
+            else if (item.Status == 2)
+            {
+                <td>
+                    Refusée
+                </td>
+            }
+            else if (item.Status == 3)
+            {
+                <td>
+                    Retirée
+                </td>
+            }
+            
+            <td>
+                @if (item.Status != 3)
+                {
+                    using (Html.BeginForm("ApplyRemoveConfirmation", "Student", new { id = item.Id }, FormMethod.Get))
+                    {
+                        <input type="submit" value="Retirer" id="remove-apply" />
+                    }
+                }
+            </td>
+        </tr>
+    }
 
 </table>
 
-=======
-    </tr>
-}
-
-</table>
->>>>>>> 2b29837f623b5727a2254730655231e0dfdeda11

@@ -353,7 +353,6 @@
     <Content Include="Views\Student\ApplyConfirmation.cshtml" />
     <Content Include="Views\ContactEnterprise\AcceptApplyConfirmation.cshtml" />
     <Content Include="Views\ContactEnterprise\RefuseApplyConfirmation.cshtml" />
-    <Content Include="Views\Student\ApplyList.cshtml" />
     <Content Include="Views\Interview\Create.cshtml" />
     <Content Include="Views\Interview\InterviewConfirmation.cshtml" />
     <Content Include="Views\Account\Details.cshtml" />

@@ -50,5 +50,28 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 
             model.Count.Should().Be(0);
         }
+
+        [TestMethod]
+        public void ApplyList_remove_apply_should_render_confirmation_view()
+        {
+            var applyStage = _fixture.Create<Apply>();
+            applyRepository.GetById(applyStage.Id).Returns(applyStage);
+
+            var result = studentController.ApplyRemoveConfirmation(applyStage.Id) as ViewResult;
+
+            Assert.AreEqual(result.ViewName, "");
+        }
+
+        [TestMethod]
+        public void ApplyList_remove_apply_should_update_DB()
+        {
+            var applyStage = _fixture.Create<Apply>();
+            applyRepository.GetById(applyStage.Id).Returns(applyStage);
+
+            studentController.ApplyRemoveConfirmation(applyStage.Id);
+
+            applyRepository.Received().Update(Arg.Is<Apply>(x => x.Id == applyStage.Id));
+
+        }
     }
 }
