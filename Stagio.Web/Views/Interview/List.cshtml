@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Stagio.Web.ViewModels.Interviews.List>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>List</title>
+</head>
+<body>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StageId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Present)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StageTitleAndCompagny)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Present)
+                </td>
+                <td>
+                    @Html.ActionLink("Modifier", MVC.Interview.Edit().AddRouteValues(new { id = item.Id }), new { id = "edit-interview" + item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>
