@@ -32,7 +32,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
         [TestMethod]
         public void coordinator_invite_should_create_an_invitation()
         {
-            const string EMAIL = "thomarelau@hotmail.com";
+            const string EMAIL = "testInvite@hotmail.com";
             const string TEXT = "Tremblay";
             LoginPage.GoTo();
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);

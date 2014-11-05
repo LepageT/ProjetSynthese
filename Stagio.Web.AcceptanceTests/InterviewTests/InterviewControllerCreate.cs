@@ -40,28 +40,6 @@ namespace Stagio.Web.AcceptanceTests.InterviewTests
 
             Assert.IsTrue(CreateInterviewStudentPage.ConfirmationIsDisplayed);
 
-            /*AuthentificateTestUser(StudentUsername, StudentPassword);
-
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Interview/Create");
-
-            const string DATE = "2014-12-21";
-
-            IWebElement oSelection = _driver.FindElement(By.Id("StageId"));
-            SelectElement dropdown = new SelectElement(oSelection);
-            dropdown.SelectByIndex(1);
-
-            _driver.FindElement(By.Id("Date")).Clear();
-            _driver.FindElement(By.Id("Date")).SendKeys(DATE);
-            _driver.FindElement(By.Id("create-interview")).Click();
-
-            try
-            {
-                _driver.FindElement(By.Id("interview-confirmation"));
-            }
-            catch (NoSuchElementException)
-            {
-                Assert.Fail("Identifiant interview-confirmation non trouvé sur la page.");
-            }*/
         }
     }
 }
