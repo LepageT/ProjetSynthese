@@ -28,12 +28,9 @@ namespace Stagio.Web.UnitTests.ControllerTests.InterviewTests
         [TestMethod]
         public void interview_list_should_render_view_with_interviews()
         {
-
             var student = _fixture.Create<Student>();
             var stages = _fixture.CreateMany<Stage>(3).ToList();
             httpContextService.GetUserId().Returns(student.Id);
-
-           
             var interviews = _fixture.CreateMany<Interview>(3).ToList();
             interviews[0].StudentId = student.Id;
             interviews[1].StudentId = student.Id;
@@ -41,12 +38,11 @@ namespace Stagio.Web.UnitTests.ControllerTests.InterviewTests
             interviews[0].StageId = stages[0].Id;
             interviews[1].StageId = stages[1].Id;
             interviews[2].StageId = stages[2].Id;
-
             stageRepository.GetAll().Returns(stages.AsQueryable());
             interviewRepository.GetAll().Returns(interviews.AsQueryable());
 
             var result = interviewController.List() as ViewResult;
-            var model = result.Model as List<ViewModels.Interviews.List>;
+            var model = result.Model as List<List>;
 
             model.Count.Should().NotBe(0);
         }
