@@ -7,7 +7,7 @@
     <title>List</title>
 </head>
 <body>
-
+    <div class="text-right" id="interview-count">@Model.Count() interview(s)</div>
     <table class="table">
         <tr>
             <th>
@@ -35,7 +35,7 @@
                     @Html.DisplayFor(modelItem => item.Present)
                 </td>
                 <td>
-                    @Html.ActionLink("Modifier", MVC.Interview.Edit().AddRouteValues(new { id = item.Id }), new { id = "edit-interview" + item.Id })
+                    @Html.ActionLink("Modifier", MVC.Interview.Edit(item.Id), new { id = "edit-interview" + item.Id })
                 </td>
             </tr>
         }
