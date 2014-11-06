@@ -91,13 +91,6 @@ namespace Stagio.Web.Controllers
 
         public virtual ActionResult Edit(int id)
         {
-            //var userID = _httpContextService.GetUserId();
-
-            //if (id != userID)
-           // {
-            //    id = userID;
-           // }
-
             var interview = _interviewRepository.GetById(id);
 
             if (interview != null)
@@ -109,5 +102,29 @@ namespace Stagio.Web.Controllers
             }
             return HttpNotFound();
         }
+
+        [HttpPost]
+        public virtual ActionResult Edit(ViewModels.Interviews.Edit editInterviewViewModel)
+        {
+            var interview = _interviewRepository.GetById(editInterviewViewModel.Id);
+            if (interview == null)
+            {
+                return HttpNotFound();
+            }
+
+
+            if (!ModelState.IsValid)
+            {
+                return View(editInterviewViewModel);
+            }
+
+
+            Mapper.Map(editInterviewViewModel, interview);
+
+            _interviewRepository.Update(interview);
+
+            return RedirectToAction(MVC.Student.Index());
+        }
+
     }
 }
