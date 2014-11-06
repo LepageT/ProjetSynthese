@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "ReplyStage";
+}
+
+<h2>Réponse à l'employeur</h2>
+<p>L'employeur désire vous engager pour un stage. Quelle est votre réponse?</p>
+@using (Html.BeginForm("ReplyStage", "Student"))
+{
+    <input type="submit" value="Accepter" name="command" id="accept-stage" />
+    <input type="submit" value="Refuser" name="command" id="refuse-stage" />
+}

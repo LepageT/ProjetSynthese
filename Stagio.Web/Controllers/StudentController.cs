@@ -366,6 +366,11 @@ namespace Stagio.Web.Controllers
 
             return View(studentStageListViewModels);
         }
+
+        public virtual ActionResult ReplyStage()
+        {
+            return View();
+        }
     }
 }
 
