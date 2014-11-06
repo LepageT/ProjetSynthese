@@ -38,6 +38,8 @@ namespace Stagio.Web.Controllers
         {
             var interview = new ViewModels.Interviews.Create();
             var userId = _httpContextService.GetUserId();
+
+            
             var applies = _applyRepository.GetAll().Where(x => x.IdStudent == userId).ToList();
 
             interview.Apply = from apply in applies
