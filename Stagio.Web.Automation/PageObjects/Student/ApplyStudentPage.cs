@@ -14,6 +14,11 @@ namespace Stagio.Web.Automation.PageObjects.Student
             get { return Driver.Instance.FindElement(By.Id("apply-page")) != null; }
         }
 
+        public static void GoTo()
+        {
+            Navigation.Student.ApplyStage3.Select();
+        }
+
         public static void GoToByUrl()
         {
             Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/Student/Apply/3");

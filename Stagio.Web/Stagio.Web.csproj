@@ -353,10 +353,12 @@
     <Content Include="Views\Student\ApplyConfirmation.cshtml" />
     <Content Include="Views\ContactEnterprise\AcceptApplyConfirmation.cshtml" />
     <Content Include="Views\ContactEnterprise\RefuseApplyConfirmation.cshtml" />
-    <Content Include="Views\Student\ApplyList.cshtml" />
     <Content Include="Views\Interview\Create.cshtml" />
     <Content Include="Views\Interview\InterviewConfirmation.cshtml" />
     <Content Include="Views\Account\Details.cshtml" />
+    <Content Include="Views\Shared\_MenuPartial.cshtml" />
+    <Content Include="Views\Student\ApplyRemoveConfirmation.cshtml" />
+    <Content Include="Views\Student\ApplyList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt.hooks.t4" />

@@ -72,6 +72,7 @@ namespace Stagio.Web.Controllers
                 new Claim(ClaimTypes.Name, applicationUser.FirstName + " " + applicationUser.LastName),
                 new Claim(ClaimTypes.NameIdentifier, applicationUser.Id.ToString()),
 
+
             },
                 DefaultAuthenticationTypes.ApplicationCookie);
 

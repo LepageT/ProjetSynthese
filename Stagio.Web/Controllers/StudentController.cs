@@ -296,10 +296,11 @@ namespace Stagio.Web.Controllers
             {
                 var applyViewModel = new ViewModels.Student.Apply();
                 applyViewModel.IdStage = id;
-                //Get ID Student with login when login implemented. For now, temp value idStudent = 1
-                /*var identity = (ClaimsIdentity)User.Identity; 
-                var idStudent = identity; //.FindFirst(ClaimTypes.Email).Value;*/
-                applyViewModel.IdStudent = 1;
+
+                var identity = (ClaimsIdentity)User.Identity; 
+                var nameIdentifier = identity.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+                applyViewModel.IdStudent = Int32.Parse(nameIdentifier);
                 return View(applyViewModel);
             }
             return HttpNotFound();
@@ -334,6 +335,15 @@ namespace Stagio.Web.Controllers
         {
             return View();
         }
+
+        public virtual ActionResult ApplyRemoveConfirmation(int id)
+        {
+            var stageApply = _applyRepository.GetById(id);
+            stageApply.Status = 3;
+            _applyRepository.Update(stageApply);
+            return View();
+        }
+
         [Authorize(Roles = RoleName.Student)]
         public virtual ActionResult ApplyList()
         {
@@ -342,7 +352,7 @@ namespace Stagio.Web.Controllers
             var stages = _stageRepository.GetAll().ToList();
 
             var studentStageListViewModels = Mapper.Map<IEnumerable<ViewModels.Student.AppliedStages>>(studentSpecificApplies).ToList();
-            
+
             foreach (var appliedStage in studentStageListViewModels)
             {
                 foreach (var stage in stages)
@@ -353,7 +363,7 @@ namespace Stagio.Web.Controllers
                     }
                 }
             }
-          
+
             return View(studentStageListViewModels);
         }
     }
