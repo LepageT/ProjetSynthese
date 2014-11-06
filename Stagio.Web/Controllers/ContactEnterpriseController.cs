@@ -281,7 +281,7 @@ namespace Stagio.Web.Controllers
             return View(listStudentsApply);
         }
 
-        [Authorize(Roles = RoleName.ContactEnterprise)]
+    
         public virtual ActionResult ListStage()
         {
 
@@ -290,7 +290,7 @@ namespace Stagio.Web.Controllers
             return View(listStages);
         }
 
-       [Authorize(Roles = RoleName.ContactEnterprise)]
+
         public virtual ActionResult DetailsStudentApply(int id)
         {
             var apply = new Apply();
