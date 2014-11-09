@@ -119,6 +119,7 @@
     <Compile Include="ControllerTests\StageTests\StageControllerStageDescriptionTests.cs" />
     <Compile Include="ControllerTests\StageTests\StageControllerDetails.cs" />
     <Compile Include="ControllerTests\StudentTests\StudentControllerEditTests.cs" />
+    <Compile Include="ControllerTests\StudentTests\StudentControllerReplyStageTests.cs" />
     <Compile Include="ControllerTests\StudentTests\StudentControllerStageListTests.cs" />
     <Compile Include="ControllerTests\StudentTests\StudentControllerApplyListTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

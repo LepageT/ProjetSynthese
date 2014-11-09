@@ -33,7 +33,20 @@
             else if (item.Status == 1)
             {
                 <td>
-                    Acceptée
+                    @if (item.StudentReply == 0)
+                    {
+                        <p>Acceptée</p>
+                        @Html.ActionLink("Cliquer ici pour répondre", MVC.Student.ReplyStage().AddRouteValues(new {idApply = item.Id}), new {id = "reply-stage" + item.Id})
+                    }
+                    else if (item.StudentReply == 1)
+                    {
+                        <p>Vous avez accepté ce stage</p>
+                    }
+                    else
+                    {
+                        <p>Vous avez refusé ce stage</p>
+                    }
+
                 </td>
             }
             else if (item.Status == 2)
@@ -52,6 +65,7 @@
             <td>
                 @if (item.Status != 3)
                 {
+                    
                     using (Html.BeginForm("ApplyRemoveConfirmation", "Student", new { id = item.Id }, FormMethod.Get))
                     {
                         <input type="submit" value="Retirer" id="remove-apply" />

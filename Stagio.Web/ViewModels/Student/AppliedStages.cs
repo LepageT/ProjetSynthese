@@ -13,6 +13,14 @@ namespace Stagio.Web.ViewModels.Student
         [Required(ErrorMessage = "Requis")]
         public String stageTitle { get; set; }
 
+        [DisplayName("Nom de l'entreprise")]
+        [Required(ErrorMessage = "Requis")]
+        public String CompanyName { get; set; }
+
+        [DisplayName("Descritpion du stage")]
+        [Required(ErrorMessage = "Requis")]
+        public String StageDescription { get; set; }
+
         [DisplayName("Status du stage")]
         [Required(ErrorMessage = "Requis")]
         //Maybe an enterprise entity must be created.
@@ -21,6 +29,9 @@ namespace Stagio.Web.ViewModels.Student
         public int IdStage { get; set; }
 
         public int Id { get; set; }
+
+        [DefaultValue(0)]
+        public int StudentReply { get; set; }
 
     }
 }

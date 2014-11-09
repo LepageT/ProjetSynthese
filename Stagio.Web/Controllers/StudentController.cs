@@ -367,9 +367,41 @@ namespace Stagio.Web.Controllers
             return View(studentStageListViewModels);
         }
 
-        public virtual ActionResult ReplyStage()
+        [Authorize(Roles = RoleName.Student)]
+        public virtual ActionResult ReplyStage(int idApply)
         {
-            return View();
+            var apply = _applyRepository.GetById(idApply);
+            if (apply != null)
+            {
+                var stage = _stageRepository.GetById(apply.IdStage);
+                var stageViewModel = Mapper.Map<ViewModels.Student.AppliedStages>(stage);
+                return View(stageViewModel);
+            }
+            return HttpNotFound();
+        }
+
+        [Authorize(Roles = RoleName.Student)]
+        [HttpPost]
+        public virtual ActionResult ReplyStage(int idApply, string command)
+        {
+            var apply = _applyRepository.GetById(idApply);
+
+            if (apply != null)
+            {
+                if (command.Equals("Accepter"))
+                {
+                    apply.StudentReply = 1;
+                }
+                else
+                {
+                    apply.StudentReply = 2;
+                }
+                _applyRepository.Update(apply);
+
+                return RedirectToAction(MVC.Student.ApplyList());
+            }
+
+            return HttpNotFound();
         }
     }
 }

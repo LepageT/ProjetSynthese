@@ -1,11 +1,42 @@
-﻿
-@{
-    ViewBag.Title = "ReplyStage";
-}
+﻿@using System.Web.Mvc.Html
+@model Stagio.Web.ViewModels.Student.AppliedStages
+
 
 <h2>Réponse à l'employeur</h2>
-<p>L'employeur désire vous engager pour un stage. Quelle est votre réponse?</p>
-@using (Html.BeginForm("ReplyStage", "Student"))
+<p>L'employeur désire vous engager pour ce stage:</p>
+<div class="row">
+    <div class="form-group">
+        @Html.LabelFor(model => model.CompanyName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.HiddenFor(model => model.CompanyName)
+            @Html.DisplayFor(model => model.CompanyName)
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="form-group">
+        @Html.LabelFor(model => model.stageTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.HiddenFor(model => model.stageTitle)
+            @Html.DisplayFor(model => model.stageTitle)
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="form-group">
+        @Html.LabelFor(model => model.StageDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.HiddenFor(model => model.StageDescription)
+            @Html.DisplayFor(model => model.StageDescription)
+        </div>
+    </div>
+</div>
+
+
+<p> Quelle est votre réponse?</p>
+@using (Html.BeginForm("ReplyStage", "Student", new { idApply = Model.Id }, FormMethod.Post))
 {
     <input type="submit" value="Accepter" name="command" id="accept-stage" />
     <input type="submit" value="Refuser" name="command" id="refuse-stage" />
