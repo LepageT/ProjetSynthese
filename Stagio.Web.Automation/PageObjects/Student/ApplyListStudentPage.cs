@@ -9,6 +9,11 @@ namespace Stagio.Web.Automation.PageObjects.Student
 {
     public class ApplyListStudentPage
     {
+        public static bool IsDisplayed
+        {
+            get { return Driver.Instance.FindElement(By.Id("student-ApplyList")) != null; }
+        }
+
         public static void GoTo()
         {
             Navigation.Student.ListApply.Select();

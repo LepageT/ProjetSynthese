@@ -91,6 +91,7 @@
     <Compile Include="PageObjects\Student\ApplyStudentPage.cs" />
     <Compile Include="PageObjects\Student\CreateInterviewStudentPage.cs" />
     <Compile Include="PageObjects\Student\CreateStudentPage.cs" />
+    <Compile Include="PageObjects\Student\ReplyStageStudentPage.cs" />
     <Compile Include="PageObjects\Student\ResultatCreateListStudentPage.cs" />
     <Compile Include="PageObjects\Student\EditStudentPage.cs" />
     <Compile Include="PageObjects\Student\IndexStudentPage.cs" />
