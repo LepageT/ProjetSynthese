@@ -21,7 +21,7 @@ namespace Stagio.Web.Automation.PageObjects.ContactEnterprise
 
         public static void GoToByUrl()
         {
-            Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/ContactEnterprise/DetailsStudentApply/1");
+            Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/ContactEnterprise/DetailsStudentApply/2");
         }
 
         public static void AcceptApply()

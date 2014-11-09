@@ -68,7 +68,7 @@ namespace Stagio.Web.Automation
             {
                 public static void Select()
                 {
-                    MenuSelector.Select("index-Student", "list-applies");
+                    MenuSelector.Select("student-menu", "apply-list-menu-item");
                     MenuSelector.SelectTopLevel("reply-stage1");
                 }
             }
