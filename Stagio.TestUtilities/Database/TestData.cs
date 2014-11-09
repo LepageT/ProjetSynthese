@@ -382,6 +382,7 @@ namespace Stagio.TestUtilities.Database
                 {
                     IdStage = 1,
                     IdStudent = 1,
+                    Status = 1,
                     Cv = "Le cv de l'étudiant",
                     Letter = "La lettre de présentation"
                 };

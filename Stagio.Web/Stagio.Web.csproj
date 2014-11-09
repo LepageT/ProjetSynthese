@@ -359,6 +359,7 @@
     <Content Include="Views\Shared\_MenuPartial.cshtml" />
     <Content Include="Views\Student\ApplyRemoveConfirmation.cshtml" />
     <Content Include="Views\Student\ApplyList.cshtml" />
+    <Content Include="Views\Student\ReplyStage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt.hooks.t4" />
