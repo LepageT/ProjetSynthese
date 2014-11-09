@@ -356,6 +356,7 @@
     <Content Include="Views\Interview\Create.cshtml" />
     <Content Include="Views\Interview\InterviewConfirmation.cshtml" />
     <Content Include="Views\Account\Details.cshtml" />
+    <Content Include="Views\Shared\_MenuPartial.cshtml" />
     <Content Include="Views\Student\ApplyRemoveConfirmation.cshtml" />
     <Content Include="Views\Student\ApplyList.cshtml" />
     <Content Include="Views\Student\ReplyStage.cshtml" />

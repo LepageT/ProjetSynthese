@@ -11,6 +11,7 @@
     @RenderSection("SectionCss", required: false)
 
 
+
 </head>
 <body>
    
@@ -26,6 +27,8 @@
                 <div>@Html.ActionLink("Home", MVC.Home.Index(), new { @class = "navbar-brand", id = "home-link" })</div>
             </div>
             <div class="navbar-collapse collapse">
+                @Html.Partial("_MenuPartial")
+
                 @Html.Partial("_LoginPartial")
             </div>
             <!--/.nav-collapse -->
@@ -33,12 +36,15 @@
     </div>
 
 
-    <div class="container body-content">
-        @RenderBody()
-    
-         <hr />
-       
-         <footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @RenderBody()
+            </div>
+        </div>
+        <hr />
+
+        <footer>
             <p>Stagio</p>
         </footer>
     </div>

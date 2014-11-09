@@ -281,6 +281,7 @@ namespace Stagio.Web.Controllers
             return View(listStudentsApply);
         }
 
+    
         public virtual ActionResult ListStage()
         {
 
@@ -288,6 +289,7 @@ namespace Stagio.Web.Controllers
             var listStages = Mapper.Map<IEnumerable<ViewModels.ContactEnterprise.ListStage>>(stages).ToList();
             return View(listStages);
         }
+
 
         public virtual ActionResult DetailsStudentApply(int id)
         {
