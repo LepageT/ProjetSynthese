@@ -73,6 +73,7 @@ namespace Stagio.Web.Controllers
             return View();
         }
 
+        [Authorize(Roles = RoleName.Student)]
         public virtual ActionResult List()
         {
             var userId = _httpContextService.GetUserId();
@@ -82,12 +83,23 @@ namespace Stagio.Web.Controllers
 
             foreach (var interview in interviewsList)
             {
-                interview.StageTitleAndCompagny = _stageRepository.GetById(interview.StageId).StageTitle.ToString() + " - " +
-                                             _stageRepository.GetById(interview.StageId).CompanyName.ToString();
+                var stages = _stageRepository.GetAll();
+                foreach (var stage in stages)
+                {
+                    if (stage.Id == interview.StageId)
+                    {
+                        interview.StageTitleAndCompagny = stage.StageTitle.ToString() + " - " +
+                                             stage.CompanyName.ToString();
+                    }
+                }
+                
             }
 
             return View(interviewsList);
         }
+
+
+        [Authorize(Roles = RoleName.Student)]
 
         public virtual ActionResult Edit(int id)
         {
@@ -96,8 +108,15 @@ namespace Stagio.Web.Controllers
             if (interview != null)
             {
                 var interviewEditPageViewModel = Mapper.Map<ViewModels.Interviews.Edit>(interview);
-                interviewEditPageViewModel.StageTitleAndCompagny = _stageRepository.GetById(interview.StageId).StageTitle.ToString() + " - " +
-                                             _stageRepository.GetById(interview.StageId).CompanyName.ToString();
+                var stages = _stageRepository.GetAll();
+                foreach (var stage in stages)
+                {
+                    if (stage.Id == interview.StageId)
+                    {
+                        interviewEditPageViewModel.StageTitleAndCompagny = stage.StageTitle.ToString() + " - " +
+                                             stage.CompanyName.ToString();
+                    }
+                }
                 return View(interviewEditPageViewModel);
             }
             return HttpNotFound();
@@ -112,18 +131,11 @@ namespace Stagio.Web.Controllers
                 return HttpNotFound();
             }
 
-
-            if (!ModelState.IsValid)
-            {
-                return View(editInterviewViewModel);
-            }
-
-
             Mapper.Map(editInterviewViewModel, interview);
 
             _interviewRepository.Update(interview);
 
-            return RedirectToAction(MVC.Student.Index());
+            return RedirectToAction(MVC.Interview.List());
         }
 
     }
