@@ -133,7 +133,7 @@ namespace Stagio.Web.Controllers
                         !_mailler.SendEmail(contactEnterpriseToSendMessage.Email, EmailEnterpriseResources.InviteSubject,
                             messageText))
                     {
-                        ModelState.AddModelError("Email", CoordinatorResources.CantSendEmail);
+                        ModelState.AddModelError("Email", EmailResources.CantSendEmail);
                         return View(InviteContactEnterprise());
                     }
 
@@ -291,7 +291,7 @@ namespace Stagio.Web.Controllers
 
             if (!_mailler.SendEmail(createdInvite.Email, EmailCoordinatorResources.CoordinatorInviteSubject, messageText))
             {
-                ModelState.AddModelError("Email", CoordinatorResources.CantSendEmail);
+                ModelState.AddModelError("Email", EmailResources.CantSendEmail);
                 return View(createdInvite);
             }
 

@@ -223,6 +223,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AccountResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Module\Strings\Controller\ContactEnterpriseResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContactEnterpriseResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Module\Strings\Controller\CoordinatorResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -242,6 +247,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EmailAccountCreation.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Strings\Email\EmailResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmailResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Module\TokenGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -470,6 +480,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AccountResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Module\Strings\Controller\ContactEnterpriseResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ContactEnterpriseResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Module\Strings\Controller\CoordinatorResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>CoordinatorResources.Designer.cs</LastGenOutput>
@@ -485,6 +499,10 @@
     <EmbeddedResource Include="Module\Strings\Email\EmailAccountCreation.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>EmailAccountCreation.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Module\Strings\Email\EmailResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>EmailResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
