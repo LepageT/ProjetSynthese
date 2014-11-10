@@ -62,24 +62,10 @@ namespace Stagio.Web.UnitTests.ControllerTests.InterviewTests
             interviewRepository.GetById(interview.Id).Returns(interview);
             var interviewEditPageViewModel = Mapper.Map<ViewModels.Interviews.Edit>(interview);
 
-
             var routeResult = interviewController.Edit(interviewEditPageViewModel) as RedirectToRouteResult;
             var routeAction = routeResult.RouteValues["Action"];
 
             routeAction.Should().Be("List");
-        }
-
-
-        [TestMethod]
-        public void edit_post_should_return_http_not_found_when_studentID_is_not_valid()
-        {
-            var interview = _fixture.Create<ViewModels.Interviews.Edit>();
-            httpContextService.GetUserId().Returns(interview.Id);
-            interviewRepository.GetById(Arg.Any<int>()).Returns(a => null);
-
-            var result = interviewController.Edit(interview);
-
-            result.Should().BeOfType<HttpNotFoundResult>();
         }
 
     }

@@ -17,6 +17,7 @@ namespace Stagio.Web.ViewModels.Interviews
         [Required(ErrorMessage = "Veuillez sélectionner le stage auquel vous avez une entrevue.")]
         public int StageId { get; set; }
 
+        [DisplayName("Stage")]
         public string StageTitleAndCompagny { get; set; }
 
         [DisplayName("Je me suis présenté à l'entrevue")]
