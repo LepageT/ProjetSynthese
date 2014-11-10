@@ -31,7 +31,7 @@ namespace Stagio.Web.AcceptanceTests.InterviewTests
         [TestMethod]
         public void student_edit_should_update_his_interview_if_id_is_valid()
         {
-            var NEW_DATE = new DateTime(1999,12,24);
+            var NEW_DATE = new DateTime(1999,12,24,12,30, 0);
 
             LoginPage.GoTo();
             LoginPage.LoginAs(StudentUsername, StudentPassword);
@@ -46,7 +46,7 @@ namespace Stagio.Web.AcceptanceTests.InterviewTests
         [TestMethod]
         public void student_edit_interview_should_redirect_to_list_interview_if_updated()
         {
-            var NEW_DATE = new DateTime(1999, 12, 24);
+            var NEW_DATE = new DateTime(1999, 12, 24, 12, 30, 0);
 
             LoginPage.GoTo();
             LoginPage.LoginAs(StudentUsername, StudentPassword);
