@@ -233,6 +233,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CoordinatorResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Module\Strings\Controller\StudentResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StudentResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Module\Strings\Email\EmailCoordinatorResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -487,6 +492,10 @@
     <EmbeddedResource Include="Module\Strings\Controller\CoordinatorResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>CoordinatorResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Module\Strings\Controller\StudentResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StudentResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Module\Strings\Email\EmailCoordinatorResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

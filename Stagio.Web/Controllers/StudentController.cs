@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Security.Claims;
 using System.Web;
@@ -13,6 +14,7 @@ using Stagio.DataLayer;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
 using Stagio.Web.Module;
+using Stagio.Web.Module.Strings.Controller;
 using Stagio.Web.Services;
 using Stagio.Web.ViewModels.Student;
 using Stagio.Utilities.Encryption;
@@ -59,16 +61,16 @@ namespace Stagio.Web.Controllers
 
             if (file == null)
             {
-                ModelState.AddModelError("Fichier", "Il n'y a pas de fichier à importer");
-                ViewBag.Message = "Il n'y a pas de fichier à importer";
+                ModelState.AddModelError("Fichier", StudentResources.NoFileToUpload);
+                ViewBag.Message = StudentResources.NoFileToUpload;
             }
             else
             {
                 {
                     if (!file.FileName.Contains(".csv"))
                     {
-                        ModelState.AddModelError("Fichier", "Il n'y a pas de fichier à importer");
-                        ViewBag.Message = "Ce n'est pas un fichier csv";
+                        ModelState.AddModelError("Fichier", StudentResources.NoFileToUpload);
+                        ViewBag.Message = StudentResources.WrongFileType;
                     }
                 }
             }
@@ -182,13 +184,13 @@ namespace Stagio.Web.Controllers
 
             if (student == null)
             {
-                ModelState.AddModelError("Matricule", "Votre matricule ne figure pas dans la liste des matricules autorisés.");
+                ModelState.AddModelError("Matricule", StudentResources.MatriculeNotFound);
             }
             else
             {
                 if (student.Active)
                 {
-                    ModelState.AddModelError("Matricule", "Votre matricule est déja utilisé.");
+                    ModelState.AddModelError("Matricule", StudentResources.MatriculeAlreadyUsed);
                 }
             }
 
@@ -251,7 +253,7 @@ namespace Stagio.Web.Controllers
             {
             if (!PasswordHash.ValidatePassword(editStudentViewModel.OldPassword, student.Password))
             {
-                ModelState.AddModelError("OldPassword", "L'ancien mot de passe n'est pas valide.");
+                ModelState.AddModelError("OldPassword", StudentResources.OldPasswordInvalid);
             }
             }
 
