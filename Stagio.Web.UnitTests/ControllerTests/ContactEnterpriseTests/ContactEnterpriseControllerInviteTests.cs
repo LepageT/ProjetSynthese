@@ -27,7 +27,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
         [TestMethod]
         public void contact_enterprise_inviteContactEnteprise_post_should_return_default_view_when_modelState_is_not_valid()
         {
-            var enterpriseInvalid = _fixture.Create<ViewModels.ContactEnterprise.Reactive>();
+            var enterpriseInvalid = _fixture.Create<ViewModels.ContactEnterprise.Invite>();
             enterpriseInvalid.Email = null;
             enterpriseController.ModelState.AddModelError("Error", "Error");
 
@@ -39,7 +39,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
         [TestMethod]
         public void contact_enterprise_inviteContactEnteprise_post_should_return_confirmation_on_success()
         {
-            var enterpriseValid = _fixture.Create<ViewModels.ContactEnterprise.Reactive>();
+            var enterpriseValid = _fixture.Create<ViewModels.ContactEnterprise.Invite>();
             enterpriseValid.Email = "test@hotmail.com";
             mailler.SendEmail(enterpriseValid.Email, "Test", "").ReturnsForAnyArgs(true);
 

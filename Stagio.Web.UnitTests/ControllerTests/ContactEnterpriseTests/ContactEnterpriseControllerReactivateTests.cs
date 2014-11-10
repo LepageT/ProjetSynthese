@@ -19,14 +19,17 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
         [TestMethod]
         public void reactivate_action_should_render_view_with_email_and_enterprise_name()
         {
+           
             //Arrange 
-            var enterprise = _fixture.Create<Stagio.Domain.Entities.ContactEnterprise>();
-            enterpriseRepository.GetById(enterprise.Id).Returns(enterprise);
-            var viewModelExpected = Mapper.Map<ViewModels.ContactEnterprise.Reactive>(enterprise);
+            var invitations = _fixture.CreateMany<InvitationContactEnterprise>(3);
+            var invitation = invitations.First();
+            invitation.Used = false;
+            invitationRepository.GetAll().Returns(invitations.AsQueryable());
+            var viewModelExpected = Mapper.Map<ViewModels.ContactEnterprise.Reactive>(invitation);
 
 
             //Action
-            var viewResult = enterpriseController.Reactivate(enterprise.Email, null, null, enterprise.EnterpriseName, null, null) as ViewResult;
+            var viewResult = enterpriseController.Reactivate(invitation.Token) as ViewResult;
             var viewModelObtained = viewResult.ViewData.Model as ViewModels.ContactEnterprise.Reactive;
 
             //Assert 
@@ -36,120 +39,130 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
         }
 
         [TestMethod]
-        public void reactivate_post_should_update_contact_enterprise_to_repository()
+        public void reactivate_should_return_httpnotfound_when_invitation_is_empty()
         {
-            // Arrange   
-            var enterprise = _fixture.CreateMany<ContactEnterprise>(1).ToList();
-            var enterpriseViewModel = Mapper.Map<ViewModels.ContactEnterprise.Reactive>(enterprise[0]);
-            enterpriseRepository.GetAll().Returns(enterprise.AsQueryable());
+            var result = enterpriseController.Reactivate("");
 
-
-            // Action
-            enterpriseController.Reactivate(enterpriseViewModel);
-
-            // Assert
-            EnterpriseRepositoryUpdateMethodShouldHaveReceived(enterprise[0]);
+            result.Should().BeOfType<HttpNotFoundResult>();
         }
 
         [TestMethod]
-        public void reactivate_post_should_add_contact_enterprise_to_repository_if_it_is_not_already_there()
+        public void reactivate_should_return_httpnotfound_when_invitation_dont_exist()
         {
-            // Arrange   
-            var enterprise1 = _fixture.CreateMany<ContactEnterprise>(1).ToList();
-            var enterpriseViewModel = Mapper.Map<ViewModels.ContactEnterprise.Reactive>(enterprise1[0]);
-            var enterprise2 = _fixture.CreateMany<ContactEnterprise>(1).ToList();
-            enterpriseRepository.GetAll().Returns(enterprise2.AsQueryable());
+            var invitations = _fixture.CreateMany<InvitationContactEnterprise>(3);
+            invitationRepository.GetAll().Returns(invitations.AsQueryable());
 
+            var result = enterpriseController.Reactivate("1");
 
-            // Action
-            enterpriseController.Reactivate(enterpriseViewModel);
-
-            // Assert
-            EnterpriseRepositoryAddMethodShouldHaveReceived(enterprise1[0]);
+            result.Should().BeOfType<HttpNotFoundResult>();
         }
 
         [TestMethod]
-        public void reactivate_post_should_return_default_view_when_modelState_is_not_valid()
+        public void reactivate_should_return_httpnotfound_when_invitation_is_already_used()
         {
-            //Arrange
-            var enterpriseViewModel = _fixture.Create<ViewModels.ContactEnterprise.Reactive>();
-            enterpriseController.ModelState.AddModelError("Error", "Error");
+            var invitations = _fixture.CreateMany<InvitationContactEnterprise>(3);
+            var invitation = invitations.First();
+            invitation.Used = true;
+            invitationRepository.GetAll().Returns(invitations.AsQueryable());
 
-            //Act
-            var viewResult = enterpriseController.Reactivate(enterpriseViewModel) as ViewResult;
+            var result = enterpriseController.Reactivate(invitation.Token);
 
-            //Assert
+            result.Should().BeOfType<HttpNotFoundResult>();
+        }
+
+        [TestMethod]
+        public void reactivate_should_return_create_view_when_invitation_is_unsued()
+        {
+            var invitations = _fixture.CreateMany<InvitationContactEnterprise>(3);
+            var invitation = invitations.First();
+            invitation.Used = false;
+            invitationRepository.GetAll().Returns(invitations.AsQueryable());
+
+            var viewResult = enterpriseController.Reactivate(invitation.Token) as ViewResult;
+
             viewResult.ViewName.Should().Be("");
         }
 
         [TestMethod]
-        public void reactivate_post_should_redirect_to_confirmation_on_success()
+        public void reactivate_should_return_default_view_when_modelState_is_not_valid()
         {
-            //Arrange
-            var enterpriseViewModel = _fixture.Create<ViewModels.ContactEnterprise.Reactive>();
-            enterpriseViewModel.Email = "blabla@hotmail.com";
-            var enterprise = _fixture.CreateMany<ContactEnterprise>(2).ToList();
-            var enterpriseToTest = _fixture.Create<ContactEnterprise>();
-            enterpriseToTest.Email = "blabla@hotmail.com";
-            enterprise.Add(enterpriseToTest);
-            enterpriseRepository.GetAll().Returns(enterprise.AsQueryable());
+            var invitations = _fixture.CreateMany<InvitationContactEnterprise>(3);
+            var invitation = invitations.First();
+            invitation.Used = false;
+            invitationRepository.GetAll().Returns(invitations.AsQueryable());
 
-            //Act
-            var result = enterpriseController.Reactivate(enterpriseViewModel) as RedirectToRouteResult;
-            var action = result.RouteValues["Action"];
+            enterpriseController.ModelState.AddModelError("Error", "Error");
+            var viewResult = enterpriseController.Reactivate(invitation.Token) as ViewResult;
 
-
-            //Assert
-            action.ShouldBeEquivalentTo(MVC.ContactEnterprise.Views.ViewNames.CreateConfirmation);
-
+            viewResult.ViewName.Should().Be("");
         }
 
         [TestMethod]
-        public void reactivate_post_should_not_add_contact_enterprise_to_repository_if_email_already_in_repository()
+        public void reactivate_post_should_return_default_view_when_email_is_already_used()
         {
-            // Arrange   
-            var enterprise1 = _fixture.Create<ContactEnterprise>();
-            var enterpriseViewModel1 = Mapper.Map<ViewModels.ContactEnterprise.Reactive>(enterprise1);
-            var email = enterpriseViewModel1.Email;
-            var enterprise2 = _fixture.Create<ContactEnterprise>();
-            var enterpriseViewModel2 = Mapper.Map<ViewModels.ContactEnterprise.Reactive>(enterprise2);
-            enterpriseViewModel2.Email = email;
-            List<ContactEnterprise> listEnterprises = new List<ContactEnterprise>();
-            listEnterprises.Add(enterprise1);
-            listEnterprises.Add(enterprise2);
-            enterpriseRepository.GetAll().Returns(listEnterprises.AsQueryable());
+            var invitations = _fixture.CreateMany<InvitationContactEnterprise>(3);
+            var invitation = invitations.First();
+            invitation.Used = false;
+            var contactsEnterprise = _fixture.CreateMany<ContactEnterprise>(2);
+            var contactEnterprise = contactsEnterprise.First();
+            contactEnterprise.Email = invitation.Email;
+            enterpriseRepository.GetAll().Returns(contactsEnterprise.AsQueryable());
+            invitationRepository.GetAll().Returns(invitations.AsQueryable());
 
-            // Action
-            enterpriseController.Reactivate(enterpriseViewModel1);
-            enterpriseController.Reactivate(enterpriseViewModel2);
+            var viewModel = Mapper.Map<ViewModels.ContactEnterprise.Reactive>(invitation);
+            var viewResult = enterpriseController.Reactivate(viewModel) as ViewResult;
 
-            // Assert
-            enterpriseRepository.DidNotReceive().Add(Arg.Is<ContactEnterprise>(x => x.Email == enterprise2.Email));
+            viewResult.ViewName.Should().Be("");
         }
 
-        private void EnterpriseRepositoryAddMethodShouldHaveReceived(ContactEnterprise enterprise)
+        [TestMethod]
+        public void reactivate_post_should_return_httpnotfound_if_invitation_is_not_found()
         {
-            enterpriseRepository.Received().Add(Arg.Is<ContactEnterprise>(x => x.Id == enterprise.Id));
-            enterpriseRepository.Received().Add(Arg.Is<ContactEnterprise>(x => x.Email == enterprise.Email));
-            enterpriseRepository.Received().Add(Arg.Is<ContactEnterprise>(x => x.FirstName == enterprise.FirstName));
-            enterpriseRepository.Received().Add(Arg.Is<ContactEnterprise>(x => x.LastName == enterprise.LastName));
-            enterpriseRepository.Received().Add(Arg.Is<ContactEnterprise>(x => x.EnterpriseName == enterprise.EnterpriseName));
-            enterpriseRepository.Received().Add(Arg.Is<ContactEnterprise>(x => x.Telephone == enterprise.Telephone));
-            enterpriseRepository.Received().Add(Arg.Is<ContactEnterprise>(x => x.Poste == enterprise.Poste));
-            //enterpriseRepository.Received().Add(Arg.Is<ContactEnterprise>(x => x.Password == enterprise.Password));
+            var invitation = _fixture.Create<InvitationContactEnterprise>();
+            var contactsEnterprise = _fixture.CreateMany<ContactEnterprise>(2);
+            enterpriseRepository.GetAll().Returns(contactsEnterprise.AsQueryable());
+
+            var viewModel = Mapper.Map<ViewModels.ContactEnterprise.Reactive>(invitation);
+            var result = enterpriseController.Reactivate(viewModel);
+
+            result.Should().BeOfType<HttpNotFoundResult>();
         }
 
-
-        private void EnterpriseRepositoryUpdateMethodShouldHaveReceived(ContactEnterprise enterprise)
+        [TestMethod]
+        public void reactivate_post_should_return_httpnotfound_if_invitation_email_is_different_of_the_email_entered()
         {
-            enterpriseRepository.Received().Update(Arg.Is<ContactEnterprise>(x => x.Id == enterprise.Id));
-            enterpriseRepository.Received().Update(Arg.Is<ContactEnterprise>(x => x.Email == enterprise.Email));
-            enterpriseRepository.Received().Update(Arg.Is<ContactEnterprise>(x => x.FirstName == enterprise.FirstName));
-            enterpriseRepository.Received().Update(Arg.Is<ContactEnterprise>(x => x.LastName == enterprise.LastName));
-            enterpriseRepository.Received().Update(Arg.Is<ContactEnterprise>(x => x.EnterpriseName == enterprise.EnterpriseName));
-            enterpriseRepository.Received().Update(Arg.Is<ContactEnterprise>(x => x.Telephone == enterprise.Telephone));
-            enterpriseRepository.Received().Update(Arg.Is<ContactEnterprise>(x => x.Poste == enterprise.Poste));
-            enterpriseRepository.Received().Update(Arg.Is<ContactEnterprise>(x => x.Password == enterprise.Password));
+            var invitations = _fixture.CreateMany<InvitationContactEnterprise>(3);
+            var invitation = invitations.First();
+            invitation.Used = false;
+            invitationRepository.GetAll().Returns(invitations.AsQueryable());
+            var contactsEnterprise = _fixture.CreateMany<ContactEnterprise>(2);
+            enterpriseRepository.GetAll().Returns(contactsEnterprise.AsQueryable());
+            var viewModel = _fixture.Create<ViewModels.ContactEnterprise.Reactive>();
+            viewModel.Email = "1234567";
+
+            var result = enterpriseController.Reactivate(viewModel);
+
+            result.Should().BeOfType<HttpNotFoundResult>();
         }
+
+        [TestMethod]
+        public void reactivate_post_should_return_index_on_success()
+        {
+            var invitation = _fixture.Create<InvitationContactEnterprise>();
+            invitation.Used = false;
+            invitationRepository.GetById(invitation.Id).Returns(invitation);
+            var contactsEnterprise = _fixture.CreateMany<ContactEnterprise>(2);
+            enterpriseRepository.GetAll().Returns(contactsEnterprise.AsQueryable());
+            var viewModel = _fixture.Create<ViewModels.ContactEnterprise.Reactive>();
+            viewModel.InvitationId = invitation.Id;
+            viewModel.Email = invitation.Email;
+
+            var routeResult = enterpriseController.Reactivate(viewModel) as RedirectToRouteResult;
+            var routeAction = routeResult.RouteValues["Action"];
+
+            routeAction.Should().Be(MVC.ContactEnterprise.Views.ViewNames.CreateConfirmation);
+        }
+
+        
     }
 }

@@ -15,7 +15,9 @@ namespace Stagio.DataLayer
 
         public DbSet<Apply> Applies { get; set; }
         
-        public DbSet<Stage> Stages { get; set; } 
+        public DbSet<Stage> Stages { get; set; }
+
+        public DbSet<InvitationContactEnterprise> InvitationsContactEnterprise { get; set; } 
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -9,6 +9,8 @@ using AutoMapper;
 using Stagio.DataLayer;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
+using Stagio.Web.Module;
+using Stagio.Web.Module.Strings.Controller;
 using Stagio.Web.Services;
 using Stagio.Web.Module.Strings.Email;
 
@@ -22,8 +24,9 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<Apply> _applyRepository;
         private readonly IMailler _mailler;
         private readonly IEntityRepository<Student> _studentRepository;
+        private readonly IEntityRepository<InvitationContactEnterprise> _invitationRepository;
 
-        public ContactEnterpriseController(IEntityRepository<ContactEnterprise> enterpriseRepository, IEntityRepository<Stage> stageRepository, IAccountService accountService, IMailler mailler, IEntityRepository<Apply> applyRepository, IEntityRepository<Student> studentRepository)
+        public ContactEnterpriseController(IEntityRepository<ContactEnterprise> enterpriseRepository, IEntityRepository<Stage> stageRepository, IAccountService accountService, IMailler mailler, IEntityRepository<Apply> applyRepository, IEntityRepository<Student> studentRepository, IEntityRepository<InvitationContactEnterprise> invitationRepository)
         {
             _contactEnterpriseRepository = enterpriseRepository;
             _accountService = accountService;
@@ -32,6 +35,7 @@ namespace Stagio.Web.Controllers
             _applyRepository = applyRepository;
             _studentRepository = studentRepository;
             _mailler = mailler;
+            _invitationRepository = invitationRepository;
         }
 
         // GET: Enterprise
@@ -46,51 +50,28 @@ namespace Stagio.Web.Controllers
             return View();
         }
 
-        // GET: Enterprise/Create
-        public virtual ActionResult Reactivate(string email, string firstName, string lastName, string enterpriseName, string telephone, string poste)
+        public virtual ActionResult Create()
         {
-            var contactEnterprise = new ContactEnterprise();
-            contactEnterprise.Email = email;
-            contactEnterprise.FirstName = firstName;
-            contactEnterprise.LastName = lastName;
-            contactEnterprise.EnterpriseName = enterpriseName;
-            contactEnterprise.Telephone = telephone;
-            contactEnterprise.Poste = poste;
-            contactEnterprise.UserName = email;
-            contactEnterprise.Roles = new List<UserRole>()
-            {
-                new UserRole() {RoleName = RoleName.ContactEnterprise}
-            };
-            var contactEnterpriseCreatePageViewModel = Mapper.Map<ViewModels.ContactEnterprise.Reactive>(contactEnterprise);
-            return View(contactEnterpriseCreatePageViewModel);
+            return View();
         }
 
-        // POST: Enterprise/Create
         [HttpPost]
-        public virtual ActionResult Reactivate(ViewModels.ContactEnterprise.Reactive createViewModel)
+        public virtual ActionResult Create(ViewModels.ContactEnterprise.Create createViewModel)
         {
-            if (_accountService.UserEmailExist(createViewModel.Email))
+            var list = _contactEnterpriseRepository.GetAll();
+            if (list != null)
             {
-                ModelState.AddModelError("Email", "Ce email est déjà utilisé pour un compte entreprise.");
+                var email = list.FirstOrDefault(x => x.Email == createViewModel.Email);
+                if (email != null)
+                {
+                    ModelState.AddModelError("Email", "Ce email est déjà utilisé");
+                }
+
             }
+
             if (ModelState.IsValid)
             {
-                var contactEnterprise = _contactEnterpriseRepository.GetAll().FirstOrDefault(x => x.Email == createViewModel.Email);
-                if (contactEnterprise != null)
-                {
-                    contactEnterprise.Active = true;
-                    contactEnterprise.Password = createViewModel.Password;
-                    contactEnterprise.Telephone = createViewModel.Telephone;
-                    contactEnterprise.Poste = createViewModel.Poste;
-                    _contactEnterpriseRepository.Update(contactEnterprise);
-
-                    _mailler.SendEmail(contactEnterprise.Email, EmailAccountCreation.Subject, EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
-
-                    //ADD NOTIFICATIONS: À la coordination et aux autres employés de l'entreprise.
-                    return RedirectToAction(MVC.ContactEnterprise.CreateConfirmation(contactEnterprise.Id));
-                }
-                else
-                {
+                
                     var newContactEnterprise = Mapper.Map<ContactEnterprise>(createViewModel);
                     newContactEnterprise.Active = true;
                     newContactEnterprise.Password = _accountService.HashPassword(newContactEnterprise.Password);
@@ -105,11 +86,84 @@ namespace Stagio.Web.Controllers
 
                     //ADD NOTIFICATIONS: À la coordination et aux autres employés de l'entreprise.
                     return RedirectToAction(MVC.ContactEnterprise.CreateConfirmation(newContactEnterprise.Id));
-                }
+                
 
 
             }
             return View(createViewModel);
+        }
+
+        // GET: Enterprise/Reactivate
+        public virtual ActionResult Reactivate(string token)
+        {
+
+            if (!String.IsNullOrEmpty(token))
+            {
+                var invitation = _invitationRepository.GetAll().FirstOrDefault(x => x.Token == token);
+
+                if (invitation == null)
+                {
+                    return HttpNotFound();
+                }
+
+                if (invitation.Used)
+                {
+                    return HttpNotFound();
+                }
+
+                var contactEnterpriseCreatePageViewModel = Mapper.Map<ViewModels.ContactEnterprise.Reactive>(invitation);
+                return View(contactEnterpriseCreatePageViewModel);
+            }
+
+            return HttpNotFound();
+        }
+
+        // POST: Enterprise/Reactivate
+        [HttpPost]
+        public virtual ActionResult Reactivate(ViewModels.ContactEnterprise.Reactive createViewModel)
+        {
+            var list = _contactEnterpriseRepository.GetAll();
+            if (list != null)
+            {
+                var email = list.FirstOrDefault(x => x.Email == createViewModel.Email);
+                if (email != null)
+                {
+                    ModelState.AddModelError("Email", "Ce email est déjà utilisé");
+                }
+
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(createViewModel);
+            }
+
+            if (ModelState.IsValid)
+            {
+                var invitation = _invitationRepository.GetById(createViewModel.InvitationId);
+                if (invitation != null)
+                {
+                    if (invitation.Email == createViewModel.Email)
+                    {
+                        invitation.Used = true;
+
+                        _invitationRepository.Update(invitation);
+
+                        var contactEnterprise = Mapper.Map<ContactEnterprise>(createViewModel);
+                        contactEnterprise.UserName = contactEnterprise.Email;
+                        contactEnterprise.Password = _accountService.HashPassword(contactEnterprise.Password);
+                        _contactEnterpriseRepository.Add(contactEnterprise);
+
+                        _mailler.SendEmail(createViewModel.Email, EmailAccountCreation.Subject,
+                            EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
+
+
+                        return RedirectToAction(MVC.ContactEnterprise.CreateConfirmation(contactEnterprise.Id));
+                    }
+                }
+                
+            }
+            return HttpNotFound();
 
         }
 
@@ -204,36 +258,52 @@ namespace Stagio.Web.Controllers
 
         [Authorize(Roles = RoleName.ContactEnterprise)]
         [HttpPost]
-        public virtual ActionResult InviteContactEnterprise(ViewModels.ContactEnterprise.Reactive createContactEnterpriseViewModel)
+        public virtual ActionResult InviteContactEnterprise(ViewModels.ContactEnterprise.Invite createdInviteContactEnterpriseViewModel)
         {
-            if (createContactEnterpriseViewModel.Email != null)
+            
+
+            if (!ModelState.IsValid)
             {
-                var contactEnterpriseToSendMessage = Mapper.Map<ContactEnterprise>(createContactEnterpriseViewModel);
-                string messageInvitation = null;
-                if (Request != null)
-                {
-                    messageInvitation = Request.Form["Message"];
-                }
-
-                string messageText = "<html>";
-
-                if (messageInvitation != null)
-                {
-                    messageText += EmailEnterpriseResources.InviteCoworker;
-                    messageText += "<br>" + messageInvitation + "<br>";
-                    messageText += generateURLInvitationContactEnterprise(contactEnterpriseToSendMessage);
-                    messageText += "</html>";
-                }
-
-                if (!_mailler.SendEmail(contactEnterpriseToSendMessage.Email, EmailEnterpriseResources.InviteSubject,
-                        messageText))
-                {
-                    ModelState.AddModelError("Email", "Error");
-                    return View(InviteContactEnterprise());
-                }
-                return RedirectToAction(MVC.Coordinator.InviteContactEnterpriseConfirmation());
+                return View(createdInviteContactEnterpriseViewModel);
             }
-            return View(createContactEnterpriseViewModel);
+
+            System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
+
+            TokenGenerator tokenGenerator = new TokenGenerator();
+
+            string token = tokenGenerator.GenerateToken();
+
+            //Sending invitation with the Mailler class
+            String messageText = EmailEnterpriseResources.InviteCoworker;
+            String invitationUrl = EmailEnterpriseResources.InviteLinkConworker + token;
+
+            messageText += invitationUrl;
+
+            if (createdInviteContactEnterpriseViewModel.Message != null)
+            {
+                messageText += EmailEnterpriseResources.MessageHeader;
+                messageText += createdInviteContactEnterpriseViewModel.Message;
+            }
+
+            if (!_mailler.SendEmail(createdInviteContactEnterpriseViewModel.Email, EmailEnterpriseResources.InviteSubject, messageText))
+            {
+                ModelState.AddModelError("Email", "Error");
+                return View();
+            }
+
+            _invitationRepository.Add(new InvitationContactEnterprise()
+            {
+                Token = token,
+                Email = createdInviteContactEnterpriseViewModel.Email,
+                FirstName = createdInviteContactEnterpriseViewModel.FirstName,
+                LastName = createdInviteContactEnterpriseViewModel.LastName,
+                EnterpriseName = createdInviteContactEnterpriseViewModel.EnterpriseName,
+                Telephone = createdInviteContactEnterpriseViewModel.Telephone,
+                Poste = createdInviteContactEnterpriseViewModel.Poste,
+                Used = false
+            });
+
+            return RedirectToAction(MVC.Coordinator.InviteContactEnterpriseConfirmation());
         }
 
         public virtual ActionResult ListStudentApply(int id)
@@ -341,45 +411,7 @@ namespace Stagio.Web.Controllers
             }
         }
 
-        private string generateURLInvitationContactEnterprise(ContactEnterprise contactEnterpriseToSendMessage)
-        {
-            string enterpriseName = contactEnterpriseToSendMessage.EnterpriseName;
-            if (enterpriseName.Contains(" "))
-            {
-                enterpriseName.Replace(" ", "%20");
-            }
-            if (contactEnterpriseToSendMessage.FirstName != null)
-            {
-                contactEnterpriseToSendMessage.FirstName = contactEnterpriseToSendMessage.FirstName.Replace(" ", "%20");
-            }
-            if (contactEnterpriseToSendMessage.LastName != null)
-            {
-                contactEnterpriseToSendMessage.LastName = contactEnterpriseToSendMessage.LastName.Replace(" ", "%20");
-            }
-            if (contactEnterpriseToSendMessage.Telephone != null)
-            {
-                contactEnterpriseToSendMessage.Telephone = contactEnterpriseToSendMessage.Telephone.Replace(" ", "%20");
-            }
-            if (contactEnterpriseToSendMessage.Poste != null)
-            {
-                contactEnterpriseToSendMessage.Poste = contactEnterpriseToSendMessage.Poste.Replace(" ", "%20");
-            }
-            string messageText = "<a href=";
-            string invitationUrl = "http://jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?Email=" +
-                                   contactEnterpriseToSendMessage.Email + "&EnterpriseName=" +
-                                   enterpriseName + "&FirstName=" +
-                                   contactEnterpriseToSendMessage.FirstName + "&LastName=" +
-                                   contactEnterpriseToSendMessage.LastName + "&Telephone=" +
-                                   contactEnterpriseToSendMessage.Telephone + "&Poste=" + contactEnterpriseToSendMessage.Poste +
-                                   ">jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?Email=" +
-                                   contactEnterpriseToSendMessage.Email + "&EnterpriseName=" +
-                                   enterpriseName + "&FirstName=" +
-                                   contactEnterpriseToSendMessage.FirstName + "&LastName=" +
-                                   contactEnterpriseToSendMessage.LastName + "&Telephone=" +
-                                   contactEnterpriseToSendMessage.Telephone + "&Poste=" + contactEnterpriseToSendMessage.Poste + "<a/>";
-            messageText += invitationUrl;
-            return messageText;
-        }
+       
 
         public virtual ActionResult AcceptApplyConfirmation(ViewModels.ContactEnterprise.AcceptApply acceptApply)
         {

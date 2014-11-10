@@ -33,14 +33,6 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
         }
 
 
-        [TestMethod]
-        public void contact_enterprise_invitation_create_should_create_account()
-        {
-            CreateContactEnterprisePage.CreateContactEnterpriseWithInvitation();
-
-            Assert.IsTrue(CreateContactEnterprisePage.ConfirmationIsDisplayed);
-            
-           
-        }
+        
     }
 }

@@ -413,6 +413,26 @@ namespace Stagio.TestUtilities.Database
         #endregion
 
 
+        #region InvitationContactEnterprise 1
+
+        static public InvitationContactEnterprise invitationContactEnterprise1
+        {
+            get
+            {
+                var invitation = new InvitationContactEnterprise()
+                {
+                    Id = 1,
+                    Email = "testemail@enterprise.com",
+                    Token = "123456"
+                };
+
+                return invitation;
+            }
+        }
+
+        #endregion
+
+
     }
 
 

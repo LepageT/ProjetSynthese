@@ -126,6 +126,7 @@ namespace Stagio.Web.Controllers
 		{
 			public readonly string Index = "Index";
 			public readonly string Details = "Details";
+			public readonly string Create = "Create";
 			public readonly string Reactivate = "Reactivate";
 			public readonly string CreateConfirmation = "CreateConfirmation";
 			public readonly string Edit = "Edit";
@@ -146,6 +147,7 @@ namespace Stagio.Web.Controllers
 		{
 			public const string Index = "Index";
 			public const string Details = "Details";
+			public const string Create = "Create";
 			public const string Reactivate = "Reactivate";
 			public const string CreateConfirmation = "CreateConfirmation";
 			public const string Edit = "Edit";
@@ -170,18 +172,21 @@ namespace Stagio.Web.Controllers
 		{
 			public readonly string id = "id";
 		}
+		static readonly ActionParamsClass_Create s_params_Create = new ActionParamsClass_Create();
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public ActionParamsClass_Create CreateParams { get { return s_params_Create; } }
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public class ActionParamsClass_Create
+		{
+			public readonly string createViewModel = "createViewModel";
+		}
 		static readonly ActionParamsClass_Reactivate s_params_Reactivate = new ActionParamsClass_Reactivate();
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public ActionParamsClass_Reactivate ReactivateParams { get { return s_params_Reactivate; } }
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public class ActionParamsClass_Reactivate
 		{
-			public readonly string email = "email";
-			public readonly string firstName = "firstName";
-			public readonly string lastName = "lastName";
-			public readonly string enterpriseName = "enterpriseName";
-			public readonly string telephone = "telephone";
-			public readonly string poste = "poste";
+			public readonly string token = "token";
 			public readonly string createViewModel = "createViewModel";
 		}
 		static readonly ActionParamsClass_CreateConfirmation s_params_CreateConfirmation = new ActionParamsClass_CreateConfirmation();
@@ -224,7 +229,7 @@ namespace Stagio.Web.Controllers
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public class ActionParamsClass_InviteContactEnterprise
 		{
-			public readonly string createContactEnterpriseViewModel = "createContactEnterpriseViewModel";
+			public readonly string createdInviteContactEnterpriseViewModel = "createdInviteContactEnterpriseViewModel";
 		}
 		static readonly ActionParamsClass_ListStudentApply s_params_ListStudentApply = new ActionParamsClass_ListStudentApply();
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -270,6 +275,7 @@ namespace Stagio.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string AcceptApplyConfirmation = "AcceptApplyConfirmation";
+                public readonly string Create = "Create";
                 public readonly string CreateConfirmation = "CreateConfirmation";
                 public readonly string CreateStage = "CreateStage";
                 public readonly string CreateStageSucceed = "CreateStageSucceed";
@@ -282,6 +288,7 @@ namespace Stagio.Web.Controllers
                 public readonly string RefuseApplyConfirmation = "RefuseApplyConfirmation";
             }
             public readonly string AcceptApplyConfirmation = "~/Views/ContactEnterprise/AcceptApplyConfirmation.cshtml";
+            public readonly string Create = "~/Views/ContactEnterprise/Create.cshtml";
             public readonly string CreateConfirmation = "~/Views/ContactEnterprise/CreateConfirmation.cshtml";
             public readonly string CreateStage = "~/Views/ContactEnterprise/CreateStage.cshtml";
             public readonly string CreateStageSucceed = "~/Views/ContactEnterprise/CreateStageSucceed.cshtml";
@@ -324,19 +331,37 @@ namespace Stagio.Web.Controllers
 		}
 
 		[NonAction]
-		partial void ReactivateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string email, string firstName, string lastName, string enterpriseName, string telephone, string poste);
+		partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
 		[NonAction]
-		public override System.Web.Mvc.ActionResult Reactivate(string email, string firstName, string lastName, string enterpriseName, string telephone, string poste)
+		public override System.Web.Mvc.ActionResult Create()
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
+			CreateOverride(callInfo);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Stagio.Web.ViewModels.ContactEnterprise.Create createViewModel);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult Create(Stagio.Web.ViewModels.ContactEnterprise.Create createViewModel)
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "createViewModel", createViewModel);
+			CreateOverride(callInfo, createViewModel);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void ReactivateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string token);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult Reactivate(string token)
 		{
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Reactivate);
-			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "email", email);
-			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "firstName", firstName);
-			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "lastName", lastName);
-			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "enterpriseName", enterpriseName);
-			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "telephone", telephone);
-			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "poste", poste);
-			ReactivateOverride(callInfo, email, firstName, lastName, enterpriseName, telephone, poste);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "token", token);
+			ReactivateOverride(callInfo, token);
 			return callInfo;
 		}
 
@@ -460,14 +485,14 @@ namespace Stagio.Web.Controllers
 		}
 
 		[NonAction]
-		partial void InviteContactEnterpriseOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Stagio.Web.ViewModels.ContactEnterprise.Reactive createContactEnterpriseViewModel);
+		partial void InviteContactEnterpriseOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Stagio.Web.ViewModels.ContactEnterprise.Invite createdInviteContactEnterpriseViewModel);
 
 		[NonAction]
-		public override System.Web.Mvc.ActionResult InviteContactEnterprise(Stagio.Web.ViewModels.ContactEnterprise.Reactive createContactEnterpriseViewModel)
+		public override System.Web.Mvc.ActionResult InviteContactEnterprise(Stagio.Web.ViewModels.ContactEnterprise.Invite createdInviteContactEnterpriseViewModel)
 		{
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InviteContactEnterprise);
-			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "createContactEnterpriseViewModel", createContactEnterpriseViewModel);
-			InviteContactEnterpriseOverride(callInfo, createContactEnterpriseViewModel);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "createdInviteContactEnterpriseViewModel", createdInviteContactEnterpriseViewModel);
+			InviteContactEnterpriseOverride(callInfo, createdInviteContactEnterpriseViewModel);
 			return callInfo;
 		}
 

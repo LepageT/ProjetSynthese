@@ -121,7 +121,10 @@
     <value>&lt;h3&gt;Stagio&lt;/h3&gt;&lt;p&gt; Bonjour, &lt;/p&gt;&lt;br/&gt;Un collègue vous invite à vous inscrire au site Stagio:</value>
   </data>
   <data name="InviteLink" xml:space="preserve">
-    <value>Pour vous connecter, copier-coller ce lien: jenkins.cegep-ste-foy.qc.ca/thomarelau/Enterprise/Create?Email=</value>
+    <value>Pour vous connecter, copier-coller ce lien: jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate/</value>
+  </data>
+  <data name="InviteLinkConworker" xml:space="preserve">
+    <value>Pour vous connecter, copier-coller ce lien: jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token=</value>
   </data>
   <data name="InviteMessageBody" xml:space="preserve">
     <value>&lt;h3&gt;Stagio&lt;/h3&gt;&lt;p&gt; Bonjour, &lt;/p&gt;&lt;br/&gt;Un coordonateur de stage vous invite à vous inscrire au site Stagio:</value>

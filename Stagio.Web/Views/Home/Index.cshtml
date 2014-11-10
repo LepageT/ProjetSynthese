@@ -18,7 +18,7 @@
 {
     @Html.ActionLink("Créer un profil étudiant", MVC.Student.Create(), new {id = "create-student"})<br/>
 
-    @Html.ActionLink("Créer un profil entreprise", MVC.ContactEnterprise.Reactivate(), new {id = "create-enterprise"})<br/>
+    @Html.ActionLink("Créer un profil entreprise", MVC.ContactEnterprise.Create(), new {id = "create-enterprise"})<br/>
 }
 
 @if(@User.IsInRole("Étudiant"))
