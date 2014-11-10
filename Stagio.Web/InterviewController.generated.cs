@@ -54,6 +54,12 @@ namespace Stagio.Web.Controllers
 			return RedirectToActionPermanent(taskResult.Result);
 		}
 
+		[NonAction]
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public virtual System.Web.Mvc.ActionResult Edit()
+		{
+			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
+		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public InterviewController Actions { get { return MVC.Interview; } }
@@ -73,6 +79,8 @@ namespace Stagio.Web.Controllers
 			public readonly string Index = "Index";
 			public readonly string Create = "Create";
 			public readonly string InterviewConfirmation = "InterviewConfirmation";
+			public readonly string List = "List";
+			public readonly string Edit = "Edit";
 		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -81,6 +89,8 @@ namespace Stagio.Web.Controllers
 			public const string Index = "Index";
 			public const string Create = "Create";
 			public const string InterviewConfirmation = "InterviewConfirmation";
+			public const string List = "List";
+			public const string Edit = "Edit";
 		}
 
 
@@ -91,6 +101,15 @@ namespace Stagio.Web.Controllers
 		public class ActionParamsClass_Create
 		{
 			public readonly string createdInterview = "createdInterview";
+		}
+		static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public ActionParamsClass_Edit EditParams { get { return s_params_Edit; } }
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public class ActionParamsClass_Edit
+		{
+			public readonly string id = "id";
+			public readonly string editInterviewViewModel = "editInterviewViewModel";
 		}
 		static readonly ViewsClass s_views = new ViewsClass();
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -103,10 +122,14 @@ namespace Stagio.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Create = "Create";
+                public readonly string Edit = "Edit";
                 public readonly string InterviewConfirmation = "InterviewConfirmation";
+                public readonly string List = "List";
             }
             public readonly string Create = "~/Views/Interview/Create.cshtml";
+            public readonly string Edit = "~/Views/Interview/Edit.cshtml";
             public readonly string InterviewConfirmation = "~/Views/Interview/InterviewConfirmation.cshtml";
+            public readonly string List = "~/Views/Interview/List.cshtml";
 		}
 	}
 
@@ -157,6 +180,41 @@ namespace Stagio.Web.Controllers
 		{
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InterviewConfirmation);
 			InterviewConfirmationOverride(callInfo);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void ListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult List()
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.List);
+			ListOverride(callInfo);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult Edit(int id)
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+			EditOverride(callInfo, id);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Stagio.Web.ViewModels.Interviews.Edit editInterviewViewModel);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult Edit(Stagio.Web.ViewModels.Interviews.Edit editInterviewViewModel)
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "editInterviewViewModel", editInterviewViewModel);
+			EditOverride(callInfo, editInterviewViewModel);
 			return callInfo;
 		}
 
