@@ -41,7 +41,7 @@ namespace Stagio.Web.Automation.PageObjects.ContactEnterprise
             const string STAGE_DESC = "Résister au dark side, trouver 2 droids";
             const string STAGE_ENVIRONNEMENT = "Sabre laser, vaisseaux, droids, clones, Death Star...";
             const string STAGE_TITLE = "Résister au dark side, trouver 2 droids";
-            const string NBR_STAGE = "10000";
+            const string NBR_STAGE = "10";
             const string SUBMIT_TO_NAME = "Yoda";
             const string SUBMIT_TO_TITLE = "Maitre";
             const string SUBMIT_TO_EMAIL = "yoda@r2d2.com";

@@ -91,7 +91,7 @@ namespace Stagio.Web.ViewModels.Stage
         [DisplayName("Date limite pour soumettre une candidature")]
         [Required(ErrorMessage = "Requis")]
         public DateTime LimitDate { get; set; }
-
+         [DisplayName("Date de l'offre:")]
         public DateTime PublicationDate { get; set; }
 
         [DisplayName("Stagiaire si connu:")]

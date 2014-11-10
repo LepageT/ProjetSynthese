@@ -35,21 +35,21 @@
                 </td>
                 @if (item.Status == 0)
                 {
-                <td>
-                    En attente
-                </td>
+                    <td>
+                        En attente
+                    </td>
                 }
                 else if (item.Status == 1)
                 {
-                <td>
-                    Acceptée
-                </td>
+                    <td>
+                        Acceptée
+                    </td>
                 }
                 else if (item.Status == 2)
                 {
-                <td>
-                    Refusée
-                </td>
+                    <td>
+                        Refusée
+                    </td>
                 }
                 else if (item.Status == 3)
                 {
@@ -64,5 +64,6 @@
         }
 
     </table>
+    @Html.ActionLink("Retour à la liste", MVC.ContactEnterprise.ListStage())
 </body>
 </html>

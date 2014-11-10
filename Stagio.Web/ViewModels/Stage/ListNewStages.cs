@@ -11,6 +11,7 @@ namespace Stagio.Web.ViewModels.Stage
     {
 
         public int Id { get; set; }
+         [DisplayName("Date de l'offre")]
         public DateTime PublicationDate { get; set; }
 
         [DisplayName("Entreprise ou Organisation")]
