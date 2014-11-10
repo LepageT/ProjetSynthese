@@ -35,6 +35,9 @@ namespace Stagio.Web.Mappers
             Mapper.CreateMap<Stage, ViewModels.ContactEnterprise.ListStage>()
                .IgnoreAllNonExisting();
 
+            Mapper.CreateMap<Stage, ViewModels.Student.AppliedStages>()
+               .IgnoreAllNonExisting();
+
             Mapper.CreateMap<Invitation, ViewModels.Coordinator.Create>()
                 .ForMember(dest => dest.FirstName, opt => opt.Ignore())
                 .ForMember(dest => dest.LastName, opt => opt.Ignore())
@@ -74,7 +77,12 @@ namespace Stagio.Web.Mappers
 
             Mapper.CreateMap<Stage, ViewModels.Stage.ViewInfo>();
 
+            Mapper.CreateMap<Apply, ViewModels.Student.AppliedStages>()
+                .IgnoreAllNonExisting();
             Mapper.CreateMap<Student, ViewModels.ContactEnterprise.AcceptApply>()
+                .IgnoreAllNonExisting();
+
+            Mapper.CreateMap<Apply, ViewModels.Student.AppliedStages>()
                 .IgnoreAllNonExisting();
 
         }

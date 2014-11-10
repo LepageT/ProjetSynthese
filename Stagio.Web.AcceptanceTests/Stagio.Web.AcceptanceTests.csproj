@@ -92,10 +92,12 @@
     <Compile Include="StudentTests\StudentControllerApplyTests.cs" />
     <Compile Include="StudentTests\StudentControllerEditTests.cs" />
     <Compile Include="StudentTests\StudentControllerCreateListTests.cs" />
+    <Compile Include="StudentTests\StudentControllerReplyStageTests.cs" />
     <Compile Include="StudentTests\StudentControllerUploadTests.cs" />
     <Compile Include="StudentTests\StudentControllerResultCreateList.cs" />
     <Compile Include="StudentTests\StudentControllerCreateTests.cs" />
     <Compile Include="StudentTests\StudentControllerStageListTest.cs" />
+    <Compile Include="StudentTests\StudentControllerApplyListTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

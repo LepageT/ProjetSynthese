@@ -35,6 +35,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
         [TestMethod]
         public void contactEnterprise_can_see_a_page_of_detail_apply()
         {
+
             DetailsStudentApplyContactEnterprisePage.GoToByUrl();
 
             Assert.IsTrue(DetailsStudentApplyContactEnterprisePage.IsDisplayed);

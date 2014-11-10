@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Stagio.Domain.Entities
 {
@@ -19,7 +14,9 @@ namespace Stagio.Domain.Entities
 
         public int IdStage { get; set; }
 
-        public int Status { get; set; }
+        public int Status { get; set; }     //0 = En attente    1 = Acceptée    2 = Refusée     3 = Retirée
+
+        public int StudentReply { get; set; }   //o = En attente    1 = Acceptée    2 = Refusée
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -6,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using AutoMapper;
+using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using Stagio.DataLayer;
 using Stagio.Domain.Application;
@@ -245,7 +247,7 @@ namespace Stagio.Web.Controllers
                 return HttpNotFound();
             }
 
-            if (editStudentViewModel.OldPassword != null)
+            if (!editStudentViewModel.OldPassword.IsNullOrWhiteSpace())
             {
             if (!PasswordHash.ValidatePassword(editStudentViewModel.OldPassword, student.Password))
             {
@@ -257,11 +259,14 @@ namespace Stagio.Web.Controllers
             {
                 return View(editStudentViewModel);
             }
-            if (editStudentViewModel.PasswordConfirmation != null)
+            if (!editStudentViewModel.PasswordConfirmation.IsNullOrWhiteSpace())
             {
                 editStudentViewModel.Password = PasswordHash.CreateHash(editStudentViewModel.PasswordConfirmation);
             }
-
+            if (editStudentViewModel.Password == null)
+            {
+                editStudentViewModel.Password = student.Password;
+            }
             Mapper.Map(editStudentViewModel, student);
 
             _studentRepository.Update(student);
@@ -291,10 +296,11 @@ namespace Stagio.Web.Controllers
             {
                 var applyViewModel = new ViewModels.Student.Apply();
                 applyViewModel.IdStage = id;
-                //Get ID Student with login when login implemented. For now, temp value idStudent = 1
-                /*var identity = (ClaimsIdentity)User.Identity; 
-                var idStudent = identity; //.FindFirst(ClaimTypes.Email).Value;*/
-                applyViewModel.IdStudent = 1;
+
+                var identity = (ClaimsIdentity)User.Identity; 
+                var nameIdentifier = identity.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+                applyViewModel.IdStudent = Int32.Parse(nameIdentifier);
                 return View(applyViewModel);
             }
             return HttpNotFound();
@@ -329,5 +335,74 @@ namespace Stagio.Web.Controllers
         {
             return View();
         }
+
+        public virtual ActionResult ApplyRemoveConfirmation(int id)
+        {
+            var stageApply = _applyRepository.GetById(id);
+            stageApply.Status = 3;
+            _applyRepository.Update(stageApply);
+            return View();
+        }
+
+        [Authorize(Roles = RoleName.Student)]
+        public virtual ActionResult ApplyList()
+        {
+            var appliedStages = _applyRepository.GetAll().ToList();
+            var studentSpecificApplies = appliedStages.Where(x => x.IdStudent == _httpContextService.GetUserId());
+            var stages = _stageRepository.GetAll().ToList();
+
+            var studentStageListViewModels = Mapper.Map<IEnumerable<ViewModels.Student.AppliedStages>>(studentSpecificApplies).ToList();
+
+            foreach (var appliedStage in studentStageListViewModels)
+            {
+                foreach (var stage in stages)
+                {
+                    if (appliedStage.IdStage == stage.Id)
+                    {
+                        appliedStage.stageTitle = stage.StageTitle;
+                    }
+                }
+            }
+
+            return View(studentStageListViewModels);
+        }
+
+        [Authorize(Roles = RoleName.Student)]
+        public virtual ActionResult ReplyStage(int idApply)
+        {
+            var apply = _applyRepository.GetById(idApply);
+            if (apply != null)
+            {
+                var stage = _stageRepository.GetById(apply.IdStage);
+                var stageViewModel = Mapper.Map<ViewModels.Student.AppliedStages>(stage);
+                return View(stageViewModel);
+            }
+            return HttpNotFound();
+        }
+
+        [Authorize(Roles = RoleName.Student)]
+        [HttpPost]
+        public virtual ActionResult ReplyStage(int idApply, string command)
+        {
+            var apply = _applyRepository.GetById(idApply);
+
+            if (apply != null)
+            {
+                if (command.Equals("Accepter"))
+                {
+                    apply.StudentReply = 1;
+                }
+                else
+                {
+                    apply.StudentReply = 2;
+                }
+                _applyRepository.Update(apply);
+
+                return RedirectToAction(MVC.Student.ApplyList());
+            }
+
+            return HttpNotFound();
+        }
     }
 }
+

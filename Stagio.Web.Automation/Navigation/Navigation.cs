@@ -22,7 +22,8 @@ namespace Stagio.Web.Automation
             {
                 public static void Select()
                 {
-                    MenuSelector.Select("index-Student", "edit-student");
+                    MenuSelector.Select("index-Student", "details-user-page");
+                    MenuSelector.SelectTopLevel("edit-Student");
                 }
             }
 
@@ -38,7 +39,7 @@ namespace Stagio.Web.Automation
             {
                 public static void Select()
                 {
-                    MenuSelector.SelectTopLevel("edit-student");
+                    MenuSelector.Select("details-user-page", "edit-Student") ;
                 }
             }
             public class SeeStages
@@ -52,7 +53,32 @@ namespace Stagio.Web.Automation
             {
                 public static void Select()
                 {
-                    MenuSelector.Select("index-Student", "add-entrevue");
+                    MenuSelector.Select("student-menu", "add-entrevue-menu-item");
+                }
+            }
+            public class ListApply
+            {
+                public static void Select()
+                {
+                    MenuSelector.Select("student-menu", "apply-list-menu-item");
+                }
+            }
+
+            public class ApplyStage3
+            {
+                public static void Select()
+                {
+                    MenuSelector.Select("index-Student", "stageList-student");
+                    MenuSelector.Select("details-stages3", "accept-stage");
+                }
+            }
+
+            public class ReplyApplyStage1
+            {
+                public static void Select()
+                {
+                    MenuSelector.Select("student-menu", "apply-list-menu-item");
+                    MenuSelector.SelectTopLevel("reply-stage1");
                 }
             }
 

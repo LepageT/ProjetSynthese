@@ -281,6 +281,7 @@ namespace Stagio.Web.Controllers
             return View(listStudentsApply);
         }
 
+    
         public virtual ActionResult ListStage()
         {
 
@@ -288,6 +289,7 @@ namespace Stagio.Web.Controllers
             var listStages = Mapper.Map<IEnumerable<ViewModels.ContactEnterprise.ListStage>>(stages).ToList();
             return View(listStages);
         }
+
 
         public virtual ActionResult DetailsStudentApply(int id)
         {
@@ -363,7 +365,7 @@ namespace Stagio.Web.Controllers
                 contactEnterpriseToSendMessage.Poste = contactEnterpriseToSendMessage.Poste.Replace(" ", "%20");
             }
             string messageText = "<a href=";
-            string invitationUrl = "jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?Email=" +
+            string invitationUrl = "http://jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?Email=" +
                                    contactEnterpriseToSendMessage.Email + "&EnterpriseName=" +
                                    enterpriseName + "&FirstName=" +
                                    contactEnterpriseToSendMessage.FirstName + "&LastName=" +

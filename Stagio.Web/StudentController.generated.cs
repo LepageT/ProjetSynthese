@@ -72,6 +72,18 @@ namespace Stagio.Web.Controllers
 		{
 			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Apply);
 		}
+		[NonAction]
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public virtual System.Web.Mvc.ActionResult ApplyRemoveConfirmation()
+		{
+			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ApplyRemoveConfirmation);
+		}
+		[NonAction]
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public virtual System.Web.Mvc.ActionResult ReplyStage()
+		{
+			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ReplyStage);
+		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public StudentController Actions { get { return MVC.Student; } }
@@ -100,6 +112,9 @@ namespace Stagio.Web.Controllers
 			public readonly string StageList = "StageList";
 			public readonly string Apply = "Apply";
 			public readonly string ApplyConfirmation = "ApplyConfirmation";
+			public readonly string ApplyRemoveConfirmation = "ApplyRemoveConfirmation";
+			public readonly string ApplyList = "ApplyList";
+			public readonly string ReplyStage = "ReplyStage";
 		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -117,6 +132,9 @@ namespace Stagio.Web.Controllers
 			public const string StageList = "StageList";
 			public const string Apply = "Apply";
 			public const string ApplyConfirmation = "ApplyConfirmation";
+			public const string ApplyRemoveConfirmation = "ApplyRemoveConfirmation";
+			public const string ApplyList = "ApplyList";
+			public const string ReplyStage = "ReplyStage";
 		}
 
 
@@ -154,6 +172,23 @@ namespace Stagio.Web.Controllers
 			public readonly string id = "id";
 			public readonly string applyStudentViewModel = "applyStudentViewModel";
 		}
+		static readonly ActionParamsClass_ApplyRemoveConfirmation s_params_ApplyRemoveConfirmation = new ActionParamsClass_ApplyRemoveConfirmation();
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public ActionParamsClass_ApplyRemoveConfirmation ApplyRemoveConfirmationParams { get { return s_params_ApplyRemoveConfirmation; } }
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public class ActionParamsClass_ApplyRemoveConfirmation
+		{
+			public readonly string id = "id";
+		}
+		static readonly ActionParamsClass_ReplyStage s_params_ReplyStage = new ActionParamsClass_ReplyStage();
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public ActionParamsClass_ReplyStage ReplyStageParams { get { return s_params_ReplyStage; } }
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public class ActionParamsClass_ReplyStage
+		{
+			public readonly string idApply = "idApply";
+			public readonly string command = "command";
+		}
 		static readonly ViewsClass s_views = new ViewsClass();
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public ViewsClass Views { get { return s_views; } }
@@ -166,20 +201,26 @@ namespace Stagio.Web.Controllers
             {
                 public readonly string Apply = "Apply";
                 public readonly string ApplyConfirmation = "ApplyConfirmation";
+                public readonly string ApplyList = "ApplyList";
+                public readonly string ApplyRemoveConfirmation = "ApplyRemoveConfirmation";
                 public readonly string Create = "Create";
                 public readonly string CreateList = "CreateList";
                 public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
+                public readonly string ReplyStage = "ReplyStage";
                 public readonly string ResultCreateList = "ResultCreateList";
                 public readonly string StageList = "StageList";
                 public readonly string Upload = "Upload";
             }
             public readonly string Apply = "~/Views/Student/Apply.cshtml";
             public readonly string ApplyConfirmation = "~/Views/Student/ApplyConfirmation.cshtml";
+            public readonly string ApplyList = "~/Views/Student/ApplyList.cshtml";
+            public readonly string ApplyRemoveConfirmation = "~/Views/Student/ApplyRemoveConfirmation.cshtml";
             public readonly string Create = "~/Views/Student/Create.cshtml";
             public readonly string CreateList = "~/Views/Student/CreateList.cshtml";
             public readonly string Edit = "~/Views/Student/Edit.cshtml";
             public readonly string Index = "~/Views/Student/Index.cshtml";
+            public readonly string ReplyStage = "~/Views/Student/ReplyStage.cshtml";
             public readonly string ResultCreateList = "~/Views/Student/ResultCreateList.cshtml";
             public readonly string StageList = "~/Views/Student/StageList.cshtml";
             public readonly string Upload = "~/Views/Student/Upload.cshtml";
@@ -359,6 +400,54 @@ namespace Stagio.Web.Controllers
 		{
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ApplyConfirmation);
 			ApplyConfirmationOverride(callInfo);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void ApplyRemoveConfirmationOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult ApplyRemoveConfirmation(int id)
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ApplyRemoveConfirmation);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+			ApplyRemoveConfirmationOverride(callInfo, id);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void ApplyListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult ApplyList()
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ApplyList);
+			ApplyListOverride(callInfo);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void ReplyStageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int idApply);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult ReplyStage(int idApply)
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ReplyStage);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "idApply", idApply);
+			ReplyStageOverride(callInfo, idApply);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void ReplyStageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int idApply, string command);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult ReplyStage(int idApply, string command)
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ReplyStage);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "idApply", idApply);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "command", command);
+			ReplyStageOverride(callInfo, idApply, command);
 			return callInfo;
 		}
 
