@@ -324,7 +324,7 @@ namespace Stagio.Web.Controllers
             //Change status
             if (command.Equals("Accepter"))
             {
-                apply.Status = Status.Accepted;
+                apply.Status = StatusApply.Accepted;
                 _applyRepository.Update(apply);
                 var acceptApply =
                     Mapper.Map<ViewModels.ContactEnterprise.AcceptApply>(_studentRepository.GetById(apply.IdStudent));
@@ -332,7 +332,7 @@ namespace Stagio.Web.Controllers
             }
             else if (command.Equals("Refuser"))
             {
-                apply.Status = Status.Refused; 
+                apply.Status = StatusApply.Refused; 
                 _applyRepository.Update(apply);
                 return RedirectToAction(MVC.ContactEnterprise.RefuseApplyConfirmation());
             }

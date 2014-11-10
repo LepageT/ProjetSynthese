@@ -45,7 +45,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
             studentRepository.GetById(apply.IdStudent).Returns(student);
             applyRepository.GetById(apply.Id).Returns(apply);
             var result = enterpriseController.DetailsStudentApplyPost("Accepter", apply.Id) as ViewResult;
-            applyRepository.Update(Arg.Is<Apply>(x => x.Status == Status.Accepted));
+            applyRepository.Update(Arg.Is<Apply>(x => x.Status == StatusApply.Accepted));
         }
         [TestMethod]
         public void contact_enterprise_DetailsStudentApply_post_should_update_apply_status_on_refuse()
@@ -56,7 +56,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
             var student = _fixture.Create<Student>();
             studentRepository.GetById(apply.IdStudent).Returns(student);
             var result = enterpriseController.DetailsStudentApplyPost("Accepter", apply.Id) as ViewResult;
-            applyRepository.Update(Arg.Is<Apply>(x => x.Status == Status.Refused));
+            applyRepository.Update(Arg.Is<Apply>(x => x.Status == StatusApply.Refused));
 
             
         }

@@ -341,7 +341,7 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult ApplyRemoveConfirmation(int id)
         {
             var stageApply = _applyRepository.GetById(id);
-            stageApply.Status = Status.Removed;
+            stageApply.Status = StatusApply.Removed;
             _applyRepository.Update(stageApply);
             return View();
         }
@@ -392,11 +392,11 @@ namespace Stagio.Web.Controllers
             {
                 if (command.Equals("Accepter"))
                 {
-                    apply.StudentReply = Status.Accepted;
+                    apply.StudentReply = StatusApply.Accepted;
                 }
                 else
                 {
-                    apply.StudentReply = Status.Refused;
+                    apply.StudentReply = StatusApply.Refused;
                 }
                 _applyRepository.Update(apply);
 

@@ -60,8 +60,7 @@ namespace Stagio.Domain.Entities
         [DisplayName("Date limite pour soummettre une candidature")]
         public DateTime LimitDate { get; set; }
 
-        [DefaultValue(0)]
-        [Range(0,3)]
+        [DefaultValue(StageStatus.New)]
         public StageStatus Status { get; set; }
 
         [DefaultValue(0)]
@@ -69,6 +68,7 @@ namespace Stagio.Domain.Entities
 
     }
 
+    [Flags]
     public enum StageStatus
     {
         New = 0,

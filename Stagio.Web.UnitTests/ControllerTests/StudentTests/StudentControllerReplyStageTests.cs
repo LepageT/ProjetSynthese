@@ -42,7 +42,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 
             studentController.ReplyStage(applyStage.IdStage, "Accepter");
 
-            applyRepository.Received().Update(Arg.Is<Apply>(x => x.StudentReply == Status.Accepted));
+            applyRepository.Received().Update(Arg.Is<Apply>(x => x.StudentReply == StatusApply.Accepted));
 
         }
 
