@@ -37,5 +37,29 @@ namespace Stagio.Web.Module
 
             return listStudentToCreate;
         }
+
+        public bool ReadFileCVLetter(IEnumerable<HttpPostedFileBase> files, HttpServerUtilityBase server)
+        {
+            try
+            {
+                foreach (var file in files)
+                {
+                    if (file.ContentLength > 0)
+                    {
+                        var fileName = Path.GetFileName(file.FileName);
+                        var path = Path.Combine(server.MapPath("~/App_Data/UploadedFiles"), fileName);
+                        file.SaveAs(path);
+                    }
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+
+        
+        }
     }
 }
