@@ -7,6 +7,7 @@ using AutoMapper;
 using Microsoft.AspNet.Identity;
 using Stagio.DataLayer;
 using Stagio.Domain.Entities;
+using Stagio.Web.Module.Strings.Controller;
 using Stagio.Web.Services;
 using Stagio.Web.ViewModels.Account;
 
@@ -50,7 +51,7 @@ namespace Stagio.Web.Controllers
 
             if (!user.Any())
             {
-                ModelState.AddModelError("loginError", "Mot de passe ou nom d'utilisateur non existant");
+                ModelState.AddModelError("loginError", AccountResources.ErrorLogin);
                 return View("");
             }
 
