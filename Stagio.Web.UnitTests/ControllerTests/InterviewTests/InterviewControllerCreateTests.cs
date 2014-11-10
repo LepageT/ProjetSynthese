@@ -41,7 +41,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.InterviewTests
         public void interview_create_post_should_return_confirmation_on_success()
         {
             var interview = _fixture.Create<ViewModels.Interviews.Create>();
-            interview.Date = DateTime.Now;
+            interview.Date = DateTime.Now.ToLongDateString();
             interview.StageId = 1;
 
             //Act
