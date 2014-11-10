@@ -28,7 +28,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
             const string PASSWORD = "Bobino1234";
             CreateCoordinatorPage.FillFieldsAndSend(FIRST_NAME, LAST_NAME, EMAIL, PASSWORD);
 
-            Assert.IsTrue(HomePage.IsDisplayed);
+            Assert.IsTrue(CreateCoordinatorPage.ConfirmationPageIsDisplayed);
 
         }
 

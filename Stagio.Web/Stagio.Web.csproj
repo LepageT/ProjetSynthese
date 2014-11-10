@@ -440,6 +440,8 @@
     <Content Include="Views\Student\ApplyRemoveConfirmation.cshtml" />
     <Content Include="Views\Student\ApplyList.cshtml" />
     <Content Include="Views\Student\ReplyStage.cshtml" />
+    <Content Include="Views\Student\CreateConfirmation.cshtml" />
+    <Content Include="Views\Coordinator\CreateConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt.hooks.t4" />

@@ -249,7 +249,7 @@ namespace Stagio.Web.Controllers
 
                     _mailler.SendEmail(createdCoordinator.Email, EmailAccountCreation.Subject, EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
 
-                    return RedirectToAction(MVC.Home.Index());
+                    return RedirectToAction(MVC.Coordinator.CreateConfirmation());
                 }
             }
 
@@ -307,6 +307,11 @@ namespace Stagio.Web.Controllers
         }
 
         public virtual ActionResult InvitationSucceed()
+        {
+            return View();
+        }
+
+        public virtual ActionResult CreateConfirmation()
         {
             return View();
         }

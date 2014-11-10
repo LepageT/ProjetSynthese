@@ -115,6 +115,7 @@ namespace Stagio.Web.Controllers
 			public readonly string ApplyRemoveConfirmation = "ApplyRemoveConfirmation";
 			public readonly string ApplyList = "ApplyList";
 			public readonly string ReplyStage = "ReplyStage";
+			public readonly string CreateConfirmation = "CreateConfirmation";
 		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -135,6 +136,7 @@ namespace Stagio.Web.Controllers
 			public const string ApplyRemoveConfirmation = "ApplyRemoveConfirmation";
 			public const string ApplyList = "ApplyList";
 			public const string ReplyStage = "ReplyStage";
+			public const string CreateConfirmation = "CreateConfirmation";
 		}
 
 
@@ -204,6 +206,7 @@ namespace Stagio.Web.Controllers
                 public readonly string ApplyList = "ApplyList";
                 public readonly string ApplyRemoveConfirmation = "ApplyRemoveConfirmation";
                 public readonly string Create = "Create";
+                public readonly string CreateConfirmation = "CreateConfirmation";
                 public readonly string CreateList = "CreateList";
                 public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
@@ -217,6 +220,7 @@ namespace Stagio.Web.Controllers
             public readonly string ApplyList = "~/Views/Student/ApplyList.cshtml";
             public readonly string ApplyRemoveConfirmation = "~/Views/Student/ApplyRemoveConfirmation.cshtml";
             public readonly string Create = "~/Views/Student/Create.cshtml";
+            public readonly string CreateConfirmation = "~/Views/Student/CreateConfirmation.cshtml";
             public readonly string CreateList = "~/Views/Student/CreateList.cshtml";
             public readonly string Edit = "~/Views/Student/Edit.cshtml";
             public readonly string Index = "~/Views/Student/Index.cshtml";
@@ -448,6 +452,17 @@ namespace Stagio.Web.Controllers
 			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "idApply", idApply);
 			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "command", command);
 			ReplyStageOverride(callInfo, idApply, command);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void CreateConfirmationOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult CreateConfirmation()
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateConfirmation);
+			CreateConfirmationOverride(callInfo);
 			return callInfo;
 		}
 
