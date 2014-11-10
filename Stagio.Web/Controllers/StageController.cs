@@ -11,44 +11,44 @@ using Stagio.Web.ViewModels.Stage;
 
 namespace Stagio.Web.Controllers
 {
-	public partial class StageController : Controller
-	{
-		private readonly IEntityRepository<Stage> _stageRepository;
+    public partial class StageController : Controller
+    {
+        private readonly IEntityRepository<Stage> _stageRepository;
 
-		public StageController(IEntityRepository<Stage> stageRepository)
-		{
-			_stageRepository = stageRepository;
-		}
+        public StageController(IEntityRepository<Stage> stageRepository)
+        {
+            _stageRepository = stageRepository;
+        }
 
-		[Authorize(Roles = RoleName.Coordinator)]
-		public virtual ActionResult ListNewStages()
-		{
-			var stages = _stageRepository.GetAll();
-		    var listAllStages = new ListAllStages();
-			var stagesNotStatus = stages.Where(stage => stage.Status == 0).ToList();
+        [Authorize(Roles = RoleName.Coordinator)]
+        public virtual ActionResult ListNewStages()
+        {
+            var stages = _stageRepository.GetAll();
+            var listAllStages = new ListAllStages();
+            var stagesNotStatus = stages.Where(stage => stage.Status == 0).ToList();
             var stagesStatus = stages.Where(stage => stage.Status == StageStatus.Accepted).ToList();
             var stagesRefusedByCoordinator = stages.Where(stage => stage.Status == StageStatus.Refused).ToList();
 
-			listAllStages.ListNewStages = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesNotStatus).ToList();
+            listAllStages.ListNewStages = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesNotStatus).ToList();
             listAllStages.ListStagesAccepted = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesStatus).ToList();
             listAllStages.ListStagesRefused = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesRefusedByCoordinator).ToList();
 
 
-			return View(listAllStages);
-		}
+            return View(listAllStages);
+        }
 
-		public virtual ActionResult ViewStageInfo(int id)
-		{
-			var stage = _stageRepository.GetById(id);
+        public virtual ActionResult ViewStageInfo(int id)
+        {
+            var stage = _stageRepository.GetById(id);
 
-			if (stage != null)
-			{
-				var stageInfoViewModel = Mapper.Map<ViewModels.Stage.ViewInfo>(stage);
+            if (stage != null)
+            {
+                var stageInfoViewModel = Mapper.Map<ViewModels.Stage.ViewInfo>(stage);
 
-				return View(stageInfoViewModel);
-			}
-			return HttpNotFound();
-		}
+                return View(stageInfoViewModel);
+            }
+            return HttpNotFound();
+        }
 
         public virtual ActionResult Details(int id)
         {
@@ -94,5 +94,5 @@ namespace Stagio.Web.Controllers
             _stageRepository.Update(stage);
             return RedirectToAction(MVC.Stage.ListNewStages());
         }
-	}
+    }
 }
