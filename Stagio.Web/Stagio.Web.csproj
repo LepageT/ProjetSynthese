@@ -424,7 +424,6 @@
     <Content Include="Views\ContactEnterprise\Index.cshtml" />
     <Content Include="Views\ContactEnterprise\ListStage.cshtml" />
     <Content Include="Views\ContactEnterprise\ListStudentApply.cshtml" />
-    <Content Include="Views\Apply\Index.cshtml" />
     <Content Include="Views\ContactEnterprise\DetailsStudentApply.cshtml" />
     <Content Include="Views\Student\Apply.cshtml" />
     <Content Include="Views\Web.config" />
@@ -442,6 +441,8 @@
     <Content Include="Views\Student\ReplyStage.cshtml" />
     <Content Include="Views\Student\CreateConfirmation.cshtml" />
     <Content Include="Views\Coordinator\CreateConfirmation.cshtml" />
+    <Content Include="Views\Student\UploadCVLetter.cshtml" />
+    <Content Include="Views\Student\ConfirmationUploadCVLetter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt.hooks.t4" />
