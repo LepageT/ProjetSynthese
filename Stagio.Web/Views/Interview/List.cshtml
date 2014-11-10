@@ -6,40 +6,41 @@
 <head>
     <title>List</title>
 </head>
-<body>
-    <div class="text-right" id="interview-count">@Model.Count() interview(s)</div>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StageId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Present)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+    <body>
+        <h2 id="list-page">Liste des entrevues</h2>
+        <div class="text-right" id="interview-count">@Model.Count() entrevue(s)</div>
+        <table class="table">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StageTitleAndCompagny)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Present)
-                </td>
-                <td>
-                    @Html.ActionLink("Modifier", MVC.Interview.Edit(item.Id), new { id = "edit-interview" + item.Id })
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StageId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Present)
+                </th>
+                <th></th>
             </tr>
-        }
 
-    </table>
-</body>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StageTitleAndCompagny)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Present)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Modifier", MVC.Interview.Edit(item.Id), new { id = "list-interview" + item.Id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </body>
 </html>

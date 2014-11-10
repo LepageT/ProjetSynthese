@@ -19,3 +19,4 @@
     @Html.ActionLink("Inscrire une date d'entrevue", MVC.Interview.Create(), new { id = "add-entrevue" })
 </div>
 <div>@Html.ActionLink("Afficher les informations du profil", MVC.Account.Details(Int32.Parse(@User.Identity.GetUserId())))</div>
+<div>@Html.ActionLink("Afficher la liste des entrevues", MVC.Interview.List(), new {id = "list-interview"})</div>

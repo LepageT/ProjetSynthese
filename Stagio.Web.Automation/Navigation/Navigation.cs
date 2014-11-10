@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI.WebControls;
 
 namespace Stagio.Web.Automation
 {
@@ -22,6 +23,14 @@ namespace Stagio.Web.Automation
                 public static void Select()
                 {
                     MenuSelector.Select("index-Student", "edit-student");
+                }
+            }
+
+            public class ListInterview
+            {
+                public static void Select()
+                {
+                    MenuSelector.Select("index-Student", "list-interview");
                 }
             }
 
@@ -46,7 +55,18 @@ namespace Stagio.Web.Automation
                     MenuSelector.Select("index-Student", "add-entrevue");
                 }
             }
-            
+
+            public class EditInterview
+            {
+                public static void Select()
+                {
+                    MenuSelector.Select("list-interview", "list-interview1");
+                }
+            }
+
+            public class EditInterviewInIndex
+            {
+            }
         }
 
         public class ContactEnterprise
