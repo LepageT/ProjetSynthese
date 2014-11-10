@@ -1,4 +1,4 @@
-﻿
+﻿@using Stagio.Web.Module.Strings.Shared;
 @{
     ViewBag.Title = "RefuseApplyConfirmation";
 }
@@ -7,6 +7,6 @@
 <p>Vous avez refuser cette candidature.</p>
 
 <div>
-    @Html.ActionLink("Retour à l'accueil", MVC.Home.Index())
+    @Html.ActionLink(Navigation.ReturnHome, MVC.Home.Index())
 </div>
 

@@ -1,4 +1,5 @@
-﻿@model Stagio.Web.ViewModels.ContactEnterprise.AcceptApply
+﻿@using Stagio.Web.Module.Strings.Shared;
+@model Stagio.Web.ViewModels.ContactEnterprise.AcceptApply
 @{
     ViewBag.Title = "AcceptApplyConfirmation";
 }
@@ -58,5 +59,5 @@
 </div>
 
 <div>
-    @Html.ActionLink("Retour à l'accueil", MVC.Home.Index())
+    @Html.ActionLink(Navigation.ReturnHome, MVC.Home.Index())
 </div>

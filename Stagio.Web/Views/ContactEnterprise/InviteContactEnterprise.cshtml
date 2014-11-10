@@ -1,4 +1,5 @@
-﻿@using System.Web.Mvc.Html
+﻿@using System.Web.Mvc.
+@using Stagio.Web.Module.Strings.Shared;
 @model Stagio.Web.ViewModels.ContactEnterprise.Reactive
 @{
     ViewBag.Title = "InviteContactEnterprise";
@@ -76,5 +77,5 @@
         }
 
         <div>
-            @Html.ActionLink("Retour à l'accueil", MVC.Home.Index())
+            @Html.ActionLink(Navigation.ReturnHome, MVC.Home.Index())
         </div>
