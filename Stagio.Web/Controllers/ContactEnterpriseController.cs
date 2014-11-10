@@ -9,6 +9,7 @@ using AutoMapper;
 using Stagio.DataLayer;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
+using Stagio.Web.Module.Strings.Controller;
 using Stagio.Web.Services;
 using Stagio.Web.Module.Strings.Email;
 
@@ -71,7 +72,7 @@ namespace Stagio.Web.Controllers
         {
             if (_accountService.UserEmailExist(createViewModel.Email))
             {
-                ModelState.AddModelError("Email", "Ce email est déjà utilisé pour un compte entreprise.");
+                ModelState.AddModelError("Email", ContactEnterpriseResources.EmailAlreadyUsed);
             }
             if (ModelState.IsValid)
             {
@@ -228,7 +229,7 @@ namespace Stagio.Web.Controllers
                 if (!_mailler.SendEmail(contactEnterpriseToSendMessage.Email, EmailEnterpriseResources.InviteSubject,
                         messageText))
                 {
-                    ModelState.AddModelError("Email", "Error");
+                    ModelState.AddModelError("Email", EmailResources.CantSendEmail);
                     return View(InviteContactEnterprise());
                 }
                 return RedirectToAction(MVC.Coordinator.InviteContactEnterpriseConfirmation());
@@ -323,7 +324,7 @@ namespace Stagio.Web.Controllers
             //Change status
             if (command.Equals("Accepter"))
             {
-                apply.Status = 1; //1 = Accepter;
+                apply.Status = StatusApply.Accepted;
                 _applyRepository.Update(apply);
                 var acceptApply =
                     Mapper.Map<ViewModels.ContactEnterprise.AcceptApply>(_studentRepository.GetById(apply.IdStudent));
@@ -331,7 +332,7 @@ namespace Stagio.Web.Controllers
             }
             else if (command.Equals("Refuser"))
             {
-                apply.Status = 2; //2 = Refuser;
+                apply.Status = StatusApply.Refused; 
                 _applyRepository.Update(apply);
                 return RedirectToAction(MVC.ContactEnterprise.RefuseApplyConfirmation());
             }

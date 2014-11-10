@@ -15,5 +15,7 @@ namespace Stagio.Domain.Entities
 
         [DefaultValue(false)]
         public bool Present { get; set; }
+
+        public int StudentId { get; set; }
     }
 }

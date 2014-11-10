@@ -328,7 +328,7 @@ namespace Stagio.TestUtilities.Database
                     SubmitToTitle = "Coordinatrice aux développements APTIC",
                     SubmitToEmail = "Denyse.Gilbert",
                     LimitDate = new DateTime(2008, 12, 10),
-                    Status = 1
+                    Status = StageStatus.Accepted
 
 
                 };
@@ -382,7 +382,7 @@ namespace Stagio.TestUtilities.Database
                 {
                     IdStage = 1,
                     IdStudent = 1,
-                    Status = 1,
+                    Status = StatusApply.Accepted,
                     Cv = "Le cv de l'étudiant",
                     Letter = "La lettre de présentation"
                 };

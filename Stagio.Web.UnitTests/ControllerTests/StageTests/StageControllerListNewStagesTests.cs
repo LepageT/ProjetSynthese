@@ -44,8 +44,8 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
         public void stage_listNewStages_should__render_ListNewStages_whenStatus()
         {
             var stages = _fixture.CreateMany<Stage>(2).ToList();
-            stages[0].Status = 1;
-            stages[1].Status = 0;
+            stages[0].Status = StageStatus.Accepted;
+            stages[1].Status = StageStatus.New;
 
             stageRepository.GetAll().Returns(stages.AsQueryable());
 
@@ -61,8 +61,8 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
         public void stage_listNewStages_should_render_ListNewStages_whenRefusedByCoordinator()
         {
             var stages = _fixture.CreateMany<Stage>(2).ToList();
-            stages[0].Status = 0;
-            stages[1].Status = 2;
+            stages[0].Status = StageStatus.New;
+            stages[1].Status = StageStatus.Refused;
 
             stageRepository.GetAll().Returns(stages.AsQueryable());
 
