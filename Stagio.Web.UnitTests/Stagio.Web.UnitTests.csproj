@@ -112,6 +112,8 @@
     <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerBaseClassTests.cs" />
     <Compile Include="ControllerTests\InterviewTests\InterviewControllerBaseClassTests.cs" />
     <Compile Include="ControllerTests\InterviewTests\InterviewControllerCreateTests.cs" />
+    <Compile Include="ControllerTests\InterviewTests\InterviewControllerEditTests.cs" />
+    <Compile Include="ControllerTests\InterviewTests\InterviewControllerListTests.cs" />
     <Compile Include="ControllerTests\StageTests\StageControllerListNewStagesTests.cs" />
     <Compile Include="ControllerTests\StageTests\StageControllerBaseClassTests.cs" />
     <Compile Include="ControllerTests\StudentTests\StudentControllerApplyTests.cs" />

@@ -45,7 +45,7 @@ namespace Stagio.Web.Controllers
             interview.Apply = from apply in applies
                 select new SelectListItem
                 {
-                    Text = _stageRepository.GetById(apply.IdStage).StageTitle.ToString(),
+                    Text = _stageRepository.GetById(apply.IdStage).StageTitle.ToString() + " - " + _stageRepository.GetById(apply.IdStage).CompanyName.ToString(),
                     Value = ((int)apply.IdStage).ToString()
                 };
             
@@ -59,6 +59,7 @@ namespace Stagio.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                createdInterview.StudentId = _httpContextService.GetUserId();
                 var interview = Mapper.Map<Interview>(createdInterview);
 
                 _interviewRepository.Add(interview);
@@ -73,5 +74,71 @@ namespace Stagio.Web.Controllers
         {
             return View();
         }
+
+        [Authorize(Roles = RoleName.Student)]
+        public virtual ActionResult List()
+        {
+            var userId = _httpContextService.GetUserId();
+            var interviews = _interviewRepository.GetAll().Where(x => x.StudentId == userId).ToList();
+
+            var interviewsList = Mapper.Map<IEnumerable<ViewModels.Interviews.List>>(interviews).ToList();
+
+            foreach (var interview in interviewsList)
+            {
+                var stages = _stageRepository.GetAll();
+                foreach (var stage in stages)
+                {
+                    if (stage.Id == interview.StageId)
+                    {
+                        interview.StageTitleAndCompagny = stage.StageTitle.ToString() + " - " +
+                                             stage.CompanyName.ToString();
+                    }
+                }
+                
+            }
+
+            return View(interviewsList);
+        }
+
+
+        [Authorize(Roles = RoleName.Student)]
+
+        public virtual ActionResult Edit(int id)
+        {
+            var interview = _interviewRepository.GetById(id);
+
+            if (interview != null)
+            {
+                var interviewEditPageViewModel = Mapper.Map<ViewModels.Interviews.Edit>(interview);
+                var stages = _stageRepository.GetAll();
+                foreach (var stage in stages)
+                {
+                    if (stage.Id == interview.StageId)
+                    {
+                        interviewEditPageViewModel.StageTitleAndCompagny = stage.StageTitle.ToString() + " - " +
+                                             stage.CompanyName.ToString();
+                    }
+                }
+                return View(interviewEditPageViewModel);
+            }
+            return HttpNotFound();
+        }
+
+        [HttpPost]
+        public virtual ActionResult Edit(ViewModels.Interviews.Edit editInterviewViewModel)
+        {
+            var interview = _interviewRepository.GetById(editInterviewViewModel.Id);
+            if (interview == null)
+            {
+                return HttpNotFound();
+            }
+
+            Mapper.Map(editInterviewViewModel, interview);
+
+            _interviewRepository.Update(interview);
+
+            return RedirectToAction(MVC.Interview.List());
+        }
+
     }
 }

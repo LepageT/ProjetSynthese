@@ -291,6 +291,8 @@
     <Compile Include="ViewModels\ContactEnterprise\Reactive.cs" />
     <Compile Include="ViewModels\Account\Login.cs" />
     <Compile Include="ViewModels\Interviews\Create.cs" />
+    <Compile Include="ViewModels\Interviews\Edit.cs" />
+    <Compile Include="ViewModels\Interviews\List.cs" />
     <Compile Include="ViewModels\Stage\Create.cs" />
     <Compile Include="ViewModels\Stage\Details.cs" />
     <Compile Include="ViewModels\Stage\ListAllStages.cs" />
@@ -432,6 +434,8 @@
     <Content Include="Views\Interview\Create.cshtml" />
     <Content Include="Views\Interview\InterviewConfirmation.cshtml" />
     <Content Include="Views\Account\Details.cshtml" />
+    <Content Include="Views\Interview\List.cshtml" />
+    <Content Include="Views\Interview\Edit.cshtml" />
     <Content Include="Views\Shared\_MenuPartial.cshtml" />
     <Content Include="Views\Student\ApplyRemoveConfirmation.cshtml" />
     <Content Include="Views\Student\ApplyList.cshtml" />

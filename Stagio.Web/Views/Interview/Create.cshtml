@@ -4,12 +4,10 @@
     ViewBag.Title = "Create";
 }
 
-
-
-@using (Html.BeginForm())
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
         <h4 id="interview-add">Ajouter une entrevue</h4>
         <hr />
@@ -22,7 +20,7 @@
                 @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        
         <div class="form-group">
             @Html.LabelFor(model => model.StageId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
