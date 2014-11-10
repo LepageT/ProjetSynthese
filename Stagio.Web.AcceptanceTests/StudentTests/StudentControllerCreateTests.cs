@@ -29,7 +29,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             CreateStudentPage.GoTo();
             CreateStudentPage.CreateStudent(student);
 
-            Assert.IsTrue(HomePage.IsDisplayed);
+            Assert.IsTrue(CreateStudentPage.ConfirmationPageIsDisplayed);
             
         }
     }

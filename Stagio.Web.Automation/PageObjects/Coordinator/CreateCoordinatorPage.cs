@@ -36,5 +36,10 @@ namespace Stagio.Web.Automation.PageObjects.Coordinator
         {
             get { return Driver.Instance.FindElement(By.Id("coordinator-home")) != null; }
         }
+
+        public static bool ConfirmationPageIsDisplayed
+        {
+            get { return Driver.Instance.FindElement(By.Id("confirmationCreateCoordinator-page")) != null; }
+        }
     }
 }

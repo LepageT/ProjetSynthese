@@ -212,7 +212,7 @@ namespace Stagio.Web.Controllers
 
             _mailler.SendEmail(student.Email, EmailAccountCreation.Subject, EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
 
-            return RedirectToAction(MVC.Home.Index());
+            return RedirectToAction(MVC.Student.CreateConfirmation());
         }
        
         [Authorize(Roles = RoleName.Student)] 
@@ -404,6 +404,11 @@ namespace Stagio.Web.Controllers
             }
 
             return HttpNotFound();
+        }
+
+        public virtual ActionResult CreateConfirmation()
+        {
+            return View();
         }
     }
 }
