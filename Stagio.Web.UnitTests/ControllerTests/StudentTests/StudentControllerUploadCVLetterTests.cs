@@ -38,7 +38,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
             result.ViewName.ShouldBeEquivalentTo("");
         }
 
-        [TestMethod]
+        /*[TestMethod]
         public void upload_post_should_return_default_view_when_one_file_is_null()
         {
             var listFiles = new List<HttpPostedFileBase>();
@@ -52,6 +52,6 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
             var result = studentController.UploadCVLetter(listFiles) as ViewResult;
 
             result.ViewName.ShouldBeEquivalentTo("");
-        }
+        }*/
     }
 }

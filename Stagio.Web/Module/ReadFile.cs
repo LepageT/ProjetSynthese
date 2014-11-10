@@ -40,8 +40,7 @@ namespace Stagio.Web.Module
 
         public bool ReadFileCVLetter(IEnumerable<HttpPostedFileBase> files, HttpServerUtilityBase server)
         {
-            try
-            {
+
                 foreach (var file in files)
                 {
                     if (file.ContentLength > 0)
@@ -52,13 +51,8 @@ namespace Stagio.Web.Module
                     }
                 }
                 return true;
-            }
-            catch (Exception)
-            {
-
-                return false;
-            }
-
+            
+            
         
         }
     }
