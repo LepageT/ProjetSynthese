@@ -241,7 +241,7 @@ namespace Stagio.TestUtilities.Database
                     Status = 0,
                     NbrStagiaire = 3,
                     StageTitle = "Apprentis",
-                    CompanyName = "Bonbon inc",
+                    CompanyName = "MI6",
                     Adresse = "1234 rue des bonbons, Québec",
                     ResponsableToName = "Robert",
                     ResponsableToEmail = "robert@bonbon.com",
@@ -328,7 +328,7 @@ namespace Stagio.TestUtilities.Database
                     SubmitToTitle = "Coordinatrice aux développements APTIC",
                     SubmitToEmail = "Denyse.Gilbert",
                     LimitDate = new DateTime(2008, 12, 10),
-                    Status = 1
+                    Status = StageStatus.Accepted
 
 
                 };
@@ -382,7 +382,7 @@ namespace Stagio.TestUtilities.Database
                 {
                     IdStage = 1,
                     IdStudent = 1,
-                    Status = 1,
+                    Status = StatusApply.Accepted,
                     Cv = "Le cv de l'étudiant",
                     Letter = "La lettre de présentation"
                 };
@@ -400,7 +400,7 @@ namespace Stagio.TestUtilities.Database
             {
                 var apply = new Apply()
                 {
-                    IdStage = 4,
+                    IdStage = 1,
                     IdStudent = 1,
                     Cv = "Le cv de l'étudiant",
                     Letter = "La lettre de présentation."

@@ -9,6 +9,7 @@ using AutoMapper;
 using Stagio.DataLayer;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
+using Stagio.Web.Module.Strings.Controller;
 using Stagio.Web.Services;
 using Stagio.Web.Module.Strings.Email;
 
@@ -22,8 +23,9 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<Apply> _applyRepository;
         private readonly IMailler _mailler;
         private readonly IEntityRepository<Student> _studentRepository;
+        private readonly IHttpContextService _httpContext;
 
-        public ContactEnterpriseController(IEntityRepository<ContactEnterprise> enterpriseRepository, IEntityRepository<Stage> stageRepository, IAccountService accountService, IMailler mailler, IEntityRepository<Apply> applyRepository, IEntityRepository<Student> studentRepository)
+        public ContactEnterpriseController(IEntityRepository<ContactEnterprise> enterpriseRepository, IEntityRepository<Stage> stageRepository, IAccountService accountService, IMailler mailler, IEntityRepository<Apply> applyRepository, IEntityRepository<Student> studentRepository, IHttpContextService httpContext)
         {
             _contactEnterpriseRepository = enterpriseRepository;
             _accountService = accountService;
@@ -32,6 +34,7 @@ namespace Stagio.Web.Controllers
             _applyRepository = applyRepository;
             _studentRepository = studentRepository;
             _mailler = mailler;
+            _httpContext = httpContext;
         }
 
         // GET: Enterprise
@@ -71,7 +74,7 @@ namespace Stagio.Web.Controllers
         {
             if (_accountService.UserEmailExist(createViewModel.Email))
             {
-                ModelState.AddModelError("Email", "Ce email est déjà utilisé pour un compte entreprise.");
+                ModelState.AddModelError("Email", ContactEnterpriseResources.EmailAlreadyUsed);
             }
             if (ModelState.IsValid)
             {
@@ -228,7 +231,7 @@ namespace Stagio.Web.Controllers
                 if (!_mailler.SendEmail(contactEnterpriseToSendMessage.Email, EmailEnterpriseResources.InviteSubject,
                         messageText))
                 {
-                    ModelState.AddModelError("Email", "Error");
+                    ModelState.AddModelError("Email", EmailResources.CantSendEmail);
                     return View(InviteContactEnterprise());
                 }
                 return RedirectToAction(MVC.Coordinator.InviteContactEnterpriseConfirmation());
@@ -284,8 +287,14 @@ namespace Stagio.Web.Controllers
     
         public virtual ActionResult ListStage()
         {
-
+            var user = _contactEnterpriseRepository.GetById(_httpContext.GetUserId());
             var stages = _stageRepository.GetAll();
+           
+            if (stages.Any())
+            {
+                stages = stages.Where(x => x.CompanyName == user.EnterpriseName);
+            }
+
             var listStages = Mapper.Map<IEnumerable<ViewModels.ContactEnterprise.ListStage>>(stages).ToList();
             return View(listStages);
         }
@@ -323,7 +332,7 @@ namespace Stagio.Web.Controllers
             //Change status
             if (command.Equals("Accepter"))
             {
-                apply.Status = 1; //1 = Accepter;
+                apply.Status = StatusApply.Accepted;
                 _applyRepository.Update(apply);
                 var acceptApply =
                     Mapper.Map<ViewModels.ContactEnterprise.AcceptApply>(_studentRepository.GetById(apply.IdStudent));
@@ -331,7 +340,7 @@ namespace Stagio.Web.Controllers
             }
             else if (command.Equals("Refuser"))
             {
-                apply.Status = 2; //2 = Refuser;
+                apply.Status = StatusApply.Refused; 
                 _applyRepository.Update(apply);
                 return RedirectToAction(MVC.ContactEnterprise.RefuseApplyConfirmation());
             }

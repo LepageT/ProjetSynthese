@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Stagio.Web.Module.Strings.Email {
+namespace Stagio.Web.Module.Strings.Controller {
     using System;
     
     
@@ -22,24 +22,24 @@ namespace Stagio.Web.Module.Strings.Email {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class EmailCoordinatorResources {
+    internal class StudentResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal EmailCoordinatorResources() {
+        internal StudentResources() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Stagio.Web.Module.Strings.Email.EmailCoordinatorResources", typeof(EmailCoordinatorResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Stagio.Web.Module.Strings.Controller.StudentResources", typeof(StudentResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace Stagio.Web.Module.Strings.Email {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,47 +61,47 @@ namespace Stagio.Web.Module.Strings.Email {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Un coordonnateur de stage vous invite à vous inscrire au site Stagio:.
+        ///   Looks up a localized string similar to Votre matricule est déja utilisé..
         /// </summary>
-        public static string CoordinatorInviteEnterpriseMessage {
+        internal static string MatriculeAlreadyUsed {
             get {
-                return ResourceManager.GetString("CoordinatorInviteEnterpriseMessage", resourceCulture);
+                return ResourceManager.GetString("MatriculeAlreadyUsed", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pour vous connecter, copier-coller ce lien: jenkins.cegep-ste-foy.qc.ca/thomarelau/Coordinator/Create/.
+        ///   Looks up a localized string similar to Votre matricule ne figure pas dans la liste des matricules autorisés..
         /// </summary>
-        public static string CoordinatorInviteLink {
+        internal static string MatriculeNotFound {
             get {
-                return ResourceManager.GetString("CoordinatorInviteLink", resourceCulture);
+                return ResourceManager.GetString("MatriculeNotFound", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;h3&gt;Stagio&lt;/h3&gt;&lt;p&gt; Bonjour, &lt;/p&gt;&lt;p&gt;Vous avez &amp;eacute;t&amp;eacute; inviter à vous cr&amp;eacute;er un compte en tant que coordonnateur.&lt;/p&gt;&lt;p&gt;Pour cr&amp;eacute;er votre compte, veuillez cliquer sur le lien ci-dessous: &lt;/p&gt;.
+        ///   Looks up a localized string similar to Il n&apos;y a pas de fichier à importer.
         /// </summary>
-        public static string CoordinatorInviteMessageBody {
+        internal static string NoFileToUpload {
             get {
-                return ResourceManager.GetString("CoordinatorInviteMessageBody", resourceCulture);
+                return ResourceManager.GetString("NoFileToUpload", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Création d&apos;un compte coordonnateur.
+        ///   Looks up a localized string similar to L&apos;ancien mot de passe n&apos;est pas valide..
         /// </summary>
-        public static string CoordinatorInviteSubject {
+        internal static string OldPasswordInvalid {
             get {
-                return ResourceManager.GetString("CoordinatorInviteSubject", resourceCulture);
+                return ResourceManager.GetString("OldPasswordInvalid", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;/br&gt;&lt;/br&gt; &lt;h3&gt;Message:&lt;/h3&gt;&lt;/br&gt;.
+        ///   Looks up a localized string similar to Ce n&apos;est pas un fichier csv.
         /// </summary>
-        public static string MessageHeader {
+        internal static string WrongFileType {
             get {
-                return ResourceManager.GetString("MessageHeader", resourceCulture);
+                return ResourceManager.GetString("WrongFileType", resourceCulture);
             }
         }
     }

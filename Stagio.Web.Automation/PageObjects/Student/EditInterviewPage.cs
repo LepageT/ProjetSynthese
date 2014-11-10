@@ -27,7 +27,7 @@ namespace Stagio.Web.Automation.PageObjects.Student
         public static void EditAnInterview(DateTime date, bool isPresent)
         {
             Driver.Instance.FindElement(By.Id("datetimepicker")).Clear();
-            Driver.Instance.FindElement(By.Id("datetimepicker")).SendKeys(date.ToLongDateString());
+            Driver.Instance.FindElement(By.Id("datetimepicker")).SendKeys(date.ToString());
             Driver.Instance.FindElement(By.Id("Present")).SendKeys(isPresent.ToString());
          
             Driver.Instance.FindElement(By.Id("edit-button")).Click();
@@ -36,8 +36,9 @@ namespace Stagio.Web.Automation.PageObjects.Student
         public static bool EditVerification(DateTime date)
         {
             GoToByUrl();
+            
             var dateDisplayed = Driver.Instance.FindElement(By.Id("datetimepicker")).GetAttribute("value");
-            if (dateDisplayed == date.ToString())
+            if (DateTime.Parse(dateDisplayed) == date)
             {
                 return true;
             }

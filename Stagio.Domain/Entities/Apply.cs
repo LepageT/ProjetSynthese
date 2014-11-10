@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Stagio.Domain.Entities
 {
@@ -14,9 +15,19 @@ namespace Stagio.Domain.Entities
 
         public int IdStage { get; set; }
 
-        public int Status { get; set; }     //0 = En attente    1 = Acceptée    2 = Refusée     3 = Retirée
+        public StatusApply Status { get; set; }
 
-        public int StudentReply { get; set; }   //o = En attente    1 = Acceptée    2 = Refusée
+        public StatusApply StudentReply { get; set; }
 
     }
+        
+    [Flags]
+    public enum StatusApply
+    {
+        Waitting = 0,
+        Accepted = 1,
+        Refused = 2,
+        Removed = 3
+    }
+
 }

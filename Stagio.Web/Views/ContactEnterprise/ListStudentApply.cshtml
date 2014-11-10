@@ -51,6 +51,12 @@
                         Refusée
                     </td>
                 }
+                else if (item.Status == 3)
+                {
+                    <td>
+                        Retiré
+                    </td>
+                }
                 <td>
                     @Html.ActionLink("Afficher le cv et la lettre de la présentation de l'étudiant", MVC.ContactEnterprise.DetailsStudentApply(item.Id), new { id = "list-student" + item.Id } )
                 </td>

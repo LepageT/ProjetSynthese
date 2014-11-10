@@ -11,7 +11,7 @@ namespace Stagio.Web.ViewModels.Interviews
     {
         [DisplayName("Date de l'entrevue")]
         [Required(ErrorMessage = "Veuillez spécifier une date d'entrevue.")]
-        public DateTime Date { get; set; }
+        public String Date { get; set; }
 
         [DisplayName("Stage")]
         [Required(ErrorMessage = "Veuillez sélectionner le stage auquel vous avez une entrevue.")]

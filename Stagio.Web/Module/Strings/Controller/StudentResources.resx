@@ -117,19 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CoordinatorInviteEnterpriseMessage" xml:space="preserve">
-    <value>Un coordonnateur de stage vous invite à vous inscrire au site Stagio:</value>
+  <data name="MatriculeAlreadyUsed" xml:space="preserve">
+    <value>Votre matricule est déja utilisé.</value>
   </data>
-  <data name="CoordinatorInviteLink" xml:space="preserve">
-    <value>Pour vous connecter, copier-coller ce lien: jenkins.cegep-ste-foy.qc.ca/thomarelau/Coordinator/Create/</value>
+  <data name="MatriculeNotFound" xml:space="preserve">
+    <value>Votre matricule ne figure pas dans la liste des matricules autorisés.</value>
   </data>
-  <data name="CoordinatorInviteMessageBody" xml:space="preserve">
-    <value>&lt;h3&gt;Stagio&lt;/h3&gt;&lt;p&gt; Bonjour, &lt;/p&gt;&lt;p&gt;Vous avez &amp;eacute;t&amp;eacute; inviter à vous cr&amp;eacute;er un compte en tant que coordonnateur.&lt;/p&gt;&lt;p&gt;Pour cr&amp;eacute;er votre compte, veuillez cliquer sur le lien ci-dessous: &lt;/p&gt;</value>
+  <data name="NoFileToUpload" xml:space="preserve">
+    <value>Il n'y a pas de fichier à importer</value>
   </data>
-  <data name="CoordinatorInviteSubject" xml:space="preserve">
-    <value>Création d'un compte coordonnateur</value>
+  <data name="OldPasswordInvalid" xml:space="preserve">
+    <value>L'ancien mot de passe n'est pas valide.</value>
   </data>
-  <data name="MessageHeader" xml:space="preserve">
-    <value>&lt;/br&gt;&lt;/br&gt; &lt;h3&gt;Message:&lt;/h3&gt;&lt;/br&gt;</value>
+  <data name="WrongFileType" xml:space="preserve">
+    <value>Ce n'est pas un fichier csv</value>
   </data>
 </root>

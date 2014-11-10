@@ -218,10 +218,25 @@
     <Compile Include="Mappers\MappingExpressionExtensions.cs" />
     <Compile Include="Mappers\ViewModelToEntityMappingProfile.cs" />
     <Compile Include="Module\ReadFile.cs" />
+    <Compile Include="Module\Strings\Controller\AccountResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccountResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Strings\Controller\ContactEnterpriseResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContactEnterpriseResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Module\Strings\Controller\CoordinatorResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CoordinatorResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Strings\Controller\StudentResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StudentResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Module\Strings\Email\EmailCoordinatorResources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -237,6 +252,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EmailAccountCreation.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Strings\Email\EmailResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmailResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Module\TokenGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -420,6 +440,8 @@
     <Content Include="Views\Student\ApplyRemoveConfirmation.cshtml" />
     <Content Include="Views\Student\ApplyList.cshtml" />
     <Content Include="Views\Student\ReplyStage.cshtml" />
+    <Content Include="Views\Student\CreateConfirmation.cshtml" />
+    <Content Include="Views\Coordinator\CreateConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt.hooks.t4" />
@@ -465,9 +487,21 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Module\Strings\Controller\AccountResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AccountResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Module\Strings\Controller\ContactEnterpriseResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ContactEnterpriseResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Module\Strings\Controller\CoordinatorResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>CoordinatorResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Module\Strings\Controller\StudentResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StudentResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Module\Strings\Email\EmailCoordinatorResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -480,6 +514,10 @@
     <EmbeddedResource Include="Module\Strings\Email\EmailAccountCreation.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>EmailAccountCreation.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Module\Strings\Email\EmailResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>EmailResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -22,24 +22,24 @@ namespace Stagio.Web.Module.Strings.Email {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class EmailCoordinatorResources {
+    internal class EmailResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal EmailCoordinatorResources() {
+        internal EmailResources() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Stagio.Web.Module.Strings.Email.EmailCoordinatorResources", typeof(EmailCoordinatorResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Stagio.Web.Module.Strings.Email.EmailResources", typeof(EmailResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace Stagio.Web.Module.Strings.Email {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,47 +61,11 @@ namespace Stagio.Web.Module.Strings.Email {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Un coordonnateur de stage vous invite à vous inscrire au site Stagio:.
+        ///   Looks up a localized string similar to L&apos;invitation n&apos;a pas pu être envoyée. Veuillez réessayer plus tard..
         /// </summary>
-        public static string CoordinatorInviteEnterpriseMessage {
+        internal static string CantSendEmail {
             get {
-                return ResourceManager.GetString("CoordinatorInviteEnterpriseMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Pour vous connecter, copier-coller ce lien: jenkins.cegep-ste-foy.qc.ca/thomarelau/Coordinator/Create/.
-        /// </summary>
-        public static string CoordinatorInviteLink {
-            get {
-                return ResourceManager.GetString("CoordinatorInviteLink", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;h3&gt;Stagio&lt;/h3&gt;&lt;p&gt; Bonjour, &lt;/p&gt;&lt;p&gt;Vous avez &amp;eacute;t&amp;eacute; inviter à vous cr&amp;eacute;er un compte en tant que coordonnateur.&lt;/p&gt;&lt;p&gt;Pour cr&amp;eacute;er votre compte, veuillez cliquer sur le lien ci-dessous: &lt;/p&gt;.
-        /// </summary>
-        public static string CoordinatorInviteMessageBody {
-            get {
-                return ResourceManager.GetString("CoordinatorInviteMessageBody", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Création d&apos;un compte coordonnateur.
-        /// </summary>
-        public static string CoordinatorInviteSubject {
-            get {
-                return ResourceManager.GetString("CoordinatorInviteSubject", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;/br&gt;&lt;/br&gt; &lt;h3&gt;Message:&lt;/h3&gt;&lt;/br&gt;.
-        /// </summary>
-        public static string MessageHeader {
-            get {
-                return ResourceManager.GetString("MessageHeader", resourceCulture);
+                return ResourceManager.GetString("CantSendEmail", resourceCulture);
             }
         }
     }
