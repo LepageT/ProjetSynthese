@@ -14,9 +14,18 @@ namespace Stagio.Domain.Entities
 
         public int IdStage { get; set; }
 
-        public int Status { get; set; }     //0 = En attente    1 = Acceptée    2 = Refusée     3 = Retirée
+        public Status Status { get; set; }
 
-        public int StudentReply { get; set; }   //o = En attente    1 = Acceptée    2 = Refusée
+        public Status StudentReply { get; set; }
 
     }
+
+    public enum Status
+    {
+        Waitting = 0,
+        Accepted = 1,
+        Refused = 2,
+        Removed = 3
+    }
+
 }

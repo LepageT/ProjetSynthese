@@ -23,7 +23,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
             var apply = _fixture.CreateMany<Apply>(1);
             apply.FirstOrDefault().IdStudent = student.Id;
             apply.FirstOrDefault().IdStage = stages.FirstOrDefault().Id;
-            apply.FirstOrDefault().Status = 1;
+            apply.FirstOrDefault().Status = Status.Accepted;
             stageRepository.GetAll().Returns(stages.AsQueryable());
             applyRepository.GetAll().Returns(apply.AsQueryable());
             httpContextService.GetUserId().Returns(student.Id);

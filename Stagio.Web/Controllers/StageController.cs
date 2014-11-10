@@ -26,8 +26,8 @@ namespace Stagio.Web.Controllers
 			var stages = _stageRepository.GetAll();
 		    var listAllStages = new ListAllStages();
 			var stagesNotStatus = stages.Where(stage => stage.Status == 0).ToList();
-            var stagesStatus = stages.Where(stage => stage.Status == 1).ToList();
-            var stagesRefusedByCoordinator = stages.Where(stage => stage.Status == 2).ToList();
+            var stagesStatus = stages.Where(stage => stage.Status == StageStatus.Accepted).ToList();
+            var stagesRefusedByCoordinator = stages.Where(stage => stage.Status == StageStatus.Refused).ToList();
 
 			listAllStages.ListNewStages = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesNotStatus).ToList();
             listAllStages.ListStagesAccepted = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesStatus).ToList();
@@ -72,24 +72,24 @@ namespace Stagio.Web.Controllers
 
             if (command.Equals("Accepter"))
             {
-                stage.Status = 1; //1 = Accepter;
+                stage.Status = StageStatus.Accepted;
             }
             else if (command.Equals("Refuser"))
             {
-                stage.Status = 2; //2 = Refuser;
+                stage.Status = StageStatus.Refused; 
             }
 
             if (command.Equals("Accepter"))
             {
-                stage.Status = 1; //1 = Accepter;
+                stage.Status = StageStatus.Accepted;
             }
             else if (command.Equals("Refuser"))
             {
-                stage.Status = 2; //2 = Refuser;
+                stage.Status = StageStatus.Refused;
             }
             else if (command.Equals("Retirer"))
             {
-                stage.Status = 2; //2 = Refuser;
+                stage.Status = StageStatus.Refused;
             }
             _stageRepository.Update(stage);
             return RedirectToAction(MVC.Stage.ListNewStages());

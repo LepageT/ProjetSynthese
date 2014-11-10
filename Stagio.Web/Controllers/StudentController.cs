@@ -280,7 +280,7 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult StageList()
         {
             var stages = _stageRepository.GetAll().ToList();
-            var stagesAccepted = stages.Where(x => x.Status == 1);
+            var stagesAccepted = stages.Where(x => x.Status == StageStatus.Accepted);
             var studentStageListViewModels = Mapper.Map<IEnumerable<ViewModels.Student.StageList>>(stagesAccepted);
           
             
@@ -341,7 +341,7 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult ApplyRemoveConfirmation(int id)
         {
             var stageApply = _applyRepository.GetById(id);
-            stageApply.Status = 3;
+            stageApply.Status = Status.Removed;
             _applyRepository.Update(stageApply);
             return View();
         }
@@ -392,11 +392,11 @@ namespace Stagio.Web.Controllers
             {
                 if (command.Equals("Accepter"))
                 {
-                    apply.StudentReply = 1;
+                    apply.StudentReply = Status.Accepted;
                 }
                 else
                 {
-                    apply.StudentReply = 2;
+                    apply.StudentReply = Status.Refused;
                 }
                 _applyRepository.Update(apply);
 
