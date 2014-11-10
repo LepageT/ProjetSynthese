@@ -241,7 +241,7 @@ namespace Stagio.TestUtilities.Database
                     Status = 0,
                     NbrStagiaire = 3,
                     StageTitle = "Apprentis",
-                    CompanyName = "Bonbon inc",
+                    CompanyName = "MI6",
                     Adresse = "1234 rue des bonbons, Québec",
                     ResponsableToName = "Robert",
                     ResponsableToEmail = "robert@bonbon.com",

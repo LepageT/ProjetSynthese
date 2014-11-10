@@ -206,7 +206,7 @@ namespace Stagio.Web.Controllers
  
             student.Active = true;
             student.Password = _accountService.HashPassword(createStudentViewModel.Password);
-
+            student.UserName = createStudentViewModel.Matricule.ToString();
 
             _studentRepository.Update(student);
 

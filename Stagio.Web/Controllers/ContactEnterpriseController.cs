@@ -23,8 +23,9 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<Apply> _applyRepository;
         private readonly IMailler _mailler;
         private readonly IEntityRepository<Student> _studentRepository;
+        private readonly IHttpContextService _httpContext;
 
-        public ContactEnterpriseController(IEntityRepository<ContactEnterprise> enterpriseRepository, IEntityRepository<Stage> stageRepository, IAccountService accountService, IMailler mailler, IEntityRepository<Apply> applyRepository, IEntityRepository<Student> studentRepository)
+        public ContactEnterpriseController(IEntityRepository<ContactEnterprise> enterpriseRepository, IEntityRepository<Stage> stageRepository, IAccountService accountService, IMailler mailler, IEntityRepository<Apply> applyRepository, IEntityRepository<Student> studentRepository, IHttpContextService httpContext)
         {
             _contactEnterpriseRepository = enterpriseRepository;
             _accountService = accountService;
@@ -33,6 +34,7 @@ namespace Stagio.Web.Controllers
             _applyRepository = applyRepository;
             _studentRepository = studentRepository;
             _mailler = mailler;
+            _httpContext = httpContext;
         }
 
         // GET: Enterprise
@@ -285,8 +287,14 @@ namespace Stagio.Web.Controllers
     
         public virtual ActionResult ListStage()
         {
-
+            var user = _contactEnterpriseRepository.GetById(_httpContext.GetUserId());
             var stages = _stageRepository.GetAll();
+           
+            if (stages.Any())
+            {
+                stages = stages.Where(x => x.CompanyName == user.EnterpriseName);
+            }
+
             var listStages = Mapper.Map<IEnumerable<ViewModels.ContactEnterprise.ListStage>>(stages).ToList();
             return View(listStages);
         }

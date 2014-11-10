@@ -13,6 +13,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
     {
         protected ContactEnterpriseController enterpriseController;
         protected IAccountService accountService;
+        protected IHttpContextService httpContext;
         protected IMailler mailler;
         protected IEntityRepository<ContactEnterprise> enterpriseRepository;
         protected IEntityRepository<Stage> stageRepository;
@@ -28,9 +29,10 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
             enterpriseRepository = Substitute.For<IEntityRepository<ContactEnterprise>>();
             stageRepository = Substitute.For<IEntityRepository<Stage>>();
             mailler = Substitute.For<IMailler>();
+            httpContext = Substitute.For<IHttpContextService>();
           
             accountService = Substitute.For<IAccountService>();
-            enterpriseController = new ContactEnterpriseController(enterpriseRepository, stageRepository, accountService, mailler, applyRepository, studentRepository);
+            enterpriseController = new ContactEnterpriseController(enterpriseRepository, stageRepository, accountService, mailler, applyRepository, studentRepository, httpContext);
 
         }
     }
