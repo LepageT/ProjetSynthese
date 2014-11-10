@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CantSendEmail" xml:space="preserve">
+    <value>L'invitation n'a pas pu être envoyée. Veuillez réessayer plus tard.</value>
+  </data>
   <data name="CoordinatorUseSameEmail" xml:space="preserve">
     <value>Un autre coordonnateur utilise la même courriel. Veuillez en utiliser un autre.</value>
   </data>

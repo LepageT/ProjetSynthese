@@ -61,6 +61,15 @@ namespace Stagio.Web.Module.Strings.Controller {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to L&apos;invitation n&apos;a pas pu être envoyée. Veuillez réessayer plus tard..
+        /// </summary>
+        internal static string CantSendEmail {
+            get {
+                return ResourceManager.GetString("CantSendEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Un autre coordonnateur utilise la même courriel. Veuillez en utiliser un autre..
         /// </summary>
         internal static string CoordinatorUseSameEmail {
