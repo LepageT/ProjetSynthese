@@ -90,13 +90,17 @@
     <Compile Include="PageObjects\LoginPage.cs" />
     <Compile Include="PageObjects\Student\ApplyListStudentPage.cs" />
     <Compile Include="PageObjects\Student\ApplyStudentPage.cs" />
+    <Compile Include="PageObjects\Student\ConfirmationUploadCVLetterPage.cs" />
     <Compile Include="PageObjects\Student\CreateInterviewStudentPage.cs" />
     <Compile Include="PageObjects\Student\CreateStudentPage.cs" />
+    <Compile Include="PageObjects\Student\EditInterviewPage.cs" />
+    <Compile Include="PageObjects\Student\ListInterview.cs" />
     <Compile Include="PageObjects\Student\ReplyStageStudentPage.cs" />
     <Compile Include="PageObjects\Student\ResultatCreateListStudentPage.cs" />
     <Compile Include="PageObjects\Student\EditStudentPage.cs" />
     <Compile Include="PageObjects\Student\IndexStudentPage.cs" />
     <Compile Include="PageObjects\Student\StageListStudentPage.cs" />
+    <Compile Include="PageObjects\Student\UploadCvAndLetterPage.cs" />
     <Compile Include="PageObjects\Student\ViewInfoStageStudentPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Selenium\Driver.cs" />

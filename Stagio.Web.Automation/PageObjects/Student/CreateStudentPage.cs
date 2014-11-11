@@ -34,5 +34,10 @@ namespace Stagio.Web.Automation.PageObjects.Student
 
             Driver.Instance.FindElement(By.Id("create-button")).Click();
         }
+
+        public static bool ConfirmationPageIsDisplayed
+        {
+            get { return Driver.Instance.FindElement(By.Id("confirmationCreateStudent-page")) != null; }
+        }
     }
 }

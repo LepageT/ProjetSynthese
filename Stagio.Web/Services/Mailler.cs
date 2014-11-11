@@ -48,7 +48,7 @@ namespace Stagio.Web.Services
 
                 client.Send(mail);
             }
-            catch(Exception e)
+            catch
             {
                 return false;
             }

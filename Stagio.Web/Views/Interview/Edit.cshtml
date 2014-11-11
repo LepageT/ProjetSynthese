@@ -1,0 +1,59 @@
+﻿@model Stagio.Web.ViewModels.Interviews.Edit
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <title>Edit</title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        
+        <div class="form-horizontal">
+            <h4 id="edit-page">Modifier une entrevue</h4>
+            <hr />
+            
+            @Html.HiddenFor(model => model.StageId)
+            @Html.ValidationSummary(true)
+            <div class="form-group">
+                @Html.LabelFor(model => model.Date, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control", @id = "datetimepicker" } })
+                    @Html.ValidationMessageFor(model => model.Date)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.StageTitleAndCompagny, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DisplayFor(model => model.StageTitleAndCompagny)
+                    @Html.ValidationMessageFor(model => model.StageTitleAndCompagny)
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.Present, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Present)
+                    @Html.ValidationMessageFor(model => model.Present)
+                </div>
+            </div>
+    
+            @Html.HiddenFor(model => model.Id)
+    
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input id="edit-button" type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+    
+    <div>
+        @Html.ActionLink("Retour à la liste", MVC.Interview.List())
+    </div>
+</body>
+</html>

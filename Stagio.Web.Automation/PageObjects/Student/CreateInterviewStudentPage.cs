@@ -30,14 +30,15 @@ namespace Stagio.Web.Automation.PageObjects.Student
 
         public static void AddInterview()
         {
-            const string DATE = "2014-12-21";
+            const string DATE = "2014-12-21 10:30 AM";
 
             IWebElement oSelection = Driver.Instance.FindElement(By.Id("StageId"));
             SelectElement dropdown = new SelectElement(oSelection);
             dropdown.SelectByIndex(1);
 
-            Driver.Instance.FindElement(By.Id("Date")).Clear();
-            Driver.Instance.FindElement(By.Id("Date")).SendKeys(DATE);
+            Driver.Instance.FindElement(By.Id("datetimepicker")).Clear();
+            Driver.Instance.FindElement(By.Id("datetimepicker")).SendKeys(DATE);
+            Driver.Instance.FindElement(By.Id("datetimepicker")).Submit();
             Driver.Instance.FindElement(By.Id("create-interview")).Click();
         }
 

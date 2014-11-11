@@ -1,20 +1,23 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stagio</title>
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    
+    @Scripts.Render("~/bundles/moment")
+
+
     @RenderSection("SectionCss", required: false)
 
 
 
 </head>
 <body>
-   
+
     <div class="navbar navbar-inverse navbar-static-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -24,7 +27,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <div>@Html.ActionLink("Home", MVC.Home.Index(), new { @class = "navbar-brand", id = "home-link" })</div>
+                <div>@Html.ActionLink("Accueil", MVC.Home.Index(), new { @class = "navbar-brand", id = "home-link" })</div>
             </div>
             <div class="navbar-collapse collapse">
                 @Html.Partial("_MenuPartial")
@@ -51,6 +54,8 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

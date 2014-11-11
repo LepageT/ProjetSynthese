@@ -133,7 +133,7 @@ namespace Stagio.Web.Controllers
                         !_mailler.SendEmail(contactEnterpriseToSendMessage.Email, EmailEnterpriseResources.InviteSubject,
                             messageText))
                     {
-                        ModelState.AddModelError("Email", "Error");
+                        ModelState.AddModelError("Email", EmailResources.CantSendEmail);
                         return View(InviteContactEnterprise());
                     }
 
@@ -170,7 +170,7 @@ namespace Stagio.Web.Controllers
                 contactEnterpriseToSendMessage.Poste = contactEnterpriseToSendMessage.Poste.Replace(" ", "%20");
             }
 
-            string messageText = "Un coordonnateur de stage vous invite à vous inscrire au site Stagio: ";
+            string messageText = EmailCoordinatorResources.CoordinatorInviteEnterpriseMessage;
             string invitationUrl = "http://thomarelau.local/ContactEnterprise/Reactivate?Email=" +
                                    contactEnterpriseToSendMessage.Email + "&EnterpriseName=" +
                                    enterpriseName + "&FirstName=" +
@@ -249,7 +249,7 @@ namespace Stagio.Web.Controllers
 
                     _mailler.SendEmail(createdCoordinator.Email, EmailAccountCreation.Subject, EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
 
-                    return RedirectToAction(MVC.Home.Index());
+                    return RedirectToAction(MVC.Coordinator.CreateConfirmation());
                 }
             }
 
@@ -291,7 +291,7 @@ namespace Stagio.Web.Controllers
 
             if (!_mailler.SendEmail(createdInvite.Email, EmailCoordinatorResources.CoordinatorInviteSubject, messageText))
             {
-                ModelState.AddModelError("Email", "Error");
+                ModelState.AddModelError("Email", EmailResources.CantSendEmail);
                 return View(createdInvite);
             }
 
@@ -307,6 +307,11 @@ namespace Stagio.Web.Controllers
         }
 
         public virtual ActionResult InvitationSucceed()
+        {
+            return View();
+        }
+
+        public virtual ActionResult CreateConfirmation()
         {
             return View();
         }

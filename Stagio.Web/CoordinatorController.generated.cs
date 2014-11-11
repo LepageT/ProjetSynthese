@@ -103,6 +103,7 @@ namespace Stagio.Web.Controllers
 			public readonly string Create = "Create";
 			public readonly string Invite = "Invite";
 			public readonly string InvitationSucceed = "InvitationSucceed";
+			public readonly string CreateConfirmation = "CreateConfirmation";
 		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -117,6 +118,7 @@ namespace Stagio.Web.Controllers
 			public const string Create = "Create";
 			public const string Invite = "Invite";
 			public const string InvitationSucceed = "InvitationSucceed";
+			public const string CreateConfirmation = "CreateConfirmation";
 		}
 
 
@@ -183,6 +185,7 @@ namespace Stagio.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Create = "Create";
+                public readonly string CreateConfirmation = "CreateConfirmation";
                 public readonly string Index = "Index";
                 public readonly string InvitationSucceed = "InvitationSucceed";
                 public readonly string Invite = "Invite";
@@ -190,6 +193,7 @@ namespace Stagio.Web.Controllers
                 public readonly string InviteContactEnterpriseConfirmation = "InviteContactEnterpriseConfirmation";
             }
             public readonly string Create = "~/Views/Coordinator/Create.cshtml";
+            public readonly string CreateConfirmation = "~/Views/Coordinator/CreateConfirmation.cshtml";
             public readonly string Index = "~/Views/Coordinator/Index.cshtml";
             public readonly string InvitationSucceed = "~/Views/Coordinator/InvitationSucceed.cshtml";
             public readonly string Invite = "~/Views/Coordinator/Invite.cshtml";
@@ -366,6 +370,17 @@ namespace Stagio.Web.Controllers
 		{
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InvitationSucceed);
 			InvitationSucceedOverride(callInfo);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void CreateConfirmationOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult CreateConfirmation()
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateConfirmation);
+			CreateConfirmationOverride(callInfo);
 			return callInfo;
 		}
 

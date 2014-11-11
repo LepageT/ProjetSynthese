@@ -70,7 +70,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
             var routeResult = studentController.Create(viewModel) as RedirectToRouteResult;
             var routeAction = routeResult.RouteValues["Action"];
 
-            routeAction.Should().Be(MVC.Home.Views.ViewNames.Index);
+            routeAction.Should().Be(MVC.Student.Views.ViewNames.CreateConfirmation);
         }
 
         [TestMethod]

@@ -25,16 +25,24 @@ namespace Stagio.Web.Validations
             Object instance = context.ObjectInstance;
             Type type = instance.GetType();
             Object proprtyvalue = type.GetProperty(PropertyName).GetValue(instance, null);
-            if (proprtyvalue == null)
+            if (value == null)
             {
-                return  new ValidationResult("");
-              
+                return ValidationResult.Success;
             }
-            if (proprtyvalue.ToString() == DesiredValue.ToString())
+            else
             {
-                  ValidationResult result = base.IsValid(value, context);
-                return result;
+                if (proprtyvalue == null)
+                {
+                    return new ValidationResult("");
+
+                }
+                if (proprtyvalue.ToString() == DesiredValue.ToString())
+                {
+                    ValidationResult result = base.IsValid(value, context);
+                    return result;
+                }
             }
+         
             return ValidationResult.Success;
         }
         

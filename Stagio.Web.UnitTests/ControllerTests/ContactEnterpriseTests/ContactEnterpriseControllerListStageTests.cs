@@ -20,8 +20,16 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
         [TestMethod]
         public void contactEnterpriseController_listStage_should_render_view()
         {
+            var contactEnterprise = _fixture.Create<ContactEnterprise>();
+            contactEnterprise.EnterpriseName = "Test";
             var stages = _fixture.CreateMany<Stage>(5).AsQueryable();
+            foreach (var stage in stages)
+            {
+                stage.CompanyName = contactEnterprise.EnterpriseName;
+            }
             stageRepository.GetAll().Returns(stages);
+            httpContext.GetUserId().Returns(contactEnterprise.Id);
+            enterpriseRepository.GetById(contactEnterprise.Id).Returns(contactEnterprise);
 
             var result =  enterpriseController.ListStage() as ViewResult;
 
@@ -33,8 +41,16 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
         [TestMethod]
         public void contactEnterpriseController_listStage_should_render_view_with_stages()
         {
-            var stages = _fixture.CreateMany<Stage>(5).ToList();
-            stageRepository.GetAll().Returns(stages.AsQueryable());
+            var contactEnterprise = _fixture.Create<ContactEnterprise>();
+            contactEnterprise.EnterpriseName = "Test";
+            var stages = _fixture.CreateMany<Stage>(5).AsQueryable();
+            foreach (var stage in stages)
+            {
+                stage.CompanyName = contactEnterprise.EnterpriseName;
+            }
+            stageRepository.GetAll().Returns(stages);
+            httpContext.GetUserId().Returns(contactEnterprise.Id);
+            enterpriseRepository.GetById(contactEnterprise.Id).Returns(contactEnterprise);
 
             var result = enterpriseController.ListStage() as ViewResult;
             var model = result.Model as List<ListStage>;
@@ -48,7 +64,14 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
         [TestMethod]
         public void contactEnterpriseController_listeStage_should_render_view_with_0_stages()
         {
-       
+            var contactEnterprise = _fixture.Create<ContactEnterprise>();
+            contactEnterprise.EnterpriseName = "Test";
+            var stages = _fixture.CreateMany<Stage>(5).AsQueryable();
+
+            stageRepository.GetAll().Returns(stages);
+            httpContext.GetUserId().Returns(contactEnterprise.Id);
+            enterpriseRepository.GetById(contactEnterprise.Id).Returns(contactEnterprise);
+
             var result = enterpriseController.ListStage() as ViewResult;
             var model = result.Model as List<ListStage>;
 

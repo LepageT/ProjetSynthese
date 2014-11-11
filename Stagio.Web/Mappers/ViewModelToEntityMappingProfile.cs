@@ -50,6 +50,9 @@ namespace Stagio.Web.Mappers
                 .ForMember(dest => dest.Present, opt => opt.Ignore())
                 .IgnoreAllNonExisting();
 
+            Mapper.CreateMap<ViewModels.Interviews.Edit, Interview>()
+             .IgnoreAllNonExisting();
+
             Mapper.CreateMap<ViewModels.ContactEnterprise.Create, ContactEnterprise>()
                .IgnoreAllNonExisting();
         }

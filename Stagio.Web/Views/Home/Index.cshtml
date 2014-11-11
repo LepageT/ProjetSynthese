@@ -1,16 +1,16 @@
 ﻿@using System.Configuration
 @using Microsoft.AspNet.Identity
 <h2 id="home-page">Bienvenue</h2>
-<div>Users<br/>
+<div>Utilisateurs<br/>
     Coordonnateur (compte de tests, sauf pour les edit) 
     <br/> Username: coordonnateur@stagio.com
     <br/> Password: test4test1
     <br/><br/>
-    Student
+    Étudiant
     <br/>Username: 1234567
     <br/>Password: qwerty12
     <br/><br/>
-    Contact Entreprise
+    Employé 
     <br/>Username: bond.james.007@hotmail.com
     <br/>Password: qwerty12
 </div><br/>
@@ -25,7 +25,7 @@
 {
 <h4>Étudiant</h4>
 <div>
-        @Html.ActionLink("Student", MVC.Student.Index(), new { id = "index-Student" })     
+        @Html.ActionLink("Page d'accueil de l'étudiant", MVC.Student.Index(), new { id = "index-Student" })     
 </div>
 }
 
@@ -33,7 +33,7 @@
 {
 <h4>Coordonnateur</h4>
 <div>
-    @Html.ActionLink("Coordinator", MVC.Coordinator.Index(), new { id = "index-coordonnateur" })
+    @Html.ActionLink("Page d'accueil du coordonnateur", MVC.Coordinator.Index(), new { id = "index-coordonnateur" })
 </div>
 }
 
@@ -41,7 +41,7 @@
 { 
 <h4>Employé d'une entreprise</h4>
 <div>
-        @Html.ActionLink("Enterprise", MVC.ContactEnterprise.Index(), new { id = "index-enterprise" })
+        @Html.ActionLink("Page d'accueil de l'employé", MVC.ContactEnterprise.Index(), new { id = "index-enterprise" })
 </div>
 }
 

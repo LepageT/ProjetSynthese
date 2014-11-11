@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Web;
@@ -13,6 +15,7 @@ using Stagio.DataLayer;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
 using Stagio.Web.Module;
+using Stagio.Web.Module.Strings.Controller;
 using Stagio.Web.Services;
 using Stagio.Web.ViewModels.Student;
 using Stagio.Utilities.Encryption;
@@ -44,12 +47,50 @@ namespace Stagio.Web.Controllers
             return View(MVC.Student.Views.ViewNames.Index);
         }
 
+        [Authorize(Roles = RoleName.Student)]
+        public virtual ActionResult ConfirmationUploadCVLetter()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = RoleName.Student)]
+        public virtual ActionResult UploadCVLetter()
+        {
+            return View();
+        }
+
 
         [Authorize(Roles = RoleName.Coordinator)]
         public virtual ActionResult Upload()
         {
             return View();
         }
+
+
+        [Authorize(Roles = RoleName.Student)]
+        [HttpPost]
+        public virtual ActionResult UploadCVLetter(IEnumerable<HttpPostedFileBase> files)
+        {
+            var readFile = new ReadFile<String>();
+            if (ModelState.IsValid)
+            {
+                if (readFile.ReadFileCVLetter(files, Server))
+                {
+                    return RedirectToAction(MVC.Student.ConfirmationUploadCVLetter());
+                }
+                else
+                {
+                    return View();
+                }
+            }
+            else
+            {
+                return View();
+            }
+      
+     
+        }
+
 
         [Authorize(Roles = RoleName.Coordinator)]
         [HttpPost, ActionName("Upload")]
@@ -59,16 +100,16 @@ namespace Stagio.Web.Controllers
 
             if (file == null)
             {
-                ModelState.AddModelError("Fichier", "Il n'y a pas de fichier à importer");
-                ViewBag.Message = "Il n'y a pas de fichier à importer";
+                ModelState.AddModelError("Fichier", StudentResources.NoFileToUpload);
+                ViewBag.Message = StudentResources.NoFileToUpload;
             }
             else
             {
                 {
                     if (!file.FileName.Contains(".csv"))
                     {
-                        ModelState.AddModelError("Fichier", "Il n'y a pas de fichier à importer");
-                        ViewBag.Message = "Ce n'est pas un fichier csv";
+                        ModelState.AddModelError("Fichier", StudentResources.NoFileToUpload);
+                        ViewBag.Message = StudentResources.WrongFileType;
                     }
                 }
             }
@@ -182,13 +223,13 @@ namespace Stagio.Web.Controllers
 
             if (student == null)
             {
-                ModelState.AddModelError("Matricule", "Votre matricule ne figure pas dans la liste des matricules autorisés.");
+                ModelState.AddModelError("Matricule", StudentResources.MatriculeNotFound);
             }
             else
             {
                 if (student.Active)
                 {
-                    ModelState.AddModelError("Matricule", "Votre matricule est déja utilisé.");
+                    ModelState.AddModelError("Matricule", StudentResources.MatriculeAlreadyUsed);
                 }
             }
 
@@ -204,13 +245,13 @@ namespace Stagio.Web.Controllers
  
             student.Active = true;
             student.Password = _accountService.HashPassword(createStudentViewModel.Password);
-
+            student.UserName = createStudentViewModel.Matricule.ToString();
 
             _studentRepository.Update(student);
 
             _mailler.SendEmail(student.Email, EmailAccountCreation.Subject, EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
 
-            return RedirectToAction(MVC.Home.Index());
+            return RedirectToAction(MVC.Student.CreateConfirmation());
         }
        
         [Authorize(Roles = RoleName.Student)] 
@@ -251,7 +292,7 @@ namespace Stagio.Web.Controllers
             {
             if (!PasswordHash.ValidatePassword(editStudentViewModel.OldPassword, student.Password))
             {
-                ModelState.AddModelError("OldPassword", "L'ancien mot de passe n'est pas valide.");
+                ModelState.AddModelError("OldPassword", StudentResources.OldPasswordInvalid);
             }
             }
 
@@ -278,7 +319,7 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult StageList()
         {
             var stages = _stageRepository.GetAll().ToList();
-            var stagesAccepted = stages.Where(x => x.Status == 1);
+            var stagesAccepted = stages.Where(x => x.Status == StageStatus.Accepted);
             var studentStageListViewModels = Mapper.Map<IEnumerable<ViewModels.Student.StageList>>(stagesAccepted);
           
             
@@ -339,7 +380,7 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult ApplyRemoveConfirmation(int id)
         {
             var stageApply = _applyRepository.GetById(id);
-            stageApply.Status = 3;
+            stageApply.Status = StatusApply.Removed;
             _applyRepository.Update(stageApply);
             return View();
         }
@@ -390,11 +431,11 @@ namespace Stagio.Web.Controllers
             {
                 if (command.Equals("Accepter"))
                 {
-                    apply.StudentReply = 1;
+                    apply.StudentReply = StatusApply.Accepted;
                 }
                 else
                 {
-                    apply.StudentReply = 2;
+                    apply.StudentReply = StatusApply.Refused;
                 }
                 _applyRepository.Update(apply);
 
@@ -402,6 +443,11 @@ namespace Stagio.Web.Controllers
             }
 
             return HttpNotFound();
+        }
+
+        public virtual ActionResult CreateConfirmation()
+        {
+            return View();
         }
     }
 }
