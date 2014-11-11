@@ -23,12 +23,16 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
         }
 
         [TestMethod]
-        public void coordinator_create_should_create_account_if_invitation_is_valid()
+        public void contact_enterprise_should_be_able_to_create_account_if_invitation_is_valid()
         {
             ReactivateContactEnterprisePage.GoToByUrl();
-            const string EMAIL = "testemail@admin.com";
+            const string EMAIL = "testemail@enterprise.com";
             const string PASSWORD = "Bobino1234";
-            ReactivateContactEnterprisePage.FillFieldsAndSend(EMAIL, PASSWORD);
+            const string FIRST_NAME = "Bobino";
+            const string LAST_NAME = "Jean";
+            const string ENTERPRISE_NAME = "Enterprise";
+            const string TELEPHONE = "123-456-7890";
+            ReactivateContactEnterprisePage.FillFieldsAndSend(EMAIL, PASSWORD, FIRST_NAME, LAST_NAME, ENTERPRISE_NAME, TELEPHONE);
 
             Assert.IsTrue(ReactivateContactEnterprisePage.ConfirmationIsDisplayed);
 

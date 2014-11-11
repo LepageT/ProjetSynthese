@@ -72,6 +72,7 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult UploadCVLetter(IEnumerable<HttpPostedFileBase> files)
         {
             var readFile = new ReadFile<String>();
+            
             if (ModelState.IsValid)
             {
                 if (readFile.ReadFileCVLetter(files, Server))

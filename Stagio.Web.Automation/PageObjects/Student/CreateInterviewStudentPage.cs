@@ -39,7 +39,6 @@ namespace Stagio.Web.Automation.PageObjects.Student
             Driver.Instance.FindElement(By.Id("datetimepicker")).Clear();
             Driver.Instance.FindElement(By.Id("datetimepicker")).SendKeys(DATE);
             Driver.Instance.FindElement(By.Id("datetimepicker")).Submit();
-            Driver.Instance.FindElement(By.Id("create-interview")).Click();
         }
 
         public static bool ConfirmationIsDisplayed

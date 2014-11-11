@@ -34,7 +34,6 @@ namespace Stagio.Web.AcceptanceTests.InterviewTests
             LoginPage.LoginAs(StudentUsername, StudentPassword);
             addInterview();
             
-            HomePage.GoTo();
             ListInterview.GoTo();
 
             Assert.IsTrue(ListInterview.InterviewIsDisplayed());
