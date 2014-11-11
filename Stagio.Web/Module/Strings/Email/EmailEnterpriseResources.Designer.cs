@@ -79,7 +79,7 @@ namespace Stagio.Web.Module.Strings.Email {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Pour vous connecter, copier-coller ce lien: jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token=.
+        ///   Recherche une chaîne localisée semblable à Pour vous connecter, copier-coller ce lien: &lt;a href =&quot;http://jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token=.
         /// </summary>
         internal static string InviteLinkConworker {
             get {
