@@ -12,7 +12,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
     [TestClass]
     public class StudentControllerReplyStageTests : BaseTests
     {
-        [TestMethod]
+       /* [TestMethod]
         public void student_ReplyStage_page_should_display_applied_stage_if_logged_in()
         {
             LoginPage.GoTo();
@@ -20,17 +20,17 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             ReplyStageStudentPage.GoTo();
 
             Assert.IsTrue(ReplyStageStudentPage.IsDisplayed);
-        }
+        }*/
 
-        [TestMethod]
+       /* [TestMethod]
         public void student_ReplyStage_page_not_should_display_applied_stage_not_if_logged_in()
         {
             ReplyStageStudentPage.GoToByUrlIdApply1();
 
             Assert.IsTrue(LoginPage.IsDisplayed);
-        }
+        }*/
 
-        [TestMethod]
+       /* [TestMethod]
         public void student_should_see_ApplyList_page_after_ReplyStage()
         {
             LoginPage.GoTo();
@@ -40,6 +40,6 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
 
             Assert.IsTrue(ApplyListStudentPage.IsDisplayed);
 
-        }
+        }*/
     }
 }
