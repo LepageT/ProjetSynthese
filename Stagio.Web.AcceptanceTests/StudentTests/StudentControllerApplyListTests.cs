@@ -61,7 +61,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             ApplyListStudentPage.GoTo();
             ApplyListStudentPage.ClickToReApply();
 
-            Assert.IsTrue(ApplyListStudentPage.ConfirmationRemoveIsDisplayed);
+            Assert.IsTrue(ApplyListStudentPage.ConfirmationReApplyIsDisplayed);
         }
     }
 }
