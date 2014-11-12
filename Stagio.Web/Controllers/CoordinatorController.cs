@@ -21,18 +21,27 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<Coordinator> _coordinatorRepository;
         private readonly IEntityRepository<Invitation> _invitationRepository;
         private readonly IMailler _mailler;
+        private readonly IEntityRepository<Apply> _applyRepository;
+        private readonly IEntityRepository<Stage> _stageRepository;
+        private readonly IEntityRepository<Student> _studentRepository;
 
         public CoordinatorController(IEntityRepository<ContactEnterprise> enterpriseContactRepository,
             IEntityRepository<Coordinator> coordinatorRepository,
             IEntityRepository<Invitation> invitationRepository,
             IMailler mailler,
-            IAccountService accountService)
+            IAccountService accountService,
+            IEntityRepository<Apply> applyRepository,
+            IEntityRepository<Stage> stageRepository,
+            IEntityRepository<Student> studentRepository)
         {
             _enterpriseContactRepository = enterpriseContactRepository;
             _coordinatorRepository = coordinatorRepository;
             _invitationRepository = invitationRepository;
             _mailler = mailler;
             _accountService = accountService;
+            _applyRepository = applyRepository;
+            _stageRepository = stageRepository;
+            _studentRepository = studentRepository;
         }
         // GET: Coordinator
         public virtual ActionResult Index()
@@ -314,6 +323,32 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult CreateConfirmation()
         {
             return View();
+        }
+
+        [Authorize(Roles = RoleName.Coordinator)]
+        public virtual ActionResult StudentList()
+        {
+            var allStudent = _studentRepository.GetAll().ToList();
+            var studentListViewModels = Mapper.Map<IEnumerable<ViewModels.Coordinator.StudentList>>(allStudent).ToList();
+
+
+            int nbApplyStudent = 0;
+
+            var appliedStages = _applyRepository.GetAll().ToList();
+
+            foreach (var student in studentListViewModels)
+            {
+                var studentSpecificApplies = appliedStages.Where(x => x.IdStudent == student.Id).ToList();
+                foreach (var apply in studentSpecificApplies)
+                {
+                    nbApplyStudent = nbApplyStudent + 1;
+                }
+                student.NbApply = nbApplyStudent;
+                nbApplyStudent = 0;
+            }
+           
+
+            return View(studentListViewModels);
         }
 
     }

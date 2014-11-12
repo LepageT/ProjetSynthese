@@ -80,6 +80,12 @@ namespace Stagio.Web.Controllers
 		}
 		[NonAction]
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public virtual System.Web.Mvc.ActionResult ApplyReApplyConfirmation()
+		{
+			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ApplyReApplyConfirmation);
+		}
+		[NonAction]
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public virtual System.Web.Mvc.ActionResult ReplyStage()
 		{
 			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ReplyStage);
@@ -115,6 +121,7 @@ namespace Stagio.Web.Controllers
 			public readonly string Apply = "Apply";
 			public readonly string ApplyConfirmation = "ApplyConfirmation";
 			public readonly string ApplyRemoveConfirmation = "ApplyRemoveConfirmation";
+			public readonly string ApplyReApplyConfirmation = "ApplyReApplyConfirmation";
 			public readonly string ApplyList = "ApplyList";
 			public readonly string ReplyStage = "ReplyStage";
 			public readonly string CreateConfirmation = "CreateConfirmation";
@@ -138,6 +145,7 @@ namespace Stagio.Web.Controllers
 			public const string Apply = "Apply";
 			public const string ApplyConfirmation = "ApplyConfirmation";
 			public const string ApplyRemoveConfirmation = "ApplyRemoveConfirmation";
+			public const string ApplyReApplyConfirmation = "ApplyReApplyConfirmation";
 			public const string ApplyList = "ApplyList";
 			public const string ReplyStage = "ReplyStage";
 			public const string CreateConfirmation = "CreateConfirmation";
@@ -194,6 +202,14 @@ namespace Stagio.Web.Controllers
 		{
 			public readonly string id = "id";
 		}
+		static readonly ActionParamsClass_ApplyReApplyConfirmation s_params_ApplyReApplyConfirmation = new ActionParamsClass_ApplyReApplyConfirmation();
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public ActionParamsClass_ApplyReApplyConfirmation ApplyReApplyConfirmationParams { get { return s_params_ApplyReApplyConfirmation; } }
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public class ActionParamsClass_ApplyReApplyConfirmation
+		{
+			public readonly string id = "id";
+		}
 		static readonly ActionParamsClass_ReplyStage s_params_ReplyStage = new ActionParamsClass_ReplyStage();
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public ActionParamsClass_ReplyStage ReplyStageParams { get { return s_params_ReplyStage; } }
@@ -216,6 +232,7 @@ namespace Stagio.Web.Controllers
                 public readonly string Apply = "Apply";
                 public readonly string ApplyConfirmation = "ApplyConfirmation";
                 public readonly string ApplyList = "ApplyList";
+                public readonly string ApplyReApplyConfirmation = "ApplyReApplyConfirmation";
                 public readonly string ApplyRemoveConfirmation = "ApplyRemoveConfirmation";
                 public readonly string ConfirmationUploadCVLetter = "ConfirmationUploadCVLetter";
                 public readonly string Create = "Create";
@@ -232,6 +249,7 @@ namespace Stagio.Web.Controllers
             public readonly string Apply = "~/Views/Student/Apply.cshtml";
             public readonly string ApplyConfirmation = "~/Views/Student/ApplyConfirmation.cshtml";
             public readonly string ApplyList = "~/Views/Student/ApplyList.cshtml";
+            public readonly string ApplyReApplyConfirmation = "~/Views/Student/ApplyReApplyConfirmation.cshtml";
             public readonly string ApplyRemoveConfirmation = "~/Views/Student/ApplyRemoveConfirmation.cshtml";
             public readonly string ConfirmationUploadCVLetter = "~/Views/Student/ConfirmationUploadCVLetter.cshtml";
             public readonly string Create = "~/Views/Student/Create.cshtml";
@@ -466,6 +484,18 @@ namespace Stagio.Web.Controllers
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ApplyRemoveConfirmation);
 			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
 			ApplyRemoveConfirmationOverride(callInfo, id);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void ApplyReApplyConfirmationOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult ApplyReApplyConfirmation(int id)
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ApplyReApplyConfirmation);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+			ApplyReApplyConfirmationOverride(callInfo, id);
 			return callInfo;
 		}
 

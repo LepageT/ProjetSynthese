@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Stagio.Web.ViewModels.Coordinator.StudentList>
+
+
+<h2 id="student-list">Liste des étudiants</h2>
+
+<div class="text-right" id="student-count">@Model.Count() étudiants</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Matricule)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NbApply)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.Matricule)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.FirstName)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(model => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.NbApply)
+            </td>
+        </tr>
+    }
+
+</table>
