@@ -30,7 +30,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             Assert.IsTrue(LoginPage.IsDisplayed);
         }
 
-        [TestMethod]
+       /* [TestMethod]
         public void student_should_see_ApplyList_page_after_ReplyStage()
         {
             LoginPage.GoTo();
@@ -40,6 +40,6 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
 
             Assert.IsTrue(ApplyListStudentPage.IsDisplayed);
 
-        }
+        }*/
     }
 }
