@@ -5,12 +5,12 @@
 }
 
 <h2 id="student-home-page">Accueil</h2>
-
+@*
 <div>
     @Html.ActionLink("Voir les offres de stages", MVC.Student.StageList(), new { id = "stageList-student" })
 </div>
 
-@*<div>
+<div>
     @Html.ActionLink("Inscrire une date d'entrevue", MVC.Interview.Create(), new { id = "add-entrevue" })
 </div>
 <div>
@@ -20,4 +20,4 @@
     @Html.ActionLink("Afficher les informations du profil", MVC.Account.Details(Int32.Parse(@User.Identity.GetUserId())), new { id = "details-user-page" })
 </div>
 
-<div>@Html.ActionLink("Afficher la liste des entrevues", MVC.Interview.List(), new {id = "list-interview"})</div>
+@*<div>@Html.ActionLink("Afficher la liste des entrevues", MVC.Interview.List(), new {id = "list-interview"})</div>*@
