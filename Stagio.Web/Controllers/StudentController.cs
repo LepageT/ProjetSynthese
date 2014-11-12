@@ -365,6 +365,7 @@ namespace Stagio.Web.Controllers
             }
             var newApplicationStudent = Mapper.Map<Stagio.Domain.Entities.Apply>(applyStudentViewModel);
             newApplicationStudent.Status = 0;   //0 = En attente
+            newApplicationStudent.DateApply = DateTime.Now;
             _applyRepository.Add(newApplicationStudent);
             int nbApplyCurrently = stage.NbApply;
             stage.NbApply = nbApplyCurrently + 1;

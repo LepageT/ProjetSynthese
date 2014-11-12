@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+
 
 namespace Stagio.Web.ViewModels.Student
 {
@@ -33,5 +32,7 @@ namespace Stagio.Web.ViewModels.Student
         [DefaultValue(0)]
         public int StudentReply { get; set; }
 
+        [DisplayName("Date de la candidature")]
+        public DateTime DateApply { get; set; }
     }
 }
