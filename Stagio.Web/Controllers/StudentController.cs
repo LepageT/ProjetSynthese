@@ -27,7 +27,7 @@ namespace Stagio.Web.Controllers
     public partial class StudentController : Controller
     {
         private readonly IEntityRepository<Student> _studentRepository;
-        private readonly IEntityRepository<Stage> _stageRepository;
+        private readonly IEntityRepository<Stage> _stageRepository; 
         private readonly IHttpContextService _httpContextService;
         private readonly IEntityRepository<Stagio.Domain.Entities.Apply> _applyRepository;
         private readonly IMailler _mailler;
@@ -73,7 +73,7 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult UploadCVLetter(IEnumerable<HttpPostedFileBase> files)
         {
             var readFile = new ReadFile<String>();
-
+            
             if (ModelState.IsValid)
             {
                 if (readFile.ReadFileCVLetter(files, Server, 1))
@@ -89,8 +89,8 @@ namespace Stagio.Web.Controllers
             {
                 return View();
             }
-
-
+      
+     
         }
 
 
@@ -239,12 +239,12 @@ namespace Stagio.Web.Controllers
             {
                 return View(createStudentViewModel);
             }
-
-
+           
+         
 
             Mapper.Map(createStudentViewModel, student);
 
-
+ 
             student.Active = true;
             student.Password = _accountService.HashPassword(createStudentViewModel.Password);
             student.UserName = createStudentViewModel.Matricule.ToString();
@@ -255,8 +255,8 @@ namespace Stagio.Web.Controllers
 
             return RedirectToAction(MVC.Student.CreateConfirmation());
         }
-
-        [Authorize(Roles = RoleName.Student)]
+       
+        [Authorize(Roles = RoleName.Student)] 
         // GET: Student/Edit/5
         public virtual ActionResult Edit(int id)
         {
@@ -292,10 +292,10 @@ namespace Stagio.Web.Controllers
 
             if (!editStudentViewModel.OldPassword.IsNullOrWhiteSpace())
             {
-                if (!PasswordHash.ValidatePassword(editStudentViewModel.OldPassword, student.Password))
-                {
-                    ModelState.AddModelError("OldPassword", StudentResources.OldPasswordInvalid);
-                }
+            if (!PasswordHash.ValidatePassword(editStudentViewModel.OldPassword, student.Password))
+            {
+                ModelState.AddModelError("OldPassword", StudentResources.OldPasswordInvalid);
+            }
             }
 
             if (!ModelState.IsValid)
@@ -323,11 +323,11 @@ namespace Stagio.Web.Controllers
             var stages = _stageRepository.GetAll().ToList();
             var stagesAccepted = stages.Where(x => x.Status == StageStatus.Accepted);
             var studentStageListViewModels = Mapper.Map<IEnumerable<ViewModels.Student.StageList>>(stagesAccepted);
-
-
-
+          
+            
+            
             return View(studentStageListViewModels);
-
+            
         }
 
 
@@ -341,14 +341,14 @@ namespace Stagio.Web.Controllers
                 var applyViewModel = new ViewModels.Student.Apply();
                 applyViewModel.IdStage = id;
 
-                var identity = (ClaimsIdentity)User.Identity;
+                var identity = (ClaimsIdentity)User.Identity; 
                 var nameIdentifier = identity.FindFirst(ClaimTypes.NameIdentifier).Value;
 
                 applyViewModel.IdStudent = Int32.Parse(nameIdentifier);
                 return View(applyViewModel);
             }
             return HttpNotFound();
-
+            
         }
 
         [HttpPost]
@@ -369,15 +369,16 @@ namespace Stagio.Web.Controllers
                 var files1 = files.ToList();
                 applyStudentViewModel.Cv = files1[0].FileName + "ApplyCV" + applyStudentViewModel.Id;
                 applyStudentViewModel.Letter = files1[1].FileName + "ApplyLetter" + applyStudentViewModel.Id;
-                var newApplicationStudent = Mapper.Map<Stagio.Domain.Entities.Apply>(applyStudentViewModel);
-                newApplicationStudent.Status = 0;   //0 = En attente
-                _applyRepository.Add(newApplicationStudent);
-                int nbApplyCurrently = stage.NbApply;
-                stage.NbApply = nbApplyCurrently + 1;
-                _stageRepository.Update(stage);
+            var newApplicationStudent = Mapper.Map<Stagio.Domain.Entities.Apply>(applyStudentViewModel);
+            newApplicationStudent.Status = 0;   //0 = En attente
+            newApplicationStudent.DateApply = DateTime.Now;
+            _applyRepository.Add(newApplicationStudent);
+            int nbApplyCurrently = stage.NbApply;
+            stage.NbApply = nbApplyCurrently + 1;
+            _stageRepository.Update(stage);
 
-                return RedirectToAction(MVC.Student.ApplyConfirmation());
-            }
+            return RedirectToAction(MVC.Student.ApplyConfirmation());
+        }
             else
             {
                 return View(applyStudentViewModel);
@@ -393,6 +394,14 @@ namespace Stagio.Web.Controllers
         {
             var stageApply = _applyRepository.GetById(id);
             stageApply.Status = StatusApply.Removed;
+            _applyRepository.Update(stageApply);
+            return View();
+        }
+
+        public virtual ActionResult ApplyReApplyConfirmation(int id)
+        {
+            var stageApply = _applyRepository.GetById(id);
+            stageApply.Status = StatusApply.Waitting;
             _applyRepository.Update(stageApply);
             return View();
         }
