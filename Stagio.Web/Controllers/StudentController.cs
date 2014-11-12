@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Web;
@@ -46,12 +47,51 @@ namespace Stagio.Web.Controllers
             return View(MVC.Student.Views.ViewNames.Index);
         }
 
+        [Authorize(Roles = RoleName.Student)]
+        public virtual ActionResult ConfirmationUploadCVLetter()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = RoleName.Student)]
+        public virtual ActionResult UploadCVLetter()
+        {
+            return View();
+        }
+
 
         [Authorize(Roles = RoleName.Coordinator)]
         public virtual ActionResult Upload()
         {
             return View();
         }
+
+
+        [Authorize(Roles = RoleName.Student)]
+        [HttpPost]
+        public virtual ActionResult UploadCVLetter(IEnumerable<HttpPostedFileBase> files)
+        {
+            var readFile = new ReadFile<String>();
+            
+            if (ModelState.IsValid)
+            {
+                if (readFile.ReadFileCVLetter(files, Server))
+                {
+                    return RedirectToAction(MVC.Student.ConfirmationUploadCVLetter());
+                }
+                else
+                {
+                    return View();
+                }
+            }
+            else
+            {
+                return View();
+            }
+      
+     
+        }
+
 
         [Authorize(Roles = RoleName.Coordinator)]
         [HttpPost, ActionName("Upload")]

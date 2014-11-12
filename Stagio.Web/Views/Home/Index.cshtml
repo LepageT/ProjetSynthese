@@ -4,7 +4,7 @@
 <div>Utilisateurs<br/>
     Coordonnateur (compte de tests, sauf pour les edit) 
     <br/> Username: coordonnateur@stagio.com
-    <br/> Password: test4test
+    <br/> Password: test4test1
     <br/><br/>
     Étudiant
     <br/>Username: 1234567
@@ -18,7 +18,7 @@
 {
     @Html.ActionLink("Créer un profil étudiant", MVC.Student.Create(), new {id = "create-student"})<br/>
 
-    @Html.ActionLink("Créer un profil entreprise", MVC.ContactEnterprise.Reactivate(), new {id = "create-enterprise"})<br/>
+    @Html.ActionLink("Créer un profil entreprise", MVC.ContactEnterprise.Create(), new {id = "create-enterprise"})<br/>
 }
 
 @if(@User.IsInRole("Étudiant"))

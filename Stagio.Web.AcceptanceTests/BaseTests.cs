@@ -11,10 +11,9 @@ namespace Stagio.Web.AcceptanceTests
     [TestClass]
     public class BaseTests
     {
-        //protected IWebDriver _driver { get; set; }
 
         protected const string CoordonatorUsername = "coordonnateur@stagio.com";
-        protected const string CoordonatorPassword = "test4test";
+        protected const string CoordonatorPassword = "test4test1";
 
         protected const string ContactEnterpriseUsername = "bond.james.007@hotmail.com ";
         protected const string ContactEnterprisePassword = "qwerty12";

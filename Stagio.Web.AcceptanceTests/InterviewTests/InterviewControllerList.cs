@@ -33,7 +33,7 @@ namespace Stagio.Web.AcceptanceTests.InterviewTests
             LoginPage.GoTo();
             LoginPage.LoginAs(StudentUsername, StudentPassword);
             addInterview();
-    
+            
             ListInterview.GoTo();
 
             Assert.IsTrue(ListInterview.InterviewIsDisplayed());

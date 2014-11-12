@@ -1,5 +1,5 @@
 ﻿@using System.Web.Mvc.Html
-
+@using Stagio.Web.Module.Strings.Shared;
 @{
     ViewBag.Title = "CreateStageSucceed";
 }
@@ -9,5 +9,5 @@
     Votre stage à été ajouté. Il doit maintenant être accepter par le coordonnateur.
 </div>
 <div>
-    @Html.ActionLink("Retour à l'accueil", "Index")
+    @Html.ActionLink(Navigation.ReturnHome, "Index")
 </div>

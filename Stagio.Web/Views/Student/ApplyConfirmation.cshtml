@@ -1,4 +1,4 @@
-﻿
+﻿@using Stagio.Web.Module.Strings.Shared;
 @{
     ViewBag.Title = "ApplyConfirmation";
 }
@@ -7,5 +7,5 @@
 <p>Votre postulation a bien été envoyée à l'entreprise.</p>
 
 <div>
-    @Html.ActionLink("Retour à l'accueil", MVC.Home.Index())
+    @Html.ActionLink(Navigation.ReturnHome, MVC.Home.Index())
 </div>

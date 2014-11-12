@@ -1,5 +1,5 @@
 ﻿@using System.Web.Mvc
-
+@using Stagio.Web.Module.Strings.Shared;
 @{
     ViewBag.Title = "InviteContactEnterpriseConfirmation";
 }
@@ -8,5 +8,5 @@
 <p>Vos invitations ont bien été envoyées aux employés des entreprises.</p>
 
 <div>
-    @Html.ActionLink("Retour à l'accueil", MVC.Home.Index())
+    @Html.ActionLink(Navigation.ReturnHome, MVC.Home.Index())
 </div>

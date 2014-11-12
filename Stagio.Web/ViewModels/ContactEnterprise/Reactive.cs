@@ -63,6 +63,11 @@ namespace Stagio.Web.ViewModels.ContactEnterprise
 
         [DisplayName("Message")]
         public String Message { get; set; }
+
+        [HiddenInput(DisplayValue = false)]
+        public string Token { get; set; }
+
+        public int InvitationId { get; set; }
     }
 
 

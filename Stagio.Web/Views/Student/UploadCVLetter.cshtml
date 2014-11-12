@@ -1,0 +1,23 @@
+﻿@using System.Web.Mvc
+
+<h2 id="uploadCvLetter-page">Importer une lettre de présentation et un cv</h2>
+
+
+<form action="" method="post" enctype="multipart/form-data">
+
+    <label for="file1">CV:</label>
+    <input type="file" name="files" id="file1" />
+
+    <label for="file2">Lettre de présentation:</label>
+    <input type="file" name="files" id="file2" />
+
+    <input type="submit" id="button-upload" value="Importer les fichiers" />
+</form>
+
+<div>
+    @ViewBag.Message
+</div>
+
+<div>
+    @Html.ActionLink("Retour à l'accueil", MVC.Student.Index())
+</div>

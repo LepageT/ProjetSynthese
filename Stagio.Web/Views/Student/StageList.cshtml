@@ -1,4 +1,4 @@
-﻿@using System.Web.Mvc.Html
+﻿@using Stagio.Web.Module.Strings.Shared;
 @model IEnumerable<Stagio.Web.ViewModels.Student.StageList>
 
 @{
@@ -50,4 +50,4 @@
     }
 
 </table>
-@Html.ActionLink("Retour à l'accueil", MVC.Student.Index())
+@Html.ActionLink(Navigation.ReturnHome, MVC.Student.Index())
