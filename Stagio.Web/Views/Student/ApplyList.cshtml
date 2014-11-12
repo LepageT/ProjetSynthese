@@ -14,8 +14,8 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DateApply)
+
         </th>
-        <th></th>
     </tr>
 
     @foreach (var item in Model)
@@ -31,15 +31,23 @@
             {
                 <td>
                     Candidature retirée
+           
                 </td>
             }
             <td>
                 @if (item.Status != 3)
                 {
-                    
-                    using (Html.BeginForm("ApplyRemoveConfirmation", "Student", new { id = item.Id }, FormMethod.Get))
+
+                    using (Html.BeginForm("ApplyRemoveConfirmation", "Student", new {id = item.Id}, FormMethod.Get))
                     {
                         <input type="submit" value="Retirer" id="remove-apply" />
+                    }
+                }
+                else
+                {
+                    using (Html.BeginForm("ApplyReApplyConfirmation", "Student", new { id = item.Id }, FormMethod.Get))
+                    {
+                        <input type="submit" value="Resoumettre" id="reapply-apply" />
                     }
                 }
             </td>

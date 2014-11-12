@@ -387,6 +387,14 @@ namespace Stagio.Web.Controllers
             return View();
         }
 
+        public virtual ActionResult ApplyReApplyConfirmation(int id)
+        {
+            var stageApply = _applyRepository.GetById(id);
+            stageApply.Status = StatusApply.Waitting;
+            _applyRepository.Update(stageApply);
+            return View();
+        }
+
         [Authorize(Roles = RoleName.Student)]
         public virtual ActionResult ApplyList()
         {

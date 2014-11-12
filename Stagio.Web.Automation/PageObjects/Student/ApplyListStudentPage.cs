@@ -59,9 +59,20 @@ namespace Stagio.Web.Automation.PageObjects.Student
            
         }
 
+        public static void ClickToReApply()
+        {
+            Driver.Instance.FindElement(By.Id("reapply-apply")).Click();
+
+        }
+
         public static bool ConfirmationRemoveIsDisplayed
         {
             get { return Driver.Instance.FindElement(By.Id("confirmationRemoveApplyStudent-page")) != null; }
+        }
+
+        public static bool ConfirmationReApplyIsDisplayed
+        {
+            get { return Driver.Instance.FindElement(By.Id("confirmationReApplyApplyStudent-page")) != null; }
         }
     }
 }
