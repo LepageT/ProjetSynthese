@@ -36,7 +36,7 @@
                     @if (item.StudentReply == 0)
                     {
                         <p>Acceptée</p>
-                        @Html.ActionLink("Cliquer ici pour répondre", MVC.Student.ReplyStage().AddRouteValues(new {idApply = item.Id}), new {id = "reply-stage" + item.Id})
+                        //@Html.ActionLink("Cliquer ici pour répondre", MVC.Student.ReplyStage().AddRouteValues(new {idApply = item.Id}), new {id = "reply-stage" + item.Id})
                     }
                     else if (item.StudentReply == 1)
                     {
