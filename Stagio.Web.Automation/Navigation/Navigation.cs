@@ -101,14 +101,14 @@ namespace Stagio.Web.Automation
             {
                 public static void Select()
                 {
-                    MenuSelector.Select("index-enterprise", "invite-contact-enterprise");
+                    MenuSelector.Select("contactEnterprise-menu", "invite-contact-enterprise");
                 }
             }
             public class DetailsApplyStudent1
             {
                 public static void Select()
                 {
-                    MenuSelector.Select("index-enterprise", "listContact");
+                    MenuSelector.Select("contactEnterprise-menu", "listContact");
                     MenuSelector.Select("list-stages1", "list-student1");
                 }
             }
@@ -117,21 +117,21 @@ namespace Stagio.Web.Automation
             {
                 public static void Select()
                 {
-                    MenuSelector.Select("index-enterprise", "create-stage-enterprise");
+                    MenuSelector.Select("contactEnterprise-menu", "create-stage-enterprise");
                 }
             }
             public class ListStages
             {
                 public static void Select()
                 {
-                    MenuSelector.Select("index-enterprise", "listContact");
+                    MenuSelector.Select("contactEnterprise-menu", "listContact");
                 }
             }
             public class ListApply1
             {
                 public static void Select()
                 {
-                    MenuSelector.Select("index-enterprise", "listContact");
+                    MenuSelector.Select("contactEnterprise-menu", "listContact");
                     MenuSelector.SelectTopLevel("list-stages1");
 
                 }
