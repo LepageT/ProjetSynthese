@@ -29,10 +29,26 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         {
             LoginPage.GoTo();
             LoginPage.LoginAs(StudentUsername, StudentPassword);
-            ApplyStudentPage.GoTo();
-            ApplyStudentPage.ApplyStudent("test", "test");
 
-            Assert.IsTrue(ApplyStudentPage.ConfirmationPageIsDisplayed);
+            ApplyStudentPage.GoToByUrl();
+
+            ApplyStudentPage.SelectFiles("C:\\dev\\abc.pdf", "C:\\dev\\abcdef.pdf");
+
+            Assert.IsTrue(ConfirmationUploadCVLetterPage.IsDisplayed);
+
+        }
+
+        [TestMethod]
+        public void student_upload_should_rest_on_to_upload_is_not_valid()
+        {
+            LoginPage.GoTo();
+            LoginPage.LoginAs(StudentUsername, StudentPassword);
+
+            ApplyStudentPage.GoToByUrl();
+
+            ApplyStudentPage.SelectFiles("", "");
+
+            Assert.IsTrue(ApplyStudentPage.IsDisplayed);
 
         }
     }
