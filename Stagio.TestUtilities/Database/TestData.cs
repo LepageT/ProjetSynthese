@@ -384,7 +384,8 @@ namespace Stagio.TestUtilities.Database
                     IdStudent = 1,
                     Status = StatusApply.Accepted,
                     Cv = "Le cv de l'étudiant",
-                    Letter = "La lettre de présentation"
+                    Letter = "La lettre de présentation",
+                    DateApply = new DateTime(2014,11,11)
                 };
 
                 return apply;
@@ -403,7 +404,8 @@ namespace Stagio.TestUtilities.Database
                     IdStage = 1,
                     IdStudent = 1,
                     Cv = "Le cv de l'étudiant",
-                    Letter = "La lettre de présentation."
+                    Letter = "La lettre de présentation.",
+                    DateApply = new DateTime(2014,11,11)
                 };
 
                 return apply;

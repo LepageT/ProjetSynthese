@@ -13,8 +13,9 @@
             @Html.DisplayNameFor(model => model.stageTitle)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.DateApply)
+
         </th>
-        <th></th>
     </tr>
 
     @foreach (var item in Model)
@@ -23,20 +24,30 @@
             <td>
                 @Html.ActionLink(item.stageTitle, MVC.Stage.ViewStageInfo().AddRouteValues(new { id = item.IdStage }), new { id = "details-stages" + item.IdStage })
             </td>
+            <td>
+                @Html.Label(item.DateApply.ToShortDateString())
+            </td>
             @if (item.Status == 3)
             {
                 <td>
-                   Candidature retirée
+                    Candidature retirée
+           
                 </td>
             }
-            
             <td>
-                @if (item.Status == 0 && item.StudentReply == 0)
+                @if (item.Status != 3)
                 {
-                    
-                    using (Html.BeginForm("ApplyRemoveConfirmation", "Student", new { id = item.Id }, FormMethod.Get))
+
+                    using (Html.BeginForm("ApplyRemoveConfirmation", "Student", new {id = item.Id}, FormMethod.Get))
                     {
                         <input type="submit" value="Retirer" id="remove-apply" />
+                    }
+                }
+                else
+                {
+                    using (Html.BeginForm("ApplyReApplyConfirmation", "Student", new { id = item.Id }, FormMethod.Get))
+                    {
+                        <input type="submit" value="Resoumettre" id="reapply-apply" />
                     }
                 }
             </td>

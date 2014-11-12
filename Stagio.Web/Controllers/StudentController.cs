@@ -365,6 +365,7 @@ namespace Stagio.Web.Controllers
             }
             var newApplicationStudent = Mapper.Map<Stagio.Domain.Entities.Apply>(applyStudentViewModel);
             newApplicationStudent.Status = 0;   //0 = En attente
+            newApplicationStudent.DateApply = DateTime.Now;
             _applyRepository.Add(newApplicationStudent);
             int nbApplyCurrently = stage.NbApply;
             stage.NbApply = nbApplyCurrently + 1;
@@ -382,6 +383,14 @@ namespace Stagio.Web.Controllers
         {
             var stageApply = _applyRepository.GetById(id);
             stageApply.Status = StatusApply.Removed;
+            _applyRepository.Update(stageApply);
+            return View();
+        }
+
+        public virtual ActionResult ApplyReApplyConfirmation(int id)
+        {
+            var stageApply = _applyRepository.GetById(id);
+            stageApply.Status = StatusApply.Waitting;
             _applyRepository.Update(stageApply);
             return View();
         }

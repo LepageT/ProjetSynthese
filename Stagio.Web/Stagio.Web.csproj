@@ -451,6 +451,7 @@
     <Content Include="Views\Coordinator\CreateConfirmation.cshtml" />
     <Content Include="Views\Student\UploadCVLetter.cshtml" />
     <Content Include="Views\Student\ConfirmationUploadCVLetter.cshtml" />
+    <Content Include="Views\Student\ApplyReApplyConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt.hooks.t4" />

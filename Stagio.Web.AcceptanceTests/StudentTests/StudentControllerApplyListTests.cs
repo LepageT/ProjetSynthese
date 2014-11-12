@@ -47,6 +47,21 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             ApplyListStudentPage.ClickToRemove();
 
             Assert.IsTrue(ApplyListStudentPage.ConfirmationRemoveIsDisplayed);
+
+        }
+
+        [TestMethod]
+        public void student_should_see_ReApplyApplyConfirmationPage_when_reapplying()
+        {
+            LoginPage.GoTo();
+            LoginPage.LoginAs(StudentUsername, StudentPassword);
+
+            ApplyListStudentPage.GoTo();
+            ApplyListStudentPage.ClickToRemove();
+            ApplyListStudentPage.GoTo();
+            ApplyListStudentPage.ClickToReApply();
+
+            Assert.IsTrue(ApplyListStudentPage.ConfirmationReApplyIsDisplayed);
         }
     }
 }
