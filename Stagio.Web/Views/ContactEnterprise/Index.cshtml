@@ -6,13 +6,13 @@
 <h2>Accueil Entreprise</h2>
 
 
-<div>
-    @Html.ActionLink("Inviter un autre employé", MVC.ContactEnterprise.InviteContactEnterprise(), new { id = "invite-contact-enterprise" })<br/>
-    @Html.ActionLink("Crée un stage", MVC.ContactEnterprise.CreateStage(), new { id = "create-stage-enterprise" })
-</div>
-<div>
-    @Html.ActionLink("Liste des stages pour une entreprise", MVC.ContactEnterprise.ListStage(), new { id = "listContact" })
-</div>
-<div>
-    @Html.ActionLink("Afficher les informations du profil", MVC.Account.Details(Int32.Parse(@User.Identity.GetUserId())), new { id = "details-contact" })
-</div>
+    <div>
+       Pour ajouter un autre employé de votre entreprise, cliquez  @Html.ActionLink("ici", MVC.ContactEnterprise.InviteContactEnterprise(), new { id = "invite-contact-enterprise" })
+    </div>
+    <div>
+       Pour ajouter un offre de stage, cliquez @Html.ActionLink("ici", MVC.ContactEnterprise.CreateStage(), new { id = "create-stage-enterprise" })
+    </div>
+    <div>
+       Pour afficher la liste de vos stages, cliquez  @Html.ActionLink("ici", MVC.ContactEnterprise.ListStage(), new { id = "listContact" })
+    </div>
+    
