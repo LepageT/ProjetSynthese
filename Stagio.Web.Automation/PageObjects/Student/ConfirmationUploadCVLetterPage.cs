@@ -11,7 +11,7 @@ namespace Stagio.Web.Automation.PageObjects.Student
     {
         public static bool IsDisplayed
         {
-            get { return Driver.Instance.FindElement(By.Id("confirmation-upload")) != null; }
+            get { return Driver.Instance.FindElement(By.Id("confirmationApplyStudent-page")) != null; }
         }
     }
 }

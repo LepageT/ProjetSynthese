@@ -184,6 +184,7 @@ namespace Stagio.Web.Controllers
 		public class ActionParamsClass_Apply
 		{
 			public readonly string id = "id";
+			public readonly string files = "files";
 			public readonly string applyStudentViewModel = "applyStudentViewModel";
 		}
 		static readonly ActionParamsClass_ApplyRemoveConfirmation s_params_ApplyRemoveConfirmation = new ActionParamsClass_ApplyRemoveConfirmation();
@@ -435,14 +436,15 @@ namespace Stagio.Web.Controllers
 		}
 
 		[NonAction]
-		partial void ApplyOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Stagio.Web.ViewModels.Student.Apply applyStudentViewModel);
+		partial void ApplyOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Collections.Generic.IEnumerable<System.Web.HttpPostedFileBase> files, Stagio.Web.ViewModels.Student.Apply applyStudentViewModel);
 
 		[NonAction]
-		public override System.Web.Mvc.ActionResult Apply(Stagio.Web.ViewModels.Student.Apply applyStudentViewModel)
+		public override System.Web.Mvc.ActionResult Apply(System.Collections.Generic.IEnumerable<System.Web.HttpPostedFileBase> files, Stagio.Web.ViewModels.Student.Apply applyStudentViewModel)
 		{
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Apply);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "files", files);
 			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "applyStudentViewModel", applyStudentViewModel);
-			ApplyOverride(callInfo, applyStudentViewModel);
+			ApplyOverride(callInfo, files, applyStudentViewModel);
 			return callInfo;
 		}
 
