@@ -38,7 +38,7 @@ namespace Stagio.Web.AcceptanceTests
         [TestCleanup]
         public void Cleanup()
         {
-            Driver.Close();
+           // Driver.Close();
         }
 
         
