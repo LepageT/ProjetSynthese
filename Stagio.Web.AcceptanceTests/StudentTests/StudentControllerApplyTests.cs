@@ -18,7 +18,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         {
             LoginPage.GoTo();
             LoginPage.LoginAs(StudentUsername, StudentPassword);
-            ApplyStudentPage.GoToByUrl();
+            ApplyStudentPage.GoTo();
 
             Assert.IsTrue(ApplyStudentPage.IsDisplayed);
             

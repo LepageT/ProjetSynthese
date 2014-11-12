@@ -20,7 +20,7 @@ namespace Stagio.TestUtilities.Database
                    {
                        new UserRole() {RoleName = RoleName.Coordinator},
                    },
-                    Password = PasswordHash.CreateHash("test4test"),
+                    Password = PasswordHash.CreateHash("test4test1"),
                     Email = "coordonnateur@stagio.com",
                     FirstName = "Jean-Dominic",
                     LastName = "Rousseau",
@@ -407,6 +407,26 @@ namespace Stagio.TestUtilities.Database
                 };
 
                 return apply;
+            }
+        }
+
+        #endregion
+
+
+        #region InvitationContactEnterprise 1
+
+        static public InvitationContactEnterprise invitationContactEnterprise1
+        {
+            get
+            {
+                var invitation = new InvitationContactEnterprise()
+                {
+                    Id = 1,
+                    Email = "testemail@enterprise.com",
+                    Token = "123456"
+                };
+
+                return invitation;
             }
         }
 

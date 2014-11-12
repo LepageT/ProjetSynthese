@@ -1,5 +1,4 @@
-﻿@using System.Web.Mvc.Html
-@using Stagio.Domain.Entities
+﻿@using Stagio.Web.Module.Strings.Shared;
 
 @model IEnumerable<Stagio.Web.ViewModels.Student.ListStudent>
 
@@ -58,6 +57,6 @@
 
 
 <div>
-    @Html.ActionLink("Retour à l'accueil", MVC.Home.Index())
+    @Html.ActionLink(Navigation.ReturnHome, MVC.Home.Index())
 </div>
 

@@ -1,4 +1,5 @@
 ﻿@using System.Web.Mvc.Html
+@using Stagio.Web.Module.Strings.Shared;
 @model Stagio.Web.ViewModels.ContactEnterprise.Reactive
 
 @using (Html.BeginForm())
@@ -9,6 +10,8 @@
         <h4 id="create-page">Créer votre profil d'enterprise</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.InvitationId)
         <div class="form-group">
             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -87,5 +90,5 @@
 }
 
 <div>
-    @Html.ActionLink("Retour à l'accueil", MVC.Home.Index())
+    @Html.ActionLink(Navigation.ReturnHome, MVC.Home.Index())
 </div>

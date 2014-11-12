@@ -12,6 +12,7 @@ namespace Stagio.TestUtilities.Database
         private EfEntityRepository<ContactEnterprise> _contactEnterpriseRepository;
         private EfEntityRepository<Stage> _stageRepository;
         private EfEntityRepository<Apply> _applyRepository;
+        private EfEntityRepository<InvitationContactEnterprise> _invitationContactEnterpriseRepository;
 
         public DataBaseTestHelper()
         {
@@ -22,6 +23,7 @@ namespace Stagio.TestUtilities.Database
             _contactEnterpriseRepository = new EfEntityRepository<ContactEnterprise>();
             _stageRepository = new EfEntityRepository<Stage>();
             _applyRepository = new EfEntityRepository<Apply>();
+            _invitationContactEnterpriseRepository = new EfEntityRepository<InvitationContactEnterprise>();
         }
 
         public void SeedTables()
@@ -32,7 +34,7 @@ namespace Stagio.TestUtilities.Database
             addEnterprises();
             addStages();
             addApplies();
-
+            addInvitationContactEnterprise();
         }
 
         private void addApplies()
@@ -86,6 +88,11 @@ namespace Stagio.TestUtilities.Database
             _contactEnterpriseRepository.Add(TestData.contactEnterprise1);
             _contactEnterpriseRepository.Add(TestData.contactEnterprise2);
             _contactEnterpriseRepository.Add(TestData.contactEnterprise3);
+        }
+
+        private void addInvitationContactEnterprise()
+        {
+            _invitationContactEnterpriseRepository.Add(TestData.invitationContactEnterprise1);
         }
 
     }

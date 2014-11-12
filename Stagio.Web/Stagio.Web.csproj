@@ -253,6 +253,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EmailAccountCreation.resx</DependentUpon>
     </Compile>
+    <Compile Include="Module\Strings\Shared\Navigation.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Navigation.resx</DependentUpon>
+    </Compile>
     <Compile Include="Module\Strings\Email\EmailResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -286,6 +291,8 @@
     <Compile Include="ViewModels\Account\Details.cs" />
     <Compile Include="ViewModels\Apply\StudentApply.cs" />
     <Compile Include="ViewModels\ContactEnterprise\AcceptApply.cs" />
+    <Compile Include="ViewModels\ContactEnterprise\Create.cs" />
+    <Compile Include="ViewModels\ContactEnterprise\Invite.cs" />
     <Compile Include="ViewModels\ContactEnterprise\ListStudentApply.cs" />
     <Compile Include="ViewModels\ContactEnterprise\ListStage.cs" />
     <Compile Include="ViewModels\ContactEnterprise\Reactive.cs" />
@@ -439,6 +446,7 @@
     <Content Include="Views\Student\ApplyRemoveConfirmation.cshtml" />
     <Content Include="Views\Student\ApplyList.cshtml" />
     <Content Include="Views\Student\ReplyStage.cshtml" />
+    <Content Include="Views\ContactEnterprise\Create.cshtml" />
     <Content Include="Views\Student\CreateConfirmation.cshtml" />
     <Content Include="Views\Coordinator\CreateConfirmation.cshtml" />
     <Content Include="Views\Student\UploadCVLetter.cshtml" />
@@ -515,6 +523,10 @@
     <EmbeddedResource Include="Module\Strings\Email\EmailAccountCreation.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>EmailAccountCreation.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Module\Strings\Shared\Navigation.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Navigation.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Module\Strings\Email\EmailResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

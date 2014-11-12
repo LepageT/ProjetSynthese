@@ -1,5 +1,4 @@
-﻿@using System.Web.Mvc
-
+﻿@using Stagio.Web.Module.Strings.Shared;
 <h2 id="upload-page">Importer les matricules des étudiants</h2>
 
 <p>Le fichier doit être un fichier csv</p>
@@ -18,5 +17,5 @@
 </div>
 
 <div>
-    @Html.ActionLink("Retour à l'accueil", MVC.Home.Index())
+    @Html.ActionLink(Navigation.ReturnHome, MVC.Home.Index())
 </div>

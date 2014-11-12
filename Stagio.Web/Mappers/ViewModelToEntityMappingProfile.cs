@@ -1,6 +1,7 @@
 ﻿using System.Security.Cryptography;
 using AutoMapper;
 using Stagio.Domain.Entities;
+using Stagio.Web.ViewModels.ContactEnterprise;
 
 namespace Stagio.Web.Mappers
 {
@@ -51,6 +52,9 @@ namespace Stagio.Web.Mappers
 
             Mapper.CreateMap<ViewModels.Interviews.Edit, Interview>()
              .IgnoreAllNonExisting();
+
+            Mapper.CreateMap<ViewModels.ContactEnterprise.Create, ContactEnterprise>()
+               .IgnoreAllNonExisting();
         }
     }
 }

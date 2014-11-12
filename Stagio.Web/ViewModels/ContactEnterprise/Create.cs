@@ -5,12 +5,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Stagio.DataLayer;
 using Stagio.Web.Validations;
 
 namespace Stagio.Web.ViewModels.ContactEnterprise
 {
-    public class Reactive
+    public class Create
     {
         [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
@@ -60,16 +59,5 @@ namespace Stagio.Web.ViewModels.ContactEnterprise
 
         [HiddenInput(DisplayValue = false)]
         public bool Active { get; set; }
-
-        [DisplayName("Message")]
-        public String Message { get; set; }
-
-        [HiddenInput(DisplayValue = false)]
-        public string Token { get; set; }
-
-        public int InvitationId { get; set; }
     }
-
-
-
 }

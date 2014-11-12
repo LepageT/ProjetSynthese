@@ -63,7 +63,7 @@
             }
             
             <td>
-                @if (item.Status != 3)
+                @if (item.Status == 0 && item.StudentReply == 0)
                 {
                     
                     using (Html.BeginForm("ApplyRemoveConfirmation", "Student", new { id = item.Id }, FormMethod.Get))

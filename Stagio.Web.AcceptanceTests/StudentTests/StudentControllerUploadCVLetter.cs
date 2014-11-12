@@ -57,7 +57,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         }
 
         [TestMethod]
-        public void coordinator_upload_should_rest_on_to_upload_is_not_valid()
+        public void student_upload_should_rest_on_to_upload_is_not_valid()
         {
             LoginPage.GoTo();
             LoginPage.LoginAs(StudentUsername, StudentPassword);

@@ -1,4 +1,5 @@
 ﻿@using System.Web.Mvc.Html
+@using Stagio.Web.Module.Strings.Shared;
 @model Stagio.Web.ViewModels.Coordinator.Invite
 
 @{
@@ -39,5 +40,7 @@
 }
 
 <div>
-    @Html.ActionLink("Retour à l'accueil", MVC.Coordinator.Index())
+
+    @Html.ActionLink(Navigation.ReturnHome, "Index")
+
 </div>
