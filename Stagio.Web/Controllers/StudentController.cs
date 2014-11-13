@@ -17,6 +17,7 @@ using Stagio.Domain.Entities;
 using Stagio.Web.Module;
 using Stagio.Web.Module.Strings.Controller;
 using Stagio.Web.Services;
+using Stagio.Web.ViewModels.Apply;
 using Stagio.Web.ViewModels.Student;
 using Stagio.Utilities.Encryption;
 using Stagio.Web.Module.Strings.Email;
@@ -75,7 +76,7 @@ namespace Stagio.Web.Controllers
             
             if (ModelState.IsValid)
             {
-                if (readFile.ReadFileCVLetter(files, Server))
+                if (readFile.ReadFileCVLetter(files, Server, 1))
                 {
                     return RedirectToAction(MVC.Student.ConfirmationUploadCVLetter());
                 }
@@ -336,6 +337,7 @@ namespace Stagio.Web.Controllers
 
             if (stage != null)
             {
+
                 var applyViewModel = new ViewModels.Student.Apply();
                 applyViewModel.IdStage = id;
 
@@ -350,7 +352,7 @@ namespace Stagio.Web.Controllers
         }
 
         [HttpPost]
-        public virtual ActionResult Apply(ViewModels.Student.Apply applyStudentViewModel)
+        public virtual ActionResult Apply(IEnumerable<HttpPostedFileBase> files, ViewModels.Student.Apply applyStudentViewModel)
         {
             var stage = _stageRepository.GetById(applyStudentViewModel.IdStage);
 
@@ -359,10 +361,14 @@ namespace Stagio.Web.Controllers
                 return HttpNotFound();
             }
 
-            if (!ModelState.IsValid)
+            var readFile = new ReadFile<String>();
+
+
+            if (readFile.ReadFileCVLetter(files, Server, applyStudentViewModel.Id))
             {
-                return View(applyStudentViewModel);
-            }
+                var files1 = files.ToList();
+                applyStudentViewModel.Cv = files1[0].FileName + "ApplyCV" + applyStudentViewModel.Id;
+                applyStudentViewModel.Letter = files1[1].FileName + "ApplyLetter" + applyStudentViewModel.Id;
             var newApplicationStudent = Mapper.Map<Stagio.Domain.Entities.Apply>(applyStudentViewModel);
             newApplicationStudent.Status = 0;   //0 = En attente
             newApplicationStudent.DateApply = DateTime.Now;
@@ -372,6 +378,11 @@ namespace Stagio.Web.Controllers
             _stageRepository.Update(stage);
 
             return RedirectToAction(MVC.Student.ApplyConfirmation());
+        }
+            else
+            {
+                return View(applyStudentViewModel);
+            }
         }
 
         public virtual ActionResult ApplyConfirmation()
