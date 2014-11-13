@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Stagio.Web.ViewModels.Coordinator.StudentApplyList>
+
+
+<h2 id="studentApply-list">Suivi de l'étudiant</h2>
+
+<div class="text-right" id="stage-count">@Model.Count() candidatures</div>
+
+<div>
+    @if (Model.Count() != 0)
+    {
+        @Html.Label(Model.First().Matricule.ToString())
+        @Html.Label(Model.First().FirstName)
+        @Html.Label(Model.First().LastName)
+    }
+    else
+    {
+        <p>Cet étudiant n'a pas postulé pour un stage.</p>
+    }
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StageTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EnterpriseName)
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateApply)
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateInterview)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.StageTitle)
+
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.EnterpriseName)
+            </td>
+
+            <td>
+                @Html.Label(item.DateApply.ToShortDateString())
+            </td>
+            <td>
+                @if (item.DateInterview.ToShortDateString() != "0001-01-01")
+                {
+                    @Html.Label(item.DateInterview.ToShortDateString())
+                }
+                else
+                {
+                    <p>Inconnu</p>
+                }
+            </td>
+        </tr>
+    }
+
+</table>

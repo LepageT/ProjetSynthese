@@ -405,7 +405,7 @@ namespace Stagio.TestUtilities.Database
                     IdStudent = 1,
                     Cv = "Le cv de l'étudiant",
                     Letter = "La lettre de présentation.",
-                    DateApply = new DateTime(2014,11,11)
+                    DateApply = new DateTime(2014,11,20)
                 };
 
                 return apply;
