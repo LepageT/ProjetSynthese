@@ -79,10 +79,12 @@ namespace Stagio.Web.ViewModels.Stage
         [Required(ErrorMessage = "Requis")]
         public String StageTitle { get; set; }
 
+        [DataType(DataType.MultilineText)]
         [DisplayName("Description du projet")]
         [Required(ErrorMessage = "Requis")]
         public String StageDescription { get; set; }
 
+        [DataType(DataType.MultilineText)]
         [DisplayName("Environnement matériel et logiciel spécifique au projet")]
         [Required(ErrorMessage = "Requis")]
         public String EnvironnementDescription { get; set; }

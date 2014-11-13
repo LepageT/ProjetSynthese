@@ -197,6 +197,23 @@ namespace Stagio.Web.Automation
                     MenuSelector.SelectTopLevel("index-Coordinator");
                 }
             }
+
+            public class StudentList
+            {
+                public static void Select()
+                {
+                    MenuSelector.Select("index-coordonnateur", "student-list");
+                }
+            }
+
+            public class StudentApplyList1
+            {
+                public static void Select()
+                {
+                    MenuSelector.Select("index-coordonnateur", "student-list");
+                    MenuSelector.SelectTopLevel("student-stages1");
+                }
+            }
         }
 
         public class AllUsers
