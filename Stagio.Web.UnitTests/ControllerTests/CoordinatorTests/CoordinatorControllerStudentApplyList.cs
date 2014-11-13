@@ -52,5 +52,13 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
 
             model.Count.Should().Be(0);
         }
+
+        [TestMethod]
+        public void coordinator_StudentApplyList_should_return_httpnotfound_when_studentId_is_invalid()
+        {
+            var result = coordinatorController.StudentApplyList(999999999);
+
+            result.Should().BeOfType<HttpNotFoundResult>();
+        }
     }
 }

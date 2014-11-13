@@ -358,6 +358,12 @@ namespace Stagio.Web.Controllers
         [Authorize(Roles = RoleName.Coordinator)]
         public virtual ActionResult StudentApplyList(int studentId)
         {
+            var studentValid = _studentRepository.GetById(studentId);
+            if (studentValid == null)
+            {
+                return HttpNotFound();
+            }
+
             var appliedStages = _applyRepository.GetAll().ToList();
             var studentSpecificApplies = appliedStages.Where(x => x.IdStudent == studentId).ToList();
             var stages = _stageRepository.GetAll().ToList();
