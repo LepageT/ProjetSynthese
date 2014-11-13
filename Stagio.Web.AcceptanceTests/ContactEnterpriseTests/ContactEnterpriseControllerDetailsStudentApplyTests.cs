@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using Stagio.Web.Automation.PageObjects;
 using Stagio.Web.Automation.PageObjects.ContactEnterprise;
 
 namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
@@ -15,6 +16,8 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
         [TestMethod]
         public void contact_enterprise_should_be_able_to_access_confirmation_page_when_accepting_a_student_apply()
         {
+            LoginPage.GoTo();
+            LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
             DetailsStudentApplyContactEnterprisePage.GoToByUrl();
             DetailsStudentApplyContactEnterprisePage.AcceptApply();
 
@@ -25,6 +28,8 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
         [TestMethod]
         public void contact_enterprise_should_be_able_to_access_confirmation_page_when_refusing_a_student_apply()
         {
+            LoginPage.GoTo();
+            LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
             DetailsStudentApplyContactEnterprisePage.GoToByUrl();
             DetailsStudentApplyContactEnterprisePage.RefuseApply();
 
@@ -35,7 +40,8 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
         [TestMethod]
         public void contactEnterprise_can_see_a_page_of_detail_apply()
         {
-
+            LoginPage.GoTo();
+            LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
             DetailsStudentApplyContactEnterprisePage.GoToByUrl();
 
             Assert.IsTrue(DetailsStudentApplyContactEnterprisePage.IsDisplayed);

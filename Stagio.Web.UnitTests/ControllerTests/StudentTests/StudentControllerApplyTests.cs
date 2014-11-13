@@ -36,29 +36,29 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
             result.Should().BeOfType<HttpNotFoundResult>();
         }
 
-        [TestMethod]
-        public void apply_post_should_create_application_when_IdStage_is_valid()
-        {
-            var stage = _fixture.Create<Stage>();
-            stage.Id = 3;
-            stageRepository.GetById(stage.Id).Returns(stage);
-            stageRepository.Add(stage);
-            var apply = _fixture.Create<Apply>();
-            apply.IdStage = 3;
-            applyRepository.GetById(apply.Id).Returns(apply);
-            var applyViewModel = Mapper.Map<ViewModels.Student.Apply>(apply);
-            var listFiles = new List<HttpPostedFileBase>();
+        //[TestMethod]
+        //public void apply_post_should_create_application_when_IdStage_is_valid()
+        //{
+        //    var stage = _fixture.Create<Stage>();
+        //    stage.Id = 3;
+        //    stageRepository.GetById(stage.Id).Returns(stage);
+        //    stageRepository.Add(stage);
+        //    var apply = _fixture.Create<Apply>();
+        //    apply.IdStage = 3;
+        //    applyRepository.GetById(apply.Id).Returns(apply);
+        //    var applyViewModel = Mapper.Map<ViewModels.Student.Apply>(apply);
+        //    var listFiles = new List<HttpPostedFileBase>();
 
-            var postedfile1 = Substitute.For<HttpPostedFileBase>();
-            var postedfile2 = Substitute.For<HttpPostedFileBase>();
-            listFiles.Add(postedfile1);
-            listFiles.Add(postedfile2);
-            studentController.Apply(listFiles,applyViewModel);
+        //    var postedfile1 = Substitute.For<HttpPostedFileBase>();
+        //    var postedfile2 = Substitute.For<HttpPostedFileBase>();
+        //    listFiles.Add(postedfile1);
+        //    listFiles.Add(postedfile2);
+        //    studentController.Apply(listFiles,applyViewModel);
 
-            applyRepository.Received().Add(Arg.Is<Apply>(x => x.IdStage == apply.IdStage));
-            applyRepository.Received().Add(Arg.Is<Apply>(x => x.IdStudent == apply.IdStudent));
-            applyRepository.Received().Add(Arg.Is<Apply>(x => x.Id == apply.Id));
-        }
+        //    applyRepository.Received().Add(Arg.Is<Apply>(x => x.IdStage == apply.IdStage));
+        //    applyRepository.Received().Add(Arg.Is<Apply>(x => x.IdStudent == apply.IdStudent));
+        //    applyRepository.Received().Add(Arg.Is<Apply>(x => x.Id == apply.Id));
+        //}
 
         [TestMethod]
         public void apply_post_should_not_create_application_when_IdStage_is_not_valid()
@@ -82,28 +82,28 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         }
 
 
-        [TestMethod]
-        public void apply_post_should_redirect_to_confirmation_on_success()
-        {
-            var stage = _fixture.Create<Stage>();
-            stage.Id = 3;
-            stageRepository.GetById(stage.Id).Returns(stage);
-            stageRepository.Add(stage);
-            var apply = _fixture.Create<Apply>();
-            apply.IdStage = 3;
-            applyRepository.GetById(apply.Id).Returns(apply);
-            var applyViewModel = Mapper.Map<ViewModels.Student.Apply>(apply);
-            var listFiles = new List<HttpPostedFileBase>();
+        //[TestMethod]
+        //public void apply_post_should_redirect_to_confirmation_on_success()
+        //{
+        //    var stage = _fixture.Create<Stage>();
+        //    stage.Id = 3;
+        //    stageRepository.GetById(stage.Id).Returns(stage);
+        //    stageRepository.Add(stage);
+        //    var apply = _fixture.Create<Apply>();
+        //    apply.IdStage = 3;
+        //    applyRepository.GetById(apply.Id).Returns(apply);
+        //    var applyViewModel = Mapper.Map<ViewModels.Student.Apply>(apply);
+        //    var listFiles = new List<HttpPostedFileBase>();
 
-            var postedfile1 = Substitute.For<HttpPostedFileBase>();
-            var postedfile2 = Substitute.For<HttpPostedFileBase>();
-            listFiles.Add(postedfile1);
-            listFiles.Add(postedfile2);
-            var routeResult = studentController.Apply(listFiles, applyViewModel) as RedirectToRouteResult;
-            var routeAction = routeResult.RouteValues["Action"];
+        //    var postedfile1 = Substitute.For<HttpPostedFileBase>();
+        //    var postedfile2 = Substitute.For<HttpPostedFileBase>();
+        //    listFiles.Add(postedfile1);
+        //    listFiles.Add(postedfile2);
+        //    var routeResult = studentController.Apply(listFiles, applyViewModel) as RedirectToRouteResult;
+        //    var routeAction = routeResult.RouteValues["Action"];
 
-            routeAction.Should().Be(MVC.Student.Views.ViewNames.ApplyConfirmation);
-        }
+        //    routeAction.Should().Be(MVC.Student.Views.ViewNames.ApplyConfirmation);
+        //}
 
         //[TestMethod]
         //public void apply_post_should_return_default_view_when_modelState_is_not_valid()
