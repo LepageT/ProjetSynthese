@@ -20,19 +20,23 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<ContactEnterprise> _enterpriseContactRepository;
         private readonly IEntityRepository<Coordinator> _coordinatorRepository;
         private readonly IEntityRepository<Invitation> _invitationRepository;
+        private readonly IEntityRepository<InvitationContactEnterprise> _invitationContactRepository;
+
         private readonly IMailler _mailler;
 
         public CoordinatorController(IEntityRepository<ContactEnterprise> enterpriseContactRepository,
             IEntityRepository<Coordinator> coordinatorRepository,
             IEntityRepository<Invitation> invitationRepository,
             IMailler mailler,
-            IAccountService accountService)
+            IAccountService accountService,
+            IEntityRepository<InvitationContactEnterprise> invitationContactRepository )
         {
             _enterpriseContactRepository = enterpriseContactRepository;
             _coordinatorRepository = coordinatorRepository;
             _invitationRepository = invitationRepository;
             _mailler = mailler;
             _accountService = accountService;
+            _invitationContactRepository = invitationContactRepository;
         }
         // GET: Coordinator
         public virtual ActionResult Index()
@@ -110,9 +114,13 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult InviteContactEnterprise(IEnumerable<int> selectedIdContactEnterprise, string messageInvitation)
         {
             if (selectedIdContactEnterprise != null)
-            {
+            {         
+                TokenGenerator tokenGenerator = new TokenGenerator();
+
                 foreach (int id in selectedIdContactEnterprise)
                 {
+
+                    string token = tokenGenerator.GenerateToken();
 
                     ContactEnterprise contactEnterpriseToSendMessage = _enterpriseContactRepository.GetById(id);
 
@@ -121,7 +129,11 @@ namespace Stagio.Web.Controllers
                         return View(InviteContactEnterprise());
                     }
 
-                    string messageText = generateURLInvitationContactEnterprise(contactEnterpriseToSendMessage);
+                    String messageText = EmailEnterpriseResources.InviteMessageBody;
+                    String invitationUrl = EmailEnterpriseResources.InviteLink + token + "\">jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token=" + token + "</a>";
+
+                    messageText += invitationUrl;
+
 
                     if (messageInvitation != null)
                     {
@@ -137,6 +149,20 @@ namespace Stagio.Web.Controllers
                         return View(InviteContactEnterprise());
                     }
 
+                    _invitationContactRepository.Add(new InvitationContactEnterprise()
+                    {
+                        Token = token,
+                        Email = contactEnterpriseToSendMessage.Email,
+                        FirstName = contactEnterpriseToSendMessage.FirstName,
+                        LastName = contactEnterpriseToSendMessage.LastName,
+                        EnterpriseName = contactEnterpriseToSendMessage.EnterpriseName,
+                        Telephone = contactEnterpriseToSendMessage.Telephone,
+                        Poste = contactEnterpriseToSendMessage.Poste,
+                        Used = false
+                    });
+
+
+
                 }
                 return RedirectToAction(MVC.Coordinator.InviteContactEnterpriseConfirmation());
             }
@@ -145,49 +171,10 @@ namespace Stagio.Web.Controllers
 
         }
 
-        [Authorize(Roles = RoleName.Coordinator)]
-        private string generateURLInvitationContactEnterprise(ContactEnterprise contactEnterpriseToSendMessage)
-        {
-            string enterpriseName = contactEnterpriseToSendMessage.EnterpriseName;
-            if (enterpriseName.Contains(" "))
-            {
-                enterpriseName.Replace(" ", "%20");
-            }
-            if (contactEnterpriseToSendMessage.FirstName != null)
-            {
-                contactEnterpriseToSendMessage.FirstName = contactEnterpriseToSendMessage.FirstName.Replace(" ", "%20");
-            }
-            if (contactEnterpriseToSendMessage.LastName != null)
-            {
-                contactEnterpriseToSendMessage.LastName = contactEnterpriseToSendMessage.LastName.Replace(" ", "%20");
-            }
-            if (contactEnterpriseToSendMessage.Telephone != null)
-            {
-                contactEnterpriseToSendMessage.Telephone = contactEnterpriseToSendMessage.Telephone.Replace(" ", "%20");
-            }
-            if (contactEnterpriseToSendMessage.Poste != null)
-            {
-                contactEnterpriseToSendMessage.Poste = contactEnterpriseToSendMessage.Poste.Replace(" ", "%20");
-            }
-
-            string messageText = EmailCoordinatorResources.CoordinatorInviteEnterpriseMessage;
-            string invitationUrl = "http://thomarelau.local/ContactEnterprise/Reactivate?Email=" +
-                                   contactEnterpriseToSendMessage.Email + "&EnterpriseName=" +
-                                   enterpriseName + "&FirstName=" +
-                                   contactEnterpriseToSendMessage.FirstName + "&LastName=" +
-                                   contactEnterpriseToSendMessage.LastName + "&Telephone=" +
-                                   contactEnterpriseToSendMessage.Telephone + "&Poste=" + contactEnterpriseToSendMessage.Poste;
-
-            messageText += invitationUrl;
-            return messageText;
-        }
-
         // GET: Coordinator/InviteContactEnterpriseConfirmation
         public virtual ActionResult InviteContactEnterpriseConfirmation()
         {
-
             return View();
-
         }
 
         public virtual ActionResult Create(string token)
@@ -271,15 +258,13 @@ namespace Stagio.Web.Controllers
                 return View(createdInvite);
             }
 
-            System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
-
             TokenGenerator tokenGenerator = new TokenGenerator();
 
             string token = tokenGenerator.GenerateToken();
 
             //Sending invitation with the Mailler class
             String messageText = EmailCoordinatorResources.CoordinatorInviteMessageBody;
-            String invitationUrl = EmailCoordinatorResources.CoordinatorInviteLink + token;
+            String invitationUrl = EmailCoordinatorResources.CoordinatorInviteLink + token + "\">jenkins.cegep-ste-foy.qc.ca/thomarelau/Coordinator/Create?token=" + token + "</a>";
 
             messageText += invitationUrl;
 

@@ -70,7 +70,7 @@ namespace Stagio.Web.Module.Strings.Email {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pour vous connecter, copier-coller ce lien: jenkins.cegep-ste-foy.qc.ca/thomarelau/Coordinator/Create/.
+        ///   Looks up a localized string similar to &lt;a href =&quot;http://jenkins.cegep-ste-foy.qc.ca/thomarelau/Coordinator/Create?token=.
         /// </summary>
         public static string CoordinatorInviteLink {
             get {
@@ -79,7 +79,7 @@ namespace Stagio.Web.Module.Strings.Email {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;h3&gt;Stagio&lt;/h3&gt;&lt;p&gt; Bonjour, &lt;/p&gt;&lt;p&gt;Vous avez &amp;eacute;t&amp;eacute; inviter à vous cr&amp;eacute;er un compte en tant que coordonnateur.&lt;/p&gt;&lt;p&gt;Pour cr&amp;eacute;er votre compte, veuillez cliquer sur le lien ci-dessous: &lt;/p&gt;.
+        ///   Looks up a localized string similar to &lt;h3&gt;Stagio&lt;/h3&gt;&lt;p&gt; Bonjour, &lt;/p&gt;&lt;p&gt;Vous avez été inviter à vous créer un compte en tant que coordonnateur.&lt;/p&gt;&lt;p&gt;Pour créer votre compte, veuillez cliquer sur le lien ci-dessous: &lt;/p&gt;.
         /// </summary>
         public static string CoordinatorInviteMessageBody {
             get {
