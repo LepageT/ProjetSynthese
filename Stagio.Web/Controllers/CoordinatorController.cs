@@ -11,6 +11,7 @@ using Stagio.Web.Module.Strings.Controller;
 using Stagio.Web.Module.Strings.Email;
 using Stagio.Web.Services;
 using Stagio.Web.Module;
+using Stagio.Web.ViewModels.Coordinator;
 
 namespace Stagio.Web.Controllers
 {
@@ -23,13 +24,21 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<InvitationContactEnterprise> _invitationContactRepository;
 
         private readonly IMailler _mailler;
+        private readonly IEntityRepository<Apply> _applyRepository;
+        private readonly IEntityRepository<Stage> _stageRepository;
+        private readonly IEntityRepository<Student> _studentRepository;
+        private readonly IEntityRepository<Interview> _interviewRepository; 
 
         public CoordinatorController(IEntityRepository<ContactEnterprise> enterpriseContactRepository,
             IEntityRepository<Coordinator> coordinatorRepository,
             IEntityRepository<Invitation> invitationRepository,
             IMailler mailler,
             IAccountService accountService,
-            IEntityRepository<InvitationContactEnterprise> invitationContactRepository )
+            IEntityRepository<InvitationContactEnterprise> invitationContactRepository,
+            IEntityRepository<Apply> applyRepository,
+            IEntityRepository<Stage> stageRepository,
+            IEntityRepository<Student> studentRepository,
+            IEntityRepository<Interview> interviewRepository)
         {
             _enterpriseContactRepository = enterpriseContactRepository;
             _coordinatorRepository = coordinatorRepository;
@@ -37,6 +46,10 @@ namespace Stagio.Web.Controllers
             _mailler = mailler;
             _accountService = accountService;
             _invitationContactRepository = invitationContactRepository;
+            _applyRepository = applyRepository;
+            _stageRepository = stageRepository;
+            _studentRepository = studentRepository;
+            _interviewRepository = interviewRepository;
         }
         // GET: Coordinator
         public virtual ActionResult Index()
@@ -114,7 +127,7 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult InviteContactEnterprise(IEnumerable<int> selectedIdContactEnterprise, string messageInvitation)
         {
             if (selectedIdContactEnterprise != null)
-            {         
+            {
                 TokenGenerator tokenGenerator = new TokenGenerator();
 
                 foreach (int id in selectedIdContactEnterprise)
@@ -163,7 +176,7 @@ namespace Stagio.Web.Controllers
 
 
 
-                }
+            }
                 return RedirectToAction(MVC.Coordinator.InviteContactEnterpriseConfirmation());
             }
 
@@ -299,6 +312,83 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult CreateConfirmation()
         {
             return View();
+        }
+
+        [Authorize(Roles = RoleName.Coordinator)]
+        public virtual ActionResult StudentList()
+        {
+            var allStudent = _studentRepository.GetAll().ToList();
+            var studentListViewModels = Mapper.Map<IEnumerable<ViewModels.Coordinator.StudentList>>(allStudent).ToList();
+
+
+            int nbApplyStudent = 0;
+
+            var appliedStages = _applyRepository.GetAll().ToList();
+
+            foreach (var student in studentListViewModels)
+            {
+                var studentSpecificApplies = appliedStages.Where(x => x.IdStudent == student.Id).ToList();
+                foreach (var apply in studentSpecificApplies)
+                {
+                    nbApplyStudent = nbApplyStudent + 1;
+                }
+                student.NbApply = nbApplyStudent;
+                nbApplyStudent = 0;
+            }
+           
+
+            return View(studentListViewModels);
+        }
+
+        [Authorize(Roles = RoleName.Coordinator)]
+        public virtual ActionResult StudentApplyList(int studentId)
+        {
+            var studentValid = _studentRepository.GetById(studentId);
+            if (studentValid == null)
+            {
+                return HttpNotFound();
+            }
+
+            var appliedStages = _applyRepository.GetAll().ToList();
+            var studentSpecificApplies = appliedStages.Where(x => x.IdStudent == studentId).ToList();
+            var stages = _stageRepository.GetAll().ToList();
+            var students = _studentRepository.GetAll().ToList();
+            var interviews = _interviewRepository.GetAll().ToList();
+
+            var studentListApplyViewModels = Mapper.Map<IEnumerable<ViewModels.Coordinator.StudentApplyList>>(studentSpecificApplies).ToList();
+
+            foreach (var appliedStage in studentListApplyViewModels)
+            {
+                foreach (var stage in stages)
+                {
+                    if (appliedStage.IdStage == stage.Id)
+                    {
+                        appliedStage.StageTitle = stage.StageTitle;
+                        appliedStage.EnterpriseName = stage.CompanyName;
+                    }
+                }
+                foreach (var student in students)
+                {
+                    if (appliedStage.Id == student.Id)
+                    {
+                        appliedStage.FirstName = student.FirstName;
+                        appliedStage.LastName = student.LastName;
+                        appliedStage.Matricule = student.Matricule;
+                    }
+                }
+                foreach (var interview in interviews)
+                {
+                    if (appliedStage.Id == interview.StudentId)
+                    {
+                        appliedStage.DateInterview = interview.Date;
+
+                    }
+                }
+            }
+
+            
+
+            return View(studentListApplyViewModels);
         }
 
     }
