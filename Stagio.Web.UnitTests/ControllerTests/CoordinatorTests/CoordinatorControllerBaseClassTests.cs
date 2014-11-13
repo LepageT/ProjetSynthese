@@ -25,7 +25,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
         protected IEntityRepository<Apply> applyRepository;
         protected IEntityRepository<Stage> stageRepository;
         protected IEntityRepository<Student> studentRepository;
-
+        protected IEntityRepository<Interview> interviewRepository; 
         
         protected IAccountService _accountService;
         protected IMailler mailler;
@@ -37,12 +37,16 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
             coordinatorRepository = Substitute.For<IEntityRepository<Coordinator>>();
             invitationRepository = Substitute.For<IEntityRepository<Invitation>>();
             enterpriseRepository = Substitute.For<IEntityRepository<ContactEnterprise>>();
+            applyRepository = Substitute.For<IEntityRepository<Apply>>();
+            stageRepository = Substitute.For<IEntityRepository<Stage>>();
+            studentRepository = Substitute.For<IEntityRepository<Student>>();
+            interviewRepository = Substitute.For<IEntityRepository<Interview>>();
             _accountService = Substitute.For<IAccountService>();
             
 
             mailler = Substitute.For<IMailler>();
 
-            coordinatorController = new CoordinatorController(enterpriseRepository, coordinatorRepository, invitationRepository, mailler, _accountService, applyRepository, stageRepository, studentRepository);
+            coordinatorController = new CoordinatorController(enterpriseRepository, coordinatorRepository, invitationRepository, mailler, _accountService, applyRepository, stageRepository, studentRepository, interviewRepository);
         }
     }
 }

@@ -11,6 +11,7 @@ using Stagio.Web.Module.Strings.Controller;
 using Stagio.Web.Module.Strings.Email;
 using Stagio.Web.Services;
 using Stagio.Web.Module;
+using Stagio.Web.ViewModels.Coordinator;
 
 namespace Stagio.Web.Controllers
 {
@@ -24,6 +25,7 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<Apply> _applyRepository;
         private readonly IEntityRepository<Stage> _stageRepository;
         private readonly IEntityRepository<Student> _studentRepository;
+        private readonly IEntityRepository<Interview> _interviewRepository; 
 
         public CoordinatorController(IEntityRepository<ContactEnterprise> enterpriseContactRepository,
             IEntityRepository<Coordinator> coordinatorRepository,
@@ -32,7 +34,8 @@ namespace Stagio.Web.Controllers
             IAccountService accountService,
             IEntityRepository<Apply> applyRepository,
             IEntityRepository<Stage> stageRepository,
-            IEntityRepository<Student> studentRepository)
+            IEntityRepository<Student> studentRepository,
+            IEntityRepository<Interview> interviewRepository)
         {
             _enterpriseContactRepository = enterpriseContactRepository;
             _coordinatorRepository = coordinatorRepository;
@@ -42,6 +45,7 @@ namespace Stagio.Web.Controllers
             _applyRepository = applyRepository;
             _stageRepository = stageRepository;
             _studentRepository = studentRepository;
+            _interviewRepository = interviewRepository;
         }
         // GET: Coordinator
         public virtual ActionResult Index()
@@ -349,6 +353,51 @@ namespace Stagio.Web.Controllers
            
 
             return View(studentListViewModels);
+        }
+
+        [Authorize(Roles = RoleName.Coordinator)]
+        public virtual ActionResult StudentApplyList(int studentId)
+        {
+            var appliedStages = _applyRepository.GetAll().ToList();
+            var studentSpecificApplies = appliedStages.Where(x => x.IdStudent == studentId).ToList();
+            var stages = _stageRepository.GetAll().ToList();
+            var students = _studentRepository.GetAll().ToList();
+            var interviews = _interviewRepository.GetAll().ToList();
+
+            var studentListApplyViewModels = Mapper.Map<IEnumerable<ViewModels.Coordinator.StudentApplyList>>(studentSpecificApplies).ToList();
+
+            foreach (var appliedStage in studentListApplyViewModels)
+            {
+                foreach (var stage in stages)
+                {
+                    if (appliedStage.IdStage == stage.Id)
+                    {
+                        appliedStage.StageTitle = stage.StageTitle;
+                        appliedStage.EnterpriseName = stage.CompanyName;
+                    }
+                }
+                foreach (var student in students)
+                {
+                    if (appliedStage.Id == student.Id)
+                    {
+                        appliedStage.FirstName = student.FirstName;
+                        appliedStage.LastName = student.LastName;
+                        appliedStage.Matricule = student.Matricule;
+                    }
+                }
+                foreach (var interview in interviews)
+                {
+                    if (appliedStage.Id == interview.StudentId)
+                    {
+                        appliedStage.DateInterview = interview.Date;
+
+                    }
+                }
+            }
+
+            
+
+            return View(studentListApplyViewModels);
         }
 
     }

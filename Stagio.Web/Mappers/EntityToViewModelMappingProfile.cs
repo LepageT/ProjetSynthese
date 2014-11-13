@@ -91,6 +91,11 @@ namespace Stagio.Web.Mappers
 
             Mapper.CreateMap<Student, ViewModels.Coordinator.StudentList>()
                 .IgnoreAllNonExisting();
+
+            Mapper.CreateMap<Apply, ViewModels.Coordinator.StudentApplyList>()
+                .IgnoreAllNonExisting();
+
+       
         }
     }
 }

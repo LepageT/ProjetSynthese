@@ -27,7 +27,8 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(model => item.Matricule)
+                @Html.ActionLink(item.Matricule.ToString(), MVC.Coordinator.StudentApplyList(item.Id), new { id = "student-stages" + item.Id })
+
             </td>
             <td>
                 @Html.DisplayFor(model => item.FirstName)
