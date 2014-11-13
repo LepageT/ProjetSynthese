@@ -88,5 +88,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
             var result = enterpriseController.DetailsStudentApply(999999999, false);
             result.Should().BeOfType<HttpNotFoundResult>();
         }
+
+       
     }
 }

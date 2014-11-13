@@ -398,6 +398,7 @@ namespace Stagio.Web.Controllers
             {
                 file = file.Replace("ApplyLetter", "");
             }
+
             try
             {
                 string path = AppDomain.CurrentDomain.GetData("DataDirectory").ToString();

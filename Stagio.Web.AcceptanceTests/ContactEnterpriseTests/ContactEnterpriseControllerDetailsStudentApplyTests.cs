@@ -48,6 +48,16 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
            
         }
 
+        [TestMethod]
+        public void contactEnterprise_should_not_download_files_isfiles_not_valid()
+        {
+            LoginPage.GoTo();
+            LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
+            DetailsStudentApplyContactEnterprisePage.GoToByUrl();
+            DetailsStudentApplyContactEnterprisePage.DownloadPage();
+            Assert.IsTrue(DetailsStudentApplyContactEnterprisePage.ErrorDisplayed);
+        }
+
     }
 }
 
