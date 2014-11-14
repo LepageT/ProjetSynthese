@@ -45,7 +45,7 @@ namespace Stagio.Web.Services
                 mail.IsBodyHtml = true;
                 mail.Subject = subject;
                 mail.Body = content;
-
+                mail.BodyEncoding = System.Text.Encoding.UTF8;
                 client.Send(mail);
             }
             catch
