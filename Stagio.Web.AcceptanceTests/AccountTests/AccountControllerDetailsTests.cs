@@ -12,6 +12,9 @@ namespace Stagio.Web.AcceptanceTests.AccountTests
         [TestMethod]
         public void applicationUser_can_see_his_profil()
         {
+            LoginPage.GoTo();
+            LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
+            
             DetailsAccountPage.GoToByUrl1();
 
             Assert.IsTrue(DetailsAccountPage.IsDisplayed);

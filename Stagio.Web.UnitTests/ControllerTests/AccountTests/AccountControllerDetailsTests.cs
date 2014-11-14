@@ -15,7 +15,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.AccountTests
         public void accountDetails_should_render_view_with_accountDetails()
         {
             var account = _fixture.Create<ApplicationUser>();
-
+            httpContext.GetUserId().Returns(account.Id);
             accountRepository.GetById(account.Id).Returns(account);
             var result = accountController.Details(account.Id) as ViewResult;
 
