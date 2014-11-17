@@ -522,7 +522,48 @@ namespace Stagio.TestUtilities.Database
         #endregion
 
 
+        #region NotificationCoordinator 1
 
+        static public Notification notificationCoordinator1
+        {
+            get
+            {
+                var notification = new Notification()
+                {
+                    Title = "Offre de stage à valider",
+                    Message =
+                        "Une nouvelle offre de stage à été ajouter. Vous pouvez l'accepter ou la refuser.",
+                    For = 4,
+                    Seen = false,
+                    Date = new DateTime(2014, 10, 15)
+                };
+
+                return notification;
+            }
+        }
+
+        #endregion
+        #region NotificationCoordinator 2
+
+        static public Notification notificationCoordinator2
+        {
+            get
+            {
+                var notification = new Notification()
+                {
+                    Title = "Offre de stage modifiée",
+                    Message =
+                        "Une offre de stage à été modifiée.",
+                    For = 4,
+                    Seen = false,
+                    Date = new DateTime(2014, 10, 15)
+                };
+
+                return notification;
+            }
+        }
+
+        #endregion
     }
 
 

@@ -27,7 +27,9 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<Apply> _applyRepository;
         private readonly IEntityRepository<Stage> _stageRepository;
         private readonly IEntityRepository<Student> _studentRepository;
-        private readonly IEntityRepository<Interview> _interviewRepository; 
+        private readonly IEntityRepository<Interview> _interviewRepository;
+        private readonly IEntityRepository<Notification> _notificationRepository;
+        private readonly IHttpContextService _httpContextService;
 
         public CoordinatorController(IEntityRepository<ContactEnterprise> enterpriseContactRepository,
             IEntityRepository<Coordinator> coordinatorRepository,
@@ -38,7 +40,9 @@ namespace Stagio.Web.Controllers
             IEntityRepository<Apply> applyRepository,
             IEntityRepository<Stage> stageRepository,
             IEntityRepository<Student> studentRepository,
-            IEntityRepository<Interview> interviewRepository)
+            IEntityRepository<Interview> interviewRepository,
+            IEntityRepository<Notification> notificationRepository,
+            IHttpContextService httpContextService)
         {
             _enterpriseContactRepository = enterpriseContactRepository;
             _coordinatorRepository = coordinatorRepository;
@@ -50,11 +54,18 @@ namespace Stagio.Web.Controllers
             _stageRepository = stageRepository;
             _studentRepository = studentRepository;
             _interviewRepository = interviewRepository;
+            _notificationRepository = notificationRepository;
+            _httpContextService = httpContextService;
         }
         // GET: Coordinator
         public virtual ActionResult Index()
         {
-            return View();
+            var notifications = _notificationRepository.GetAll().ToList();
+            var userNotifications = notifications.Where(x => x.For == _httpContextService.GetUserId());
+
+            var notificationsViewModels = Mapper.Map<IEnumerable<ViewModels.Notification.Notification>>(userNotifications).ToList();
+
+            return View(notificationsViewModels);
         }
 
         // GET: Coordinator/Details/5
