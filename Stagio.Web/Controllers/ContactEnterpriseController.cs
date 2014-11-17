@@ -267,9 +267,7 @@ namespace Stagio.Web.Controllers
             if (!ModelState.IsValid)
             {
                 return View(createdInviteContactEnterpriseViewModel);
-                }
-
-            System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
+            }
 
             TokenGenerator tokenGenerator = new TokenGenerator();
 
@@ -277,7 +275,7 @@ namespace Stagio.Web.Controllers
 
             //Sending invitation with the Mailler class
             String messageText = EmailEnterpriseResources.InviteCoworker;
-            String invitationUrl = EmailEnterpriseResources.InviteLinkConworker + token + "\">jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate</a>";
+            String invitationUrl = EmailEnterpriseResources.InviteLinkCoworker + token + "\">jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token=" + token + "</a>";
 
             messageText += invitationUrl;
 

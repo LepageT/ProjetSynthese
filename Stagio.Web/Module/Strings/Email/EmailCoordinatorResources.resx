@@ -121,10 +121,10 @@
     <value>Un coordonnateur de stage vous invite à vous inscrire au site Stagio:</value>
   </data>
   <data name="CoordinatorInviteLink" xml:space="preserve">
-    <value>Pour vous connecter, copier-coller ce lien: jenkins.cegep-ste-foy.qc.ca/thomarelau/Coordinator/Create/</value>
+    <value>&lt;a href ="http://jenkins.cegep-ste-foy.qc.ca/thomarelau/Coordinator/Create?token=</value>
   </data>
   <data name="CoordinatorInviteMessageBody" xml:space="preserve">
-    <value>&lt;h3&gt;Stagio&lt;/h3&gt;&lt;p&gt; Bonjour, &lt;/p&gt;&lt;p&gt;Vous avez &amp;eacute;t&amp;eacute; inviter à vous cr&amp;eacute;er un compte en tant que coordonnateur.&lt;/p&gt;&lt;p&gt;Pour cr&amp;eacute;er votre compte, veuillez cliquer sur le lien ci-dessous: &lt;/p&gt;</value>
+    <value>&lt;h3&gt;Stagio&lt;/h3&gt;&lt;p&gt; Bonjour, &lt;/p&gt;&lt;p&gt;Vous avez été inviter à vous créer un compte en tant que coordonnateur.&lt;/p&gt;&lt;p&gt;Pour créer votre compte, veuillez cliquer sur le lien ci-dessous: &lt;/p&gt;</value>
   </data>
   <data name="CoordinatorInviteSubject" xml:space="preserve">
     <value>Création d'un compte coordonnateur</value>

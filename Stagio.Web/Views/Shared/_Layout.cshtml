@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Stagio.Domain.Application
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -27,7 +28,23 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <div>@Html.ActionLink("Accueil", MVC.Home.Index(), new { @class = "navbar-brand", id = "home-link" })</div>
+
+                @if (Request.IsAuthenticated && User.IsInRole(RoleName.Student))
+                {
+                    <div>@Html.ActionLink("Accueil", MVC.Student.Index(), new { @class = "navbar-brand", id = "home-link" })</div>
+                }
+                @if (Request.IsAuthenticated && User.IsInRole(RoleName.Coordinator))
+                {
+                    <div>@Html.ActionLink("Accueil", MVC.Coordinator.Index(), new { @class = "navbar-brand", id = "home-link" })</div>
+                }
+                @if (Request.IsAuthenticated && User.IsInRole(RoleName.ContactEnterprise))
+                {
+                    <div>@Html.ActionLink("Accueil", MVC.ContactEnterprise.Index(), new { @class = "navbar-brand", id = "home-link" })</div>
+                }
+                @if (!Request.IsAuthenticated)
+                {
+                    <div>@Html.ActionLink("Accueil", MVC.Home.Index(), new { @class = "navbar-brand", id = "home-link" })</div>
+                }
             </div>
             <div class="navbar-collapse collapse">
                 @Html.Partial("_MenuPartial")
@@ -54,7 +71,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    
+
 
     @RenderSection("scripts", required: false)
 </body>
