@@ -50,7 +50,7 @@ namespace Stagio.Web.Mappers
 
             Mapper.CreateMap<Stage, Details>()
               .IgnoreAllNonExisting();
-            
+
             Mapper.CreateMap<Stage, ViewModels.Student.StageList>()
                 .IgnoreAllNonExisting();
             Mapper.CreateMap<Apply, ViewModels.Apply.StudentApply>()
@@ -95,7 +95,10 @@ namespace Stagio.Web.Mappers
             Mapper.CreateMap<Apply, ViewModels.Coordinator.StudentApplyList>()
                 .IgnoreAllNonExisting();
 
-       
+            Mapper.CreateMap<Notification, ViewModels.Student.Notification>()
+                .IgnoreAllNonExisting();
+
+
         }
     }
 }
