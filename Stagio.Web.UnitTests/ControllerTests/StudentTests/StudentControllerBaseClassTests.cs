@@ -28,7 +28,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
             mailler = Substitute.For<IMailler>();
             accountService = Substitute.For<IAccountService>();
             applyRepository = Substitute.For<IEntityRepository<Apply>>();
-           notificationRepository = Substitute.For<IEntityRepository<Notification>>();
+            notificationRepository = Substitute.For<IEntityRepository<Notification>>();
 
             studentController = new StudentController(studentRepository, stageRepository, applyRepository, httpContextService, mailler, accountService, notificationRepository);
         }
