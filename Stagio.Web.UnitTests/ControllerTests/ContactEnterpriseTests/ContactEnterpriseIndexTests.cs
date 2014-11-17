@@ -10,7 +10,7 @@ using Stagio.Web.Automation.PageObjects.ContactEnterprise;
 namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
 {
     [TestClass]
-    class ContactEnterpriseIndexTests : ContactEnterpriseControllerBaseClassTests
+    public class ContactEnterpriseIndexTests : ContactEnterpriseControllerBaseClassTests
     {
         [TestMethod]
         public void contact_enterprise_index_should_render_view()
@@ -20,6 +20,6 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
             Assert.AreEqual("", result.ViewName);
           
         }
-        
+
     }
 }
