@@ -23,12 +23,6 @@ namespace Stagio.Web.Controllers
             _notificationRepository = notificationRepository;
         }
 
-        // GET: Notification
-        public virtual ActionResult Index()
-        {
-            return View();
-        }
-
         [Authorize]
         public virtual ActionResult Detail(int id)
         {
@@ -36,12 +30,7 @@ namespace Stagio.Web.Controllers
 
             if (notification != null)
             {
-                if (notification.For != _httpContextService.GetUserId())
-                {
-                    //TODO Must return error page.
-                    return View(MVC.Student.Views.ViewNames.Index);
-                }
-
+               
                 var notificationViewModel = Mapper.Map<ViewModels.Notification.Detail>(notification);
                 if (User.IsInRole(RoleName.Student))
                 {
@@ -55,11 +44,36 @@ namespace Stagio.Web.Controllers
                 {
                     notificationViewModel.PreviousUrl = MVC.ContactEnterprise.Index();
                 }
+
+                if (notification.For != _httpContextService.GetUserId())
+                {
+                    //TODO Must return error page.
+                    return RedirectToAction(MVC.Notification.Error());
+                }
+
                
                 return View(notificationViewModel);
             }
             return HttpNotFound();
 
+        }
+
+        public virtual ActionResult Error()
+        {
+            var viewModel = new Stagio.Web.ViewModels.Notification.Error();
+
+            if (User.IsInRole(RoleName.Student))
+            {
+                viewModel.Url = MVC.Student.Index();
+            }
+            else if (User.IsInRole(RoleName.Coordinator))
+            {
+                viewModel.Url = MVC.Coordinator.Index();
+            }
+            else if (User.IsInRole(RoleName.ContactEnterprise))
+            {
+                viewModel.Url = MVC.ContactEnterprise.Index();
+            } return View(viewModel);
         }
 
 

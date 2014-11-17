@@ -1,0 +1,17 @@
+﻿@using Stagio.Web.Module.Strings.Shared
+@model Stagio.Web.ViewModels.Notification.Error
+
+
+@{
+    ViewBag.Title = "Error";
+}
+
+<h2>Erreur</h2>
+
+<div>
+    Vous ne pouvez pas consulter cette notification. Elle ne vous est pas destinée.
+</div>
+
+<p>
+    @Html.ActionLink(Navigation.ReturnHome, Model.Url)
+</p>

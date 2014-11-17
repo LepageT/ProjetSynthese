@@ -76,15 +76,15 @@ namespace Stagio.Web.Controllers
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public class ActionNamesClass
 		{
-			public readonly string Index = "Index";
 			public readonly string Detail = "Detail";
+			public readonly string Error = "Error";
 		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public class ActionNameConstants
 		{
-			public const string Index = "Index";
 			public const string Detail = "Detail";
+			public const string Error = "Error";
 		}
 
 
@@ -107,8 +107,10 @@ namespace Stagio.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Detail = "Detail";
+                public readonly string Error = "Error";
             }
             public readonly string Detail = "~/Views/Notification/Detail.cshtml";
+            public readonly string Error = "~/Views/Notification/Error.cshtml";
 		}
 	}
 
@@ -116,17 +118,6 @@ namespace Stagio.Web.Controllers
 	public partial class T4MVC_NotificationController : Stagio.Web.Controllers.NotificationController
 	{
 		public T4MVC_NotificationController() : base(Dummy.Instance) { }
-
-		[NonAction]
-		partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-		[NonAction]
-		public override System.Web.Mvc.ActionResult Index()
-		{
-			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
-			IndexOverride(callInfo);
-			return callInfo;
-		}
 
 		[NonAction]
 		partial void DetailOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
@@ -137,6 +128,17 @@ namespace Stagio.Web.Controllers
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Detail);
 			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
 			DetailOverride(callInfo, id);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void ErrorOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult Error()
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Error);
+			ErrorOverride(callInfo);
 			return callInfo;
 		}
 
