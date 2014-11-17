@@ -96,6 +96,18 @@ namespace Stagio.Web.Controllers
 		{
 			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Download);
 		}
+		[NonAction]
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public virtual System.Web.Mvc.ActionResult RemoveStageConfirmation()
+		{
+			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RemoveStageConfirmation);
+		}
+		[NonAction]
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public virtual System.Web.Mvc.ActionResult ReactivateStageConfirmation()
+		{
+			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ReactivateStageConfirmation);
+		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public ContactEnterpriseController Actions { get { return MVC.ContactEnterprise; } }
@@ -126,6 +138,8 @@ namespace Stagio.Web.Controllers
 			public readonly string AcceptApplyConfirmation = "AcceptApplyConfirmation";
 			public readonly string RefuseApplyConfirmation = "RefuseApplyConfirmation";
 			public readonly string Download = "Download";
+			public readonly string RemoveStageConfirmation = "RemoveStageConfirmation";
+			public readonly string ReactivateStageConfirmation = "ReactivateStageConfirmation";
 		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -145,6 +159,8 @@ namespace Stagio.Web.Controllers
 			public const string AcceptApplyConfirmation = "AcceptApplyConfirmation";
 			public const string RefuseApplyConfirmation = "RefuseApplyConfirmation";
 			public const string Download = "Download";
+			public const string RemoveStageConfirmation = "RemoveStageConfirmation";
+			public const string ReactivateStageConfirmation = "ReactivateStageConfirmation";
 		}
 
 
@@ -232,6 +248,22 @@ namespace Stagio.Web.Controllers
 			public readonly string file = "file";
 			public readonly string id = "id";
 		}
+		static readonly ActionParamsClass_RemoveStageConfirmation s_params_RemoveStageConfirmation = new ActionParamsClass_RemoveStageConfirmation();
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public ActionParamsClass_RemoveStageConfirmation RemoveStageConfirmationParams { get { return s_params_RemoveStageConfirmation; } }
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public class ActionParamsClass_RemoveStageConfirmation
+		{
+			public readonly string idStage = "idStage";
+		}
+		static readonly ActionParamsClass_ReactivateStageConfirmation s_params_ReactivateStageConfirmation = new ActionParamsClass_ReactivateStageConfirmation();
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public ActionParamsClass_ReactivateStageConfirmation ReactivateStageConfirmationParams { get { return s_params_ReactivateStageConfirmation; } }
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public class ActionParamsClass_ReactivateStageConfirmation
+		{
+			public readonly string idStage = "idStage";
+		}
 		static readonly ViewsClass s_views = new ViewsClass();
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public ViewsClass Views { get { return s_views; } }
@@ -253,7 +285,9 @@ namespace Stagio.Web.Controllers
                 public readonly string ListStage = "ListStage";
                 public readonly string ListStudentApply = "ListStudentApply";
                 public readonly string Reactivate = "Reactivate";
+                public readonly string ReactivateStageConfirmation = "ReactivateStageConfirmation";
                 public readonly string RefuseApplyConfirmation = "RefuseApplyConfirmation";
+                public readonly string RemoveStageConfirmation = "RemoveStageConfirmation";
             }
             public readonly string AcceptApplyConfirmation = "~/Views/ContactEnterprise/AcceptApplyConfirmation.cshtml";
             public readonly string Create = "~/Views/ContactEnterprise/Create.cshtml";
@@ -266,7 +300,9 @@ namespace Stagio.Web.Controllers
             public readonly string ListStage = "~/Views/ContactEnterprise/ListStage.cshtml";
             public readonly string ListStudentApply = "~/Views/ContactEnterprise/ListStudentApply.cshtml";
             public readonly string Reactivate = "~/Views/ContactEnterprise/Reactivate.cshtml";
+            public readonly string ReactivateStageConfirmation = "~/Views/ContactEnterprise/ReactivateStageConfirmation.cshtml";
             public readonly string RefuseApplyConfirmation = "~/Views/ContactEnterprise/RefuseApplyConfirmation.cshtml";
+            public readonly string RemoveStageConfirmation = "~/Views/ContactEnterprise/RemoveStageConfirmation.cshtml";
 		}
 	}
 
@@ -484,6 +520,30 @@ namespace Stagio.Web.Controllers
 			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "file", file);
 			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
 			DownloadOverride(callInfo, file, id);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void RemoveStageConfirmationOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int idStage);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult RemoveStageConfirmation(int idStage)
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RemoveStageConfirmation);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "idStage", idStage);
+			RemoveStageConfirmationOverride(callInfo, idStage);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void ReactivateStageConfirmationOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int idStage);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult ReactivateStageConfirmation(int idStage)
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ReactivateStageConfirmation);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "idStage", idStage);
+			ReactivateStageConfirmationOverride(callInfo, idStage);
 			return callInfo;
 		}
 

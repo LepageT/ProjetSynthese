@@ -32,6 +32,31 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             Assert.IsTrue(ListStageContactEnterprisePage.AccessStageDetail());
             
         }
+
+        [TestMethod]
+        public void contactEnterprise_can_remove_a_stage()
+        {
+            LoginPage.GoTo();
+            LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
+
+            ListStageContactEnterprisePage.GoTo();
+            ListStageContactEnterprisePage.ClickRemoveStage1();
+            Assert.IsTrue(ListStageContactEnterprisePage.RemoveStageConfirmationIsDisplayed);
+        }
+
+        [TestMethod]
+        public void contactEnterprise_can_reactivate_a_stage()
+        {
+            LoginPage.GoTo();
+            LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
+
+            ListStageContactEnterprisePage.GoTo();
+            ListStageContactEnterprisePage.ClickRemoveStage1();
+            ListStageContactEnterprisePage.GoTo();
+            ListStageContactEnterprisePage.ClickReactivateStage1();
+            Assert.IsTrue(ListStageContactEnterprisePage.ReactivateStageConfirmationIsDisplayed);
+
+        }
         
     }
 }

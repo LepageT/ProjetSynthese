@@ -73,6 +73,7 @@ namespace Stagio.Domain.Entities
     {
         New = 0,
         Accepted = 1,
-        Refused = 2
+        Refused = 2,
+        Removed = 3
     }
 }
