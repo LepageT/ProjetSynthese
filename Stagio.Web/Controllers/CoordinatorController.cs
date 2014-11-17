@@ -350,6 +350,22 @@ namespace Stagio.Web.Controllers
                 student.NbApply = nbApplyStudent;
                 nbApplyStudent = 0;
             }
+
+
+            int nbDateInterview = 0;
+
+            var interviewsStudent = _interviewRepository.GetAll().ToList();
+
+            foreach (var student in studentListViewModels)
+            {
+                var interviewsSpecificStudent = interviewsStudent.Where(x => x.StudentId == student.Id).ToList();
+                foreach (var interview in interviewsSpecificStudent)
+                {
+                    nbDateInterview = nbDateInterview + 1;
+                }
+                student.NbDateInterview = nbDateInterview;
+                nbDateInterview = 0;
+            }
            
 
             return View(studentListViewModels);

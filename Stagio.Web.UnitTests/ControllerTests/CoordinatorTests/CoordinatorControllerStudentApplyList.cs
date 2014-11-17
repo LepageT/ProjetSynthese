@@ -37,6 +37,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
             applyRepository.GetAll().Returns(apply.AsQueryable());
             studentRepository.GetAll().Returns(student.AsQueryable());
             interviewRepository.GetAll().Returns(interview.AsQueryable());
+            studentRepository.GetById(student.First().Id).Returns(student.First());
 
             var result = coordinatorController.StudentApplyList(student.FirstOrDefault().Id) as ViewResult;
             var model = result.Model as List<StudentApplyList>;
