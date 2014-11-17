@@ -32,22 +32,21 @@ namespace Stagio.Web.Controllers
             {
                
                 var notificationViewModel = Mapper.Map<ViewModels.Notification.Detail>(notification);
-                if (User.IsInRole(RoleName.Student))
+                if (_httpContextService.GetUserRole().Contains(RoleName.Student))
                 {
                     notificationViewModel.PreviousUrl = MVC.Student.Index();
                 }
-                else if (User.IsInRole(RoleName.Coordinator))
+                else if (_httpContextService.GetUserRole().Contains(RoleName.Coordinator))
                 {
                     notificationViewModel.PreviousUrl = MVC.Coordinator.Index();
                 }
-                else if (User.IsInRole(RoleName.ContactEnterprise))
+                else if (_httpContextService.GetUserRole().Contains(RoleName.ContactEnterprise))
                 {
                     notificationViewModel.PreviousUrl = MVC.ContactEnterprise.Index();
                 }
 
                 if (notification.For != _httpContextService.GetUserId())
                 {
-                    //TODO Must return error page.
                     return RedirectToAction(MVC.Notification.Error());
                 }
 

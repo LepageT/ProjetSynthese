@@ -1,8 +1,11 @@
 ﻿
+using System;
 using System.Security.Claims;
 using System.Web;
+using System.Web.Security;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using Stagio.Domain.Application;
 
 namespace Stagio.Web.Services
 {
@@ -23,6 +26,11 @@ namespace Stagio.Web.Services
         public void AuthenticationSignOut()
         {
             HttpContext.Current.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+        }
+
+        public String[] GetUserRole()
+        {
+            return Roles.GetRolesForUser(HttpContext.Current.User.Identity.GetUserName());
         }
     }
 }

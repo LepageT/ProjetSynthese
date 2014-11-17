@@ -119,6 +119,8 @@
     <Compile Include="ControllerTests\InterviewTests\InterviewControllerCreateTests.cs" />
     <Compile Include="ControllerTests\InterviewTests\InterviewControllerEditTests.cs" />
     <Compile Include="ControllerTests\InterviewTests\InterviewControllerListTests.cs" />
+    <Compile Include="ControllerTests\NotificationTests\NotificationControllerBaseTests.cs" />
+    <Compile Include="ControllerTests\NotificationTests\NotificationControllerDetailTest.cs" />
     <Compile Include="ControllerTests\StageTests\StageControllerListNewStagesTests.cs" />
     <Compile Include="ControllerTests\StageTests\StageControllerBaseClassTests.cs" />
     <Compile Include="ControllerTests\StudentTests\StudentControllerApplyTests.cs" />
@@ -170,9 +172,7 @@
       <Name>Stagio.Web</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ControllerTests\NotificationTests\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
