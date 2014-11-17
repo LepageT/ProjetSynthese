@@ -21,7 +21,12 @@ namespace Stagio.Web.Automation.PageObjects.ContactEnterprise
 
         public static void GoToByUrl()
         {
-            Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/ContactEnterprise/DetailsStudentApply/2");
+            Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/ContactEnterprise/DetailsStudentApply/2?canNotDownload=False");
+        }
+
+        public static void GoToByUrlApply3()
+        {
+            Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/ContactEnterprise/DetailsStudentApply/3?canNotDownload=False");
         }
 
         public static void AcceptApply()
@@ -42,6 +47,23 @@ namespace Stagio.Web.Automation.PageObjects.ContactEnterprise
         public static bool ConfirmationRefuseIsDisplayed
         {
             get { return Driver.Instance.FindElement(By.Id("confirmationRefuseApply-page")) != null; }
+        }
+
+        public static bool ErrorDisplayed
+        {
+            get { return Driver.Instance.FindElement(By.Id("error-message")) != null; }
+        }
+
+        public static void DownloadPage()
+        {
+            Driver.Instance.FindElement(By.Id("download-cv")).Click();
+            
+           
+        }
+
+        public static void DownloadFile(string file)
+        {
+            throw new NotImplementedException();
         }
     }
 }

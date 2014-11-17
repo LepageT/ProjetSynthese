@@ -1,4 +1,5 @@
-﻿@model Stagio.Web.ViewModels.Apply.StudentApply
+﻿@using System.Data.Entity.ModelConfiguration.Conventions
+@model Stagio.Web.ViewModels.Apply.StudentApply
 
 <!DOCTYPE html>
 
@@ -17,7 +18,7 @@
             </dt>
     
             <dd>
-                @Html.DisplayFor(model => model.Cv)
+                @Html.ActionLink("Télécharger le CV", MVC.ContactEnterprise.Download(Model.Cv, Model.Id), new { id = "download-cv"})
             </dd>
     
             <dt>
@@ -25,24 +26,31 @@
             </dt>
     
             <dd>
-                @Html.DisplayFor(model => model.Letter)
+                @Html.ActionLink("Télécharger la lettre de présentation", MVC.ContactEnterprise.Download(Model.Letter, Model.Id))
             </dd>
     
         </dl>
     </div>
+    <div class="text-danger" id="error-message">
+        @ViewBag.Message
+    </div>
+
     <hr />
 
     @using (Html.BeginForm("DetailsStudentApply", "ContactEnterprise"))
     {
         if (Model.Status != 1)
         {
-            <input type="submit" value="Accepter" name="command" id="accept-stage" />
+            <input type="submit" value="Je suis intéressé" name="command" id="accept-stage" />
         }
-        if(Model.Status != 2)
-        { 
-        <input type="submit" value="Refuser" name="command" id="refuse-stage" />
+        if (Model.Status != 2)
+        {
+            <input type="submit" value="Je ne suis pas intéressé" name="command" id="refuse-stage" />
         }
     }
+    
+    <p>Veuillez prendre note que votre réponse ne sera pas transmis à l'étudiant</p>
+ 
     <p>
         @Html.ActionLink("Retour à la liste des stages", MVC.ContactEnterprise.ListStage())
     </p>

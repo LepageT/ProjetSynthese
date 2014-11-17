@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="Navigation\MenuSelector.cs" />
     <Compile Include="Navigation\Navigation.cs" />
+    <Compile Include="PageObjects\ContactEnterprise\ContactEnterpriseIndexPage.cs" />
     <Compile Include="PageObjects\ContactEnterprise\CreateContactEnterprisePage.cs" />
     <Compile Include="PageObjects\ContactEnterprise\CreateStageContactEnterprisePage.cs" />
     <Compile Include="PageObjects\ContactEnterprise\DetailsStudentApplyContactEnterprisePage.cs" />

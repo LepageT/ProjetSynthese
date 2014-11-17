@@ -6,7 +6,7 @@ using Stagio.Web.Automation.PageObjects.ContactEnterprise;
 namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
 {
     [TestClass]
-    public class ConntactEnterpriseListStudentApplyTests : BaseTests
+    public class ContactEnterpriseListStudentApplyTests : BaseTests
     {
         [TestMethod]
         public void contactEnterprise_can_see_a_list_of_student_for_stage()
