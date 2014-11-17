@@ -16,6 +16,7 @@ namespace Stagio.Web.Automation.PageObjects
 
         public static void GoToByUrl1()
         {
+
             Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/Account/Details/1");
         }
     }

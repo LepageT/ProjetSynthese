@@ -35,7 +35,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
             apply.FirstOrDefault().IdStudent = student.FirstOrDefault().Id;
             apply.FirstOrDefault().IdStage = stages.FirstOrDefault().Id;
             applyRepository.GetAll().Returns(apply.AsQueryable());
-            studentRepository.GetById(student.Id).Returns(student);
+            studentRepository.GetById(student.First().Id).Returns(student.First);
             interviewRepository.GetAll().Returns(interview.AsQueryable());
             studentRepository.GetById(student.First().Id).Returns(student.First());
 
