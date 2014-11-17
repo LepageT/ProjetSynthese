@@ -72,5 +72,10 @@ namespace Stagio.Web.Automation.PageObjects
             }
             return false;
         }
+
+        public static void GoToByUrl()
+        {
+            Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/Account/Login");
+        }
     }
 }

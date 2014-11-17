@@ -175,8 +175,8 @@ namespace Stagio.Web.Automation
             {
                 public static void Select()
                 {
-                    MenuSelector.Select("Coordinator-menu", "list");
-                    MenuSelector.SelectTopLevel("details-stages1");
+                    MenuSelector.Select("index-coordonnateur", "list");
+                    MenuSelector.SelectTopLevel("details-stages2");
                 }
 
             }

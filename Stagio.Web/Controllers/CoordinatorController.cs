@@ -63,49 +63,7 @@ namespace Stagio.Web.Controllers
             return View();
         }
 
-        // GET: Coordinator/Edit/5
-        public virtual ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Coordinator/Edit/5
-        [HttpPost]
-        public virtual ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Coordinator/Delete/5
-        public virtual ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Coordinator/Delete/5
-        [HttpPost]
-        public virtual ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+       
 
         [Authorize(Roles = RoleName.Coordinator)]
         // GET: Coordinator/InviteEnterprise
