@@ -57,6 +57,13 @@ namespace Stagio.Web.Automation.PageObjects.ContactEnterprise
         public static void DownloadPage()
         {
             Driver.Instance.FindElement(By.Id("download-cv")).Click();
+            
+           
+        }
+
+        public static void DownloadFile(string file)
+        {
+            throw new NotImplementedException();
         }
     }
 }
