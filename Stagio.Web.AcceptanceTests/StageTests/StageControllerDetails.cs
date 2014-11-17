@@ -18,7 +18,6 @@ namespace Stagio.Web.AcceptanceTests.StageTests
             DetailsStageCoordinatorPage.GoToDetailsStage1();
 
             Assert.IsTrue(DetailsStageCoordinatorPage.IsDisplayed);
-            
         }
 
         [TestMethod]
