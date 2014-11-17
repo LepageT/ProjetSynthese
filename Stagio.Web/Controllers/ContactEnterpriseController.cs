@@ -434,6 +434,10 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult RemoveStageConfirmation(int idStage)
         {
             var stage = _stageRepository.GetById(idStage);
+            if (stage == null)
+            {
+                return HttpNotFound();
+            }
             stage.Status = StageStatus.Removed;
             _stageRepository.Update(stage);
             return View();
@@ -442,6 +446,10 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult ReactivateStageConfirmation(int idStage)
         {
             var stage = _stageRepository.GetById(idStage);
+            if (stage == null)
+            {
+                return HttpNotFound();
+            }
             stage.Status = StageStatus.New;
             stage.PublicationDate = DateTime.Now;
             _stageRepository.Update(stage);
