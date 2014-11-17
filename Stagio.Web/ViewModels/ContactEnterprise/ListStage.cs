@@ -14,5 +14,6 @@ public DateTime PublicationDate { get; set; }
 public int NbApply { get; set; }
 [DisplayName("Titre de l'offre")]
 public string StageTitle { get; set; }
+public int Status { get; set; }
 }
 }

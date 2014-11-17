@@ -1,0 +1,15 @@
+﻿@using Stagio.Web.Module.Strings.Shared
+
+@{
+    ViewBag.Title = "RemoveStageConfirmation";
+}
+
+<h2>Retirer le stage</h2>
+<p>Vous avez bien retiré le stage.</p>
+
+<div>
+    @Html.ActionLink(Navigation.ReturnHome, MVC.Home.Index())
+</div>
+<div>
+    @Html.ActionLink("Retour à la liste de stages", MVC.ContactEnterprise.ListStage())
+</div>

@@ -1,0 +1,16 @@
+﻿@using Stagio.Web.Module.Strings.Shared
+
+@{
+    ViewBag.Title = "ReactivateStageConfirmation";
+}
+
+<h2>Réacvitver le stage</h2>
+<p>Vous avez bien réactiver le stage. Le coordonateur doit l'accepter avant d'être visible pour les élèves.</p>
+
+<div>
+    @Html.ActionLink(Navigation.ReturnHome, MVC.Home.Index())
+</div>
+<div>
+    @Html.ActionLink("Retour à la liste de stages", MVC.ContactEnterprise.ListStage())
+</div>
+
