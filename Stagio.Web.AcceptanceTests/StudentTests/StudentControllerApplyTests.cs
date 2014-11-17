@@ -32,7 +32,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
 
             ApplyStudentPage.GoToByUrl();
 
-            ApplyStudentPage.SelectFiles("C:\\dev\\abc.pdf", "C:\\dev\\abcdef.pdf");
+            ApplyStudentPage.SelectFiles("file1.pdf", "file2.pdf");
 
             Assert.IsTrue(ConfirmationUploadCVLetterPage.IsDisplayed);
 

@@ -88,6 +88,14 @@ namespace Stagio.Web.Mappers
             Mapper.CreateMap<InvitationContactEnterprise, ViewModels.ContactEnterprise.Reactive>()
                .ForMember(dest => dest.InvitationId, opt => opt.MapFrom(src => src.Id))
                .IgnoreAllNonExisting();
+
+            Mapper.CreateMap<Student, ViewModels.Coordinator.StudentList>()
+                .IgnoreAllNonExisting();
+
+            Mapper.CreateMap<Apply, ViewModels.Coordinator.StudentApplyList>()
+                .IgnoreAllNonExisting();
+
+       
         }
     }
 }

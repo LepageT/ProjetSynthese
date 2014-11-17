@@ -66,7 +66,7 @@ namespace Stagio.Web.Automation.PageObjects.ContactEnterprise
             Driver.Instance.FindElement(By.Id("SubmitToName")).SendKeys(SUBMIT_TO_NAME);
             Driver.Instance.FindElement(By.Id("SubmitToTitle")).SendKeys(SUBMIT_TO_TITLE);
             Driver.Instance.FindElement(By.Id("SubmitToEmail")).SendKeys(SUBMIT_TO_EMAIL);
-            Driver.Instance.FindElement(By.Id("LimitDate")).SendKeys(SUBMIT_LIMIT_DATE);
+            Driver.Instance.FindElement(By.Id("datetimepickerStage")).SendKeys(SUBMIT_LIMIT_DATE);
 
             Driver.Instance.FindElement(By.Id("btn-create")).Click();
         }

@@ -297,6 +297,8 @@
     <Compile Include="ViewModels\ContactEnterprise\ListStage.cs" />
     <Compile Include="ViewModels\ContactEnterprise\Reactive.cs" />
     <Compile Include="ViewModels\Account\Login.cs" />
+    <Compile Include="ViewModels\Coordinator\StudentApplyList.cs" />
+    <Compile Include="ViewModels\Coordinator\StudentList.cs" />
     <Compile Include="ViewModels\Interviews\Create.cs" />
     <Compile Include="ViewModels\Interviews\Edit.cs" />
     <Compile Include="ViewModels\Interviews\List.cs" />
@@ -452,6 +454,8 @@
     <Content Include="Views\Student\UploadCVLetter.cshtml" />
     <Content Include="Views\Student\ConfirmationUploadCVLetter.cshtml" />
     <Content Include="Views\Student\ApplyReApplyConfirmation.cshtml" />
+    <Content Include="Views\Coordinator\StudentList.cshtml" />
+    <Content Include="Views\Coordinator\StudentApplyList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt.hooks.t4" />
