@@ -27,19 +27,19 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
         [TestMethod]
         public void coordinator_StudentApplyList_should_return_list_with_applies()
         {
-            var student = _fixture.Create<Student>();
+            var student = _fixture.CreateMany<Student>(1);
             var apply = _fixture.CreateMany<Apply>(1);
             var stages = _fixture.CreateMany<Stage>(3);
             var interview = _fixture.CreateMany<Interview>(1);
             stageRepository.GetAll().Returns(stages.AsQueryable());
-            apply.FirstOrDefault().IdStudent = student.Id;
+            apply.FirstOrDefault().IdStudent = student.FirstOrDefault().Id;
             apply.FirstOrDefault().IdStage = stages.FirstOrDefault().Id;
             applyRepository.GetAll().Returns(apply.AsQueryable());
             studentRepository.GetById(student.FirstOrDefault().Id).Returns(student.FirstOrDefault());
             interviewRepository.GetAll().Returns(interview.AsQueryable());
             studentRepository.GetById(student.First().Id).Returns(student.First());
 
-            var result = coordinatorController.StudentApplyList(student.Id) as ViewResult;
+            var result = coordinatorController.StudentApplyList(student.FirstOrDefault().Id) as ViewResult;
             var model = result.Model as List<StudentApplyList>;
 
             model.Count.Should().NotBe(0);
