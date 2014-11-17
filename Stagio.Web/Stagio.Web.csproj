@@ -319,7 +319,7 @@
     <Compile Include="ViewModels\Coordinator\Invite.cs" />
     <Compile Include="ViewModels\Student\Edit.cs" />
     <Compile Include="ViewModels\Student\ListStudent.cs" />
-    <Compile Include="ViewModels\Student\Notification.cs" />
+    <Compile Include="ViewModels\Notification\Notification.cs" />
     <Compile Include="ViewModels\Student\ResultCreateList.cs" />
     <Compile Include="ViewModels\Student\StageList.cs" />
   </ItemGroup>

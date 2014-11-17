@@ -26,8 +26,9 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<Student> _studentRepository;
         private readonly IHttpContextService _httpContext;
         private readonly IEntityRepository<InvitationContactEnterprise> _invitationRepository;
+        private readonly IEntityRepository<Notification> _notificationRepository; 
 
-        public ContactEnterpriseController(IEntityRepository<ContactEnterprise> enterpriseRepository, IEntityRepository<Stage> stageRepository, IAccountService accountService, IMailler mailler, IEntityRepository<Apply> applyRepository, IEntityRepository<Student> studentRepository, IHttpContextService httpContext, IEntityRepository<InvitationContactEnterprise> invitationRepository)
+        public ContactEnterpriseController(IEntityRepository<ContactEnterprise> enterpriseRepository, IEntityRepository<Stage> stageRepository, IAccountService accountService, IMailler mailler, IEntityRepository<Apply> applyRepository, IEntityRepository<Student> studentRepository, IHttpContextService httpContext, IEntityRepository<InvitationContactEnterprise> invitationRepository, IEntityRepository<Notification> notificationRepository )
         {
             _contactEnterpriseRepository = enterpriseRepository;
             _accountService = accountService;
@@ -38,12 +39,18 @@ namespace Stagio.Web.Controllers
             _mailler = mailler;
             _httpContext = httpContext;
             _invitationRepository = invitationRepository;
+            _notificationRepository = notificationRepository;
         }
 
         // GET: Enterprise
         public virtual ActionResult Index()
         {
-            return View();
+            var notifications = _notificationRepository.GetAll().ToList();
+            var userNotifications = notifications.Where(x => x.For == _httpContext.GetUserId());
+
+            var notificationsViewModels = Mapper.Map<IEnumerable<ViewModels.Notification.Notification>>(userNotifications).ToList();
+
+            return View(notificationsViewModels);
         }
 
         // GET: Enterprise/Details/5

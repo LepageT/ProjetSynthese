@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Stagio.Domain.Entities;
 
-namespace Stagio.Web.ViewModels.Student
+namespace Stagio.Web.ViewModels.Notification
 {
     public class Notification
     {

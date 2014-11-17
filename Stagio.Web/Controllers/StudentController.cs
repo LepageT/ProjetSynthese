@@ -51,7 +51,7 @@ namespace Stagio.Web.Controllers
             var notifications = _notificationRepository.GetAll().ToList();
             var userNotifications = notifications.Where(x => x.For == _httpContextService.GetUserId());
 
-            var notificationsViewModels = Mapper.Map<IEnumerable<ViewModels.Student.Notification>>(userNotifications).ToList();
+            var notificationsViewModels = Mapper.Map<IEnumerable<ViewModels.Notification.Notification>>(userNotifications).ToList();
 
             return View(notificationsViewModels);
         }

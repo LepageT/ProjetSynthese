@@ -455,7 +455,6 @@ namespace Stagio.TestUtilities.Database
         }
 
         #endregion
-
         #region NotificationStudent 2
 
         static public Notification notificationStudent2
@@ -468,6 +467,50 @@ namespace Stagio.TestUtilities.Database
                     Message =
                         "Une  offre de stage à été modifiéé. Vous pouvez la consulter <a href=\"\\Stage/ViewStageInfo/3\"> ici </a>",
                     For = 1,
+                    Seen = false,
+                    Date = new DateTime(2014, 10, 15)
+                };
+
+                return notification;
+            }
+        }
+
+        #endregion
+
+
+        #region NotificationContactEnterprise 1
+
+        static public Notification notificationContactEnterprise1
+        {
+            get
+            {
+                var notification = new Notification()
+                {
+                    Title = "Offre de stage acceptée",
+                    Message =
+                        "Votre offre de stage à été acceptée par un coordonnateur.",
+                    For = 8,
+                    Seen = false,
+                    Date = new DateTime(2014, 10, 15)
+                };
+
+                return notification;
+            }
+        }
+
+        #endregion
+        #region NotificationContactEnterprise 2
+
+        static public Notification notificationContactEnterprise2
+        {
+            get
+            {
+                var notification = new Notification()
+                {
+                    Title = "Offre de stage refusée",
+                    Message =
+                        "Votre offre de stage à été refusée par un coordonnateur.",
+                    For = 8,
                     Seen = false,
                     Date = new DateTime(2014, 10, 15)
                 };
