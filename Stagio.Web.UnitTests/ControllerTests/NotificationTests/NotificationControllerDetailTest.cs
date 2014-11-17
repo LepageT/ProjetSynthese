@@ -6,6 +6,7 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using Ploeh.AutoFixture;
+using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
 
 namespace Stagio.Web.UnitTests.ControllerTests.NotificationTests
@@ -52,6 +53,59 @@ namespace Stagio.Web.UnitTests.ControllerTests.NotificationTests
             var model = viewResult.Model as ViewModels.Notification.Detail;
 
             model.ShouldBeEquivalentTo(notification, options => options.ExcludingMissingProperties());
+
+        }
+
+        [TestMethod]
+        public void notification_student_detail_should_display_student_home_link()
+        {
+            var notification = _fixture.Create<Notification>();
+            notification.For = 1;
+            notificationRepository.GetById(1).Returns(notification);
+            httpContextService.GetUserId().Returns(1);
+            httpContextService.GetUserRole().Returns(new string[] {RoleName.Student});
+
+            var viewResult = notificationController.Detail(notification.For) as ViewResult;
+            var model = viewResult.Model as ViewModels.Notification.Detail;
+            var action = model.PreviousUrl as ActionResult;
+
+            action.ToString().ShouldBeEquivalentTo(MVC.Student.Index().ToString());
+           
+
+        }
+
+        [TestMethod]
+        public void notification_coordinator_detail_should_display_coordinator_home_link()
+        {
+            var notification = _fixture.Create<Notification>();
+            notification.For = 1;
+            notificationRepository.GetById(1).Returns(notification);
+            httpContextService.GetUserId().Returns(1);
+            httpContextService.GetUserRole().Returns(new string[] { RoleName.Coordinator });
+
+            var viewResult = notificationController.Detail(notification.For) as ViewResult;
+            var model = viewResult.Model as ViewModels.Notification.Detail;
+            var action = model.PreviousUrl as ActionResult;
+
+            action.ToString().ShouldBeEquivalentTo(MVC.Coordinator.Index().ToString());
+
+        }
+
+        [TestMethod]
+        public void notification_contactEnterprise_detail_should_display_contactEnterprise_home_link()
+        {
+            var notification = _fixture.Create<Notification>();
+            notification.For = 1;
+            notificationRepository.GetById(1).Returns(notification);
+            httpContextService.GetUserId().Returns(1);
+            httpContextService.GetUserRole().Returns(new string[] { RoleName.ContactEnterprise });
+
+
+            var viewResult = notificationController.Detail(notification.For) as ViewResult;
+            var model = viewResult.Model as ViewModels.Notification.Detail;
+            var action = model.PreviousUrl as ActionResult;
+
+            action.ToString().ShouldBeEquivalentTo(MVC.ContactEnterprise.Index().ToString());
 
         }
     }

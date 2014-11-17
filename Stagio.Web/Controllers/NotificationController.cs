@@ -61,18 +61,20 @@ namespace Stagio.Web.Controllers
         {
             var viewModel = new Stagio.Web.ViewModels.Notification.Error();
 
-            if (User.IsInRole(RoleName.Student))
+            if (_httpContextService.GetUserRole().Contains(RoleName.Student))
             {
                 viewModel.Url = MVC.Student.Index();
             }
-            else if (User.IsInRole(RoleName.Coordinator))
+            else if (_httpContextService.GetUserRole().Contains(RoleName.Coordinator))
             {
                 viewModel.Url = MVC.Coordinator.Index();
             }
-            else if (User.IsInRole(RoleName.ContactEnterprise))
+            else if (_httpContextService.GetUserRole().Contains(RoleName.ContactEnterprise))
             {
                 viewModel.Url = MVC.ContactEnterprise.Index();
-            } return View(viewModel);
+            }
+            
+            return View(viewModel);
         }
 
 

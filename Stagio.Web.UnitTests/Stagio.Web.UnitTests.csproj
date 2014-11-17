@@ -121,6 +121,7 @@
     <Compile Include="ControllerTests\InterviewTests\InterviewControllerListTests.cs" />
     <Compile Include="ControllerTests\NotificationTests\NotificationControllerBaseTests.cs" />
     <Compile Include="ControllerTests\NotificationTests\NotificationControllerDetailTest.cs" />
+    <Compile Include="ControllerTests\NotificationTests\NotificationControllerErrorTest.cs" />
     <Compile Include="ControllerTests\StageTests\StageControllerListNewStagesTests.cs" />
     <Compile Include="ControllerTests\StageTests\StageControllerBaseClassTests.cs" />
     <Compile Include="ControllerTests\StudentTests\StudentControllerApplyTests.cs" />
