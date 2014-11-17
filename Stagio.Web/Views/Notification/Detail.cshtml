@@ -1,0 +1,43 @@
+﻿@using Stagio.Web.Module.Strings.Shared
+@model Stagio.Web.ViewModels.Notification.Detail
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2>Detail</h2>
+
+<div>
+    <h4>Detail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Message)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.Message)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink(Navigation.ReturnHome, Model.PreviousUrl)
+</p>

@@ -96,6 +96,11 @@ namespace Stagio.Web.Mappers
                 .IgnoreAllNonExisting();
 
             Mapper.CreateMap<Notification, ViewModels.Student.Notification>()
+                .ForMember(dest => dest.NotificationId, opt => opt.MapFrom(src => src.Id))
+                .IgnoreAllNonExisting();
+
+            Mapper.CreateMap<Notification, ViewModels.Notification.Detail>()
+                .ForMember(dest => dest.NotificationId, opt => opt.MapFrom(src => src.Id))
                 .IgnoreAllNonExisting();
 
 

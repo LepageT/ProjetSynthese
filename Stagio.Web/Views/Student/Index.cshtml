@@ -39,7 +39,7 @@
     {
         <tr>
             <td>
-                @Html.ActionLink(item.Title, MVC.Stage.ViewStageInfo().AddRouteValues(new { id = item.NotificationId }), new { id = "notification-detail" + item.NotificationId })
+                @Html.ActionLink(item.Title, MVC.Notification.Detail().AddRouteValues(new { id = item.NotificationId }), new { id = "notification-detail" + item.NotificationId })
             </td>
             <td>
                 @Html.Label(item.Date.ToShortDateString())
