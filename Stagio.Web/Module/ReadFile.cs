@@ -52,12 +52,12 @@ namespace Stagio.Web.Module
                         var fileName = Path.GetFileName(file.FileName);
                         if (firstfile)
                         {
-                            path = Path.Combine(server.MapPath("~/App_Data/UploadedFiles"), fileName + "ApplyCV");
+                            path = Path.Combine(server.MapPath("~/App_Data/UploadedFiles"), "ApplyCV" + fileName );
                             firstfile = false;
                         }
                         else
                         {
-                            path = Path.Combine(server.MapPath("~/App_Data/UploadedFiles"), fileName + "ApplyLetter");
+                            path = Path.Combine(server.MapPath("~/App_Data/UploadedFiles"),"ApplyLetter" + fileName );
                         }
                        
                         file.SaveAs(path);

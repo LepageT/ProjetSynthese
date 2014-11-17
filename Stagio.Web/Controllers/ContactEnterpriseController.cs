@@ -389,22 +389,10 @@ namespace Stagio.Web.Controllers
 
         public virtual ActionResult Download(string file, int id)
         {
-
-            if (file.Contains("ApplyCV"))
-            {
-                file = file.Replace("ApplyCV", "");
-            }
-             if (file.Contains("ApplyLetter"))
-            {
-                file = file.Replace("ApplyLetter", "");
-            }
-
             try
             {
                 string path = AppDomain.CurrentDomain.GetData("DataDirectory").ToString();
                 path = path + "\\UploadedFiles\\" + file;
-
-
                 byte[] fileBytes = System.IO.File.ReadAllBytes((path));
                 string fileName = file;
                 return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);

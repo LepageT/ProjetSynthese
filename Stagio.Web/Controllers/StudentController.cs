@@ -371,8 +371,8 @@ namespace Stagio.Web.Controllers
             if (readFile.ReadFileCVLetter(files, Server, applyStudentViewModel.Id))
             {
                 var files1 = files.ToList();
-                applyStudentViewModel.Cv = files1[0].FileName + "ApplyCV";
-                applyStudentViewModel.Letter = files1[1].FileName + "ApplyLetter";
+                applyStudentViewModel.Cv =  "ApplyCV" + files1[0].FileName;
+                applyStudentViewModel.Letter = "ApplyLetter" + files1[1].FileName ;
                 var newApplicationStudent = Mapper.Map<Stagio.Domain.Entities.Apply>(applyStudentViewModel);
                 newApplicationStudent.Status = 0;   //0 = En attente
                 newApplicationStudent.DateApply = DateTime.Now;
