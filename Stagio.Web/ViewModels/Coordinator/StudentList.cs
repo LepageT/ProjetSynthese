@@ -21,6 +21,9 @@ namespace Stagio.Web.ViewModels.Coordinator
 
         [DisplayName("Nombre de candidatures")]
         public int NbApply { get; set; }
+
+        [DisplayName("Nombre d'entrevues")]
+        public int NbDateInterview { get; set; }
         
     }
 }
