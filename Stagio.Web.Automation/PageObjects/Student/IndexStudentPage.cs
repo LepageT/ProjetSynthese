@@ -18,5 +18,10 @@ namespace Stagio.Web.Automation.PageObjects.Student
         {
             Navigation.Student.Index.Select();
         }
+
+        public static bool IsNotificationShowing
+        {
+            get { return Driver.Instance.FindElement(By.Id("notification-detail1")) != null; }
+        }
     }
 }

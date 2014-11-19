@@ -1,8 +1,11 @@
 ﻿
+using System;
 using System.Security.Claims;
 using System.Web;
+using System.Web.Security;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using Stagio.Domain.Application;
 
 namespace Stagio.Web.Services
 {
@@ -24,5 +27,6 @@ namespace Stagio.Web.Services
         {
             HttpContext.Current.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
         }
+
     }
 }

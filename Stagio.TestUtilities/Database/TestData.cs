@@ -434,7 +434,136 @@ namespace Stagio.TestUtilities.Database
 
         #endregion
 
+        #region NotificationStudent 1
 
+        static public Notification notificationStudent1
+        {
+            get
+            {
+                var notification = new Notification()
+                {
+                    Title = "Nouvelle offre de stage",
+                    Message =
+                        "Une nouvelle offre de stage à été ajoutée. Vous pouvez la consulter <a href=\"\\Stage/ViewStageInfo/3\"> ici </a>",
+                    For = 1,
+                    Seen = false,
+                    Date = new DateTime(2014, 10, 15)
+                };
+
+                return notification;
+            }
+        }
+
+        #endregion
+        #region NotificationStudent 2
+
+        static public Notification notificationStudent2
+        {
+            get
+            {
+                var notification = new Notification()
+                {
+                    Title = "Offre de stage modifiée",
+                    Message =
+                        "Une  offre de stage à été modifiéé. Vous pouvez la consulter <a href=\"\\Stage/ViewStageInfo/3\"> ici </a>",
+                    For = 1,
+                    Seen = false,
+                    Date = new DateTime(2014, 10, 15)
+                };
+
+                return notification;
+            }
+        }
+
+        #endregion
+
+
+        #region NotificationContactEnterprise 1
+
+        static public Notification notificationContactEnterprise1
+        {
+            get
+            {
+                var notification = new Notification()
+                {
+                    Title = "Offre de stage acceptée",
+                    Message =
+                        "Votre offre de stage à été acceptée par un coordonnateur.",
+                    For = 8,
+                    Seen = false,
+                    Date = new DateTime(2014, 10, 15)
+                };
+
+                return notification;
+            }
+        }
+
+        #endregion
+        #region NotificationContactEnterprise 2
+
+        static public Notification notificationContactEnterprise2
+        {
+            get
+            {
+                var notification = new Notification()
+                {
+                    Title = "Offre de stage refusée",
+                    Message =
+                        "Votre offre de stage à été refusée par un coordonnateur.",
+                    For = 8,
+                    Seen = false,
+                    Date = new DateTime(2014, 10, 15)
+                };
+
+                return notification;
+            }
+        }
+
+        #endregion
+
+
+        #region NotificationCoordinator 1
+
+        static public Notification notificationCoordinator1
+        {
+            get
+            {
+                var notification = new Notification()
+                {
+                    Title = "Offre de stage à valider",
+                    Message =
+                        "Une nouvelle offre de stage à été ajouter. Vous pouvez l'accepter ou la refuser.",
+                    For = 4,
+                    Seen = false,
+                    Date = new DateTime(2014, 10, 15)
+                };
+
+                return notification;
+            }
+        }
+
+        #endregion
+        #region NotificationCoordinator 2
+
+        static public Notification notificationCoordinator2
+        {
+            get
+            {
+                var notification = new Notification()
+                {
+                    Title = "Offre de stage modifiée",
+                    Message =
+                        "Une offre de stage à été modifiée.",
+                    For = 4,
+                    Seen = false,
+                    Date = new DateTime(2014, 10, 15)
+                };
+
+                return notification;
+            }
+        }
+
+        #endregion
     }
 
 

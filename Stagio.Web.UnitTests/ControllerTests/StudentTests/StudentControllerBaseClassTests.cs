@@ -17,8 +17,9 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         protected IEntityRepository<Apply> applyRepository;
         protected IMailler mailler;
         protected IAccountService accountService;
-        
-        [TestInitialize]
+        protected IEntityRepository<Notification> notificationRepository;
+            
+       [TestInitialize]
         public void StudentControllerTestInit()
         {
             studentRepository = Substitute.For<IEntityRepository<Student>>();
@@ -27,7 +28,9 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
             mailler = Substitute.For<IMailler>();
             accountService = Substitute.For<IAccountService>();
             applyRepository = Substitute.For<IEntityRepository<Apply>>();
-            studentController = new StudentController(studentRepository, stageRepository, applyRepository, httpContextService, mailler, accountService);
+            notificationRepository = Substitute.For<IEntityRepository<Notification>>();
+
+            studentController = new StudentController(studentRepository, stageRepository, applyRepository, httpContextService, mailler, accountService, notificationRepository);
         }
     }
 }

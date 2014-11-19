@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<Stagio.Web.ViewModels.Notification.Notification>
 
 @{
     ViewBag.Title = "Coordinator";
@@ -9,15 +10,48 @@
 <br />
     Pour envoyer un invitation à un autre coordonnateur, cliquez @Html.ActionLink("ici", MVC.Coordinator.Invite(), new { id = "create-coordinator" })
 
-    <div>
+<div>
         Pour ajouter des étudiants avec une liste .csv, cliquez  @Html.ActionLink("ici", MVC.Student.Upload(), new { id = "upload-student" })
     </div>
     <div>
         Pour inviter des employés d'entreprises à se céer un compte, cliquez @Html.ActionLink("ici", MVC.Coordinator.InviteContactEnterprise(), new { id = "invite-enterprise" })
-    </div>
-    <div>
+</div>
+<div>
         Pour voir la liste des stages acceptés, refusés ou à approuver, cliquez  @Html.ActionLink("ici", MVC.Stage.ListNewStages(), new { id = "list" })
-    </div>
-    <div>
+</div>
+<div>
         Pour voir la liste des étudiants, cliquez @Html.ActionLink("ici", MVC.Coordinator.StudentList(), new { id = "student-list" })
-    </div>
+</div>
+
+<div>@Html.ActionLink("Afficher les informations du profil", MVC.Account.Details(Int32.Parse(@User.Identity.GetUserId())), new { id = "details-coordo" })</div>
+
+<div>@Html.ActionLink("Afficher la liste des étudiants", MVC.Coordinator.StudentList(), new { id = "student-list" })</div>
+
+<h3>Notifications:</h3>
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.Title, MVC.Notification.Detail().AddRouteValues(new { id = item.NotificationId }), new { id = "notification-detail" + item.NotificationId })
+            </td>
+            <td>
+                @Html.Label(item.Date.ToShortDateString())
+            </td>
+
+        </tr>
+    }
+
+</table>
