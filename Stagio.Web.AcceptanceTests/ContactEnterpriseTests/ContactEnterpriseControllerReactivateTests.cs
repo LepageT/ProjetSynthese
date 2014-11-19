@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using Stagio.Web.Automation.PageObjects.ContactEnterprise;
@@ -18,7 +19,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
         {
             ReactivateContactEnterprisePage.GoToByUrl();
 
-            Assert.IsTrue(ReactivateContactEnterprisePage.IsDisplayed);
+            ReactivateContactEnterprisePage.IsDisplayed.Should().BeTrue();
 
         }
 
@@ -34,7 +35,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             const string TELEPHONE = "123-456-7890";
             ReactivateContactEnterprisePage.FillFieldsAndSend(EMAIL, PASSWORD, FIRST_NAME, LAST_NAME, ENTERPRISE_NAME, TELEPHONE);
 
-            Assert.IsTrue(ReactivateContactEnterprisePage.ConfirmationIsDisplayed);
+            ReactivateContactEnterprisePage.ConfirmationIsDisplayed.Should().BeTrue();
 
         }
     }

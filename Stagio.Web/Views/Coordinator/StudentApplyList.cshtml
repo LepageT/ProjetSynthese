@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Stagio.Web.ViewModels.Coordinator.StudentApplyList>
+﻿@using Stagio.Web.Module.Strings.Shared
+@model IEnumerable<Stagio.Web.ViewModels.Coordinator.StudentApplyList>
 
 
 <h2 id="studentApply-list">Suivi de l'étudiant</h2>
@@ -34,6 +35,13 @@
         <th>
             @Html.DisplayNameFor(model => model.DateInterview)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateStageOffer)
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateAcceptStage)
+        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -60,7 +68,32 @@
                     <p>Inconnu</p>
                 }
             </td>
+            <td>
+                @if (item.DateStageOffer.ToShortDateString() != "0001-01-01")
+                {
+                    @Html.Label(item.DateInterview.ToShortDateString())
+                }
+                else
+                {
+                    <p>Inconnu</p>
+                }
+            </td>
+            <td>
+                @if (item.DateAcceptStage.ToShortDateString() != "0001-01-01")
+                {
+                    @Html.Label(item.DateInterview.ToShortDateString())
+                }
+                else
+                {
+                    <p>Inconnu</p>
+                }
+            </td>
         </tr>
     }
 
 </table>
+
+
+<div>
+    @Html.ActionLink("Retour à la liste d'étudiants", MVC.Coordinator.StudentList())
+</div>

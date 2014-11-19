@@ -9,32 +9,32 @@ namespace Stagio.Web.Automation.PageObjects.Student
 {
     public class UploadCvAndLetterPage 
     {
-        public static bool IsDisplayed
-        {
-            get { return Driver.Instance.FindElement(By.Id("uploadCvLetter-page")) != null; }
-        }
+        //public static bool IsDisplayed
+        //{
+        //    get { return Driver.Instance.FindElement(By.Id("uploadCvLetter-page")) != null; }
+        //}
 
-        public static void GoToByUrl()
-        {
-            Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/Student/UploadCVLetter");
-        }
+        //public static void GoToByUrl()
+        //{
+        //    Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/Student/UploadCVLetter");
+        //}
 
-        public static bool SelectFiles(string file1, string file2)
-        {
-            try
-            {
+        //public static bool SelectFiles(string file1, string file2)
+        //{
+        //    try
+        //    {
 
-                Driver.Instance.FindElement(By.Id("file1")).SendKeys(file1);
-                Driver.Instance.FindElement(By.Id("file2")).SendKeys(file2);
+        //        Driver.Instance.FindElement(By.Id("file1")).SendKeys(file1);
+        //        Driver.Instance.FindElement(By.Id("file2")).SendKeys(file2);
 
-            }
-            catch (Exception)
-            {
+        //    }
+        //    catch (Exception)
+        //    {
 
-                return false;
-            }
-            Driver.Instance.FindElement(By.Id("button-upload")).Click();
-            return true;
-        }
+        //        return false;
+        //    }
+        //    Driver.Instance.FindElement(By.Id("button-upload")).Click();
+        //    return true;
+        //}
     }
 }

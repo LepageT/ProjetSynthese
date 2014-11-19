@@ -22,7 +22,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
             var student = _fixture.Create<Student>();
             studentRepository.GetById(apply.IdStudent).Returns(student);
             applyRepository.GetById(apply.Id).Returns(apply);
-            var result = enterpriseController.DetailsStudentApplyPost("Accepter", apply.Id) as ViewResult;
+            var result = enterpriseController.DetailsStudentApplyPost("Je suis intéressé", apply.Id) as ViewResult;
 
             result.ViewName.Should().Be(MVC.ContactEnterprise.Views.ViewNames.AcceptApplyConfirmation);
         }
@@ -32,7 +32,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
             var apply = _fixture.Create<Apply>();
             applyRepository.Add(apply);
             applyRepository.GetById(apply.Id).Returns(apply);
-            var result = enterpriseController.DetailsStudentApplyPost("Refuser", apply.Id) as RedirectToRouteResult;
+            var result = enterpriseController.DetailsStudentApplyPost("Je ne suis pas intéressé", apply.Id) as RedirectToRouteResult;
             var action = result.RouteValues["Action"];
             action.ShouldBeEquivalentTo(MVC.ContactEnterprise.Views.ViewNames.RefuseApplyConfirmation);
         }
@@ -65,7 +65,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
         {
             var viewResult = enterpriseController.DetailsStudentApplyPost("Accepter", 999999999) as ViewResult;
             var viewModelObtained = viewResult.ViewData.Model as ViewModels.Apply.StudentApply;
-            Assert.AreEqual(viewResult.ViewName, "");
+            viewResult.ViewName.Should().Be("");
         }
 
         [TestMethod]
@@ -79,14 +79,16 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
             applyRepository.GetAll().Returns(apply.AsQueryable());
             studentRepository.GetAll().Returns(student.AsQueryable());
             stageRepository.GetAll().Returns(stage.AsQueryable());
-            var result = enterpriseController.DetailsStudentApply(apply[0].Id) as ViewResult;
+            var result = enterpriseController.DetailsStudentApply(apply[0].Id, false) as ViewResult;
             result.ViewName.Should().Be("");
         }
         [TestMethod]
         public void contactEnterpriseController_detailsStudentApply_with_invalid_id_should_return_httpnotfound()
         {
-            var result = enterpriseController.DetailsStudentApply(999999999);
+            var result = enterpriseController.DetailsStudentApply(999999999, false);
             result.Should().BeOfType<HttpNotFoundResult>();
         }
+
+       
     }
 }

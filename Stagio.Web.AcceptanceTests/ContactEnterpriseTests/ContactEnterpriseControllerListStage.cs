@@ -1,4 +1,5 @@
 ﻿using System;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using Stagio.Web.Automation.PageObjects;
@@ -18,7 +19,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
 
             ListStageContactEnterprisePage.GoTo();
 
-            Assert.IsTrue(ListStageContactEnterprisePage.IsDisplayed);
+            ListStageContactEnterprisePage.IsDisplayed.Should().BeTrue();
             
         }
 
@@ -29,8 +30,33 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
 
             ListStageContactEnterprisePage.GoTo();
-            Assert.IsTrue(ListStageContactEnterprisePage.AccessStageDetail());
+            ListStageContactEnterprisePage.AccessStageDetail().Should().BeTrue();
             
+        }
+
+        [TestMethod]
+        public void contactEnterprise_can_remove_a_stage()
+        {
+            LoginPage.GoTo();
+            LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
+
+            ListStageContactEnterprisePage.GoTo();
+            ListStageContactEnterprisePage.ClickRemoveStage1();
+            ListStageContactEnterprisePage.RemoveStageConfirmationIsDisplayed.Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void contactEnterprise_can_reactivate_a_stage()
+        {
+            LoginPage.GoTo();
+            LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
+
+            ListStageContactEnterprisePage.GoTo();
+            ListStageContactEnterprisePage.ClickRemoveStage1();
+            ListStageContactEnterprisePage.GoTo();
+            ListStageContactEnterprisePage.ClickReactivateStage1();
+            ListStageContactEnterprisePage.ReactivateStageConfirmationIsDisplayed.Should().BeTrue();
+
         }
         
     }

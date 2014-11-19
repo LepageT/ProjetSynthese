@@ -25,7 +25,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
 
             var result = enterpriseController.CreateStage(stageViewModel) as ViewResult;
 
-            Assert.AreEqual(result.ViewName, "");
+            result.ViewName.Should().Be("");
         }
 
         [TestMethod]

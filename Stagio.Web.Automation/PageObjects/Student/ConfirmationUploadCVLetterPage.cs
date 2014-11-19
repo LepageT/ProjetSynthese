@@ -13,5 +13,16 @@ namespace Stagio.Web.Automation.PageObjects.Student
         {
             get { return Driver.Instance.FindElement(By.Id("confirmationApplyStudent-page")) != null; }
         }
+
+        public static void ClickFile()
+        {
+            var file = Driver.Instance.FindElement(By.Id("download-cv"));
+            file.Click();
+        }
+
+        public static void GoToByUrl()
+        {
+            Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/Student/ApplyConfirmation");
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -53,11 +54,6 @@ namespace Stagio.Web.Controllers
             return View(notificationsViewModels);
         }
 
-        // GET: Enterprise/Details/5
-        public virtual ActionResult Details(int id)
-        {
-            return View();
-        }
 
         public virtual ActionResult Create()
         {
@@ -182,52 +178,6 @@ namespace Stagio.Web.Controllers
             var newContactEnterprise = _contactEnterpriseRepository.GetById(idContactEnterprise);
             var newContactEntepriseViewModels = Mapper.Map<ViewModels.ContactEnterprise.Reactive>(newContactEnterprise);
             return View(newContactEntepriseViewModels);
-        }
-
-
-
-        // GET: Enterprise/Edit/5
-        public virtual ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Enterprise/Edit/5
-        [HttpPost]
-        public virtual ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Enterprise/Delete/5
-        public virtual ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Enterprise/Delete/5
-        [HttpPost]
-        public virtual ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
 
         [Authorize(Roles = RoleName.ContactEnterprise)]
@@ -374,8 +324,12 @@ namespace Stagio.Web.Controllers
         }
 
 
-        public virtual ActionResult DetailsStudentApply(int id)
+        public virtual ActionResult DetailsStudentApply(int id, bool canNotDownload)
         {
+            if (canNotDownload)
+            {
+                ViewBag.Message = "Un ou des fichiers ne peuvent pas être téléchargés";
+            }
             var apply = new Apply();
             try
             {
@@ -404,7 +358,7 @@ namespace Stagio.Web.Controllers
                 return View("");
             }
             //Change status
-            if (command.Equals("Accepter"))
+            if (command.Equals("Je suis intéressé"))
             {
                 apply.Status = StatusApply.Accepted;
                 _applyRepository.Update(apply);
@@ -412,7 +366,7 @@ namespace Stagio.Web.Controllers
                     Mapper.Map<ViewModels.ContactEnterprise.AcceptApply>(_studentRepository.GetById(apply.IdStudent));
                 return View(MVC.ContactEnterprise.Views.ViewNames.AcceptApplyConfirmation, acceptApply);
             }
-            else if (command.Equals("Refuser"))
+            else if (command.Equals("Je ne suis pas intéressé"))
             {
                 apply.Status = StatusApply.Refused; 
                 _applyRepository.Update(apply);
@@ -435,6 +389,49 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult RefuseApplyConfirmation()
         {
 
+            return View();
+        }
+
+        public virtual ActionResult Download(string file, int id)
+        {
+            try
+            {
+                string path = AppDomain.CurrentDomain.GetData("DataDirectory").ToString();
+                path = path + "\\UploadedFiles\\" + file;
+                byte[] fileBytes = System.IO.File.ReadAllBytes((path));
+                string fileName = file;
+                return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction(MVC.ContactEnterprise.DetailsStudentApply(id, true));
+            }
+      
+
+        }
+
+        public virtual ActionResult RemoveStageConfirmation(int idStage)
+        {
+            var stage = _stageRepository.GetById(idStage);
+            if (stage == null)
+            {
+                return HttpNotFound();
+            }
+            stage.Status = StageStatus.Removed;
+            _stageRepository.Update(stage);
+            return View();
+        }
+
+        public virtual ActionResult ReactivateStageConfirmation(int idStage)
+        {
+            var stage = _stageRepository.GetById(idStage);
+            if (stage == null)
+            {
+                return HttpNotFound();
+            }
+            stage.Status = StageStatus.New;
+            stage.PublicationDate = DateTime.Now;
+            _stageRepository.Update(stage);
             return View();
         }
 

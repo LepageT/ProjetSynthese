@@ -8,28 +8,30 @@ using NSubstitute;
 using Ploeh.AutoFixture;
 using Stagio.Domain.Entities;
 
-namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
+namespace Stagio.Web.UnitTests.ControllerTests.NotificationTests
 {
     [TestClass]
-    public class ContactEnterpriseContrllerNotification: ContactEnterpriseControllerBaseClassTests
+    public class NotificationControllerListTest : NotificationControllerBaseTests
     {
         [TestMethod]
-        public void contactEnterprise_index_should_show_notification()
+        public void notification_should_display_user_notification_list()
         {
-            var notificationList = _fixture.CreateMany<Notification>(3);
+            var notificationList = _fixture.CreateMany<Notification>(5);
 
             foreach (var notification in notificationList)
             {
                 notification.For = 1;
             }
-            notificationRepository.GetAll().Returns(notificationList.AsQueryable());
-            httpContext.GetUserId().Returns(1);
 
-            var result = enterpriseController.Index() as ViewResult;
+            notificationList.FirstOrDefault().For = 4;
+
+            notificationRepository.GetAll().Returns(notificationList.AsQueryable());
+            httpContextService.GetUserId().Returns(1);
+
+            var result = notificationController.NotificationList() as ViewResult;
             var model = result.Model as IEnumerable<ViewModels.Notification.Notification>;
 
-            model.ShouldBeEquivalentTo(notificationList, options => options.ExcludingMissingProperties());
-
+            model.Count().Should().Be(4);
         }
     }
 }

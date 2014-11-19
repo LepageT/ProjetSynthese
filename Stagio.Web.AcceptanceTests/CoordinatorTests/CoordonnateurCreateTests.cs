@@ -1,4 +1,5 @@
 ﻿using System;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using Stagio.Web.Automation.PageObjects;
@@ -14,7 +15,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
         {
             CreateCoordinatorPage.GoToByUrl();
 
-            Assert.IsTrue(CreateCoordinatorPage.IsDisplayed);
+            CreateCoordinatorPage.IsDisplayed.Should().BeTrue();
 
             }
 
@@ -28,7 +29,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
             const string PASSWORD = "Bobino1234";
             CreateCoordinatorPage.FillFieldsAndSend(FIRST_NAME, LAST_NAME, EMAIL, PASSWORD);
 
-            Assert.IsTrue(CreateCoordinatorPage.ConfirmationPageIsDisplayed);
+            CreateCoordinatorPage.ConfirmationPageIsDisplayed.Should().BeTrue();
 
         }
 

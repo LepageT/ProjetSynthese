@@ -18,7 +18,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
         {
             CreateContactEnterprisePage.GoToByUrl();
 
-            Assert.IsTrue(CreateContactEnterprisePage.IsDisplayed);
+            CreateContactEnterprisePage.IsDisplayed.Should().BeTrue();
             
         }
 
@@ -28,7 +28,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             CreateContactEnterprisePage.GoToByUrl();
             CreateContactEnterprisePage.CreateContactEnterpriseWithoutInvitation();
 
-            Assert.IsTrue(CreateContactEnterprisePage.ConfirmationIsDisplayed);
+            CreateContactEnterprisePage.ConfirmationIsDisplayed.Should().BeTrue();
             
         }
 

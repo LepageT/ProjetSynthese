@@ -21,7 +21,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
         {
             var result = coordinatorController.StudentList() as ViewResult;
 
-            Assert.AreEqual(result.ViewName, "");
+            result.ViewName.Should().Be("");
         }
 
         [TestMethod]
@@ -35,8 +35,9 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
             apply.FirstOrDefault().IdStudent = student.FirstOrDefault().Id;
             apply.FirstOrDefault().IdStage = stages.FirstOrDefault().Id;
             applyRepository.GetAll().Returns(apply.AsQueryable());
-            studentRepository.GetById(student.FirstOrDefault().Id).Returns(student.FirstOrDefault());
+            studentRepository.GetById(student.First().Id).Returns(student.First());
             interviewRepository.GetAll().Returns(interview.AsQueryable());
+            studentRepository.GetById(student.First().Id).Returns(student.First());
 
             var result = coordinatorController.StudentApplyList(student.FirstOrDefault().Id) as ViewResult;
             var model = result.Model as List<StudentApplyList>;

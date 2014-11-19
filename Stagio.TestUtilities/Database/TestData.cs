@@ -238,7 +238,7 @@ namespace Stagio.TestUtilities.Database
                     NbApply = 1,
                     LimitDate = DateTime.Now,
                     PublicationDate = DateTime.Now,
-                    Status = 0,
+                    Status = (StageStatus) 1,
                     NbrStagiaire = 3,
                     StageTitle = "Apprentis",
                     CompanyName = "MI6",

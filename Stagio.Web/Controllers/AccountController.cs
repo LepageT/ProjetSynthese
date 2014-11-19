@@ -89,6 +89,13 @@ namespace Stagio.Web.Controllers
 
         public virtual ActionResult Details(int id)
         {
+            var userID = _httpContext.GetUserId();
+
+            if (id != userID)
+            {
+                id = userID;
+            }
+            
             var account = _accountRepository.GetById(id);
 
             var details = Mapper.Map<Details>(account);

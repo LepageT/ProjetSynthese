@@ -1,4 +1,5 @@
 ﻿using System;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using Stagio.Web.Automation.PageObjects;
@@ -17,7 +18,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
             CreateStageContactEnterprisePage.GoTo();
 
-            Assert.IsTrue(CreateStageContactEnterprisePage.IsDisplayed);
+            CreateStageContactEnterprisePage.IsDisplayed.Should().BeTrue();
             
             }
         
@@ -26,9 +27,9 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
         {
             CreateStageContactEnterprisePage.GoToByUrl();
           
-            Assert.IsTrue(LoginPage.IsDisplayed);
+            LoginPage.IsDisplayed.Should().BeTrue();
 
-            }
+         }
 
         [TestMethod]
         public void enterprise_should_be_able_to_create_a_stage()
@@ -38,7 +39,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             CreateStageContactEnterprisePage.GoTo();
             CreateStageContactEnterprisePage.CreateStage();
 
-            Assert.IsTrue(CreateStageContactEnterprisePage.ConfirmationPageIsDisplayed);
+            CreateStageContactEnterprisePage.ConfirmationPageIsDisplayed.Should().BeTrue();
 
         }
 

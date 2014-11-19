@@ -70,17 +70,18 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="AccountTests\AccountControllerLoginTests.cs" />
     <Compile Include="AccountTests\AccountControllerDetailsTests.cs" />
+    <Compile Include="AccountTests\AccountControllerLoginTests.cs" />
     <Compile Include="BaseTests.cs" />
+    <Compile Include="ContactEnterpriseTests\ContactEnterpriseListStudentApplyTests.cs" />
+    <Compile Include="ContactEnterpriseTests\ContactEnterpriseControllerCreateTests.cs" />
     <Compile Include="ContactEnterpriseTests\ContactEnterpriseControllerDetailsStudentApplyTests.cs" />
+    <Compile Include="ContactEnterpriseTests\ContactEnterpriseControllerListStage.cs" />
     <Compile Include="ContactEnterpriseTests\ContactEnterpriseControllerReactivateTests.cs" />
     <Compile Include="ContactEnterpriseTests\ContactEnterpriseInviteTests.cs" />
-    <Compile Include="ContactEnterpriseTests\ContactEnterpriseControllerListStage.cs" />
-    <Compile Include="ContactEnterpriseTests\ConntactEnterpriseListStudentApplyTests.cs" />
     <Compile Include="ContactEnterpriseTests\ContactEnterpriseNotificationTests.cs" />
     <Compile Include="CoordinatorTests\CoordinatorControllerInviteEnterpriseTests.cs" />
-    <Compile Include="ContactEnterpriseTests\ContactEnterpriseControllerCreateTests.cs" />
+    <Compile Include="CoordinatorTests\CoordinatorControllerInviteTests.cs" />
     <Compile Include="CoordinatorTests\CoordinatorControllerStudentApplyListTests.cs" />
     <Compile Include="CoordinatorTests\CoordinatorControllerStudentListTests.cs" />
     <Compile Include="CoordinatorTests\CoordonnateurCreateTests.cs" />
@@ -88,29 +89,155 @@
     <Compile Include="ContactEnterpriseTests\ContactEnterpriseControllerCreateStageTests.cs" />
     <Compile Include="CoordinatorTests\CoordinatorControllerNotificationTests.cs" />
     <Compile Include="InterviewTests\InterviewControllerCreate.cs" />
-    <Compile Include="InterviewTests\InterviewControllerList.cs" />
     <Compile Include="InterviewTests\InterviewControllerEdit.cs" />
     <Compile Include="NotificationTest\NotificationControllerNotificationListTests.cs" />
+    <Compile Include="InterviewTests\InterviewControllerList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StageTests\StageControllerStudentViewInformationsTests.cs" />
-    <Compile Include="StageTests\StageControllerListNewStages.cs" />
     <Compile Include="StageTests\StageControllerDetails.cs" />
-    <Compile Include="StudentTests\StudentControllerApplyTests.cs" />
-    <Compile Include="StudentTests\StudentControllerEditTests.cs" />
-    <Compile Include="StudentTests\StudentControllerCreateListTests.cs" />
-    <Compile Include="StudentTests\StudentControllerReplyStageTests.cs" />
-    <Compile Include="StudentTests\StudentControllerUploadTests.cs" />
-    <Compile Include="StudentTests\StudentControllerResultCreateList.cs" />
-    <Compile Include="StudentTests\StudentControllerCreateTests.cs" />
-    <Compile Include="StudentTests\StudentControllerStageListTest.cs" />
+    <Compile Include="StageTests\StageControllerListNewStages.cs" />
+    <Compile Include="StageTests\StageControllerStudentViewInformationsTests.cs" />
     <Compile Include="StudentTests\StudentControllerApplyListTests.cs" />
+    <Compile Include="StudentTests\StudentControllerApplyTests.cs" />
+    <Compile Include="StudentTests\StudentControllerCreateListTests.cs" />
+    <Compile Include="StudentTests\StudentControllerCreateTests.cs" />
+    <Compile Include="StudentTests\StudentControllerEditTests.cs" />
+    <Compile Include="StudentTests\StudentControllerReplyStageTests.cs" />
+    <Compile Include="StudentTests\StudentControllerResultCreateList.cs" />
+    <Compile Include="StudentTests\StudentControllerStageListTest.cs" />
     <Compile Include="StudentTests\StudentControllerUploadCVLetter.cs" />
     <Compile Include="StudentTests\StudentControllerNotificationTests.cs" />
+    <Compile Include="StudentTests\StudentControllerUploadTests.cs" />
+    <Compile Include="StudentTests\StudentControllerApplyConfirmationTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Stagio.DataLayer\Stagio.DataLayer.csproj">
+      <Project>{0988FEE9-30A1-49A7-A7B1-9D1571ECEA28}</Project>
+      <Name>Stagio.DataLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Stagio.Domain\Stagio.Domain.csproj">
+      <Project>{976FE607-B2B5-412F-98B1-B8106D6B610C}</Project>
+      <Name>Stagio.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Stagio.TestUtilities\Stagio.TestUtilities.csproj">
+      <Project>{9999bd96-9ae9-4332-9205-86e60ac4ca88}</Project>
+      <Name>Stagio.TestUtilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Stagio.Web.Automation\Stagio.Web.Automation.csproj">
+      <Project>{bb170ce2-a741-484b-a14d-519938b351a5}</Project>
+      <Name>Stagio.Web.Automation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Stagio.Web\Stagio.Web.csproj">
+      <Project>{f69eb36e-05c6-4680-b6f7-eaf3ca9fa150}</Project>
+      <Name>Stagio.Web</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Ce projet fait référence à des packages NuGet qui sont manquants sur cet ordinateur. Activez l'option de restauration des packages NuGet pour les télécharger. Pour plus d'informations, consultez http://go.microsoft.com/fwlink/?LinkID=322105. Le fichier manquant est le suivant : {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+Other similar extension points exist, see Microsoft.Common.targets.
+<Target Name="BeforeBuild">
+</Target>
+<Target Name="AfterBuild">
+</Target>
+-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{521DD3E1-7D0C-4F40-9E98-E4186B9D2AE2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Stagio.Web.AcceptanceTests</RootNamespace>
+    <AssemblyName>Stagio.Web.AcceptanceTests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FluentAssertions">
+      <HintPath>..\packages\FluentAssertions.3.2.1\lib\net45\FluentAssertions.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentAssertions.Core">
+      <HintPath>..\packages\FluentAssertions.3.2.1\lib\net45\FluentAssertions.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Ploeh.AutoFixture">
+      <HintPath>..\packages\AutoFixture.3.20.2\lib\net40\Ploeh.AutoFixture.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebDriver">
+      <HintPath>..\packages\Selenium.WebDriver.2.43.1\lib\net40\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support">
+      <HintPath>..\packages\Selenium.Support.2.43.1\lib\net40\WebDriver.Support.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
   <ItemGroup>
     <ProjectReference Include="..\Stagio.DataLayer\Stagio.DataLayer.csproj">
       <Project>{0988FEE9-30A1-49A7-A7B1-9D1571ECEA28}</Project>
@@ -152,9 +279,6 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>Ce projet fait référence à des packages NuGet qui sont manquants sur cet ordinateur. Activez l'option de restauration des packages NuGet pour les télécharger. Pour plus d'informations, consultez http://go.microsoft.com/fwlink/?LinkID=322105. Le fichier manquant est le suivant : {0}.</ErrorText>

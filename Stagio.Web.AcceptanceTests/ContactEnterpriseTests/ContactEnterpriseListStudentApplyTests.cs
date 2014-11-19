@@ -1,4 +1,5 @@
 ﻿using System;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using Stagio.Web.Automation.PageObjects.ContactEnterprise;
@@ -6,14 +7,14 @@ using Stagio.Web.Automation.PageObjects.ContactEnterprise;
 namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
 {
     [TestClass]
-    public class ConntactEnterpriseListStudentApplyTests : BaseTests
+    public class ContactEnterpriseListStudentApplyTests : BaseTests
     {
         [TestMethod]
         public void contactEnterprise_can_see_a_list_of_student_for_stage()
         {
             StudentApplyContactEnterprisePage.GoToByUrl();
 
-            Assert.IsTrue(StudentApplyContactEnterprisePage.IsDisplayed);
+            StudentApplyContactEnterprisePage.IsDisplayed.Should().BeTrue();
             
         }
 
@@ -22,7 +23,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
         {
             StudentApplyContactEnterprisePage.GoToByUrl();
 
-            Assert.IsTrue(StudentApplyContactEnterprisePage.ButtonIsDisplayed());
+            StudentApplyContactEnterprisePage.ButtonIsDisplayed().Should().BeTrue();
             
         }
     }

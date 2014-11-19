@@ -18,7 +18,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         {
             var result = studentController.Create() as ViewResult;
 
-            Assert.AreEqual(result.ViewName, "");
+            result.ViewName.Should().Be("");
         }
 
         [TestMethod]
@@ -37,7 +37,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 
             var result = studentController.Create(viewModel) as ViewResult;
 
-            Assert.AreEqual(result.ViewName, "");
+            result.ViewName.Should().Be("");
         }
 
         [TestMethod]
@@ -51,7 +51,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 
             var result = studentController.Create(viewModel) as ViewResult;
 
-            Assert.AreEqual(result.ViewName, "");
+            result.ViewName.Should().Be("");
         }
 
         [TestMethod]
@@ -79,7 +79,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
             var students = _fixture.CreateMany<Student>(3);
             var student = students.First();
             student.Active = true;
-          studentRepository.GetAll().Returns(students.AsQueryable());
+            studentRepository.GetAll().Returns(students.AsQueryable());
             var viewModel = _fixture.Create<ViewModels.Student.Create>();
             viewModel.Matricule = student.Matricule;
             viewModel.FirstName = student.FirstName;
@@ -88,7 +88,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 
             var result = studentController.Create(viewModel) as ViewResult;
 
-            Assert.AreEqual(result.ViewName, "");
+            result.ViewName.Should().Be("");
         }
     }
 }

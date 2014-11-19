@@ -465,6 +465,8 @@
     <Content Include="Views\Notification\Detail.cshtml" />
     <Content Include="Views\Notification\Error.cshtml" />
     <Content Include="Views\Notification\NotificationList.cshtml" />
+    <Content Include="Views\ContactEnterprise\RemoveStageConfirmation.cshtml" />
+    <Content Include="Views\ContactEnterprise\ReactivateStageConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt.hooks.t4" />

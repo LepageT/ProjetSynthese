@@ -1,4 +1,5 @@
 ﻿using System;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Stagio.Web.Automation.PageObjects;
 using Stagio.Web.Automation.PageObjects.Student;
@@ -17,7 +18,7 @@ namespace Stagio.Web.AcceptanceTests.InterviewTests
 
             EditInterviewPage.GoToByUrl();
 
-            Assert.IsTrue(EditInterviewPage.IsDisplayed);
+            EditInterviewPage.IsDisplayed.Should().BeTrue();
         }
 
         [TestMethod]
@@ -25,7 +26,7 @@ namespace Stagio.Web.AcceptanceTests.InterviewTests
         {
             EditInterviewPage.GoToByUrl();
 
-            Assert.IsTrue(LoginPage.IsDisplayed);
+            LoginPage.IsDisplayed.Should().BeTrue();
         }
 
         [TestMethod]
@@ -40,7 +41,7 @@ namespace Stagio.Web.AcceptanceTests.InterviewTests
 
             EditInterviewPage.EditAnInterview(NEW_DATE, true);
 
-            Assert.IsTrue(EditInterviewPage.EditVerification(NEW_DATE));
+            EditInterviewPage.EditVerification(NEW_DATE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -55,7 +56,7 @@ namespace Stagio.Web.AcceptanceTests.InterviewTests
 
             EditInterviewPage.EditAnInterview(NEW_DATE, true);
 
-            Assert.IsTrue(ListInterview.IsDisplayed);
+            ListInterview.IsDisplayed.Should().BeTrue();
         }
 
         private void addInterview()
