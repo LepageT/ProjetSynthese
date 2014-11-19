@@ -1,4 +1,5 @@
 ﻿using System;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -17,7 +18,7 @@ namespace Stagio.Web.AcceptanceTests.InterviewTests
             LoginPage.LoginAs(StudentUsername, StudentPassword);
             CreateInterviewStudentPage.GoTo();
 
-            Assert.IsTrue(CreateInterviewStudentPage.IsDisplayed);
+            CreateInterviewStudentPage.IsDisplayed.Should().BeTrue();
 
         }
 
@@ -26,7 +27,7 @@ namespace Stagio.Web.AcceptanceTests.InterviewTests
         {
             CreateInterviewStudentPage.GoToByUrl();
 
-            Assert.IsTrue(LoginPage.IsDisplayed);
+            LoginPage.IsDisplayed.Should().BeTrue();
             
         }
 
@@ -38,7 +39,7 @@ namespace Stagio.Web.AcceptanceTests.InterviewTests
             CreateInterviewStudentPage.GoTo();
             CreateInterviewStudentPage.AddInterview();
 
-            Assert.IsTrue(CreateInterviewStudentPage.ConfirmationIsDisplayed);
+            CreateInterviewStudentPage.ConfirmationIsDisplayed.Should().BeTrue();
 
         }
     }

@@ -17,7 +17,7 @@ namespace Stagio.Web.AcceptanceTests.AccountTests
             
             DetailsAccountPage.GoToByUrl1();
 
-            Assert.IsTrue(DetailsAccountPage.IsDisplayed);
+            DetailsAccountPage.IsDisplayed.Should().BeTrue();
            
         }
 

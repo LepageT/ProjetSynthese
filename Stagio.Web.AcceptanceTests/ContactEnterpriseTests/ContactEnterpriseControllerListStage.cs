@@ -1,4 +1,5 @@
 ﻿using System;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using Stagio.Web.Automation.PageObjects;
@@ -18,7 +19,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
 
             ListStageContactEnterprisePage.GoTo();
 
-            Assert.IsTrue(ListStageContactEnterprisePage.IsDisplayed);
+            ListStageContactEnterprisePage.IsDisplayed.Should().BeTrue();
             
         }
 
@@ -29,7 +30,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
 
             ListStageContactEnterprisePage.GoTo();
-            Assert.IsTrue(ListStageContactEnterprisePage.AccessStageDetail());
+            ListStageContactEnterprisePage.AccessStageDetail().Should().BeTrue();
             
         }
 
@@ -41,7 +42,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
 
             ListStageContactEnterprisePage.GoTo();
             ListStageContactEnterprisePage.ClickRemoveStage1();
-            Assert.IsTrue(ListStageContactEnterprisePage.RemoveStageConfirmationIsDisplayed);
+            ListStageContactEnterprisePage.RemoveStageConfirmationIsDisplayed.Should().BeTrue();
         }
 
         [TestMethod]
@@ -54,7 +55,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             ListStageContactEnterprisePage.ClickRemoveStage1();
             ListStageContactEnterprisePage.GoTo();
             ListStageContactEnterprisePage.ClickReactivateStage1();
-            Assert.IsTrue(ListStageContactEnterprisePage.ReactivateStageConfirmationIsDisplayed);
+            ListStageContactEnterprisePage.ReactivateStageConfirmationIsDisplayed.Should().BeTrue();
 
         }
         

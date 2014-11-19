@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing.Imaging;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using Stagio.TestUtilities.Database;
@@ -17,7 +18,7 @@ namespace Stagio.Web.AcceptanceTests.AccountTests
             LoginPage.GoTo();
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
 
-            Assert.IsTrue(LoginPage.VerifyCoordinatorLogin());
+            LoginPage.VerifyCoordinatorLogin().Should().BeTrue();
            
         }
 
@@ -26,7 +27,7 @@ namespace Stagio.Web.AcceptanceTests.AccountTests
         {
             LoginPage.GoTo();
 
-            Assert.IsTrue(LoginPage.IsDisplayed);
+            LoginPage.IsDisplayed.Should().BeTrue();
 
         }
 
@@ -37,7 +38,7 @@ namespace Stagio.Web.AcceptanceTests.AccountTests
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
             LoginPage.Logout();
             
-            Assert.IsTrue(LoginPage.VerifyLogout());
+            LoginPage.VerifyLogout().Should().BeTrue();
 
         }
     

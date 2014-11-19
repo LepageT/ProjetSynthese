@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ploeh.AutoFixture;
 using Stagio.Domain.Entities;
@@ -22,7 +23,7 @@ namespace Stagio.Web.AcceptanceTests.InterviewTests
 
             ListInterview.GoTo();
 
-            Assert.IsTrue(ListInterview.IsDisplayed);
+            ListInterview.IsDisplayed.Should().BeTrue();
 
         }
 
@@ -36,7 +37,7 @@ namespace Stagio.Web.AcceptanceTests.InterviewTests
             
             ListInterview.GoTo();
 
-            Assert.IsTrue(ListInterview.InterviewIsDisplayed());
+            ListInterview.InterviewIsDisplayed().Should().BeTrue();
 
         }
 

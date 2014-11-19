@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using Stagio.Web.Automation.PageObjects;
@@ -20,7 +21,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
             InviteContactEnterpriseCoordinatorPage.GoTo();
 
-            Assert.IsTrue(InviteContactEnterpriseCoordinatorPage.IsDisplayed);
+            InviteContactEnterpriseCoordinatorPage.IsDisplayed.Should().BeTrue();
             
         }
 
@@ -29,7 +30,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
         {
             InviteContactEnterpriseCoordinatorPage.GoToByUrl();
 
-            Assert.IsTrue(LoginPage.IsDisplayed);
+            LoginPage.IsDisplayed.Should().BeTrue();
            
         }
 
@@ -43,7 +44,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
             const string MESSAGE_INVITATION = "test";
             InviteContactEnterpriseCoordinatorPage.AddMessageInvitationAndSend(MESSAGE_INVITATION);
 
-            Assert.IsTrue(InviteContactEnterpriseCoordinatorPage.ConfirmationPageIsDisplayed);
+            InviteContactEnterpriseCoordinatorPage.ConfirmationPageIsDisplayed.Should().BeTrue();
             
 
         }

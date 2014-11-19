@@ -17,7 +17,7 @@ namespace Stagio.Web.AcceptanceTests.StageTests
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
             DetailsStageCoordinatorPage.GoToDetailsStage1();
 
-            Assert.IsTrue(DetailsStageCoordinatorPage.IsDisplayed);
+            DetailsStageCoordinatorPage.IsDisplayed.Should().BeTrue();
             
         }
 
@@ -28,7 +28,7 @@ namespace Stagio.Web.AcceptanceTests.StageTests
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
             DetailsStageCoordinatorPage.GoToDetailsStage3();
 
-            Assert.IsTrue(DetailsStageCoordinatorPage.ButtonRemoveIsDisplayed());
+            DetailsStageCoordinatorPage.ButtonRemoveIsDisplayed().Should().BeTrue();
             
         }
 
@@ -39,7 +39,7 @@ namespace Stagio.Web.AcceptanceTests.StageTests
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
             DetailsStageCoordinatorPage.GoToDetailsStage1();
 
-            Assert.IsFalse(DetailsStageCoordinatorPage.ButtonRemoveIsDisplayed());
+            DetailsStageCoordinatorPage.ButtonRemoveIsDisplayed().Should().BeFalse();
             
         }
 
@@ -51,7 +51,7 @@ namespace Stagio.Web.AcceptanceTests.StageTests
             DetailsStageCoordinatorPage.GoToDetailsStage3();
             DetailsStageCoordinatorPage.RemoveStage();
 
-            Assert.IsTrue(ListAllStagesCoordinatorPage.IsDisplayed);
+            ListAllStagesCoordinatorPage.IsDisplayed.Should().BeTrue();
 
         }
 
@@ -63,7 +63,7 @@ namespace Stagio.Web.AcceptanceTests.StageTests
             DetailsStageCoordinatorPage.GoToDetailsStage1();
             DetailsStageCoordinatorPage.RefuseStage();
 
-            Assert.IsTrue(ListAllStagesCoordinatorPage.IsDisplayed);
+            ListAllStagesCoordinatorPage.IsDisplayed.Should().BeTrue();
             
         }
 
@@ -75,7 +75,7 @@ namespace Stagio.Web.AcceptanceTests.StageTests
             DetailsStageCoordinatorPage.GoToDetailsStage1();
             DetailsStageCoordinatorPage.AcceptStage();
 
-            Assert.IsTrue(ListAllStagesCoordinatorPage.IsDisplayed);
+            ListAllStagesCoordinatorPage.IsDisplayed.Should().BeTrue();
            
         }
     }

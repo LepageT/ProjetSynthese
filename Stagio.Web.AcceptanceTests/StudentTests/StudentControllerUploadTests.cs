@@ -1,4 +1,5 @@
 ﻿using System;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using Stagio.Web.Automation.PageObjects;
@@ -18,8 +19,8 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
 
             AddStudentsCoordinatorPage.GoTo();
 
-            Assert.IsTrue(AddStudentsCoordinatorPage.IsDisplayed);
-            
+            AddStudentsCoordinatorPage.IsDisplayed.Should().BeTrue();
+
         }
 
         [TestMethod]
@@ -27,8 +28,8 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         {
             AddStudentsCoordinatorPage.GoToByUrl();
 
-            Assert.IsTrue(LoginPage.IsDisplayed);
-          
+            LoginPage.IsDisplayed.Should().BeTrue();
+
         }
 
         [TestMethod]
@@ -39,8 +40,8 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
 
             AddStudentsCoordinatorPage.GoTo();
 
-            Assert.IsTrue(AddStudentsCoordinatorPage.SelectCsvFile("C:\\dev\\abc.csv"));
-            
+            AddStudentsCoordinatorPage.SelectCsvFile("C:\\dev\\abc.csv").Should().BeTrue();
+
 
         }
 
@@ -52,8 +53,8 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
 
             AddStudentsCoordinatorPage.GoTo();
             AddStudentsCoordinatorPage.SelectCsvFile("C:\\dev\\abc.txt");
-            Assert.IsTrue(AddStudentsCoordinatorPage.IsDisplayed);
-            
+            AddStudentsCoordinatorPage.IsDisplayed.Should().BeTrue();
+
         }
 
         [TestMethod]
@@ -66,8 +67,8 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
 
             AddStudentsCoordinatorPage.SelectCsvFile("C:\\dev\\abc.csv");
 
-            Assert.IsTrue(CreateListStudentsCoordinatorPage.IsDisplayed);
-            
+            CreateListStudentsCoordinatorPage.IsDisplayed.Should().BeTrue();
+
         }
 
         [TestMethod]
@@ -80,8 +81,8 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
 
             AddStudentsCoordinatorPage.SelectCsvFile("");
 
-            Assert.IsTrue(AddStudentsCoordinatorPage.IsDisplayed);
-           
+            AddStudentsCoordinatorPage.IsDisplayed.Should().BeTrue();
+
         }
 
     }

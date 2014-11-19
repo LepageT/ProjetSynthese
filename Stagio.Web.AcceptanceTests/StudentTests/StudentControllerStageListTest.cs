@@ -1,4 +1,5 @@
 ﻿using System;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using Stagio.Web.Automation.PageObjects;
@@ -17,7 +18,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
 
             StageListStudentPage.GoTo();
 
-            Assert.IsTrue(StageListStudentPage.HasStage);
+            StageListStudentPage.HasStage.Should().BeTrue();
             
         }
 
@@ -26,7 +27,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         {
             StageListStudentPage.GoToByUrl();
 
-            Assert.IsTrue(LoginPage.IsDisplayed);
+            LoginPage.IsDisplayed.Should().BeTrue();
             
         }
 
@@ -37,7 +38,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             LoginPage.LoginAs(StudentUsername, StudentPassword);
 
             StageListStudentPage.GoTo();
-            StageListStudentPage.AccessStageDescription();
+            StageListStudentPage.AccessStageDescription().Should().BeTrue();
            
         }
     }
