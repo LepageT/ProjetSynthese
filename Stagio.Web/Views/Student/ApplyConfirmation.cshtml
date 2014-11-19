@@ -1,11 +1,15 @@
 ﻿@using Stagio.Web.Module.Strings.Shared;
+@model List<HttpPostedFileBase>
+ 
+    
 @{
-    ViewBag.Title = "ApplyConfirmation";
-}
+        ViewBag.Title = "ApplyConfirmation";
+    }
 
-<h2 id="confirmationApplyStudent-page">Confirmation de postulation</h2>
-<p>Votre postulation a bien été envoyée à l'entreprise.</p>
+    <h2 id="confirmationApplyStudent-page">Confirmation de postulation</h2>
+    <p>Votre postulation a bien été envoyée à l'entreprise.</p>
+    <p>Vous avez envoyé ce @Html.ActionLink("CV", MVC.Student.Download(Model[0].FileName), new { id = "download-cv" }) et cette  @Html.ActionLink("lettre de présentation", MVC.Student.Download(Model[1].FileName), new { id = "download-letter" })</p>
 
-<div>
-    @Html.ActionLink(Navigation.ReturnHome, MVC.Home.Index())
-</div>
+    <div>
+        @Html.ActionLink(Navigation.ReturnHome, MVC.Home.Index())
+    </div>
