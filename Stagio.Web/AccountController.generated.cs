@@ -76,7 +76,6 @@ namespace Stagio.Web.Controllers
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public class ActionNamesClass
 		{
-			public readonly string Index = "Index";
 			public readonly string Login = "Login";
 			public readonly string Logout = "Logout";
 			public readonly string Details = "Details";
@@ -85,7 +84,6 @@ namespace Stagio.Web.Controllers
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public class ActionNameConstants
 		{
-			public const string Index = "Index";
 			public const string Login = "Login";
 			public const string Logout = "Logout";
 			public const string Details = "Details";
@@ -130,17 +128,6 @@ namespace Stagio.Web.Controllers
 	public partial class T4MVC_AccountController : Stagio.Web.Controllers.AccountController
 	{
 		public T4MVC_AccountController() : base(Dummy.Instance) { }
-
-		[NonAction]
-		partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-		[NonAction]
-		public override System.Web.Mvc.ActionResult Index()
-		{
-			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
-			IndexOverride(callInfo);
-			return callInfo;
-		}
 
 		[NonAction]
 		partial void LoginOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);

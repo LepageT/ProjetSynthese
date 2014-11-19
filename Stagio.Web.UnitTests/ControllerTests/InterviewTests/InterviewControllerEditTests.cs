@@ -34,15 +34,13 @@ namespace Stagio.Web.UnitTests.ControllerTests.InterviewTests
         [TestMethod]
         public void edit_should_return_http_not_found_when_studentId_is_not_valid()
         {
-            httpContextService.GetUserId().Returns(99999999);
-
             var result = interviewController.Edit(999999999);
 
             result.Should().BeOfType<HttpNotFoundResult>();
         }
 
         [TestMethod]
-        public void edit_post_should_update_student_when_studentId_is_valid()
+        public void edit_post_should_update_interview_when_interviewId_is_valid()
         {
             var interview = _fixture.Create<Interview>();
             httpContextService.GetUserId().Returns(interview.Id);
@@ -66,6 +64,17 @@ namespace Stagio.Web.UnitTests.ControllerTests.InterviewTests
             var routeAction = routeResult.RouteValues["Action"];
 
             routeAction.Should().Be("List");
+        }
+
+        [TestMethod]
+        public void interview_edit_post_should_return_httpnotfound_if_interview_doesnt_exist()
+        {
+            var interview = _fixture.Create<ViewModels.Interviews.Edit>();
+            interviewRepository.GetById(Arg.Any<int>()).Returns(a => null);
+
+            var result = interviewController.Edit(interview);
+
+            result.Should().BeOfType<HttpNotFoundResult>();
         }
 
     }

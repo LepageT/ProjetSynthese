@@ -140,7 +140,7 @@ namespace Stagio.Web.Controllers
 
             if (!ModelState.IsValid)
             {
-            return View(createViewModel);
+                return View(createViewModel);
             }
 
             if (ModelState.IsValid)
@@ -164,7 +164,7 @@ namespace Stagio.Web.Controllers
 
 
                         return RedirectToAction(MVC.ContactEnterprise.CreateConfirmation(contactEnterprise.Id));
-        }
+                    }
                 }
 
             }
@@ -378,13 +378,6 @@ namespace Stagio.Web.Controllers
             }
         }
 
-       
-
-        public virtual ActionResult AcceptApplyConfirmation(ViewModels.ContactEnterprise.AcceptApply acceptApply)
-        {
-
-            return View(acceptApply);
-        }
 
         public virtual ActionResult RefuseApplyConfirmation()
         {

@@ -29,12 +29,6 @@ namespace Stagio.Web.Controllers
             _accountService = accountService;
         }
 
-        // GET: Account
-        public virtual ActionResult Index()
-        {
-            return View();
-        }
-
         public virtual ActionResult Login()
         {
             return View();

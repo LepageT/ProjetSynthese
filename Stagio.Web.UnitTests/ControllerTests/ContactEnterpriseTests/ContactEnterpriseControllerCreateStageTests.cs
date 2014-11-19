@@ -38,5 +38,13 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
 
             action.ShouldBeEquivalentTo(MVC.ContactEnterprise.Views.ViewNames.CreateStageSucceed);
         }
+
+        [TestMethod]
+        public void enterprise_createStageSucceed_should_render_view()
+        {
+            var result = enterpriseController.CreateStageSucceed() as ViewResult;
+
+            result.ViewName.Should().Be("");
+        }
     }
 }

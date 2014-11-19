@@ -27,11 +27,6 @@ namespace Stagio.Web.Controllers
             _interviewRepository = interviewRepository;
 
         }
-        // GET: Interview
-        public virtual ActionResult Index()
-        {
-            return View();
-        }
 
         [Authorize(Roles = RoleName.Student)]
         public virtual ActionResult Create()
@@ -106,20 +101,22 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult Edit(int id)
         {
             var interview = _interviewRepository.GetById(id);
-
-            if (interview != null)
+            if (ModelState.IsValid)
             {
-                var interviewEditPageViewModel = Mapper.Map<ViewModels.Interviews.Edit>(interview);
-                var stages = _stageRepository.GetAll();
-                foreach (var stage in stages)
+                if (interview != null)
                 {
-                    if (stage.Id == interview.StageId)
+                    var interviewEditPageViewModel = Mapper.Map<ViewModels.Interviews.Edit>(interview);
+                    var stages = _stageRepository.GetAll();
+                    foreach (var stage in stages)
                     {
-                        interviewEditPageViewModel.StageTitleAndCompagny = stage.StageTitle.ToString() + " - " +
-                                             stage.CompanyName.ToString();
+                        if (stage.Id == interview.StageId)
+                        {
+                            interviewEditPageViewModel.StageTitleAndCompagny = stage.StageTitle.ToString() + " - " +
+                                                                               stage.CompanyName.ToString();
+                        }
                     }
+                    return View(interviewEditPageViewModel);
                 }
-                return View(interviewEditPageViewModel);
             }
             return HttpNotFound();
         }
@@ -128,16 +125,17 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult Edit(ViewModels.Interviews.Edit editInterviewViewModel)
         {
             var interview = _interviewRepository.GetById(editInterviewViewModel.Id);
-            if (interview == null)
+            if (interview != null)
             {
-                return HttpNotFound();
+                Mapper.Map(editInterviewViewModel, interview);
+
+                _interviewRepository.Update(interview);
+
+                return RedirectToAction(MVC.Interview.List());
             }
+            return HttpNotFound();
 
-            Mapper.Map(editInterviewViewModel, interview);
-
-            _interviewRepository.Update(interview);
-
-            return RedirectToAction(MVC.Interview.List());
+           
         }
 
     }
