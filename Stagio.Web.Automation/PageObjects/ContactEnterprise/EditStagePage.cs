@@ -11,21 +11,37 @@ namespace Stagio.Web.Automation.PageObjects.ContactEnterprise
     {
         public static void GoToByUrl()
         {
-            Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/ContactEnterprise/Edit/1");
+            Driver.Instance.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(2));
+            Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/Stage/Edit/1");
+        }
+
+        public static bool IsDisplayed
+        {
+            get { return Driver.Instance.FindElement(By.Id("edit-page")) != null; }
         }
 
         public static void EditAStage(string newResponsableName)
         {
-           
-            Driver.Instance.FindElement(By.Id("Password")).Clear();
-            Driver.Instance.FindElement(By.Id("Password")).SendKeys(newResponsableName);
+
+            Driver.Instance.FindElement(By.Id("ResponsableToName")).Clear();
+            Driver.Instance.FindElement(By.Id("ResponsableToName")).SendKeys(newResponsableName);
 
             Driver.Instance.FindElement(By.Id("edit-button")).Click();
         }
 
         public static bool EditVerification(string newResponsableName)
         {
-            throw new NotImplementedException();
+            GoToByUrl();
+          
+            var responsableNameDisplayed = Driver.Instance.FindElement(By.Id("ResponsableToName")).GetAttribute("value");
+            if (responsableNameDisplayed == newResponsableName)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

@@ -60,7 +60,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
             var routeResult = stageController.Edit(stageEditPageViewModel) as RedirectToRouteResult;
             var routeAction = routeResult.RouteValues["Action"];
 
-            routeAction.Should().Be(MVC.Home.Views.ViewNames.Index);
+            routeAction.Should().Be(MVC.ContactEnterprise.Views.ViewNames.ListStage);
         }
 
         [TestMethod]

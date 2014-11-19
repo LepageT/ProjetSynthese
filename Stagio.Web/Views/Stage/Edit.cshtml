@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <hr />
+        <hr id="edit-page" />
         @Html.HiddenFor(model => model.Adresse)
         @Html.HiddenFor(model => model.Id)
         @Html.HiddenFor(model => model.CompanyName)
@@ -36,7 +36,7 @@
         <h3>Responsable du stage</h3>
         <div class="form-group">
             @Html.LabelFor(model => model.ResponsableToName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-10" id="responsableName">
                 @Html.EditorFor(model => model.ResponsableToName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ResponsableToName, "", new { @class = "text-danger" })
             </div>
@@ -183,14 +183,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" id="edit-button"/>
             </div>
         </div>
     </div>
 }
     
     <div>
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Retour à l'accueil",MVC.ContactEnterprise.Index())
     </div>
 </body>
 </html>

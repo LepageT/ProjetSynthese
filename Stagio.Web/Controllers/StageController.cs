@@ -131,7 +131,7 @@ namespace Stagio.Web.Controllers
 
            _stageRepository.Update(stage);
 
-            return RedirectToAction(MVC.ContactEnterprise.Index());
+            return RedirectToAction(MVC.ContactEnterprise.ListStage());
         }
     }
 }
