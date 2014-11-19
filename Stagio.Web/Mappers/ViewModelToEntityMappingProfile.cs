@@ -55,6 +55,9 @@ namespace Stagio.Web.Mappers
 
             Mapper.CreateMap<ViewModels.ContactEnterprise.Create, ContactEnterprise>()
                .IgnoreAllNonExisting();
+
+            Mapper.CreateMap<ViewModels.Stage.Edit, Stage>()
+           .IgnoreAllNonExisting();
         }
     }
 }

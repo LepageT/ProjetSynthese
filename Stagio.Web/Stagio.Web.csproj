@@ -309,6 +309,7 @@
     <Compile Include="ViewModels\Notification\Detail.cs" />
     <Compile Include="ViewModels\Stage\Create.cs" />
     <Compile Include="ViewModels\Stage\Details.cs" />
+    <Compile Include="ViewModels\Stage\Edit.cs" />
     <Compile Include="ViewModels\Stage\ListAllStages.cs" />
     <Compile Include="ViewModels\Stage\ListNewStages.cs" />
     <Compile Include="ViewModels\Stage\ViewInfo.cs" />
@@ -466,6 +467,7 @@
     <Content Include="Views\Notification\NotificationList.cshtml" />
     <Content Include="Views\ContactEnterprise\RemoveStageConfirmation.cshtml" />
     <Content Include="Views\ContactEnterprise\ReactivateStageConfirmation.cshtml" />
+    <Content Include="Views\Stage\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt.hooks.t4" />

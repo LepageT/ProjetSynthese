@@ -66,6 +66,12 @@ namespace Stagio.Web.Controllers
 		{
 			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
 		}
+		[NonAction]
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public virtual System.Web.Mvc.ActionResult Edit()
+		{
+			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
+		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public StageController Actions { get { return MVC.Stage; } }
@@ -85,6 +91,7 @@ namespace Stagio.Web.Controllers
 			public readonly string ListNewStages = "ListNewStages";
 			public readonly string ViewStageInfo = "ViewStageInfo";
 			public readonly string Details = "Details";
+			public readonly string Edit = "Edit";
 		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -93,6 +100,7 @@ namespace Stagio.Web.Controllers
 			public const string ListNewStages = "ListNewStages";
 			public const string ViewStageInfo = "ViewStageInfo";
 			public const string Details = "Details";
+			public const string Edit = "Edit";
 		}
 
 
@@ -113,6 +121,15 @@ namespace Stagio.Web.Controllers
 			public readonly string id = "id";
 			public readonly string command = "command";
 		}
+		static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public ActionParamsClass_Edit EditParams { get { return s_params_Edit; } }
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public class ActionParamsClass_Edit
+		{
+			public readonly string id = "id";
+			public readonly string editStageViewModel = "editStageViewModel";
+		}
 		static readonly ViewsClass s_views = new ViewsClass();
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public ViewsClass Views { get { return s_views; } }
@@ -124,10 +141,12 @@ namespace Stagio.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Details = "Details";
+                public readonly string Edit = "Edit";
                 public readonly string ListNewStages = "ListNewStages";
                 public readonly string ViewStageInfo = "ViewStageInfo";
             }
             public readonly string Details = "~/Views/Stage/Details.cshtml";
+            public readonly string Edit = "~/Views/Stage/Edit.cshtml";
             public readonly string ListNewStages = "~/Views/Stage/ListNewStages.cshtml";
             public readonly string ViewStageInfo = "~/Views/Stage/ViewStageInfo.cshtml";
 		}
@@ -183,6 +202,30 @@ namespace Stagio.Web.Controllers
 			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "command", command);
 			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
 			DetailsOverride(callInfo, command, id);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult Edit(int id)
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+			EditOverride(callInfo, id);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Stagio.Web.ViewModels.Stage.Edit editStageViewModel);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult Edit(Stagio.Web.ViewModels.Stage.Edit editStageViewModel)
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "editStageViewModel", editStageViewModel);
+			EditOverride(callInfo, editStageViewModel);
 			return callInfo;
 		}
 

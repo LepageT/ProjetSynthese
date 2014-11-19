@@ -74,6 +74,7 @@
     <Compile Include="PageObjects\ContactEnterprise\CreateContactEnterprisePage.cs" />
     <Compile Include="PageObjects\ContactEnterprise\CreateStageContactEnterprisePage.cs" />
     <Compile Include="PageObjects\ContactEnterprise\DetailsStudentApplyContactEnterprisePage.cs" />
+    <Compile Include="PageObjects\ContactEnterprise\EditStagePage.cs" />
     <Compile Include="PageObjects\ContactEnterprise\IndexContactEnterprisePage.cs" />
     <Compile Include="PageObjects\ContactEnterprise\InviteContactEnterprisePage.cs" />
     <Compile Include="PageObjects\ContactEnterprise\ListStageContactEnterprisePage.cs" />
