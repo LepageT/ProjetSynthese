@@ -16,6 +16,7 @@ namespace Stagio.Web.Automation.PageObjects.Notification
 
         public static void GoToNotification(int i)
         {
+            Driver.Instance.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(2));
             Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/Notification/Detail/" + i);
         }
 
