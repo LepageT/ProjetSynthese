@@ -18,7 +18,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         {
             CreateStudentPage.GoTo();
 
-            Assert.IsTrue(CreateStudentPage.IsDisplayed);
+            CreateStudentPage.IsDisplayed.Should().BeTrue();
 
         }
 
@@ -29,7 +29,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             CreateStudentPage.GoTo();
             CreateStudentPage.CreateStudent(student);
 
-            Assert.IsTrue(CreateStudentPage.ConfirmationPageIsDisplayed);
+            CreateStudentPage.ConfirmationPageIsDisplayed.Should().BeTrue();
             
         }
     }

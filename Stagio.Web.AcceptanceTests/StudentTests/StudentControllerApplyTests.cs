@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using Stagio.Web.Automation.PageObjects;
@@ -20,8 +21,8 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             LoginPage.LoginAs(StudentUsername, StudentPassword);
             ApplyStudentPage.GoTo();
 
-            Assert.IsTrue(ApplyStudentPage.IsDisplayed);
-            
+            ApplyStudentPage.IsDisplayed.Should().BeTrue();
+
         }
 
         [TestMethod]
@@ -34,7 +35,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
 
             ApplyStudentPage.SelectFiles("file1.pdf", "file2.pdf");
 
-            Assert.IsTrue(ConfirmationUploadCVLetterPage.IsDisplayed);
+            ConfirmationUploadCVLetterPage.IsDisplayed.Should().BeTrue();
 
         }
 
@@ -48,7 +49,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
 
             ApplyStudentPage.SelectFiles("", "");
 
-            Assert.IsTrue(ApplyStudentPage.IsDisplayed);
+            ApplyStudentPage.IsDisplayed.Should().BeTrue();
 
         }
     }

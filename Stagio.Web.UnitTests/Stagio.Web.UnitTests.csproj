@@ -103,6 +103,8 @@
     <Compile Include="ControllerTests\ContactEnterpriseTests\ContactEnterpriseControllerListStudentApplyTests.cs" />
     <Compile Include="ControllerTests\ContactEnterpriseTests\ContactEnterpriseControllerDetailsStudentApplyTests.cs" />
     <Compile Include="ControllerTests\ContactEnterpriseTests\ContactEnterpriseControllerListStageTests.cs" />
+    <Compile Include="ControllerTests\ContactEnterpriseTests\ContactEnterpriseControllerReactivateStageConfirmationTests.cs" />
+    <Compile Include="ControllerTests\ContactEnterpriseTests\ContactEnterpriseControllerRemoveStageConfirmationTests.cs" />
     <Compile Include="ControllerTests\ContactEnterpriseTests\ContactEnterpriseCreateTests.cs" />
     <Compile Include="ControllerTests\ContactEnterpriseTests\ContactEnterpriseDownloadTest.cs" />
     <Compile Include="ControllerTests\ContactEnterpriseTests\ContactEnterpriseIndexTests.cs" />

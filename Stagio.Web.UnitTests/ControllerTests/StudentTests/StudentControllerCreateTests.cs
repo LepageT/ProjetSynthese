@@ -18,7 +18,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         {
             var result = studentController.Create() as ViewResult;
 
-            Assert.AreEqual(result.ViewName, "");
+            result.ViewName.Should().Be("");
         }
 
         [TestMethod]
@@ -37,7 +37,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 
             var result = studentController.Create(viewModel) as ViewResult;
 
-            Assert.AreEqual(result.ViewName, "");
+            result.ViewName.Should().Be("");
         }
 
         [TestMethod]
@@ -51,7 +51,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 
             var result = studentController.Create(viewModel) as ViewResult;
 
-            Assert.AreEqual(result.ViewName, "");
+            result.ViewName.Should().Be("");
         }
 
         [TestMethod]
@@ -88,7 +88,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 
             var result = studentController.Create(viewModel) as ViewResult;
 
-            Assert.AreEqual(result.ViewName, "");
+            result.ViewName.Should().Be("");
         }
     }
 }

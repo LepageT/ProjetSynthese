@@ -1,4 +1,5 @@
 ﻿using System;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using Stagio.Web.Automation.PageObjects;
@@ -16,7 +17,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             LoginPage.LoginAs(StudentUsername, StudentPassword);
             ApplyListStudentPage.GoTo();
 
-            Assert.IsTrue(ApplyListStudentPage.HasStage);
+            ApplyListStudentPage.HasStage.Should().BeTrue();
         }
 
         [TestMethod]
@@ -24,7 +25,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         {
             ApplyListStudentPage.GoToByUrl();
 
-            Assert.IsTrue(LoginPage.IsDisplayed);
+            LoginPage.IsDisplayed.Should().BeTrue();
         }
 
         [TestMethod]
@@ -34,7 +35,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             LoginPage.LoginAs(StudentUsername, StudentPassword);
 
             ApplyListStudentPage.GoTo();
-            ApplyListStudentPage.AccessStageDescription();
+            ApplyListStudentPage.AccessStageDescription().Should().BeTrue();
         }
 
         [TestMethod]
@@ -46,7 +47,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             ApplyListStudentPage.GoTo();
             ApplyListStudentPage.ClickToRemove();
 
-            Assert.IsTrue(ApplyListStudentPage.ConfirmationRemoveIsDisplayed);
+            ApplyListStudentPage.ConfirmationRemoveIsDisplayed.Should().BeTrue();
 
         }
 
@@ -61,7 +62,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             ApplyListStudentPage.GoTo();
             ApplyListStudentPage.ClickToReApply();
 
-            Assert.IsTrue(ApplyListStudentPage.ConfirmationReApplyIsDisplayed);
+            ApplyListStudentPage.ConfirmationReApplyIsDisplayed.Should().BeTrue();
         }
     }
 }

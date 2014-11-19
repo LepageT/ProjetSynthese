@@ -33,8 +33,8 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
             var viewModelObtained = viewResult.ViewData.Model as ViewModels.ContactEnterprise.Reactive;
 
             //Assert 
-            Assert.AreEqual(viewModelExpected.Email, viewModelObtained.Email);
-            Assert.AreEqual(viewModelExpected.EnterpriseName, viewModelObtained.EnterpriseName);
+            viewModelExpected.Email.ShouldBeEquivalentTo(viewModelObtained.Email);
+            viewModelExpected.EnterpriseName.ShouldBeEquivalentTo(viewModelObtained.EnterpriseName);
  
         }
 

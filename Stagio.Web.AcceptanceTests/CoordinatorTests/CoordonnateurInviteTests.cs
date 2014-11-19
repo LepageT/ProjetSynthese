@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using FluentAssertions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using Stagio.Web.Automation.PageObjects;
 using Stagio.Web.Automation.PageObjects.Coordinator;
@@ -16,7 +17,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
             InviteCoordinatorPage.GoTo();
 
-            Assert.IsTrue(InviteCoordinatorPage.IsDisplayed);
+            InviteCoordinatorPage.IsDisplayed.Should().BeTrue();
            
             }
 
@@ -25,9 +26,9 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
         {
             InviteCoordinatorPage.GoToByUrl();
            
-            Assert.IsTrue(LoginPage.IsDisplayed);
+            LoginPage.IsDisplayed.Should().BeTrue();
 
-            }
+        }
 
         [TestMethod]
         public void coordinator_invite_should_create_an_invitation()
@@ -39,7 +40,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
             InviteCoordinatorPage.GoTo();
             InviteCoordinatorPage.SendInvitation(EMAIL, TEXT);
 
-            Assert.IsTrue(InviteCoordinatorPage.ConfirmationInvitationIsDisplayed);
+            InviteCoordinatorPage.ConfirmationInvitationIsDisplayed.Should().BeTrue();
             
         }
     }

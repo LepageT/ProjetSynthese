@@ -18,7 +18,7 @@ namespace Stagio.Web.AcceptanceTests.StageTests
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
             ListAllStagesCoordinatorPage.GoTo();
 
-            Assert.IsTrue(ListAllStagesCoordinatorPage.IsDisplayed);
+            ListAllStagesCoordinatorPage.IsDisplayed.Should().BeTrue();
             
         }
 
@@ -27,7 +27,7 @@ namespace Stagio.Web.AcceptanceTests.StageTests
         {
             ListAllStagesCoordinatorPage.GoToByUrl();
 
-            Assert.IsTrue(LoginPage.IsDisplayed);
+            LoginPage.IsDisplayed.Should().BeTrue();
            
         }
 
@@ -38,7 +38,7 @@ namespace Stagio.Web.AcceptanceTests.StageTests
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
             ListAllStagesCoordinatorPage.GoTo();
 
-            Assert.AreNotEqual(0, ListAllStagesCoordinatorPage.CountNbStages());
+            ListAllStagesCoordinatorPage.CountNbStages().Should().NotBe(0);
            
         }
     }

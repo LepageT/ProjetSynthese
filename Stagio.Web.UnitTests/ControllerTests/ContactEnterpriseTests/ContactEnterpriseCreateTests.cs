@@ -21,7 +21,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
         {
             var result = enterpriseController.Create() as ViewResult;
 
-            Assert.AreEqual(result.ViewName, "");
+            result.ViewName.Should().Be("");
         }
 
         [TestMethod]
@@ -40,7 +40,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
 
             var result = enterpriseController.Create(viewModel) as ViewResult;
 
-            Assert.AreEqual(result.ViewName, "");
+            result.ViewName.Should().Be("");
         }
 
         [TestMethod]
