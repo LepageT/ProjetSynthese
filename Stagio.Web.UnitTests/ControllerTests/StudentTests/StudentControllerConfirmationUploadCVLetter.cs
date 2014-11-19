@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
@@ -12,7 +13,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         {
             var result = studentController.ConfirmationUploadCVLetter() as ViewResult;
 
-            Assert.AreEqual("", result.ViewName);
+            result.ViewName.Should().Be("");
         }
     }
 }

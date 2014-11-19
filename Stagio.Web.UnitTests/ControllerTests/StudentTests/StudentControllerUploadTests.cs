@@ -18,7 +18,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         {
             var result = studentController.Upload() as ViewResult;
 
-            Assert.AreEqual("", result.ViewName);
+            result.ViewName.Should().Be("");
         }
 
         [TestMethod]
@@ -29,7 +29,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 
             var result = studentController.UploadPost(postedfile) as ViewResult;
 
-            result.ViewName.ShouldBeEquivalentTo("");
+            result.ViewName.Should().Be("");
         }
 
         [TestMethod]
@@ -40,7 +40,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 
             var result = studentController.UploadPost(postedfile) as ViewResult;
 
-            result.ViewName.ShouldBeEquivalentTo("");
+            result.ViewName.Should().Be("");
         }
 
 

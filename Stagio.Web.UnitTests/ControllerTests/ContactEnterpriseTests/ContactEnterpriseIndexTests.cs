@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Stagio.Web.Automation.PageObjects.ContactEnterprise;
 
@@ -17,7 +18,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
         {
            var result = enterpriseController.Index() as ViewResult;
 
-            Assert.AreEqual("", result.ViewName);
+            result.ViewName.Should().Be("");
           
         }
 

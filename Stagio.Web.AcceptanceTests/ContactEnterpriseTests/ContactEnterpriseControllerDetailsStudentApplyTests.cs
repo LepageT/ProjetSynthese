@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using Stagio.Web.Automation.PageObjects;
@@ -22,7 +23,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             DetailsStudentApplyContactEnterprisePage.GoToByUrl();
             DetailsStudentApplyContactEnterprisePage.AcceptApply();
 
-            Assert.IsTrue(DetailsStudentApplyContactEnterprisePage.ConfirmationAccpetIsDisplayed);
+            DetailsStudentApplyContactEnterprisePage.ConfirmationAccpetIsDisplayed.Should().BeTrue();
             
         }
 
@@ -34,7 +35,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             DetailsStudentApplyContactEnterprisePage.GoToByUrl();
             DetailsStudentApplyContactEnterprisePage.RefuseApply();
 
-            Assert.IsTrue(DetailsStudentApplyContactEnterprisePage.ConfirmationRefuseIsDisplayed);
+            DetailsStudentApplyContactEnterprisePage.ConfirmationRefuseIsDisplayed.Should().BeTrue();
 
         }
 
@@ -45,7 +46,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
             DetailsStudentApplyContactEnterprisePage.GoToByUrl();
 
-            Assert.IsTrue(DetailsStudentApplyContactEnterprisePage.IsDisplayed);
+            DetailsStudentApplyContactEnterprisePage.IsDisplayed.Should().BeTrue();
            
         }
 
@@ -56,7 +57,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
             DetailsStudentApplyContactEnterprisePage.GoToByUrl();
             DetailsStudentApplyContactEnterprisePage.DownloadPage();
-            Assert.IsTrue(DetailsStudentApplyContactEnterprisePage.ErrorDisplayed);
+            DetailsStudentApplyContactEnterprisePage.ErrorDisplayed.Should().BeTrue();
         }
 
         //[TestMethod]

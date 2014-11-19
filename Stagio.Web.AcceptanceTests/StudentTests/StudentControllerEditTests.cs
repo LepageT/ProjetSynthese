@@ -21,7 +21,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
 
             EditStudentPage.GoTo();
             
-            Assert.IsTrue(EditStudentPage.IsDisplayed);
+            EditStudentPage.IsDisplayed.Should().BeTrue();
         }
 
         [TestMethod]
@@ -29,7 +29,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         {
             EditStudentPage.GoToByUrl();
 
-            Assert.IsTrue(LoginPage.IsDisplayed);
+            LoginPage.IsDisplayed.Should().BeTrue();
         }
 
         [TestMethod]
@@ -45,7 +45,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             EditStudentPage.GoTo();
             EditStudentPage.EditAStudent(NEW_TELEPHONE, OLD_PASSWORD, NEW_PASSWORD);
 
-            Assert.IsTrue(EditStudentPage.EditVerification(NEW_TELEPHONE));
+            EditStudentPage.EditVerification(NEW_TELEPHONE).Should().BeTrue();
         }
 
         [TestMethod]
@@ -61,7 +61,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             EditStudentPage.GoTo();
             EditStudentPage.EditAStudent(NEW_TELEPHONE, OLD_PASSWORD, NEW_PASSWORD);
 
-            Assert.IsTrue(IndexStudentPage.IsDisplayed);
+            IndexStudentPage.IsDisplayed.Should().BeTrue();
             
 
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using Stagio.Web.Automation.PageObjects.Student;
@@ -13,7 +14,7 @@ namespace Stagio.Web.AcceptanceTests.StageTests
         {
             ViewInfoStageStudentPage.GoToByUrl();
 
-            Assert.IsTrue(ViewInfoStageStudentPage.IsDisplayed);
+            ViewInfoStageStudentPage.IsDisplayed.Should().BeTrue();
 
         }
     }

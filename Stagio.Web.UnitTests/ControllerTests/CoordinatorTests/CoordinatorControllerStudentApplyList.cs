@@ -21,7 +21,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
         {
             var result = coordinatorController.StudentList() as ViewResult;
 
-            Assert.AreEqual(result.ViewName, "");
+            result.ViewName.Should().Be("");
         }
 
         [TestMethod]

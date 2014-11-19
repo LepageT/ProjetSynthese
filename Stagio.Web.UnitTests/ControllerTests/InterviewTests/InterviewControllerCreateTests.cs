@@ -22,7 +22,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.InterviewTests
             applyRepository.GetAll().Returns(appliedList.AsQueryable());
             var result = interviewController.Create() as ViewResult;
 
-            Assert.AreEqual(result.ViewName, ""); 
+            result.ViewName.Should().Be(""); 
         }
 
         [TestMethod]
@@ -34,7 +34,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.InterviewTests
 
             var result = interviewController.Create(interview) as ViewResult;
 
-            Assert.AreEqual(result.ViewName, "");
+            result.ViewName.Should().Be("");
         }
 
         [TestMethod]
@@ -44,12 +44,9 @@ namespace Stagio.Web.UnitTests.ControllerTests.InterviewTests
             interview.Date = DateTime.Now.ToLongDateString();
             interview.StageId = 1;
 
-            //Act
             var result = interviewController.Create(interview) as RedirectToRouteResult;
             var action = result.RouteValues["Action"];
 
-
-            //Assert
             action.ShouldBeEquivalentTo(MVC.Interview.Views.ViewNames.InterviewConfirmation);
         }
     }

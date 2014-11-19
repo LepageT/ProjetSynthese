@@ -1,4 +1,5 @@
 ﻿using System;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using Stagio.TestUtilities.Database;
@@ -20,7 +21,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             AddStudentsCoordinatorPage.GoTo();
             AddStudentsCoordinatorPage.SelectCsvFile("C:\\dev\\abc.csv");
 
-            Assert.IsTrue(CreateListStudentsCoordinatorPage.IsDisplayed);
+            CreateListStudentsCoordinatorPage.IsDisplayed.Should().BeTrue();
            
         }
 
@@ -29,7 +30,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         {
             CreateListStudentsCoordinatorPage.GoToByUrl();
 
-            Assert.IsTrue(LoginPage.IsDisplayed);
+            LoginPage.IsDisplayed.Should().BeTrue();
            
         }
 
@@ -44,7 +45,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
            
             CreateListStudentsCoordinatorPage.ClickToCreatelist();
 
-            Assert.IsTrue(ResultatCreateListStudentPage.IsDisplayed);
+            ResultatCreateListStudentPage.IsDisplayed.Should().BeTrue();
             
 
         }

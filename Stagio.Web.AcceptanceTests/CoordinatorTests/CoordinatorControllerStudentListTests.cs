@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Stagio.Web.Automation.PageObjects;
 using Stagio.Web.Automation.PageObjects.Coordinator;
@@ -19,7 +20,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
             StudentListCoordinatorPage.GoTo();
 
-            Assert.IsTrue(StudentListCoordinatorPage.IsDisplayed);
+            StudentListCoordinatorPage.IsDisplayed.Should().BeTrue();
 
         }
 
@@ -28,7 +29,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
         {
             StudentListCoordinatorPage.GoToByUrl();
 
-            Assert.IsTrue(LoginPage.IsDisplayed);
+            LoginPage.IsDisplayed.Should().BeTrue();
 
         }
 
@@ -39,7 +40,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
 
             StudentListCoordinatorPage.GoTo();
-            StudentListCoordinatorPage.AccessStudent1ApplyList();
+            StudentListCoordinatorPage.AccessStudent1ApplyList().Should().BeTrue();
         }
 
         [TestMethod]
@@ -49,7 +50,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
             StudentListCoordinatorPage.GoTo();
 
-            Assert.AreNotEqual(0, StudentListCoordinatorPage.CountNbStudents());
+            StudentListCoordinatorPage.CountNbStudents().Should().NotBe(0);
 
         }
     }
