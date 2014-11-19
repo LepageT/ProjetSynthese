@@ -41,6 +41,11 @@
                         @Html.ActionLink("Afficher les postulants", "ListStudentApply", new { id = item.Id }, new { id = "list-stages" + item.Id })
                 
                     </td>
+                    
+                    <td>
+                        @Html.ActionLink("Modifier", MVC.Stage.Edit(item.Id))
+
+                    </td>
                     <td>
                      @if (item.Status != 3)
                      {

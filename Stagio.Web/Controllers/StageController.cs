@@ -94,5 +94,44 @@ namespace Stagio.Web.Controllers
             _stageRepository.Update(stage);
             return RedirectToAction(MVC.Stage.ListNewStages());
         }
+
+        [Authorize(Roles = RoleName.ContactEnterprise)]
+        // GET: Student/Edit/5
+        public virtual ActionResult Edit(int id)
+        {
+            var stage = _stageRepository.GetById(id);
+
+            if (stage != null)
+            {
+                var stageEditPageViewModel = Mapper.Map<ViewModels.Stage.Edit>(stage);
+
+                return View(stageEditPageViewModel);
+            }
+            return HttpNotFound();
+        }
+
+
+        [Authorize(Roles = RoleName.ContactEnterprise)]
+        // POST: Student/Edit/5
+        [HttpPost]
+        public virtual ActionResult Edit(ViewModels.Stage.Edit editStageViewModel)
+        {
+            var stage = _stageRepository.GetById(editStageViewModel.Id);
+            if (stage == null)
+            {
+                return HttpNotFound();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(editStageViewModel);
+            }
+        
+            Mapper.Map(editStageViewModel, stage);
+
+           _stageRepository.Update(stage);
+
+            return RedirectToAction(MVC.ContactEnterprise.Index());
+        }
     }
 }

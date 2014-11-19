@@ -32,6 +32,10 @@ namespace Stagio.Web.Mappers
             Mapper.CreateMap<Stage, ViewModels.Stage.ListNewStages>()
                 .IgnoreAllNonExisting();
 
+
+            Mapper.CreateMap<Stage, ViewModels.Stage.Edit>()
+                .IgnoreAllNonExisting();
+
             Mapper.CreateMap<Stage, ViewModels.ContactEnterprise.ListStage>()
                .IgnoreAllNonExisting();
 
