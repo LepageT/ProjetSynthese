@@ -15,7 +15,5 @@ namespace Stagio.Web.ViewModels.Notification
         public String Message { get; set; }
 
         public DateTime Date { get; set; }
-
-        public ActionResult PreviousUrl { get; set; }
     }
 }

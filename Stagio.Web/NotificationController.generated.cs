@@ -78,6 +78,7 @@ namespace Stagio.Web.Controllers
 		{
 			public readonly string Detail = "Detail";
 			public readonly string Error = "Error";
+			public readonly string NotificationList = "NotificationList";
 		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -85,6 +86,7 @@ namespace Stagio.Web.Controllers
 		{
 			public const string Detail = "Detail";
 			public const string Error = "Error";
+			public const string NotificationList = "NotificationList";
 		}
 
 
@@ -108,9 +110,11 @@ namespace Stagio.Web.Controllers
             {
                 public readonly string Detail = "Detail";
                 public readonly string Error = "Error";
+                public readonly string NotificationList = "NotificationList";
             }
             public readonly string Detail = "~/Views/Notification/Detail.cshtml";
             public readonly string Error = "~/Views/Notification/Error.cshtml";
+            public readonly string NotificationList = "~/Views/Notification/NotificationList.cshtml";
 		}
 	}
 
@@ -139,6 +143,17 @@ namespace Stagio.Web.Controllers
 		{
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Error);
 			ErrorOverride(callInfo);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void NotificationListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult NotificationList()
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.NotificationList);
+			NotificationListOverride(callInfo);
 			return callInfo;
 		}
 

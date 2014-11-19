@@ -12,7 +12,5 @@ namespace Stagio.Web.Services
         int GetUserId();
         void AuthenticationSignIn(ClaimsIdentity identity);
         void AuthenticationSignOut();
-
-        String[] GetUserRole();
     }
 }

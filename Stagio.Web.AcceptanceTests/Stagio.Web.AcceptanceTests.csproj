@@ -78,6 +78,7 @@
     <Compile Include="ContactEnterpriseTests\ContactEnterpriseInviteTests.cs" />
     <Compile Include="ContactEnterpriseTests\ContactEnterpriseControllerListStage.cs" />
     <Compile Include="ContactEnterpriseTests\ConntactEnterpriseListStudentApplyTests.cs" />
+    <Compile Include="ContactEnterpriseTests\ContactEnterpriseNotificationTests.cs" />
     <Compile Include="CoordinatorTests\CoordinatorControllerInviteEnterpriseTests.cs" />
     <Compile Include="ContactEnterpriseTests\ContactEnterpriseControllerCreateTests.cs" />
     <Compile Include="CoordinatorTests\CoordinatorControllerStudentApplyListTests.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="CoordinatorTests\CoordonnateurCreateTests.cs" />
     <Compile Include="CoordinatorTests\CoordonnateurInviteTests.cs" />
     <Compile Include="ContactEnterpriseTests\ContactEnterpriseControllerCreateStageTests.cs" />
+    <Compile Include="CoordinatorTests\CoordinatorControllerNotificationTests.cs" />
     <Compile Include="InterviewTests\InterviewControllerCreate.cs" />
     <Compile Include="InterviewTests\InterviewControllerList.cs" />
     <Compile Include="InterviewTests\InterviewControllerEdit.cs" />
@@ -102,6 +104,7 @@
     <Compile Include="StudentTests\StudentControllerStageListTest.cs" />
     <Compile Include="StudentTests\StudentControllerApplyListTests.cs" />
     <Compile Include="StudentTests\StudentControllerUploadCVLetter.cs" />
+    <Compile Include="StudentTests\StudentControllerNotificationTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -129,9 +132,7 @@
       <Name>Stagio.Web</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NotificationTests\" />
-  </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

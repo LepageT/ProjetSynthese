@@ -28,9 +28,5 @@ namespace Stagio.Web.Services
             HttpContext.Current.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
         }
 
-        public String[] GetUserRole()
-        {
-            return Roles.GetRolesForUser(HttpContext.Current.User.Identity.GetUserName());
-        }
     }
 }

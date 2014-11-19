@@ -30,51 +30,31 @@ namespace Stagio.Web.Controllers
 
             if (notification != null)
             {
-               
                 var notificationViewModel = Mapper.Map<ViewModels.Notification.Detail>(notification);
-                if (_httpContextService.GetUserRole().Contains(RoleName.Student))
-                {
-                    notificationViewModel.PreviousUrl = MVC.Student.Index();
-                }
-                else if (_httpContextService.GetUserRole().Contains(RoleName.Coordinator))
-                {
-                    notificationViewModel.PreviousUrl = MVC.Coordinator.Index();
-                }
-                else if (_httpContextService.GetUserRole().Contains(RoleName.ContactEnterprise))
-                {
-                    notificationViewModel.PreviousUrl = MVC.ContactEnterprise.Index();
-                }
 
                 if (notification.For != _httpContextService.GetUserId())
                 {
                     return RedirectToAction(MVC.Notification.Error());
                 }
 
-               
                 return View(notificationViewModel);
             }
             return HttpNotFound();
-
         }
 
         public virtual ActionResult Error()
-        {
-            var viewModel = new Stagio.Web.ViewModels.Notification.Error();
+        {    
+            return View();
+        }
 
-            if (_httpContextService.GetUserRole().Contains(RoleName.Student))
-            {
-                viewModel.Url = MVC.Student.Index();
-            }
-            else if (_httpContextService.GetUserRole().Contains(RoleName.Coordinator))
-            {
-                viewModel.Url = MVC.Coordinator.Index();
-            }
-            else if (_httpContextService.GetUserRole().Contains(RoleName.ContactEnterprise))
-            {
-                viewModel.Url = MVC.ContactEnterprise.Index();
-            }
-            
-            return View(viewModel);
+        [Authorize]
+        public virtual ActionResult NotificationList()
+        {
+            var notifications = _notificationRepository.GetAll().ToList();
+            var notificationsList = notifications.Where(x => x.For == _httpContextService.GetUserId());
+            var notificationsListViewModel = Mapper.Map<IEnumerable<ViewModels.Notification.Notification>>(notificationsList).ToList();
+
+            return View(notificationsListViewModel);
         }
 
 

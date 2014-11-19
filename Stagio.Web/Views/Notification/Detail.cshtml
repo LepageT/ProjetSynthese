@@ -5,10 +5,9 @@
     ViewBag.Title = "Detail";
 }
 
-<h2>Detail</h2>
+<h2 id="notification-detail">Detail</h2>
 
 <div>
-    <h4>Detail</h4>
     <hr />
     <dl class="dl-horizontal">
 
@@ -38,6 +37,21 @@
 
     </dl>
 </div>
+
 <p>
-    @Html.ActionLink(Navigation.ReturnHome, Model.PreviousUrl)
+@if (@User.IsInRole("Étudiant"))
+{
+    @Html.ActionLink(Navigation.ReturnHome, MVC.Student.Index())
+
+}
+@if (@User.IsInRole("Coordonnateur"))
+{
+    @Html.ActionLink(Navigation.ReturnHome, MVC.Coordinator.Index())
+
+}
+@if (@User.IsInRole("Contact entreprise"))
+{
+    @Html.ActionLink(Navigation.ReturnHome, MVC.ContactEnterprise.Index())
+
+}
 </p>

@@ -1,17 +1,30 @@
 ﻿@using Stagio.Web.Module.Strings.Shared
-@model Stagio.Web.ViewModels.Notification.Error
 
 
 @{
     ViewBag.Title = "Error";
 }
 
-<h2>Erreur</h2>
+<h2 id="erreur-notification">Erreur</h2>
 
 <div>
     Vous ne pouvez pas consulter cette notification. Elle ne vous est pas destinée.
 </div>
 
 <p>
-    @Html.ActionLink(Navigation.ReturnHome, Model.Url)
+    @if (@User.IsInRole("Étudiant"))
+    {
+        @Html.ActionLink(Navigation.ReturnHome, MVC.Student.Index())
+
+    }
+    @if (@User.IsInRole("Coordonnateur"))
+    {
+        @Html.ActionLink(Navigation.ReturnHome, MVC.Coordinator.Index())
+
+    }
+    @if (@User.IsInRole("Contact entreprise"))
+    {
+        @Html.ActionLink(Navigation.ReturnHome, MVC.ContactEnterprise.Index())
+
+    }
 </p>
