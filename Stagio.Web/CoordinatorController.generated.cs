@@ -56,12 +56,6 @@ namespace Stagio.Web.Controllers
 
 		[NonAction]
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-		public virtual System.Web.Mvc.ActionResult Details()
-		{
-			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
-		}
-		[NonAction]
-		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public virtual System.Web.Mvc.ActionResult Create()
 		{
 			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
@@ -95,7 +89,6 @@ namespace Stagio.Web.Controllers
 		public class ActionNamesClass
 		{
 			public readonly string Index = "Index";
-			public readonly string Details = "Details";
 			public readonly string InviteContactEnterprise = "InviteContactEnterprise";
 			public readonly string InviteContactEnterpriseConfirmation = "InviteContactEnterpriseConfirmation";
 			public readonly string Create = "Create";
@@ -116,7 +109,6 @@ namespace Stagio.Web.Controllers
 		public class ActionNameConstants
 		{
 			public const string Index = "Index";
-			public const string Details = "Details";
 			public const string InviteContactEnterprise = "InviteContactEnterprise";
 			public const string InviteContactEnterpriseConfirmation = "InviteContactEnterpriseConfirmation";
 			public const string Create = "Create";
@@ -134,14 +126,6 @@ namespace Stagio.Web.Controllers
 		}
 
 
-		static readonly ActionParamsClass_Details s_params_Details = new ActionParamsClass_Details();
-		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-		public ActionParamsClass_Details DetailsParams { get { return s_params_Details; } }
-		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-		public class ActionParamsClass_Details
-		{
-			public readonly string id = "id";
-		}
 		static readonly ActionParamsClass_InviteContactEnterprise s_params_InviteContactEnterprise = new ActionParamsClass_InviteContactEnterprise();
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public ActionParamsClass_InviteContactEnterprise InviteContactEnterpriseParams { get { return s_params_InviteContactEnterprise; } }
@@ -235,18 +219,6 @@ namespace Stagio.Web.Controllers
 		{
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
 			IndexOverride(callInfo);
-			return callInfo;
-		}
-
-		[NonAction]
-		partial void DetailsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
-
-		[NonAction]
-		public override System.Web.Mvc.ActionResult Details(int id)
-		{
-			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
-			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-			DetailsOverride(callInfo, id);
 			return callInfo;
 		}
 

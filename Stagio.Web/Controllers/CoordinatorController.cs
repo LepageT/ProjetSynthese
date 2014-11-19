@@ -71,14 +71,6 @@ namespace Stagio.Web.Controllers
             return View(notificationsViewModels);
         }
 
-        // GET: Coordinator/Details/5
-        public virtual ActionResult Details(int id)
-        {
-            return View();
-        }
-
-       
-
         [Authorize(Roles = RoleName.Coordinator)]
         // GET: Coordinator/InviteEnterprise
         public virtual ActionResult InviteContactEnterprise()

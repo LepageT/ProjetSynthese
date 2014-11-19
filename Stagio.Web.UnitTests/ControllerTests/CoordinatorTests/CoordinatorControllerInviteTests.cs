@@ -52,7 +52,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
         }
 
         [TestMethod]
-        public void invite__post_should_return_default_view_if_email_is_invalid()
+        public void invite_post_should_return_default_view_if_email_is_invalid()
         {
             var enterprise1 = _fixture.Create<ContactEnterprise>();
             enterprise1.Email = "invalidEmail";
@@ -61,6 +61,14 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
             string message = "test";
 
             var result = coordinatorController.InviteContactEnterprise(selectedObjects, message) as ViewResult;
+
+            result.ViewName.Should().Be("");
+        }
+
+        [TestMethod]
+        public void coordinator_inviteContactEnterpriseConfirmation_should_render_view()
+        {
+            var result = coordinatorController.InviteContactEnterpriseConfirmation() as ViewResult;
 
             result.ViewName.Should().Be("");
         }

@@ -19,7 +19,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
         [TestMethod]
         public void contact_enterprise_inviteContactEnteprise_get_should_return_inviteContactEnterprise_view()
         {
-            var result = enterpriseController.CreateStage() as ViewResult;
+            var result = enterpriseController.InviteContactEnterprise() as ViewResult;
 
             result.ViewName.Should().Be("");
         }
@@ -48,5 +48,18 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
 
             action.ShouldBeEquivalentTo("InviteContactEnterpriseConfirmation");
         }
+
+        [TestMethod]
+        public void contact_enterprise_inviteContactEnterprise_post_should_return_default_view_when_mailler_cant_send()
+        {
+            var enterprise = _fixture.Create<ViewModels.ContactEnterprise.Invite>();
+
+            mailler.SendEmail(Arg.Any<String>(), Arg.Any<String>(), Arg.Any<String>()).Returns(false);
+
+            var result = enterpriseController.InviteContactEnterprise(enterprise) as ViewResult;
+
+            result.ViewName.Should().Be("");
+        }
+
     }
 }

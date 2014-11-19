@@ -102,6 +102,5 @@ namespace Stagio.Web.UnitTests.Services
 
             user.Should().BeFalse();
         }
-
     }
 }

@@ -52,5 +52,13 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
             routeAction.Should().Be(MVC.Coordinator.Views.ViewNames.InvitationSucceed);
 
         }
+
+        [TestMethod]
+        public void coordinator_inviteSucceed_should_render_view()
+        {
+            var result = coordinatorController.InvitationSucceed() as ViewResult;
+
+            result.ViewName.Should().Be("");
+        }
     }
 }

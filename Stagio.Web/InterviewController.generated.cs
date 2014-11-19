@@ -76,7 +76,6 @@ namespace Stagio.Web.Controllers
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public class ActionNamesClass
 		{
-			public readonly string Index = "Index";
 			public readonly string Create = "Create";
 			public readonly string InterviewCreateConfirmation = "InterviewCreateConfirmation";
 			public readonly string List = "List";
@@ -86,7 +85,6 @@ namespace Stagio.Web.Controllers
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public class ActionNameConstants
 		{
-			public const string Index = "Index";
 			public const string Create = "Create";
 			public const string InterviewCreateConfirmation = "InterviewCreateConfirmation";
 			public const string List = "List";
@@ -137,17 +135,6 @@ namespace Stagio.Web.Controllers
 	public partial class T4MVC_InterviewController : Stagio.Web.Controllers.InterviewController
 	{
 		public T4MVC_InterviewController() : base(Dummy.Instance) { }
-
-		[NonAction]
-		partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-		[NonAction]
-		public override System.Web.Mvc.ActionResult Index()
-		{
-			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
-			IndexOverride(callInfo);
-			return callInfo;
-		}
 
 		[NonAction]
 		partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);

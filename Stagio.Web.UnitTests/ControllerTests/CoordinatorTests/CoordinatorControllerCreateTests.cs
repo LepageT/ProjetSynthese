@@ -156,5 +156,13 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
 
             routeAction.Should().Be(MVC.Coordinator.Views.ViewNames.CreateConfirmation);
         }
+
+        [TestMethod]
+        public void coordinator_createConfirmation_should_renderView()
+        {
+            var result = coordinatorController.CreateConfirmation() as ViewResult;
+
+            result.ViewName.Should().Be("");
+        }
     }
 }
