@@ -1,4 +1,6 @@
 ﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<Stagio.Web.ViewModels.Notification.Notification>
+
 @{
     ViewBag.Title = "Index";
 }
@@ -15,4 +17,34 @@
     <div>
        Pour afficher la liste de vos stages, cliquez  @Html.ActionLink("ici", MVC.ContactEnterprise.ListStage(), new { id = "listContact" })
     </div>
+    
+
+<h3>Notifications:</h3>
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.Title, MVC.Notification.Detail().AddRouteValues(new { id = item.NotificationId }), new { id = "notification-detail" + item.NotificationId })
+            </td>
+            <td>
+                @Html.Label(item.Date.ToShortDateString())
+            </td>
+
+        </tr>
+    }
+
+</table>
     

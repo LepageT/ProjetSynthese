@@ -30,10 +30,11 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<Stage> _stageRepository;
         private readonly IHttpContextService _httpContextService;
         private readonly IEntityRepository<Stagio.Domain.Entities.Apply> _applyRepository;
+        private readonly IEntityRepository<Stagio.Domain.Entities.Notification> _notificationRepository;
         private readonly IMailler _mailler;
         private readonly IAccountService _accountService;
 
-        public StudentController(IEntityRepository<Student> studentRepository, IEntityRepository<Stage> stageRepository, IEntityRepository<Stagio.Domain.Entities.Apply> applyRepository, IHttpContextService httpContextService, IMailler mailler, IAccountService accountService)
+        public StudentController(IEntityRepository<Student> studentRepository, IEntityRepository<Stage> stageRepository, IEntityRepository<Stagio.Domain.Entities.Apply> applyRepository, IHttpContextService httpContextService, IMailler mailler, IAccountService accountService, IEntityRepository<Stagio.Domain.Entities.Notification> notificationRepository)
         {
             _studentRepository = studentRepository;
             _stageRepository = stageRepository;
@@ -41,11 +42,18 @@ namespace Stagio.Web.Controllers
             _applyRepository = applyRepository;
             _mailler = mailler;
             _accountService = accountService;
+            _notificationRepository = notificationRepository;
         }
 
+        [Authorize(Roles = RoleName.Student)]
         public virtual ActionResult Index()
         {
-            return View(MVC.Student.Views.ViewNames.Index);
+            var notifications = _notificationRepository.GetAll().ToList();
+            var userNotifications = notifications.Where(x => x.For == _httpContextService.GetUserId());
+
+            var notificationsViewModels = Mapper.Map<IEnumerable<ViewModels.Notification.Notification>>(userNotifications).ToList();
+
+            return View(notificationsViewModels);
         }
 
 

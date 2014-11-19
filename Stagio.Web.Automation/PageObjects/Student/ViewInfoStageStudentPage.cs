@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Web;
 using OpenQA.Selenium;
@@ -18,5 +19,6 @@ namespace Stagio.Web.Automation.PageObjects.Student
         {
             Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/Stage/ViewStageInfo/1");
         }
+
     }
 }

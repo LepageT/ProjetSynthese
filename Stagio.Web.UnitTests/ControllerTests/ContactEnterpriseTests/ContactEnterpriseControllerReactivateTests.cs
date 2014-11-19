@@ -19,20 +19,15 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
         [TestMethod]
         public void reactivate_action_should_render_view_with_email_and_enterprise_name()
         {
-           
-            //Arrange 
             var invitations = _fixture.CreateMany<InvitationContactEnterprise>(3);
             var invitation = invitations.First();
             invitation.Used = false;
             invitationRepository.GetAll().Returns(invitations.AsQueryable());
             var viewModelExpected = Mapper.Map<ViewModels.ContactEnterprise.Reactive>(invitation);
 
-
-            //Action
             var viewResult = enterpriseController.Reactivate(invitation.Token) as ViewResult;
             var viewModelObtained = viewResult.ViewData.Model as ViewModels.ContactEnterprise.Reactive;
 
-            //Assert 
             viewModelExpected.Email.ShouldBeEquivalentTo(viewModelObtained.Email);
             viewModelExpected.EnterpriseName.ShouldBeEquivalentTo(viewModelObtained.EnterpriseName);
  

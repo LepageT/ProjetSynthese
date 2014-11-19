@@ -51,6 +51,7 @@
     <Compile Include="Entities\Interview.cs" />
     <Compile Include="Entities\Invitation.cs" />
     <Compile Include="Entities\InvitationContactEnterprise.cs" />
+    <Compile Include="Entities\Notification.cs" />
     <Compile Include="Entities\Stage.cs" />
     <Compile Include="Entities\Student.cs" />
     <Compile Include="Entities\UserRole.cs" />

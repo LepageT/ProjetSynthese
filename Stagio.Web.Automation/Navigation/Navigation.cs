@@ -91,6 +91,14 @@ namespace Stagio.Web.Automation
 
         public class ContactEnterprise
         {
+            public class Index
+            {
+                public static void Select()
+                {
+                    MenuSelector.SelectTopLevel("index-enterprise");
+                }
+            }
+
             public class InviteContactEnterprise
             {
                 public static void Select()
@@ -187,7 +195,7 @@ namespace Stagio.Web.Automation
             {
                 public static void Select()
                 {
-                    MenuSelector.SelectTopLevel("index-Coordinator");
+                    MenuSelector.SelectTopLevel("index-coordonnateur");
                 }
             }
 
@@ -234,6 +242,14 @@ namespace Stagio.Web.Automation
                 public static void Select()
                 {
                     MenuSelector.SelectTopLevel("create-student");
+                }
+            }
+
+            public class Notification
+            {
+                public static void Select()
+                {
+                    MenuSelector.SelectTopLevel("notification-list");
                 }
             }
 
