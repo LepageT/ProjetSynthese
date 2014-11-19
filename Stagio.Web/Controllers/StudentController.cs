@@ -48,17 +48,7 @@ namespace Stagio.Web.Controllers
             return View(MVC.Student.Views.ViewNames.Index);
         }
 
-        [Authorize(Roles = RoleName.Student)]
-        public virtual ActionResult ConfirmationUploadCVLetter()
-        {
-            return View();
-        }
 
-        [Authorize(Roles = RoleName.Student)]
-        public virtual ActionResult UploadCVLetter()
-        {
-            return View();
-        }
 
 
         [Authorize(Roles = RoleName.Coordinator)]
@@ -66,33 +56,6 @@ namespace Stagio.Web.Controllers
         {
             return View();
         }
-
-
-        [Authorize(Roles = RoleName.Student)]
-        [HttpPost]
-        public virtual ActionResult UploadCVLetter(IEnumerable<HttpPostedFileBase> files)
-        {
-            var readFile = new ReadFile<String>();
-
-            if (ModelState.IsValid)
-            {
-                if (readFile.ReadFileCVLetter(files, Server, 1))
-                {
-                    return RedirectToAction(MVC.Student.ConfirmationUploadCVLetter());
-                }
-                else
-                {
-                    return View();
-                }
-            }
-            else
-            {
-                return View();
-            }
-
-
-        }
-
 
         [Authorize(Roles = RoleName.Coordinator)]
         [HttpPost, ActionName("Upload")]
@@ -371,8 +334,8 @@ namespace Stagio.Web.Controllers
             if (readFile.ReadFileCVLetter(files, Server, applyStudentViewModel.Id))
             {
                 var files1 = files.ToList();
-                applyStudentViewModel.Cv =  "ApplyCV" + files1[0].FileName;
-                applyStudentViewModel.Letter = "ApplyLetter" + files1[1].FileName ;
+                applyStudentViewModel.Cv =   files1[0].FileName;
+                applyStudentViewModel.Letter = files1[1].FileName ;
                 var newApplicationStudent = Mapper.Map<Stagio.Domain.Entities.Apply>(applyStudentViewModel);
                 newApplicationStudent.Status = 0;   //0 = En attente
                 newApplicationStudent.DateApply = DateTime.Now;
@@ -380,7 +343,7 @@ namespace Stagio.Web.Controllers
                 int nbApplyCurrently = stage.NbApply;
                 stage.NbApply = nbApplyCurrently + 1;
                 _stageRepository.Update(stage);
-
+                TempData["files"] = files;
                 return RedirectToAction(MVC.Student.ApplyConfirmation());
             }
             else
@@ -392,7 +355,18 @@ namespace Stagio.Web.Controllers
 
         public virtual ActionResult ApplyConfirmation()
         {
-            return View();
+            try
+            {
+                var files = TempData["files"] as IEnumerable<HttpPostedFileBase>;
+                return View(files.ToList());
+            }
+            catch (Exception)
+            {
+
+                return HttpNotFound();
+            }
+            
+            
         }
 
         public virtual ActionResult ApplyRemoveConfirmation(int id)
@@ -434,46 +408,25 @@ namespace Stagio.Web.Controllers
             return View(studentStageListViewModels);
         }
 
-        [Authorize(Roles = RoleName.Student)]
-        public virtual ActionResult ReplyStage(int idApply)
-        {
-            var apply = _applyRepository.GetById(idApply);
-            if (apply != null)
-            {
-                var stage = _stageRepository.GetById(apply.IdStage);
-                var stageViewModel = Mapper.Map<ViewModels.Student.AppliedStages>(stage);
-                return View(stageViewModel);
-            }
-            return HttpNotFound();
-        }
-
-        [Authorize(Roles = RoleName.Student)]
-        [HttpPost]
-        public virtual ActionResult ReplyStage(int idApply, string command)
-        {
-            var apply = _applyRepository.GetById(idApply);
-
-            if (apply != null)
-            {
-                if (command.Equals("Accepter"))
-                {
-                    apply.StudentReply = StatusApply.Accepted;
-                }
-                else
-                {
-                    apply.StudentReply = StatusApply.Refused;
-                }
-                _applyRepository.Update(apply);
-
-                return RedirectToAction(MVC.Student.ApplyList());
-            }
-
-            return HttpNotFound();
-        }
-
         public virtual ActionResult CreateConfirmation()
         {
             return View();
+        }
+
+        public virtual ActionResult Download(string file)
+        {
+            try
+            {
+                string path = AppDomain.CurrentDomain.GetData("DataDirectory").ToString();
+                path = path + "\\UploadedFiles\\" + file;
+                byte[] fileBytes = System.IO.File.ReadAllBytes((path));
+                string fileName = file;
+                return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction(MVC.Student.Index());
+            }
         }
     }
 }
