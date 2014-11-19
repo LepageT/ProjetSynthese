@@ -49,5 +49,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.InterviewTests
 
             action.ShouldBeEquivalentTo(MVC.Interview.Views.ViewNames.InterviewCreateConfirmation);
         }
+
+       
     }
 }

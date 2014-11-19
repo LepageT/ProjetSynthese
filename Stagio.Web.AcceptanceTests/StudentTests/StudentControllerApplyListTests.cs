@@ -15,6 +15,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         {
             LoginPage.GoTo();
             LoginPage.LoginAs(StudentUsername, StudentPassword);
+
             ApplyListStudentPage.GoTo();
 
             ApplyListStudentPage.HasStage.Should().BeTrue();
@@ -35,6 +36,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             LoginPage.LoginAs(StudentUsername, StudentPassword);
 
             ApplyListStudentPage.GoTo();
+
             ApplyListStudentPage.AccessStageDescription().Should().BeTrue();
         }
 

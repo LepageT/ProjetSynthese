@@ -33,6 +33,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             const string LAST_NAME = "Jean";
             const string ENTERPRISE_NAME = "Enterprise";
             const string TELEPHONE = "123-456-7890";
+
             ReactivateContactEnterprisePage.FillFieldsAndSend(EMAIL, PASSWORD, FIRST_NAME, LAST_NAME, ENTERPRISE_NAME, TELEPHONE);
 
             ReactivateContactEnterprisePage.ConfirmationIsDisplayed.Should().BeTrue();

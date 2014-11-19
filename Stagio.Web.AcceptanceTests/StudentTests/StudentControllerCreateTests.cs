@@ -27,6 +27,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         {
             var student = _fixture.Create<Student>();
             CreateStudentPage.GoTo();
+
             CreateStudentPage.CreateStudent(student);
 
             CreateStudentPage.ConfirmationPageIsDisplayed.Should().BeTrue();

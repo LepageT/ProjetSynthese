@@ -67,7 +67,6 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
             var contactEnterprise = _fixture.Create<ContactEnterprise>();
             contactEnterprise.EnterpriseName = "Test";
             var stages = _fixture.CreateMany<Stage>(5).AsQueryable();
-
             stageRepository.GetAll().Returns(stages);
             httpContext.GetUserId().Returns(contactEnterprise.Id);
             enterpriseRepository.GetById(contactEnterprise.Id).Returns(contactEnterprise);

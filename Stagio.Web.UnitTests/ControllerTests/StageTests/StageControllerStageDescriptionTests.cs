@@ -21,7 +21,6 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
             var stage = _fixture.Create<Stage>();
             stageRepository.GetById(1).Returns(stage);
 
-
             var result = stageController.ViewStageInfo(1) as ViewResult;
 
             result.ViewName.Should().Be("");

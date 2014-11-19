@@ -21,6 +21,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             LoginPage.GoTo();
             LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
             DetailsStudentApplyContactEnterprisePage.GoToByUrl();
+
             DetailsStudentApplyContactEnterprisePage.AcceptApply();
 
             DetailsStudentApplyContactEnterprisePage.ConfirmationAccpetIsDisplayed.Should().BeTrue();
@@ -33,6 +34,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             LoginPage.GoTo();
             LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
             DetailsStudentApplyContactEnterprisePage.GoToByUrl();
+
             DetailsStudentApplyContactEnterprisePage.RefuseApply();
 
             DetailsStudentApplyContactEnterprisePage.ConfirmationRefuseIsDisplayed.Should().BeTrue();
@@ -44,6 +46,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
         {
             LoginPage.GoTo();
             LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
+
             DetailsStudentApplyContactEnterprisePage.GoToByUrl();
 
             DetailsStudentApplyContactEnterprisePage.IsDisplayed.Should().BeTrue();
@@ -56,26 +59,12 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             LoginPage.GoTo();
             LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
             DetailsStudentApplyContactEnterprisePage.GoToByUrl();
+
             DetailsStudentApplyContactEnterprisePage.DownloadPage();
+
             DetailsStudentApplyContactEnterprisePage.ErrorDisplayed.Should().BeTrue();
         }
 
-        //[TestMethod]
-        //public void contactEnterprise_should_download_files_isfiles_valid()
-        //{
-
-        //    LoginPage.GoTo();
-        //    LoginPage.LoginAs(StudentUsername, StudentPassword);
-        //    ApplyStudentPage.GoToByUrl();
-        //    ApplyStudentPage.SelectFiles("C:\\dev\\abc.pdf", "C:\\dev\\abcdef.pdf");
-            
-        //    LoginPage.GoToByUrl();
-        //    LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
-        //    DetailsStudentApplyContactEnterprisePage.GoToByUrl();
-        //    DetailsStudentApplyContactEnterprisePage.DownloadPage();
-        //    DetailsStudentApplyContactEnterprisePage.DownloadFile("C:\\dev\\abc.pdf");
-        //    Assert.IsFalse(DetailsStudentApplyContactEnterprisePage.ErrorDisplayed);
-        //}
 
     }
 }

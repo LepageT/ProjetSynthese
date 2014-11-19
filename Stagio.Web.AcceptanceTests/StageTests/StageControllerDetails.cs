@@ -15,6 +15,7 @@ namespace Stagio.Web.AcceptanceTests.StageTests
         {
             LoginPage.GoTo();
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
+
             DetailsStageCoordinatorPage.GoToDetailsStage1();
 
             DetailsStageCoordinatorPage.IsDisplayed.Should().BeTrue();
@@ -26,6 +27,7 @@ namespace Stagio.Web.AcceptanceTests.StageTests
         {
             LoginPage.GoTo();
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
+
             DetailsStageCoordinatorPage.GoToDetailsStage3();
 
             DetailsStageCoordinatorPage.ButtonRemoveIsDisplayed().Should().BeTrue();
@@ -37,6 +39,7 @@ namespace Stagio.Web.AcceptanceTests.StageTests
         {
             LoginPage.GoTo();
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
+
             DetailsStageCoordinatorPage.GoToDetailsStage1();
 
             DetailsStageCoordinatorPage.ButtonRemoveIsDisplayed().Should().BeFalse();
@@ -49,6 +52,7 @@ namespace Stagio.Web.AcceptanceTests.StageTests
             LoginPage.GoTo();
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
             DetailsStageCoordinatorPage.GoToDetailsStage3();
+
             DetailsStageCoordinatorPage.RemoveStage();
 
             ListAllStagesCoordinatorPage.IsDisplayed.Should().BeTrue();
@@ -61,6 +65,7 @@ namespace Stagio.Web.AcceptanceTests.StageTests
             LoginPage.GoTo();
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
             DetailsStageCoordinatorPage.GoToDetailsStage1();
+
             DetailsStageCoordinatorPage.RefuseStage();
 
             ListAllStagesCoordinatorPage.IsDisplayed.Should().BeTrue();
@@ -73,6 +78,7 @@ namespace Stagio.Web.AcceptanceTests.StageTests
             LoginPage.GoTo();
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
             DetailsStageCoordinatorPage.GoToDetailsStage1();
+
             DetailsStageCoordinatorPage.AcceptStage();
 
             ListAllStagesCoordinatorPage.IsDisplayed.Should().BeTrue();

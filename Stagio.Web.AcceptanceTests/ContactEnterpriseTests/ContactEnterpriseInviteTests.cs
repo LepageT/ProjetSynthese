@@ -42,6 +42,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
             InviteContactEnterprisePage.GoTo();
             InviteContactEnterprisePage.InviteContactEnterprise();
+
             InviteContactEnterprisePage.SendInvite();
 
             InviteContactEnterprisePage.ConfirmationPageIsDisplayed.Should().BeTrue();
@@ -54,6 +55,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             LoginPage.GoTo();
             LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
             InviteContactEnterprisePage.GoTo();
+
             InviteContactEnterprisePage.SendInvite();
 
             InviteContactEnterprisePage.IsDisplayed.Should().BeTrue();

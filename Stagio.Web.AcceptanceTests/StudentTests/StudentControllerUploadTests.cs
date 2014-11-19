@@ -50,9 +50,10 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         {
             LoginPage.GoTo();
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
-
             AddStudentsCoordinatorPage.GoTo();
+
             AddStudentsCoordinatorPage.SelectCsvFile("C:\\dev\\abc.txt");
+
             AddStudentsCoordinatorPage.IsDisplayed.Should().BeTrue();
 
         }
@@ -62,7 +63,6 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         {
             LoginPage.GoTo();
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
-
             AddStudentsCoordinatorPage.GoTo();
 
             AddStudentsCoordinatorPage.SelectCsvFile("C:\\dev\\abc.csv");
@@ -76,7 +76,6 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         {
             LoginPage.GoTo();
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
-
             AddStudentsCoordinatorPage.GoTo();
 
             AddStudentsCoordinatorPage.SelectCsvFile("");

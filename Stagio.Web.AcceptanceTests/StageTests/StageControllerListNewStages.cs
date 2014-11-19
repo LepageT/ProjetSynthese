@@ -16,6 +16,7 @@ namespace Stagio.Web.AcceptanceTests.StageTests
         {
             LoginPage.GoTo();
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
+
             ListAllStagesCoordinatorPage.GoTo();
 
             ListAllStagesCoordinatorPage.IsDisplayed.Should().BeTrue();
@@ -36,6 +37,7 @@ namespace Stagio.Web.AcceptanceTests.StageTests
         {
             LoginPage.GoTo();
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
+
             ListAllStagesCoordinatorPage.GoTo();
 
             ListAllStagesCoordinatorPage.CountNbStages().Should().NotBe(0);

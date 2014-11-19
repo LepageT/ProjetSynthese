@@ -17,14 +17,11 @@ namespace Stagio.Web.UnitTests.ControllerTests.NotificationTests
         public void notification_should_display_user_notification_list()
         {
             var notificationList = _fixture.CreateMany<Notification>(5);
-
             foreach (var notification in notificationList)
             {
                 notification.For = 1;
             }
-
             notificationList.FirstOrDefault().For = 4;
-
             notificationRepository.GetAll().Returns(notificationList.AsQueryable());
             httpContextService.GetUserId().Returns(1);
 

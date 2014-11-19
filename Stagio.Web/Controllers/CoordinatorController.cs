@@ -258,11 +258,11 @@ namespace Stagio.Web.Controllers
             }
 
             _invitationRepository.Add(new Invitation()
-            {
-                Token = token,
-                Email = createdInvite.Email,
-                Used = false
-            });
+                                     {
+                                        Token = token,
+                                        Email = createdInvite.Email,
+                                        Used = false
+                                      });
 
             return RedirectToAction(MVC.Coordinator.InvitationSucceed());
 
@@ -285,7 +285,7 @@ namespace Stagio.Web.Controllers
             var studentListViewModels = Mapper.Map<IEnumerable<ViewModels.Coordinator.StudentList>>(allStudent).ToList();
 
 
-            int nbApplyStudent = 0;
+            int nbAppliesStudent = 0;
 
             var appliedStages = _applyRepository.GetAll().ToList();
 
@@ -294,10 +294,10 @@ namespace Stagio.Web.Controllers
                 var studentSpecificApplies = appliedStages.Where(x => x.IdStudent == student.Id).ToList();
                 foreach (var apply in studentSpecificApplies)
                 {
-                    nbApplyStudent = nbApplyStudent + 1;
+                    nbAppliesStudent = nbAppliesStudent + 1;
                 }
-                student.NbApply = nbApplyStudent;
-                nbApplyStudent = 0;
+                student.NbApply = nbAppliesStudent;
+                nbAppliesStudent = 0;
             }
 
 

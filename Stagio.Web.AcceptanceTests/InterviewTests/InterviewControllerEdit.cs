@@ -64,9 +64,7 @@ namespace Stagio.Web.AcceptanceTests.InterviewTests
             CreateInterviewStudentPage.GoTo();
             CreateInterviewStudentPage.AddInterview();
             HomePage.GoTo();
-            CreateInterviewStudentPage.GoTo();
-            CreateInterviewStudentPage.AddInterview();
-            HomePage.GoTo();
+            
         }
     }
 }

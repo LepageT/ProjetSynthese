@@ -17,6 +17,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
             AddStudentsCoordinatorPage.GoTo();
             AddStudentsCoordinatorPage.SelectCsvFile("C:\\dev\\abc.csv");
+
             CreateListStudentsCoordinatorPage.ClickToCreatelist();
 
             ResultCreateListStudentsCoordinatorPage.IsDisplayed.Should().BeTrue();
@@ -40,6 +41,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             AddStudentsCoordinatorPage.GoTo();
             AddStudentsCoordinatorPage.SelectCsvFile("C:\\dev\\abc.csv");
             CreateListStudentsCoordinatorPage.ClickToCreatelist();
+
             ResultCreateListStudentsCoordinatorPage.ClickResultButton();
 
             HomePage.IsDisplayed.Should().BeTrue();

@@ -22,6 +22,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
             var routeAction = routeResult.RouteValues["Action"];
             var routeResult2 = enterpriseController.Download(file2, id) as RedirectToRouteResult;
             var routeAction2 = routeResult.RouteValues["Action"];
+
             routeAction.Should().Be("DetailsStudentApply");
             routeAction2.Should().Be("DetailsStudentApply");
         }
