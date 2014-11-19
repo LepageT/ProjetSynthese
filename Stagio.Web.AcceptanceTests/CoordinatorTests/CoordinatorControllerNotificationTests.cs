@@ -1,4 +1,5 @@
 ﻿using System;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Stagio.Web.Automation.PageObjects;
 using Stagio.Web.Automation.PageObjects.ContactEnterprise;
@@ -18,7 +19,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
 
             DetailNotificationPage.GoToNotification(5);
 
-            Assert.IsTrue(DetailNotificationPage.IsDisplayed);
+            DetailNotificationPage.IsDisplayed.Should().BeTrue();
         }
 
         [TestMethod]
@@ -29,7 +30,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
 
             IndexCoordinatorPage.Goto();
 
-            Assert.IsTrue(IndexCoordinatorPage.IsNotificationShowing);
+            IndexCoordinatorPage.IsNotificationShowing.Should().BeTrue();
         }
     }
 }

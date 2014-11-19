@@ -1,4 +1,5 @@
 ﻿using System;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Stagio.Web.Automation.PageObjects;
 using Stagio.Web.Automation.PageObjects.Coordinator;
@@ -17,7 +18,7 @@ namespace Stagio.Web.AcceptanceTests.NotificationTest
 
             NotificationListPage.GoTo();
 
-            Assert.IsTrue(NotificationListPage.IsDisplayed);
+            NotificationListPage.IsDisplayed.Should().BeTrue();
         }
 
         [TestMethod]
@@ -28,7 +29,7 @@ namespace Stagio.Web.AcceptanceTests.NotificationTest
 
             NotificationListPage.GoTo();
 
-            Assert.IsTrue(NotificationListPage.IsDisplayed);
+            NotificationListPage.IsDisplayed.Should().BeTrue();
         }
 
         [TestMethod]
@@ -39,7 +40,7 @@ namespace Stagio.Web.AcceptanceTests.NotificationTest
 
             NotificationListPage.GoTo();
 
-            Assert.IsTrue(NotificationListPage.IsDisplayed);
+            NotificationListPage.IsDisplayed.Should().BeTrue();
         }
 
         [TestMethod]
@@ -51,7 +52,7 @@ namespace Stagio.Web.AcceptanceTests.NotificationTest
 
             NotificationListPage.GoToNotification(5);
 
-            Assert.IsTrue(NotificationListPage.IsDetailDisplayed);
+            NotificationListPage.IsDetailDisplayed.Should().BeTrue();
         }
 
         [TestMethod]
@@ -63,7 +64,7 @@ namespace Stagio.Web.AcceptanceTests.NotificationTest
 
             NotificationListPage.GoToNotification(4);
 
-            Assert.IsTrue(NotificationListPage.IsDetailDisplayed);
+            NotificationListPage.IsDetailDisplayed.Should().BeTrue();
         }
 
         [TestMethod]
@@ -75,7 +76,7 @@ namespace Stagio.Web.AcceptanceTests.NotificationTest
 
             NotificationListPage.GoToNotification(1);
 
-            Assert.IsTrue(NotificationListPage.IsDetailDisplayed);
+            NotificationListPage.IsDetailDisplayed.Should().BeTrue();
         }
 
     }
