@@ -23,7 +23,7 @@ namespace Stagio.Web.Automation.PageObjects.Student
         public static void GoToByUrl()
         {
             Driver.Instance.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(2));
-            Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/Student/Apply/3");
+            Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/Student/ApplyStage/3");
         }
 
         public static void ApplyStudent(string cv, string letter)

@@ -38,6 +38,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             LoginPage.LoginAs(StudentUsername, StudentPassword);
 
             StageListStudentPage.GoTo();
+
             StageListStudentPage.AccessStageDescription().Should().BeTrue();
            
         }

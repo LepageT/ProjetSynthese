@@ -39,7 +39,6 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         {
             LoginPage.GoTo();
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
-
             AddStudentsCoordinatorPage.GoTo();
             AddStudentsCoordinatorPage.SelectCsvFile("C:\\dev\\abc.csv");
            

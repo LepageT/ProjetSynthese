@@ -16,6 +16,7 @@ namespace Stagio.Web.AcceptanceTests.InterviewTests
         {
             LoginPage.GoTo();
             LoginPage.LoginAs(StudentUsername, StudentPassword);
+
             CreateInterviewStudentPage.GoTo();
 
             CreateInterviewStudentPage.IsDisplayed.Should().BeTrue();
@@ -37,9 +38,25 @@ namespace Stagio.Web.AcceptanceTests.InterviewTests
             LoginPage.GoTo();
             LoginPage.LoginAs(StudentUsername, StudentPassword);
             CreateInterviewStudentPage.GoTo();
+
             CreateInterviewStudentPage.AddInterview();
 
             CreateInterviewStudentPage.ConfirmationIsDisplayed.Should().BeTrue();
+
+        }
+
+        [TestMethod]
+        public void student_should_not_be_able_to_add_interview_if_it_is_already_add()
+        {
+            LoginPage.GoTo();
+            LoginPage.LoginAs(StudentUsername, StudentPassword);
+            CreateInterviewStudentPage.GoTo();
+            CreateInterviewStudentPage.AddInterview();
+            CreateInterviewStudentPage.GoTo();
+
+            CreateInterviewStudentPage.AddInterview();
+
+            CreateInterviewStudentPage.IsDisplayed.Should().BeTrue();
 
         }
     }

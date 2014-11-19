@@ -60,9 +60,28 @@ namespace Stagio.Web.Controllers
             if (ModelState.IsValid)
             {
                 createdInterview.StudentId = _httpContextService.GetUserId();
-                var interview = Mapper.Map<Interview>(createdInterview);
+                var interviewCreated = Mapper.Map<Interview>(createdInterview);
 
-                _interviewRepository.Add(interview);
+                var interviews = _interviewRepository.GetAll().ToList();
+                foreach (var interview in interviews)
+                {
+                    if (interview.StudentId == createdInterview.StudentId &&
+                        interview.StageId == createdInterview.StageId)
+                    {
+                        ViewBag.Message = "Vous avez déjà inscrit une date d'entrevue pour ce stage.";
+                        var applies = _applyRepository.GetAll().Where(x => x.IdStudent == createdInterview.StudentId).ToList();
+
+                        createdInterview.Apply = from apply in applies
+                                          select new SelectListItem
+                                          {
+                                              Text = _stageRepository.GetById(apply.IdStage).StageTitle.ToString() + " - " + _stageRepository.GetById(apply.IdStage).CompanyName.ToString(),
+                                              Value = ((int)apply.IdStage).ToString()
+                                          };
+                        return View(createdInterview);
+                    }
+                }
+
+                _interviewRepository.Add(interviewCreated);
 
                 return RedirectToAction(MVC.Interview.InterviewCreateConfirmation());
             }
@@ -127,17 +146,21 @@ namespace Stagio.Web.Controllers
         [HttpPost]
         public virtual ActionResult Edit(ViewModels.Interviews.Edit editInterviewViewModel)
         {
-            var interview = _interviewRepository.GetById(editInterviewViewModel.Id);
-            if (interview == null)
+            if (ModelState.IsValid)
             {
-                return HttpNotFound();
+                var interview = _interviewRepository.GetById(editInterviewViewModel.Id);
+                if (interview == null)
+                {
+                    return HttpNotFound();
+                }
+
+                Mapper.Map(editInterviewViewModel, interview);
+
+                _interviewRepository.Update(interview);
+
+                return RedirectToAction(MVC.Interview.List());
             }
-
-            Mapper.Map(editInterviewViewModel, interview);
-
-            _interviewRepository.Update(interview);
-
-            return RedirectToAction(MVC.Interview.List());
+            return View(editInterviewViewModel);
         }
 
     }

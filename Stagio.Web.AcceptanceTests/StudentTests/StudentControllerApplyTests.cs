@@ -19,6 +19,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         {
             LoginPage.GoTo();
             LoginPage.LoginAs(StudentUsername, StudentPassword);
+
             ApplyStudentPage.GoTo();
 
             ApplyStudentPage.IsDisplayed.Should().BeTrue();
@@ -30,7 +31,6 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         {
             LoginPage.GoTo();
             LoginPage.LoginAs(StudentUsername, StudentPassword);
-
             ApplyStudentPage.GoToByUrl();
 
             ApplyStudentPage.SelectFiles("file1.pdf", "file2.pdf");
@@ -44,7 +44,6 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         {
             LoginPage.GoTo();
             LoginPage.LoginAs(StudentUsername, StudentPassword);
-
             ApplyStudentPage.GoToByUrl();
 
             ApplyStudentPage.SelectFiles("", "");

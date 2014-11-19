@@ -26,6 +26,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
         public void contact_enterprise_create_should_create_account()
         {
             CreateContactEnterprisePage.GoToByUrl();
+
             CreateContactEnterprisePage.CreateContactEnterpriseWithoutInvitation();
 
             CreateContactEnterprisePage.ConfirmationIsDisplayed.Should().BeTrue();

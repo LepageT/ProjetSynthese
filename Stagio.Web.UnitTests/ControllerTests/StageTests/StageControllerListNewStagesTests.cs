@@ -34,7 +34,6 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
 
             var result = stageController.ListNewStages() as ViewResult;
             var model = result.Model as ListAllStages;
-
             int nbStages = model.ListNewStages.Count();
 
             nbStages.Should().NotBe(0);
@@ -46,12 +45,10 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
             var stages = _fixture.CreateMany<Stage>(2).ToList();
             stages[0].Status = StageStatus.Accepted;
             stages[1].Status = StageStatus.New;
-
             stageRepository.GetAll().Returns(stages.AsQueryable());
 
             var result = stageController.ListNewStages() as ViewResult;
             var model = result.Model as ListAllStages;
-
             int nbStages = model.ListStagesAccepted.Count();
 
             nbStages.Should().Be(1);
@@ -63,12 +60,10 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
             var stages = _fixture.CreateMany<Stage>(2).ToList();
             stages[0].Status = StageStatus.New;
             stages[1].Status = StageStatus.Refused;
-
             stageRepository.GetAll().Returns(stages.AsQueryable());
 
             var result = stageController.ListNewStages() as ViewResult;
             var model = result.Model as ListAllStages;
-
             int nbStages = model.ListStagesRefused.Count();
 
             nbStages.Should().Be(1);

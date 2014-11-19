@@ -18,6 +18,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
         {
             LoginPage.GoTo();
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
+
             StudentListCoordinatorPage.GoTo();
 
             StudentListCoordinatorPage.IsDisplayed.Should().BeTrue();
@@ -40,6 +41,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
 
             StudentListCoordinatorPage.GoTo();
+
             StudentListCoordinatorPage.AccessStudent1ApplyList().Should().BeTrue();
         }
 
@@ -48,6 +50,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
         {
             LoginPage.GoTo();
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
+
             StudentListCoordinatorPage.GoTo();
 
             StudentListCoordinatorPage.CountNbStudents().Should().NotBe(0);

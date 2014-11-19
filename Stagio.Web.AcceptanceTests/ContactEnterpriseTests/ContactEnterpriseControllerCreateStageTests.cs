@@ -16,6 +16,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
         {
             LoginPage.GoTo();
             LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
+
             CreateStageContactEnterprisePage.GoTo();
 
             CreateStageContactEnterprisePage.IsDisplayed.Should().BeTrue();
@@ -37,6 +38,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             LoginPage.GoTo();
             LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
             CreateStageContactEnterprisePage.GoTo();
+
             CreateStageContactEnterprisePage.CreateStage();
 
             CreateStageContactEnterprisePage.ConfirmationPageIsDisplayed.Should().BeTrue();

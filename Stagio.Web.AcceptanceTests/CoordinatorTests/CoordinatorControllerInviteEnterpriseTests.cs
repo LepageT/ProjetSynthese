@@ -19,6 +19,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
         {
             LoginPage.GoTo();
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
+
             InviteContactEnterpriseCoordinatorPage.GoTo();
 
             InviteContactEnterpriseCoordinatorPage.IsDisplayed.Should().BeTrue();
@@ -42,6 +43,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
             InviteContactEnterpriseCoordinatorPage.GoTo();
             const string MESSAGE_INVITATION = "test";
+
             InviteContactEnterpriseCoordinatorPage.AddMessageInvitationAndSend(MESSAGE_INVITATION);
 
             InviteContactEnterpriseCoordinatorPage.ConfirmationPageIsDisplayed.Should().BeTrue();

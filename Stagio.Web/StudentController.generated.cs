@@ -68,9 +68,9 @@ namespace Stagio.Web.Controllers
 		}
 		[NonAction]
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-		public virtual System.Web.Mvc.ActionResult Apply()
+		public virtual System.Web.Mvc.ActionResult ApplyStage()
 		{
-			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Apply);
+			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ApplyStage);
 		}
 		[NonAction]
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -116,7 +116,7 @@ namespace Stagio.Web.Controllers
 			public readonly string Create = "Create";
 			public readonly string Edit = "Edit";
 			public readonly string DisplayStageList = "DisplayStageList";
-			public readonly string Apply = "Apply";
+			public readonly string ApplyStage = "ApplyStage";
 			public readonly string ApplyConfirmation = "ApplyConfirmation";
 			public readonly string ApplyRemoveConfirmation = "ApplyRemoveConfirmation";
 			public readonly string ApplyReApplyConfirmation = "ApplyReApplyConfirmation";
@@ -138,7 +138,7 @@ namespace Stagio.Web.Controllers
 			public const string Create = "Create";
 			public const string Edit = "Edit";
 			public const string DisplayStageList = "DisplayStageList";
-			public const string Apply = "Apply";
+			public const string ApplyStage = "ApplyStage";
 			public const string ApplyConfirmation = "ApplyConfirmation";
 			public const string ApplyRemoveConfirmation = "ApplyRemoveConfirmation";
 			public const string ApplyReApplyConfirmation = "ApplyReApplyConfirmation";
@@ -173,11 +173,11 @@ namespace Stagio.Web.Controllers
 			public readonly string id = "id";
 			public readonly string editStudentViewModel = "editStudentViewModel";
 		}
-		static readonly ActionParamsClass_Apply s_params_Apply = new ActionParamsClass_Apply();
+		static readonly ActionParamsClass_ApplyStage s_params_ApplyStage = new ActionParamsClass_ApplyStage();
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-		public ActionParamsClass_Apply ApplyParams { get { return s_params_Apply; } }
+		public ActionParamsClass_ApplyStage ApplyStageParams { get { return s_params_ApplyStage; } }
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-		public class ActionParamsClass_Apply
+		public class ActionParamsClass_ApplyStage
 		{
 			public readonly string id = "id";
 			public readonly string files = "files";
@@ -387,27 +387,27 @@ namespace Stagio.Web.Controllers
 		}
 
 		[NonAction]
-		partial void ApplyOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+		partial void ApplyStageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
 
 		[NonAction]
-		public override System.Web.Mvc.ActionResult Apply(int id)
+		public override System.Web.Mvc.ActionResult ApplyStage(int id)
 		{
-			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Apply);
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ApplyStage);
 			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-			ApplyOverride(callInfo, id);
+			ApplyStageOverride(callInfo, id);
 			return callInfo;
 		}
 
 		[NonAction]
-		partial void ApplyOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Collections.Generic.IEnumerable<System.Web.HttpPostedFileBase> files, Stagio.Web.ViewModels.Student.Apply applyStudentViewModel);
+		partial void ApplyStageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Collections.Generic.IEnumerable<System.Web.HttpPostedFileBase> files, Stagio.Web.ViewModels.Student.Apply applyStudentViewModel);
 
 		[NonAction]
-		public override System.Web.Mvc.ActionResult Apply(System.Collections.Generic.IEnumerable<System.Web.HttpPostedFileBase> files, Stagio.Web.ViewModels.Student.Apply applyStudentViewModel)
+		public override System.Web.Mvc.ActionResult ApplyStage(System.Collections.Generic.IEnumerable<System.Web.HttpPostedFileBase> files, Stagio.Web.ViewModels.Student.Apply applyStudentViewModel)
 		{
-			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Apply);
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ApplyStage);
 			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "files", files);
 			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "applyStudentViewModel", applyStudentViewModel);
-			ApplyOverride(callInfo, files, applyStudentViewModel);
+			ApplyStageOverride(callInfo, files, applyStudentViewModel);
 			return callInfo;
 		}
 

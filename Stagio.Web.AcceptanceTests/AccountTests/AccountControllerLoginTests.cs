@@ -16,6 +16,7 @@ namespace Stagio.Web.AcceptanceTests.AccountTests
         public void application_user_can_log_in()
         {
             LoginPage.GoTo();
+
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
 
             LoginPage.VerifyCoordinatorLogin().Should().BeTrue();
@@ -36,6 +37,7 @@ namespace Stagio.Web.AcceptanceTests.AccountTests
         {
             LoginPage.GoTo();
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
+
             LoginPage.Logout();
             
             LoginPage.VerifyLogout().Should().BeTrue();

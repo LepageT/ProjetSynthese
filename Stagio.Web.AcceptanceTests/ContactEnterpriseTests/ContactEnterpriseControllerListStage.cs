@@ -30,6 +30,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
 
             ListStageContactEnterprisePage.GoTo();
+
             ListStageContactEnterprisePage.AccessStageDetail().Should().BeTrue();
             
         }
@@ -42,6 +43,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
 
             ListStageContactEnterprisePage.GoTo();
             ListStageContactEnterprisePage.ClickRemoveStage1();
+
             ListStageContactEnterprisePage.RemoveStageConfirmationIsDisplayed.Should().BeTrue();
         }
 
@@ -55,6 +57,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             ListStageContactEnterprisePage.ClickRemoveStage1();
             ListStageContactEnterprisePage.GoTo();
             ListStageContactEnterprisePage.ClickReactivateStage1();
+
             ListStageContactEnterprisePage.ReactivateStageConfirmationIsDisplayed.Should().BeTrue();
 
         }

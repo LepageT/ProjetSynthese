@@ -303,7 +303,7 @@ namespace Stagio.Web.Controllers
         }
 
 
-        public virtual ActionResult Apply(int id)
+        public virtual ActionResult ApplyStage(int id)
         {
             var stage = _stageRepository.GetById(id);
 
@@ -324,7 +324,7 @@ namespace Stagio.Web.Controllers
         }
 
         [HttpPost]
-        public virtual ActionResult Apply(IEnumerable<HttpPostedFileBase> files, ViewModels.Student.Apply applyStudentViewModel)
+        public virtual ActionResult ApplyStage(IEnumerable<HttpPostedFileBase> files, ViewModels.Student.Apply applyStudentViewModel)
         {
             var stage = _stageRepository.GetById(applyStudentViewModel.IdStage);
 

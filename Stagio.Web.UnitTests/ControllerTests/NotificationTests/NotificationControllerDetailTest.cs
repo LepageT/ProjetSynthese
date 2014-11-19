@@ -26,7 +26,6 @@ namespace Stagio.Web.UnitTests.ControllerTests.NotificationTests
         public void notification_detail_should_display_error_if_notification_isnt_for_user()
         {
             var notification = _fixture.Create<Notification>();
-
             notification.For = 1;
             notificationRepository.GetById(1).Returns(notification);
             httpContextService.GetUserId().Returns(2);
@@ -42,7 +41,6 @@ namespace Stagio.Web.UnitTests.ControllerTests.NotificationTests
         public void notification_detail_should_display_notification_information()
         {
             var notification = _fixture.Create<Notification>();
-
             notification.For = 1;
             notificationRepository.GetById(1).Returns(notification);
             httpContextService.GetUserId().Returns(1);

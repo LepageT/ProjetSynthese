@@ -17,7 +17,6 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         public void student_index_should_show_notification()
         {
             var notificationList = _fixture.CreateMany<Notification>(3);
-
             foreach (var notification in notificationList)
             {
                 notification.For = 1;
