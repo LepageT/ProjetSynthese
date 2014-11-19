@@ -73,14 +73,7 @@ namespace Stagio.Web.Automation
                 }
             }
 
-            public class ReplyApplyStage1
-            {
-                public static void Select()
-                {
-                    MenuSelector.Select("student-stage-menu", "apply-list-menu-item");
-                    MenuSelector.SelectTopLevel("reply-stage1");
-                }
-            }
+            
 
             public class EditInterview
             {

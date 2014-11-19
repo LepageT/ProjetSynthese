@@ -72,6 +72,12 @@ namespace Stagio.Web.Controllers
 		{
 			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.StudentApplyList);
 		}
+		[NonAction]
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public virtual System.Web.Mvc.ActionResult UploadPost()
+		{
+			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UploadPost);
+		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public CoordinatorController Actions { get { return MVC.Coordinator; } }
@@ -98,6 +104,12 @@ namespace Stagio.Web.Controllers
 			public readonly string CreateConfirmation = "CreateConfirmation";
 			public readonly string StudentList = "StudentList";
 			public readonly string StudentApplyList = "StudentApplyList";
+			public readonly string Upload = "Upload";
+			public readonly string UploadPost = "Upload";
+			public readonly string ResultCreateList = "ResultCreateList";
+			public readonly string PostResultCreateList = "ResultCreateList";
+			public readonly string CreateList = "CreateList";
+			public readonly string CreateListPost = "CreateList";
 		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -113,6 +125,12 @@ namespace Stagio.Web.Controllers
 			public const string CreateConfirmation = "CreateConfirmation";
 			public const string StudentList = "StudentList";
 			public const string StudentApplyList = "StudentApplyList";
+			public const string Upload = "Upload";
+			public const string UploadPost = "Upload";
+			public const string ResultCreateList = "ResultCreateList";
+			public const string PostResultCreateList = "ResultCreateList";
+			public const string CreateList = "CreateList";
+			public const string CreateListPost = "CreateList";
 		}
 
 
@@ -158,6 +176,14 @@ namespace Stagio.Web.Controllers
 		{
 			public readonly string studentId = "studentId";
 		}
+		static readonly ActionParamsClass_UploadPost s_params_UploadPost = new ActionParamsClass_UploadPost();
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public ActionParamsClass_UploadPost UploadPostParams { get { return s_params_UploadPost; } }
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public class ActionParamsClass_UploadPost
+		{
+			public readonly string cvAndLetter = "cvAndLetter";
+		}
 		static readonly ViewsClass s_views = new ViewsClass();
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public ViewsClass Views { get { return s_views; } }
@@ -170,23 +196,29 @@ namespace Stagio.Web.Controllers
             {
                 public readonly string Create = "Create";
                 public readonly string CreateConfirmation = "CreateConfirmation";
+                public readonly string CreateList = "CreateList";
                 public readonly string Index = "Index";
                 public readonly string InvitationSucceed = "InvitationSucceed";
                 public readonly string Invite = "Invite";
                 public readonly string InviteContactEnterprise = "InviteContactEnterprise";
                 public readonly string InviteContactEnterpriseConfirmation = "InviteContactEnterpriseConfirmation";
+                public readonly string ResultCreateList = "ResultCreateList";
                 public readonly string StudentApplyList = "StudentApplyList";
                 public readonly string StudentList = "StudentList";
+                public readonly string Upload = "Upload";
             }
             public readonly string Create = "~/Views/Coordinator/Create.cshtml";
             public readonly string CreateConfirmation = "~/Views/Coordinator/CreateConfirmation.cshtml";
+            public readonly string CreateList = "~/Views/Coordinator/CreateList.cshtml";
             public readonly string Index = "~/Views/Coordinator/Index.cshtml";
             public readonly string InvitationSucceed = "~/Views/Coordinator/InvitationSucceed.cshtml";
             public readonly string Invite = "~/Views/Coordinator/Invite.cshtml";
             public readonly string InviteContactEnterprise = "~/Views/Coordinator/InviteContactEnterprise.cshtml";
             public readonly string InviteContactEnterpriseConfirmation = "~/Views/Coordinator/InviteContactEnterpriseConfirmation.cshtml";
+            public readonly string ResultCreateList = "~/Views/Coordinator/ResultCreateList.cshtml";
             public readonly string StudentApplyList = "~/Views/Coordinator/StudentApplyList.cshtml";
             public readonly string StudentList = "~/Views/Coordinator/StudentList.cshtml";
+            public readonly string Upload = "~/Views/Coordinator/Upload.cshtml";
 		}
 	}
 
@@ -342,6 +374,73 @@ namespace Stagio.Web.Controllers
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.StudentApplyList);
 			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "studentId", studentId);
 			StudentApplyListOverride(callInfo, studentId);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void UploadOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult Upload()
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Upload);
+			UploadOverride(callInfo);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void UploadPostOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Web.HttpPostedFileBase cvAndLetter);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult UploadPost(System.Web.HttpPostedFileBase cvAndLetter)
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UploadPost);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "cvAndLetter", cvAndLetter);
+			UploadPostOverride(callInfo, cvAndLetter);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void ResultCreateListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult ResultCreateList()
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ResultCreateList);
+			ResultCreateListOverride(callInfo);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void PostResultCreateListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult PostResultCreateList()
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PostResultCreateList);
+			PostResultCreateListOverride(callInfo);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void CreateListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult CreateList()
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateList);
+			CreateListOverride(callInfo);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void CreateListPostOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult CreateListPost()
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateListPost);
+			CreateListPostOverride(callInfo);
 			return callInfo;
 		}
 

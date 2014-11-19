@@ -17,8 +17,6 @@ namespace Stagio.Domain.Entities
 
         public StatusApply Status { get; set; }
 
-        public StatusApply StudentReply { get; set; }
-
         public DateTime DateApply { get; set; }
 
     }

@@ -48,168 +48,10 @@ namespace Stagio.Web.Controllers
             return View(MVC.Student.Views.ViewNames.Index);
         }
 
-        [Authorize(Roles = RoleName.Student)]
-        public virtual ActionResult ConfirmationUploadCVLetter()
-        {
-            return View();
-        }
-
-        [Authorize(Roles = RoleName.Student)]
-        public virtual ActionResult UploadCVLetter()
-        {
-            return View();
-        }
+        
 
 
-        [Authorize(Roles = RoleName.Coordinator)]
-        public virtual ActionResult Upload()
-        {
-            return View();
-        }
-
-
-        [Authorize(Roles = RoleName.Student)]
-        [HttpPost]
-        public virtual ActionResult UploadCVLetter(IEnumerable<HttpPostedFileBase> files)
-        {
-            var readFile = new ReadFile<String>();
-
-            if (ModelState.IsValid)
-            {
-                if (readFile.ReadFileCVLetter(files, Server, 1))
-                {
-                    return RedirectToAction(MVC.Student.ConfirmationUploadCVLetter());
-                }
-                else
-                {
-                    return View();
-                }
-            }
-            else
-            {
-                return View();
-            }
-
-
-        }
-
-
-        [Authorize(Roles = RoleName.Coordinator)]
-        [HttpPost, ActionName("Upload")]
-        public virtual ActionResult UploadPost(HttpPostedFileBase file)
-        {
-            var listStudents = new List<ListStudent>();
-
-            if (file == null)
-            {
-                ModelState.AddModelError("Fichier", StudentResources.NoFileToUpload);
-                ViewBag.Message = StudentResources.NoFileToUpload;
-            }
-            else
-            {
-                {
-                    if (!file.FileName.Contains(".csv"))
-                    {
-                        ModelState.AddModelError("Fichier", StudentResources.NoFileToUpload);
-                        ViewBag.Message = StudentResources.WrongFileType;
-                    }
-                }
-            }
-
-            if (ModelState.IsValid)
-            {
-                var readFile = new ReadFile<ListStudent>();
-
-                listStudents = readFile.ReadFileCsv(file);
-                TempData["listStudent"] = listStudents;
-
-                return RedirectToAction(MVC.Student.CreateList());
-            }
-            return View("");
-        }
-
-        [Authorize(Roles = RoleName.Coordinator)]
-        public virtual ActionResult ResultCreateList()
-        {
-            var resultCreateList = new ResultCreateList();
-            resultCreateList.ListStudentAdded = TempData["listStudentAdded"] as List<ListStudent>;
-            resultCreateList.ListStudentNotAdded = TempData["listStudentNotAdded"] as List<ListStudent>;
-
-            return View(resultCreateList);
-        }
-
-        [Authorize(Roles = RoleName.Coordinator)]
-        [HttpPost]
-        [ActionName("ResultCreateList")]
-        public virtual ActionResult PostResultCreateList()
-        {
-            return RedirectToAction(MVC.Home.Index());
-        }
-
-        [Authorize(Roles = RoleName.Coordinator)]
-        public virtual ActionResult CreateList()
-        {
-            var listStudents = TempData["listStudent"] as List<ListStudent>;
-            TempData["listStudent"] = listStudents;
-            return View(listStudents);
-        }
-
-        [Authorize(Roles = RoleName.Coordinator)]
-        [HttpPost]
-        [ActionName("CreateList")]
-
-        public virtual ActionResult CreateListPost()
-        {
-            var listStudentNotAdded = new List<ListStudent>();
-            var listStudentAdded = new List<ListStudent>();
-            var listStudentInDb = _studentRepository.GetAll().ToList();
-            var listStudents = TempData["listStudent"] as List<ListStudent>;
-            var alreadyInDb = false;
-
-            if (listStudents == null)
-            {
-                ModelState.AddModelError("Error", "Error");
-            }
-
-            if (ModelState.IsValid)
-            {
-                foreach (var listStudentCreate in listStudents)
-                {
-                    for (int i = 0; i < listStudentInDb.Count(); i++)
-                    {
-                        if (!alreadyInDb)
-                        {
-                            if (listStudentInDb[i].Matricule == listStudentCreate.Matricule)
-                            {
-
-                                listStudentNotAdded.Add(listStudentCreate);
-                                alreadyInDb = true;
-                            }
-
-                        }
-                    }
-                    if (Convert.ToInt32(listStudentCreate.Matricule) < 1000000 || Convert.ToInt32(listStudentCreate.Matricule) > 9999999)
-                    {
-                        listStudentNotAdded.Add(listStudentCreate);
-                        alreadyInDb = true;
-                    }
-                    if (!alreadyInDb)
-                    {
-
-                        var student = Mapper.Map<Student>(listStudentCreate);
-                        listStudentAdded = listStudents;
-                        _studentRepository.Add(student);
-                    }
-                    alreadyInDb = false;
-                }
-
-                TempData["listStudentNotAdded"] = listStudentNotAdded;
-                TempData["listStudentAdded"] = listStudentAdded;
-                return RedirectToAction(MVC.Student.ResultCreateList());
-            }
-
-            return RedirectToAction(MVC.Student.Upload());
-        }
+        
 
         // GET: Student/Create
         public virtual ActionResult Create()
@@ -318,7 +160,7 @@ namespace Stagio.Web.Controllers
         }
 
         [Authorize(Roles = RoleName.Student)]
-        public virtual ActionResult StageList()
+        public virtual ActionResult DisplayStageList()
         {
             var stages = _stageRepository.GetAll().ToList();
             var stagesAccepted = stages.Where(x => x.Status == StageStatus.Accepted);
@@ -434,42 +276,7 @@ namespace Stagio.Web.Controllers
             return View(studentStageListViewModels);
         }
 
-        [Authorize(Roles = RoleName.Student)]
-        public virtual ActionResult ReplyStage(int idApply)
-        {
-            var apply = _applyRepository.GetById(idApply);
-            if (apply != null)
-            {
-                var stage = _stageRepository.GetById(apply.IdStage);
-                var stageViewModel = Mapper.Map<ViewModels.Student.AppliedStages>(stage);
-                return View(stageViewModel);
-            }
-            return HttpNotFound();
-        }
-
-        [Authorize(Roles = RoleName.Student)]
-        [HttpPost]
-        public virtual ActionResult ReplyStage(int idApply, string command)
-        {
-            var apply = _applyRepository.GetById(idApply);
-
-            if (apply != null)
-            {
-                if (command.Equals("Accepter"))
-                {
-                    apply.StudentReply = StatusApply.Accepted;
-                }
-                else
-                {
-                    apply.StudentReply = StatusApply.Refused;
-                }
-                _applyRepository.Update(apply);
-
-                return RedirectToAction(MVC.Student.ApplyList());
-            }
-
-            return HttpNotFound();
-        }
+        
 
         public virtual ActionResult CreateConfirmation()
         {

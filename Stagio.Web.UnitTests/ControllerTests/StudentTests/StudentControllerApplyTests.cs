@@ -23,7 +23,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         [TestMethod]
         public void apply_action_should_render_default_view()
         {
-            var result = studentController.CreateList() as ViewResult;
+            var result = studentController.Apply() as ViewResult;
 
             result.ViewName.Should().Be("");
         }

@@ -56,12 +56,6 @@ namespace Stagio.Web.Controllers
 
 		[NonAction]
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-		public virtual System.Web.Mvc.ActionResult UploadPost()
-		{
-			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UploadPost);
-		}
-		[NonAction]
-		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public virtual System.Web.Mvc.ActionResult Edit()
 		{
 			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
@@ -84,12 +78,6 @@ namespace Stagio.Web.Controllers
 		{
 			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ApplyReApplyConfirmation);
 		}
-		[NonAction]
-		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-		public virtual System.Web.Mvc.ActionResult ReplyStage()
-		{
-			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ReplyStage);
-		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public StudentController Actions { get { return MVC.Student; } }
@@ -107,23 +95,14 @@ namespace Stagio.Web.Controllers
 		public class ActionNamesClass
 		{
 			public readonly string Index = "Index";
-			public readonly string ConfirmationUploadCVLetter = "ConfirmationUploadCVLetter";
-			public readonly string UploadCVLetter = "UploadCVLetter";
-			public readonly string Upload = "Upload";
-			public readonly string UploadPost = "Upload";
-			public readonly string ResultCreateList = "ResultCreateList";
-			public readonly string PostResultCreateList = "ResultCreateList";
-			public readonly string CreateList = "CreateList";
-			public readonly string CreateListPost = "CreateList";
 			public readonly string Create = "Create";
 			public readonly string Edit = "Edit";
-			public readonly string StageList = "StageList";
+			public readonly string DisplayStageList = "DisplayStageList";
 			public readonly string Apply = "Apply";
 			public readonly string ApplyConfirmation = "ApplyConfirmation";
 			public readonly string ApplyRemoveConfirmation = "ApplyRemoveConfirmation";
 			public readonly string ApplyReApplyConfirmation = "ApplyReApplyConfirmation";
 			public readonly string ApplyList = "ApplyList";
-			public readonly string ReplyStage = "ReplyStage";
 			public readonly string CreateConfirmation = "CreateConfirmation";
 		}
 
@@ -131,43 +110,18 @@ namespace Stagio.Web.Controllers
 		public class ActionNameConstants
 		{
 			public const string Index = "Index";
-			public const string ConfirmationUploadCVLetter = "ConfirmationUploadCVLetter";
-			public const string UploadCVLetter = "UploadCVLetter";
-			public const string Upload = "Upload";
-			public const string UploadPost = "Upload";
-			public const string ResultCreateList = "ResultCreateList";
-			public const string PostResultCreateList = "ResultCreateList";
-			public const string CreateList = "CreateList";
-			public const string CreateListPost = "CreateList";
 			public const string Create = "Create";
 			public const string Edit = "Edit";
-			public const string StageList = "StageList";
+			public const string DisplayStageList = "DisplayStageList";
 			public const string Apply = "Apply";
 			public const string ApplyConfirmation = "ApplyConfirmation";
 			public const string ApplyRemoveConfirmation = "ApplyRemoveConfirmation";
 			public const string ApplyReApplyConfirmation = "ApplyReApplyConfirmation";
 			public const string ApplyList = "ApplyList";
-			public const string ReplyStage = "ReplyStage";
 			public const string CreateConfirmation = "CreateConfirmation";
 		}
 
 
-		static readonly ActionParamsClass_UploadCVLetter s_params_UploadCVLetter = new ActionParamsClass_UploadCVLetter();
-		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-		public ActionParamsClass_UploadCVLetter UploadCVLetterParams { get { return s_params_UploadCVLetter; } }
-		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-		public class ActionParamsClass_UploadCVLetter
-		{
-			public readonly string files = "files";
-		}
-		static readonly ActionParamsClass_UploadPost s_params_UploadPost = new ActionParamsClass_UploadPost();
-		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-		public ActionParamsClass_UploadPost UploadPostParams { get { return s_params_UploadPost; } }
-		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-		public class ActionParamsClass_UploadPost
-		{
-			public readonly string file = "file";
-		}
 		static readonly ActionParamsClass_Create s_params_Create = new ActionParamsClass_Create();
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public ActionParamsClass_Create CreateParams { get { return s_params_Create; } }
@@ -211,15 +165,6 @@ namespace Stagio.Web.Controllers
 		{
 			public readonly string id = "id";
 		}
-		static readonly ActionParamsClass_ReplyStage s_params_ReplyStage = new ActionParamsClass_ReplyStage();
-		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-		public ActionParamsClass_ReplyStage ReplyStageParams { get { return s_params_ReplyStage; } }
-		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-		public class ActionParamsClass_ReplyStage
-		{
-			public readonly string idApply = "idApply";
-			public readonly string command = "command";
-		}
 		static readonly ViewsClass s_views = new ViewsClass();
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public ViewsClass Views { get { return s_views; } }
@@ -235,16 +180,12 @@ namespace Stagio.Web.Controllers
                 public readonly string ApplyList = "ApplyList";
                 public readonly string ApplyReApplyConfirmation = "ApplyReApplyConfirmation";
                 public readonly string ApplyRemoveConfirmation = "ApplyRemoveConfirmation";
-                public readonly string ConfirmationUploadCVLetter = "ConfirmationUploadCVLetter";
                 public readonly string Create = "Create";
                 public readonly string CreateConfirmation = "CreateConfirmation";
-                public readonly string CreateList = "CreateList";
+                public readonly string DisplayStageList = "DisplayStageList";
                 public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
                 public readonly string ReplyStage = "ReplyStage";
-                public readonly string ResultCreateList = "ResultCreateList";
-                public readonly string StageList = "StageList";
-                public readonly string Upload = "Upload";
                 public readonly string UploadCVLetter = "UploadCVLetter";
             }
             public readonly string Apply = "~/Views/Student/Apply.cshtml";
@@ -252,16 +193,12 @@ namespace Stagio.Web.Controllers
             public readonly string ApplyList = "~/Views/Student/ApplyList.cshtml";
             public readonly string ApplyReApplyConfirmation = "~/Views/Student/ApplyReApplyConfirmation.cshtml";
             public readonly string ApplyRemoveConfirmation = "~/Views/Student/ApplyRemoveConfirmation.cshtml";
-            public readonly string ConfirmationUploadCVLetter = "~/Views/Student/ConfirmationUploadCVLetter.cshtml";
             public readonly string Create = "~/Views/Student/Create.cshtml";
             public readonly string CreateConfirmation = "~/Views/Student/CreateConfirmation.cshtml";
-            public readonly string CreateList = "~/Views/Student/CreateList.cshtml";
+            public readonly string DisplayStageList = "~/Views/Student/DisplayStageList.cshtml";
             public readonly string Edit = "~/Views/Student/Edit.cshtml";
             public readonly string Index = "~/Views/Student/Index.cshtml";
             public readonly string ReplyStage = "~/Views/Student/ReplyStage.cshtml";
-            public readonly string ResultCreateList = "~/Views/Student/ResultCreateList.cshtml";
-            public readonly string StageList = "~/Views/Student/StageList.cshtml";
-            public readonly string Upload = "~/Views/Student/Upload.cshtml";
             public readonly string UploadCVLetter = "~/Views/Student/UploadCVLetter.cshtml";
 		}
 	}
@@ -279,107 +216,6 @@ namespace Stagio.Web.Controllers
 		{
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
 			IndexOverride(callInfo);
-			return callInfo;
-		}
-
-		[NonAction]
-		partial void ConfirmationUploadCVLetterOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-		[NonAction]
-		public override System.Web.Mvc.ActionResult ConfirmationUploadCVLetter()
-		{
-			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ConfirmationUploadCVLetter);
-			ConfirmationUploadCVLetterOverride(callInfo);
-			return callInfo;
-		}
-
-		[NonAction]
-		partial void UploadCVLetterOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-		[NonAction]
-		public override System.Web.Mvc.ActionResult UploadCVLetter()
-		{
-			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UploadCVLetter);
-			UploadCVLetterOverride(callInfo);
-			return callInfo;
-		}
-
-		[NonAction]
-		partial void UploadOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-		[NonAction]
-		public override System.Web.Mvc.ActionResult Upload()
-		{
-			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Upload);
-			UploadOverride(callInfo);
-			return callInfo;
-		}
-
-		[NonAction]
-		partial void UploadCVLetterOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Collections.Generic.IEnumerable<System.Web.HttpPostedFileBase> files);
-
-		[NonAction]
-		public override System.Web.Mvc.ActionResult UploadCVLetter(System.Collections.Generic.IEnumerable<System.Web.HttpPostedFileBase> files)
-		{
-			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UploadCVLetter);
-			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "files", files);
-			UploadCVLetterOverride(callInfo, files);
-			return callInfo;
-		}
-
-		[NonAction]
-		partial void UploadPostOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Web.HttpPostedFileBase file);
-
-		[NonAction]
-		public override System.Web.Mvc.ActionResult UploadPost(System.Web.HttpPostedFileBase file)
-		{
-			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UploadPost);
-			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "file", file);
-			UploadPostOverride(callInfo, file);
-			return callInfo;
-		}
-
-		[NonAction]
-		partial void ResultCreateListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-		[NonAction]
-		public override System.Web.Mvc.ActionResult ResultCreateList()
-		{
-			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ResultCreateList);
-			ResultCreateListOverride(callInfo);
-			return callInfo;
-		}
-
-		[NonAction]
-		partial void PostResultCreateListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-		[NonAction]
-		public override System.Web.Mvc.ActionResult PostResultCreateList()
-		{
-			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PostResultCreateList);
-			PostResultCreateListOverride(callInfo);
-			return callInfo;
-		}
-
-		[NonAction]
-		partial void CreateListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-		[NonAction]
-		public override System.Web.Mvc.ActionResult CreateList()
-		{
-			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateList);
-			CreateListOverride(callInfo);
-			return callInfo;
-		}
-
-		[NonAction]
-		partial void CreateListPostOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-		[NonAction]
-		public override System.Web.Mvc.ActionResult CreateListPost()
-		{
-			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateListPost);
-			CreateListPostOverride(callInfo);
 			return callInfo;
 		}
 
@@ -431,13 +267,13 @@ namespace Stagio.Web.Controllers
 		}
 
 		[NonAction]
-		partial void StageListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+		partial void DisplayStageListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
 		[NonAction]
-		public override System.Web.Mvc.ActionResult StageList()
+		public override System.Web.Mvc.ActionResult DisplayStageList()
 		{
-			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.StageList);
-			StageListOverride(callInfo);
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DisplayStageList);
+			DisplayStageListOverride(callInfo);
 			return callInfo;
 		}
 
@@ -509,31 +345,6 @@ namespace Stagio.Web.Controllers
 		{
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ApplyList);
 			ApplyListOverride(callInfo);
-			return callInfo;
-		}
-
-		[NonAction]
-		partial void ReplyStageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int idApply);
-
-		[NonAction]
-		public override System.Web.Mvc.ActionResult ReplyStage(int idApply)
-		{
-			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ReplyStage);
-			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "idApply", idApply);
-			ReplyStageOverride(callInfo, idApply);
-			return callInfo;
-		}
-
-		[NonAction]
-		partial void ReplyStageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int idApply, string command);
-
-		[NonAction]
-		public override System.Web.Mvc.ActionResult ReplyStage(int idApply, string command)
-		{
-			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ReplyStage);
-			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "idApply", idApply);
-			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "command", command);
-			ReplyStageOverride(callInfo, idApply, command);
 			return callInfo;
 		}
 
