@@ -377,11 +377,11 @@ namespace Stagio.Web.Controllers
 
         [Authorize(Roles = RoleName.Coordinator)]
         [HttpPost, ActionName("Upload")]
-        public virtual ActionResult UploadPost(HttpPostedFileBase cvAndLetter)
+        public virtual ActionResult UploadPost(HttpPostedFileBase file)
         {
             var listStudents = new List<ListStudent>();
 
-            if (cvAndLetter == null)
+            if (file == null)
             {
                 ModelState.AddModelError("Fichier", StudentResources.NoFileToUpload);
                 ViewBag.Message = StudentResources.NoFileToUpload;
@@ -389,7 +389,7 @@ namespace Stagio.Web.Controllers
             else
             {
                 {
-                    if (!cvAndLetter.FileName.Contains(".csv"))
+                    if (!file.FileName.Contains(".csv"))
                     {
                         ModelState.AddModelError("Fichier", StudentResources.NoFileToUpload);
                         ViewBag.Message = StudentResources.WrongFileType;
@@ -401,7 +401,7 @@ namespace Stagio.Web.Controllers
             {
                 var readFile = new ReadFile<ListStudent>();
 
-                listStudents = readFile.ReadFileCsv(cvAndLetter);
+                listStudents = readFile.ReadFileCsv(file);
                 TempData["listStudent"] = listStudents;
 
                 return RedirectToAction(MVC.Coordinator.CreateList());

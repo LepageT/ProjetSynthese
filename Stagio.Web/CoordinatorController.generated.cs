@@ -182,7 +182,7 @@ namespace Stagio.Web.Controllers
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public class ActionParamsClass_UploadPost
 		{
-			public readonly string cvAndLetter = "cvAndLetter";
+			public readonly string file = "file";
 		}
 		static readonly ViewsClass s_views = new ViewsClass();
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -389,14 +389,14 @@ namespace Stagio.Web.Controllers
 		}
 
 		[NonAction]
-		partial void UploadPostOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Web.HttpPostedFileBase cvAndLetter);
+		partial void UploadPostOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Web.HttpPostedFileBase file);
 
 		[NonAction]
-		public override System.Web.Mvc.ActionResult UploadPost(System.Web.HttpPostedFileBase cvAndLetter)
+		public override System.Web.Mvc.ActionResult UploadPost(System.Web.HttpPostedFileBase file)
 		{
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UploadPost);
-			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "cvAndLetter", cvAndLetter);
-			UploadPostOverride(callInfo, cvAndLetter);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "file", file);
+			UploadPostOverride(callInfo, file);
 			return callInfo;
 		}
 
