@@ -11,7 +11,7 @@ namespace Stagio.Web.Automation.PageObjects.ContactEnterprise
     {
         public static bool IsDisplayed
         {
-            get { return Driver.Instance.FindElement(By.Id("index-contactenterprise")) != null; }
+            get { return Driver.Instance.FindElement(By.Id("contact-index-page")) != null; }
 
         }
 
