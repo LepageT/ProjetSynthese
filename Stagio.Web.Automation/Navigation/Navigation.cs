@@ -252,6 +252,14 @@ namespace Stagio.Web.Automation
                 }
             }
 
+            public class Notification
+            {
+                public static void Select()
+                {
+                    MenuSelector.SelectTopLevel("notification-list");
+                }
+            }
+
             
         }
     }

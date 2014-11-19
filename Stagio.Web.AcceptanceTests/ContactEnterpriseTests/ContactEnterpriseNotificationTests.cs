@@ -21,7 +21,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
         }
 
         [TestMethod]
-        public void contact_enterprise_should_be_able_to_see_notification_list()
+        public void contact_enterprise_should_be_able_to_see_notification_list_on_index()
         {
             LoginPage.GoTo();
             LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);

@@ -19,6 +19,10 @@
                 <li>@Html.ActionLink("Faire le suivi des entrevues", MVC.Interview.List(), new { id = "list-interview" })</li>
             </ul>
         </li>
+
+        <li class="dropdown">
+        <li>@Html.ActionLink("Notifications", MVC.Notification.NotificationList(), new { id = "notification-list" })</li>
+        </li>
     }
 
     @if (Request.IsAuthenticated && User.IsInRole(RoleName.ContactEnterprise))
@@ -32,10 +36,12 @@
                 <li>@Html.ActionLink("Afficher les informations du profil", MVC.Account.Details(Int32.Parse(@User.Identity.GetUserId())), new { id = "details-contact" }) </li>
             </ul>
         </li>
+
+        <li class="dropdown">
+        <li>@Html.ActionLink("Notifications", MVC.Notification.NotificationList(), new { id = "notification-list" })</li>
+        </li>
     }
 
-    <li class="dropdown">
-        <li>@Html.ActionLink("Notifications", MVC.Notification.NotificationList(), new { id = "notification-list" })</li>
-    </li>
+
 
 </ul>

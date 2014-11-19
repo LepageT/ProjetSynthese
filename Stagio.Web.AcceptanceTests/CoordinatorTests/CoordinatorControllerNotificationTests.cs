@@ -22,7 +22,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
         }
 
         [TestMethod]
-        public void coordinator_should_be_able_to_see_notification_list()
+        public void coordinator_should_be_able_to_see_notification_list_on_index()
         {
             LoginPage.GoTo();
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);

@@ -23,7 +23,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
         }
 
         [TestMethod]
-        public void student_should_be_able_to_see_notification_list()
+        public void student_should_be_able_to_see_notification_list_on_index()
         {
             LoginPage.GoTo();
             LoginPage.LoginAs(StudentUsername, StudentPassword);
