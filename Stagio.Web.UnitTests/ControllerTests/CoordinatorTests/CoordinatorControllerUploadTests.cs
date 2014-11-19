@@ -8,15 +8,15 @@ using Stagio.Domain.Entities;
 using Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests;
 
 
-namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
+namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
 {
     [TestClass]
-    public class StudentControllerUploadTests : StudentControllerBaseClassTests
+    public class StudentControllerUploadTests : CoordinatorControllerBaseClassTests
     {
         [TestMethod]
         public void upload_action_should_render_default_view()
         {
-            var result = studentController.Upload() as ViewResult;
+            var result = coordinatorController.Upload() as ViewResult;
 
             result.ViewName.Should().Be("");
         }
@@ -25,9 +25,9 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         public void upload_post_should_return_default_view_when_modelState_is_not_valid()
         {
             var postedfile = Substitute.For<HttpPostedFileBase>();
-            studentController.ModelState.AddModelError("Error", "Error");
+            coordinatorController.ModelState.AddModelError("Error", "Error");
 
-            var result = studentController.UploadPost(postedfile) as ViewResult;
+            var result = coordinatorController.UploadPost(postedfile) as ViewResult;
 
             result.ViewName.Should().Be("");
         }
@@ -38,7 +38,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
             var postedfile = Substitute.For<HttpPostedFileBase>();
             postedfile = null;
 
-            var result = studentController.UploadPost(postedfile) as ViewResult;
+            var result = coordinatorController.UploadPost(postedfile) as ViewResult;
 
             result.ViewName.Should().Be("");
         }

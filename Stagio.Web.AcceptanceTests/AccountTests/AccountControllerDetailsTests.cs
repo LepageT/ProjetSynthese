@@ -3,6 +3,7 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using Stagio.Web.Automation.PageObjects;
+using Stagio.Web.Automation.Selenium;
 
 namespace Stagio.Web.AcceptanceTests.AccountTests
 {
@@ -12,10 +13,13 @@ namespace Stagio.Web.AcceptanceTests.AccountTests
         [TestMethod]
         public void applicationUser_can_see_his_profil()
         {
+            Driver.GetScreenShoot("login.png");
             LoginPage.GoTo();
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
-            
+            Driver.GetScreenShoot("login_after.png");
+
             DetailsAccountPage.GoToByUrl1();
+            Driver.GetScreenShoot("Detail_goto.png");
 
             DetailsAccountPage.IsDisplayed.Should().BeTrue();
            

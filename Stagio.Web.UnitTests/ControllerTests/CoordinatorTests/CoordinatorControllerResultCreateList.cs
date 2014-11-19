@@ -7,16 +7,16 @@ using Stagio.Domain.Entities;
 using Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests;
 
 
-namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
+namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
 {
     [TestClass]
-    public class StudentControllerResultCreateList :StudentControllerBaseClassTests
+    public class CoordinatorControllerResultCreateList : CoordinatorControllerBaseClassTests
     {
 
         [TestMethod]
         public void resultCreatelist_action_should_render_default_view()
         {
-            var result = studentController.ResultCreateList() as ViewResult;
+            var result = coordinatorController.ResultCreateList() as ViewResult;
 
             result.ViewName.Should().Be("");
         }
@@ -24,7 +24,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         [TestMethod]
         public void resultCreatelist_post_should_render_home_index_view()
         {
-            var routeResult = studentController.PostResultCreateList() as RedirectToRouteResult;
+            var routeResult = coordinatorController.PostResultCreateList() as RedirectToRouteResult;
             var routeAction = routeResult.RouteValues["Action"];
 
             routeAction.Should().Be(MVC.Home.Views.ViewNames.Index);

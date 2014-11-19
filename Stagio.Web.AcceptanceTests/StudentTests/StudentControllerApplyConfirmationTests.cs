@@ -1,4 +1,5 @@
 ﻿using System;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Stagio.Web.Automation.PageObjects;
 using Stagio.Web.Automation.PageObjects.Student;
@@ -18,7 +19,7 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
 
             ApplyStudentPage.SelectFiles("file1.pdf", "file2.pdf");
 
-            Assert.IsTrue(ConfirmationUploadCVLetterPage.IsDisplayed);
+            ConfirmationUploadCVLetterPage.IsDisplayed.Should().BeTrue();
         }
 
         [TestMethod]
@@ -36,10 +37,10 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             //Voir comment indiquer à FireFox de ne pas ouvrir de boite de dialogue avec l'utlisation d'un profile
             //dans les méthodes Initialize et CreateSeleniumProfile de la classe Driver (dossier Selenium du projet Web.Automation)
 
-            //Assert
             //En cas d'erreur, une page autre que DownloadIndex sera affichée. 
             //Donc s'il n'y a pas d'erreur, la page affichée est DownloadIndex.
-            Assert.IsTrue(ConfirmationUploadCVLetterPage.IsDisplayed); 
+
+            ConfirmationUploadCVLetterPage.IsDisplayed.Should().BeTrue();
         }
 
     }

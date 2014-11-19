@@ -199,6 +199,7 @@
     <Compile Include="Controllers\ContactEnterpriseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InterviewController.cs" />
+    <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\StageController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="CoordinatorController.generated.cs">
@@ -264,6 +265,9 @@
       <DependentUpon>EmailResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Module\TokenGenerator.cs" />
+    <Compile Include="NotificationController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IMailler.cs" />
     <Compile Include="Services\Mailler.cs" />
@@ -302,6 +306,7 @@
     <Compile Include="ViewModels\Interviews\Create.cs" />
     <Compile Include="ViewModels\Interviews\Edit.cs" />
     <Compile Include="ViewModels\Interviews\List.cs" />
+    <Compile Include="ViewModels\Notification\Detail.cs" />
     <Compile Include="ViewModels\Stage\Create.cs" />
     <Compile Include="ViewModels\Stage\Details.cs" />
     <Compile Include="ViewModels\Stage\Edit.cs" />
@@ -315,6 +320,7 @@
     <Compile Include="ViewModels\Coordinator\Invite.cs" />
     <Compile Include="ViewModels\Student\Edit.cs" />
     <Compile Include="ViewModels\Student\ListStudent.cs" />
+    <Compile Include="ViewModels\Notification\Notification.cs" />
     <Compile Include="ViewModels\Student\ResultCreateList.cs" />
     <Compile Include="ViewModels\Student\StageList.cs" />
   </ItemGroup>
@@ -415,16 +421,16 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Student\Edit.cshtml" />
-    <Content Include="Views\Student\Upload.cshtml" />
-    <Content Include="Views\Student\CreateList.cshtml" />
-    <Content Include="Views\Student\ResultCreateList.cshtml" />
+    <Content Include="Views\Coordinator\Upload.cshtml" />
+    <Content Include="Views\Coordinator\CreateList.cshtml" />
+    <Content Include="Views\Coordinator\ResultCreateList.cshtml" />
     <Content Include="Views\ContactEnterprise\Reactivate.cshtml" />
     <Content Include="Views\Coordinator\InviteContactEnterprise.cshtml" />
     <Content Include="Views\Coordinator\InviteContactEnterpriseConfirmation.cshtml" />
     <Content Include="Views\ContactEnterprise\CreateConfirmation.cshtml" />
     <Content Include="Views\ContactEnterprise\CreateStage.cshtml" />
     <Content Include="Views\Coordinator\InvitationSucceed.cshtml" />
-    <Content Include="Views\Student\StageList.cshtml" />
+    <Content Include="Views\Student\DisplayStageList.cshtml" />
     <Content Include="Views\ContactEnterprise\InviteContactEnterprise.cshtml" />
     <Content Include="Views\ContactEnterprise\CreateStageSucceed.cshtml" />
     <Content Include="Views\Stage\ListNewStages.cshtml" />
@@ -441,7 +447,7 @@
     <Content Include="Views\ContactEnterprise\AcceptApplyConfirmation.cshtml" />
     <Content Include="Views\ContactEnterprise\RefuseApplyConfirmation.cshtml" />
     <Content Include="Views\Interview\Create.cshtml" />
-    <Content Include="Views\Interview\InterviewConfirmation.cshtml" />
+    <Content Include="Views\Interview\InterviewCreateConfirmation.cshtml" />
     <Content Include="Views\Account\Details.cshtml" />
     <Content Include="Views\Interview\List.cshtml" />
     <Content Include="Views\Interview\Edit.cshtml" />
@@ -453,10 +459,12 @@
     <Content Include="Views\Student\CreateConfirmation.cshtml" />
     <Content Include="Views\Coordinator\CreateConfirmation.cshtml" />
     <Content Include="Views\Student\UploadCVLetter.cshtml" />
-    <Content Include="Views\Student\ConfirmationUploadCVLetter.cshtml" />
     <Content Include="Views\Student\ApplyReApplyConfirmation.cshtml" />
     <Content Include="Views\Coordinator\StudentList.cshtml" />
     <Content Include="Views\Coordinator\StudentApplyList.cshtml" />
+    <Content Include="Views\Notification\Detail.cshtml" />
+    <Content Include="Views\Notification\Error.cshtml" />
+    <Content Include="Views\Notification\NotificationList.cshtml" />
     <Content Include="Views\ContactEnterprise\RemoveStageConfirmation.cshtml" />
     <Content Include="Views\ContactEnterprise\ReactivateStageConfirmation.cshtml" />
     <Content Include="Views\Stage\Edit.cshtml" />

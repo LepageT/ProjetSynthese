@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using Stagio.DataLayer;
@@ -12,6 +13,8 @@ using Stagio.Web.Module.Strings.Email;
 using Stagio.Web.Services;
 using Stagio.Web.Module;
 using Stagio.Web.ViewModels.Coordinator;
+using Stagio.Web.ViewModels.Student;
+using Apply = Stagio.Domain.Entities.Apply;
 
 namespace Stagio.Web.Controllers
 {
@@ -27,7 +30,9 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<Apply> _applyRepository;
         private readonly IEntityRepository<Stage> _stageRepository;
         private readonly IEntityRepository<Student> _studentRepository;
-        private readonly IEntityRepository<Interview> _interviewRepository; 
+        private readonly IEntityRepository<Interview> _interviewRepository;
+        private readonly IEntityRepository<Notification> _notificationRepository;
+        private readonly IHttpContextService _httpContextService;
 
         public CoordinatorController(IEntityRepository<ContactEnterprise> enterpriseContactRepository,
             IEntityRepository<Coordinator> coordinatorRepository,
@@ -38,7 +43,9 @@ namespace Stagio.Web.Controllers
             IEntityRepository<Apply> applyRepository,
             IEntityRepository<Stage> stageRepository,
             IEntityRepository<Student> studentRepository,
-            IEntityRepository<Interview> interviewRepository)
+            IEntityRepository<Interview> interviewRepository,
+            IEntityRepository<Notification> notificationRepository,
+            IHttpContextService httpContextService)
         {
             _enterpriseContactRepository = enterpriseContactRepository;
             _coordinatorRepository = coordinatorRepository;
@@ -50,11 +57,18 @@ namespace Stagio.Web.Controllers
             _stageRepository = stageRepository;
             _studentRepository = studentRepository;
             _interviewRepository = interviewRepository;
+            _notificationRepository = notificationRepository;
+            _httpContextService = httpContextService;
         }
         // GET: Coordinator
         public virtual ActionResult Index()
         {
-            return View();
+            var notifications = _notificationRepository.GetAll().ToList();
+            var userNotifications = notifications.Where(x => x.For == _httpContextService.GetUserId());
+
+            var notificationsViewModels = Mapper.Map<IEnumerable<ViewModels.Notification.Notification>>(userNotifications).ToList();
+
+            return View(notificationsViewModels);
         }
 
         // GET: Coordinator/Details/5
@@ -343,7 +357,7 @@ namespace Stagio.Web.Controllers
                 }
                 foreach (var student in students)
                 {
-                    if (appliedStage.Id == student.Id)
+                    if (appliedStage.IdStudent == student.Id)
                     {
                         appliedStage.FirstName = student.FirstName;
                         appliedStage.LastName = student.LastName;
@@ -352,7 +366,7 @@ namespace Stagio.Web.Controllers
                 }
                 foreach (var interview in interviews)
                 {
-                    if (appliedStage.Id == interview.StudentId)
+                    if (appliedStage.IdStudent == interview.StudentId)
                     {
                         appliedStage.DateInterview = interview.Date;
 
@@ -363,6 +377,130 @@ namespace Stagio.Web.Controllers
             
 
             return View(studentListApplyViewModels);
+        }
+
+        [Authorize(Roles = RoleName.Coordinator)]
+        public virtual ActionResult Upload()
+        {
+            return View();
+        }
+
+
+        [Authorize(Roles = RoleName.Coordinator)]
+        [HttpPost, ActionName("Upload")]
+        public virtual ActionResult UploadPost(HttpPostedFileBase file)
+        {
+            var listStudents = new List<ListStudent>();
+
+            if (file == null)
+            {
+                ModelState.AddModelError("Fichier", StudentResources.NoFileToUpload);
+                ViewBag.Message = StudentResources.NoFileToUpload;
+            }
+            else
+            {
+                {
+                    if (!file.FileName.Contains(".csv"))
+                    {
+                        ModelState.AddModelError("Fichier", StudentResources.NoFileToUpload);
+                        ViewBag.Message = StudentResources.WrongFileType;
+                    }
+                }
+            }
+
+            if (ModelState.IsValid)
+            {
+                var readFile = new ReadFile<ListStudent>();
+
+                listStudents = readFile.ReadFileCsv(file);
+                TempData["listStudent"] = listStudents;
+
+                return RedirectToAction(MVC.Coordinator.CreateList());
+            }
+            return View("");
+        }
+
+        [Authorize(Roles = RoleName.Coordinator)]
+        public virtual ActionResult ResultCreateList()
+        {
+            var resultCreateList = new ResultCreateList();
+            resultCreateList.ListStudentAdded = TempData["listStudentAdded"] as List<ListStudent>;
+            resultCreateList.ListStudentNotAdded = TempData["listStudentNotAdded"] as List<ListStudent>;
+
+            return View(resultCreateList);
+        }
+
+        [Authorize(Roles = RoleName.Coordinator)]
+        [HttpPost]
+        [ActionName("ResultCreateList")]
+        public virtual ActionResult PostResultCreateList()
+        {
+            return RedirectToAction(MVC.Home.Index());
+        }
+
+        [Authorize(Roles = RoleName.Coordinator)]
+        public virtual ActionResult CreateList()
+        {
+            var listStudents = TempData["listStudent"] as List<ListStudent>;
+            TempData["listStudent"] = listStudents;
+            return View(listStudents);
+        }
+
+        [Authorize(Roles = RoleName.Coordinator)]
+        [HttpPost]
+        [ActionName("CreateList")]
+
+        public virtual ActionResult CreateListPost()
+        {
+            var listStudentNotAdded = new List<ListStudent>();
+            var listStudentAdded = new List<ListStudent>();
+            var listStudentInDb = _studentRepository.GetAll().ToList();
+            var listStudents = TempData["listStudent"] as List<ListStudent>;
+            var alreadyInDb = false;
+
+            if (listStudents == null)
+            {
+                ModelState.AddModelError("Error", "Error");
+            }
+
+            if (ModelState.IsValid)
+            {
+                foreach (var listStudentCreate in listStudents)
+                {
+                    for (int i = 0; i < listStudentInDb.Count(); i++)
+                    {
+                        if (!alreadyInDb)
+                        {
+                            if (listStudentInDb[i].Matricule == listStudentCreate.Matricule)
+                            {
+
+                                listStudentNotAdded.Add(listStudentCreate);
+                                alreadyInDb = true;
+                            }
+
+                        }
+                    }
+                    if (Convert.ToInt32(listStudentCreate.Matricule) < 1000000 || Convert.ToInt32(listStudentCreate.Matricule) > 9999999)
+                    {
+                        listStudentNotAdded.Add(listStudentCreate);
+                        alreadyInDb = true;
+                    }
+                    if (!alreadyInDb)
+                    {
+
+                        var student = Mapper.Map<Student>(listStudentCreate);
+                        listStudentAdded = listStudents;
+                        _studentRepository.Add(student);
+                    }
+                    alreadyInDb = false;
+                }
+
+                TempData["listStudentNotAdded"] = listStudentNotAdded;
+                TempData["listStudentAdded"] = listStudentAdded;
+                return RedirectToAction(MVC.Coordinator.ResultCreateList());
+            }
+
+            return RedirectToAction(MVC.Coordinator.Upload());
         }
 
     }

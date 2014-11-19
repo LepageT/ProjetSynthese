@@ -46,17 +46,6 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
         [TestMethod]
         public void contactEnterprise_create_post_should_return_default_view_when_email_is_already_used()
         {
-            /*var contactsEnterprise = _fixture.CreateMany<ContactEnterprise>(3);
-            var contactEnterprise = contactsEnterprise.First();
-            contactEnterprise.Active = false;
-            contactEnterprise.Email = "blabla@hotmail.com";
-            enterpriseRepository.GetAll().Returns(contactsEnterprise.AsQueryable());
-            var viewModel = _fixture.Create<ViewModels.ContactEnterprise.Create>();
-
-            var result = enterpriseController.Create(viewModel) as ViewResult;
-
-            Assert.AreEqual(result.ViewName, "");*/
-
             var contactsEnterprise = _fixture.CreateMany<ContactEnterprise>(2);
             var contactEnterprise1 = contactsEnterprise.First();
             contactEnterprise1.Email = "test@blabla.com";

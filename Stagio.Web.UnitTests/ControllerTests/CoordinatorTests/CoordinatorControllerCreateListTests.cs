@@ -10,15 +10,15 @@ using System;
 using Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests;
 using Stagio.Web.ViewModels.Student;
 
-namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
+namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
 {
     [TestClass]
-    public class StudentControllerCreateListTests : StudentControllerBaseClassTests
+    public class StudentControllerCreateListTests : CoordinatorControllerBaseClassTests
     {
         [TestMethod]
         public void createlist_action_should_render_default_view()
         {
-            var result = studentController.CreateList() as ViewResult;
+            var result = coordinatorController.CreateList() as ViewResult;
 
             result.ViewName.Should().Be("");
         }
@@ -34,11 +34,11 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
                 LastName = "Patrick",
                 Matricule = listStudents[0].Matricule
             };
-            studentController.CreateListPost();
+            coordinatorController.CreateListPost();
             listStudents.Add(liststudent);
-            studentController.TempData["listStudent"] = listStudents;
+            coordinatorController.TempData["listStudent"] = listStudents;
 
-            studentController.CreateListPost();
+            coordinatorController.CreateListPost();
 
             studentRepository.DidNotReceive().Add(Arg.Is<Student>(x => x.FirstName == listStudents[3].FirstName));
             studentRepository.DidNotReceive().Add(Arg.Is<Student>(x => x.LastName == listStudents[3].LastName));
@@ -50,9 +50,9 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         {
             var listStudents = new List<ListStudent>();
             listStudents = null;
-            studentController.TempData["listStudent"] = listStudents;
+            coordinatorController.TempData["listStudent"] = listStudents;
 
-            var result = studentController.CreateListPost() as RedirectToRouteResult;
+            var result = coordinatorController.CreateListPost() as RedirectToRouteResult;
             var action = result.RouteValues["Action"];
 
             action.ShouldBeEquivalentTo("Upload");
@@ -73,9 +73,9 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 
                 });
             }
-            studentController.TempData["listStudent"] = listStudents;
+            coordinatorController.TempData["listStudent"] = listStudents;
 
-            studentController.CreateListPost();
+            coordinatorController.CreateListPost();
             studentRepository.GetAll().Returns(studentsInDb.AsQueryable());
 
             foreach (var studentCreated in studentsInDb)
@@ -87,11 +87,11 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         [TestMethod]
         public void createlist_post_should_return_upload_when_modelState_is_not_valid()
         {
-            studentController.ModelState.AddModelError("Error", "Error");
+            coordinatorController.ModelState.AddModelError("Error", "Error");
             var listStudents = _fixture.CreateMany<ListStudent>().ToList();
-            studentController.TempData["listStudent"] = listStudents;
+            coordinatorController.TempData["listStudent"] = listStudents;
 
-            var result = studentController.CreateListPost() as RedirectToRouteResult;
+            var result = coordinatorController.CreateListPost() as RedirectToRouteResult;
             var action = result.RouteValues["Action"];
 
             action.ShouldBeEquivalentTo("Upload");
@@ -101,9 +101,9 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         public void createlist_post_should_redirect_to_student_resultList_on_success()
         {
             var listStudents = _fixture.CreateMany<ListStudent>(3).ToList();
-            studentController.TempData["listStudent"] = listStudents;
+            coordinatorController.TempData["listStudent"] = listStudents;
 
-            var result = studentController.CreateListPost() as RedirectToRouteResult;
+            var result = coordinatorController.CreateListPost() as RedirectToRouteResult;
             var action = result.RouteValues["Action"];
 
             action.ShouldBeEquivalentTo("ResultCreateList");
@@ -116,8 +116,8 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
             var listStudents = _fixture.CreateMany<ListStudent>(3).ToList();
             listStudents[1].Matricule = 1234567098;
 
-            studentController.TempData["listStudent"] = listStudents;
-            studentController.CreateListPost();
+            coordinatorController.TempData["listStudent"] = listStudents;
+            coordinatorController.CreateListPost();
 
             studentRepository.DidNotReceive().Add(Arg.Is<Student>(x => x.Matricule == listStudents[1].Matricule));
         }
