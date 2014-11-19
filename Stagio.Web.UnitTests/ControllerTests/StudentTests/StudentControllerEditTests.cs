@@ -84,7 +84,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 
             var result = studentController.Edit(studentEditPageViewModel) as ViewResult;
 
-            Assert.AreEqual(result.ViewName, "");
+            result.ViewName.Should().Be("");
         }
 
         [TestMethod]

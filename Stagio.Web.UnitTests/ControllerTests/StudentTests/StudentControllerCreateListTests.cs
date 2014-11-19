@@ -20,7 +20,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         {
             var result = studentController.CreateList() as ViewResult;
 
-            Assert.AreEqual("", result.ViewName);
+            result.ViewName.Should().Be("");
         }
 
 

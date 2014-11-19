@@ -65,7 +65,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
         {
             var viewResult = enterpriseController.DetailsStudentApplyPost("Accepter", 999999999) as ViewResult;
             var viewModelObtained = viewResult.ViewData.Model as ViewModels.Apply.StudentApply;
-            Assert.AreEqual(viewResult.ViewName, "");
+            viewResult.ViewName.Should().Be("");
         }
 
         [TestMethod]
