@@ -131,6 +131,7 @@
     <Compile Include="ControllerTests\StudentTests\StudentControllerApplyListTest.cs" />
     <Compile Include="ControllerTests\StudentTests\StudentControllerUploadCVLetterTests.cs" />
     <Compile Include="ControllerTests\StudentTests\StudentControllerConfirmationUploadCVLetter.cs" />
+    <Compile Include="ControllerTests\StudentTests\StudentControllerDownload.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ControllerTests\StudentTests\StudentControllerCreateListTests.cs" />
     <Compile Include="ControllerTests\StudentTests\StudentControllerUploadTests.cs" />

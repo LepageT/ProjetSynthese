@@ -103,6 +103,7 @@
     <Compile Include="StudentTests\StudentControllerStageListTest.cs" />
     <Compile Include="StudentTests\StudentControllerUploadCVLetter.cs" />
     <Compile Include="StudentTests\StudentControllerUploadTests.cs" />
+    <Compile Include="StudentTests\StudentControllerApplyConfirmationTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Stagio.DataLayer\Stagio.DataLayer.csproj">
