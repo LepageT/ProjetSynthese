@@ -64,13 +64,13 @@ namespace Stagio.Web.Controllers
 
                 _interviewRepository.Add(interview);
 
-                return RedirectToAction(MVC.Interview.InterviewConfirmation());
+                return RedirectToAction(MVC.Interview.InterviewCreateConfirmation());
             }
 
             return View(createdInterview);
         }
 
-        public virtual ActionResult InterviewConfirmation()
+        public virtual ActionResult InterviewCreateConfirmation()
         {
             return View();
         }

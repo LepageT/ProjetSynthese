@@ -78,7 +78,7 @@ namespace Stagio.Web.Controllers
 		{
 			public readonly string Index = "Index";
 			public readonly string Create = "Create";
-			public readonly string InterviewConfirmation = "InterviewConfirmation";
+			public readonly string InterviewCreateConfirmation = "InterviewCreateConfirmation";
 			public readonly string List = "List";
 			public readonly string Edit = "Edit";
 		}
@@ -88,7 +88,7 @@ namespace Stagio.Web.Controllers
 		{
 			public const string Index = "Index";
 			public const string Create = "Create";
-			public const string InterviewConfirmation = "InterviewConfirmation";
+			public const string InterviewCreateConfirmation = "InterviewCreateConfirmation";
 			public const string List = "List";
 			public const string Edit = "Edit";
 		}
@@ -123,12 +123,12 @@ namespace Stagio.Web.Controllers
             {
                 public readonly string Create = "Create";
                 public readonly string Edit = "Edit";
-                public readonly string InterviewConfirmation = "InterviewConfirmation";
+                public readonly string InterviewCreateConfirmation = "InterviewCreateConfirmation";
                 public readonly string List = "List";
             }
             public readonly string Create = "~/Views/Interview/Create.cshtml";
             public readonly string Edit = "~/Views/Interview/Edit.cshtml";
-            public readonly string InterviewConfirmation = "~/Views/Interview/InterviewConfirmation.cshtml";
+            public readonly string InterviewCreateConfirmation = "~/Views/Interview/InterviewCreateConfirmation.cshtml";
             public readonly string List = "~/Views/Interview/List.cshtml";
 		}
 	}
@@ -173,13 +173,13 @@ namespace Stagio.Web.Controllers
 		}
 
 		[NonAction]
-		partial void InterviewConfirmationOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+		partial void InterviewCreateConfirmationOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
 		[NonAction]
-		public override System.Web.Mvc.ActionResult InterviewConfirmation()
+		public override System.Web.Mvc.ActionResult InterviewCreateConfirmation()
 		{
-			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InterviewConfirmation);
-			InterviewConfirmationOverride(callInfo);
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InterviewCreateConfirmation);
+			InterviewCreateConfirmationOverride(callInfo);
 			return callInfo;
 		}
 

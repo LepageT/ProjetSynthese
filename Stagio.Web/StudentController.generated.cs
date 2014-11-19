@@ -115,7 +115,7 @@ namespace Stagio.Web.Controllers
 			public readonly string CreateListPost = "CreateList";
 			public readonly string Create = "Create";
 			public readonly string Edit = "Edit";
-			public readonly string StageList = "StageList";
+			public readonly string DisplayStageList = "DisplayStageList";
 			public readonly string Apply = "Apply";
 			public readonly string ApplyConfirmation = "ApplyConfirmation";
 			public readonly string ApplyRemoveConfirmation = "ApplyRemoveConfirmation";
@@ -137,7 +137,7 @@ namespace Stagio.Web.Controllers
 			public const string CreateListPost = "CreateList";
 			public const string Create = "Create";
 			public const string Edit = "Edit";
-			public const string StageList = "StageList";
+			public const string DisplayStageList = "DisplayStageList";
 			public const string Apply = "Apply";
 			public const string ApplyConfirmation = "ApplyConfirmation";
 			public const string ApplyRemoveConfirmation = "ApplyRemoveConfirmation";
@@ -222,16 +222,12 @@ namespace Stagio.Web.Controllers
                 public readonly string ApplyList = "ApplyList";
                 public readonly string ApplyReApplyConfirmation = "ApplyReApplyConfirmation";
                 public readonly string ApplyRemoveConfirmation = "ApplyRemoveConfirmation";
-                public readonly string ConfirmationUploadCVLetter = "ConfirmationUploadCVLetter";
                 public readonly string Create = "Create";
                 public readonly string CreateConfirmation = "CreateConfirmation";
-                public readonly string CreateList = "CreateList";
+                public readonly string DisplayStageList = "DisplayStageList";
                 public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
                 public readonly string ReplyStage = "ReplyStage";
-                public readonly string ResultCreateList = "ResultCreateList";
-                public readonly string StageList = "StageList";
-                public readonly string Upload = "Upload";
                 public readonly string UploadCVLetter = "UploadCVLetter";
             }
             public readonly string Apply = "~/Views/Student/Apply.cshtml";
@@ -239,16 +235,12 @@ namespace Stagio.Web.Controllers
             public readonly string ApplyList = "~/Views/Student/ApplyList.cshtml";
             public readonly string ApplyReApplyConfirmation = "~/Views/Student/ApplyReApplyConfirmation.cshtml";
             public readonly string ApplyRemoveConfirmation = "~/Views/Student/ApplyRemoveConfirmation.cshtml";
-            public readonly string ConfirmationUploadCVLetter = "~/Views/Student/ConfirmationUploadCVLetter.cshtml";
             public readonly string Create = "~/Views/Student/Create.cshtml";
             public readonly string CreateConfirmation = "~/Views/Student/CreateConfirmation.cshtml";
-            public readonly string CreateList = "~/Views/Student/CreateList.cshtml";
+            public readonly string DisplayStageList = "~/Views/Student/DisplayStageList.cshtml";
             public readonly string Edit = "~/Views/Student/Edit.cshtml";
             public readonly string Index = "~/Views/Student/Index.cshtml";
             public readonly string ReplyStage = "~/Views/Student/ReplyStage.cshtml";
-            public readonly string ResultCreateList = "~/Views/Student/ResultCreateList.cshtml";
-            public readonly string StageList = "~/Views/Student/StageList.cshtml";
-            public readonly string Upload = "~/Views/Student/Upload.cshtml";
             public readonly string UploadCVLetter = "~/Views/Student/UploadCVLetter.cshtml";
 		}
 	}
@@ -384,13 +376,13 @@ namespace Stagio.Web.Controllers
 		}
 
 		[NonAction]
-		partial void StageListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+		partial void DisplayStageListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
 		[NonAction]
-		public override System.Web.Mvc.ActionResult StageList()
+		public override System.Web.Mvc.ActionResult DisplayStageList()
 		{
-			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.StageList);
-			StageListOverride(callInfo);
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DisplayStageList);
+			DisplayStageListOverride(callInfo);
 			return callInfo;
 		}
 

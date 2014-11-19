@@ -7,7 +7,7 @@
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="student-stage-menu">Stage <b class="caret"></b></a>
             <ul class="dropdown-menu">
-                <li>@Html.ActionLink("Voir les offres de stages", MVC.Student.StageList(), new { id = "stageList-student" })</li>
+                <li>@Html.ActionLink("Voir les offres de stages", MVC.Student.DisplayStageList(), new { id = "stageList-student" })</li>
                 <li>@Html.ActionLink("Voir les stages avec postulation", MVC.Student.ApplyList(), new { id = "apply-list-menu-item" })</li>          
             </ul>
         </li>
@@ -48,7 +48,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="Coordinator-menu">Coordonnateur <b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li>@Html.ActionLink("Inviter un autre coordonnateur", MVC.Coordinator.Invite(), new { id = "create-coordinator" })</li>
-                <li>@Html.ActionLink("Ajouter des étudiants", MVC.Student.Upload(), new { id = "upload-student" })</li>
+                <li>@Html.ActionLink("Ajouter des étudiants", MVC.Coordinator.Upload(), new { id = "upload-student" })</li>
                 <li>@Html.ActionLink("Inviter les employés d'entreprise", MVC.Coordinator.InviteContactEnterprise(), new { id = "invite-enterprise" })</li>
                 <li>@Html.ActionLink("Afficher la liste des stages", MVC.Stage.ListNewStages(), new { id="list" }) </li>
                 <li>@Html.ActionLink("Afficher la liste des étudiants", MVC.Coordinator.StudentList(), new { id = "student-list" })</li>

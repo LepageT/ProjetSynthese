@@ -101,7 +101,6 @@
     <Compile Include="StudentTests\StudentControllerCreateListTests.cs" />
     <Compile Include="StudentTests\StudentControllerCreateTests.cs" />
     <Compile Include="StudentTests\StudentControllerEditTests.cs" />
-    <Compile Include="StudentTests\StudentControllerReplyStageTests.cs" />
     <Compile Include="StudentTests\StudentControllerResultCreateList.cs" />
     <Compile Include="StudentTests\StudentControllerStageListTest.cs" />
     <Compile Include="StudentTests\StudentControllerUploadCVLetter.cs" />

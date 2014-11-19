@@ -23,7 +23,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
             }
             stageRepository.GetAll().Returns(stages.AsQueryable());
 
-            var result = studentController.StageList() as ViewResult;
+            var result = studentController.DisplayStageList() as ViewResult;
             var model = result.Model as IEnumerable<ViewModels.Student.StageList>;
 
             model.ShouldBeEquivalentTo(stages, options => options.ExcludingMissingProperties());

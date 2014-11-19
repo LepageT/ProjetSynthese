@@ -47,7 +47,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.InterviewTests
             var result = interviewController.Create(interview) as RedirectToRouteResult;
             var action = result.RouteValues["Action"];
 
-            action.ShouldBeEquivalentTo(MVC.Interview.Views.ViewNames.InterviewConfirmation);
+            action.ShouldBeEquivalentTo(MVC.Interview.Views.ViewNames.InterviewCreateConfirmation);
         }
     }
 }

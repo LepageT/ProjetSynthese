@@ -59,6 +59,7 @@ namespace Stagio.Web.Controllers
 
 
 
+
         [Authorize(Roles = RoleName.Coordinator)]
         public virtual ActionResult Upload()
         {
@@ -289,7 +290,7 @@ namespace Stagio.Web.Controllers
         }
 
         [Authorize(Roles = RoleName.Student)]
-        public virtual ActionResult StageList()
+        public virtual ActionResult DisplayStageList()
         {
             var stages = _stageRepository.GetAll().ToList();
             var stagesAccepted = stages.Where(x => x.Status == StageStatus.Accepted);
@@ -416,10 +417,13 @@ namespace Stagio.Web.Controllers
             return View(studentStageListViewModels);
         }
 
+
+
         public virtual ActionResult CreateConfirmation()
         {
             return View();
         }
+
 
         public virtual ActionResult Download(string file)
         {
