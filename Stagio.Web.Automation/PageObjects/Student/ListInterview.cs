@@ -27,7 +27,7 @@ namespace Stagio.Web.Automation.PageObjects.Student
         {
             try
             {
-                Driver.Instance.FindElement(By.Id("list-interview2"));
+                Driver.Instance.FindElement(By.Id("list-interview1"));
                 return true;
             }
             catch (NoSuchElementException)

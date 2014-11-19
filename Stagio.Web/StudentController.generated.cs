@@ -217,11 +217,11 @@ namespace Stagio.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string Apply = "Apply";
                 public readonly string ApplyConfirmation = "ApplyConfirmation";
                 public readonly string ApplyList = "ApplyList";
                 public readonly string ApplyReApplyConfirmation = "ApplyReApplyConfirmation";
                 public readonly string ApplyRemoveConfirmation = "ApplyRemoveConfirmation";
+                public readonly string ApplyStage = "ApplyStage";
                 public readonly string Create = "Create";
                 public readonly string CreateConfirmation = "CreateConfirmation";
                 public readonly string DisplayStageList = "DisplayStageList";
@@ -230,11 +230,11 @@ namespace Stagio.Web.Controllers
                 public readonly string ReplyStage = "ReplyStage";
                 public readonly string UploadCVLetter = "UploadCVLetter";
             }
-            public readonly string Apply = "~/Views/Student/Apply.cshtml";
             public readonly string ApplyConfirmation = "~/Views/Student/ApplyConfirmation.cshtml";
             public readonly string ApplyList = "~/Views/Student/ApplyList.cshtml";
             public readonly string ApplyReApplyConfirmation = "~/Views/Student/ApplyReApplyConfirmation.cshtml";
             public readonly string ApplyRemoveConfirmation = "~/Views/Student/ApplyRemoveConfirmation.cshtml";
+            public readonly string ApplyStage = "~/Views/Student/ApplyStage.cshtml";
             public readonly string Create = "~/Views/Student/Create.cshtml";
             public readonly string CreateConfirmation = "~/Views/Student/CreateConfirmation.cshtml";
             public readonly string DisplayStageList = "~/Views/Student/DisplayStageList.cshtml";

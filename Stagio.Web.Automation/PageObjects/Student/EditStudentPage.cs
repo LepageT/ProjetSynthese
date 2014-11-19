@@ -22,6 +22,7 @@ namespace Stagio.Web.Automation.PageObjects.Student
 
         public static void GoToByUrl()
         {
+            
             Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/Student/Edit?id=1");
         }
 

@@ -86,12 +86,6 @@ namespace Stagio.Web.Controllers
 		}
 		[NonAction]
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-		public virtual System.Web.Mvc.ActionResult AcceptApplyConfirmation()
-		{
-			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AcceptApplyConfirmation);
-		}
-		[NonAction]
-		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public virtual System.Web.Mvc.ActionResult Download()
 		{
 			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Download);
@@ -135,7 +129,6 @@ namespace Stagio.Web.Controllers
 			public readonly string ListStage = "ListStage";
 			public readonly string DetailsStudentApply = "DetailsStudentApply";
 			public readonly string DetailsStudentApplyPost = "DetailsStudentApply";
-			public readonly string AcceptApplyConfirmation = "AcceptApplyConfirmation";
 			public readonly string RefuseApplyConfirmation = "RefuseApplyConfirmation";
 			public readonly string Download = "Download";
 			public readonly string RemoveStageConfirmation = "RemoveStageConfirmation";
@@ -156,7 +149,6 @@ namespace Stagio.Web.Controllers
 			public const string ListStage = "ListStage";
 			public const string DetailsStudentApply = "DetailsStudentApply";
 			public const string DetailsStudentApplyPost = "DetailsStudentApply";
-			public const string AcceptApplyConfirmation = "AcceptApplyConfirmation";
 			public const string RefuseApplyConfirmation = "RefuseApplyConfirmation";
 			public const string Download = "Download";
 			public const string RemoveStageConfirmation = "RemoveStageConfirmation";
@@ -230,14 +222,6 @@ namespace Stagio.Web.Controllers
 		{
 			public readonly string command = "command";
 			public readonly string id = "id";
-		}
-		static readonly ActionParamsClass_AcceptApplyConfirmation s_params_AcceptApplyConfirmation = new ActionParamsClass_AcceptApplyConfirmation();
-		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-		public ActionParamsClass_AcceptApplyConfirmation AcceptApplyConfirmationParams { get { return s_params_AcceptApplyConfirmation; } }
-		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-		public class ActionParamsClass_AcceptApplyConfirmation
-		{
-			public readonly string acceptApply = "acceptApply";
 		}
 		static readonly ActionParamsClass_Download s_params_Download = new ActionParamsClass_Download();
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -484,18 +468,6 @@ namespace Stagio.Web.Controllers
 			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "command", command);
 			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
 			DetailsStudentApplyPostOverride(callInfo, command, id);
-			return callInfo;
-		}
-
-		[NonAction]
-		partial void AcceptApplyConfirmationOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Stagio.Web.ViewModels.ContactEnterprise.AcceptApply acceptApply);
-
-		[NonAction]
-		public override System.Web.Mvc.ActionResult AcceptApplyConfirmation(Stagio.Web.ViewModels.ContactEnterprise.AcceptApply acceptApply)
-		{
-			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.AcceptApplyConfirmation);
-			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "acceptApply", acceptApply);
-			AcceptApplyConfirmationOverride(callInfo, acceptApply);
 			return callInfo;
 		}
 

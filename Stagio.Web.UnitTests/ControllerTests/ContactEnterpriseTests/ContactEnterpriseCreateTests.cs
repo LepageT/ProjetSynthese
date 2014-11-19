@@ -77,6 +77,21 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
             routeAction.Should().Be(MVC.ContactEnterprise.Views.ViewNames.CreateConfirmation);
         }
 
+        [TestMethod]
+        public void contactEnterprise_createConfirmation_should_return_view_with_confirm_info()
+        {
+            var contactEnterprise = _fixture.Create<ContactEnterprise>();
+            enterpriseRepository.GetById(contactEnterprise.Id).Returns(contactEnterprise);
+            var viewModelExpected = Mapper.Map<ViewModels.ContactEnterprise.Reactive>(contactEnterprise);
+
+
+            var viewResult = enterpriseController.CreateConfirmation(contactEnterprise.Id) as ViewResult;
+            var viewModelObtained = viewResult.ViewData.Model as ViewModels.ContactEnterprise.Reactive;
+
+            viewModelObtained.ShouldBeEquivalentTo(viewModelExpected);
+
+        }
+
         
     }
 }

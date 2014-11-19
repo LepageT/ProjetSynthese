@@ -90,5 +90,13 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 
             result.ViewName.Should().Be("");
         }
+
+        [TestMethod]
+        public void student_createConfirmation_should_render_view()
+        {
+            var result = studentController.CreateConfirmation() as ViewResult;
+
+            result.ViewName.Should().Be("");
+        }
     }
 }

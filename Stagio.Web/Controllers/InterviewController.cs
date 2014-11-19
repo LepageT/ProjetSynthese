@@ -27,11 +27,6 @@ namespace Stagio.Web.Controllers
             _interviewRepository = interviewRepository;
 
         }
-        // GET: Interview
-        public virtual ActionResult Index()
-        {
-            return View();
-        }
 
         [Authorize(Roles = RoleName.Student)]
         public virtual ActionResult Create()
@@ -125,7 +120,8 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult Edit(int id)
         {
             var interview = _interviewRepository.GetById(id);
-
+            if (ModelState.IsValid)
+            {
             if (interview != null)
             {
                 var interviewEditPageViewModel = Mapper.Map<ViewModels.Interviews.Edit>(interview);
@@ -140,27 +136,25 @@ namespace Stagio.Web.Controllers
                 }
                 return View(interviewEditPageViewModel);
             }
+            }
             return HttpNotFound();
         }
 
         [HttpPost]
         public virtual ActionResult Edit(ViewModels.Interviews.Edit editInterviewViewModel)
         {
-            if (ModelState.IsValid)
+            var interview = _interviewRepository.GetById(editInterviewViewModel.Id);
+            if (interview != null)
             {
-                var interview = _interviewRepository.GetById(editInterviewViewModel.Id);
-                if (interview == null)
-                {
-                    return HttpNotFound();
-                }
-
                 Mapper.Map(editInterviewViewModel, interview);
 
                 _interviewRepository.Update(interview);
 
                 return RedirectToAction(MVC.Interview.List());
             }
-            return View(editInterviewViewModel);
+            return HttpNotFound();
+
+           
         }
 
     }

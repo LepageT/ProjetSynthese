@@ -46,7 +46,7 @@ namespace Stagio.Web.Services
             return PasswordHash.CreateHash(password);
         }
 
-        public bool validatePassword(string hashedPassword, string passwordToValidate)
+        public bool ValidatePassword(string hashedPassword, string passwordToValidate)
         {
             return PasswordHash.ValidatePassword(passwordToValidate, hashedPassword);
         }
@@ -62,9 +62,5 @@ namespace Stagio.Web.Services
             return false;
         }
 
-        public bool UserMatriculeExist(string matricule)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

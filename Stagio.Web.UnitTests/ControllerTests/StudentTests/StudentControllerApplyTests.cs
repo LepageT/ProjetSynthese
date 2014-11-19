@@ -99,5 +99,6 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 
             result.Should().BeOfType<HttpNotFoundResult>();
         }
+
     }
 }
