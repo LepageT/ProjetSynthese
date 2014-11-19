@@ -29,6 +29,6 @@ namespace Stagio.Web.ViewModels.Student
         [Required(ErrorMessage = "Requis")]
         public int IdStage { get; set; }
 
-        public IEnumerable<HttpPostedFileBase> files;
+       // public IEnumerable<HttpPostedFileBase> files;
     }
 }
