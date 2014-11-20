@@ -117,8 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CreateContactEntreprise" xml:space="preserve">
+  <data name="CreateContactEnterprise" xml:space="preserve">
     <value>s'est inscrit sur le site.</value>
     <comment>Ajouté le nom du contact </comment>
+  </data>
+  <data name="CreateContactEnterpriseTitle" xml:space="preserve">
+    <value>Un employé s'est inscrit sur le site Stagio</value>
   </data>
 </root>

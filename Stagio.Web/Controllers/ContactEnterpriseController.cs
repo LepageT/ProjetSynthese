@@ -93,8 +93,9 @@ namespace Stagio.Web.Controllers
                     };
                     _contactEnterpriseRepository.Add(newContactEnterprise);
                     string message = newContactEnterprise.FirstName + " " + newContactEnterprise.LastName + " " +
-                                     ContactEntrepriseToCoordinator.CreateContactEntreprise;
-                    _notificationService.SendNotificationTo
+                                     ContactEntrepriseToCoordinator.CreateContactEnterprise;
+                    _notificationService.SendNotificationToAllCoordinator(
+                        ContactEntrepriseToCoordinator.CreateContactEnterpriseTitle, message);
                     _mailler.SendEmail(newContactEnterprise.Email, EmailAccountCreation.Subject, EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
 
                     //ADD NOTIFICATIONS: À la coordination et aux autres employés de l'entreprise.
@@ -167,8 +168,8 @@ namespace Stagio.Web.Controllers
                         contactEnterprise.Password = _accountService.HashPassword(contactEnterprise.Password);
                         _contactEnterpriseRepository.Add(contactEnterprise);
                          string message = contactEnterprise.FirstName + " " + contactEnterprise.LastName + " " +
-                                     ContactEntrepriseToCoordinator.CreateContactEntreprise;
-                        _notificationService.SendNotificationTo
+                                     ContactEntrepriseToCoordinator.CreateContactEnterprise;
+                        _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.CreateContactEnterpriseTitle, message);
                         _mailler.SendEmail(createViewModel.Email, EmailAccountCreation.Subject,
                             EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
 

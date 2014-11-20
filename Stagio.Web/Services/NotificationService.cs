@@ -1,44 +1,65 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using Stagio.DataLayer;
+using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
-
 namespace Stagio.Web.Services
 {
     public class NotificationService : INotificationService
     {
         private IEntityRepository<ApplicationUser> _userRepository;
-        private IEntityRepository<Notification> _notificationRepository; 
-
+        private IEntityRepository<Notification> _notificationRepository;
         public NotificationService(IEntityRepository<ApplicationUser> userRepository, IEntityRepository<Notification> notificationRepository)
         {
             _userRepository = userRepository;
             _notificationRepository = notificationRepository;
         }
-
         public bool SendNotificationTo(int destinationId, string title, string message)
         {
             if (_userRepository.GetById(destinationId) != null)
             {
-                Notification notification = new Notification()
-                {
-                    Date = DateTime.Now,
-                    Title = title,
-                    Message = message,
-                    For = destinationId,
-                    Seen = false
-                };
-
-                _notificationRepository.Add(notification);
+                SendNotification(destinationId, title, message);
                 return true;
             }
-            else
+            return false;
+        }
+        public bool SendNotificationToAllCoordinator(String title, String message)
+        {
+            var userList = _userRepository.GetAll().ToList();
+            var coordinatorRole = new UserRole() { RoleName = RoleName.Coordinator };
+            var coordinatorList = new List<ApplicationUser>();
+            foreach (var user in userList)
             {
-                return false;
+                coordinatorList.AddRange(from role in user.Roles where role.RoleName == coordinatorRole.RoleName select user);
             }
- 
+            if (coordinatorList.Any())
+            {
+                foreach (var coordinator in coordinatorList)
+                {
+                    SendNotification(coordinator.Id, title, message);
+                }
+                return true;
+            }
+            return false;
+        }
+        public bool SendNotificationToAllContactEnterpriseOf(String enterpriseName, String title, String message)
+        {
+            return false;
+        }
+        private void SendNotification(int id, String title, String message)
+        {
+            var notification = new Notification()
+            {
+                Date = DateTime.Now,
+                Title = title,
+                Message = message,
+                For = id,
+                Seen = false
+            };
+            _notificationRepository.Add(notification);
         }
     }
 }

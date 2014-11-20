@@ -63,9 +63,18 @@ namespace Stagio.Web.Module.Strings.Notification {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à s&apos;est inscrit sur le site..
         /// </summary>
-        internal static string CreateContactEntreprise {
+        internal static string CreateContactEnterprise {
             get {
-                return ResourceManager.GetString("CreateContactEntreprise", resourceCulture);
+                return ResourceManager.GetString("CreateContactEnterprise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Un employé s&apos;est inscrit sur le site Stagio.
+        /// </summary>
+        internal static string CreateContactEnterpriseTitle {
+            get {
+                return ResourceManager.GetString("CreateContactEnterpriseTitle", resourceCulture);
             }
         }
     }
