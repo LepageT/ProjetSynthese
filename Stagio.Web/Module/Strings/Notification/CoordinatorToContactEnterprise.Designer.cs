@@ -22,14 +22,14 @@ namespace Stagio.Web.Module.Strings.Notification {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ContactEntrepriseToCoordinator {
+    internal class CoordinatorToContactEnterprise {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ContactEntrepriseToCoordinator() {
+        internal CoordinatorToContactEnterprise() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Stagio.Web.Module.Strings.Notification {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Stagio.Web.Module.Strings.Notification.ContactEntrepriseToCoordinator", typeof(ContactEntrepriseToCoordinator).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Stagio.Web.Module.Strings.Notification.CoordinatorToContactEnterprise", typeof(CoordinatorToContactEnterprise).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,56 +61,20 @@ namespace Stagio.Web.Module.Strings.Notification {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à s&apos;est inscrit sur le site..
+        ///   Recherche une chaîne localisée semblable à Votre offre de stage est maintenant visible pour les élèves..
         /// </summary>
-        internal static string CreateContactEnterprise {
+        internal static string StageAcceptedMessage {
             get {
-                return ResourceManager.GetString("CreateContactEnterprise", resourceCulture);
+                return ResourceManager.GetString("StageAcceptedMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Un employé s&apos;est inscrit sur le site Stagio.
+        ///   Recherche une chaîne localisée semblable à Votre offre de stage a été acceptée par un coordonnateur.
         /// </summary>
-        internal static string CreateContactEnterpriseTitle {
+        internal static string StageAcceptedTitle {
             get {
-                return ResourceManager.GetString("CreateContactEnterpriseTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à  a modifié le stage .
-        /// </summary>
-        internal static string EditStageMessage {
-            get {
-                return ResourceManager.GetString("EditStageMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Une entreprise a modifié un stage.
-        /// </summary>
-        internal static string EditStageTitle {
-            get {
-                return ResourceManager.GetString("EditStageTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à  a ajouté un stage. Vous devez l&apos;approuver pour qu&apos;il soit visible pour les étudiants..
-        /// </summary>
-        internal static string NewStageMessage {
-            get {
-                return ResourceManager.GetString("NewStageMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Un nouveau stage est en attente d&apos;approbation.
-        /// </summary>
-        internal static string NewStageTitle {
-            get {
-                return ResourceManager.GetString("NewStageTitle", resourceCulture);
+                return ResourceManager.GetString("StageAcceptedTitle", resourceCulture);
             }
         }
     }

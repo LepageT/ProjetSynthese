@@ -4,6 +4,7 @@ using NSubstitute;
 using Stagio.DataLayer;
 using Stagio.Domain.Entities;
 using Stagio.Web.Controllers;
+using Stagio.Web.Services;
 
 namespace Stagio.Web.UnitTests.ControllerTests.StageTests
 {
@@ -11,13 +12,18 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
     public class StageControllerBaseClassTests : AllControllersBaseClassTests
     {
         protected IEntityRepository<Stage> stageRepository;
+        protected INotificationService notificationService;
+        protected IEntityRepository<ContactEnterprise> contactEnterpriseRepository;
         protected StageController stageController;
         
         [TestInitialize]
         public void StageControllerTestInit()
         {
             stageRepository = Substitute.For<IEntityRepository<Stage>>();
-            stageController = new StageController(stageRepository);
+            notificationService = Substitute.For<INotificationService>();
+            contactEnterpriseRepository = Substitute.For<IEntityRepository<ContactEnterprise>>();
+
+            stageController = new StageController(stageRepository, notificationService, contactEnterpriseRepository);
         }
     }
 }
