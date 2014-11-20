@@ -56,7 +56,7 @@ namespace Stagio.Web.Controllers
 
             return View(notificationsListViewModel);
         }
+        }
 
 
     }
-}

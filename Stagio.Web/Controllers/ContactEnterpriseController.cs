@@ -12,6 +12,7 @@ using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
 using Stagio.Web.Module;
 using Stagio.Web.Module.Strings.Controller;
+using Stagio.Web.Module.Strings.Notification;
 using Stagio.Web.Services;
 using Stagio.Web.Module.Strings.Email;
 
@@ -27,9 +28,12 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<Student> _studentRepository;
         private readonly IHttpContextService _httpContext;
         private readonly IEntityRepository<InvitationContactEnterprise> _invitationRepository;
-        private readonly IEntityRepository<Notification> _notificationRepository; 
+        private readonly IEntityRepository<Notification> _notificationRepository;
+        private readonly IEntityRepository<ApplicationUser> _applicationUserRepository;
+        private readonly INotificationService _notificationService; 
 
-        public ContactEnterpriseController(IEntityRepository<ContactEnterprise> enterpriseRepository, IEntityRepository<Stage> stageRepository, IAccountService accountService, IMailler mailler, IEntityRepository<Apply> applyRepository, IEntityRepository<Student> studentRepository, IHttpContextService httpContext, IEntityRepository<InvitationContactEnterprise> invitationRepository, IEntityRepository<Notification> notificationRepository )
+
+        public ContactEnterpriseController(IEntityRepository<ContactEnterprise> enterpriseRepository, IEntityRepository<Stage> stageRepository, IAccountService accountService, IMailler mailler, IEntityRepository<Apply> applyRepository, IEntityRepository<Student> studentRepository, IHttpContextService httpContext, IEntityRepository<InvitationContactEnterprise> invitationRepository, IEntityRepository<Notification> notificationRepository, IEntityRepository<ApplicationUser> applicationUserRepository)
         {
             _contactEnterpriseRepository = enterpriseRepository;
             _accountService = accountService;
@@ -41,6 +45,8 @@ namespace Stagio.Web.Controllers
             _httpContext = httpContext;
             _invitationRepository = invitationRepository;
             _notificationRepository = notificationRepository;
+            _applicationUserRepository = applicationUserRepository;
+            _notificationService = new NotificationService(_applicationUserRepository, notificationRepository);
         }
 
         // GET: Enterprise
@@ -86,7 +92,9 @@ namespace Stagio.Web.Controllers
                         new UserRole() {RoleName = RoleName.ContactEnterprise}
                     };
                     _contactEnterpriseRepository.Add(newContactEnterprise);
-
+                    string message = newContactEnterprise.FirstName + " " + newContactEnterprise.LastName + " " +
+                                     ContactEntrepriseToCoordinator.CreateContactEntreprise;
+                    _notificationService.SendNotificationTo
                     _mailler.SendEmail(newContactEnterprise.Email, EmailAccountCreation.Subject, EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
 
                     //ADD NOTIFICATIONS: À la coordination et aux autres employés de l'entreprise.
@@ -158,7 +166,9 @@ namespace Stagio.Web.Controllers
                         contactEnterprise.UserName = contactEnterprise.Email;
                         contactEnterprise.Password = _accountService.HashPassword(contactEnterprise.Password);
                         _contactEnterpriseRepository.Add(contactEnterprise);
-
+                         string message = contactEnterprise.FirstName + " " + contactEnterprise.LastName + " " +
+                                     ContactEntrepriseToCoordinator.CreateContactEntreprise;
+                        _notificationService.SendNotificationTo
                         _mailler.SendEmail(createViewModel.Email, EmailAccountCreation.Subject,
                             EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
 
