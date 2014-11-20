@@ -212,7 +212,8 @@ namespace Stagio.Web.Controllers
 
             _stageRepository.Add(stage);
             //AJOUT NOTIFICATION
-            //_notification.SendNotificationTo(id, "TITLE", "MESSAGE");
+            string message = "L'entreprise " + stage.CompanyName + ContactEntrepriseToCoordinator.NewStageMessage;
+            _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.NewStageTitle, message);
             return RedirectToAction(MVC.ContactEnterprise.CreateStageSucceed());
         }
 
