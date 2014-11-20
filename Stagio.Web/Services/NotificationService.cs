@@ -80,12 +80,12 @@ namespace Stagio.Web.Services
 
         }
 
-        public ICollection<Notification> GetNotificationForUser(int userId)
+        public ICollection<Notification> GetNotificationForUser(int userId, int count)
         {
             var notifications = _notificationRepository.GetAll().ToList();
             var userNotifications = notifications.Where(x => x.For == userId).ToList();
 
-            return userNotifications.OrderByDescending(x => x.Date).ToList();
+            return userNotifications.OrderByDescending(x => x.Date).ToList().GetRange(0, count);
 
         }
 

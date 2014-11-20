@@ -132,9 +132,9 @@ namespace Stagio.Web.UnitTests.Services
             allNotification.AddRange(notificationForUser);
             _notificationRepository.GetAll().Returns(allNotification.AsQueryable());
 
-            var result = _notificationService.GetNotificationForUser(1);
+            var result = _notificationService.GetNotificationForUser(1, 2);
 
-            result.Count.Should().Be(notificationForUser.Count);
+            result.Count.Should().Be(2);
         }
     }
 }
