@@ -148,6 +148,7 @@
     <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerUploadTests.cs" />
     <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerResultCreateList.cs" />
     <Compile Include="Services\MaillerTests.cs" />
+    <Compile Include="Services\NotificationServiceTests.cs" />
     <Compile Include="Services\UserServicesTests.cs" />
     <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerCreateTests.cs" />
     <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerInviteTest.cs" />
