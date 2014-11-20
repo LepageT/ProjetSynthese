@@ -27,9 +27,10 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<Student> _studentRepository;
         private readonly IHttpContextService _httpContext;
         private readonly IEntityRepository<InvitationContactEnterprise> _invitationRepository;
-        private readonly IEntityRepository<Notification> _notificationRepository; 
+        private readonly IEntityRepository<Notification> _notificationRepository;
+        private readonly INotificationService _notification;
 
-        public ContactEnterpriseController(IEntityRepository<ContactEnterprise> enterpriseRepository, IEntityRepository<Stage> stageRepository, IAccountService accountService, IMailler mailler, IEntityRepository<Apply> applyRepository, IEntityRepository<Student> studentRepository, IHttpContextService httpContext, IEntityRepository<InvitationContactEnterprise> invitationRepository, IEntityRepository<Notification> notificationRepository )
+        public ContactEnterpriseController(IEntityRepository<ContactEnterprise> enterpriseRepository, IEntityRepository<Stage> stageRepository, IAccountService accountService, IMailler mailler, IEntityRepository<Apply> applyRepository, IEntityRepository<Student> studentRepository, IHttpContextService httpContext, IEntityRepository<InvitationContactEnterprise> invitationRepository, IEntityRepository<Notification> notificationRepository, INotificationService notification)
         {
             _contactEnterpriseRepository = enterpriseRepository;
             _accountService = accountService;
@@ -41,6 +42,7 @@ namespace Stagio.Web.Controllers
             _httpContext = httpContext;
             _invitationRepository = invitationRepository;
             _notificationRepository = notificationRepository;
+            _notification = notification;
         }
 
         // GET: Enterprise
@@ -200,6 +202,8 @@ namespace Stagio.Web.Controllers
             stage.PublicationDate = DateTime.Now;
 
             _stageRepository.Add(stage);
+            //AJOUT NOTIFICATION
+            //_notification.SendNotificationTo(id, "TITLE", "MESSAGE");
             return RedirectToAction(MVC.ContactEnterprise.CreateStageSucceed());
         }
 
