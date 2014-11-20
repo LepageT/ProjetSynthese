@@ -58,7 +58,34 @@ namespace Stagio.Web.Services
 
         public bool SendNotificationToAllContactEnterpriseOf(String enterpriseName, String title, String message)
         {
+            var userList = _userRepository.GetAll().ToList();
+            var contactEnterpriseRole = new UserRole() { RoleName = RoleName.ContactEnterprise };
+            var contactEnterpriseList = new List<ApplicationUser>();
+            foreach (var user in userList)
+            {
+                contactEnterpriseList.AddRange(from role in user.Roles where role.RoleName == contactEnterpriseRole.RoleName select user);
+            }
+
+            var enterpriseEmployees = contactEnterpriseList.Where(contactEnterprise => ((ContactEnterprise) contactEnterprise).EnterpriseName.Equals(enterpriseName)).ToList();
+
+            if (enterpriseEmployees.Any())
+            {
+                foreach (var coordinator in enterpriseEmployees)
+                {
+                    SendNotification(coordinator.Id, title, message);
+                }
+                return true;
+            }
             return false;
+
+        }
+
+        public ICollection<Notification> GetNotificationForUser(int userId)
+        {
+            var notifications = _notificationRepository.GetAll().ToList();
+            var userNotifications = notifications.Where(x => x.For == userId).ToList();
+
+            return userNotifications.OrderByDescending(x => x.Date).ToList();
 
         }
 
