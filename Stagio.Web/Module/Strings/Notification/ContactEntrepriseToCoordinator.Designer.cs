@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Stagio.Web.Module.Strings.Controller {
+namespace Stagio.Web.Module.Strings.Notification {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace Stagio.Web.Module.Strings.Controller {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ContactEnterpriseResources {
+    internal class ContactEntrepriseToCoordinator {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ContactEnterpriseResources() {
+        internal ContactEntrepriseToCoordinator() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Stagio.Web.Module.Strings.Controller {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Stagio.Web.Module.Strings.Controller.ContactEnterpriseResources", typeof(ContactEnterpriseResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Stagio.Web.Module.Strings.Notification.ContactEntrepriseToCoordinator", typeof(ContactEntrepriseToCoordinator).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,20 +61,38 @@ namespace Stagio.Web.Module.Strings.Controller {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Ce email est déjà utilisé pour un compte entreprise..
+        ///   Recherche une chaîne localisée semblable à s&apos;est inscrit sur le site..
         /// </summary>
-        internal static string EmailContactEnterpriseAlreadyUsed {
+        internal static string CreateContactEnterprise {
             get {
-                return ResourceManager.GetString("EmailContactEnterpriseAlreadyUsed", resourceCulture);
+                return ResourceManager.GetString("CreateContactEnterprise", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à &quot;Un ou des fichiers ne peuvent pas être téléchargés&quot;.
+        ///   Recherche une chaîne localisée semblable à Un employé s&apos;est inscrit sur le site Stagio.
         /// </summary>
-        internal static string FilesCantBeDownload {
+        internal static string CreateContactEnterpriseTitle {
             get {
-                return ResourceManager.GetString("FilesCantBeDownload", resourceCulture);
+                return ResourceManager.GetString("CreateContactEnterpriseTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à  a ajouté un stage. Vous devez l&apos;approuver pour qu&apos;il soit visible pour les étudiants..
+        /// </summary>
+        internal static string NewStageMessage {
+            get {
+                return ResourceManager.GetString("NewStageMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Un nouveau stage est en attente d&apos;approbation.
+        /// </summary>
+        internal static string NewStageTitle {
+            get {
+                return ResourceManager.GetString("NewStageTitle", resourceCulture);
             }
         }
     }

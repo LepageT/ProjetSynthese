@@ -179,9 +179,6 @@
     <Compile Include="AccountController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="ApplyController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
@@ -193,7 +190,6 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ApplyController.cs" />
     <Compile Include="Controllers\CIController.cs" />
     <Compile Include="Controllers\CoordinatorController.cs" />
     <Compile Include="Controllers\ContactEnterpriseController.cs" />
@@ -253,6 +249,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EmailAccountCreation.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Strings\Notification\ContactEntrepriseToCoordinator.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContactEntrepriseToCoordinator.resx</DependentUpon>
     </Compile>
     <Compile Include="Module\Strings\Shared\Navigation.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -542,6 +543,10 @@
     <EmbeddedResource Include="Module\Strings\Email\EmailAccountCreation.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>EmailAccountCreation.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Module\Strings\Notification\ContactEntrepriseToCoordinator.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ContactEntrepriseToCoordinator.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Module\Strings\Shared\Navigation.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

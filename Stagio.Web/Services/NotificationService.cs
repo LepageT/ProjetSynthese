@@ -14,8 +14,8 @@ namespace Stagio.Web.Services
         private IEntityRepository<ApplicationUser> _userRepository;
         private IEntityRepository<Notification> _notificationRepository;
 
-
-        public NotificationService(IEntityRepository<ApplicationUser> userRepository, IEntityRepository<Notification> notificationRepository)
+        public NotificationService(IEntityRepository<ApplicationUser> userRepository,
+            IEntityRepository<Notification> notificationRepository)
         {
             _userRepository = userRepository;
             _notificationRepository = notificationRepository;
@@ -28,7 +28,7 @@ namespace Stagio.Web.Services
                 SendNotification(destinationId, title, message);
                 return true;
             }
-           
+
             return false;
         }
 
@@ -40,7 +40,9 @@ namespace Stagio.Web.Services
             var coordinatorList = new List<ApplicationUser>();
             foreach (var user in userList)
             {
-                coordinatorList.AddRange(from role in user.Roles where role.RoleName == coordinatorRole.RoleName select user);
+                coordinatorList.AddRange(from role in user.Roles
+                    where role.RoleName == coordinatorRole.RoleName
+                    select user);
             }
             if (coordinatorList.Any())
             {
@@ -98,9 +100,7 @@ namespace Stagio.Web.Services
                 For = id,
                 Seen = false
             };
-
             _notificationRepository.Add(notification);
         }
-
     }
 }

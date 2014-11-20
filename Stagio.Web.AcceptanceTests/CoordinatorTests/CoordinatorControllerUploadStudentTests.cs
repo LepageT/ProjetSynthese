@@ -6,7 +6,7 @@ using Stagio.Web.Automation.PageObjects;
 using Stagio.Web.Automation.PageObjects.Coordinator;
 using Stagio.Web.Automation.PageObjects.Student;
 
-namespace Stagio.Web.AcceptanceTests.StudentTests
+namespace Stagio.Web.AcceptanceTests.CoordinatorTests
 {
     [TestClass]
     public class StudentControllerUploadTests : BaseTests

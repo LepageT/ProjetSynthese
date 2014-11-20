@@ -12,6 +12,7 @@ using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
 using Stagio.Web.Module;
 using Stagio.Web.Module.Strings.Controller;
+using Stagio.Web.Module.Strings.Notification;
 using Stagio.Web.Services;
 using Stagio.Web.Module.Strings.Email;
 
@@ -28,8 +29,11 @@ namespace Stagio.Web.Controllers
         private readonly IHttpContextService _httpContext;
         private readonly IEntityRepository<InvitationContactEnterprise> _invitationRepository;
         private readonly IEntityRepository<Notification> _notificationRepository; 
+        private readonly IEntityRepository<ApplicationUser> _applicationUserRepository;
+        private readonly INotificationService _notificationService; 
 
-        public ContactEnterpriseController(IEntityRepository<ContactEnterprise> enterpriseRepository, IEntityRepository<Stage> stageRepository, IAccountService accountService, IMailler mailler, IEntityRepository<Apply> applyRepository, IEntityRepository<Student> studentRepository, IHttpContextService httpContext, IEntityRepository<InvitationContactEnterprise> invitationRepository, IEntityRepository<Notification> notificationRepository )
+
+        public ContactEnterpriseController(IEntityRepository<ContactEnterprise> enterpriseRepository, IEntityRepository<Stage> stageRepository, IAccountService accountService, IMailler mailler, IEntityRepository<Apply> applyRepository, IEntityRepository<Student> studentRepository, IHttpContextService httpContext, IEntityRepository<InvitationContactEnterprise> invitationRepository, IEntityRepository<Notification> notificationRepository, IEntityRepository<ApplicationUser> applicationUserRepository)
         {
             _contactEnterpriseRepository = enterpriseRepository;
             _accountService = accountService;
@@ -41,6 +45,8 @@ namespace Stagio.Web.Controllers
             _httpContext = httpContext;
             _invitationRepository = invitationRepository;
             _notificationRepository = notificationRepository;
+            _applicationUserRepository = applicationUserRepository;
+            _notificationService = new NotificationService(_applicationUserRepository, notificationRepository);
         }
 
         // GET: Enterprise
@@ -69,7 +75,7 @@ namespace Stagio.Web.Controllers
                 var email = list.FirstOrDefault(x => x.Email == createViewModel.Email);
                 if (email != null)
             {
-                    ModelState.AddModelError("Email", "Ce email est déjà utilisé");
+                    ModelState.AddModelError("Email", ContactEnterpriseResources.EmailContactEnterpriseAlreadyUsed);
                 }
 
                 }
@@ -86,7 +92,10 @@ namespace Stagio.Web.Controllers
                         new UserRole() {RoleName = RoleName.ContactEnterprise}
                     };
                     _contactEnterpriseRepository.Add(newContactEnterprise);
-
+                    string message = newContactEnterprise.FirstName + " " + newContactEnterprise.LastName + " " +
+                                     ContactEntrepriseToCoordinator.CreateContactEnterprise;
+                    _notificationService.SendNotificationToAllCoordinator(
+                        ContactEntrepriseToCoordinator.CreateContactEnterpriseTitle, message);
                     _mailler.SendEmail(newContactEnterprise.Email, EmailAccountCreation.Subject, EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
 
                     //ADD NOTIFICATIONS: À la coordination et aux autres employés de l'entreprise.
@@ -133,7 +142,7 @@ namespace Stagio.Web.Controllers
                 var email = list.FirstOrDefault(x => x.Email == createViewModel.Email);
                 if (email != null)
                 {
-                    ModelState.AddModelError("Email", "Ce email est déjà utilisé");
+                    ModelState.AddModelError("Email", ContactEnterpriseResources.EmailContactEnterpriseAlreadyUsed);
                 }
 
             }
@@ -158,7 +167,9 @@ namespace Stagio.Web.Controllers
                         contactEnterprise.UserName = contactEnterprise.Email;
                         contactEnterprise.Password = _accountService.HashPassword(contactEnterprise.Password);
                         _contactEnterpriseRepository.Add(contactEnterprise);
-
+                         string message = contactEnterprise.FirstName + " " + contactEnterprise.LastName + " " +
+                                     ContactEntrepriseToCoordinator.CreateContactEnterprise;
+                        _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.CreateContactEnterpriseTitle, message);
                         _mailler.SendEmail(createViewModel.Email, EmailAccountCreation.Subject,
                             EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
 
@@ -200,6 +211,9 @@ namespace Stagio.Web.Controllers
             stage.PublicationDate = DateTime.Now;
 
             _stageRepository.Add(stage);
+            //AJOUT NOTIFICATION
+            string message = "L'entreprise " + stage.CompanyName + ContactEntrepriseToCoordinator.NewStageMessage;
+            _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.NewStageTitle, message);
             return RedirectToAction(MVC.ContactEnterprise.CreateStageSucceed());
         }
 
@@ -232,7 +246,7 @@ namespace Stagio.Web.Controllers
 
             //Sending invitation with the Mailler class
             String messageText = EmailEnterpriseResources.InviteCoworker;
-            String invitationUrl = EmailEnterpriseResources.InviteLinkCoworker + token + "\">jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token=" + token + "</a>";
+            String invitationUrl = EmailEnterpriseResources.InviteLinkCoworker + token + EmailEnterpriseResources.EndLink + token + "</a>";
 
             messageText += invitationUrl;
 
@@ -328,7 +342,7 @@ namespace Stagio.Web.Controllers
         {
             if (canNotDownload)
             {
-                ViewBag.Message = "Un ou des fichiers ne peuvent pas être téléchargés";
+                ViewBag.Message = ContactEnterpriseResources.FilesCantBeDownload;
             }
             var apply = new Apply();
             try

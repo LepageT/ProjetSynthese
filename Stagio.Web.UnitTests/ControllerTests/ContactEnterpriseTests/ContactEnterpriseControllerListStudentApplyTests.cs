@@ -59,7 +59,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
         [TestMethod]
         public void contactEnterpriseController_listStudentApply_with_invalid_id_should_return_httpnotfound()
         {
-            var result = enterpriseController.ListStudentApply(999999999);
+            var result = enterpriseController.ListStudentApply(INVALID_ID);
 
             result.Should().BeOfType<HttpNotFoundResult>();
 

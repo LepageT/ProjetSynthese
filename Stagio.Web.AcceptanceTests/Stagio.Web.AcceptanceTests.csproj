@@ -80,10 +80,13 @@
     <Compile Include="ContactEnterpriseTests\ContactEnterpriseControllerReactivateTests.cs" />
     <Compile Include="ContactEnterpriseTests\ContactEnterpriseInviteTests.cs" />
     <Compile Include="ContactEnterpriseTests\ContactEnterpriseNotificationTests.cs" />
+    <Compile Include="CoordinatorTests\CoordinatorControllerCreateListTests.cs" />
     <Compile Include="CoordinatorTests\CoordinatorControllerInviteEnterpriseTests.cs" />
     <Compile Include="CoordinatorTests\CoordinatorControllerInviteTests.cs" />
+    <Compile Include="CoordinatorTests\CoordinatorControllerResultCreateList.cs" />
     <Compile Include="CoordinatorTests\CoordinatorControllerStudentApplyListTests.cs" />
     <Compile Include="CoordinatorTests\CoordinatorControllerStudentListTests.cs" />
+    <Compile Include="CoordinatorTests\CoordinatorControllerUploadStudentTests.cs" />
     <Compile Include="CoordinatorTests\CoordinatorCreateTests.cs" />
     <Compile Include="CoordinatorTests\CoordinatorInviteTests.cs" />
     <Compile Include="ContactEnterpriseTests\ContactEnterpriseControllerCreateStageTests.cs" />
@@ -99,13 +102,10 @@
     <Compile Include="StageTests\StageControllerStudentViewInformationsTests.cs" />
     <Compile Include="StudentTests\StudentControllerApplyListTests.cs" />
     <Compile Include="StudentTests\StudentControllerApplyTests.cs" />
-    <Compile Include="StudentTests\StudentControllerCreateListTests.cs" />
     <Compile Include="StudentTests\StudentControllerCreateTests.cs" />
     <Compile Include="StudentTests\StudentControllerEditTests.cs" />
-    <Compile Include="StudentTests\StudentControllerResultCreateList.cs" />
     <Compile Include="StudentTests\StudentControllerStageListTest.cs" />
     <Compile Include="StudentTests\StudentControllerNotificationTests.cs" />
-    <Compile Include="StudentTests\StudentControllerUploadTests.cs" />
     <Compile Include="StudentTests\StudentControllerApplyConfirmationTests.cs" />
   </ItemGroup>
   <ItemGroup>
