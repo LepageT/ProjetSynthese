@@ -107,7 +107,7 @@ namespace Stagio.Web.Controllers
                     }
 
                     String messageText = EmailEnterpriseResources.InviteMessageBody;
-                    String invitationUrl = EmailEnterpriseResources.InviteLink + token + "\">jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token=" + token + "</a>";
+                    String invitationUrl = EmailEnterpriseResources.InviteLink + token + EmailEnterpriseResources.EndLink + token + "</a>";
 
                     messageText += invitationUrl;
 

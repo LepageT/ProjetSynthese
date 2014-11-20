@@ -117,7 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="EmailAlreadyUsed" xml:space="preserve">
+  <data name="EmailContactEnterpriseAlreadyUsed" xml:space="preserve">
     <value>Ce email est déjà utilisé pour un compte entreprise.</value>
+  </data>
+  <data name="FilesCantBeDownload" xml:space="preserve">
+    <value>"Un ou des fichiers ne peuvent pas être téléchargés"</value>
   </data>
 </root>

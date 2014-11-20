@@ -56,12 +56,6 @@ namespace Stagio.Web.Controllers
 
 		[NonAction]
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-		public virtual System.Web.Mvc.ActionResult UploadPost()
-		{
-			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UploadPost);
-		}
-		[NonAction]
-		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public virtual System.Web.Mvc.ActionResult Edit()
 		{
 			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
@@ -107,12 +101,6 @@ namespace Stagio.Web.Controllers
 		public class ActionNamesClass
 		{
 			public readonly string Index = "Index";
-			public readonly string Upload = "Upload";
-			public readonly string UploadPost = "Upload";
-			public readonly string ResultCreateList = "ResultCreateList";
-			public readonly string PostResultCreateList = "ResultCreateList";
-			public readonly string CreateList = "CreateList";
-			public readonly string CreateListPost = "CreateList";
 			public readonly string Create = "Create";
 			public readonly string Edit = "Edit";
 			public readonly string DisplayStageList = "DisplayStageList";
@@ -129,12 +117,6 @@ namespace Stagio.Web.Controllers
 		public class ActionNameConstants
 		{
 			public const string Index = "Index";
-			public const string Upload = "Upload";
-			public const string UploadPost = "Upload";
-			public const string ResultCreateList = "ResultCreateList";
-			public const string PostResultCreateList = "ResultCreateList";
-			public const string CreateList = "CreateList";
-			public const string CreateListPost = "CreateList";
 			public const string Create = "Create";
 			public const string Edit = "Edit";
 			public const string DisplayStageList = "DisplayStageList";
@@ -148,14 +130,6 @@ namespace Stagio.Web.Controllers
 		}
 
 
-		static readonly ActionParamsClass_UploadPost s_params_UploadPost = new ActionParamsClass_UploadPost();
-		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-		public ActionParamsClass_UploadPost UploadPostParams { get { return s_params_UploadPost; } }
-		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-		public class ActionParamsClass_UploadPost
-		{
-			public readonly string file = "file";
-		}
 		static readonly ActionParamsClass_Create s_params_Create = new ActionParamsClass_Create();
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public ActionParamsClass_Create CreateParams { get { return s_params_Create; } }
@@ -258,73 +232,6 @@ namespace Stagio.Web.Controllers
 		{
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
 			IndexOverride(callInfo);
-			return callInfo;
-		}
-
-		[NonAction]
-		partial void UploadOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-		[NonAction]
-		public override System.Web.Mvc.ActionResult Upload()
-		{
-			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Upload);
-			UploadOverride(callInfo);
-			return callInfo;
-		}
-
-		[NonAction]
-		partial void UploadPostOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Web.HttpPostedFileBase file);
-
-		[NonAction]
-		public override System.Web.Mvc.ActionResult UploadPost(System.Web.HttpPostedFileBase file)
-		{
-			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UploadPost);
-			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "file", file);
-			UploadPostOverride(callInfo, file);
-			return callInfo;
-		}
-
-		[NonAction]
-		partial void ResultCreateListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-		[NonAction]
-		public override System.Web.Mvc.ActionResult ResultCreateList()
-		{
-			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ResultCreateList);
-			ResultCreateListOverride(callInfo);
-			return callInfo;
-		}
-
-		[NonAction]
-		partial void PostResultCreateListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-		[NonAction]
-		public override System.Web.Mvc.ActionResult PostResultCreateList()
-		{
-			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.PostResultCreateList);
-			PostResultCreateListOverride(callInfo);
-			return callInfo;
-		}
-
-		[NonAction]
-		partial void CreateListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-		[NonAction]
-		public override System.Web.Mvc.ActionResult CreateList()
-		{
-			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateList);
-			CreateListOverride(callInfo);
-			return callInfo;
-		}
-
-		[NonAction]
-		partial void CreateListPostOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-		[NonAction]
-		public override System.Web.Mvc.ActionResult CreateListPost()
-		{
-			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateListPost);
-			CreateListPostOverride(callInfo);
 			return callInfo;
 		}
 

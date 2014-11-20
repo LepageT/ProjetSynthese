@@ -16,7 +16,7 @@ namespace Stagio.Web.Automation.PageObjects.Coordinator
 
         public static void GoToByUrl()
         {
-            Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/Student/CreateList");
+            Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/Coordinator/CreateList");
         }
 
         public static void ClickToCreatelist()

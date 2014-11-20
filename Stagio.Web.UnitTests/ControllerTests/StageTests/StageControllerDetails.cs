@@ -39,7 +39,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
         [TestMethod]
         public void details_accept_stage_should_render_default_view_if_invalid_id()
         {
-            var result = stageController.Details("Accepter", 999999999) as ViewResult;
+            var result = stageController.Details("Accepter", INVALID_ID) as ViewResult;
 
             result.ViewName.Should().Be("");
         }
@@ -59,7 +59,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
         [TestMethod]
         public void details_refuse_stage_should_render_default_view_if_invalid_id()
         {
-            var result = stageController.Details("Refuser", 999999999) as ViewResult;
+            var result = stageController.Details("Refuser", INVALID_ID) as ViewResult;
 
             result.ViewName.Should().Be("");
         }

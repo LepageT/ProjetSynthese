@@ -6,17 +6,21 @@ using System.Web;
 using Stagio.DataLayer;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
+
 namespace Stagio.Web.Services
 {
     public class NotificationService : INotificationService
     {
         private IEntityRepository<ApplicationUser> _userRepository;
         private IEntityRepository<Notification> _notificationRepository;
-        public NotificationService(IEntityRepository<ApplicationUser> userRepository, IEntityRepository<Notification> notificationRepository)
+
+        public NotificationService(IEntityRepository<ApplicationUser> userRepository,
+            IEntityRepository<Notification> notificationRepository)
         {
             _userRepository = userRepository;
             _notificationRepository = notificationRepository;
         }
+
         public bool SendNotificationTo(int destinationId, string title, string message)
         {
             if (_userRepository.GetById(destinationId) != null)
@@ -24,16 +28,21 @@ namespace Stagio.Web.Services
                 SendNotification(destinationId, title, message);
                 return true;
             }
+
             return false;
         }
+
+
         public bool SendNotificationToAllCoordinator(String title, String message)
         {
             var userList = _userRepository.GetAll().ToList();
-            var coordinatorRole = new UserRole() { RoleName = RoleName.Coordinator };
+            var coordinatorRole = new UserRole() {RoleName = RoleName.Coordinator};
             var coordinatorList = new List<ApplicationUser>();
             foreach (var user in userList)
             {
-                coordinatorList.AddRange(from role in user.Roles where role.RoleName == coordinatorRole.RoleName select user);
+                coordinatorList.AddRange(from role in user.Roles
+                    where role.RoleName == coordinatorRole.RoleName
+                    select user);
             }
             if (coordinatorList.Any())
             {
@@ -44,11 +53,16 @@ namespace Stagio.Web.Services
                 return true;
             }
             return false;
+
         }
+
         public bool SendNotificationToAllContactEnterpriseOf(String enterpriseName, String title, String message)
         {
             return false;
+
         }
+
+
         private void SendNotification(int id, String title, String message)
         {
             var notification = new Notification()

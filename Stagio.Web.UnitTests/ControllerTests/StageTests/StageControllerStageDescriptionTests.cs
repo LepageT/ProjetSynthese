@@ -29,7 +29,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
         [TestMethod]
         public void stage_viewStageInfo_should_return_httpnotfound_if_stageId_is_not_valid()
         {
-            var result = stageController.ViewStageInfo(999999999);
+            var result = stageController.ViewStageInfo(INVALID_ID);
 
             result.Should().BeOfType<HttpNotFoundResult>();
         }

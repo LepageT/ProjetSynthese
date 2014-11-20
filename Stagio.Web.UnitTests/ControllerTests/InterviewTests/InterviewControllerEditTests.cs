@@ -34,7 +34,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.InterviewTests
         [TestMethod]
         public void edit_should_return_http_not_found_when_studentId_is_not_valid()
         {
-            var result = interviewController.Edit(999999999);
+            var result = interviewController.Edit(INVALID_ID);
 
             result.Should().BeOfType<HttpNotFoundResult>();
         }

@@ -28,7 +28,7 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<Student> _studentRepository;
         private readonly IHttpContextService _httpContext;
         private readonly IEntityRepository<InvitationContactEnterprise> _invitationRepository;
-        private readonly IEntityRepository<Notification> _notificationRepository;
+        private readonly IEntityRepository<Notification> _notificationRepository; 
         private readonly IEntityRepository<ApplicationUser> _applicationUserRepository;
         private readonly INotificationService _notificationService; 
 
@@ -75,7 +75,7 @@ namespace Stagio.Web.Controllers
                 var email = list.FirstOrDefault(x => x.Email == createViewModel.Email);
                 if (email != null)
             {
-                    ModelState.AddModelError("Email", "Ce email est déjà utilisé");
+                    ModelState.AddModelError("Email", ContactEnterpriseResources.EmailContactEnterpriseAlreadyUsed);
                 }
 
                 }
@@ -142,7 +142,7 @@ namespace Stagio.Web.Controllers
                 var email = list.FirstOrDefault(x => x.Email == createViewModel.Email);
                 if (email != null)
                 {
-                    ModelState.AddModelError("Email", "Ce email est déjà utilisé");
+                    ModelState.AddModelError("Email", ContactEnterpriseResources.EmailContactEnterpriseAlreadyUsed);
                 }
 
             }
@@ -211,6 +211,8 @@ namespace Stagio.Web.Controllers
             stage.PublicationDate = DateTime.Now;
 
             _stageRepository.Add(stage);
+            //AJOUT NOTIFICATION
+            //_notification.SendNotificationTo(id, "TITLE", "MESSAGE");
             return RedirectToAction(MVC.ContactEnterprise.CreateStageSucceed());
         }
 
@@ -243,7 +245,7 @@ namespace Stagio.Web.Controllers
 
             //Sending invitation with the Mailler class
             String messageText = EmailEnterpriseResources.InviteCoworker;
-            String invitationUrl = EmailEnterpriseResources.InviteLinkCoworker + token + "\">jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token=" + token + "</a>";
+            String invitationUrl = EmailEnterpriseResources.InviteLinkCoworker + token + EmailEnterpriseResources.EndLink + token + "</a>";
 
             messageText += invitationUrl;
 
@@ -339,7 +341,7 @@ namespace Stagio.Web.Controllers
         {
             if (canNotDownload)
             {
-                ViewBag.Message = "Un ou des fichiers ne peuvent pas être téléchargés";
+                ViewBag.Message = ContactEnterpriseResources.FilesCantBeDownload;
             }
             var apply = new Apply();
             try
