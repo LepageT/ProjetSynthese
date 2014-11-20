@@ -60,128 +60,7 @@ namespace Stagio.Web.Controllers
 
 
 
-        [Authorize(Roles = RoleName.Coordinator)]
-        public virtual ActionResult Upload()
-        {
-            return View();
-        }
-
-        [Authorize(Roles = RoleName.Coordinator)]
-        [HttpPost, ActionName("Upload")]
-        public virtual ActionResult UploadPost(HttpPostedFileBase file)
-        {
-            var listStudents = new List<ListStudent>();
-
-            if (file == null)
-            {
-                ModelState.AddModelError("Fichier", StudentResources.NoFileToUpload);
-                ViewBag.Message = StudentResources.NoFileToUpload;
-            }
-            else
-            {
-                {
-                    if (!file.FileName.Contains(".csv"))
-                    {
-                        ModelState.AddModelError("Fichier", StudentResources.NoFileToUpload);
-                        ViewBag.Message = StudentResources.WrongFileType;
-                    }
-                }
-            }
-
-            if (ModelState.IsValid)
-            {
-                var readFile = new ReadFile<ListStudent>();
-
-                listStudents = readFile.ReadFileCsv(file);
-                TempData["listStudent"] = listStudents;
-
-                return RedirectToAction(MVC.Student.CreateList());
-            }
-            return View("");
-        }
-
-        [Authorize(Roles = RoleName.Coordinator)]
-        public virtual ActionResult ResultCreateList()
-        {
-            var resultCreateList = new ResultCreateList();
-            resultCreateList.ListStudentAdded = TempData["listStudentAdded"] as List<ListStudent>;
-            resultCreateList.ListStudentNotAdded = TempData["listStudentNotAdded"] as List<ListStudent>;
-
-            return View(resultCreateList);
-        }
-
-        [Authorize(Roles = RoleName.Coordinator)]
-        [HttpPost]
-        [ActionName("ResultCreateList")]
-        public virtual ActionResult PostResultCreateList()
-        {
-            return RedirectToAction(MVC.Home.Index());
-        }
-
-        [Authorize(Roles = RoleName.Coordinator)]
-        public virtual ActionResult CreateList()
-        {
-            var listStudents = TempData["listStudent"] as List<ListStudent>;
-            TempData["listStudent"] = listStudents;
-            return View(listStudents);
-        }
-
-        [Authorize(Roles = RoleName.Coordinator)]
-        [HttpPost]
-        [ActionName("CreateList")]
-
-        public virtual ActionResult CreateListPost()
-        {
-            var listStudentNotAdded = new List<ListStudent>();
-            var listStudentAdded = new List<ListStudent>();
-            var listStudentInDb = _studentRepository.GetAll().ToList();
-            var listStudents = TempData["listStudent"] as List<ListStudent>;
-            var alreadyInDb = false;
-
-            if (listStudents == null)
-            {
-                ModelState.AddModelError("Error", "Error");
-            }
-
-            if (ModelState.IsValid)
-            {
-                foreach (var listStudentCreate in listStudents)
-                {
-                    for (int i = 0; i < listStudentInDb.Count(); i++)
-                    {
-                        if (!alreadyInDb)
-                        {
-                            if (listStudentInDb[i].Matricule == listStudentCreate.Matricule)
-                            {
-
-                                listStudentNotAdded.Add(listStudentCreate);
-                                alreadyInDb = true;
-                            }
-
-                        }
-                    }
-                    if (Convert.ToInt32(listStudentCreate.Matricule) < 1000000 || Convert.ToInt32(listStudentCreate.Matricule) > 9999999)
-                    {
-                        listStudentNotAdded.Add(listStudentCreate);
-                        alreadyInDb = true;
-                    }
-                    if (!alreadyInDb)
-                    {
-
-                        var student = Mapper.Map<Student>(listStudentCreate);
-                        listStudentAdded = listStudents;
-                        _studentRepository.Add(student);
-                    }
-                    alreadyInDb = false;
-                }
-
-                TempData["listStudentNotAdded"] = listStudentNotAdded;
-                TempData["listStudentAdded"] = listStudentAdded;
-                return RedirectToAction(MVC.Student.ResultCreateList());
-            }
-
-            return RedirectToAction(MVC.Student.Upload());
-        }
+        
 
         // GET: Student/Create
         public virtual ActionResult Create()
@@ -412,6 +291,7 @@ namespace Stagio.Web.Controllers
                         appliedStage.stageTitle = stage.StageTitle;
                     }
                 }
+
             }
 
             return View(studentStageListViewModels);

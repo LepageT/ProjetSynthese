@@ -69,7 +69,7 @@ namespace Stagio.Web.Controllers
                 var email = list.FirstOrDefault(x => x.Email == createViewModel.Email);
                 if (email != null)
             {
-                    ModelState.AddModelError("Email", "Ce email est déjà utilisé");
+                    ModelState.AddModelError("Email", ContactEnterpriseResources.EmailContactEnterpriseAlreadyUsed);
                 }
 
                 }
@@ -133,7 +133,7 @@ namespace Stagio.Web.Controllers
                 var email = list.FirstOrDefault(x => x.Email == createViewModel.Email);
                 if (email != null)
                 {
-                    ModelState.AddModelError("Email", "Ce email est déjà utilisé");
+                    ModelState.AddModelError("Email", ContactEnterpriseResources.EmailContactEnterpriseAlreadyUsed);
                 }
 
             }
@@ -232,7 +232,7 @@ namespace Stagio.Web.Controllers
 
             //Sending invitation with the Mailler class
             String messageText = EmailEnterpriseResources.InviteCoworker;
-            String invitationUrl = EmailEnterpriseResources.InviteLinkCoworker + token + "\">jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token=" + token + "</a>";
+            String invitationUrl = EmailEnterpriseResources.InviteLinkCoworker + token + EmailEnterpriseResources.EndLink + token + "</a>";
 
             messageText += invitationUrl;
 
@@ -328,7 +328,7 @@ namespace Stagio.Web.Controllers
         {
             if (canNotDownload)
             {
-                ViewBag.Message = "Un ou des fichiers ne peuvent pas être téléchargés";
+                ViewBag.Message = ContactEnterpriseResources.FilesCantBeDownload;
             }
             var apply = new Apply();
             try

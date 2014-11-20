@@ -32,7 +32,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         [TestMethod]
         public void apply_should_return_http_not_found_when_IdStage_is_not_valid()
         {
-            var result = studentController.ApplyStage(999999999);
+            var result = studentController.ApplyStage(INVALID_ID);
 
             result.Should().BeOfType<HttpNotFoundResult>();
         }

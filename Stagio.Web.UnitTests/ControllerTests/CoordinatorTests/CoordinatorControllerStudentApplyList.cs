@@ -57,7 +57,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
         [TestMethod]
         public void coordinator_StudentApplyList_should_return_httpnotfound_when_studentId_is_invalid()
         {
-            var result = coordinatorController.StudentApplyList(999999999);
+            var result = coordinatorController.StudentApplyList(INVALID_ID);
 
             result.Should().BeOfType<HttpNotFoundResult>();
         }

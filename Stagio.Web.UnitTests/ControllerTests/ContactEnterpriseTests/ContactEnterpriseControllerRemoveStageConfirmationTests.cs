@@ -41,7 +41,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
         [TestMethod]
         public void contact_enterprise_remove_stage_should_return_httpnotfound_if_id_invalid()
         {
-            var result = enterpriseController.RemoveStageConfirmation(9999999);
+            var result = enterpriseController.RemoveStageConfirmation(INVALID_ID);
 
             result.Should().BeOfType<HttpNotFoundResult>();
         }

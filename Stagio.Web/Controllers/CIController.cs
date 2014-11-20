@@ -33,15 +33,12 @@ namespace Stagio.Web.Controllers
         {
             SqlConnection.ClearAllPools();
             _dbHelper.DeleteAll();
-                }
+        }
 
         private void SeedDb()
-            {
+        {
             var testData = new DataBaseTestHelper();
             testData.SeedTables();
-            
-            
-
         }
     }
 }
