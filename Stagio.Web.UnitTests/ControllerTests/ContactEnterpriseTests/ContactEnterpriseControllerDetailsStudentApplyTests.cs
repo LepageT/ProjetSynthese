@@ -70,7 +70,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
         [TestMethod]
         public void contact_enterprise_DetailsStudentApply_post_should_return_default_view_when_apply_is_invalid()
         {
-            var viewResult = enterpriseController.DetailsStudentApplyPost("Accepter", 999999999) as ViewResult;
+            var viewResult = enterpriseController.DetailsStudentApplyPost("Accepter", INVALID_ID) as ViewResult;
             var viewModelObtained = viewResult.ViewData.Model as ViewModels.Apply.StudentApply;
 
             viewResult.ViewName.Should().Be("");
@@ -95,7 +95,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
         [TestMethod]
         public void contactEnterpriseController_detailsStudentApply_with_invalid_id_should_return_httpnotfound()
         {
-            var result = enterpriseController.DetailsStudentApply(999999999, false);
+            var result = enterpriseController.DetailsStudentApply(INVALID_ID, false);
 
             result.Should().BeOfType<HttpNotFoundResult>();
         }
