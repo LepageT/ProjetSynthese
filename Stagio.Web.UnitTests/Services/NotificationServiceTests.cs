@@ -122,5 +122,19 @@ namespace Stagio.Web.UnitTests.Services
 
             result.Should().BeFalse();
         }
+
+        [TestMethod]
+        public void getNotificationForUser_should_return_notifications_list_for_specific_user()
+        {
+            var notificationForUser = _fixture.Build<Notification>().With(x => x.For, 1).CreateMany(3).ToList();
+            var notificationForOther = _fixture.CreateMany<Notification>(3).ToList();
+            var allNotification = notificationForOther;
+            allNotification.AddRange(notificationForUser);
+            _notificationRepository.GetAll().Returns(allNotification.AsQueryable());
+
+            var result = _notificationService.GetNotificationForUser(1);
+
+            result.Count.Should().Be(notificationForUser.Count);
+        }
     }
 }

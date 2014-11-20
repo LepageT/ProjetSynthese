@@ -78,6 +78,14 @@ namespace Stagio.Web.Services
 
         }
 
+        public ICollection<Notification> GetNotificationForUser(int userId)
+        {
+            var notifications = _notificationRepository.GetAll().ToList();
+            var userNotifications = notifications.Where(x => x.For == userId).ToList();
+
+            return userNotifications;
+        }
+
 
         private void SendNotification(int id, String title, String message)
         {
