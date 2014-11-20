@@ -21,6 +21,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
         protected IEntityRepository<Student> studentRepository;
         protected IEntityRepository<InvitationContactEnterprise> invitationRepository;
         protected IEntityRepository<Notification> notificationRepository;
+        protected IEntityRepository<ApplicationUser> applicationUserRepository;
         protected INotificationService notification;
 
 
@@ -38,7 +39,11 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
             notification = Substitute.For<INotificationService>();
 
             accountService = Substitute.For<IAccountService>();
-            enterpriseController = new ContactEnterpriseController(enterpriseRepository, stageRepository, accountService, mailler, applyRepository, studentRepository, httpContext, invitationRepository, notificationRepository, notification);
+            //enterpriseController = new ContactEnterpriseController(enterpriseRepository, stageRepository, accountService, mailler, applyRepository, studentRepository, httpContext, invitationRepository, notificationRepository, notification);
+            applicationUserRepository = Substitute.For<IEntityRepository<ApplicationUser>>();
+            accountService = Substitute.For<IAccountService>();
+
+            enterpriseController = new ContactEnterpriseController(enterpriseRepository, stageRepository, accountService, mailler, applyRepository, studentRepository, httpContext, invitationRepository, notificationRepository, applicationUserRepository);
 
         }
     }
