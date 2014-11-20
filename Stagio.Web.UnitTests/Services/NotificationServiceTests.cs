@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using Stagio.DataLayer;
+using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
 using Stagio.Web.Services;
 using Ploeh.AutoFixture;
@@ -47,6 +50,27 @@ namespace Stagio.Web.UnitTests.Services
             var result = _notificationService.SendNotificationTo(9999999, "Test", "test");
 
             result.Should().BeFalse();
+        }
+
+        [TestMethod]
+        public void sendNotificationToCoordinator_should_return_true_if_there_is_coordinator()
+        {
+            var coordinators = _fixture.CreateMany<Coordinator>(3).AsQueryable();
+
+            foreach (var coordinator in coordinators)
+            {
+                coordinator.Roles = new List<UserRole>()
+                {
+                    new UserRole() {RoleName = RoleName.Coordinator}
+                };
+                
+            }
+            _userRepository.GetAll().Returns(coordinators);
+
+            var result = _notificationService.SendNotificationToAllCoordinator("test", "test");
+
+            result.Should().BeTrue();
+
         }
     }
 }

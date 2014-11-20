@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using Stagio.DataLayer;
+using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
 
 namespace Stagio.Web.Services
@@ -23,23 +25,55 @@ namespace Stagio.Web.Services
         {
             if (_userRepository.GetById(destinationId) != null)
             {
-                Notification notification = new Notification()
-                {
-                    Date = DateTime.Now,
-                    Title = title,
-                    Message = message,
-                    For = destinationId,
-                    Seen = false
-                };
-
-                _notificationRepository.Add(notification);
+                SendNotification(destinationId, title, message);
                 return true;
             }
-            else
-            {
-                return false;
-            }
- 
+           
+            return false;
         }
+
+
+        public bool SendNotificationToAllCoordinator(String title, String message)
+        {
+            var userList = _userRepository.GetAll().ToList();
+            var coordinatorRole = new UserRole() {RoleName = RoleName.Coordinator};
+            var coordinatorList = new List<ApplicationUser>();
+            foreach (var user in userList)
+            {
+                coordinatorList.AddRange(from role in user.Roles where role.RoleName == coordinatorRole.RoleName select user);
+            }
+            if (coordinatorList.Any())
+            {
+                foreach (var coordinator in coordinatorList)
+                {
+                    SendNotification(coordinator.Id, title, message);
+                }
+                return true;
+            }
+            return false;
+
+        }
+
+        public bool SendNotificationToAllContactEnterpriseOf(String enterpriseName, String title, String message)
+        {
+            return false;
+
+        }
+
+
+        private void SendNotification(int id, String title, String message)
+        {
+            var notification = new Notification()
+            {
+                Date = DateTime.Now,
+                Title = title,
+                Message = message,
+                For = id,
+                Seen = false
+            };
+
+            _notificationRepository.Add(notification);
+        }
+
     }
 }

@@ -10,5 +10,10 @@ namespace Stagio.Web.Services
     {
         bool SendNotificationTo(int destinationId, String title, String message);
 
+        bool SendNotificationToAllCoordinator(String title, String message);
+
+        bool SendNotificationToAllContactEnterpriseOf(String enterpriseName, String title, String message);
+
+
     }
 }
