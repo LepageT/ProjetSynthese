@@ -72,5 +72,69 @@ namespace Stagio.Web.UnitTests.Services
             result.Should().BeTrue();
 
         }
+
+        [TestMethod]
+        public void sendNotification_should_return_false_if_there_is_not_coordinator()
+        {
+            var user = _fixture.Create<ApplicationUser>();
+            _userRepository.GetById(user.Id).Returns(user);
+
+            var result = _notificationService.SendNotificationToAllCoordinator("test", "test");
+
+            result.Should().BeFalse();
+        }
+
+        [TestMethod]
+        public void sendNotificationToContactEnterprise_should_return_true_if_there_is_contactEnterprise_with_same_enterprisename()
+        {
+            const String ENTERPRISE_NAME = "Les Patates Inc.";
+            var contactEnterprise =
+                _fixture.Build<ContactEnterprise>()
+                    .With(x => x.EnterpriseName, ENTERPRISE_NAME)
+                    .CreateMany(3)
+                    .AsQueryable();
+
+            foreach (var coordinator in contactEnterprise)
+            {
+                coordinator.Roles = new List<UserRole>()
+                {
+                    new UserRole() {RoleName = RoleName.ContactEnterprise}
+                };
+
+            }
+
+            _userRepository.GetAll().Returns(contactEnterprise);
+
+            var result = _notificationService.SendNotificationToAllContactEnterpriseOf(ENTERPRISE_NAME, "test", "test");
+
+            result.Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void sendNotification_should_return_false_if_there_is_not_entreprise_matching_the_name()
+        {            
+            const String ENTERPRISE_NAME = "Les Patates Inc.";
+
+            var user = _fixture.Create<ApplicationUser>();
+            _userRepository.GetById(user.Id).Returns(user);
+
+            var result = _notificationService.SendNotificationToAllContactEnterpriseOf(ENTERPRISE_NAME, "test", "test");
+
+            result.Should().BeFalse();
+        }
+
+        [TestMethod]
+        public void getNotificationForUser_should_return_notifications_list_for_specific_user()
+        {
+            var notificationForUser = _fixture.Build<Notification>().With(x => x.For, 1).CreateMany(3).ToList();
+            var notificationForOther = _fixture.CreateMany<Notification>(3).ToList();
+            var allNotification = notificationForOther;
+            allNotification.AddRange(notificationForUser);
+            _notificationRepository.GetAll().Returns(allNotification.AsQueryable());
+
+            var result = _notificationService.GetNotificationForUser(1);
+
+            result.Count.Should().Be(notificationForUser.Count);
+        }
     }
 }
