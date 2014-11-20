@@ -10,7 +10,8 @@ namespace Stagio.Web.Services
     public class NotificationService : INotificationService
     {
         private IEntityRepository<ApplicationUser> _userRepository;
-        private IEntityRepository<Notification> _notificationRepository; 
+        private IEntityRepository<Notification> _notificationRepository;
+
 
         public NotificationService(IEntityRepository<ApplicationUser> userRepository, IEntityRepository<Notification> notificationRepository)
         {

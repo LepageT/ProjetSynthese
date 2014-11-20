@@ -85,6 +85,8 @@ namespace Stagio.Web.App_Start
 
             kernel.Bind<IHttpContextService>().To<HttpContextService>().InRequestScope();
             kernel.Bind<IAccountService>().To<AccountService>().InRequestScope();
+            kernel.Bind<INotificationService>().To<NotificationService>().InRequestScope();
+
         }        
     }
 }
