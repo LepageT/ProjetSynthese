@@ -83,7 +83,8 @@ namespace Stagio.Web.Services
             var notifications = _notificationRepository.GetAll().ToList();
             var userNotifications = notifications.Where(x => x.For == userId).ToList();
 
-            return userNotifications;
+            return userNotifications.OrderByDescending(x => x.Date).ToList();
+
         }
 
 
