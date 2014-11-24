@@ -136,4 +136,10 @@
   <data name="NewStageTitle" xml:space="preserve">
     <value>Un nouveau stage est en attente d'approbation</value>
   </data>
+  <data name="StageRemovedMessage" xml:space="preserve">
+    <value>a retiré l'offre du stage</value>
+  </data>
+  <data name="StageRemovedTitle" xml:space="preserve">
+    <value>Un stage a été retiré</value>
+  </data>
 </root>

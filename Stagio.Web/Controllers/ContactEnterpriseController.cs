@@ -435,6 +435,9 @@ namespace Stagio.Web.Controllers
             }
             stage.Status = StageStatus.Removed;
             _stageRepository.Update(stage);
+            string message = stage.CompanyName + " " + ContactEntrepriseToCoordinator.StageRemovedMessage + " " + stage.StageTitle;
+            _notificationService.SendNotificationToAllCoordinator(
+                ContactEntrepriseToCoordinator.StageRemovedTitle, message);
             return View();
         }
 
