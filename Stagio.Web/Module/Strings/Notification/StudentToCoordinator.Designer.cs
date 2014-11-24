@@ -104,5 +104,23 @@ namespace Stagio.Web.Module.Strings.Notification {
                 return ResourceManager.GetString("CreateStudentTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à s&apos;est présenté à son entrevue chez.
+        /// </summary>
+        internal static string EditInterviewMessage {
+            get {
+                return ResourceManager.GetString("EditInterviewMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à .
+        /// </summary>
+        internal static string EditInterviewTitle {
+            get {
+                return ResourceManager.GetString("EditInterviewTitle", resourceCulture);
+            }
+        }
     }
 }

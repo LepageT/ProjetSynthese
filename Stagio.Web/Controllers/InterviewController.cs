@@ -167,7 +167,14 @@ namespace Stagio.Web.Controllers
                 Mapper.Map(editInterviewViewModel, interview);
 
                 _interviewRepository.Update(interview);
-
+                if (interview.Present)
+                {
+                    var student = _studentRepository.GetById(interview.StudentId);
+                    string message = student.FirstName + " " + student.LastName + " " +
+                                     StudentToCoordinator.EditInterviewMessage + " le  " + interview.Date;
+                    _notificationService.SendNotificationToAllCoordinator(StudentToCoordinator.EditInterviewTitle,
+                        message);
+                }
                 return RedirectToAction(MVC.Interview.List());
             }
             return HttpNotFound();
