@@ -139,7 +139,7 @@ namespace Stagio.Web.Controllers
 
            _stageRepository.Update(stage);
 
-           string message = "L'entreprise " + stage.CompanyName + ContactEntrepriseToCoordinator.EditStageMessage + stage.StageTitle;
+           string message = "L'entreprise " +  " "+ stage.CompanyName +  " " + ContactEntrepriseToCoordinator.EditStageMessage + " " + stage.StageTitle + " " + ContactEntrepriseToCoordinator.NewStageLink + editStageViewModel.Id + '"' + ContactEntrepriseToCoordinator.NewStageEndLink;
            _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.EditStageTitle, message);
 
             return RedirectToAction(MVC.ContactEnterprise.ListStage());
