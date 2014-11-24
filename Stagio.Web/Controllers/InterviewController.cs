@@ -140,20 +140,20 @@ namespace Stagio.Web.Controllers
             var interview = _interviewRepository.GetById(id);
             if (ModelState.IsValid)
             {
-            if (interview != null)
-            {
-                var interviewEditPageViewModel = Mapper.Map<ViewModels.Interviews.Edit>(interview);
-                var stages = _stageRepository.GetAll();
-                foreach (var stage in stages)
+                if (interview != null)
                 {
-                    if (stage.Id == interview.StageId)
+                    var interviewEditPageViewModel = Mapper.Map<ViewModels.Interviews.Edit>(interview);
+                    var stages = _stageRepository.GetAll();
+                    foreach (var stage in stages)
                     {
-                        interviewEditPageViewModel.StageTitleAndCompagny = stage.StageTitle.ToString() + " - " +
-                                             stage.CompanyName.ToString();
+                        if (stage.Id == interview.StageId)
+                        {
+                            interviewEditPageViewModel.StageTitleAndCompagny = stage.StageTitle.ToString() + " - " +
+                                                 stage.CompanyName.ToString();
+                        }
                     }
+                    return View(interviewEditPageViewModel);
                 }
-                return View(interviewEditPageViewModel);
-            }
             }
             return HttpNotFound();
         }

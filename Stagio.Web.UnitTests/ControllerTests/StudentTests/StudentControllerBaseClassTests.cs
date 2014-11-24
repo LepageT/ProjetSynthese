@@ -19,6 +19,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         protected IAccountService accountService;
         protected IEntityRepository<ApplicationUser> applicationUserRepository;
         protected IEntityRepository<Notification> notificationRepository;
+        protected IEntityRepository<ApplicationUser> applicationRepository;
             
        [TestInitialize]
         public void StudentControllerTestInit()

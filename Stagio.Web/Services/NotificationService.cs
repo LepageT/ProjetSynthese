@@ -85,10 +85,18 @@ namespace Stagio.Web.Services
             var notifications = _notificationRepository.GetAll().ToList();
             var userNotifications = notifications.Where(x => x.For == userId).ToList();
 
-            return userNotifications.OrderByDescending(x => x.Date).ToList().GetRange(0, count);
+            return userNotifications.OrderByDescending(x => x.Date).ToList().GetRange(0, userNotifications.Count>count?count:userNotifications.Count);
 
         }
 
+        public ICollection<Notification> GetDashboardNotificationForUser(int userId)
+        {
+            var notifications = _notificationRepository.GetAll().ToList();
+            var userNotifications = notifications.Where(x => x.For == userId).ToList();
+            var notSeenNotifications = userNotifications.Where(x => x.Seen == false).ToList();
+
+            return notSeenNotifications.OrderByDescending(x => x.Date).ToList().GetRange(0, notSeenNotifications.Count>10?10:notSeenNotifications.Count);
+        }
 
         private void SendNotification(int id, String title, String message)
         {
@@ -102,5 +110,7 @@ namespace Stagio.Web.Services
             };
             _notificationRepository.Add(notification);
         }
+
+        
     }
 }

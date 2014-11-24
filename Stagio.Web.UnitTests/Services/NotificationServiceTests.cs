@@ -136,5 +136,19 @@ namespace Stagio.Web.UnitTests.Services
 
             result.Count.Should().Be(2);
         }
+
+        [TestMethod]
+        public void getDashboardNotification_should_return_list_unseen_for_specific_user()
+        {
+            var notificationForUser = _fixture.Build<Notification>().With(x => x.For, 1).With(x => x.Seen, false).CreateMany(3).ToList();
+            var notificationForOther = _fixture.CreateMany<Notification>(3).ToList();
+            var allNotification = notificationForOther;
+            allNotification.AddRange(notificationForUser);
+            _notificationRepository.GetAll().Returns(allNotification.AsQueryable());
+
+            var result = _notificationService.GetDashboardNotificationForUser(1);
+
+            result.Count.Should().Be(notificationForUser.Count);
+        }
     }
 }

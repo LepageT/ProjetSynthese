@@ -52,10 +52,9 @@ namespace Stagio.Web.Controllers
         // GET: Enterprise
         public virtual ActionResult Index()
         {
-            var notifications = _notificationRepository.GetAll().ToList();
-            var userNotifications = notifications.Where(x => x.For == _httpContext.GetUserId());
+            var notifications = _notificationService.GetDashboardNotificationForUser(_httpContext.GetUserId());
 
-            var notificationsViewModels = Mapper.Map<IEnumerable<ViewModels.Notification.Notification>>(userNotifications).ToList();
+            var notificationsViewModels = Mapper.Map<IEnumerable<ViewModels.Notification.Notification>>(notifications).ToList();
 
             return View(notificationsViewModels);
         }
