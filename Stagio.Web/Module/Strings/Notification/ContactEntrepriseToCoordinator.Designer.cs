@@ -97,11 +97,20 @@ namespace Stagio.Web.Module.Strings.Notification {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à  a ajouté un stage. Vous devez l&apos;approuver pour qu&apos;il soit visible pour les étudiants..
+        ///   Recherche une chaîne localisée semblable à  a ajouté un stage. Vous devez l&apos;approuver pour qu&apos;il soit visible pour les étudiants. Voici le lien: &lt;a href =&quot;http://jenkins.cegep-ste-foy.qc.ca/thomarelau/Stage/Details/.
         /// </summary>
         internal static string NewStageMessage {
             get {
                 return ResourceManager.GetString("NewStageMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &gt;jenkins.cegep-ste-foy.qc.ca/thomarelau/Stage/Details/.
+        /// </summary>
+        internal static string NewStageMessageEnd {
+            get {
+                return ResourceManager.GetString("NewStageMessageEnd", resourceCulture);
             }
         }
         
@@ -131,8 +140,8 @@ namespace Stagio.Web.Module.Strings.Notification {
                 return ResourceManager.GetString("InterestedByTitle", resourceCulture);
             }
         }
-		
-		/// <summary>
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à n&apos;est pas intéressé par la candidature de.
         /// </summary>
         internal static string NotInterestedBy {

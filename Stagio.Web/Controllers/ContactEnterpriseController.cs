@@ -210,8 +210,9 @@ namespace Stagio.Web.Controllers
             stage.PublicationDate = DateTime.Now;
 
             _stageRepository.Add(stage);
-            string message = "L'entreprise " + stage.CompanyName + ContactEntrepriseToCoordinator.NewStageMessage;
+            string message = "L'entreprise " + stage.CompanyName + ContactEntrepriseToCoordinator.NewStageMessage + stage.Id + '"' + ContactEntrepriseToCoordinator.NewStageMessageEnd + stage.Id + "</a>";
             _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.NewStageTitle, message);
+            
             return RedirectToAction(MVC.ContactEnterprise.CreateStageSucceed());
         }
 

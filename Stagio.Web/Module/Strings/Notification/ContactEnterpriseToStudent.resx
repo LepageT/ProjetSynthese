@@ -117,32 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CreateContactEnterprise" xml:space="preserve">
-    <value>s'est inscrit sur le site.</value>
-    <comment>Ajouté le nom du contact </comment>
-  </data>
-  <data name="CreateContactEnterpriseTitle" xml:space="preserve">
-    <value>Un employé s'est inscrit sur le site Stagio</value>
-  </data>
   <data name="EditStageMessage" xml:space="preserve">
-    <value> a modifié le stage </value>
+    <value> a modifié le stage suivant: </value>
   </data>
   <data name="EditStageTitle" xml:space="preserve">
-    <value>Une entreprise a modifié un stage</value>
+    <value>Une entreprise a modifié son offre de stage</value>
+  </data>
+  <data name="NewStageLinkEnd" xml:space="preserve">
+    <value>&gt;jenkins.cegep-ste-foy.qc.ca/thomarelau/Stage/ViewStageInfo/</value>
+  </data>
+  <data name="NewStageLinkStart" xml:space="preserve">
+    <value>. Voici le lien: &lt;a href ="http://jenkins.cegep-ste-foy.qc.ca/thomarelau/Stage/ViewStageInfo/</value>
   </data>
   <data name="NewStageMessage" xml:space="preserve">
-    <value> a ajouté un stage. Vous devez l'approuver pour qu'il soit visible pour les étudiants. Voici le lien: &lt;a href ="http://jenkins.cegep-ste-foy.qc.ca/thomarelau/Stage/Details/</value>
-  </data>
-  <data name="NewStageMessageEnd" xml:space="preserve">
-    <value>&gt;jenkins.cegep-ste-foy.qc.ca/thomarelau/Stage/Details/</value>
+    <value> a ajouté ce stage: </value>
   </data>
   <data name="NewStageTitle" xml:space="preserve">
-    <value>Un nouveau stage est en attente d'approbation</value>
-  </data>
-  <data name="StageRemovedMessage" xml:space="preserve">
-    <value>a retiré l'offre du stage</value>
-  </data>
-  <data name="StageRemovedTitle" xml:space="preserve">
-    <value>Un stage a été retiré</value>
+    <value>Un nouveau stage est disponible</value>
   </data>
 </root>

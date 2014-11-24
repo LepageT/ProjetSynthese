@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Resources;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
@@ -84,7 +85,9 @@ namespace Stagio.Web.Controllers
                 var contactsEnterprise = _contactEnterpriseRepository.GetAll().ToList();
 
                 _notificationService.SendNotificationToAllContactEnterpriseOf(stage.CompanyName, CoordinatorToContactEnterprise.StageAcceptedTitle, CoordinatorToContactEnterprise.StageAcceptedMessage);
-               
+                string messageToStudent = "L'entreprise " + stage.CompanyName + ContactEnterpriseToStudent.NewStageMessage +
+                                       stage.StageTitle + ContactEnterpriseToStudent.NewStageLinkStart + stage.Id + '"' + ContactEnterpriseToStudent.NewStageLinkEnd + stage.Id + "</a>";
+                _notificationService.SendNotificationToAllStudent(ContactEnterpriseToStudent.NewStageTitle, messageToStudent);
             }
             else if (command.Equals("Refuser"))
             {
@@ -136,6 +139,9 @@ namespace Stagio.Web.Controllers
 
            string message = "L'entreprise " + stage.CompanyName + ContactEntrepriseToCoordinator.EditStageMessage + stage.StageTitle;
            _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.EditStageTitle, message);
+            string messageToStudent = stage.CompanyName + ContactEnterpriseToStudent.EditStageMessage + stage.StageTitle;
+            _notificationService.SendNotificationToAllStudent(ContactEnterpriseToStudent.EditStageTitle,
+                messageToStudent);
 
             return RedirectToAction(MVC.ContactEnterprise.ListStage());
         }
