@@ -245,7 +245,7 @@ namespace Stagio.Web.Controllers
 
             //Sending invitation with the Mailler class
             String messageText = EmailEnterpriseResources.InviteCoworker;
-            String invitationUrl = EmailEnterpriseResources.InviteLinkCoworker + token + EmailEnterpriseResources.EndLink + token + "</a>";
+            String invitationUrl = EmailEnterpriseResources.InviteLinkCoworker + EmailEnterpriseResources.EndLink + token + "</a>";
 
             messageText += invitationUrl;
 
