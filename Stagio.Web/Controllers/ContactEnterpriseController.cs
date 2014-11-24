@@ -212,6 +212,7 @@ namespace Stagio.Web.Controllers
             _stageRepository.Add(stage);
             string message = "L'entreprise " + stage.CompanyName + " " + ContactEntrepriseToCoordinator.NewStageMessage + " " +  ContactEntrepriseToCoordinator.NewStageLink + stage.Id.ToString() + '"' + ContactEntrepriseToCoordinator.NewStageEndLink;
             _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.NewStageTitle, message);
+            
             return RedirectToAction(MVC.ContactEnterprise.CreateStageSucceed());
         }
 
@@ -428,18 +429,7 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult RemoveStageConfirmation(int idStage)
         {
             var stage = _stageRepository.GetById(idStage);
-
-            IQueryable<Apply> applies;
-            try
-            {
-                applies = _applyRepository.GetAll().Where(x => x.IdStage == idStage);
-            }
-            catch (Exception)
-            {
-
-                return HttpNotFound();
-            }
-           
+            var applies = _applyRepository.GetAll().ToList().Where(x => x.IdStage == idStage);
             if (stage == null)
             {
                 return HttpNotFound();
@@ -455,7 +445,7 @@ namespace Stagio.Web.Controllers
 
             stage.Status = StageStatus.Removed;
             _stageRepository.Update(stage);
-  
+          
             return View();
         }
 

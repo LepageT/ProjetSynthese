@@ -22,14 +22,14 @@ namespace Stagio.Web.Module.Strings.Notification {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class StudentToContactEnterprise {
+    internal class ContactEnterpriseToStudent {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal StudentToContactEnterprise() {
+        internal ContactEnterpriseToStudent() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Stagio.Web.Module.Strings.Notification {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Stagio.Web.Module.Strings.Notification.StudentToContactEnterprise", typeof(StudentToContactEnterprise).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Stagio.Web.Module.Strings.Notification.ContactEnterpriseToStudent", typeof(ContactEnterpriseToStudent).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,20 +61,56 @@ namespace Stagio.Web.Module.Strings.Notification {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à a retiré sa candidature à ce stage:.
+        ///   Recherche une chaîne localisée semblable à  a modifié le stage suivant: .
         /// </summary>
-        internal static string RemoveApplyMessage {
+        internal static string EditStageMessage {
             get {
-                return ResourceManager.GetString("RemoveApplyMessage", resourceCulture);
+                return ResourceManager.GetString("EditStageMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Un étudiant a retiré sa candidature à un de vos stages.
+        ///   Recherche une chaîne localisée semblable à Une entreprise a modifié son offre de stage.
         /// </summary>
-        internal static string RemoveApplyTitle {
+        internal static string EditStageTitle {
             get {
-                return ResourceManager.GetString("RemoveApplyTitle", resourceCulture);
+                return ResourceManager.GetString("EditStageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &gt;jenkins.cegep-ste-foy.qc.ca/thomarelau/Stage/ViewStageInfo/.
+        /// </summary>
+        internal static string NewStageLinkEnd {
+            get {
+                return ResourceManager.GetString("NewStageLinkEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à . Voici le lien: &lt;a href =&quot;http://jenkins.cegep-ste-foy.qc.ca/thomarelau/Stage/ViewStageInfo/.
+        /// </summary>
+        internal static string NewStageLinkStart {
+            get {
+                return ResourceManager.GetString("NewStageLinkStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à  a ajouté ce stage: .
+        /// </summary>
+        internal static string NewStageMessage {
+            get {
+                return ResourceManager.GetString("NewStageMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Un nouveau stage est disponible.
+        /// </summary>
+        internal static string NewStageTitle {
+            get {
+                return ResourceManager.GetString("NewStageTitle", resourceCulture);
             }
         }
     }

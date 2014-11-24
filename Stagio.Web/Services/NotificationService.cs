@@ -80,6 +80,30 @@ namespace Stagio.Web.Services
 
         }
 
+        public bool SendNotificationToAllStudent(String title, String message)
+        {
+            var userList = _userRepository.GetAll().ToList();
+            var studentRole = new UserRole() { RoleName = RoleName.Student };
+            var studentList = new List<ApplicationUser>();
+            foreach (var user in userList)
+            {
+                studentList.AddRange(from role in user.Roles
+                                         where role.RoleName == studentRole.RoleName
+                                         select user);
+            }
+            if (studentList.Any())
+            {
+                foreach (var student in studentList)
+                {
+                    SendNotification(student.Id, title, message);
+                }
+                return true;
+            }
+            return false;
+
+        }
+
+
         public ICollection<Notification> GetNotificationForUser(int userId, int count)
         {
             var notifications = _notificationRepository.GetAll().ToList();

@@ -142,6 +142,15 @@ namespace Stagio.Web.Module.Strings.Notification {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à &gt;jenkins.cegep-ste-foy.qc.ca/thomarelau/Stage/Details/.
+        /// </summary>
+        internal static string NewStageMessageEnd {
+            get {
+                return ResourceManager.GetString("NewStageMessageEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Un nouveau stage est en attente d&apos;approbation.
         /// </summary>
         internal static string NewStageTitle {
@@ -149,8 +158,8 @@ namespace Stagio.Web.Module.Strings.Notification {
                 return ResourceManager.GetString("NewStageTitle", resourceCulture);
             }
         }
-        
-        /// <summary>
+		
+		/// <summary>
         ///   Recherche une chaîne localisée semblable à n&apos;est pas intéressé par la candidature de.
         /// </summary>
         internal static string NotInterestedBy {
@@ -167,8 +176,8 @@ namespace Stagio.Web.Module.Strings.Notification {
                 return ResourceManager.GetString("NotInterestedByTitle", resourceCulture);
             }
         }
-        
-        /// <summary>
+		
+		/// <summary>
         ///   Recherche une chaîne localisée semblable à a retiré le stage.
         /// </summary>
         internal static string RemoveStage {

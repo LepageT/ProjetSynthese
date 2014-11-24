@@ -117,10 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="RemoveApplyMessage" xml:space="preserve">
-    <value>a retiré sa candidature à ce stage:</value>
+  <data name="EditStageMessage" xml:space="preserve">
+    <value> a modifié le stage suivant: </value>
   </data>
-  <data name="RemoveApplyTitle" xml:space="preserve">
-    <value>Un étudiant a retiré sa candidature à un de vos stages</value>
+  <data name="EditStageTitle" xml:space="preserve">
+    <value>Une entreprise a modifié son offre de stage</value>
+  </data>
+  <data name="NewStageLinkEnd" xml:space="preserve">
+    <value>&gt;jenkins.cegep-ste-foy.qc.ca/thomarelau/Stage/ViewStageInfo/</value>
+  </data>
+  <data name="NewStageLinkStart" xml:space="preserve">
+    <value>. Voici le lien: &lt;a href ="http://jenkins.cegep-ste-foy.qc.ca/thomarelau/Stage/ViewStageInfo/</value>
+  </data>
+  <data name="NewStageMessage" xml:space="preserve">
+    <value> a ajouté ce stage: </value>
+  </data>
+  <data name="NewStageTitle" xml:space="preserve">
+    <value>Un nouveau stage est disponible</value>
   </data>
 </root>

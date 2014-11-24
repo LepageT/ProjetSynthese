@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Resources;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
@@ -66,6 +67,7 @@ namespace Stagio.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = RoleName.Coordinator)]
         public virtual ActionResult Details(string command, int id)
         {
             var stage = _stageRepository.GetById(id);
@@ -82,17 +84,16 @@ namespace Stagio.Web.Controllers
             {
                 stage.Status = StageStatus.Accepted;
                 var contactsEnterprise = _contactEnterpriseRepository.GetAll().ToList();
-                foreach (var contactEnterprise in contactsEnterprise)
-                {
-                    if (contactEnterprise.EnterpriseName == stage.CompanyName)
-                    {
-                        _notificationService.SendNotificationTo(contactEnterprise.Id, CoordinatorToContactEnterprise.StageAcceptedTitle, CoordinatorToContactEnterprise.StageAcceptedMessage);
 
-                    }
-                }
+                _notificationService.SendNotificationToAllContactEnterpriseOf(stage.CompanyName, CoordinatorToContactEnterprise.StageAcceptedTitle, CoordinatorToContactEnterprise.StageAcceptedMessage);
+                string messageToStudent = "L'entreprise " + stage.CompanyName + ContactEnterpriseToStudent.NewStageMessage +
+                                       stage.StageTitle + ContactEnterpriseToStudent.NewStageLinkStart + stage.Id + '"' + ContactEnterpriseToStudent.NewStageLinkEnd + stage.Id + "</a>";
+                _notificationService.SendNotificationToAllStudent(ContactEnterpriseToStudent.NewStageTitle, messageToStudent);
             }
             else if (command.Equals("Refuser"))
             {
+                _notificationService.SendNotificationToAllContactEnterpriseOf(stage.CompanyName,
+                    CoordinatorToContactEnterprise.StageRefusedTitle, CoordinatorToContactEnterprise.StageRefusedMessage);
                 stage.Status = StageStatus.Refused;
             }
             else if (command.Equals("Retirer"))
@@ -141,6 +142,9 @@ namespace Stagio.Web.Controllers
 
            string message = "L'entreprise " +  " "+ stage.CompanyName +  " " + ContactEntrepriseToCoordinator.EditStageMessage + " " + stage.StageTitle + " " + ContactEntrepriseToCoordinator.NewStageLink + editStageViewModel.Id + '"' + ContactEntrepriseToCoordinator.NewStageEndLink;
            _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.EditStageTitle, message);
+            string messageToStudent = stage.CompanyName + ContactEnterpriseToStudent.EditStageMessage + stage.StageTitle;
+            _notificationService.SendNotificationToAllStudent(ContactEnterpriseToStudent.EditStageTitle,
+                messageToStudent);
 
             return RedirectToAction(MVC.ContactEnterprise.ListStage());
         }

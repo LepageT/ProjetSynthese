@@ -267,10 +267,10 @@ namespace Stagio.Web.Controllers
             var stageApply = _applyRepository.GetById(id);
             stageApply.Status = StatusApply.Removed;
             _applyRepository.Update(stageApply);
+            var student = _studentRepository.GetById(stageApply.IdStudent);
             var stage = _stageRepository.GetById(stageApply.IdStage);
-            //string message = student.FirstName + " " + student.LastName + " " +
-             //                        StudentToCoordinator.CreateStudent;
-            //_notificationService.SendNotificationToAllContactEnterpriseOf(stage.CompanyName, title, message);
+            _notificationService.SendNotificationToAllCoordinator(StudentToCoordinator.RemoveApplyTitle,
+                String.Format(StudentToCoordinator.RemoveApplyMessage, student.FirstName + " " + student.LastName, stage.StageTitle));
             return View();
         }
 
