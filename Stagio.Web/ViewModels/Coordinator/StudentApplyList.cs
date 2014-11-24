@@ -30,7 +30,7 @@ namespace Stagio.Web.ViewModels.Coordinator
         public DateTime DateApply { get; set; }
 
         [DisplayName("Date de l'entrevue")]
-        public DateTime DateInterview { get; set; }
+        public string DateInterview { get; set; }
 
         [DisplayName("Date de l'offre reçu")]
         public DateTime DateStageOffer { get; set; }
