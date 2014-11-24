@@ -428,7 +428,18 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult RemoveStageConfirmation(int idStage)
         {
             var stage = _stageRepository.GetById(idStage);
-            var applies = _applyRepository.GetAll().Where(x => x.IdStage == idStage);
+
+            IQueryable<Apply> applies;
+            try
+            {
+                applies = _applyRepository.GetAll().Where(x => x.IdStage == idStage);
+            }
+            catch (Exception)
+            {
+
+                return HttpNotFound();
+            }
+           
             if (stage == null)
             {
                 return HttpNotFound();

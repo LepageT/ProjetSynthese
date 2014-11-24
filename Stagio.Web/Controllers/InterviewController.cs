@@ -170,8 +170,9 @@ namespace Stagio.Web.Controllers
                 if (interview.Present)
                 {
                     var student = _studentRepository.GetById(interview.StudentId);
+                    var stage = _stageRepository.GetById(interview.StageId);
                     string message = student.FirstName + " " + student.LastName + " " +
-                                     StudentToCoordinator.EditInterviewMessage + " le  " + interview.Date;
+                                     StudentToCoordinator.EditInterviewMessage + " " + stage.CompanyName + " le  " + interview.Date;
                     _notificationService.SendNotificationToAllCoordinator(StudentToCoordinator.EditInterviewTitle,
                         message);
                 }

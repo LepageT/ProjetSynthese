@@ -115,7 +115,7 @@ namespace Stagio.Web.Module.Strings.Notification {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à .
+        ///   Recherche une chaîne localisée semblable à Un étudiant s&apos;est présenté à une entrevue.
         /// </summary>
         internal static string EditInterviewTitle {
             get {
