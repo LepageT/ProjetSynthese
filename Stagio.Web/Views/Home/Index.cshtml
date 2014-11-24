@@ -1,48 +1,53 @@
 ﻿@using System.Configuration
 @using Microsoft.AspNet.Identity
 <h2 id="home-page">Bienvenue</h2>
-<div>Utilisateurs<br/>
-    Coordonnateur (compte de tests, sauf pour les edit) 
-    <br/> Username: coordonnateur@stagio.com
-    <br/> Password: test4test1
-    <br/><br/>
-    Étudiant
-    <br/>Username: 1234567
-    <br/>Password: qwerty12
-    <br/><br/>
-    Employé 
-    <br/>Username: bond.james.007@hotmail.com
-    <br/>Password: qwerty12
-</div><br/>
+<div>
+    Utilisateurs<br />
+    Coordonnateur (compte de tests, sauf pour les edit)
+    <br /> Username: coordonnateur@stagio.com
+    <br /> Password: test4test1
+    <br /><br />
+    Étudiant 1
+    <br />Username: 1234567
+    <br />Password: qwerty12
+    <br />
+    Étudiant 2
+    <br />Username: 1234560
+    <br />Password: qwerty98
+    <br /><br />
+    Employé
+    <br />Username: bond.james.007@hotmail.com
+    <br />Password: qwerty12
+</div><br />
 @if (!Request.IsAuthenticated)
 {
-    @Html.ActionLink("Créer un profil étudiant", MVC.Student.Create(), new {id = "create-student"})<br/>
+    @Html.ActionLink("Créer un profil étudiant", MVC.Student.Create(), new { id = "create-student" })<br />
 
-    @Html.ActionLink("Créer un profil entreprise", MVC.ContactEnterprise.Create(), new {id = "create-enterprise"})<br/>
+    @Html.ActionLink("Créer un profil entreprise", MVC.ContactEnterprise.Create(), new { id = "create-enterprise" })<br />
 }
 
-@if(@User.IsInRole("Étudiant"))
+@if (@User.IsInRole("Étudiant"))
 {
-<h4>Étudiant</h4>
-<div>
-        @Html.ActionLink("Page d'accueil de l'étudiant", MVC.Student.Index(), new { id = "index-Student" })     
-</div>
+    <h4>Étudiant</h4>
+    <div>
+        @Html.ActionLink("Page d'accueil de l'étudiant", MVC.Student.Index(), new { id = "index-Student" })
+    </div>
 }
 
-@if(@User.IsInRole("Coordonnateur"))
+@if (@User.IsInRole("Coordonnateur"))
 {
-<h4>Coordonnateur</h4>
-<div>
-    @Html.ActionLink("Page d'accueil du coordonnateur", MVC.Coordinator.Index(), new { id = "index-coordonnateur" })
-</div>
+    <h4>Coordonnateur</h4>
+    <div>
+        @Html.ActionLink("Page d'accueil du coordonnateur", MVC.Coordinator.Index(), new { id = "index-coordonnateur" })
+    </div>
 }
 
-@if(@User.IsInRole("Contact entreprise"))
-{ 
-<h4>Employé d'une entreprise</h4>
-<div>
+@if (@User.IsInRole("Contact entreprise"))
+{
+    <h4>Employé d'une entreprise</h4>
+    <div>
         @Html.ActionLink("Page d'accueil de l'employé", MVC.ContactEnterprise.Index(), new { id = "index-enterprise" })
-</div>
+    </div>
 }
 
 
