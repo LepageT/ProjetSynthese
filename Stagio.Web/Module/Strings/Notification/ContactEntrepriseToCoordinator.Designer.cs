@@ -113,5 +113,41 @@ namespace Stagio.Web.Module.Strings.Notification {
                 return ResourceManager.GetString("NewStageTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à est intéressée par la candidature de.
+        /// </summary>
+        internal static string InterestedBy {
+            get {
+                return ResourceManager.GetString("InterestedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Une entreprise est intéressée par la candidature d&apos;un étudiant.
+        /// </summary>
+        internal static string InterestedByTitle {
+            get {
+                return ResourceManager.GetString("InterestedByTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à n&apos;est pas intéressé par la candidature de.
+        /// </summary>
+        internal static string NotInterestedBy {
+            get {
+                return ResourceManager.GetString("NotInterestedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Une entreprise n&apos;est pas intéressée par la candidature d&apos;un étudiant.
+        /// </summary>
+        internal static string NotInterestedByTitle {
+            get {
+                return ResourceManager.GetString("NotInterestedByTitle", resourceCulture);
+            }
+        }
     }
 }
