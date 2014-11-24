@@ -117,23 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CreateContactEnterprise" xml:space="preserve">
+  <data name="CreateInterviewPart1" xml:space="preserve">
+    <value>a une entrevue le</value>
+  </data>
+  <data name="CreateInterviewPart2" xml:space="preserve">
+    <value>pour un stage chez</value>
+  </data>
+  <data name="CreateInterviewTitle" xml:space="preserve">
+    <value>Un étudiant a inscrit une date d'entrevue pour un stage</value>
+  </data>
+  <data name="CreateStudent" xml:space="preserve">
     <value>s'est inscrit sur le site.</value>
-    <comment>Ajouté le nom du contact </comment>
   </data>
-  <data name="CreateContactEnterpriseTitle" xml:space="preserve">
-    <value>Un employé s'est inscrit sur le site Stagio</value>
-  </data>
-  <data name="EditStageMessage" xml:space="preserve">
-    <value> a modifié le stage </value>
-  </data>
-  <data name="EditStageTitle" xml:space="preserve">
-    <value>Une entreprise a modifié un stage</value>
-  </data>
-  <data name="NewStageMessage" xml:space="preserve">
-    <value> a ajouté un stage. Vous devez l'approuver pour qu'il soit visible pour les étudiants.</value>
-  </data>
-  <data name="NewStageTitle" xml:space="preserve">
-    <value>Un nouveau stage est en attente d'approbation</value>
+  <data name="CreateStudentTitle" xml:space="preserve">
+    <value>Un étudiant s'est inscrit sur le site Stagio</value>
   </data>
 </root>

@@ -79,6 +79,24 @@ namespace Stagio.Web.Module.Strings.Notification {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à  a modifié le stage .
+        /// </summary>
+        internal static string EditStageMessage {
+            get {
+                return ResourceManager.GetString("EditStageMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Une entreprise a modifié un stage.
+        /// </summary>
+        internal static string EditStageTitle {
+            get {
+                return ResourceManager.GetString("EditStageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à  a ajouté un stage. Vous devez l&apos;approuver pour qu&apos;il soit visible pour les étudiants..
         /// </summary>
         internal static string NewStageMessage {
@@ -93,6 +111,42 @@ namespace Stagio.Web.Module.Strings.Notification {
         internal static string NewStageTitle {
             get {
                 return ResourceManager.GetString("NewStageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à est intéressée par la candidature de.
+        /// </summary>
+        internal static string InterestedBy {
+            get {
+                return ResourceManager.GetString("InterestedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Une entreprise est intéressée par la candidature d&apos;un étudiant.
+        /// </summary>
+        internal static string InterestedByTitle {
+            get {
+                return ResourceManager.GetString("InterestedByTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à n&apos;est pas intéressé par la candidature de.
+        /// </summary>
+        internal static string NotInterestedBy {
+            get {
+                return ResourceManager.GetString("NotInterestedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Une entreprise n&apos;est pas intéressée par la candidature d&apos;un étudiant.
+        /// </summary>
+        internal static string NotInterestedByTitle {
+            get {
+                return ResourceManager.GetString("NotInterestedByTitle", resourceCulture);
             }
         }
     }

@@ -41,8 +41,14 @@ namespace Stagio.Web.UnitTests.ControllerTests.InterviewTests
         public void interview_create_post_should_return_confirmation_on_success()
         {
             var interview = _fixture.Create<ViewModels.Interviews.Create>();
+            
+            var stage = _fixture.Create <Stage>();
+            stageRepository.GetById(stage.Id).Returns(stage);
+            var student = _fixture.Create<Student>();
+            studentRepository.GetById(student.Id).Returns(student);
             interview.Date = DateTime.Now.ToLongDateString();
-            interview.StageId = 1;
+            interview.StageId = stage.Id;
+            interview.StudentId = student.Id;
 
             var result = interviewController.Create(interview) as RedirectToRouteResult;
             var action = result.RouteValues["Action"];
