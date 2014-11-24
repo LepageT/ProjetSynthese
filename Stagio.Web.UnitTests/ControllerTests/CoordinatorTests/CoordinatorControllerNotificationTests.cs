@@ -20,6 +20,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
             foreach (var notification in notificationList)
             {
                 notification.For = 1;
+                notification.Seen = false;
             }
             notificationRepository.GetAll().Returns(notificationList.AsQueryable());
             httpContextService.GetUserId().Returns(1);
