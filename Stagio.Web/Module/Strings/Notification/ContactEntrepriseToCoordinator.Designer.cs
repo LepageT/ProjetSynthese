@@ -115,6 +115,24 @@ namespace Stagio.Web.Module.Strings.Notification {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à &gt;Cliquer ici pour voir les détails de ce stage&lt;/a&gt;.
+        /// </summary>
+        internal static string NewStageEndLink {
+            get {
+                return ResourceManager.GetString("NewStageEndLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &lt;a href=&quot;http://jenkins.cegep-ste-foy.qc.ca/thomarelau/Stage/Details/.
+        /// </summary>
+        internal static string NewStageLink {
+            get {
+                return ResourceManager.GetString("NewStageLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à a ajouté un stage. Vous devez l&apos;approuver pour qu&apos;il soit visible pour les étudiants..
         /// </summary>
         internal static string NewStageMessage {
