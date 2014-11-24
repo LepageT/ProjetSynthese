@@ -121,6 +121,6 @@
     <value>Ce email est déjà utilisé pour un compte entreprise.</value>
   </data>
   <data name="FilesCantBeDownload" xml:space="preserve">
-    <value>"Un ou des fichiers ne peuvent pas être téléchargés"</value>
+    <value>Un ou des fichiers ne peuvent pas être téléchargés</value>
   </data>
 </root>
