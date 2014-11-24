@@ -16,6 +16,7 @@ using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
 using Stagio.Web.Module;
 using Stagio.Web.Module.Strings.Controller;
+using Stagio.Web.Module.Strings.Notification;
 using Stagio.Web.Services;
 using Stagio.Web.ViewModels.Apply;
 using Stagio.Web.ViewModels.Student;
@@ -33,8 +34,10 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<Stagio.Domain.Entities.Notification> _notificationRepository;
         private readonly IMailler _mailler;
         private readonly IAccountService _accountService;
+        private readonly IEntityRepository<ApplicationUser> _applicationUserRepository;
+        private readonly INotificationService _notificationService;
 
-        public StudentController(IEntityRepository<Student> studentRepository, IEntityRepository<Stage> stageRepository, IEntityRepository<Stagio.Domain.Entities.Apply> applyRepository, IHttpContextService httpContextService, IMailler mailler, IAccountService accountService, IEntityRepository<Stagio.Domain.Entities.Notification> notificationRepository)
+        public StudentController(IEntityRepository<Student> studentRepository, IEntityRepository<Stage> stageRepository, IEntityRepository<Stagio.Domain.Entities.Apply> applyRepository, IHttpContextService httpContextService, IMailler mailler, IAccountService accountService, IEntityRepository<Stagio.Domain.Entities.Notification> notificationRepository, IEntityRepository<ApplicationUser> applicationUserRepository)
         {
             _studentRepository = studentRepository;
             _stageRepository = stageRepository;
@@ -43,6 +46,8 @@ namespace Stagio.Web.Controllers
             _mailler = mailler;
             _accountService = accountService;
             _notificationRepository = notificationRepository;
+            _applicationUserRepository = applicationUserRepository;
+            _notificationService = new NotificationService(applicationUserRepository, notificationRepository);
         }
 
         [Authorize(Roles = RoleName.Student)]
@@ -101,7 +106,10 @@ namespace Stagio.Web.Controllers
             student.UserName = createStudentViewModel.Matricule.ToString();
 
             _studentRepository.Update(student);
-
+            string message = student.FirstName + " " + student.LastName + " " +
+                                     StudentToCoordinator.CreateStudent;
+            _notificationService.SendNotificationToAllCoordinator(
+                StudentToCoordinator.CreateStudentTitle, message);
             _mailler.SendEmail(student.Email, EmailAccountCreation.Subject, EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
 
             return RedirectToAction(MVC.Student.CreateConfirmation());

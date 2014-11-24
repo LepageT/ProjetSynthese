@@ -117,23 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CreateContactEnterprise" xml:space="preserve">
+  <data name="CreateInterviewPart1" xml:space="preserve">
+    <value>a une entrevue le</value>
+  </data>
+  <data name="CreateInterviewPart2" xml:space="preserve">
+    <value>pour un stage chez</value>
+  </data>
+  <data name="CreateInterviewTitle" xml:space="preserve">
+    <value>Un étudiant a inscrit une date d'entrevue pour un stage</value>
+  </data>
+  <data name="CreateStudent" xml:space="preserve">
     <value>s'est inscrit sur le site.</value>
-    <comment>Ajouté le nom du contact </comment>
   </data>
-  <data name="CreateContactEnterpriseTitle" xml:space="preserve">
-    <value>Un employé s'est inscrit sur le site Stagio</value>
-  </data>
-  <data name="InterestedBy" xml:space="preserve">
-    <value>est intéressée par la candidature de</value>
-  </data>
-  <data name="InterestedByTitle" xml:space="preserve">
-    <value>Une entreprise est intéressée par la candidature d'un étudiant</value>
-  </data>
-  <data name="NotInterestedBy" xml:space="preserve">
-    <value>n'est pas intéressé par la candidature de</value>
-  </data>
-  <data name="NotInterestedByTitle" xml:space="preserve">
-    <value>Une entreprise n'est pas intéressée par la candidature d'un étudiant</value>
+  <data name="CreateStudentTitle" xml:space="preserve">
+    <value>Un étudiant s'est inscrit sur le site Stagio</value>
   </data>
 </root>

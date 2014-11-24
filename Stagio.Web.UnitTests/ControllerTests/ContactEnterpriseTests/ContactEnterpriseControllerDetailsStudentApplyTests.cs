@@ -21,8 +21,10 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
             applyRepository.Add(apply);
             var student = _fixture.Create<Student>();
             studentRepository.GetById(apply.IdStudent).Returns(student);
+            var stage = _fixture.Create<Stage>();
+            stageRepository.GetById(apply.IdStage).Returns(stage);
             applyRepository.GetById(apply.Id).Returns(apply);
-
+            
             var result = enterpriseController.DetailsStudentApplyPost("Je suis intéressé", apply.Id) as ViewResult;
 
             result.ViewName.Should().Be(MVC.ContactEnterprise.Views.ViewNames.AcceptApplyConfirmation);
@@ -32,8 +34,11 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
         {
             var apply = _fixture.Create<Apply>();
             applyRepository.Add(apply);
+            var student = _fixture.Create<Student>();
+            studentRepository.GetById(apply.IdStudent).Returns(student);
             applyRepository.GetById(apply.Id).Returns(apply);
-
+            var stage = _fixture.Create<Stage>();
+            stageRepository.GetById(apply.IdStage).Returns(stage);
             var result = enterpriseController.DetailsStudentApplyPost("Je ne suis pas intéressé", apply.Id) as RedirectToRouteResult;
             var action = result.RouteValues["Action"];
 
@@ -46,6 +51,8 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
             applyRepository.Add(apply);
             var student = _fixture.Create<Student>();
             studentRepository.GetById(apply.IdStudent).Returns(student);
+            var stage = _fixture.Create<Stage>();
+            stageRepository.GetById(apply.IdStage).Returns(stage);
             applyRepository.GetById(apply.Id).Returns(apply);
 
             var result = enterpriseController.DetailsStudentApplyPost("Accepter", apply.Id) as ViewResult;

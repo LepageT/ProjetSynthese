@@ -41,7 +41,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
             accountService = Substitute.For<IAccountService>();
             //enterpriseController = new ContactEnterpriseController(enterpriseRepository, stageRepository, accountService, mailler, applyRepository, studentRepository, httpContext, invitationRepository, notificationRepository, notification);
             applicationUserRepository = Substitute.For<IEntityRepository<ApplicationUser>>();
-            accountService = Substitute.For<IAccountService>();
+            //accountService = Substitute.For<IAccountService>();
 
             enterpriseController = new ContactEnterpriseController(enterpriseRepository, stageRepository, accountService, mailler, applyRepository, studentRepository, httpContext, invitationRepository, notificationRepository, applicationUserRepository);
 
