@@ -250,6 +250,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EmailAccountCreation.resx</DependentUpon>
     </Compile>
+    <Compile Include="Module\Strings\Notification\ContactEnterpriseToStudent.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContactEnterpriseToStudent.resx</DependentUpon>
+    </Compile>
     <Compile Include="Module\Strings\Notification\ContactEntrepriseToCoordinator.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -558,6 +563,10 @@
     <EmbeddedResource Include="Module\Strings\Email\EmailAccountCreation.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>EmailAccountCreation.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Module\Strings\Notification\ContactEnterpriseToStudent.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ContactEnterpriseToStudent.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Module\Strings\Notification\ContactEntrepriseToCoordinator.resx">
       <Generator>ResXFileCodeGenerator</Generator>
