@@ -1,0 +1,32 @@
+﻿@model Stagio.Web.ViewModels.Coordinator.DetailsApplyStudent
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>DetailsApplyStudent</title>
+</head>
+<body>
+    <div>
+        <h4>Détails de la candidature de l'étudiant</h4>
+    	<hr />
+        <dl class="dl-horizontal">
+           
+            <h4>
+                @Html.Label(Model.FirstName)
+                @Html.Label(" ")
+                @Html.Label(Model.LastName)
+                @Html.Label(" (")
+                @Html.Label(Model.Matricule.ToString())
+                @Html.Label(") ")
+            </h4>
+    
+           <p>L'étudiant à postuler pour @Html.DisplayFor(model => model.StageTitle) avec ce @Html.ActionLink("CV", MVC.Coordinator.Download(Model.Cv, Model.Id)) et cette @Html.ActionLink("lettre de présentation", MVC.Coordinator.Download(Model.Cv, Model.Id)) </p>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Retour à la liste", MVC.Coordinator.StudentApplyList())
+    </p>
+</body>
+</html>

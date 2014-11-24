@@ -324,6 +324,7 @@
     <Compile Include="ViewModels\ContactEnterprise\ListStage.cs" />
     <Compile Include="ViewModels\ContactEnterprise\Reactive.cs" />
     <Compile Include="ViewModels\Account\Login.cs" />
+    <Compile Include="ViewModels\Apply\DetailsApplyStudent.cs" />
     <Compile Include="ViewModels\Coordinator\StudentApplyList.cs" />
     <Compile Include="ViewModels\Coordinator\StudentList.cs" />
     <Compile Include="ViewModels\Interviews\Create.cs" />
@@ -491,6 +492,7 @@
     <Content Include="Views\ContactEnterprise\RemoveStageConfirmation.cshtml" />
     <Content Include="Views\ContactEnterprise\ReactivateStageConfirmation.cshtml" />
     <Content Include="Views\Stage\Edit.cshtml" />
+    <Content Include="Views\Coordinator\DetailsApplyStudent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt.hooks.t4" />

@@ -500,5 +500,31 @@ namespace Stagio.Web.Controllers
             return RedirectToAction(MVC.Coordinator.Upload());
         }
 
+        public virtual ActionResult DetailsApplyStudent(int id)
+        {
+            var apply = _applyRepository.GetById(id);
+            var applyViewModel = Mapper.Map<DetailsApplyStudent>(apply);
+
+            return View(applyViewModel);
+        }
+
+        public virtual ActionResult Download(string file, int id)
+        {
+            try
+            {
+                string path = AppDomain.CurrentDomain.GetData("DataDirectory").ToString();
+                path = path + "\\UploadedFiles\\" + file;
+                byte[] fileBytes = System.IO.File.ReadAllBytes((path));
+                string fileName = file;
+                return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction(MVC.Coordinator.DetailsApplyStudent(id));
+            }
+
+
+        }
+
     }
 }
