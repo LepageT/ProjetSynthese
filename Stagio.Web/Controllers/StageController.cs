@@ -7,6 +7,8 @@ using AutoMapper;
 using Stagio.DataLayer;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
+using Stagio.Web.Module.Strings.Notification;
+using Stagio.Web.Services;
 using Stagio.Web.ViewModels.Stage;
 
 namespace Stagio.Web.Controllers
@@ -14,10 +16,14 @@ namespace Stagio.Web.Controllers
     public partial class StageController : Controller
     {
         private readonly IEntityRepository<Stage> _stageRepository;
+        private readonly INotificationService _notificationService;
+        private readonly IEntityRepository<ContactEnterprise> _contactEnterpriseRepository; 
 
-        public StageController(IEntityRepository<Stage> stageRepository)
+        public StageController(IEntityRepository<Stage> stageRepository, INotificationService notificationService, IEntityRepository<ContactEnterprise> contactEnterpriseRepository)
         {
             _stageRepository = stageRepository;
+            _notificationService = notificationService;
+            _contactEnterpriseRepository = contactEnterpriseRepository;
         }
 
         [Authorize(Roles = RoleName.Coordinator)]
@@ -70,18 +76,20 @@ namespace Stagio.Web.Controllers
                 return View();
             }
 
-            if (command.Equals("Accepter"))
-            {
-                stage.Status = StageStatus.Accepted;
-            }
-            else if (command.Equals("Refuser"))
-            {
-                stage.Status = StageStatus.Refused; 
-            }
+            
 
             if (command.Equals("Accepter"))
             {
                 stage.Status = StageStatus.Accepted;
+                var contactsEnterprise = _contactEnterpriseRepository.GetAll().ToList();
+                foreach (var contactEnterprise in contactsEnterprise)
+                {
+                    if (contactEnterprise.EnterpriseName == stage.CompanyName)
+                    {
+                        _notificationService.SendNotificationTo(contactEnterprise.Id, CoordinatorToContactEnterprise.StageAcceptedTitle, CoordinatorToContactEnterprise.StageAcceptedMessage);
+
+                    }
+                }
             }
             else if (command.Equals("Refuser"))
             {
@@ -130,6 +138,9 @@ namespace Stagio.Web.Controllers
             Mapper.Map(editStageViewModel, stage);
 
            _stageRepository.Update(stage);
+
+           string message = "L'entreprise " + stage.CompanyName + ContactEntrepriseToCoordinator.EditStageMessage + stage.StageTitle;
+           _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.EditStageTitle, message);
 
             return RedirectToAction(MVC.ContactEnterprise.ListStage());
         }

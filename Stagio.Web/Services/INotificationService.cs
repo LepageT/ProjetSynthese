@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Stagio.Domain.Entities;
+
 namespace Stagio.Web.Services
 {
     public interface INotificationService
@@ -13,6 +15,6 @@ namespace Stagio.Web.Services
 
         bool SendNotificationToAllContactEnterpriseOf(String enterpriseName, String title, String message);
 
-
+        ICollection<Notification> GetNotificationForUser(int userId, int count);
     }
 }
