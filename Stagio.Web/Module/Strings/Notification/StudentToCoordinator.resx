@@ -138,4 +138,10 @@
   <data name="RemoveApplyTitle" xml:space="preserve">
     <value>Un étudiant à retiré sa candidature à un stage</value>
   </data>
+  <data name="EditInterviewMessage" xml:space="preserve">
+    <value>s'est présenté à son entrevue chez</value>
+  </data>
+  <data name="EditInterviewTitle" xml:space="preserve">
+    <value>Un étudiant s'est présenté à une entrevue</value>
+  </data>
 </root>
