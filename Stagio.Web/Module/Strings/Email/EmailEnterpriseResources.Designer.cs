@@ -61,7 +61,7 @@ namespace Stagio.Web.Module.Strings.Email {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à \&gt;jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token=.
+        ///   Recherche une chaîne localisée semblable à /&gt;jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token=.
         /// </summary>
         internal static string EndLink {
             get {

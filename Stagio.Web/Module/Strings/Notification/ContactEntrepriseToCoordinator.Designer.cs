@@ -185,5 +185,23 @@ namespace Stagio.Web.Module.Strings.Notification {
                 return ResourceManager.GetString("RemoveStageTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à a retiré l&apos;offre du stage.
+        /// </summary>
+        internal static string StageRemovedMessage {
+            get {
+                return ResourceManager.GetString("StageRemovedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Un stage a été retiré.
+        /// </summary>
+        internal static string StageRemovedTitle {
+            get {
+                return ResourceManager.GetString("StageRemovedTitle", resourceCulture);
+            }
+        }
     }
 }

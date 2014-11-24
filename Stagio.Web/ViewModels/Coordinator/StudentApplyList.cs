@@ -27,15 +27,15 @@ namespace Stagio.Web.ViewModels.Coordinator
         public string StageTitle { get; set; }
 
         [DisplayName("Date de la candidature")]
-        public String DateApply { get; set; }
+        public string DateApply { get; set; }
 
         [DisplayName("Date de l'entrevue")]
         public string DateInterview { get; set; }
 
         [DisplayName("Date de l'offre reçu")]
-        public String DateStageOffer { get; set; }
+        public string DateStageOffer { get; set; }
 
         [DisplayName("Date d'acceptation de l'offre")]
-        public String DateAcceptStage { get; set; }
+        public string DateAcceptStage { get; set; }
     }
 }
