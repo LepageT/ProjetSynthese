@@ -255,11 +255,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ContactEntrepriseToCoordinator.resx</DependentUpon>
     </Compile>
+    <Compile Include="Module\Strings\Notification\StudentToContactEnterprise.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StudentToContactEnterprise.resx</DependentUpon>
+    </Compile>
     <Compile Include="Module\Strings\Notification\StudentToCoordinator.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>StudentToCoordinator.resx</DependentUpon>
-	 </Compile>
+    </Compile>
     <Compile Include="Module\Strings\Notification\CoordinatorToContactEnterprise.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -558,10 +563,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ContactEntrepriseToCoordinator.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Module\Strings\Notification\StudentToContactEnterprise.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StudentToContactEnterprise.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Module\Strings\Notification\StudentToCoordinator.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StudentToCoordinator.Designer.cs</LastGenOutput>
-	  </EmbeddedResource>
+    </EmbeddedResource>
     <EmbeddedResource Include="Module\Strings\Notification\CoordinatorToContactEnterprise.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>CoordinatorToContactEnterprise.Designer.cs</LastGenOutput>

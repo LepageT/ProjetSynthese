@@ -62,12 +62,12 @@
             </td>
 
             <td>
-                @Html.Label(item.DateApply.ToShortDateString())
+                @Html.Label(item.DateApply)
             </td>
             <td>
-                @if (item.DateInterview.ToShortDateString() != "0001-01-01")
+                @if (item.DateInterview != null)
                 {
-                    @Html.Label(item.DateInterview.ToShortDateString())
+                    @Html.Label(item.DateInterview)
                 }
                 else
                 {
@@ -75,9 +75,9 @@
                 }
             </td>
             <td>
-                @if (item.DateStageOffer.ToShortDateString() != "0001-01-01")
+                @if (item.DateStageOffer != null)
                 {
-                    @Html.Label(item.DateInterview.ToShortDateString())
+                    @Html.Label(item.DateInterview)
                 }
                 else
                 {
@@ -85,9 +85,9 @@
                 }
             </td>
             <td>
-                @if (item.DateAcceptStage.ToShortDateString() != "0001-01-01")
+                @if (item.DateAcceptStage != null)
                 {
-                    @Html.Label(item.DateInterview.ToShortDateString())
+                    @Html.Label(item.DateInterview)
                 }
                 else
                 {
