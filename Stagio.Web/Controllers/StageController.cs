@@ -84,9 +84,9 @@ namespace Stagio.Web.Controllers
                 stage.Status = StageStatus.Accepted;
                 var contactsEnterprise = _contactEnterpriseRepository.GetAll().ToList();
 
-                        _notificationService.SendNotificationToAllContactEnterpriseOf(stage.CompanyName, CoordinatorToContactEnterprise.StageAcceptedTitle, CoordinatorToContactEnterprise.StageAcceptedMessage);
+                _notificationService.SendNotificationToAllContactEnterpriseOf(stage.CompanyName, CoordinatorToContactEnterprise.StageAcceptedTitle, CoordinatorToContactEnterprise.StageAcceptedMessage);
 
-            }
+                    }
             else if (command.Equals("Refuser"))
             {
                 _notificationService.SendNotificationToAllContactEnterpriseOf(stage.CompanyName,
@@ -137,7 +137,7 @@ namespace Stagio.Web.Controllers
 
            _stageRepository.Update(stage);
 
-           string message = "L'entreprise " + stage.CompanyName + ContactEntrepriseToCoordinator.EditStageMessage + stage.StageTitle;
+           string message = "L'entreprise " +  " "+ stage.CompanyName +  " " + ContactEntrepriseToCoordinator.EditStageMessage + " " + stage.StageTitle + " " + ContactEntrepriseToCoordinator.NewStageLink + editStageViewModel.Id + '"' + ContactEntrepriseToCoordinator.NewStageEndLink;
            _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.EditStageTitle, message);
 
             return RedirectToAction(MVC.ContactEnterprise.ListStage());
