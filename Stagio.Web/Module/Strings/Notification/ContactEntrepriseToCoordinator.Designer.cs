@@ -113,8 +113,8 @@ namespace Stagio.Web.Module.Strings.Notification {
                 return ResourceManager.GetString("NewStageTitle", resourceCulture);
             }
         }
-        
-        /// <summary>
+		
+		/// <summary>
         ///   Recherche une chaîne localisée semblable à est intéressée par la candidature de.
         /// </summary>
         internal static string InterestedBy {
@@ -131,8 +131,8 @@ namespace Stagio.Web.Module.Strings.Notification {
                 return ResourceManager.GetString("InterestedByTitle", resourceCulture);
             }
         }
-        
-        /// <summary>
+		
+		/// <summary>
         ///   Recherche une chaîne localisée semblable à n&apos;est pas intéressé par la candidature de.
         /// </summary>
         internal static string NotInterestedBy {
@@ -147,6 +147,24 @@ namespace Stagio.Web.Module.Strings.Notification {
         internal static string NotInterestedByTitle {
             get {
                 return ResourceManager.GetString("NotInterestedByTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à a retiré l&apos;offre du stage.
+        /// </summary>
+        internal static string StageRemovedMessage {
+            get {
+                return ResourceManager.GetString("StageRemovedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Un stage a été retiré.
+        /// </summary>
+        internal static string StageRemovedTitle {
+            get {
+                return ResourceManager.GetString("StageRemovedTitle", resourceCulture);
             }
         }
     }
