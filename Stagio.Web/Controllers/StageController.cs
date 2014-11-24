@@ -82,14 +82,9 @@ namespace Stagio.Web.Controllers
             {
                 stage.Status = StageStatus.Accepted;
                 var contactsEnterprise = _contactEnterpriseRepository.GetAll().ToList();
-                foreach (var contactEnterprise in contactsEnterprise)
-                {
-                    if (contactEnterprise.EnterpriseName == stage.CompanyName)
-                    {
-                        _notificationService.SendNotificationTo(contactEnterprise.Id, CoordinatorToContactEnterprise.StageAcceptedTitle, CoordinatorToContactEnterprise.StageAcceptedMessage);
 
-                    }
-                }
+                _notificationService.SendNotificationToAllContactEnterpriseOf(stage.CompanyName, CoordinatorToContactEnterprise.StageAcceptedTitle, CoordinatorToContactEnterprise.StageAcceptedMessage);
+               
             }
             else if (command.Equals("Refuser"))
             {
