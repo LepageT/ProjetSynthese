@@ -67,6 +67,7 @@ namespace Stagio.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = RoleName.Coordinator)]
         public virtual ActionResult Details(string command, int id)
         {
             var stage = _stageRepository.GetById(id);
@@ -91,6 +92,8 @@ namespace Stagio.Web.Controllers
             }
             else if (command.Equals("Refuser"))
             {
+                _notificationService.SendNotificationToAllContactEnterpriseOf(stage.CompanyName,
+                    CoordinatorToContactEnterprise.StageRefusedTitle, CoordinatorToContactEnterprise.StageRefusedMessage);
                 stage.Status = StageStatus.Refused;
             }
             else if (command.Equals("Retirer"))
@@ -137,7 +140,7 @@ namespace Stagio.Web.Controllers
 
            _stageRepository.Update(stage);
 
-           string message = "L'entreprise " + stage.CompanyName + ContactEntrepriseToCoordinator.EditStageMessage + stage.StageTitle;
+           string message = "L'entreprise " +  " "+ stage.CompanyName +  " " + ContactEntrepriseToCoordinator.EditStageMessage + " " + stage.StageTitle + " " + ContactEntrepriseToCoordinator.NewStageLink + editStageViewModel.Id + '"' + ContactEntrepriseToCoordinator.NewStageEndLink;
            _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.EditStageTitle, message);
             string messageToStudent = stage.CompanyName + ContactEnterpriseToStudent.EditStageMessage + stage.StageTitle;
             _notificationService.SendNotificationToAllStudent(ContactEnterpriseToStudent.EditStageTitle,

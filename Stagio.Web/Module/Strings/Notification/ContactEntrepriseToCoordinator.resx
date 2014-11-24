@@ -125,24 +125,39 @@
     <value>Un employé s'est inscrit sur le site Stagio</value>
   </data>
   <data name="EditStageMessage" xml:space="preserve">
-    <value> a modifié le stage </value>
+    <value>a modifié le stage</value>
   </data>
   <data name="EditStageTitle" xml:space="preserve">
     <value>Une entreprise a modifié un stage</value>
   </data>
-  <data name="NewStageMessage" xml:space="preserve">
-    <value> a ajouté un stage. Vous devez l'approuver pour qu'il soit visible pour les étudiants. Voici le lien: &lt;a href ="http://jenkins.cegep-ste-foy.qc.ca/thomarelau/Stage/Details/</value>
+  <data name="InterestedBy" xml:space="preserve">
+    <value>est  intéressé par la candidature de</value>
   </data>
-  <data name="NewStageMessageEnd" xml:space="preserve">
-    <value>&gt;jenkins.cegep-ste-foy.qc.ca/thomarelau/Stage/Details/</value>
+  <data name="InterestedByTitle" xml:space="preserve">
+    <value>Une entreprise est intéressé par la candidature d'un étudiant</value>
+  </data>
+  <data name="NewStageEndLink" xml:space="preserve">
+    <value>&gt;Cliquer ici pour voir les détails de ce stage&lt;/a&gt;</value>
+  </data>
+  <data name="NewStageLink" xml:space="preserve">
+    <value>&lt;a href="http://jenkins.cegep-ste-foy.qc.ca/thomarelau/Stage/Details/</value>
+  </data>
+  <data name="NewStageMessage" xml:space="preserve">
+    <value>a ajouté un stage. Vous devez l'approuver pour qu'il soit visible pour les étudiants.</value>
   </data>
   <data name="NewStageTitle" xml:space="preserve">
     <value>Un nouveau stage est en attente d'approbation</value>
   </data>
-  <data name="StageRemovedMessage" xml:space="preserve">
-    <value>a retiré l'offre du stage</value>
+  <data name="NotInterestedBy" xml:space="preserve">
+    <value>n'est pas intéressé par la candidature de</value>
   </data>
-  <data name="StageRemovedTitle" xml:space="preserve">
-    <value>Un stage a été retiré</value>
+  <data name="NotInterestedByTitle" xml:space="preserve">
+    <value>Une entreprise n'est pas intéressé par la candidature d'un étudiant</value>
+  </data>
+  <data name="RemoveStage" xml:space="preserve">
+    <value>a retiré le stage</value>
+  </data>
+  <data name="RemoveStageTitle" xml:space="preserve">
+    <value>Une entreprise à retiré une de ses offres de stages</value>
   </data>
 </root>

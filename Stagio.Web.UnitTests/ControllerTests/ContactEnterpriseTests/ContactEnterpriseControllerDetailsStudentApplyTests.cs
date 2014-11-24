@@ -39,6 +39,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
             applyRepository.GetById(apply.Id).Returns(apply);
             var stage = _fixture.Create<Stage>();
             stageRepository.GetById(apply.IdStage).Returns(stage);
+
             var result = enterpriseController.DetailsStudentApplyPost("Je ne suis pas intéressé", apply.Id) as RedirectToRouteResult;
             var action = result.RouteValues["Action"];
 

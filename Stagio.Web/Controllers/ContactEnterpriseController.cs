@@ -210,7 +210,7 @@ namespace Stagio.Web.Controllers
             stage.PublicationDate = DateTime.Now;
 
             _stageRepository.Add(stage);
-            string message = "L'entreprise " + stage.CompanyName + ContactEntrepriseToCoordinator.NewStageMessage + stage.Id + '"' + ContactEntrepriseToCoordinator.NewStageMessageEnd + stage.Id + "</a>";
+            string message = "L'entreprise " + stage.CompanyName + " " + ContactEntrepriseToCoordinator.NewStageMessage + " " +  ContactEntrepriseToCoordinator.NewStageLink + stage.Id.ToString() + '"' + ContactEntrepriseToCoordinator.NewStageEndLink;
             _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.NewStageTitle, message);
             
             return RedirectToAction(MVC.ContactEnterprise.CreateStageSucceed());
@@ -429,15 +429,23 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult RemoveStageConfirmation(int idStage)
         {
             var stage = _stageRepository.GetById(idStage);
+            var applies = _applyRepository.GetAll().ToList().Where(x => x.IdStage == idStage);
             if (stage == null)
             {
                 return HttpNotFound();
             }
+
+            string message = stage.CompanyName + " " + ContactEntrepriseToCoordinator.RemoveStage  + " "  + stage.StageTitle;
+            _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.RemoveStageTitle,message);
+            foreach (var apply in applies)
+            {
+                _notificationService.SendNotificationTo(apply.IdStudent,ContactEntrepriseToCoordinator.RemoveStageTitle, message);
+            }
+            
+
             stage.Status = StageStatus.Removed;
             _stageRepository.Update(stage);
-            string message = stage.CompanyName + " " + ContactEntrepriseToCoordinator.StageRemovedMessage + " " + stage.StageTitle;
-            _notificationService.SendNotificationToAllCoordinator(
-                ContactEntrepriseToCoordinator.StageRemovedTitle, message);
+          
             return View();
         }
 
