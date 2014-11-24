@@ -55,7 +55,11 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         public void ApplyList_remove_apply_should_render_confirmation_view()
         {
             var applyStage = _fixture.Create<Apply>();
+            var student = _fixture.Create<Student>();
+            var stage = _fixture.Create<Stage>();
             applyRepository.GetById(applyStage.Id).Returns(applyStage);
+            studentRepository.GetById(applyStage.IdStudent).Returns(student);
+            stageRepository.GetById(applyStage.IdStage).Returns(stage);
 
             var result = studentController.ApplyRemoveConfirmation(applyStage.Id) as ViewResult;
 
@@ -66,9 +70,13 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         public void ApplyList_remove_apply_should_update_DB()
         {
             var applyStage = _fixture.Create<Apply>();
+            var student = _fixture.Create<Student>();
+            var stage = _fixture.Create<Stage>();
             applyRepository.GetById(applyStage.Id).Returns(applyStage);
+            studentRepository.GetById(applyStage.IdStudent).Returns(student);
+            stageRepository.GetById(applyStage.IdStage).Returns(stage);
 
-            studentController.ApplyRemoveConfirmation(applyStage.Id);
+            var result = studentController.ApplyRemoveConfirmation(applyStage.Id) as ViewResult;
 
             applyRepository.Received().Update(Arg.Is<Apply>(x => x.Id == applyStage.Id));
 
