@@ -16,5 +16,8 @@ namespace Stagio.Web.Services
         bool SendNotificationToAllContactEnterpriseOf(String enterpriseName, String title, String message);
 
         ICollection<Notification> GetNotificationForUser(int userId, int count);
+
+        ICollection<Notification> GetDashboardNotificationForUser(int userId);
+
     }
 }
