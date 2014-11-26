@@ -130,6 +130,8 @@
     <Compile Include="ControllerTests\NotificationTests\NotificationControllerDetailTest.cs" />
     <Compile Include="ControllerTests\NotificationTests\NotificationControllerErrorTest.cs" />
     <Compile Include="ControllerTests\NotificationTests\NotificationControllerListTest.cs" />
+    <Compile Include="ControllerTests\StageAgreementTests\StageAgreementControllerBaseClassTests.cs" />
+    <Compile Include="ControllerTests\StageAgreementTests\StageAgreementControllerCreateTests.cs" />
     <Compile Include="ControllerTests\StageTests\StageControllerListNewStagesTests.cs" />
     <Compile Include="ControllerTests\StageTests\StageControllerBaseClassTests.cs" />
     <Compile Include="ControllerTests\StageTests\StageControllerEditTests.cs" />

@@ -83,6 +83,7 @@
     <Compile Include="PageObjects\Coordinator\AddStudentsCoordinatorPage.cs" />
     <Compile Include="PageObjects\Coordinator\CreateCoordinatorPage.cs" />
     <Compile Include="PageObjects\Coordinator\CreateListStudentsCoordinatorPage.cs" />
+    <Compile Include="PageObjects\Coordinator\CreateStageAgreementCoordinatorPage.cs" />
     <Compile Include="PageObjects\Coordinator\DetailsStageCoordinatorPage.cs" />
     <Compile Include="PageObjects\Coordinator\IndexCoordinatorPage.cs" />
     <Compile Include="PageObjects\Coordinator\InviteContactEnterpriseCoordinatorPage.cs" />
