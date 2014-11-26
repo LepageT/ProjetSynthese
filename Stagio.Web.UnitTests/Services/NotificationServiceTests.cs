@@ -85,6 +85,38 @@ namespace Stagio.Web.UnitTests.Services
         }
 
         [TestMethod]
+        public void sendNotificationToStudent_should_return_true_if_there_is_student()
+        {
+            var students = _fixture.CreateMany<Student>(3).AsQueryable();
+
+            foreach (var student in students)
+            {
+                student.Roles = new List<UserRole>()
+                {
+                    new UserRole() {RoleName = RoleName.Student}
+                };
+
+            }
+            _userRepository.GetAll().Returns(students);
+
+            var result = _notificationService.SendNotificationToAllStudent("test", "test");
+
+            result.Should().BeTrue();
+
+        }
+
+        [TestMethod]
+        public void sendNotification_should_return_false_if_there_is_not_student()
+        {
+            var user = _fixture.Create<ApplicationUser>();
+            _userRepository.GetById(user.Id).Returns(user);
+
+            var result = _notificationService.SendNotificationToAllCoordinator("test", "test");
+
+            result.Should().BeFalse();
+        }
+
+        [TestMethod]
         public void sendNotificationToContactEnterprise_should_return_true_if_there_is_contactEnterprise_with_same_enterprisename()
         {
             const String ENTERPRISE_NAME = "Les Patates Inc.";

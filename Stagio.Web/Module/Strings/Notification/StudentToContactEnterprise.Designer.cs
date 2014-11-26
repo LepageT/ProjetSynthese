@@ -61,6 +61,24 @@ namespace Stagio.Web.Module.Strings.Notification {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à . Voici le lien: &lt;a href=&quot;http://jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/ListStudentApply/.
+        /// </summary>
+        internal static string ApplyLinkPart1 {
+            get {
+                return ResourceManager.GetString("ApplyLinkPart1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &quot;&gt;Postulations&lt;/a&gt;.
+        /// </summary>
+        internal static string ApplyLinkPart2 {
+            get {
+                return ResourceManager.GetString("ApplyLinkPart2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à  a postulé sur ce stage: .
         /// </summary>
         internal static string ApplyMessage {
