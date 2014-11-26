@@ -188,6 +188,7 @@ namespace Stagio.Web.Controllers
 		public class ActionParamsClass_CreateStage
 		{
 			public readonly string createdStage = "createdStage";
+			public readonly string ButtonClick = "ButtonClick";
 		}
 		static readonly ActionParamsClass_InviteContactEnterprise s_params_InviteContactEnterprise = new ActionParamsClass_InviteContactEnterprise();
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -264,6 +265,7 @@ namespace Stagio.Web.Controllers
                 public readonly string CreateStage = "CreateStage";
                 public readonly string CreateStageSucceed = "CreateStageSucceed";
                 public readonly string DetailsStudentApply = "DetailsStudentApply";
+                public readonly string DraftConfirmation = "DraftConfirmation";
                 public readonly string Index = "Index";
                 public readonly string InviteContactEnterprise = "InviteContactEnterprise";
                 public readonly string ListStage = "ListStage";
@@ -279,6 +281,7 @@ namespace Stagio.Web.Controllers
             public readonly string CreateStage = "~/Views/ContactEnterprise/CreateStage.cshtml";
             public readonly string CreateStageSucceed = "~/Views/ContactEnterprise/CreateStageSucceed.cshtml";
             public readonly string DetailsStudentApply = "~/Views/ContactEnterprise/DetailsStudentApply.cshtml";
+            public readonly string DraftConfirmation = "~/Views/ContactEnterprise/DraftConfirmation.cshtml";
             public readonly string Index = "~/Views/ContactEnterprise/Index.cshtml";
             public readonly string InviteContactEnterprise = "~/Views/ContactEnterprise/InviteContactEnterprise.cshtml";
             public readonly string ListStage = "~/Views/ContactEnterprise/ListStage.cshtml";
@@ -377,14 +380,15 @@ namespace Stagio.Web.Controllers
 		}
 
 		[NonAction]
-		partial void CreateStageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Stagio.Web.ViewModels.Stage.Create createdStage);
+		partial void CreateStageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Stagio.Web.ViewModels.Stage.Create createdStage, string ButtonClick);
 
 		[NonAction]
-		public override System.Web.Mvc.ActionResult CreateStage(Stagio.Web.ViewModels.Stage.Create createdStage)
+		public override System.Web.Mvc.ActionResult CreateStage(Stagio.Web.ViewModels.Stage.Create createdStage, string ButtonClick)
 		{
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateStage);
 			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "createdStage", createdStage);
-			CreateStageOverride(callInfo, createdStage);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ButtonClick", ButtonClick);
+			CreateStageOverride(callInfo, createdStage, ButtonClick);
 			return callInfo;
 		}
 

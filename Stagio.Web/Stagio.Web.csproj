@@ -496,6 +496,7 @@
     <Content Include="Views\ContactEnterprise\ReactivateStageConfirmation.cshtml" />
     <Content Include="Views\Stage\Edit.cshtml" />
     <Content Include="Views\StageAgreement\CreateConfirmation.cshtml" />
+    <Content Include="Views\ContactEnterprise\DraftConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt.hooks.t4" />

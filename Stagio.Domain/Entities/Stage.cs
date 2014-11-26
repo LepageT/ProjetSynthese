@@ -66,7 +66,9 @@ namespace Stagio.Domain.Entities
         [DefaultValue(0)]
         public int NbApply { get; set; }
 
+        public bool Draft { get; set; }
     }
+
 
     [Flags]
     public enum StageStatus

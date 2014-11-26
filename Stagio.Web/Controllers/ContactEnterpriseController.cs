@@ -198,22 +198,39 @@ namespace Stagio.Web.Controllers
 
         [Authorize(Roles = RoleName.ContactEnterprise)]
         [HttpPost]
-        public virtual ActionResult CreateStage(ViewModels.Stage.Create createdStage)
+        public virtual ActionResult CreateStage(ViewModels.Stage.Create createdStage, string ButtonClick = "")
         {
 
-            if (!ModelState.IsValid)
+            if (ButtonClick.Equals("Sauvegarder comme brouillon"))
             {
-                return View(createdStage);
+                var stage = Mapper.Map<Stage>(createdStage);
+                stage.Draft = true;
+                _stageRepository.Add(stage);
+
+                return View(MVC.ContactEnterprise.Views.ViewNames.DraftConfirmation);
             }
+            else
+            {
 
-            var stage = Mapper.Map<Stage>(createdStage);
-            stage.PublicationDate = DateTime.Now;
+                if (!ModelState.IsValid)
+                {
+                    return View(createdStage);
+                }
 
-            _stageRepository.Add(stage);
-            string message = "L'entreprise " + stage.CompanyName + " " + ContactEntrepriseToCoordinator.NewStageMessage + " " +  ContactEntrepriseToCoordinator.NewStageLink + stage.Id.ToString() + '"' + ContactEntrepriseToCoordinator.NewStageEndLink;
-            _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.NewStageTitle, message);
-            
-            return RedirectToAction(MVC.ContactEnterprise.CreateStageSucceed());
+                var stage = Mapper.Map<Stage>(createdStage);
+                stage.PublicationDate = DateTime.Now;
+                stage.Draft = false;
+
+                _stageRepository.Add(stage);
+                string message = "L'entreprise " + stage.CompanyName + " " +
+                                 ContactEntrepriseToCoordinator.NewStageMessage + " " +
+                                 ContactEntrepriseToCoordinator.NewStageLink + stage.Id.ToString() + '"' +
+                                 ContactEntrepriseToCoordinator.NewStageEndLink;
+                _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.NewStageTitle,
+                    message);
+
+                return RedirectToAction(MVC.ContactEnterprise.CreateStageSucceed());
+            }
         }
 
         [Authorize(Roles = RoleName.ContactEnterprise)]

@@ -112,5 +112,7 @@ namespace Stagio.Web.ViewModels.Stage
         [Required(ErrorMessage = "Requis")]
         public DateTime LimitDate { get; set; }
 
+        public bool Draft { get; set; }
+
     }
 }
