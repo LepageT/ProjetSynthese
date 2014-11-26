@@ -442,7 +442,7 @@ namespace Stagio.Web.Controllers
                 _notificationService.SendNotificationTo(apply.IdStudent,ContactEntrepriseToCoordinator.RemoveStageTitle, message);
             }
             
-
+            
             stage.Status = StageStatus.Removed;
             _stageRepository.Update(stage);
           
