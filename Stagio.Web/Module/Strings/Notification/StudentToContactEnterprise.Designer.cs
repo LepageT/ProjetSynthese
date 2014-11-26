@@ -61,6 +61,24 @@ namespace Stagio.Web.Module.Strings.Notification {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à  a postulé sur ce stage: .
+        /// </summary>
+        internal static string ApplyMessage {
+            get {
+                return ResourceManager.GetString("ApplyMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Un étudiant a postulé sur un de vos stages.
+        /// </summary>
+        internal static string ApplyTitle {
+            get {
+                return ResourceManager.GetString("ApplyTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à  a retiré sa candidature à ce stage: .
         /// </summary>
         internal static string RemoveApplyMessage {
