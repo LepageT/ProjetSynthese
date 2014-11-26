@@ -34,7 +34,7 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<Notification> _notificationRepository;
         private readonly IHttpContextService _httpContextService;
         private readonly INotificationService _notificationService;
-        private readonly IEntityRepository<ApplicationUser> _applicationRepository; 
+        private readonly IEntityRepository<ApplicationUser> _applicationRepository;
 
         public CoordinatorController(IEntityRepository<ContactEnterprise> enterpriseContactRepository,
             IEntityRepository<Coordinator> coordinatorRepository,
@@ -48,7 +48,7 @@ namespace Stagio.Web.Controllers
             IEntityRepository<Interview> interviewRepository,
             IEntityRepository<Notification> notificationRepository,
             IHttpContextService httpContextService,
-            IEntityRepository<ApplicationUser> applicationRepository )
+            IEntityRepository<ApplicationUser> applicationRepository)
         {
             _enterpriseContactRepository = enterpriseContactRepository;
             _coordinatorRepository = coordinatorRepository;
@@ -145,7 +145,7 @@ namespace Stagio.Web.Controllers
 
 
 
-            }
+                }
                 return RedirectToAction(MVC.Coordinator.InviteContactEnterpriseConfirmation());
             }
 
@@ -264,10 +264,10 @@ namespace Stagio.Web.Controllers
 
             _invitationRepository.Add(new Invitation()
                                      {
-                                        Token = token,
-                                        Email = createdInvite.Email,
-                                        Used = false
-                                      });
+                                         Token = token,
+                                         Email = createdInvite.Email,
+                                         Used = false
+                                     });
 
             return RedirectToAction(MVC.Coordinator.InvitationSucceed());
 
@@ -320,7 +320,7 @@ namespace Stagio.Web.Controllers
                 student.NbDateInterview = nbDateInterview;
                 nbDateInterview = 0;
             }
-           
+
 
             return View(studentListViewModels);
         }
@@ -371,7 +371,7 @@ namespace Stagio.Web.Controllers
                 }
             }
 
-            
+
 
             return View(studentListApplyViewModels);
         }
@@ -407,7 +407,7 @@ namespace Stagio.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                var readFile = new ReadFile<ListStudent>();
+                var readFile = new ReadFile();
 
                 listStudents = readFile.ReadFileCsv(file);
                 TempData["listStudent"] = listStudents;
@@ -500,30 +500,45 @@ namespace Stagio.Web.Controllers
             return RedirectToAction(MVC.Coordinator.Upload());
         }
 
-        public virtual ActionResult DetailsApplyStudent(int id)
+        public virtual ActionResult DetailsApplyStudent(int id, bool error)
         {
-            var apply = _applyRepository.GetById(id);
-            var applyViewModel = Mapper.Map<DetailsApplyStudent>(apply);
+            if (error)
+            {
+                ViewBag.Message = CoordinatorResources.FilesCanNotBeDownload;
+            }
+            try
+            {
+                var apply = _applyRepository.GetById(id);
+                var applyViewModel = Mapper.Map<DetailsApplyStudent>(apply);
+                var student = _studentRepository.GetById(applyViewModel.IdStudent);
+                var stage = _stageRepository.GetById(applyViewModel.IdStage);
+                applyViewModel.FirstName = student.FirstName;
+                applyViewModel.LastName = student.LastName;
+                applyViewModel.StageTitle = stage.StageTitle;
+                applyViewModel.Matricule = student.Matricule;
+                applyViewModel.CompagnyName = stage.CompanyName;
 
-            return View(applyViewModel);
+                return View(applyViewModel);
+            }
+            catch (Exception)
+            {
+
+                return HttpNotFound();
+            }
         }
 
         public virtual ActionResult Download(string file, int id)
         {
+          var readFile = new ReadFile();
             try
             {
-                string path = AppDomain.CurrentDomain.GetData("DataDirectory").ToString();
-                path = path + "\\UploadedFiles\\" + file;
-                byte[] fileBytes = System.IO.File.ReadAllBytes((path));
-                string fileName = file;
-                return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+               string path = AppDomain.CurrentDomain.GetData("DataDirectory").ToString();
+               return File(readFile.Download(file, path), System.Net.Mime.MediaTypeNames.Application.Octet, file);
             }
             catch (Exception)
             {
-                return RedirectToAction(MVC.Coordinator.DetailsApplyStudent(id));
+                return RedirectToAction(MVC.Coordinator.DetailsApplyStudent(id, true));
             }
-
-
         }
 
     }

@@ -28,5 +28,7 @@ namespace Stagio.Web.ViewModels.Coordinator
 
         public int IdStage { get; set; }
         public string StageTitle { get; set; }
+
+        public string CompagnyName { get; set; }
     }
 }

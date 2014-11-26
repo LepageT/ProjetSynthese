@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Web;
+using System.Web.Mvc;
 using Stagio.Domain.Entities;
 using Stagio.Web.ViewModels.Student;
 
 namespace Stagio.Web.Module
 {
-    public class ReadFile<T>
+    public class ReadFile
     {
         public List<ListStudent> ReadFileCsv(HttpPostedFileBase file)
         {
@@ -72,6 +73,23 @@ namespace Stagio.Web.Module
             }
         }
 
+        public byte[] Download(string file, string path)
+        {
+            try
+            {
+             
+                path = path + "\\UploadedFiles\\" + file;
+                byte[] fileBytes = System.IO.File.ReadAllBytes((path));
+                string fileName = file;
 
+                return (fileBytes);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+    
     }
 }

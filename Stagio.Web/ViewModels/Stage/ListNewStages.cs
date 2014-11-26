@@ -12,7 +12,7 @@ namespace Stagio.Web.ViewModels.Stage
 
         public int Id { get; set; }
          [DisplayName("Date de l'offre")]
-        public DateTime PublicationDate { get; set; }
+        public String PublicationDate { get; set; }
 
         [DisplayName("Entreprise ou Organisation")]
         [Required(ErrorMessage = "Requis")]
@@ -25,7 +25,7 @@ namespace Stagio.Web.ViewModels.Stage
 
         [DisplayName("Date de fin de soumission")]
         [Required(ErrorMessage = "Requis")]
-        public DateTime LimitDate { get; set; }
+        public String LimitDate { get; set; }
 
         [DisplayName("Nombre de stagiaires")]
         [Required(ErrorMessage = "Requis")]
