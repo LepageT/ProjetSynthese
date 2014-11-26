@@ -199,12 +199,25 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult ApplyStage(IEnumerable<HttpPostedFileBase> files, ViewModels.Student.Apply applyStudentViewModel)
         {
             var stage = _stageRepository.GetById(applyStudentViewModel.IdStage);
-
+            var studentID = _httpContextService.GetUserId();
             if (stage == null)
             {
                 ViewBag.Message = StudentResources.NoFileToUpload;
                 return HttpNotFound();
             }
+            var appliedStages = _applyRepository.GetAll().Where(x => x.IdStudent == studentID);
+            if (appliedStages != null)
+            {
+                foreach (var appliedStage in appliedStages)
+                {
+                    if (stage.Id == appliedStage.IdStage)
+                    {
+                        this.Flash("Vous avez déjà postuler sur ce stage", FlashEnum.Info);
+                        return View(applyStudentViewModel);
+                    }
+                }
+            }
+
             if (files.Any(file => file == null || (!file.FileName.Contains(".pdf") && !file.FileName.Contains(".do"))))
             {
                 ViewBag.Message = "Fichier invalide, le fichier doit être un fichier Word ou PDF";
