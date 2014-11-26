@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NSubstitute;
+using Stagio.Domain.Entities;
+using Ploeh.AutoFixture;
 
 namespace Stagio.Web.UnitTests.ControllerTests.StageAgreementTests
 {
@@ -15,9 +18,28 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageAgreementTests
         [TestMethod]
         public void create_stage_agreement_should_render_view()
         {
-            var result = stageAgreementController.CreateConfirmation() as ViewResult;
+            var apply = _fixture.Create<Apply>();
+            applyRepository.GetById(apply.Id).Returns(apply);
+
+            var result = stageAgreementController.CreateConfirmation(apply.Id) as ViewResult;
 
             result.ViewName.Should().Be(""); 
+        }
+
+        [TestMethod]
+        public void create_stage_agreement_should_add_stage_agreement_in_DB()
+        {
+            var apply = _fixture.Create<Apply>();
+            
+            applyRepository.GetById(apply.Id).Returns(apply);
+
+            stageAgreementController.CreateConfirmation(apply.Id);
+
+            stageAgreementRepository.Received().Add(Arg.Is<StageAgreement>(x => x.IdStage == apply.IdStage));
+            stageAgreementRepository.Received().Add(Arg.Is<StageAgreement>(x => x.IdStudentSigned == apply.IdStudent));
+            stageAgreementRepository.Received().Add(Arg.Is<StageAgreement>(x => x.ContactEnterpriseHasSigned == false));
+            stageAgreementRepository.Received().Add(Arg.Is<StageAgreement>(x => x.StudentHasSigned == false));
+            stageAgreementRepository.Received().Add(Arg.Is<StageAgreement>(x => x.CoordinatorHasSigned == false));
         }
 
         

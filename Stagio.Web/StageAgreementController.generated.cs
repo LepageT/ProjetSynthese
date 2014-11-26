@@ -54,6 +54,12 @@ namespace Stagio.Web.Controllers
 			return RedirectToActionPermanent(taskResult.Result);
 		}
 
+		[NonAction]
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public virtual System.Web.Mvc.ActionResult CreateConfirmation()
+		{
+			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateConfirmation);
+		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public StageAgreementController Actions { get { return MVC.StageAgreement; } }
@@ -80,6 +86,14 @@ namespace Stagio.Web.Controllers
 		}
 
 
+		static readonly ActionParamsClass_CreateConfirmation s_params_CreateConfirmation = new ActionParamsClass_CreateConfirmation();
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public ActionParamsClass_CreateConfirmation CreateConfirmationParams { get { return s_params_CreateConfirmation; } }
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public class ActionParamsClass_CreateConfirmation
+		{
+			public readonly string idApply = "idApply";
+		}
 		static readonly ViewsClass s_views = new ViewsClass();
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public ViewsClass Views { get { return s_views; } }
@@ -102,13 +116,14 @@ namespace Stagio.Web.Controllers
 		public T4MVC_StageAgreementController() : base(Dummy.Instance) { }
 
 		[NonAction]
-		partial void CreateConfirmationOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+		partial void CreateConfirmationOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int idApply);
 
 		[NonAction]
-		public override System.Web.Mvc.ActionResult CreateConfirmation()
+		public override System.Web.Mvc.ActionResult CreateConfirmation(int idApply)
 		{
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateConfirmation);
-			CreateConfirmationOverride(callInfo);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "idApply", idApply);
+			CreateConfirmationOverride(callInfo, idApply);
 			return callInfo;
 		}
 
