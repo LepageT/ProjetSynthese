@@ -27,9 +27,10 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
             const string MESSAGE_INVITATION = "test";
             coordinatorController.ModelState.AddModelError("Error", "Error");
 
-            var result = coordinatorController.InviteContactEnterprise(selectedIdContactEnterprise, MESSAGE_INVITATION) as ViewResult;
+            var routeResult = coordinatorController.InviteContactEnterprise(selectedIdContactEnterprise, MESSAGE_INVITATION) as RedirectToRouteResult;
+            var routeAction = routeResult.RouteValues["Action"];
 
-            result.ViewName.Should().Be("");
+            routeAction.Should().Be("InviteContactEnterprise");
         }
 
         [TestMethod]
@@ -57,9 +58,10 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
             IEnumerable<int> selectedIdContactEnterprise = new int[] { contactEnterprise.Id };
             const string MESSAGE_INVITATION = "test";
 
-            var result = coordinatorController.InviteContactEnterprise(selectedIdContactEnterprise, MESSAGE_INVITATION) as ViewResult;
+            var routeResult = coordinatorController.InviteContactEnterprise(selectedIdContactEnterprise, MESSAGE_INVITATION) as RedirectToRouteResult;
+            var routeAction = routeResult.RouteValues["Action"];
 
-            result.ViewName.Should().Be("");
+            routeAction.Should().Be("InviteContactEnterprise");
         }
     }
 }

@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Stagio.DataLayer;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
+using Stagio.Web.Module;
 using Stagio.Web.Module.Strings.Controller;
 using Stagio.Web.Services;
 using Stagio.Web.ViewModels.Account;
@@ -48,6 +49,7 @@ namespace Stagio.Web.Controllers
             if (!user.Any())
             {
                 ModelState.AddModelError("loginError", AccountResources.ErrorLogin);
+                this.Flash(AccountResources.ErrorLogin, FlashEnum.Error);
                 return View("");
             }
 

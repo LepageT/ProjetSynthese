@@ -17,8 +17,12 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
         [TestMethod]
         public void edit_should_return_view_with_stageViewModel_when_stageId_is_valid()
         {
-            var stage = _fixture.Create<Domain.Entities.Stage>();
+            var stage = _fixture.Create<Domain.Entities.Stage>(); 
             stageRepository.GetById(stage.Id).Returns(stage);
+            var user = _fixture.Create<Domain.Entities.ContactEnterprise>();
+            httpContextService.GetUserId().Returns(user.Id);
+            contactEnterpriseRepository.GetById(user.Id).Returns(user);
+            stage.CompanyName = user.EnterpriseName;
             var viewModelExpected = Mapper.Map<ViewModels.Stage.Edit>(stage);
             
             var viewResult = stageController.Edit(stage.Id) as ViewResult;
@@ -41,6 +45,10 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
         {
             var stage = _fixture.Create<Stage>();
             stageRepository.GetById(stage.Id).Returns(stage);
+            var user = _fixture.Create<Domain.Entities.ContactEnterprise>();
+            httpContextService.GetUserId().Returns(user.Id);
+            contactEnterpriseRepository.GetById(user.Id).Returns(user);
+            stage.CompanyName = user.EnterpriseName;
             var stageViewModel = Mapper.Map<ViewModels.Stage.Edit>(stage);
             stageViewModel.ContactToName = "Bobino";
 
@@ -54,6 +62,10 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
         {
             var stage = _fixture.Create<Stage>();
             stageRepository.GetById(stage.Id).Returns(stage);
+            var user = _fixture.Create<Domain.Entities.ContactEnterprise>();
+            httpContextService.GetUserId().Returns(user.Id);
+            contactEnterpriseRepository.GetById(user.Id).Returns(user);
+            stage.CompanyName = user.EnterpriseName;
             var stageEditPageViewModel = Mapper.Map<Stage, ViewModels.Stage.Edit>(stage);
             stageEditPageViewModel.ContactToName = "Bobino";
 
@@ -68,6 +80,10 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
         {
             var stage = _fixture.Create<Stage>();
             stageRepository.GetById(stage.Id).Returns(stage);
+            var user = _fixture.Create<Domain.Entities.ContactEnterprise>();
+            httpContextService.GetUserId().Returns(user.Id);
+            contactEnterpriseRepository.GetById(user.Id).Returns(user);
+            stage.CompanyName = user.EnterpriseName;
             var stageEditPageViewModel = _fixture.Build<ViewModels.Stage.Edit>()
                                                       .With(x => x.Id, stage.Id)
                                                       .Create();
@@ -84,7 +100,10 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
         {
             var stage = _fixture.Create<ViewModels.Stage.Edit>();
             stageRepository.GetById(Arg.Any<int>()).Returns(a => null);
-
+            var user = _fixture.Create<Domain.Entities.ContactEnterprise>();
+            httpContextService.GetUserId().Returns(user.Id);
+            contactEnterpriseRepository.GetById(user.Id).Returns(user);
+            stage.CompanyName = user.EnterpriseName;
             var result = stageController.Edit(stage);
 
             result.Should().BeOfType<HttpNotFoundResult>();

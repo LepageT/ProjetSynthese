@@ -371,6 +371,7 @@ namespace Stagio.Web.Controllers
             var stageApply = _applyRepository.GetById(id);
             stageApply.Status = StatusApply.Removed;
             _applyRepository.Update(stageApply);
+            this.Flash("Postulation retirée", FlashEnum.Warning);
             return View();
         }
 
@@ -379,6 +380,7 @@ namespace Stagio.Web.Controllers
             var stageApply = _applyRepository.GetById(id);
             stageApply.Status = StatusApply.Waitting;
             _applyRepository.Update(stageApply);
+            this.Flash("Postulation réactivée", FlashEnum.Info);
             return View();
         }
 

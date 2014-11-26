@@ -7,6 +7,8 @@ using AutoMapper;
 using Stagio.DataLayer;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
+using Stagio.Web.Module;
+using Stagio.Web.Services;
 using Stagio.Web.ViewModels.Stage;
 
 namespace Stagio.Web.Controllers
@@ -14,10 +16,14 @@ namespace Stagio.Web.Controllers
     public partial class StageController : Controller
     {
         private readonly IEntityRepository<Stage> _stageRepository;
+        private readonly IHttpContextService _httpContext;
+        private readonly IEntityRepository<ContactEnterprise> _contactEnterpriseRepository;
 
-        public StageController(IEntityRepository<Stage> stageRepository)
+        public StageController(IEntityRepository<Stage> stageRepository, IHttpContextService httpContextService, IEntityRepository<ContactEnterprise> contactEnterpriseRepository )
         {
             _stageRepository = stageRepository;
+            _httpContext = httpContextService;
+            _contactEnterpriseRepository = contactEnterpriseRepository;
         }
 
         [Authorize(Roles = RoleName.Coordinator)]
@@ -96,15 +102,20 @@ namespace Stagio.Web.Controllers
         }
 
         [Authorize(Roles = RoleName.ContactEnterprise)]
-        // GET: Student/Edit/5
         public virtual ActionResult Edit(int id)
         {
             var stage = _stageRepository.GetById(id);
 
             if (stage != null)
             {
-                var stageEditPageViewModel = Mapper.Map<ViewModels.Stage.Edit>(stage);
+                var user = _contactEnterpriseRepository.GetById(_httpContext.GetUserId());
 
+                if (stage.CompanyName != user.EnterpriseName)
+                {
+                    this.Flash("Impossible de modifier le stage", FlashEnum.Error);
+                    return RedirectToAction(MVC.ContactEnterprise.ListStage());
+                }
+                var stageEditPageViewModel = Mapper.Map<ViewModels.Stage.Edit>(stage);
                 return View(stageEditPageViewModel);
             }
             return HttpNotFound();
@@ -117,9 +128,18 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult Edit(ViewModels.Stage.Edit editStageViewModel)
         {
             var stage = _stageRepository.GetById(editStageViewModel.Id);
+            var user = _contactEnterpriseRepository.GetById(_httpContext.GetUserId());
+            
+            
             if (stage == null)
             {
                 return HttpNotFound();
+            }
+
+            if (stage.CompanyName != user.EnterpriseName)
+            {
+                this.Flash("Impossible de modifier le stage", FlashEnum.Error);
+                return RedirectToAction(MVC.ContactEnterprise.ListStage());
             }
 
             if (!ModelState.IsValid)
@@ -130,7 +150,7 @@ namespace Stagio.Web.Controllers
             Mapper.Map(editStageViewModel, stage);
 
            _stageRepository.Update(stage);
-
+            this.Flash("Modification réussi", FlashEnum.Success);
             return RedirectToAction(MVC.ContactEnterprise.ListStage());
         }
     }

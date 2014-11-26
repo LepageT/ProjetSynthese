@@ -112,7 +112,6 @@
     <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerInviteContactEnterpriseTests.cs" />
     <Compile Include="ControllerTests\ContactEnterpriseTests\ContactEnterpriseControllerReactivateTests.cs" />
     <Compile Include="AllControllersBaseClassTests.cs" />
-    <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerInviteTests.cs" />
     <Compile Include="ControllerTests\AccountTests\AccountControllerLoginTests.cs" />
     <Compile Include="ControllerTests\ContactEnterpriseTests\ContactEnterpriseControllerCreateStageTests.cs" />
     <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerBaseClassTests.cs" />

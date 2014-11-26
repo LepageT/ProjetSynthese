@@ -105,7 +105,7 @@ namespace Stagio.Web.Controllers
                     if (!ModelState.IsValid)
                     {
                         this.Flash("Erreur sur la page", FlashEnum.Error);
-                        return View(InviteContactEnterprise());
+                        return RedirectToAction(MVC.Coordinator.InviteContactEnterprise());
                     }
 
                     String messageText = EmailEnterpriseResources.InviteMessageBody;
@@ -126,7 +126,7 @@ namespace Stagio.Web.Controllers
                     {
                         ModelState.AddModelError("Email", EmailResources.CantSendEmail);
                         this.Flash("Erreur sur la page", FlashEnum.Error);
-                        return View(InviteContactEnterprise());
+                        return RedirectToAction(MVC.Coordinator.InviteContactEnterprise());
                     }
 
                     _invitationContactRepository.Add(new InvitationContactEnterprise()
