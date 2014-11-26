@@ -8,6 +8,7 @@ using AutoMapper;
 using Stagio.DataLayer;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
+using Stagio.Web.Module;
 using Stagio.Web.Services;
 
 namespace Stagio.Web.Controllers
@@ -16,10 +17,10 @@ namespace Stagio.Web.Controllers
     {
         private readonly IEntityRepository<Stagio.Domain.Entities.Apply> _applyRepository;
         private readonly IEntityRepository<Stage> _stageRepository;
-        private readonly IEntityRepository<Interview> _interviewRepository; 
+        private readonly IEntityRepository<Interview> _interviewRepository;
         private readonly IHttpContextService _httpContextService;
 
-        public InterviewController(IEntityRepository<Stagio.Domain.Entities.Apply> applyRepository, IEntityRepository<Stage> stageRepository, IHttpContextService httpContextService, IEntityRepository<Interview> interviewRepository )
+        public InterviewController(IEntityRepository<Stagio.Domain.Entities.Apply> applyRepository, IEntityRepository<Stage> stageRepository, IHttpContextService httpContextService, IEntityRepository<Interview> interviewRepository)
         {
             _applyRepository = applyRepository;
             _stageRepository = stageRepository;
@@ -34,16 +35,16 @@ namespace Stagio.Web.Controllers
             var interview = new ViewModels.Interviews.Create();
             var userId = _httpContextService.GetUserId();
 
-            
+
             var applies = _applyRepository.GetAll().Where(x => x.IdStudent == userId).ToList();
 
             interview.Apply = from apply in applies
-                select new SelectListItem
-                {
-                    Text = _stageRepository.GetById(apply.IdStage).StageTitle.ToString() + " - " + _stageRepository.GetById(apply.IdStage).CompanyName.ToString(),
-                    Value = ((int)apply.IdStage).ToString()
-                };
-            
+                              select new SelectListItem
+                              {
+                                  Text = _stageRepository.GetById(apply.IdStage).StageTitle.ToString() + " - " + _stageRepository.GetById(apply.IdStage).CompanyName.ToString(),
+                                  Value = ((int)apply.IdStage).ToString()
+                              };
+
 
             return View(interview);
         }
@@ -67,20 +68,20 @@ namespace Stagio.Web.Controllers
                         var applies = _applyRepository.GetAll().Where(x => x.IdStudent == createdInterview.StudentId).ToList();
 
                         createdInterview.Apply = from apply in applies
-                                          select new SelectListItem
-                                          {
-                                              Text = _stageRepository.GetById(apply.IdStage).StageTitle.ToString() + " - " + _stageRepository.GetById(apply.IdStage).CompanyName.ToString(),
-                                              Value = ((int)apply.IdStage).ToString()
-                                          };
+                                                 select new SelectListItem
+                                                 {
+                                                     Text = _stageRepository.GetById(apply.IdStage).StageTitle.ToString() + " - " + _stageRepository.GetById(apply.IdStage).CompanyName.ToString(),
+                                                     Value = ((int)apply.IdStage).ToString()
+                                                 };
                         return View(createdInterview);
                     }
                 }
 
                 _interviewRepository.Add(interviewCreated);
-
+                this.Flash("Ajout avec succes", FlashEnum.Success);
                 return RedirectToAction(MVC.Interview.InterviewCreateConfirmation());
             }
-
+            this.Flash("Erreur sur la page", FlashEnum.Error);
             return View(createdInterview);
         }
 
@@ -108,7 +109,7 @@ namespace Stagio.Web.Controllers
                                              stage.CompanyName.ToString();
                     }
                 }
-                
+
             }
 
             return View(interviewsList);
@@ -122,20 +123,20 @@ namespace Stagio.Web.Controllers
             var interview = _interviewRepository.GetById(id);
             if (ModelState.IsValid)
             {
-            if (interview != null)
-            {
-                var interviewEditPageViewModel = Mapper.Map<ViewModels.Interviews.Edit>(interview);
-                var stages = _stageRepository.GetAll();
-                foreach (var stage in stages)
+                if (interview != null)
                 {
-                    if (stage.Id == interview.StageId)
+                    var interviewEditPageViewModel = Mapper.Map<ViewModels.Interviews.Edit>(interview);
+                    var stages = _stageRepository.GetAll();
+                    foreach (var stage in stages)
                     {
-                        interviewEditPageViewModel.StageTitleAndCompagny = stage.StageTitle.ToString() + " - " +
-                                             stage.CompanyName.ToString();
+                        if (stage.Id == interview.StageId)
+                        {
+                            interviewEditPageViewModel.StageTitleAndCompagny = stage.StageTitle.ToString() + " - " +
+                                                 stage.CompanyName.ToString();
+                        }
                     }
+                    return View(interviewEditPageViewModel);
                 }
-                return View(interviewEditPageViewModel);
-            }
             }
             return HttpNotFound();
         }
@@ -149,12 +150,12 @@ namespace Stagio.Web.Controllers
                 Mapper.Map(editInterviewViewModel, interview);
 
                 _interviewRepository.Update(interview);
-
+                this.Flash("Modification réussi", FlashEnum.Success);
                 return RedirectToAction(MVC.Interview.List());
             }
             return HttpNotFound();
 
-           
+
         }
 
     }

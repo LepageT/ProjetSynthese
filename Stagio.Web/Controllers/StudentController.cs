@@ -1,23 +1,17 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Drawing.Drawing2D;
-using System.IO;
 using System.Linq;
-using System.Security.Claims;
 using System.Web;
+using System.Web.Caching;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
 using AutoMapper;
 using Microsoft.Ajax.Utilities;
-using Microsoft.AspNet.Identity;
 using Stagio.DataLayer;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
 using Stagio.Web.Module;
 using Stagio.Web.Module.Strings.Controller;
 using Stagio.Web.Services;
-using Stagio.Web.ViewModels.Apply;
 using Stagio.Web.ViewModels.Student;
 using Stagio.Utilities.Encryption;
 using Stagio.Web.Module.Strings.Email;
@@ -111,8 +105,7 @@ namespace Stagio.Web.Controllers
         }
 
         [Authorize(Roles = RoleName.Coordinator)]
-        [HttpPost]
-        [ActionName("ResultCreateList")]
+        [HttpPost, ActionName("ResultCreateList")]
         public virtual ActionResult PostResultCreateList()
         {
             return RedirectToAction(MVC.Home.Index());
@@ -127,8 +120,7 @@ namespace Stagio.Web.Controllers
         }
 
         [Authorize(Roles = RoleName.Coordinator)]
-        [HttpPost]
-        [ActionName("CreateList")]
+        [HttpPost, ActionName("CreateList")]
 
         public virtual ActionResult CreateListPost()
         {
@@ -209,6 +201,7 @@ namespace Stagio.Web.Controllers
 
             if (!ModelState.IsValid)
             {
+                this.Flash("Erreur sur la page", FlashEnum.Error);
                 return View(createStudentViewModel);
             }
 
@@ -224,12 +217,11 @@ namespace Stagio.Web.Controllers
             _studentRepository.Update(student);
 
             _mailler.SendEmail(student.Email, EmailAccountCreation.Subject, EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
-
+            this.Flash("Création du compte réussi", FlashEnum.Success);
             return RedirectToAction(MVC.Student.CreateConfirmation());
         }
 
         [Authorize(Roles = RoleName.Student)]
-        // GET: Student/Edit/5
         public virtual ActionResult Edit(int id)
         {
             var userID = _httpContextService.GetUserId();
@@ -252,7 +244,6 @@ namespace Stagio.Web.Controllers
 
 
         [Authorize(Roles = RoleName.Student)]
-        // POST: Student/Edit/5
         [HttpPost]
         public virtual ActionResult Edit(ViewModels.Student.Edit editStudentViewModel)
         {
@@ -272,6 +263,7 @@ namespace Stagio.Web.Controllers
 
             if (!ModelState.IsValid)
             {
+                this.Flash("Huston, we have an problem!!", FlashEnum.Error);
                 return View(editStudentViewModel);
             }
             if (!editStudentViewModel.PasswordConfirmation.IsNullOrWhiteSpace())
@@ -285,7 +277,7 @@ namespace Stagio.Web.Controllers
             Mapper.Map(editStudentViewModel, student);
 
             _studentRepository.Update(student);
-
+            this.Flash("Modification réussi", FlashEnum.Success);
             return RedirectToAction(MVC.Student.Index());
         }
 
@@ -309,18 +301,12 @@ namespace Stagio.Web.Controllers
 
             if (stage != null)
             {
-
                 var applyViewModel = new ViewModels.Student.Apply();
                 applyViewModel.IdStage = id;
-
-                var identity = (ClaimsIdentity)User.Identity;
-                var nameIdentifier = identity.FindFirst(ClaimTypes.NameIdentifier).Value;
-
-                applyViewModel.IdStudent = Int32.Parse(nameIdentifier);
+                applyViewModel.IdStudent = _httpContextService.GetUserId();
                 return View(applyViewModel);
             }
             return HttpNotFound();
-
         }
 
         [HttpPost]
@@ -336,6 +322,7 @@ namespace Stagio.Web.Controllers
             if (files.Any(file => file == null || (!file.FileName.Contains(".pdf") && !file.FileName.Contains(".do"))))
             {
                 ViewBag.Message = "Fichier invalide, le fichier doit être un fichier Word ou PDF";
+                this.Flash("Erreur de la page", FlashEnum.Error);
                 return View(applyStudentViewModel);
             }
             var readFile = new ReadFile<String>();
@@ -353,11 +340,12 @@ namespace Stagio.Web.Controllers
                 stage.NbApply = nbApplyCurrently + 1;
                 _stageRepository.Update(stage);
                 TempData["files"] = files;
+                this.Flash("Postulation réussi", FlashEnum.Success);
                 return RedirectToAction(MVC.Student.ApplyConfirmation());
             }
             else
             {
-               
+                this.Flash("Erreur sur la page", FlashEnum.Error);
                 return View(applyStudentViewModel);
             }
         }

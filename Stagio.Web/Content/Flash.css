@@ -1,0 +1,42 @@
+﻿/* Styles for flash messages
+-----------------------------------------------------------*/
+
+.flash
+{
+    padding: 8px 1px 8px 14px;
+    margin-bottom: 18px;
+    margin-top: -20px;
+    border: 1px solid;
+}
+
+.flash-success
+{
+    color: #158a17;
+    background-color: #c7f7b4;
+    border-color: #D6E9C6;
+    font-weight: bold;
+}
+
+.flash-info
+{
+    color: #1b81b4;
+    background-color: #9bd8f7;
+    border-color: #BCE8F1;
+    font-weight: bold;
+}
+
+.flash-warning
+{
+    color: #c38f34;
+    background-color: #fbe98a;
+    border-color: #FBEED5;
+    font-weight: bold;
+}
+
+.flash-error
+{
+    color: #a30909;
+    background-color: #f68d8b;
+    border-color: #c87e7c;
+    font-weight: bold;
+}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -103,6 +104,7 @@ namespace Stagio.Web.Controllers
 
                     if (!ModelState.IsValid)
                     {
+                        this.Flash("Erreur sur la page", FlashEnum.Error);
                         return View(InviteContactEnterprise());
                     }
 
@@ -123,6 +125,7 @@ namespace Stagio.Web.Controllers
                             messageText))
                     {
                         ModelState.AddModelError("Email", EmailResources.CantSendEmail);
+                        this.Flash("Erreur sur la page", FlashEnum.Error);
                         return View(InviteContactEnterprise());
                     }
 
@@ -141,6 +144,7 @@ namespace Stagio.Web.Controllers
 
 
             }
+                this.Flash("Invitation réussi", FlashEnum.Success);
                 return RedirectToAction(MVC.Coordinator.InviteContactEnterpriseConfirmation());
             }
 
@@ -193,6 +197,7 @@ namespace Stagio.Web.Controllers
 
             if (!ModelState.IsValid)
             {
+                this.Flash("Erreur sur la page", FlashEnum.Error);
                 return View(createdCoordinator);
             }
 
@@ -213,6 +218,7 @@ namespace Stagio.Web.Controllers
 
                     _mailler.SendEmail(createdCoordinator.Email, EmailAccountCreation.Subject, EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
 
+                    this.Flash("Création réussi", FlashEnum.Success);
                     return RedirectToAction(MVC.Coordinator.CreateConfirmation());
                 }
             }
@@ -232,6 +238,7 @@ namespace Stagio.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
+                this.Flash("Erreur sur la page", FlashEnum.Error);
                 return View(createdInvite);
             }
 
@@ -254,6 +261,7 @@ namespace Stagio.Web.Controllers
             if (!_mailler.SendEmail(createdInvite.Email, EmailCoordinatorResources.CoordinatorInviteSubject, messageText))
             {
                 ModelState.AddModelError("Email", EmailResources.CantSendEmail);
+                this.Flash("Erreur sur la page", FlashEnum.Error);
                 return View(createdInvite);
             }
 
@@ -263,7 +271,7 @@ namespace Stagio.Web.Controllers
                                         Email = createdInvite.Email,
                                         Used = false
                                       });
-
+            this.Flash("Invitation envoyée", FlashEnum.Success);
             return RedirectToAction(MVC.Coordinator.InvitationSucceed());
 
         }
@@ -435,6 +443,7 @@ namespace Stagio.Web.Controllers
         {
             var listStudents = TempData["listStudent"] as List<ListStudent>;
             TempData["listStudent"] = listStudents;
+            TempData.Keep();
             return View(listStudents);
         }
 
