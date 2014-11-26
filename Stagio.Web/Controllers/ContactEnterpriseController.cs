@@ -204,7 +204,9 @@ namespace Stagio.Web.Controllers
             if (ButtonClick.Equals("Sauvegarder comme brouillon"))
             {
                 var stage = Mapper.Map<Stage>(createdStage);
+                stage.PublicationDate = DateTime.Now;
                 stage.Draft = true;
+                stage.LimitDate = stage.LimitDate == DateTime.MinValue ? null : stage.LimitDate;
                 _stageRepository.Add(stage);
 
                 return View(MVC.ContactEnterprise.Views.ViewNames.DraftConfirmation);

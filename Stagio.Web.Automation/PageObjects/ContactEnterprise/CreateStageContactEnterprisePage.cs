@@ -75,5 +75,23 @@ namespace Stagio.Web.Automation.PageObjects.ContactEnterprise
         {
             get { return Driver.Instance.FindElement(By.Id("create-succeed")) != null; }
         }
+
+        public static void CreateDraft()
+        {
+
+           const string ENTERPRISE_NAME = "Les lapins joyeux";
+           
+
+            Driver.Instance.FindElement(By.Id("CompanyName")).SendKeys(ENTERPRISE_NAME);
+           
+
+            Driver.Instance.FindElement(By.Id("btn-draft")).Click();
+        }
+
+        public static bool DraftConfirmationPageIsDisplayed
+        {
+            get { return Driver.Instance.FindElement(By.Id("draft-confirmation")) != null; }
+
+        }
     }
 }

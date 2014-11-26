@@ -46,5 +46,15 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
 
             result.ViewName.Should().Be("");
         }
+
+        [TestMethod]
+        public void contact_enterprise_save_draft_should_render_confirmation_page()
+        {
+            var stageViewModel = _fixture.Create<ViewModels.Stage.Create>();
+
+            var result = enterpriseController.CreateStage(stageViewModel, "Sauvegarder comme brouillon") as ViewResult;
+
+            result.ViewName.Should().Be(MVC.ContactEnterprise.Views.ViewNames.DraftConfirmation);
+        }
     }
 }

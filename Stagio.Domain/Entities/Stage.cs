@@ -41,12 +41,12 @@ namespace Stagio.Domain.Entities
 
         [DisplayName("Description du projet pour le stage")]
         public String StageDescription { get; set; }
+        //Stage information  
         [DisplayName("Environnement matériel et logiciel spécifique au projet")]
-        //Stage information
         public String EnvironnementDescription { get; set; }
         public string StageTitle { get; set; }
         [DisplayName("Nombre de stagiaires")]
-        public int NbrStagiaire { get; set; }
+        public int? NbrStagiaire { get; set; }
         [DisplayName("Stagiaire si connu:")]
         public string StagiaireIfKnew { get; set; }
         [DisplayName("Nom")]
@@ -58,7 +58,7 @@ namespace Stagio.Domain.Entities
         [DisplayName("Courriel")]
         public String SubmitToEmail { get; set; }
         [DisplayName("Date limite pour soummettre une candidature")]
-        public DateTime LimitDate { get; set; }
+        public DateTime? LimitDate { get; set; }
 
         [DefaultValue(StageStatus.New)]
         public StageStatus Status { get; set; }
