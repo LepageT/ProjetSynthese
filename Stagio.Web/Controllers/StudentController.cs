@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Drawing.Drawing2D;
-using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
 using AutoMapper;
 using Microsoft.Ajax.Utilities;
-using Microsoft.AspNet.Identity;
 using Stagio.DataLayer;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
@@ -18,8 +13,6 @@ using Stagio.Web.Module;
 using Stagio.Web.Module.Strings.Controller;
 using Stagio.Web.Module.Strings.Notification;
 using Stagio.Web.Services;
-using Stagio.Web.ViewModels.Apply;
-using Stagio.Web.ViewModels.Student;
 using Stagio.Utilities.Encryption;
 using Stagio.Web.Module.Strings.Email;
 
@@ -237,6 +230,11 @@ namespace Stagio.Web.Controllers
                 stage.NbApply = nbApplyCurrently + 1;
                 _stageRepository.Update(stage);
                 TempData["files"] = files;
+                var student = _studentRepository.GetById(applyStudentViewModel.IdStudent);
+                string messageToCoordinator = student.FirstName + " " + student.LastName + StudentToCoordinator.ApplyMessage + stage.StageTitle;
+                _notificationService.SendNotificationToAllCoordinator(StudentToCoordinator.ApplyTilte, messageToCoordinator);
+                string messageToContactEnterprise = student.FirstName + " " + student.LastName + StudentToContactEnterprise.ApplyMessage + stage.StageTitle + StudentToContactEnterprise.ApplyLinkPart1 + stage.Id + StudentToContactEnterprise.ApplyLinkPart2; 
+                _notificationService.SendNotificationToAllContactEnterpriseOf(stage.CompanyName, StudentToContactEnterprise.ApplyTitle, messageToContactEnterprise);
                 return RedirectToAction(MVC.Student.ApplyConfirmation());
             }
             else
