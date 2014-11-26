@@ -94,6 +94,17 @@
                     <p>Inconnu</p>
                 }
             </td>
+            <td>
+                @if (item.DateAcceptStage != null)
+                {
+                    @Html.ActionLink("Créer la convention de stage", MVC.StageAgreement.CreateConfirmation(), new { id = "create-stageAgreement" + item.Id })
+                }
+                else
+                {
+                    //TEMP
+                    @Html.ActionLink("Créer la convention de stage", MVC.StageAgreement.CreateConfirmation(), new { id = "create-stageAgreement" + item.Id })
+                }
+            </td>
         </tr>
     }
 

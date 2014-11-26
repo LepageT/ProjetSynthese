@@ -61,7 +61,7 @@ namespace Stagio.Web.Module.Strings.Notification {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à a retiré sa candidature à ce stage:.
+        ///   Recherche une chaîne localisée semblable à  a retiré sa candidature à ce stage: .
         /// </summary>
         internal static string RemoveApplyMessage {
             get {

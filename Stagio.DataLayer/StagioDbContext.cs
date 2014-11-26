@@ -21,6 +21,8 @@ namespace Stagio.DataLayer
 
         public DbSet<Notification> Notifications { get; set; }
 
+        public DbSet<StageAgreement> StageAgreements { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

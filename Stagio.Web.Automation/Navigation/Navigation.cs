@@ -215,6 +215,15 @@ namespace Stagio.Web.Automation
                     MenuSelector.SelectTopLevel("student-stages1");
                 }
             }
+
+            public class StageAgreementCreate1
+            {
+                public static void Select()
+                {
+                    MenuSelector.Select("Coordinator-menu", "student-list");
+                    MenuSelector.Select("student-stages1", "create-stageAgreement1");
+                }
+            }
         }
 
         public class AllUsers
