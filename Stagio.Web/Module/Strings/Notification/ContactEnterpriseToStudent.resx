@@ -117,25 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="EndLink" xml:space="preserve">
-    <value>/&gt;jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token=</value>
+  <data name="EditStageMessage" xml:space="preserve">
+    <value> a modifié le stage suivant: </value>
   </data>
-  <data name="InviteCoworker" xml:space="preserve">
-    <value>&lt;h3&gt;Stagio&lt;/h3&gt;&lt;p&gt; Bonjour, &lt;/p&gt;&lt;br/&gt;Un collègue vous invite à vous inscrire au site Stagio.</value>
+  <data name="EditStageTitle" xml:space="preserve">
+    <value>Une entreprise a modifié son offre de stage</value>
   </data>
-  <data name="InviteLink" xml:space="preserve">
-    <value>Pour vous créer un compte, copier-coller ce lien: &lt;a href ="http://jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token=</value>
+  <data name="NewStageLinkEnd" xml:space="preserve">
+    <value>&gt;jenkins.cegep-ste-foy.qc.ca/thomarelau/Stage/ViewStageInfo/</value>
   </data>
-  <data name="InviteLinkCoworker" xml:space="preserve">
-    <value>Pour vous créer un compte, copier-coller ce lien: &lt;a href ="http://jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token=</value>
+  <data name="NewStageLinkStart" xml:space="preserve">
+    <value>. Voici le lien: &lt;a href ="http://jenkins.cegep-ste-foy.qc.ca/thomarelau/Stage/ViewStageInfo/</value>
   </data>
-  <data name="InviteMessageBody" xml:space="preserve">
-    <value>&lt;h3&gt;Stagio&lt;/h3&gt;&lt;p&gt; Bonjour, &lt;/p&gt;&lt;br/&gt;Un coordonateur de stage vous invite à vous inscrire au site Stagio. &lt;/br&gt;</value>
+  <data name="NewStageMessage" xml:space="preserve">
+    <value> a ajouté ce stage: </value>
   </data>
-  <data name="InviteSubject" xml:space="preserve">
-    <value>Invitation du Cégep de Sainte-Foy</value>
-  </data>
-  <data name="MessageHeader" xml:space="preserve">
-    <value>&lt;/br&gt;&lt;/br&gt; &lt;h3&gt;Message:&lt;/h3&gt;&lt;/br&gt;</value>
+  <data name="NewStageTitle" xml:space="preserve">
+    <value>Un nouveau stage est disponible</value>
   </data>
 </root>

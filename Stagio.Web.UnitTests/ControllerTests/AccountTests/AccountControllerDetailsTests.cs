@@ -25,7 +25,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.AccountTests
         [TestMethod]
         public void accountDetails_should_render_httpNotFound_if_invalid_id()
         {
-            var result = accountController.Details(999999999);
+            var result = accountController.Details(INVALID_ID);
 
             result.Should().BeOfType<HttpNotFoundResult>();
         }

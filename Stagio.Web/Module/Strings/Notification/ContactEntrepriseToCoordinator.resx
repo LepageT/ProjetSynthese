@@ -117,25 +117,47 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="EndLink" xml:space="preserve">
-    <value>/&gt;jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token=</value>
+  <data name="CreateContactEnterprise" xml:space="preserve">
+    <value>s'est inscrit sur le site.</value>
+    <comment>Ajouté le nom du contact </comment>
   </data>
-  <data name="InviteCoworker" xml:space="preserve">
-    <value>&lt;h3&gt;Stagio&lt;/h3&gt;&lt;p&gt; Bonjour, &lt;/p&gt;&lt;br/&gt;Un collègue vous invite à vous inscrire au site Stagio.</value>
+  <data name="CreateContactEnterpriseTitle" xml:space="preserve">
+    <value>Un employé s'est inscrit sur le site Stagio</value>
   </data>
-  <data name="InviteLink" xml:space="preserve">
-    <value>Pour vous créer un compte, copier-coller ce lien: &lt;a href ="http://jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token=</value>
+  <data name="EditStageMessage" xml:space="preserve">
+    <value>a modifié le stage</value>
   </data>
-  <data name="InviteLinkCoworker" xml:space="preserve">
-    <value>Pour vous créer un compte, copier-coller ce lien: &lt;a href ="http://jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token=</value>
+  <data name="EditStageTitle" xml:space="preserve">
+    <value>Une entreprise a modifié un stage</value>
   </data>
-  <data name="InviteMessageBody" xml:space="preserve">
-    <value>&lt;h3&gt;Stagio&lt;/h3&gt;&lt;p&gt; Bonjour, &lt;/p&gt;&lt;br/&gt;Un coordonateur de stage vous invite à vous inscrire au site Stagio. &lt;/br&gt;</value>
+  <data name="InterestedBy" xml:space="preserve">
+    <value>est  intéressé par la candidature de</value>
   </data>
-  <data name="InviteSubject" xml:space="preserve">
-    <value>Invitation du Cégep de Sainte-Foy</value>
+  <data name="InterestedByTitle" xml:space="preserve">
+    <value>Une entreprise est intéressé par la candidature d'un étudiant</value>
   </data>
-  <data name="MessageHeader" xml:space="preserve">
-    <value>&lt;/br&gt;&lt;/br&gt; &lt;h3&gt;Message:&lt;/h3&gt;&lt;/br&gt;</value>
+  <data name="NewStageEndLink" xml:space="preserve">
+    <value>&gt;Cliquer ici pour voir les détails de ce stage&lt;/a&gt;</value>
+  </data>
+  <data name="NewStageLink" xml:space="preserve">
+    <value>&lt;a href="http://jenkins.cegep-ste-foy.qc.ca/thomarelau/Stage/Details/</value>
+  </data>
+  <data name="NewStageMessage" xml:space="preserve">
+    <value>a ajouté un stage. Vous devez l'approuver pour qu'il soit visible pour les étudiants.</value>
+  </data>
+  <data name="NewStageTitle" xml:space="preserve">
+    <value>Un nouveau stage est en attente d'approbation</value>
+  </data>
+  <data name="NotInterestedBy" xml:space="preserve">
+    <value>n'est pas intéressé par la candidature de</value>
+  </data>
+  <data name="NotInterestedByTitle" xml:space="preserve">
+    <value>Une entreprise n'est pas intéressé par la candidature d'un étudiant</value>
+  </data>
+  <data name="RemoveStage" xml:space="preserve">
+    <value>a retiré le stage</value>
+  </data>
+  <data name="RemoveStageTitle" xml:space="preserve">
+    <value>Une entreprise à retiré une de ses offres de stages</value>
   </data>
 </root>

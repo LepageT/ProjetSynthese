@@ -26,7 +26,6 @@ using T4MVC;
 public static partial class MVC
 {
 	public static Stagio.Web.Controllers.AccountController Account = new Stagio.Web.Controllers.T4MVC_AccountController();
-	public static Stagio.Web.Controllers.ApplyController Apply = new Stagio.Web.Controllers.T4MVC_ApplyController();
 	public static Stagio.Web.Controllers.CIController CI = new Stagio.Web.Controllers.T4MVC_CIController();
 	public static Stagio.Web.Controllers.ContactEnterpriseController ContactEnterprise = new Stagio.Web.Controllers.T4MVC_ContactEnterpriseController();
 	public static Stagio.Web.Controllers.CoordinatorController Coordinator = new Stagio.Web.Controllers.T4MVC_CoordinatorController();

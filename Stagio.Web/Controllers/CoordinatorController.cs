@@ -34,6 +34,8 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<Interview> _interviewRepository;
         private readonly IEntityRepository<Notification> _notificationRepository;
         private readonly IHttpContextService _httpContextService;
+        private readonly INotificationService _notificationService;
+        private readonly IEntityRepository<ApplicationUser> _applicationRepository; 
 
         public CoordinatorController(IEntityRepository<ContactEnterprise> enterpriseContactRepository,
             IEntityRepository<Coordinator> coordinatorRepository,
@@ -46,7 +48,8 @@ namespace Stagio.Web.Controllers
             IEntityRepository<Student> studentRepository,
             IEntityRepository<Interview> interviewRepository,
             IEntityRepository<Notification> notificationRepository,
-            IHttpContextService httpContextService)
+            IHttpContextService httpContextService,
+            IEntityRepository<ApplicationUser> applicationRepository )
         {
             _enterpriseContactRepository = enterpriseContactRepository;
             _coordinatorRepository = coordinatorRepository;
@@ -60,14 +63,16 @@ namespace Stagio.Web.Controllers
             _interviewRepository = interviewRepository;
             _notificationRepository = notificationRepository;
             _httpContextService = httpContextService;
+            _applicationRepository = applicationRepository;
+            _notificationService = new NotificationService(_applicationRepository, notificationRepository);
+
         }
         // GET: Coordinator
         public virtual ActionResult Index()
         {
-            var notifications = _notificationRepository.GetAll().ToList();
-            var userNotifications = notifications.Where(x => x.For == _httpContextService.GetUserId());
+            var notifications = _notificationService.GetDashboardNotificationForUser(_httpContextService.GetUserId());
 
-            var notificationsViewModels = Mapper.Map<IEnumerable<ViewModels.Notification.Notification>>(userNotifications).ToList();
+            var notificationsViewModels = Mapper.Map<IEnumerable<ViewModels.Notification.Notification>>(notifications).ToList();
 
             return View(notificationsViewModels);
         }
@@ -109,7 +114,7 @@ namespace Stagio.Web.Controllers
                     }
 
                     String messageText = EmailEnterpriseResources.InviteMessageBody;
-                    String invitationUrl = EmailEnterpriseResources.InviteLink + token + "\">jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token=" + token + "</a>";
+                    String invitationUrl = EmailEnterpriseResources.InviteLink + token + EmailEnterpriseResources.EndLink + token + "</a>";
 
                     messageText += invitationUrl;
 

@@ -92,7 +92,7 @@ namespace Stagio.Web.ViewModels.Stage
         [DisplayName("Nombre de stagiaires")]
         [Required(ErrorMessage = "Requis")]
         [Range(1, 50)]
-        public int NbrStagiaire { get; set; }
+        public int? NbrStagiaire { get; set; }
 
         //Submit to:
         [DisplayName("Nom")]
@@ -110,7 +110,7 @@ namespace Stagio.Web.ViewModels.Stage
 
         [DisplayName("Date limite pour soumettre une candidature")]
         [Required(ErrorMessage = "Requis")]
-        public DateTime LimitDate { get; set; }
+        public DateTime? LimitDate { get; set; }
 
     }
 }

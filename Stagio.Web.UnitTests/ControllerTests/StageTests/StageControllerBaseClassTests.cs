@@ -15,6 +15,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
         protected IEntityRepository<Stage> stageRepository;
         protected IEntityRepository<ContactEnterprise> contactEnterpriseRepository;
         protected IHttpContextService httpContextService;
+        protected INotificationService notificationService;
         protected StageController stageController;
         
         [TestInitialize]
@@ -22,8 +23,9 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
         {
             stageRepository = Substitute.For<IEntityRepository<Stage>>();
             httpContextService = Substitute.For<IHttpContextService>();
+            notificationService = Substitute.For<INotificationService>();
             contactEnterpriseRepository = Substitute.For<IEntityRepository<ContactEnterprise>>();
-            stageController = new StageController(stageRepository, httpContextService, contactEnterpriseRepository);
+            stageController = new StageController(stageRepository, httpContextService, contactEnterpriseRepository, notificationService);
         }
     }
 }

@@ -34,7 +34,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.InterviewTests
         [TestMethod]
         public void edit_should_return_http_not_found_when_studentId_is_not_valid()
         {
-            var result = interviewController.Edit(999999999);
+            var result = interviewController.Edit(INVALID_ID);
 
             result.Should().BeOfType<HttpNotFoundResult>();
         }
@@ -43,6 +43,12 @@ namespace Stagio.Web.UnitTests.ControllerTests.InterviewTests
         public void edit_post_should_update_interview_when_interviewId_is_valid()
         {
             var interview = _fixture.Create<Interview>();
+            var student = _fixture.Create<Student>();
+            var stage = _fixture.Create<Stage>();
+            studentRepository.GetById(student.Id).Returns(student);
+            stageRepository.GetById(stage.Id).Returns(stage);
+            interview.StageId = stage.Id;
+            interview.StudentId = student.Id;
             httpContextService.GetUserId().Returns(interview.Id);
             interviewRepository.GetById(interview.Id).Returns(interview);
             var interviewViewModel = Mapper.Map<ViewModels.Interviews.Edit>(interview);
@@ -56,6 +62,12 @@ namespace Stagio.Web.UnitTests.ControllerTests.InterviewTests
         public void edit_post_should_redirect_to_list_on_success()
         {
             var interview = _fixture.Create<Interview>();
+            var student = _fixture.Create<Student>();
+            var stage = _fixture.Create<Stage>();
+            studentRepository.GetById(student.Id).Returns(student);
+            stageRepository.GetById(stage.Id).Returns(stage);
+            interview.StageId = stage.Id;
+            interview.StudentId = student.Id;
             httpContextService.GetUserId().Returns(interview.Id);
             interviewRepository.GetById(interview.Id).Returns(interview);
             var interviewEditPageViewModel = Mapper.Map<ViewModels.Interviews.Edit>(interview);
@@ -70,6 +82,12 @@ namespace Stagio.Web.UnitTests.ControllerTests.InterviewTests
         public void interview_edit_post_should_return_httpnotfound_if_interview_doesnt_exist()
         {
             var interview = _fixture.Create<ViewModels.Interviews.Edit>();
+            var student = _fixture.Create<Student>();
+            var stage = _fixture.Create<Stage>();
+            studentRepository.GetById(student.Id).Returns(student);
+            stageRepository.GetById(stage.Id).Returns(stage);
+            interview.StageId = stage.Id;
+
             interviewRepository.GetById(Arg.Any<int>()).Returns(a => null);
 
             var result = interviewController.Edit(interview);

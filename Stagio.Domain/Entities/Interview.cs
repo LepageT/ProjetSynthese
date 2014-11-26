@@ -9,7 +9,7 @@ namespace Stagio.Domain.Entities
 {
     public class Interview : Entity
     {
-        public DateTime Date { get; set; }
+        public String Date { get; set; }
 
         public int StageId { get; set; }
 

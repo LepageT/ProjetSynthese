@@ -5,7 +5,7 @@ using OpenQA.Selenium;
 using Stagio.Web.Automation.PageObjects;
 using Stagio.Web.Automation.PageObjects.Coordinator;
 
-namespace Stagio.Web.AcceptanceTests.StudentTests
+namespace Stagio.Web.AcceptanceTests.CoordinatorTests
 {
     [TestClass]
     public class StudentControllerResultCreateList : BaseTests

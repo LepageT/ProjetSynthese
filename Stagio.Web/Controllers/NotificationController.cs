@@ -37,6 +37,10 @@ namespace Stagio.Web.Controllers
                     return RedirectToAction(MVC.Notification.Error());
                 }
 
+                notification.Seen = true;
+
+                _notificationRepository.Update(notification);
+
                 return View(notificationViewModel);
             }
             return HttpNotFound();
@@ -56,7 +60,7 @@ namespace Stagio.Web.Controllers
 
             return View(notificationsListViewModel);
         }
+        }
 
 
     }
-}

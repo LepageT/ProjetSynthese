@@ -20,7 +20,9 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
         public void contact_enterprise_remove_stage_should_render_view()
         {
             var stage = _fixture.Create<Stage>();
+            var applies = _fixture.Build<Apply>().With(x => x.IdStage, stage.Id).CreateMany(3);
             stageRepository.GetById(stage.Id).Returns(stage);
+            applyRepository.GetAll().Returns(applies.AsQueryable());
 
             var result = enterpriseController.RemoveStageConfirmation(stage.Id) as ViewResult;
 
@@ -31,7 +33,9 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
         public void contact_enterprise_remove_stage_should_update_DB()
         {
             var stage = _fixture.Create<Stage>();
+            var applies = _fixture.Build<Apply>().With(x => x.IdStage, stage.Id).CreateMany(3);
             stageRepository.GetById(stage.Id).Returns(stage);
+            applyRepository.GetAll().Returns(applies.AsQueryable());
 
             enterpriseController.RemoveStageConfirmation(stage.Id);
 
@@ -41,7 +45,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
         [TestMethod]
         public void contact_enterprise_remove_stage_should_return_httpnotfound_if_id_invalid()
         {
-            var result = enterpriseController.RemoveStageConfirmation(9999999);
+            var result = enterpriseController.RemoveStageConfirmation(INVALID_ID);
 
             result.Should().BeOfType<HttpNotFoundResult>();
         }

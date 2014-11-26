@@ -20,19 +20,19 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
     [TestClass]
     public class StudentControllerApplyTests : StudentControllerBaseClassTests
     {
-        [TestMethod]
-        public void apply_action_should_render_default_view()
-        {
+        //[TestMethod]
+        //public void apply_action_should_render_default_view()
+        //{
             
-            var result = studentController.CreateList() as ViewResult;
+        //    var result = studentController.CreateList() as ViewResult;
 
-            result.ViewName.Should().Be("");
-        }
+        //    result.ViewName.Should().Be("");
+        //}
 
         [TestMethod]
         public void apply_should_return_http_not_found_when_IdStage_is_not_valid()
         {
-            var result = studentController.ApplyStage(999999999);
+            var result = studentController.ApplyStage(INVALID_ID);
 
             result.Should().BeOfType<HttpNotFoundResult>();
         }

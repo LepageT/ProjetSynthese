@@ -141,12 +141,12 @@
     <Compile Include="ControllerTests\StudentTests\StudentControllerApplyListTest.cs" />
     <Compile Include="ControllerTests\StudentTests\StudentControllerNotificationTests.cs" />
     <Compile Include="ControllerTests\StudentTests\StudentControllerDownload.cs" />
-    <Compile Include="ControllerTests\StudentTests\StudentControllerUploadTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerCreateListTests.cs" />
     <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerUploadTests.cs" />
     <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerResultCreateList.cs" />
     <Compile Include="Services\MaillerTests.cs" />
+    <Compile Include="Services\NotificationServiceTests.cs" />
     <Compile Include="Services\UserServicesTests.cs" />
     <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerCreateTests.cs" />
     <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerInviteTest.cs" />

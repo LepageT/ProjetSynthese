@@ -17,7 +17,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.NotificationTests
         [TestMethod]
         public void notification_detail_should_return_httpNotFound_if_notification_doesnt_exist()
         {
-            var result = notificationController.Detail(-1);
+            var result = notificationController.Detail(INVALID_ID);
 
             result.Should().BeOfType<HttpNotFoundResult>();
         }

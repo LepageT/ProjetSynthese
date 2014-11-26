@@ -12,6 +12,7 @@ using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
 using Stagio.Web.Module;
 using Stagio.Web.Module.Strings.Controller;
+using Stagio.Web.Module.Strings.Notification;
 using Stagio.Web.Services;
 using Stagio.Web.Module.Strings.Email;
 
@@ -27,9 +28,12 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<Student> _studentRepository;
         private readonly IHttpContextService _httpContext;
         private readonly IEntityRepository<InvitationContactEnterprise> _invitationRepository;
-        private readonly IEntityRepository<Notification> _notificationRepository;
+        private readonly IEntityRepository<Notification> _notificationRepository; 
+        private readonly IEntityRepository<ApplicationUser> _applicationUserRepository;
+        private readonly INotificationService _notificationService;
 
-        public ContactEnterpriseController(IEntityRepository<ContactEnterprise> enterpriseRepository, IEntityRepository<Stage> stageRepository, IAccountService accountService, IMailler mailler, IEntityRepository<Apply> applyRepository, IEntityRepository<Student> studentRepository, IHttpContextService httpContext, IEntityRepository<InvitationContactEnterprise> invitationRepository, IEntityRepository<Notification> notificationRepository)
+
+        public ContactEnterpriseController(IEntityRepository<ContactEnterprise> enterpriseRepository, IEntityRepository<Stage> stageRepository, IAccountService accountService, IMailler mailler, IEntityRepository<Apply> applyRepository, IEntityRepository<Student> studentRepository, IHttpContextService httpContext, IEntityRepository<InvitationContactEnterprise> invitationRepository, IEntityRepository<Notification> notificationRepository, IEntityRepository<ApplicationUser> applicationUserRepository)
         {
             _contactEnterpriseRepository = enterpriseRepository;
             _accountService = accountService;
@@ -41,15 +45,16 @@ namespace Stagio.Web.Controllers
             _httpContext = httpContext;
             _invitationRepository = invitationRepository;
             _notificationRepository = notificationRepository;
+            _applicationUserRepository = applicationUserRepository;
+            _notificationService = new NotificationService(_applicationUserRepository, notificationRepository);
         }
 
         // GET: Enterprise
         public virtual ActionResult Index()
         {
-            var notifications = _notificationRepository.GetAll().ToList();
-            var userNotifications = notifications.Where(x => x.For == _httpContext.GetUserId());
+            var notifications = _notificationService.GetDashboardNotificationForUser(_httpContext.GetUserId());
 
-            var notificationsViewModels = Mapper.Map<IEnumerable<ViewModels.Notification.Notification>>(userNotifications).ToList();
+            var notificationsViewModels = Mapper.Map<IEnumerable<ViewModels.Notification.Notification>>(notifications).ToList();
 
             return View(notificationsViewModels);
         }
@@ -68,31 +73,34 @@ namespace Stagio.Web.Controllers
             {
                 var email = list.FirstOrDefault(x => x.Email == createViewModel.Email);
                 if (email != null)
-                {
-                    ModelState.AddModelError("Email", "Ce email est déjà utilisé");
+            {
+                    ModelState.AddModelError("Email", ContactEnterpriseResources.EmailContactEnterpriseAlreadyUsed);
                 }
 
-            }
+                }
 
             if (ModelState.IsValid)
-            {
-
-                var newContactEnterprise = Mapper.Map<ContactEnterprise>(createViewModel);
-                newContactEnterprise.Active = true;
-                newContactEnterprise.Password = _accountService.HashPassword(newContactEnterprise.Password);
-                newContactEnterprise.UserName = newContactEnterprise.Email;
-                newContactEnterprise.Roles = new List<UserRole>()
+                {
+                
+                    var newContactEnterprise = Mapper.Map<ContactEnterprise>(createViewModel);
+                    newContactEnterprise.Active = true;
+                    newContactEnterprise.Password = _accountService.HashPassword(newContactEnterprise.Password);
+                    newContactEnterprise.UserName = newContactEnterprise.Email;
+                    newContactEnterprise.Roles = new List<UserRole>()
                     {
                         new UserRole() {RoleName = RoleName.ContactEnterprise}
                     };
-                _contactEnterpriseRepository.Add(newContactEnterprise);
+                    _contactEnterpriseRepository.Add(newContactEnterprise);
+                string message = newContactEnterprise.LastName + " " + newContactEnterprise.FirstName + " " +
+                                 ContactEntrepriseToCoordinator.CreateContactEnterprise;
+                _notificationService.SendNotificationToAllCoordinator(
+                    ContactEntrepriseToCoordinator.CreateContactEnterpriseTitle, message);
+                    _mailler.SendEmail(newContactEnterprise.Email, EmailAccountCreation.Subject, EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
 
-                _mailler.SendEmail(newContactEnterprise.Email, EmailAccountCreation.Subject, EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
-
-                //ADD NOTIFICATIONS: À la coordination et aux autres employés de l'entreprise.
+                    //ADD NOTIFICATIONS: À la coordination et aux autres employés de l'entreprise.
                 this.Flash("Création du profil réussi", FlashEnum.Success);
-                return RedirectToAction(MVC.ContactEnterprise.CreateConfirmation(newContactEnterprise.Id));
-
+                    return RedirectToAction(MVC.ContactEnterprise.CreateConfirmation(newContactEnterprise.Id));
+                
 
 
             }
@@ -122,7 +130,7 @@ namespace Stagio.Web.Controllers
             }
 
             return HttpNotFound();
-        }
+                }
 
         // POST: Enterprise/Reactivate
         [HttpPost]
@@ -134,7 +142,7 @@ namespace Stagio.Web.Controllers
                 var email = list.FirstOrDefault(x => x.Email == createViewModel.Email);
                 if (email != null)
                 {
-                    ModelState.AddModelError("Email", "Ce email est déjà utilisé");
+                    ModelState.AddModelError("Email", ContactEnterpriseResources.EmailContactEnterpriseAlreadyUsed);
                 }
 
             }
@@ -160,7 +168,9 @@ namespace Stagio.Web.Controllers
                         contactEnterprise.UserName = contactEnterprise.Email;
                         contactEnterprise.Password = _accountService.HashPassword(contactEnterprise.Password);
                         _contactEnterpriseRepository.Add(contactEnterprise);
-
+                        string message = contactEnterprise.LastName + " " + contactEnterprise.FirstName + " " +
+                                    ContactEntrepriseToCoordinator.CreateContactEnterprise;
+                        _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.CreateContactEnterpriseTitle, message);
                         _mailler.SendEmail(createViewModel.Email, EmailAccountCreation.Subject,
                             EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
 
@@ -204,6 +214,9 @@ namespace Stagio.Web.Controllers
 
             _stageRepository.Add(stage);
             this.Flash("Stage en attente d'approbation", FlashEnum.Info);
+            string message = "L'entreprise " + stage.CompanyName + " " + ContactEntrepriseToCoordinator.NewStageMessage + " " +  ContactEntrepriseToCoordinator.NewStageLink + stage.Id.ToString() + '"' + ContactEntrepriseToCoordinator.NewStageEndLink;
+            _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.NewStageTitle, message);
+            
             return RedirectToAction(MVC.ContactEnterprise.CreateStageSucceed());
         }
 
@@ -223,7 +236,7 @@ namespace Stagio.Web.Controllers
         [HttpPost]
         public virtual ActionResult InviteContactEnterprise(ViewModels.ContactEnterprise.Invite createdInviteContactEnterpriseViewModel)
         {
-
+            
 
             if (!ModelState.IsValid)
             {
@@ -237,22 +250,22 @@ namespace Stagio.Web.Controllers
 
             //Sending invitation with the Mailler class
             String messageText = EmailEnterpriseResources.InviteCoworker;
-            String invitationUrl = EmailEnterpriseResources.InviteLinkCoworker + token + "\">jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token=" + token + "</a>";
+            String invitationUrl = EmailEnterpriseResources.InviteLinkCoworker + token + '"' + EmailEnterpriseResources.EndLink + token + "</a>";
 
             messageText += invitationUrl;
 
             if (createdInviteContactEnterpriseViewModel.Message != null)
-            {
+                {
                 messageText += EmailEnterpriseResources.MessageHeader;
                 messageText += createdInviteContactEnterpriseViewModel.Message;
-            }
+                }
 
             if (!_mailler.SendEmail(createdInviteContactEnterpriseViewModel.Email, EmailEnterpriseResources.InviteSubject, messageText))
-            {
-                ModelState.AddModelError("Email", EmailResources.CantSendEmail);
+                {
+                    ModelState.AddModelError("Email", EmailResources.CantSendEmail);
                 this.Flash("Erreurs sur la page", FlashEnum.Error);
                 return View();
-            }
+                }
 
             _invitationRepository.Add(new InvitationContactEnterprise()
             {
@@ -266,8 +279,8 @@ namespace Stagio.Web.Controllers
                 Used = false
             });
             this.Flash("Invitation envoyé", FlashEnum.Info);
-            return RedirectToAction(MVC.Coordinator.InviteContactEnterpriseConfirmation());
-        }
+                return RedirectToAction(MVC.Coordinator.InviteContactEnterpriseConfirmation());
+            }
 
         public virtual ActionResult ListStudentApply(int id)
         {
@@ -314,7 +327,7 @@ namespace Stagio.Web.Controllers
             return View(listStudentsApply);
         }
 
-
+    
         public virtual ActionResult ListStage()
         {
             var user = _contactEnterpriseRepository.GetById(_httpContext.GetUserId());
@@ -334,7 +347,7 @@ namespace Stagio.Web.Controllers
         {
             if (canNotDownload)
             {
-                ViewBag.Message = "Un ou des fichiers ne peuvent pas être téléchargés";
+                ViewBag.Message = ContactEnterpriseResources.FilesCantBeDownload;
             }
             var apply = new Apply();
             try
@@ -358,11 +371,15 @@ namespace Stagio.Web.Controllers
         [HttpPost, ActionName("DetailsStudentApply")]
         public virtual ActionResult DetailsStudentApplyPost(string command, int id)
         {
+            
             var apply = _applyRepository.GetById(id);
             if (apply == null)
             {
                 return View("");
             }
+            var stage = _stageRepository.GetById(apply.IdStage);
+            var student = _studentRepository.GetById(apply.IdStudent);
+           
             //Change status
             if (command.Equals("Je suis intéressé"))
             {
@@ -370,12 +387,18 @@ namespace Stagio.Web.Controllers
                 _applyRepository.Update(apply);
                 var acceptApply =
                     Mapper.Map<ViewModels.ContactEnterprise.AcceptApply>(_studentRepository.GetById(apply.IdStudent));
+                string message =stage.CompanyName + " " + ContactEntrepriseToCoordinator.InterestedBy + " " + student.LastName + " " + student.FirstName;
+                _notificationService.SendNotificationToAllCoordinator(
+                    ContactEntrepriseToCoordinator.InterestedByTitle, message);
                 return View(MVC.ContactEnterprise.Views.ViewNames.AcceptApplyConfirmation, acceptApply);
             }
             else if (command.Equals("Je ne suis pas intéressé"))
             {
-                apply.Status = StatusApply.Refused;
+                apply.Status = StatusApply.Refused; 
                 _applyRepository.Update(apply);
+                string message = stage.CompanyName + " " + ContactEntrepriseToCoordinator.NotInterestedBy + " " + student.LastName + " " + student.FirstName;
+                _notificationService.SendNotificationToAllCoordinator(
+                    ContactEntrepriseToCoordinator.NotInterestedByTitle, message);
                 return RedirectToAction(MVC.ContactEnterprise.RefuseApplyConfirmation());
             }
             else
@@ -405,17 +428,27 @@ namespace Stagio.Web.Controllers
             {
                 return RedirectToAction(MVC.ContactEnterprise.DetailsStudentApply(id, true));
             }
-
+      
 
         }
 
         public virtual ActionResult RemoveStageConfirmation(int idStage)
         {
             var stage = _stageRepository.GetById(idStage);
+            var applies = _applyRepository.GetAll().ToList().Where(x => x.IdStage == idStage);
             if (stage == null)
             {
                 return HttpNotFound();
             }
+
+            string message = stage.CompanyName + " " + ContactEntrepriseToCoordinator.RemoveStage  + " "  + stage.StageTitle;
+            _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.RemoveStageTitle,message);
+            foreach (var apply in applies)
+            {
+                _notificationService.SendNotificationTo(apply.IdStudent,ContactEntrepriseToCoordinator.RemoveStageTitle, message);
+            }
+            
+            
             stage.Status = StageStatus.Removed;
             _stageRepository.Update(stage);
             this.Flash("Stage désactivé", FlashEnum.Warning);

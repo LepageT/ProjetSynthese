@@ -117,25 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="EndLink" xml:space="preserve">
-    <value>/&gt;jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token=</value>
+  <data name="CreateInterviewPart1" xml:space="preserve">
+    <value>a une entrevue le</value>
   </data>
-  <data name="InviteCoworker" xml:space="preserve">
-    <value>&lt;h3&gt;Stagio&lt;/h3&gt;&lt;p&gt; Bonjour, &lt;/p&gt;&lt;br/&gt;Un collègue vous invite à vous inscrire au site Stagio.</value>
+  <data name="CreateInterviewPart2" xml:space="preserve">
+    <value>pour un stage chez</value>
   </data>
-  <data name="InviteLink" xml:space="preserve">
-    <value>Pour vous créer un compte, copier-coller ce lien: &lt;a href ="http://jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token=</value>
+  <data name="CreateInterviewTitle" xml:space="preserve">
+    <value>Un étudiant a inscrit une date d'entrevue pour un stage</value>
   </data>
-  <data name="InviteLinkCoworker" xml:space="preserve">
-    <value>Pour vous créer un compte, copier-coller ce lien: &lt;a href ="http://jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token=</value>
+  <data name="CreateStudent" xml:space="preserve">
+    <value>s'est inscrit sur le site.</value>
   </data>
-  <data name="InviteMessageBody" xml:space="preserve">
-    <value>&lt;h3&gt;Stagio&lt;/h3&gt;&lt;p&gt; Bonjour, &lt;/p&gt;&lt;br/&gt;Un coordonateur de stage vous invite à vous inscrire au site Stagio. &lt;/br&gt;</value>
+  <data name="CreateStudentTitle" xml:space="preserve">
+    <value>Un étudiant s'est inscrit sur le site Stagio</value>
   </data>
-  <data name="InviteSubject" xml:space="preserve">
-    <value>Invitation du Cégep de Sainte-Foy</value>
+  <data name="RemoveApplyMessage" xml:space="preserve">
+    <value>{0} a retiré sa candidature pour le stage: {1}</value>
   </data>
-  <data name="MessageHeader" xml:space="preserve">
-    <value>&lt;/br&gt;&lt;/br&gt; &lt;h3&gt;Message:&lt;/h3&gt;&lt;/br&gt;</value>
+  <data name="RemoveApplyTitle" xml:space="preserve">
+    <value>Un étudiant à retiré sa candidature à un stage</value>
+  </data>
+  <data name="EditInterviewMessage" xml:space="preserve">
+    <value>s'est présenté à son entrevue chez</value>
+  </data>
+  <data name="EditInterviewTitle" xml:space="preserve">
+    <value>Un étudiant s'est présenté à une entrevue</value>
   </data>
 </root>

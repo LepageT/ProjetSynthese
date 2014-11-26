@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Resources;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
@@ -8,6 +9,7 @@ using Stagio.DataLayer;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
 using Stagio.Web.Module;
+using Stagio.Web.Module.Strings.Notification;
 using Stagio.Web.Services;
 using Stagio.Web.ViewModels.Stage;
 
@@ -17,13 +19,15 @@ namespace Stagio.Web.Controllers
     {
         private readonly IEntityRepository<Stage> _stageRepository;
         private readonly IHttpContextService _httpContext;
-        private readonly IEntityRepository<ContactEnterprise> _contactEnterpriseRepository;
+        private readonly INotificationService _notificationService;
+        private readonly IEntityRepository<ContactEnterprise> _contactEnterpriseRepository; 
 
-        public StageController(IEntityRepository<Stage> stageRepository, IHttpContextService httpContextService, IEntityRepository<ContactEnterprise> contactEnterpriseRepository )
+        public StageController(IEntityRepository<Stage> stageRepository, IHttpContextService httpContextService, IEntityRepository<ContactEnterprise> contactEnterpriseRepository, INotificationService notificationService )
         {
             _stageRepository = stageRepository;
             _httpContext = httpContextService;
             _contactEnterpriseRepository = contactEnterpriseRepository;
+            _notificationService = notificationService;
         }
 
         [Authorize(Roles = RoleName.Coordinator)]
@@ -66,6 +70,7 @@ namespace Stagio.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = RoleName.Coordinator)]
         public virtual ActionResult Details(string command, int id)
         {
             var stage = _stageRepository.GetById(id);
@@ -76,21 +81,22 @@ namespace Stagio.Web.Controllers
                 return View();
             }
 
-            if (command.Equals("Accepter"))
-            {
-                stage.Status = StageStatus.Accepted;
-            }
-            else if (command.Equals("Refuser"))
-            {
-                stage.Status = StageStatus.Refused; 
-            }
+            
 
             if (command.Equals("Accepter"))
             {
                 stage.Status = StageStatus.Accepted;
+                var contactsEnterprise = _contactEnterpriseRepository.GetAll().ToList();
+
+                _notificationService.SendNotificationToAllContactEnterpriseOf(stage.CompanyName, CoordinatorToContactEnterprise.StageAcceptedTitle, CoordinatorToContactEnterprise.StageAcceptedMessage);
+                string messageToStudent = "L'entreprise " + stage.CompanyName + ContactEnterpriseToStudent.NewStageMessage +
+                                       stage.StageTitle + ContactEnterpriseToStudent.NewStageLinkStart + stage.Id + '"' + ContactEnterpriseToStudent.NewStageLinkEnd + stage.Id + "</a>";
+                _notificationService.SendNotificationToAllStudent(ContactEnterpriseToStudent.NewStageTitle, messageToStudent);
             }
             else if (command.Equals("Refuser"))
             {
+                _notificationService.SendNotificationToAllContactEnterpriseOf(stage.CompanyName,
+                    CoordinatorToContactEnterprise.StageRefusedTitle, CoordinatorToContactEnterprise.StageRefusedMessage);
                 stage.Status = StageStatus.Refused;
             }
             else if (command.Equals("Retirer"))
@@ -150,6 +156,13 @@ namespace Stagio.Web.Controllers
             Mapper.Map(editStageViewModel, stage);
 
            _stageRepository.Update(stage);
+
+           string message = "L'entreprise " +  " "+ stage.CompanyName +  " " + ContactEntrepriseToCoordinator.EditStageMessage + " " + stage.StageTitle + " " + ContactEntrepriseToCoordinator.NewStageLink + editStageViewModel.Id + '"' + ContactEntrepriseToCoordinator.NewStageEndLink;
+           _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.EditStageTitle, message);
+            string messageToStudent = stage.CompanyName + ContactEnterpriseToStudent.EditStageMessage + stage.StageTitle;
+            _notificationService.SendNotificationToAllStudent(ContactEnterpriseToStudent.EditStageTitle,
+                messageToStudent);
+
             this.Flash("Modification réussi", FlashEnum.Success);
             return RedirectToAction(MVC.ContactEnterprise.ListStage());
         }

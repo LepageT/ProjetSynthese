@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Stagio.Web.Module.Strings.Email {
+namespace Stagio.Web.Module.Strings.Notification {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace Stagio.Web.Module.Strings.Email {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class EmailEnterpriseResources {
+    internal class ContactEnterpriseToStudent {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal EmailEnterpriseResources() {
+        internal ContactEnterpriseToStudent() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Stagio.Web.Module.Strings.Email {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Stagio.Web.Module.Strings.Email.EmailEnterpriseResources", typeof(EmailEnterpriseResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Stagio.Web.Module.Strings.Notification.ContactEnterpriseToStudent", typeof(ContactEnterpriseToStudent).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,65 +61,56 @@ namespace Stagio.Web.Module.Strings.Email {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à /&gt;jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token=.
+        ///   Recherche une chaîne localisée semblable à  a modifié le stage suivant: .
         /// </summary>
-        internal static string EndLink {
+        internal static string EditStageMessage {
             get {
-                return ResourceManager.GetString("EndLink", resourceCulture);
+                return ResourceManager.GetString("EditStageMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à &lt;h3&gt;Stagio&lt;/h3&gt;&lt;p&gt; Bonjour, &lt;/p&gt;&lt;br/&gt;Un collègue vous invite à vous inscrire au site Stagio..
+        ///   Recherche une chaîne localisée semblable à Une entreprise a modifié son offre de stage.
         /// </summary>
-        internal static string InviteCoworker {
+        internal static string EditStageTitle {
             get {
-                return ResourceManager.GetString("InviteCoworker", resourceCulture);
+                return ResourceManager.GetString("EditStageTitle", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Pour vous créer un compte, copier-coller ce lien: &lt;a href =&quot;http://jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token=.
+        ///   Recherche une chaîne localisée semblable à &gt;jenkins.cegep-ste-foy.qc.ca/thomarelau/Stage/ViewStageInfo/.
         /// </summary>
-        internal static string InviteLink {
+        internal static string NewStageLinkEnd {
             get {
-                return ResourceManager.GetString("InviteLink", resourceCulture);
+                return ResourceManager.GetString("NewStageLinkEnd", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Pour vous créer un compte, copier-coller ce lien: &lt;a href =&quot;http://jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token=.
+        ///   Recherche une chaîne localisée semblable à . Voici le lien: &lt;a href =&quot;http://jenkins.cegep-ste-foy.qc.ca/thomarelau/Stage/ViewStageInfo/.
         /// </summary>
-        internal static string InviteLinkCoworker {
+        internal static string NewStageLinkStart {
             get {
-                return ResourceManager.GetString("InviteLinkCoworker", resourceCulture);
+                return ResourceManager.GetString("NewStageLinkStart", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à &lt;h3&gt;Stagio&lt;/h3&gt;&lt;p&gt; Bonjour, &lt;/p&gt;&lt;br/&gt;Un coordonateur de stage vous invite à vous inscrire au site Stagio. &lt;/br&gt;.
+        ///   Recherche une chaîne localisée semblable à  a ajouté ce stage: .
         /// </summary>
-        internal static string InviteMessageBody {
+        internal static string NewStageMessage {
             get {
-                return ResourceManager.GetString("InviteMessageBody", resourceCulture);
+                return ResourceManager.GetString("NewStageMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Invitation du Cégep de Sainte-Foy.
+        ///   Recherche une chaîne localisée semblable à Un nouveau stage est disponible.
         /// </summary>
-        internal static string InviteSubject {
+        internal static string NewStageTitle {
             get {
-                return ResourceManager.GetString("InviteSubject", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à &lt;/br&gt;&lt;/br&gt; &lt;h3&gt;Message:&lt;/h3&gt;&lt;/br&gt;.
-        /// </summary>
-        internal static string MessageHeader {
-            get {
-                return ResourceManager.GetString("MessageHeader", resourceCulture);
+                return ResourceManager.GetString("NewStageTitle", resourceCulture);
             }
         }
     }
