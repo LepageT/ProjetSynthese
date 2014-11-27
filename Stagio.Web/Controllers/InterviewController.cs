@@ -53,7 +53,8 @@ namespace Stagio.Web.Controllers
                     Text = _stageRepository.GetById(apply.IdStage).StageTitle.ToString() + " - " + _stageRepository.GetById(apply.IdStage).CompanyName.ToString(),
                     Value = ((int)apply.IdStage).ToString()
                 };
-            
+
+            var applis = interview.Apply.ToList();
 
             return View(interview);
         }
@@ -64,10 +65,9 @@ namespace Stagio.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (createdInterview.StudentId == 0)
-                {
-                    createdInterview.StudentId = _httpContextService.GetUserId();
-                }
+               
+                createdInterview.StudentId = _httpContextService.GetUserId();
+                
             
                 var interviewCreated = Mapper.Map<Interview>(createdInterview);
                 var student = _studentRepository.GetById(interviewCreated.StudentId);

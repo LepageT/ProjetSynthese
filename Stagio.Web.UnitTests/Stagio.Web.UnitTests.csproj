@@ -98,6 +98,7 @@
   <ItemGroup>
     <Compile Include="ControllerTests\AccountTests\AccountControllerBaseClassTests.cs" />
     <Compile Include="ControllerTests\AccountTests\AccountControllerDetailsTests.cs" />
+    <Compile Include="ControllerTests\ContactEnterpriseTests\ContactEnterpriseControllerRefuseApplyConfirmation.cs" />
     <Compile Include="ControllerTests\ContactEnterpriseTests\ContactEnterpriseControllerBaseClassTests.cs" />
     <Compile Include="ControllerTests\ContactEnterpriseTests\ContactEnterpriseControllerInviteTests.cs" />
     <Compile Include="ControllerTests\ContactEnterpriseTests\ContactEnterpriseControllerListStudentApplyTests.cs" />
@@ -119,6 +120,8 @@
     <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerStudentApplyList.cs" />
     <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerStudentListTests.cs" />
     <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerNotificationTests.cs" />
+    <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerDetailsAppltStudent.Tests.cs" />
+    <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerDownloadTests.cs" />
     <Compile Include="ControllerTests\HomeTest\HomeControllerBaseTest.cs" />
     <Compile Include="ControllerTests\HomeTest\HomeControllerIndexTest.cs" />
     <Compile Include="ControllerTests\InterviewTests\InterviewControllerBaseClassTests.cs" />

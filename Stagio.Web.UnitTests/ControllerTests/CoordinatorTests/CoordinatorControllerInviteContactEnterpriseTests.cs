@@ -61,5 +61,14 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
 
             result.ViewName.Should().Be("");
         }
+
+        [TestMethod]
+        public void coordinator_inviteContactEnterprise_should_return_default_if_enterprise_is_null()
+        {
+            var routeResult = coordinatorController.InviteContactEnterprise(null, "") as RedirectToRouteResult;
+            var routeAction = routeResult.RouteValues["Action"];
+
+            routeAction.Should().Be("InviteContactEnterprise");
+        }
     }
 }

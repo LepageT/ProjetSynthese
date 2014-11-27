@@ -120,4 +120,7 @@
   <data name="CoordinatorUseSameEmail" xml:space="preserve">
     <value>Un autre coordonnateur utilise la même courriel. Veuillez en utiliser un autre.</value>
   </data>
+  <data name="FilesCanNotBeDownload" xml:space="preserve">
+    <value>Un ou des fichiers ne peuvent pas être téléchargés</value>
+  </data>
 </root>
