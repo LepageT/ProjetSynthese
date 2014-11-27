@@ -150,4 +150,13 @@
   <data name="ApplyTilte" xml:space="preserve">
     <value>Un étudiant a postulé pour un stage</value>
   </data>
+  <data name="EditDateInterviewMessagePart1" xml:space="preserve">
+    <value>L'entrevue de </value>
+  </data>
+  <data name="EditDateInterviewMessagePart2" xml:space="preserve">
+    <value>sera le </value>
+  </data>
+  <data name="EditDateInterviewTitle" xml:space="preserve">
+    <value>Un étudiant a changé une date d'entrevue</value>
+  </data>
 </root>

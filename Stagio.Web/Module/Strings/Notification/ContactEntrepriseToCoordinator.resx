@@ -143,7 +143,7 @@
     <value>&lt;a href="http://jenkins.cegep-ste-foy.qc.ca/thomarelau/Stage/Details/</value>
   </data>
   <data name="NewStageMessage" xml:space="preserve">
-    <value>a ajouté un stage. Vous devez l'approuver pour qu'il soit visible pour les étudiants.</value>
+    <value>Vous devez l'approuver pour qu'il soit visible pour les étudiants.</value>
   </data>
   <data name="NewStageTitle" xml:space="preserve">
     <value>Un nouveau stage est en attente d'approbation</value>

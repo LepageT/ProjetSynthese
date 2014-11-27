@@ -35,11 +35,12 @@ namespace Stagio.Web.Controllers
             var stagesNotStatus = stages.Where(stage => stage.Status == 0).ToList();
             var stagesStatus = stages.Where(stage => stage.Status == StageStatus.Accepted).ToList();
             var stagesRefusedByCoordinator = stages.Where(stage => stage.Status == StageStatus.Refused).ToList();
+            var stagesRemoveByContact = stages.Where(stage => stage.Status == StageStatus.Removed).ToList();
 
             listAllStages.ListNewStages = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesNotStatus).ToList();
             listAllStages.ListStagesAccepted = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesStatus).ToList();
             listAllStages.ListStagesRefused = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesRefusedByCoordinator).ToList();
-
+            listAllStages.ListStagesRemoved = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesRemoveByContact).ToList();
 
             return View(listAllStages);
         }
@@ -140,9 +141,10 @@ namespace Stagio.Web.Controllers
 
            _stageRepository.Update(stage);
 
-           string message = "L'entreprise " +  " "+ stage.CompanyName +  " " + ContactEntrepriseToCoordinator.EditStageMessage + " " + stage.StageTitle + " " + ContactEntrepriseToCoordinator.NewStageLink + editStageViewModel.Id + '"' + ContactEntrepriseToCoordinator.NewStageEndLink;
+           string message = "L'entreprise " +  " "+ stage.CompanyName +  " " + ContactEntrepriseToCoordinator.EditStageMessage + "<a href=" + Url.Action(MVC.Stage.Details(stage.Id)) +"> "+stage.StageTitle+" </a>";
+          
            _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.EditStageTitle, message);
-            string messageToStudent = stage.CompanyName + ContactEnterpriseToStudent.EditStageMessage + stage.StageTitle;
+           string messageToStudent = stage.CompanyName + ContactEnterpriseToStudent.EditStageMessage + "<a href=" + Url.Action(MVC.Stage.Details(stage.Id)) + "> " + stage.StageTitle + " </a>";
             _notificationService.SendNotificationToAllStudent(ContactEnterpriseToStudent.EditStageTitle,
                 messageToStudent);
 
