@@ -217,7 +217,7 @@ namespace Stagio.Web.Controllers
 
             _stageRepository.Delete(stage);
 
-            return View();
+            return RedirectToAction(MVC.ContactEnterprise.DraftList());
         }
     }
 }
