@@ -4,7 +4,7 @@
     ViewBag.Title = "DraftList";
 }
 
-<h2>DraftList</h2>
+<h2>Brouillons</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -30,7 +30,7 @@
         </td>
         <td>
             @Html.ActionLink("Modifier", MVC.Stage.DraftEdit(item.Id), new { id = "edit-draft" + item.Id }) |
-            @Html.ActionLink("Supprimer", MVC.ContactEnterprise.DeleteDraft(item.Id), new { id = "remove-draft" + item.Id })
+            @Html.ActionLink("Supprimer", MVC.Stage.DraftDelete(item.Id), new { id = "remove-draft" + item.Id })
         </td>
     </tr>
 }

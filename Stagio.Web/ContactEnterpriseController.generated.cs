@@ -102,12 +102,6 @@ namespace Stagio.Web.Controllers
 		{
 			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ReactivateStageConfirmation);
 		}
-		[NonAction]
-		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-		public virtual System.Web.Mvc.ActionResult DeleteDraft()
-		{
-			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DeleteDraft);
-		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public ContactEnterpriseController Actions { get { return MVC.ContactEnterprise; } }
@@ -140,7 +134,6 @@ namespace Stagio.Web.Controllers
 			public readonly string RemoveStageConfirmation = "RemoveStageConfirmation";
 			public readonly string ReactivateStageConfirmation = "ReactivateStageConfirmation";
 			public readonly string DraftList = "DraftList";
-			public readonly string DeleteDraft = "DeleteDraft";
 		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -162,7 +155,6 @@ namespace Stagio.Web.Controllers
 			public const string RemoveStageConfirmation = "RemoveStageConfirmation";
 			public const string ReactivateStageConfirmation = "ReactivateStageConfirmation";
 			public const string DraftList = "DraftList";
-			public const string DeleteDraft = "DeleteDraft";
 		}
 
 
@@ -258,14 +250,6 @@ namespace Stagio.Web.Controllers
 		public class ActionParamsClass_ReactivateStageConfirmation
 		{
 			public readonly string idStage = "idStage";
-		}
-		static readonly ActionParamsClass_DeleteDraft s_params_DeleteDraft = new ActionParamsClass_DeleteDraft();
-		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-		public ActionParamsClass_DeleteDraft DeleteDraftParams { get { return s_params_DeleteDraft; } }
-		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-		public class ActionParamsClass_DeleteDraft
-		{
-			public readonly string id = "id";
 		}
 		static readonly ViewsClass s_views = new ViewsClass();
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -551,18 +535,6 @@ namespace Stagio.Web.Controllers
 		{
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DraftList);
 			DraftListOverride(callInfo);
-			return callInfo;
-		}
-
-		[NonAction]
-		partial void DeleteDraftOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
-
-		[NonAction]
-		public override System.Web.Mvc.ActionResult DeleteDraft(int id)
-		{
-			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DeleteDraft);
-			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-			DeleteDraftOverride(callInfo, id);
 			return callInfo;
 		}
 

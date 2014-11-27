@@ -471,13 +471,6 @@ namespace Stagio.Web.Controllers
             return View(listDrafts);
         }
 
-        public virtual ActionResult DeleteDraft(int id)
-        {
-
-            return View();
-        }
-
-
     }
 }
 

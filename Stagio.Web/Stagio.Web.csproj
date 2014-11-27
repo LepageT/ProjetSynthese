@@ -502,6 +502,7 @@
     <Content Include="Views\ContactEnterprise\DraftConfirmation.cshtml" />
     <Content Include="Views\ContactEnterprise\DraftList.cshtml" />
     <Content Include="Views\Stage\DraftEdit.cshtml" />
+    <Content Include="Views\Stage\DraftDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt.hooks.t4" />

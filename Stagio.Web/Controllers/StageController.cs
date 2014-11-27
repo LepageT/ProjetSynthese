@@ -206,5 +206,18 @@ namespace Stagio.Web.Controllers
                 return RedirectToAction(MVC.ContactEnterprise.CreateStageSucceed());
             }
         }
+
+        public virtual ActionResult DraftDelete(int id)
+        {
+            var stage = _stageRepository.GetById(id);
+            if (stage == null)
+            {
+                return HttpNotFound();
+            }
+
+            _stageRepository.Delete(stage);
+
+            return View();
+        }
     }
 }
