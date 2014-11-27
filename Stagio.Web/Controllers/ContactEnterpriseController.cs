@@ -400,7 +400,7 @@ namespace Stagio.Web.Controllers
             var readFile = new ReadFile();
             try
             {
-               return File(readFile.Download(file), System.Net.Mime.MediaTypeNames.Application.Octet, file);
+                return File(readFile.Download(file), System.Net.Mime.MediaTypeNames.Application.Octet, file);
             }
             catch (Exception)
             {
@@ -417,12 +417,12 @@ namespace Stagio.Web.Controllers
                 return HttpNotFound();
             }
 
-            string message = stage.CompanyName + " " + ContactEntrepriseToCoordinator.RemoveStage + " " + stage.StageTitle;
+            string message = stage.CompanyName + " " + ContactEntrepriseToCoordinator.RemoveStage + " " + "<a href=" + Url.Action(MVC.Stage.Details(idStage)) + "> " + stage.StageTitle + " </a>";
             _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.RemoveStageTitle, message);
-            foreach (var apply in applies)
-            {
-                _notificationService.SendNotificationTo(apply.IdStudent, ContactEntrepriseToCoordinator.RemoveStageTitle, message);
-            }
+
+            message = stage.CompanyName + " " + ContactEntrepriseToCoordinator.RemoveStage + " " + stage.StageTitle ;
+            _notificationService.SendNotificationToAllStudent(ContactEntrepriseToCoordinator.RemoveStageTitle, message);
+
 
 
             stage.Status = StageStatus.Removed;

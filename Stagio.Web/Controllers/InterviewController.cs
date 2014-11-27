@@ -190,8 +190,6 @@ namespace Stagio.Web.Controllers
                 return RedirectToAction(MVC.Interview.List());
             }
             return HttpNotFound();
-
-           
         }
 
     }
