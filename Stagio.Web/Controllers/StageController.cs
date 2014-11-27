@@ -125,28 +125,86 @@ namespace Stagio.Web.Controllers
         [HttpPost]
         public virtual ActionResult Edit(ViewModels.Stage.Edit editStageViewModel)
         {
-            var stage = _stageRepository.GetById(editStageViewModel.Id);
-            if (stage == null)
+                var stage = _stageRepository.GetById(editStageViewModel.Id);
+                if (stage == null)
+                {
+                    return HttpNotFound();
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    return View(editStageViewModel);
+                }
+
+                Mapper.Map(editStageViewModel, stage);
+                
+                _stageRepository.Update(stage);
+
+                string message = "L'entreprise " + " " + stage.CompanyName + " " +
+                                 ContactEntrepriseToCoordinator.EditStageMessage + " " + stage.StageTitle + " " +
+                                 ContactEntrepriseToCoordinator.NewStageLink + editStageViewModel.Id + '"' +
+                                 ContactEntrepriseToCoordinator.NewStageEndLink;
+                _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.EditStageTitle,
+                    message);
+                string messageToStudent = stage.CompanyName + ContactEnterpriseToStudent.EditStageMessage +
+                                          stage.StageTitle;
+                _notificationService.SendNotificationToAllStudent(ContactEnterpriseToStudent.EditStageTitle,
+                    messageToStudent);
+
+                return RedirectToAction(MVC.ContactEnterprise.ListStage());
+         
+        }
+                
+        [Authorize(Roles = RoleName.ContactEnterprise)]
+        public virtual ActionResult DraftEdit(int id)
+        {
+            var stage = _stageRepository.GetById(id);
+
+            if (stage != null)
             {
-                return HttpNotFound();
-            }
+                var stageDraftPageViewModel = Mapper.Map<ViewModels.Stage.Edit>(stage);
 
-            if (!ModelState.IsValid)
+                return View(stageDraftPageViewModel);
+            }
+            return HttpNotFound();
+        }
+               
+        [Authorize(Roles = RoleName.ContactEnterprise)]
+        [HttpPost]
+        public virtual ActionResult DraftEdit(ViewModels.Stage.Edit draftStageViewModel, string buttonClick = "")
+        {
+            if (buttonClick.Equals("Enregistrer"))
             {
-                return View(editStageViewModel);
+                var stage = _stageRepository.GetById(draftStageViewModel.Id);
+                if (stage == null)
+                {
+                    return HttpNotFound();
+                }
+
+                Mapper.Map(draftStageViewModel, stage);
+
+                _stageRepository.Update(stage);
+
+                return RedirectToAction(MVC.ContactEnterprise.DraftList());
+
             }
-        
-            Mapper.Map(editStageViewModel, stage);
+            else
+            {
+                if (!ModelState.IsValid)
+                {
+                    return View(draftStageViewModel);
+                }
 
-           _stageRepository.Update(stage);
+                var stage = Mapper.Map<Stage>(draftStageViewModel);
+                stage.PublicationDate = DateTime.Now.ToString();
+                stage.Draft = false;
 
-           string message = "L'entreprise " +  " "+ stage.CompanyName +  " " + ContactEntrepriseToCoordinator.EditStageMessage + " " + stage.StageTitle + " " + ContactEntrepriseToCoordinator.NewStageLink + editStageViewModel.Id + '"' + ContactEntrepriseToCoordinator.NewStageEndLink;
-           _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.EditStageTitle, message);
-            string messageToStudent = stage.CompanyName + ContactEnterpriseToStudent.EditStageMessage + stage.StageTitle;
-            _notificationService.SendNotificationToAllStudent(ContactEnterpriseToStudent.EditStageTitle,
-                messageToStudent);
+                _stageRepository.Update(stage);
+                string message = "L'entreprise " + stage.CompanyName + " " + ContactEntrepriseToCoordinator.NewStageMessage + " " + ContactEntrepriseToCoordinator.NewStageLink + stage.Id.ToString() + '"' + ContactEntrepriseToCoordinator.NewStageEndLink;
+                _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.NewStageTitle, message);
 
-            return RedirectToAction(MVC.ContactEnterprise.ListStage());
+                return RedirectToAction(MVC.ContactEnterprise.CreateStageSucceed());
+            }
         }
     }
 }

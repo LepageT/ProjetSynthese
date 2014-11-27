@@ -211,22 +211,22 @@ namespace Stagio.Web.Controllers
                 return View(MVC.ContactEnterprise.Views.ViewNames.DraftConfirmation);
             }
             else
-        {
-
-            if (!ModelState.IsValid)
             {
-                return View(createdStage);
-            }
 
-            var stage = Mapper.Map<Stage>(createdStage);
-            stage.PublicationDate = DateTime.Now.ToString();
+                if (!ModelState.IsValid)
+                {
+                    return View(createdStage);
+                }
 
-            _stageRepository.Add(stage);
-            string message = "L'entreprise " + stage.CompanyName + " " + ContactEntrepriseToCoordinator.NewStageMessage + " " + ContactEntrepriseToCoordinator.NewStageLink + stage.Id.ToString() + '"' + ContactEntrepriseToCoordinator.NewStageEndLink;
-            _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.NewStageTitle, message);
+                var stage = Mapper.Map<Stage>(createdStage);
+                stage.PublicationDate = DateTime.Now.ToString();
+
+                _stageRepository.Add(stage);
+                string message = "L'entreprise " + stage.CompanyName + " " + ContactEntrepriseToCoordinator.NewStageMessage + " " + ContactEntrepriseToCoordinator.NewStageLink + stage.Id.ToString() + '"' + ContactEntrepriseToCoordinator.NewStageEndLink;
+                _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.NewStageTitle, message);
             
-            return RedirectToAction(MVC.ContactEnterprise.CreateStageSucceed());
-        }
+                return RedirectToAction(MVC.ContactEnterprise.CreateStageSucceed());
+            }
         }
 
         [Authorize(Roles = RoleName.ContactEnterprise)]
@@ -456,6 +456,27 @@ namespace Stagio.Web.Controllers
             _stageRepository.Update(stage);
             return View();
         }
+
+        public virtual ActionResult DraftList()
+        {
+            var user = _contactEnterpriseRepository.GetById(_httpContext.GetUserId());
+            var draftList = _stageRepository.GetAll();
+
+            if (draftList.Any())
+            {
+                draftList = draftList.Where(x => x.CompanyName == user.EnterpriseName).Where(x => x.Draft == true);
+            }
+
+            var listDrafts = Mapper.Map<IEnumerable<ViewModels.ContactEnterprise.Draft>>(draftList).ToList();
+            return View(listDrafts);
+        }
+
+        public virtual ActionResult DeleteDraft(int id)
+        {
+
+            return View();
+        }
+
 
     }
 }

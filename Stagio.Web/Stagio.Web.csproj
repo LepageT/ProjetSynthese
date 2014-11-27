@@ -323,6 +323,7 @@
     <Compile Include="ViewModels\Apply\StudentApply.cs" />
     <Compile Include="ViewModels\ContactEnterprise\AcceptApply.cs" />
     <Compile Include="ViewModels\ContactEnterprise\Create.cs" />
+    <Compile Include="ViewModels\ContactEnterprise\Draft.cs" />
     <Compile Include="ViewModels\ContactEnterprise\Invite.cs" />
     <Compile Include="ViewModels\ContactEnterprise\ListStudentApply.cs" />
     <Compile Include="ViewModels\ContactEnterprise\ListStage.cs" />
@@ -499,6 +500,8 @@
     <Content Include="Views\Coordinator\DetailsApplyStudent.cshtml" />
     <Content Include="Views\StageAgreement\CreateConfirmation.cshtml" />
     <Content Include="Views\ContactEnterprise\DraftConfirmation.cshtml" />
+    <Content Include="Views\ContactEnterprise\DraftList.cshtml" />
+    <Content Include="Views\Stage\DraftEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt.hooks.t4" />

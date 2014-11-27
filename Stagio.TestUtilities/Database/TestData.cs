@@ -373,6 +373,31 @@ namespace Stagio.TestUtilities.Database
 
         #endregion
 
+        #region Draft 1
+
+        static public Stage draft1
+        {
+            get
+            {
+                var stage = new Stage()
+                {
+                    PublicationDate = DateTime.Now.ToString(),
+                    CompanyName = "MI6",
+                    Adresse = "1234 rue du Web, Québec",
+                    StageDescription = "Notre centre dévoloppe des applications web",
+                    EnvironnementDescription = "Poste de travail Windows 8.1/Mac OS X, Logiciel Adobe CS6, SQL Server, HTML, CSS",
+                    StageTitle = "Programmeur Web",
+                    NbrStagiaire = 2,
+                    Status = 0,
+                    Draft = true
+                };
+
+                return stage;
+            }
+        }
+
+        #endregion
+
         #region Apply 1
 
         static public Apply apply1

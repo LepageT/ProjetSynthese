@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Stagio.Web.ViewModels.ContactEnterprise.Draft>
+
+@{
+    ViewBag.Title = "DraftList";
+}
+
+<h2>DraftList</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PublicationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StageTitle)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PublicationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StageTitle)
+        </td>
+        <td>
+            @Html.ActionLink("Modifier", MVC.Stage.DraftEdit(item.Id), new { id = "edit-draft" + item.Id }) |
+            @Html.ActionLink("Supprimer", MVC.ContactEnterprise.DeleteDraft(item.Id), new { id = "remove-draft" + item.Id })
+        </td>
+    </tr>
+}
+
+</table>
