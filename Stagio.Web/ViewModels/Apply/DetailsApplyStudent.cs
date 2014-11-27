@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
-namespace Stagio.Web.ViewModels.Apply
+
+namespace Stagio.Web.ViewModels.Coordinator
 {
-    public class StudentApply
+    public class DetailsApplyStudent
     {
         [DisplayName("Matricule")]
         [Range(1000000, 9999999)]
@@ -19,7 +17,7 @@ namespace Stagio.Web.ViewModels.Apply
         [DisplayName("Prénom")]
         public string FirstName { get; set; }
         public int Id { get; set; }
-         [DisplayName("CV")]
+        [DisplayName("CV")]
         [Required(ErrorMessage = "Requis")]
         public string Cv { get; set; }
         [DisplayName("Lettre de présentation")]
@@ -31,6 +29,6 @@ namespace Stagio.Web.ViewModels.Apply
         public int IdStage { get; set; }
         public string StageTitle { get; set; }
 
-        public int Status { get; set; }
+        public string CompagnyName { get; set; }
     }
 }

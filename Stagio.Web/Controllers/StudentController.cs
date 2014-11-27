@@ -55,7 +55,7 @@ namespace Stagio.Web.Controllers
 
 
 
-        
+
 
         // GET: Student/Create
         public virtual ActionResult Create()
@@ -215,13 +215,13 @@ namespace Stagio.Web.Controllers
                 ViewBag.Message = "Fichier invalide, le fichier doit être un fichier Word ou PDF";
                 return View(applyStudentViewModel);
             }
-            var readFile = new ReadFile<String>();
+            var readFile = new ReadFile();
 
             if (readFile.ReadFileCVLetter(files, Server, applyStudentViewModel.Id))
             {
                 var files1 = files.ToList();
-                applyStudentViewModel.Cv =   files1[0].FileName;
-                applyStudentViewModel.Letter = files1[1].FileName ;
+                applyStudentViewModel.Cv = files1[0].FileName;
+                applyStudentViewModel.Letter = files1[1].FileName;
                 var newApplicationStudent = Mapper.Map<Stagio.Domain.Entities.Apply>(applyStudentViewModel);
                 newApplicationStudent.Status = 0;   //0 = En attente
                 newApplicationStudent.DateApply = DateTime.Now;
@@ -239,7 +239,7 @@ namespace Stagio.Web.Controllers
             }
             else
             {
-               
+
                 return View(applyStudentViewModel);
             }
         }
@@ -256,8 +256,8 @@ namespace Stagio.Web.Controllers
 
                 return HttpNotFound();
             }
-            
-            
+
+
         }
 
         public virtual ActionResult ApplyRemoveConfirmation(int id)
@@ -316,19 +316,17 @@ namespace Stagio.Web.Controllers
 
         public virtual ActionResult Download(string file)
         {
+            var readFile = new ReadFile();
             try
             {
-                string path = AppDomain.CurrentDomain.GetData("DataDirectory").ToString();
-                path = path + "\\UploadedFiles\\" + file;
-                byte[] fileBytes = System.IO.File.ReadAllBytes((path));
-                string fileName = file;
-                return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+                return File(readFile.Download(file), System.Net.Mime.MediaTypeNames.Application.Octet, file);
             }
             catch (Exception)
             {
                 return RedirectToAction(MVC.Student.Index());
             }
         }
+
     }
 }
 

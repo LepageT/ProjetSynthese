@@ -204,35 +204,29 @@ namespace Stagio.Web.Controllers
             if (ButtonClick.Equals("Sauvegarder comme brouillon"))
             {
                 var stage = Mapper.Map<Stage>(createdStage);
-                stage.PublicationDate = DateTime.Now;
+                stage.PublicationDate = DateTime.Now.ToString();
                 stage.Draft = true;
-                stage.LimitDate = stage.LimitDate == DateTime.MinValue ? null : stage.LimitDate;
                 _stageRepository.Add(stage);
 
                 return View(MVC.ContactEnterprise.Views.ViewNames.DraftConfirmation);
             }
             else
+        {
+
+            if (!ModelState.IsValid)
             {
-
-                if (!ModelState.IsValid)
-                {
-                    return View(createdStage);
-                }
-
-                var stage = Mapper.Map<Stage>(createdStage);
-                stage.PublicationDate = DateTime.Now;
-                stage.Draft = false;
-
-                _stageRepository.Add(stage);
-                string message = "L'entreprise " + stage.CompanyName + " " +
-                                 ContactEntrepriseToCoordinator.NewStageMessage + " " +
-                                 ContactEntrepriseToCoordinator.NewStageLink + stage.Id.ToString() + '"' +
-                                 ContactEntrepriseToCoordinator.NewStageEndLink;
-                _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.NewStageTitle,
-                    message);
-
-                return RedirectToAction(MVC.ContactEnterprise.CreateStageSucceed());
+                return View(createdStage);
             }
+
+            var stage = Mapper.Map<Stage>(createdStage);
+            stage.PublicationDate = DateTime.Now.ToString();
+
+            _stageRepository.Add(stage);
+            string message = "L'entreprise " + stage.CompanyName + " " + ContactEntrepriseToCoordinator.NewStageMessage + " " + ContactEntrepriseToCoordinator.NewStageLink + stage.Id.ToString() + '"' + ContactEntrepriseToCoordinator.NewStageEndLink;
+            _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.NewStageTitle, message);
+            
+            return RedirectToAction(MVC.ContactEnterprise.CreateStageSucceed());
+        }
         }
 
         [Authorize(Roles = RoleName.ContactEnterprise)]
@@ -309,33 +303,20 @@ namespace Stagio.Web.Controllers
                 return HttpNotFound();
             }
 
-            var listStudents = new List<Student>();
             var students = _studentRepository.GetAll().ToList();
 
-            foreach (var apply in applies)
-            {
-                foreach (var student in students)
-                {
-                    if (student.Id == apply.Id)
-                    {
-                        listStudents.Add(student);
-                    }
-                }
-            }
+            var listStudents = (from apply in applies from student in students where student.Id == apply.IdStudent select student).ToList();
 
             var listStudentsApply = Mapper.Map<IEnumerable<ViewModels.Apply.StudentApply>>(applies).ToList();
 
             foreach (var studentApply in listStudentsApply)
             {
-                foreach (var listStudent in listStudents)
-                {
-                    if (listStudent.Id == studentApply.IdStudent)
+                foreach (var listStudent in listStudents.Where(listStudent => listStudent.Id == studentApply.IdStudent))
                     {
                         studentApply.FirstName = listStudent.FirstName;
                         studentApply.LastName = listStudent.LastName;
                     }
                 }
-            }
 
             return View(listStudentsApply);
         }
@@ -400,7 +381,7 @@ namespace Stagio.Web.Controllers
                 _applyRepository.Update(apply);
                 var acceptApply =
                     Mapper.Map<ViewModels.ContactEnterprise.AcceptApply>(_studentRepository.GetById(apply.IdStudent));   
-                string message =stage.CompanyName + " " + ContactEntrepriseToCoordinator.InterestedBy + " " + student.LastName + " " + student.FirstName;
+                string message = stage.CompanyName + " " + ContactEntrepriseToCoordinator.InterestedBy + " " + student.LastName + " " + student.FirstName;
                 _notificationService.SendNotificationToAllCoordinator(
                     ContactEntrepriseToCoordinator.InterestedByTitle, message);
                 return View(MVC.ContactEnterprise.Views.ViewNames.AcceptApplyConfirmation, acceptApply);
@@ -429,20 +410,15 @@ namespace Stagio.Web.Controllers
 
         public virtual ActionResult Download(string file, int id)
         {
+            var readFile = new ReadFile();
             try
             {
-                string path = AppDomain.CurrentDomain.GetData("DataDirectory").ToString();
-                path = path + "\\UploadedFiles\\" + file;
-                byte[] fileBytes = System.IO.File.ReadAllBytes((path));
-                string fileName = file;
-                return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+               return File(readFile.Download(file), System.Net.Mime.MediaTypeNames.Application.Octet, file);
             }
             catch (Exception)
             {
                 return RedirectToAction(MVC.ContactEnterprise.DetailsStudentApply(id, true));
             }
-
-
         }
 
         public virtual ActionResult RemoveStageConfirmation(int idStage)
@@ -454,11 +430,11 @@ namespace Stagio.Web.Controllers
                 return HttpNotFound();
             }
 
-            string message = stage.CompanyName + " " + ContactEntrepriseToCoordinator.RemoveStage  + " "  + stage.StageTitle;
-            _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.RemoveStageTitle,message);
+            string message = stage.CompanyName + " " + ContactEntrepriseToCoordinator.RemoveStage + " " + stage.StageTitle;
+            _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.RemoveStageTitle, message);
             foreach (var apply in applies)
             {
-                _notificationService.SendNotificationTo(apply.IdStudent,ContactEntrepriseToCoordinator.RemoveStageTitle, message);
+                _notificationService.SendNotificationTo(apply.IdStudent, ContactEntrepriseToCoordinator.RemoveStageTitle, message);
             }
             
             
@@ -476,7 +452,7 @@ namespace Stagio.Web.Controllers
                 return HttpNotFound();
             }
             stage.Status = StageStatus.New;
-            stage.PublicationDate = DateTime.Now;
+            stage.PublicationDate = DateTime.Now.ToString();
             _stageRepository.Update(stage);
             return View();
         }

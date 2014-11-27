@@ -9,7 +9,7 @@ public class ListStage
 {
 public int Id { get; set; }
 [DisplayName("Date de l'offre")]
-public DateTime PublicationDate { get; set; }
+public String PublicationDate { get; set; }
 [DisplayName("Nombre de postulant")]
 public int NbApply { get; set; }
 [DisplayName("Titre de l'offre")]

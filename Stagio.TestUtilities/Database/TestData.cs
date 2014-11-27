@@ -237,8 +237,8 @@ namespace Stagio.TestUtilities.Database
                 {
                     Id = 1,
                     NbApply = 1,
-                    LimitDate = DateTime.Now,
-                    PublicationDate = DateTime.Now,
+                    LimitDate = DateTime.Now.ToString(),
+                    PublicationDate = DateTime.Now.ToString(),
                     Status = (StageStatus) 1,
                     NbrStagiaire = 3,
                     StageTitle = "Apprentis",
@@ -273,7 +273,7 @@ namespace Stagio.TestUtilities.Database
             {
                 var stage = new Stage()
                 {
-                    PublicationDate = DateTime.Now,
+                    PublicationDate = DateTime.Now.ToString(),
                     CompanyName = "Musique inc",
                     Adresse = "1234 rue de la guitare, Québec",
                     ResponsableToName = "Denyse Gilbert",
@@ -290,7 +290,7 @@ namespace Stagio.TestUtilities.Database
                     SubmitToName = "Denyse Gilbert",
                     SubmitToTitle = "Coordinatrice aux développements APTIC",
                     SubmitToEmail = "Denyse.Gilbert@musiqueinc.co",
-                    LimitDate = new DateTime(2008, 12, 10),
+                    LimitDate = new DateTime(2008, 12, 10).ToString(),
                     Status = 0
                 };
 
@@ -307,7 +307,7 @@ namespace Stagio.TestUtilities.Database
             {
                 var stage = new Stage()
                 {
-                    PublicationDate = new DateTime(2008, 9, 28, 16, 5, 7, 123),
+                    PublicationDate = new DateTime(2008, 9, 28, 16, 5, 7, 123).ToString(),
                     CompanyName = "Centre de développement pédagogique",
                     Adresse = "Faculté de médecine, 3358 B pav. Vandry, Université Laval, G1K 7P4",
                     ResponsableToName = "Denyse Gilbert",
@@ -328,7 +328,7 @@ namespace Stagio.TestUtilities.Database
                     SubmitToName = "Denyse Gilbert",
                     SubmitToTitle = "Coordinatrice aux développements APTIC",
                     SubmitToEmail = "Denyse.Gilbert",
-                    LimitDate = new DateTime(2008, 12, 10),
+                    LimitDate = new DateTime(2008, 12, 10).ToString(),
                     Status = StageStatus.Accepted
 
 
@@ -347,7 +347,7 @@ namespace Stagio.TestUtilities.Database
             {
                 var stage = new Stage()
                 {
-                    PublicationDate = DateTime.Now,
+                    PublicationDate = DateTime.Now.ToString(),
                     CompanyName = "Coveo",
                     Adresse = "1234 rue du Web, Québec",
                     ResponsableToName = "Serge Lavoie",
@@ -363,7 +363,7 @@ namespace Stagio.TestUtilities.Database
                     SubmitToName = "Serge Lavoie",
                     SubmitToTitle = "Coordinateur aux développements Web",
                     SubmitToEmail = "serge.lavoie@email.com",
-                    LimitDate = new DateTime(2008, 12, 10),
+                    LimitDate = new DateTime(2008, 12, 10).ToString(),
                     Status = 0
                 };
 
