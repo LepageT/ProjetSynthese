@@ -35,5 +35,22 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
 
             result.Should().BeOfType<HttpNotFoundResult>();
         }
+
+        [TestMethod]
+        public void coordinator_detailsStudentApply_should_render_view_when_files_not_valid()
+        {
+            var apply = _fixture.Create<Apply>();
+            var student = _fixture.Create<Student>();
+            var stage = _fixture.Create<Stage>();
+            apply.IdStudent = student.Id;
+            apply.IdStage = stage.Id;
+            applyRepository.GetById(apply.Id).Returns(apply);
+            studentRepository.GetById(student.Id).Returns(student);
+            stageRepository.GetById(stage.Id).Returns(stage);
+
+            var result = coordinatorController.DetailsApplyStudent(apply.Id, true) as ViewResult;
+
+            result.ViewName.Should().Be("");
+        }
     }
 }

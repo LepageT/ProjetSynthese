@@ -290,31 +290,18 @@ namespace Stagio.Web.Controllers
                 return HttpNotFound();
             }
 
-            var listStudents = new List<Student>();
             var students = _studentRepository.GetAll().ToList();
 
-            foreach (var apply in applies)
-            {
-                foreach (var student in students)
-                {
-                    if (student.Id == apply.Id)
-                    {
-                        listStudents.Add(student);
-                    }
-                }
-            }
+            var listStudents = (from apply in applies from student in students where student.Id == apply.IdStudent select student).ToList();
 
             var listStudentsApply = Mapper.Map<IEnumerable<ViewModels.Apply.StudentApply>>(applies).ToList();
 
             foreach (var studentApply in listStudentsApply)
             {
-                foreach (var listStudent in listStudents)
+                foreach (var listStudent in listStudents.Where(listStudent => listStudent.Id == studentApply.IdStudent))
                 {
-                    if (listStudent.Id == studentApply.IdStudent)
-                    {
-                        studentApply.FirstName = listStudent.FirstName;
-                        studentApply.LastName = listStudent.LastName;
-                    }
+                    studentApply.FirstName = listStudent.FirstName;
+                    studentApply.LastName = listStudent.LastName;
                 }
             }
 
@@ -413,8 +400,7 @@ namespace Stagio.Web.Controllers
             var readFile = new ReadFile();
             try
             {
-               string path = AppDomain.CurrentDomain.GetData("DataDirectory").ToString();
-               return File(readFile.Download(file, path), System.Net.Mime.MediaTypeNames.Application.Octet, file);
+               return File(readFile.Download(file), System.Net.Mime.MediaTypeNames.Application.Octet, file);
             }
             catch (Exception)
             {

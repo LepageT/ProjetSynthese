@@ -73,11 +73,11 @@ namespace Stagio.Web.Module
             }
         }
 
-        public byte[] Download(string file, string path)
+        public byte[] Download(string file)
         {
             try
             {
-             
+                string path = AppDomain.CurrentDomain.GetData("DataDirectory").ToString();
                 path = path + "\\UploadedFiles\\" + file;
                 byte[] fileBytes = System.IO.File.ReadAllBytes((path));
                 string fileName = file;

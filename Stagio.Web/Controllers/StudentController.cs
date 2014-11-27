@@ -319,8 +319,7 @@ namespace Stagio.Web.Controllers
             var readFile = new ReadFile();
             try
             {
-                string path = AppDomain.CurrentDomain.GetData("DataDirectory").ToString();
-                return File(readFile.Download(file, path), System.Net.Mime.MediaTypeNames.Application.Octet, file);
+                return File(readFile.Download(file), System.Net.Mime.MediaTypeNames.Application.Octet, file);
             }
             catch (Exception)
             {

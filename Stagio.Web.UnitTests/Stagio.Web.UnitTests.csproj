@@ -98,6 +98,7 @@
   <ItemGroup>
     <Compile Include="ControllerTests\AccountTests\AccountControllerBaseClassTests.cs" />
     <Compile Include="ControllerTests\AccountTests\AccountControllerDetailsTests.cs" />
+    <Compile Include="ControllerTests\ContactEnterpriseTests\ContactEnterpriseControllerRefuseApplyConfirmation.cs" />
     <Compile Include="ControllerTests\ContactEnterpriseTests\ContactEnterpriseControllerBaseClassTests.cs" />
     <Compile Include="ControllerTests\ContactEnterpriseTests\ContactEnterpriseControllerInviteTests.cs" />
     <Compile Include="ControllerTests\ContactEnterpriseTests\ContactEnterpriseControllerListStudentApplyTests.cs" />
