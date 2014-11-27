@@ -365,12 +365,24 @@ namespace Stagio.Web.Controllers
 
                 return HttpNotFound();
             }
-
+            if (apply == null)
+            {
+                this.Flash("La postulation n'existe pas", FlashEnum.Info);
+                return RedirectToAction(MVC.ContactEnterprise.ListStage());
+            }
+            var stage = _stageRepository.GetById(apply.IdStage);
+            var user = _contactEnterpriseRepository.GetById(_httpContext.GetUserId());
+            var student = _studentRepository.GetAll().FirstOrDefault(x => x.Id == apply.IdStudent);
+            if (stage.CompanyName != user.EnterpriseName)
+            {
+                this.Flash("Vous n'avez pas les accès pour visualiser cette postulation", FlashEnum.Warning);
+                return RedirectToAction(MVC.ContactEnterprise.ListStage());
+            }
             var applyModel = Mapper.Map<ViewModels.Apply.StudentApply>(apply);
 
-            applyModel.FirstName = _studentRepository.GetAll().FirstOrDefault(x => x.Id == apply.IdStudent).FirstName;
-            applyModel.LastName = _studentRepository.GetAll().FirstOrDefault(x => x.Id == apply.IdStudent).LastName;
-            applyModel.StageTitle = _stageRepository.GetAll().FirstOrDefault(x => x.Id == apply.IdStage).StageTitle;
+            applyModel.FirstName = student.FirstName;
+            applyModel.LastName = student.LastName;
+            applyModel.StageTitle = stage.StageTitle;
             return View(applyModel);
         }
 
@@ -442,11 +454,16 @@ namespace Stagio.Web.Controllers
         {
             var stage = _stageRepository.GetById(idStage);
             var applies = _applyRepository.GetAll().ToList().Where(x => x.IdStage == idStage);
+            var user = _contactEnterpriseRepository.GetById(_httpContext.GetUserId());
             if (stage == null)
             {
                 return HttpNotFound();
             }
-
+            if (stage.CompanyName != user.EnterpriseName)
+            {
+                this.Flash("Vous n'avez pas enlever ce stage", FlashEnum.Warning);
+                return RedirectToAction(MVC.ContactEnterprise.ListStage());
+            }
             string message = stage.CompanyName + " " + ContactEntrepriseToCoordinator.RemoveStage + " " + stage.StageTitle;
             _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.RemoveStageTitle, message);
             foreach (var apply in applies)

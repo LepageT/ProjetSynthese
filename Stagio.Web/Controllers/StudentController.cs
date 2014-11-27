@@ -264,23 +264,33 @@ namespace Stagio.Web.Controllers
             
             
         }
-
+        [Authorize(Roles = RoleName.Student)]
         public virtual ActionResult ApplyRemoveConfirmation(int id)
         {
             var stageApply = _applyRepository.GetById(id);
+            if (stageApply.Id != _httpContextService.GetUserId())
+            {
+                this.Flash("Vous n'avez pas les accès requis pour visualiser cette postulation", FlashEnum.Warning);
+                return RedirectToAction(MVC.Student.ApplyList());
+            }
             stageApply.Status = StatusApply.Removed;
             _applyRepository.Update(stageApply);
-            var student = _studentRepository.GetById(stageApply.IdStudent);
+            var student = _studentRepository.GetById(_httpContextService.GetUserId());
             var stage = _stageRepository.GetById(stageApply.IdStage);
             _notificationService.SendNotificationToAllCoordinator(StudentToCoordinator.RemoveApplyTitle,
                 String.Format(StudentToCoordinator.RemoveApplyMessage, student.FirstName + " " + student.LastName, stage.StageTitle));
             this.Flash("Postulation retirée", FlashEnum.Warning);
             return View();
         }
-
+        [Authorize(Roles = RoleName.Student)]
         public virtual ActionResult ApplyReApplyConfirmation(int id)
         {
             var stageApply = _applyRepository.GetById(id);
+            if (stageApply.Id != _httpContextService.GetUserId())
+            {
+                this.Flash("Vous n'avez pas les accès requis pour visualiser cette postulation", FlashEnum.Warning);
+                return RedirectToAction(MVC.Student.ApplyList());
+            }
             stageApply.Status = StatusApply.Waitting;
             _applyRepository.Update(stageApply);
             this.Flash("Postulation réactivée", FlashEnum.Info);
