@@ -9,6 +9,7 @@ namespace Stagio.Web.ViewModels.Coordinator
     public class StudentApplyList
     {
         public int Id { get; set; }
+
         public int IdStudent { get; set; }
 
         public int Matricule { get; set; }
