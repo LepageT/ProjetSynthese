@@ -12,5 +12,7 @@ namespace Stagio.Web.Services
         int GetUserId();
         void AuthenticationSignIn(ClaimsIdentity identity);
         void AuthenticationSignOut();
+
+        string GetPathDetailStage(int id);
     }
 }

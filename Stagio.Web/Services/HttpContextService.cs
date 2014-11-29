@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Security.Claims;
+using System.Security.Policy;
 using System.Web;
 using System.Web.Security;
 using Microsoft.AspNet.Identity;
@@ -26,6 +27,18 @@ namespace Stagio.Web.Services
         public void AuthenticationSignOut()
         {
             HttpContext.Current.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+        }
+
+        public string GetPathDetailStage(int id)
+        {
+            try
+            {
+                return HttpContext.Current.Request.Path;
+            }
+            catch (Exception)
+            {
+                return "fake";
+            }
         }
 
     }

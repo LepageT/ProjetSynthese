@@ -1,7 +1,13 @@
 ﻿
+using System;
+using System.Collections.Specialized;
+using System.Security.Policy;
+using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NSubstitute;
 using Ploeh.AutoFixture;
 
 namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
@@ -31,8 +37,11 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
         [TestMethod]
         public void enterprise_createStage_post_should_return_index_on_success()
         {
-            var stageViewModel = _fixture.Create<ViewModels.Stage.Create>();
 
+
+         
+            var stageViewModel = _fixture.Create<ViewModels.Stage.Create>();
+           
             var result = enterpriseController.CreateStage(stageViewModel) as RedirectToRouteResult;
             var action = result.RouteValues["Action"];
 
@@ -46,5 +55,9 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
 
             result.ViewName.Should().Be("");
         }
+
+
     }
+
+  
 }
