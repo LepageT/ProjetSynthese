@@ -268,9 +268,7 @@ namespace Stagio.Web.Controllers
             var student = _studentRepository.GetById(stageApply.IdStudent);
             var stage = _stageRepository.GetById(stageApply.IdStage);
             _notificationService.SendNotificationToAllCoordinator(StudentToCoordinator.RemoveApplyTitle,
-                String.Format(StudentToCoordinator.RemoveApplyMessage, student.FirstName + " " + student.LastName, stage.StageTitle));
-            var messageTocontactEnterprise = student.FirstName + " " + student.LastName + StudentToContactEnterprise.RemoveApplyMessage + stage.StageTitle;
-            _notificationService.SendNotificationToAllContactEnterpriseOf(stage.CompanyName, StudentToContactEnterprise.RemoveApplyTitle, messageTocontactEnterprise);
+                String.Format(StudentToCoordinator.RemoveApplyMessage, student.FirstName + " " + student.LastName, "<a href=" + Url.Action(MVC.Stage.Details(stage.Id)) + "> " + stage.StageTitle + " </a>"));
             return View();
         }
 

@@ -211,22 +211,22 @@ namespace Stagio.Web.Controllers
                 return View(MVC.ContactEnterprise.Views.ViewNames.DraftConfirmation);
             }
             else
+        {
+
+            if (!ModelState.IsValid)
             {
-
-                if (!ModelState.IsValid)
-                {
-                    return View(createdStage);
-                }
-
-                var stage = Mapper.Map<Stage>(createdStage);
-                stage.PublicationDate = DateTime.Now.ToString();
-
-                _stageRepository.Add(stage);
-                string message = "L'entreprise " + stage.CompanyName + " " + ContactEntrepriseToCoordinator.NewStageMessage + " " + ContactEntrepriseToCoordinator.NewStageLink + stage.Id.ToString() + '"' + ContactEntrepriseToCoordinator.NewStageEndLink;
-                _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.NewStageTitle, message);
-            
-                return RedirectToAction(MVC.ContactEnterprise.CreateStageSucceed());
+                return View(createdStage);
             }
+
+            var stage = Mapper.Map<Stage>(createdStage);
+            stage.PublicationDate = DateTime.Now.ToString();
+
+            _stageRepository.Add(stage);
+            string message = "L'entreprise " + stage.CompanyName + " a ajouté le stage " +  "<a href=" + Url.Action(MVC.Stage.Details(stage.Id)) + "> " + stage.StageTitle + " </a>" + ContactEntrepriseToCoordinator.NewStageMessage;
+            _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.NewStageTitle, message);
+
+            return RedirectToAction(MVC.ContactEnterprise.CreateStageSucceed());
+        }
         }
 
         [Authorize(Roles = RoleName.ContactEnterprise)]
@@ -312,11 +312,11 @@ namespace Stagio.Web.Controllers
             foreach (var studentApply in listStudentsApply)
             {
                 foreach (var listStudent in listStudents.Where(listStudent => listStudent.Id == studentApply.IdStudent))
-                    {
-                        studentApply.FirstName = listStudent.FirstName;
-                        studentApply.LastName = listStudent.LastName;
-                    }
+                {
+                    studentApply.FirstName = listStudent.FirstName;
+                    studentApply.LastName = listStudent.LastName;
                 }
+            }
 
             return View(listStudentsApply);
         }
@@ -365,7 +365,7 @@ namespace Stagio.Web.Controllers
         [HttpPost, ActionName("DetailsStudentApply")]
         public virtual ActionResult DetailsStudentApplyPost(string command, int id)
         {
-            
+
             var apply = _applyRepository.GetById(id);
             if (apply == null)
             {
@@ -373,14 +373,14 @@ namespace Stagio.Web.Controllers
             }
             var stage = _stageRepository.GetById(apply.IdStage);
             var student = _studentRepository.GetById(apply.IdStudent);
-           
+
             //Change status
             if (command.Equals("Je suis intéressé"))
             {
                 apply.Status = StatusApply.Accepted;
                 _applyRepository.Update(apply);
                 var acceptApply =
-                    Mapper.Map<ViewModels.ContactEnterprise.AcceptApply>(_studentRepository.GetById(apply.IdStudent));   
+                    Mapper.Map<ViewModels.ContactEnterprise.AcceptApply>(_studentRepository.GetById(apply.IdStudent));
                 string message = stage.CompanyName + " " + ContactEntrepriseToCoordinator.InterestedBy + " " + student.LastName + " " + student.FirstName;
                 _notificationService.SendNotificationToAllCoordinator(
                     ContactEntrepriseToCoordinator.InterestedByTitle, message);
@@ -430,17 +430,17 @@ namespace Stagio.Web.Controllers
                 return HttpNotFound();
             }
 
-            string message = stage.CompanyName + " " + ContactEntrepriseToCoordinator.RemoveStage + " " + stage.StageTitle;
+            string message = stage.CompanyName + " " + ContactEntrepriseToCoordinator.RemoveStage + " " + "<a href=" + Url.Action(MVC.Stage.Details(idStage)) + "> " + stage.StageTitle + " </a>";
             _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.RemoveStageTitle, message);
-            foreach (var apply in applies)
-            {
-                _notificationService.SendNotificationTo(apply.IdStudent, ContactEntrepriseToCoordinator.RemoveStageTitle, message);
-            }
-            
-            
+
+            message = stage.CompanyName + " " + ContactEntrepriseToCoordinator.RemoveStage + " " + stage.StageTitle ;
+            _notificationService.SendNotificationToAllStudent(ContactEntrepriseToCoordinator.RemoveStageTitle, message);
+
+
+
             stage.Status = StageStatus.Removed;
             _stageRepository.Update(stage);
-          
+
             return View();
         }
 

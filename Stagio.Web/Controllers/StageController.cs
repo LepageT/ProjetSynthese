@@ -35,11 +35,12 @@ namespace Stagio.Web.Controllers
             var stagesNotStatus = stages.Where(stage => stage.Status == 0).ToList();
             var stagesStatus = stages.Where(stage => stage.Status == StageStatus.Accepted).ToList();
             var stagesRefusedByCoordinator = stages.Where(stage => stage.Status == StageStatus.Refused).ToList();
+            var stagesRemoveByContact = stages.Where(stage => stage.Status == StageStatus.Removed).ToList();
 
             listAllStages.ListNewStages = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesNotStatus).ToList();
             listAllStages.ListStagesAccepted = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesStatus).ToList();
             listAllStages.ListStagesRefused = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesRefusedByCoordinator).ToList();
-
+            listAllStages.ListStagesRemoved = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesRemoveByContact).ToList();
 
             return View(listAllStages);
         }
@@ -125,20 +126,20 @@ namespace Stagio.Web.Controllers
         [HttpPost]
         public virtual ActionResult Edit(ViewModels.Stage.Edit editStageViewModel)
         {
-                var stage = _stageRepository.GetById(editStageViewModel.Id);
-                if (stage == null)
-                {
-                    return HttpNotFound();
-                }
+            var stage = _stageRepository.GetById(editStageViewModel.Id);
+            if (stage == null)
+            {
+                return HttpNotFound();
+            }
 
-                if (!ModelState.IsValid)
-                {
-                    return View(editStageViewModel);
-                }
+            if (!ModelState.IsValid)
+            {
+                return View(editStageViewModel);
+            }
+        
+            Mapper.Map(editStageViewModel, stage);
 
-                Mapper.Map(editStageViewModel, stage);
-                
-                _stageRepository.Update(stage);
+           _stageRepository.Update(stage);
 
                 string message = "L'entreprise " + " " + stage.CompanyName + " " +
                                  ContactEntrepriseToCoordinator.EditStageMessage + " " + stage.StageTitle + " " +
@@ -148,10 +149,10 @@ namespace Stagio.Web.Controllers
                     message);
                 string messageToStudent = stage.CompanyName + ContactEnterpriseToStudent.EditStageMessage +
                                           stage.StageTitle;
-                _notificationService.SendNotificationToAllStudent(ContactEnterpriseToStudent.EditStageTitle,
-                    messageToStudent);
+            _notificationService.SendNotificationToAllStudent(ContactEnterpriseToStudent.EditStageTitle,
+                messageToStudent);
 
-                return RedirectToAction(MVC.ContactEnterprise.ListStage());
+            return RedirectToAction(MVC.ContactEnterprise.ListStage());
          
         }
                 

@@ -164,10 +164,8 @@ namespace Stagio.Web.Controllers
             var interview = _interviewRepository.GetById(editInterviewViewModel.Id);
             if (interview != null)
             {
-                Mapper.Map(editInterviewViewModel, interview);
-
-                _interviewRepository.Update(interview);
-                if (interview.Present)
+               
+                if (editInterviewViewModel.Present && !interview.Present)
                 {
                     var student = _studentRepository.GetById(interview.StudentId);
                     var stage = _stageRepository.GetById(interview.StageId);
@@ -176,11 +174,22 @@ namespace Stagio.Web.Controllers
                     _notificationService.SendNotificationToAllCoordinator(StudentToCoordinator.EditInterviewTitle,
                         message);
                 }
+                if (editInterviewViewModel.Date != interview.Date)
+                {
+                    var student = _studentRepository.GetById(interview.StudentId);
+                    var stage = _stageRepository.GetById(interview.StageId);
+                    string message = StudentToCoordinator.EditDateInterviewMessagePart1 + " " + student.FirstName + " " + student.LastName + " " +
+                                     StudentToCoordinator.EditDateInterviewMessagePart2 + " " + editInterviewViewModel.Date + " pour le stage " + stage.StageTitle + " de " + stage.CompanyName;
+                    _notificationService.SendNotificationToAllCoordinator(StudentToCoordinator.EditDateInterviewTitle,
+                        message);
+                }
+
+                Mapper.Map(editInterviewViewModel, interview);
+
+                _interviewRepository.Update(interview);
                 return RedirectToAction(MVC.Interview.List());
             }
             return HttpNotFound();
-
-           
         }
 
     }
