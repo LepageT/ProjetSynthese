@@ -196,6 +196,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InterviewController.cs" />
     <Compile Include="Controllers\NotificationController.cs" />
+    <Compile Include="Controllers\StageAgreementController.cs" />
     <Compile Include="Controllers\StageController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="CoordinatorController.generated.cs">
@@ -301,6 +302,9 @@
     <Compile Include="SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="StageAgreementController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="StageController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -319,11 +323,13 @@
     <Compile Include="ViewModels\Apply\StudentApply.cs" />
     <Compile Include="ViewModels\ContactEnterprise\AcceptApply.cs" />
     <Compile Include="ViewModels\ContactEnterprise\Create.cs" />
+    <Compile Include="ViewModels\ContactEnterprise\Draft.cs" />
     <Compile Include="ViewModels\ContactEnterprise\Invite.cs" />
     <Compile Include="ViewModels\ContactEnterprise\ListStudentApply.cs" />
     <Compile Include="ViewModels\ContactEnterprise\ListStage.cs" />
     <Compile Include="ViewModels\ContactEnterprise\Reactive.cs" />
     <Compile Include="ViewModels\Account\Login.cs" />
+    <Compile Include="ViewModels\Apply\DetailsApplyStudent.cs" />
     <Compile Include="ViewModels\Coordinator\StudentApplyList.cs" />
     <Compile Include="ViewModels\Coordinator\StudentList.cs" />
     <Compile Include="ViewModels\Interviews\Create.cs" />
@@ -491,6 +497,12 @@
     <Content Include="Views\ContactEnterprise\RemoveStageConfirmation.cshtml" />
     <Content Include="Views\ContactEnterprise\ReactivateStageConfirmation.cshtml" />
     <Content Include="Views\Stage\Edit.cshtml" />
+    <Content Include="Views\Coordinator\DetailsApplyStudent.cshtml" />
+    <Content Include="Views\StageAgreement\CreateConfirmation.cshtml" />
+    <Content Include="Views\ContactEnterprise\DraftConfirmation.cshtml" />
+    <Content Include="Views\ContactEnterprise\DraftList.cshtml" />
+    <Content Include="Views\Stage\DraftEdit.cshtml" />
+    <Content Include="Views\Stage\DraftDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt.hooks.t4" />

@@ -7,7 +7,7 @@ namespace Stagio.Domain.Entities
     public class Stage : Entity
     {
         [DisplayName("Date de l'offre")]
-        public DateTime PublicationDate { get; set; }
+        public string PublicationDate { get; set; }
 
         //Maybe an enterprise entity must be created.
         [DisplayName("Entreprise ou Organisation")]
@@ -41,12 +41,12 @@ namespace Stagio.Domain.Entities
 
         [DisplayName("Description du projet pour le stage")]
         public String StageDescription { get; set; }
-        [DisplayName("Environnement matériel et logiciel spécifique au projet")]
         //Stage information
+        [DisplayName("Environnement matériel et logiciel spécifique au projet")]
         public String EnvironnementDescription { get; set; }
         public string StageTitle { get; set; }
         [DisplayName("Nombre de stagiaires")]
-        public int NbrStagiaire { get; set; }
+        public int? NbrStagiaire { get; set; }
         [DisplayName("Stagiaire si connu:")]
         public string StagiaireIfKnew { get; set; }
         [DisplayName("Nom")]
@@ -58,7 +58,7 @@ namespace Stagio.Domain.Entities
         [DisplayName("Courriel")]
         public String SubmitToEmail { get; set; }
         [DisplayName("Date limite pour soummettre une candidature")]
-        public DateTime LimitDate { get; set; }
+        public string LimitDate { get; set; }
 
         [DefaultValue(StageStatus.New)]
         public StageStatus Status { get; set; }
@@ -66,7 +66,9 @@ namespace Stagio.Domain.Entities
         [DefaultValue(0)]
         public int NbApply { get; set; }
 
+        public bool Draft { get; set; }
     }
+
 
     [Flags]
     public enum StageStatus

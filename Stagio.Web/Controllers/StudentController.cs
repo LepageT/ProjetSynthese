@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Drawing.Drawing2D;
-using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
 using AutoMapper;
 using Microsoft.Ajax.Utilities;
-using Microsoft.AspNet.Identity;
 using Stagio.DataLayer;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
@@ -18,8 +13,6 @@ using Stagio.Web.Module;
 using Stagio.Web.Module.Strings.Controller;
 using Stagio.Web.Module.Strings.Notification;
 using Stagio.Web.Services;
-using Stagio.Web.ViewModels.Apply;
-using Stagio.Web.ViewModels.Student;
 using Stagio.Utilities.Encryption;
 using Stagio.Web.Module.Strings.Email;
 
@@ -62,7 +55,7 @@ namespace Stagio.Web.Controllers
 
 
 
-        
+
 
         // GET: Student/Create
         public virtual ActionResult Create()
@@ -222,13 +215,13 @@ namespace Stagio.Web.Controllers
                 ViewBag.Message = "Fichier invalide, le fichier doit être un fichier Word ou PDF";
                 return View(applyStudentViewModel);
             }
-            var readFile = new ReadFile<String>();
+            var readFile = new ReadFile();
 
             if (readFile.ReadFileCVLetter(files, Server, applyStudentViewModel.Id))
             {
                 var files1 = files.ToList();
-                applyStudentViewModel.Cv =   files1[0].FileName;
-                applyStudentViewModel.Letter = files1[1].FileName ;
+                applyStudentViewModel.Cv = files1[0].FileName;
+                applyStudentViewModel.Letter = files1[1].FileName;
                 var newApplicationStudent = Mapper.Map<Stagio.Domain.Entities.Apply>(applyStudentViewModel);
                 newApplicationStudent.Status = 0;   //0 = En attente
                 newApplicationStudent.DateApply = DateTime.Now;
@@ -237,11 +230,16 @@ namespace Stagio.Web.Controllers
                 stage.NbApply = nbApplyCurrently + 1;
                 _stageRepository.Update(stage);
                 TempData["files"] = files;
+                var student = _studentRepository.GetById(applyStudentViewModel.IdStudent);
+                string messageToCoordinator = student.FirstName + " " + student.LastName + StudentToCoordinator.ApplyMessage + stage.StageTitle;
+                _notificationService.SendNotificationToAllCoordinator(StudentToCoordinator.ApplyTilte, messageToCoordinator);
+                string messageToContactEnterprise = student.FirstName + " " + student.LastName + StudentToContactEnterprise.ApplyMessage + stage.StageTitle + StudentToContactEnterprise.ApplyLinkPart1 + stage.Id + StudentToContactEnterprise.ApplyLinkPart2; 
+                _notificationService.SendNotificationToAllContactEnterpriseOf(stage.CompanyName, StudentToContactEnterprise.ApplyTitle, messageToContactEnterprise);
                 return RedirectToAction(MVC.Student.ApplyConfirmation());
             }
             else
             {
-               
+
                 return View(applyStudentViewModel);
             }
         }
@@ -258,8 +256,8 @@ namespace Stagio.Web.Controllers
 
                 return HttpNotFound();
             }
-            
-            
+
+
         }
 
         public virtual ActionResult ApplyRemoveConfirmation(int id)
@@ -270,7 +268,7 @@ namespace Stagio.Web.Controllers
             var student = _studentRepository.GetById(stageApply.IdStudent);
             var stage = _stageRepository.GetById(stageApply.IdStage);
             _notificationService.SendNotificationToAllCoordinator(StudentToCoordinator.RemoveApplyTitle,
-                String.Format(StudentToCoordinator.RemoveApplyMessage, student.FirstName + " " + student.LastName, stage.StageTitle));
+                String.Format(StudentToCoordinator.RemoveApplyMessage, student.FirstName + " " + student.LastName, "<a href=" + "../../Stage/Details/" + stage.Id + "> " + stage.StageTitle + " </a>"));
             return View();
         }
 
@@ -316,19 +314,17 @@ namespace Stagio.Web.Controllers
 
         public virtual ActionResult Download(string file)
         {
+            var readFile = new ReadFile();
             try
             {
-                string path = AppDomain.CurrentDomain.GetData("DataDirectory").ToString();
-                path = path + "\\UploadedFiles\\" + file;
-                byte[] fileBytes = System.IO.File.ReadAllBytes((path));
-                string fileName = file;
-                return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+                return File(readFile.Download(file), System.Net.Mime.MediaTypeNames.Application.Octet, file);
             }
             catch (Exception)
             {
                 return RedirectToAction(MVC.Student.Index());
             }
         }
+
     }
 }
 

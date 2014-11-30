@@ -16,7 +16,7 @@ namespace Stagio.Web.ViewModels.Apply
         [DisplayName("Nom")]
         public string LastName { get; set; }
 
-        [DisplayName("Pr�nom")]
+        [DisplayName("Prénom")]
         public string FirstName { get; set; }
         public int Id { get; set; }
          [DisplayName("CV")]

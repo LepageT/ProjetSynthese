@@ -61,9 +61,5 @@ namespace Stagio.Web.Automation.PageObjects.ContactEnterprise
            
         }
 
-        public static void DownloadFile(string file)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

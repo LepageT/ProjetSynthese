@@ -133,20 +133,11 @@ namespace Stagio.Web.Module.Strings.Notification {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à a ajouté un stage. Vous devez l&apos;approuver pour qu&apos;il soit visible pour les étudiants..
+        ///   Recherche une chaîne localisée semblable à Vous devez l&apos;approuver pour qu&apos;il soit visible pour les étudiants..
         /// </summary>
         internal static string NewStageMessage {
             get {
                 return ResourceManager.GetString("NewStageMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à &gt;jenkins.cegep-ste-foy.qc.ca/thomarelau/Stage/Details/.
-        /// </summary>
-        internal static string NewStageMessageEnd {
-            get {
-                return ResourceManager.GetString("NewStageMessageEnd", resourceCulture);
             }
         }
         
@@ -158,8 +149,8 @@ namespace Stagio.Web.Module.Strings.Notification {
                 return ResourceManager.GetString("NewStageTitle", resourceCulture);
             }
         }
-		
-		/// <summary>
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à n&apos;est pas intéressé par la candidature de.
         /// </summary>
         internal static string NotInterestedBy {
@@ -176,8 +167,8 @@ namespace Stagio.Web.Module.Strings.Notification {
                 return ResourceManager.GetString("NotInterestedByTitle", resourceCulture);
             }
         }
-		
-		/// <summary>
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à a retiré le stage.
         /// </summary>
         internal static string RemoveStage {
@@ -192,24 +183,6 @@ namespace Stagio.Web.Module.Strings.Notification {
         internal static string RemoveStageTitle {
             get {
                 return ResourceManager.GetString("RemoveStageTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à a retiré l&apos;offre du stage.
-        /// </summary>
-        internal static string StageRemovedMessage {
-            get {
-                return ResourceManager.GetString("StageRemovedMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Un stage a été retiré.
-        /// </summary>
-        internal static string StageRemovedTitle {
-            get {
-                return ResourceManager.GetString("StageRemovedTitle", resourceCulture);
             }
         }
     }
