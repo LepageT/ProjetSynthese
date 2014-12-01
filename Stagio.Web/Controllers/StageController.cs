@@ -10,6 +10,7 @@ using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
 using Stagio.Web.Module;
 using Stagio.Web.Module.Strings.Notification;
+using Stagio.Web.Module.Strings.Shared;
 using Stagio.Web.Services;
 using Stagio.Web.ViewModels.Stage;
 
@@ -119,7 +120,7 @@ namespace Stagio.Web.Controllers
 
                 if (stage.CompanyName != user.EnterpriseName)
                 {
-                    this.Flash("Impossible de modifier le stage", FlashEnum.Error);
+                    this.Flash(FlashMessageResources.NotAccessStage, FlashEnum.Error);
                     return RedirectToAction(MVC.ContactEnterprise.ListStage());
                 }
                 var stageEditPageViewModel = Mapper.Map<ViewModels.Stage.Edit>(stage);
@@ -145,7 +146,7 @@ namespace Stagio.Web.Controllers
 
             if (stage.CompanyName != user.EnterpriseName)
             {
-                this.Flash("Impossible de modifier le stage", FlashEnum.Error);
+                this.Flash(FlashMessageResources.NotAccessStage, FlashEnum.Error);
                 return RedirectToAction(MVC.ContactEnterprise.ListStage());
             }
 
@@ -169,7 +170,7 @@ namespace Stagio.Web.Controllers
             _notificationService.SendNotificationToAllStudent(ContactEnterpriseToStudent.EditStageTitle,
                 messageToStudent);
 
-            this.Flash("Modification réussi", FlashEnum.Success);
+            this.Flash(FlashMessageResources.EditSuccess, FlashEnum.Success);
             return RedirectToAction(MVC.ContactEnterprise.ListStage());
          
         }
@@ -221,7 +222,7 @@ namespace Stagio.Web.Controllers
                 _stageRepository.Update(stage);
                 string message = "L'entreprise " + stage.CompanyName + " " + ContactEntrepriseToCoordinator.NewStageMessage + " " + ContactEntrepriseToCoordinator.NewStageLink + stage.Id.ToString() + '"' + ContactEntrepriseToCoordinator.NewStageEndLink;
                 _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.NewStageTitle, message);
-
+                this.Flash(FlashMessageResources.StageWaiting, FlashEnum.Info);
                 return RedirectToAction(MVC.ContactEnterprise.CreateStageSucceed());
             }
         }
@@ -236,6 +237,7 @@ namespace Stagio.Web.Controllers
 
             _stageRepository.Delete(stage);
 
+            this.Flash(FlashMessageResources.DraftDelete, FlashEnum.Info);
             return RedirectToAction(MVC.ContactEnterprise.DraftList());
         }
     }
