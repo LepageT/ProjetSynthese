@@ -48,12 +48,12 @@ namespace Stagio.Web.Controllers
 
             return View(listAllStages);
         }
-
+         [Authorize(Roles = RoleName.Student)]
         public virtual ActionResult ViewStageInfo(int id)
         {
             var stage = _stageRepository.GetById(id);
 
-            if (stage != null)
+            if (stage != null && stage.Status == StageStatus.Accepted)
             {
                 var stageInfoViewModel = Mapper.Map<ViewModels.Stage.ViewInfo>(stage);
 
@@ -179,9 +179,15 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult DraftEdit(int id)
         {
             var stage = _stageRepository.GetById(id);
-
+            var user = _contactEnterpriseRepository.GetById(_httpContext.GetUserId());
+           
             if (stage != null)
             {
+                if (stage.CompanyName != user.EnterpriseName)
+                {
+                    this.Flash(FlashMessageResources.NotAccessStage, FlashEnum.Error);
+                    return RedirectToAction(MVC.ContactEnterprise.ListStage());
+                }
                 var stageDraftPageViewModel = Mapper.Map<ViewModels.Stage.Edit>(stage);
 
                 return View(stageDraftPageViewModel);
@@ -196,11 +202,17 @@ namespace Stagio.Web.Controllers
             if (buttonClick.Equals("Enregistrer"))
             {
                 var stage = _stageRepository.GetById(draftStageViewModel.Id);
+                var user = _contactEnterpriseRepository.GetById(_httpContext.GetUserId());
                 if (stage == null)
                 {
+                    
                     return HttpNotFound();
                 }
-
+                if (stage.CompanyName != user.EnterpriseName)
+                {
+                    this.Flash(FlashMessageResources.NotAccessStage, FlashEnum.Error);
+                    return RedirectToAction(MVC.ContactEnterprise.DraftList());
+                }
                 Mapper.Map(draftStageViewModel, stage);
 
                 _stageRepository.Update(stage);
@@ -226,13 +238,19 @@ namespace Stagio.Web.Controllers
                 return RedirectToAction(MVC.ContactEnterprise.CreateStageSucceed());
             }
         }
-
+         [Authorize(Roles = RoleName.ContactEnterprise)]
         public virtual ActionResult DraftDelete(int id)
         {
             var stage = _stageRepository.GetById(id);
-            if (stage == null)
+            var user = _contactEnterpriseRepository.GetById(_httpContext.GetUserId());
+             if (stage == null)
             {
                 return HttpNotFound();
+            }
+            if (stage.CompanyName != user.EnterpriseName)
+            {
+                this.Flash(FlashMessageResources.NotAccessStage, FlashEnum.Error);
+                return RedirectToAction(MVC.ContactEnterprise.DraftList());
             }
 
             _stageRepository.Delete(stage);

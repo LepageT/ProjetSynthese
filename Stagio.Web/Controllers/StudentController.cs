@@ -273,6 +273,11 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult ApplyRemoveConfirmation(int id)
         {
             var stageApply = _applyRepository.GetById(id);
+            if (stageApply == null)
+            {
+                this.Flash(FlashMessageResources.ApplyNotExist, FlashEnum.Warning);
+                return RedirectToAction(MVC.Student.ApplyList());
+            }
             var student = _studentRepository.GetById(_httpContextService.GetUserId());
             if (stageApply.IdStudent != student.Id)
             {
@@ -292,6 +297,11 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult ApplyReApplyConfirmation(int id)
         {
             var stageApply = _applyRepository.GetById(id);
+            if (stageApply == null)
+            {
+                this.Flash(FlashMessageResources.ApplyNotExist, FlashEnum.Warning);
+                return RedirectToAction(MVC.Student.ApplyList());
+            }
             if (stageApply.IdStudent != _httpContextService.GetUserId())
             {
                 this.Flash(FlashMessageResources.NotAccessApply, FlashEnum.Warning);
