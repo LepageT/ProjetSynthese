@@ -79,33 +79,6 @@ namespace Stagio.Web.Module.Strings.Notification {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string j {
-            get {
-                return ResourceManager.GetString("j", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &gt;jenkins.cegep-ste-foy.qc.ca/thomarelau/Stage/ViewStageInfo/.
-        /// </summary>
-        internal static string NewStageLinkEnd {
-            get {
-                return ResourceManager.GetString("NewStageLinkEnd", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to . Voici le lien: &lt;a href =&quot;http://jenkins.cegep-ste-foy.qc.ca/thomarelau/Stage/ViewStageInfo/.
-        /// </summary>
-        internal static string NewStageLinkStart {
-            get {
-                return ResourceManager.GetString("NewStageLinkStart", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to L&apos;entreprise {0} a ajouté ce stage: &lt;a href=&quot;../../Stage/ViewStageInfo/{1}&quot;&gt;{2}&lt;/a&gt; .
         /// </summary>
         internal static string NewStageMessage {
