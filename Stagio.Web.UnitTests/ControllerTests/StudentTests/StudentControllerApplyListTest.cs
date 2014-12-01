@@ -57,10 +57,13 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
             var applyStage = _fixture.Create<Apply>();
             var student = _fixture.Create<Student>();
             var stage = _fixture.Create<Stage>();
+            applyStage.IdStudent = student.Id;
             applyRepository.GetById(applyStage.Id).Returns(applyStage);
             studentRepository.GetById(applyStage.IdStudent).Returns(student);
             stageRepository.GetById(applyStage.IdStage).Returns(stage);
-
+            httpContextService.GetUserId().Returns(student.Id);
+            
+    
             var result = studentController.ApplyRemoveConfirmation(applyStage.Id) as ViewResult;
 
             result.ViewName.Should().Be("");
@@ -72,9 +75,12 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
             var applyStage = _fixture.Create<Apply>();
             var student = _fixture.Create<Student>();
             var stage = _fixture.Create<Stage>();
+            applyStage.IdStudent = student.Id;
             applyRepository.GetById(applyStage.Id).Returns(applyStage);
             studentRepository.GetById(applyStage.IdStudent).Returns(student);
             stageRepository.GetById(applyStage.IdStage).Returns(stage);
+            httpContextService.GetUserId().Returns(student.Id);
+            
 
             var result = studentController.ApplyRemoveConfirmation(applyStage.Id) as ViewResult;
 

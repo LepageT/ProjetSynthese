@@ -268,14 +268,15 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult ApplyRemoveConfirmation(int id)
         {
             var stageApply = _applyRepository.GetById(id);
-            if (stageApply.Id != _httpContextService.GetUserId())
+            var student = _studentRepository.GetById(_httpContextService.GetUserId());
+            if (stageApply.IdStudent != student.Id)
             {
                 this.Flash("Vous n'avez pas les accès requis pour visualiser cette postulation", FlashEnum.Warning);
                 return RedirectToAction(MVC.Student.ApplyList());
             }
             stageApply.Status = StatusApply.Removed;
             _applyRepository.Update(stageApply);
-            var student = _studentRepository.GetById(_httpContextService.GetUserId());
+            
             var stage = _stageRepository.GetById(stageApply.IdStage);
             _notificationService.SendNotificationToAllCoordinator(StudentToCoordinator.RemoveApplyTitle,
                 String.Format(StudentToCoordinator.RemoveApplyMessage, student.FirstName + " " + student.LastName, stage.StageTitle));
@@ -286,7 +287,7 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult ApplyReApplyConfirmation(int id)
         {
             var stageApply = _applyRepository.GetById(id);
-            if (stageApply.Id != _httpContextService.GetUserId())
+            if (stageApply.IdStudent != _httpContextService.GetUserId())
             {
                 this.Flash("Vous n'avez pas les accès requis pour visualiser cette postulation", FlashEnum.Warning);
                 return RedirectToAction(MVC.Student.ApplyList());
