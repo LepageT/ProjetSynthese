@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -48,7 +49,7 @@ namespace Stagio.Web.Controllers
             IEntityRepository<Interview> interviewRepository,
             IEntityRepository<Notification> notificationRepository,
             IHttpContextService httpContextService,
-            IEntityRepository<ApplicationUser> applicationRepository )
+            IEntityRepository<ApplicationUser> applicationRepository)
         {
             _enterpriseContactRepository = enterpriseContactRepository;
             _coordinatorRepository = coordinatorRepository;
@@ -108,7 +109,8 @@ namespace Stagio.Web.Controllers
 
                     if (!ModelState.IsValid)
                     {
-                        return View(InviteContactEnterprise());
+                        this.Flash("Erreur sur la page", FlashEnum.Error);
+                        return RedirectToAction(MVC.Coordinator.InviteContactEnterprise());
                     }
 
                     String messageText = EmailEnterpriseResources.InviteMessageBody;
@@ -128,7 +130,8 @@ namespace Stagio.Web.Controllers
                             messageText))
                     {
                         ModelState.AddModelError("Email", EmailResources.CantSendEmail);
-                        return View(InviteContactEnterprise());
+                        this.Flash("Erreur sur la page", FlashEnum.Error);
+                        return RedirectToAction(MVC.Coordinator.InviteContactEnterprise());
                     }
 
                     _invitationContactRepository.Add(new InvitationContactEnterprise()
@@ -146,6 +149,7 @@ namespace Stagio.Web.Controllers
 
 
             }
+                this.Flash("Invitation réussi", FlashEnum.Success);
                 return RedirectToAction(MVC.Coordinator.InviteContactEnterpriseConfirmation());
             }
 
@@ -198,6 +202,7 @@ namespace Stagio.Web.Controllers
 
             if (!ModelState.IsValid)
             {
+                this.Flash("Erreur sur la page", FlashEnum.Error);
                 return View(createdCoordinator);
             }
 
@@ -218,6 +223,7 @@ namespace Stagio.Web.Controllers
 
                     _mailler.SendEmail(createdCoordinator.Email, EmailAccountCreation.Subject, EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
 
+                    this.Flash("Création réussi", FlashEnum.Success);
                     return RedirectToAction(MVC.Coordinator.CreateConfirmation());
                 }
             }
@@ -237,6 +243,7 @@ namespace Stagio.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
+                this.Flash("Erreur sur la page", FlashEnum.Error);
                 return View(createdInvite);
             }
 
@@ -259,6 +266,7 @@ namespace Stagio.Web.Controllers
             if (!_mailler.SendEmail(createdInvite.Email, EmailCoordinatorResources.CoordinatorInviteSubject, messageText))
             {
                 ModelState.AddModelError("Email", EmailResources.CantSendEmail);
+                this.Flash("Erreur sur la page", FlashEnum.Error);
                 return View(createdInvite);
             }
 
@@ -268,7 +276,7 @@ namespace Stagio.Web.Controllers
                                         Email = createdInvite.Email,
                                         Used = false
                                       });
-
+            this.Flash("Invitation envoyée", FlashEnum.Success);
             return RedirectToAction(MVC.Coordinator.InvitationSucceed());
 
         }
@@ -407,7 +415,7 @@ namespace Stagio.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                var readFile = new ReadFile<ListStudent>();
+                var readFile = new ReadFile();
 
                 listStudents = readFile.ReadFileCsv(file);
                 TempData["listStudent"] = listStudents;
@@ -440,6 +448,7 @@ namespace Stagio.Web.Controllers
         {
             var listStudents = TempData["listStudent"] as List<ListStudent>;
             TempData["listStudent"] = listStudents;
+            TempData.Keep();
             return View(listStudents);
         }
 
@@ -498,6 +507,46 @@ namespace Stagio.Web.Controllers
             }
 
             return RedirectToAction(MVC.Coordinator.Upload());
+        }
+
+        public virtual ActionResult DetailsApplyStudent(int id, bool error)
+        {
+            if (error)
+            {
+                ViewBag.Message = CoordinatorResources.FilesCanNotBeDownload;
+            }
+            try
+            {
+                var apply = _applyRepository.GetById(id);
+                var applyViewModel = Mapper.Map<DetailsApplyStudent>(apply);
+                var student = _studentRepository.GetById(applyViewModel.IdStudent);
+                var stage = _stageRepository.GetById(applyViewModel.IdStage);
+                applyViewModel.FirstName = student.FirstName;
+                applyViewModel.LastName = student.LastName;
+                applyViewModel.StageTitle = stage.StageTitle;
+                applyViewModel.Matricule = student.Matricule;
+                applyViewModel.CompagnyName = stage.CompanyName;
+
+                return View(applyViewModel);
+            }
+            catch (Exception)
+            {
+
+                return HttpNotFound();
+            }
+        }
+
+        public virtual ActionResult Download(string file, int id)
+        {
+          var readFile = new ReadFile();
+            try
+            {
+               return File(readFile.Download(file), System.Net.Mime.MediaTypeNames.Application.Octet, file);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction(MVC.Coordinator.DetailsApplyStudent(id, true));
+            }
         }
 
     }

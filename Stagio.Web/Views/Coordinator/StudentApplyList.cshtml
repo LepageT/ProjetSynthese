@@ -48,6 +48,9 @@
         <th>
             @Html.DisplayNameFor(model => model.DateAcceptStage)
         </th>
+        <th>
+            Détails de la candidature
+        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -93,6 +96,9 @@
                 {
                     <p>Inconnu</p>
                 }
+            </td>
+            <td>
+                @Html.ActionLink("Voir les détails", MVC.Coordinator.DetailsApplyStudent(item.Id, false))
             </td>
             <td>
                 @if (item.DateAcceptStage != null)

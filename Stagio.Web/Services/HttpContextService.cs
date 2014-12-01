@@ -30,7 +30,17 @@ namespace Stagio.Web.Services
             HttpContext.Current.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
         }
 
-       
+        public string GetPathDetailStage(int id)
+        {
+            try
+            {
+                return HttpContext.Current.Request.Path;
+            }
+            catch (Exception)
+            {
+                return "fake";
+            }
+        }
 
     }
 }

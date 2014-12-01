@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using Stagio.Web.Automation.PageObjects;
 using Stagio.Web.Automation.PageObjects.ContactEnterprise;
 using Stagio.Web.Automation.Selenium;
 
@@ -17,6 +18,9 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
         [TestMethod]
         public void contact_enterprise_should_be_able_to_access_reactivate_page()
         {
+            LoginPage.GoTo();
+            LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
+
             ReactivateContactEnterprisePage.GoToByUrl();
 
             ReactivateContactEnterprisePage.IsDisplayed.Should().BeTrue();
@@ -26,6 +30,9 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
         [TestMethod]
         public void contact_enterprise_should_be_able_to_create_account_if_invitation_is_valid()
         {
+            LoginPage.GoTo();
+            LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
+
             ReactivateContactEnterprisePage.GoToByUrl();
             const string EMAIL = "testemail@enterprise.com";
             const string PASSWORD = "Bobino1234";

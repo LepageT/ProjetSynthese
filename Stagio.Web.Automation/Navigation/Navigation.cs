@@ -119,14 +119,14 @@ namespace Stagio.Web.Automation
             {
                 public static void Select()
                 {
-                    MenuSelector.Select("contactEnterprise-menu", "create-stage-enterprise");
+                    MenuSelector.Select("contactEnterprise-menu-stage", "create-stage-enterprise");
                 }
             }
             public class ListStages
             {
                 public static void Select()
                 {
-                    MenuSelector.Select("contactEnterprise-menu", "listContact");
+                    MenuSelector.Select("contactEnterprise-menu-stage", "listContact");
                 }
             }
             public class ListApply1

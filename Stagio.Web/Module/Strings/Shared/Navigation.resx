@@ -120,4 +120,7 @@
   <data name="ReturnHome" xml:space="preserve">
     <value>Retour à l'accueil</value>
   </data>
+  <data name="ReturnToStageList" xml:space="preserve">
+    <value>Retour à la liste de stage</value>
+  </data>
 </root>

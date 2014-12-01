@@ -8,6 +8,7 @@ using AutoMapper;
 using Stagio.DataLayer;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
+using Stagio.Web.Module;
 using Stagio.Web.Module.Strings.Notification;
 using Stagio.Web.Services;
 using Stagio.Web.ViewModels.Stage;
@@ -18,7 +19,7 @@ namespace Stagio.Web.Controllers
     {
         private readonly IEntityRepository<Stage> _stageRepository;
         private readonly INotificationService _notificationService;
-        private readonly IEntityRepository<ContactEnterprise> _contactEnterpriseRepository;
+        private readonly IEntityRepository<ContactEnterprise> _contactEnterpriseRepository; 
         private readonly IHttpContextService _httpContextService;
         private readonly IEntityRepository<Coordinator> _coordinatorRepository;
 
@@ -39,11 +40,12 @@ namespace Stagio.Web.Controllers
             var stagesNotStatus = stages.Where(stage => stage.Status == 0).ToList();
             var stagesStatus = stages.Where(stage => stage.Status == StageStatus.Accepted).ToList();
             var stagesRefusedByCoordinator = stages.Where(stage => stage.Status == StageStatus.Refused).ToList();
+            var stagesRemoveByContact = stages.Where(stage => stage.Status == StageStatus.Removed).ToList();
 
             listAllStages.ListNewStages = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesNotStatus).ToList();
             listAllStages.ListStagesAccepted = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesStatus).ToList();
             listAllStages.ListStagesRefused = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesRefusedByCoordinator).ToList();
-
+            listAllStages.ListStagesRemoved = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesRemoveByContact).ToList();
 
             return View(listAllStages);
         }
@@ -98,9 +100,10 @@ namespace Stagio.Web.Controllers
             {
                 var userId = _httpContextService.GetUserId();
                 var coordinator = _coordinatorRepository.GetById(userId);
+                string messageEdit = CoordinatorToContactEnterprise.StageRefusedMessage;
                 string messageContact = " Nom du coordonateur: " + coordinator.FirstName + " " + coordinator.LastName + " Email: " + coordinator.Email;
                 _notificationService.SendNotificationToAllContactEnterpriseOf(stage.CompanyName,
-                    CoordinatorToContactEnterprise.StageRefusedTitle, CoordinatorToContactEnterprise.StageRefusedMessage + messageContact);
+                    CoordinatorToContactEnterprise.StageRefusedTitle, messageEdit + messageContact);
                 stage.Status = StageStatus.Refused;
             }
             else if (command.Equals("Retirer"))
@@ -112,15 +115,20 @@ namespace Stagio.Web.Controllers
         }
 
         [Authorize(Roles = RoleName.ContactEnterprise)]
-        // GET: Student/Edit/5
         public virtual ActionResult Edit(int id)
         {
             var stage = _stageRepository.GetById(id);
 
             if (stage != null)
             {
-                var stageEditPageViewModel = Mapper.Map<ViewModels.Stage.Edit>(stage);
+                var user = _contactEnterpriseRepository.GetById(_httpContextService.GetUserId());
 
+                if (stage.CompanyName != user.EnterpriseName)
+                {
+                    this.Flash("Impossible de modifier le stage", FlashEnum.Error);
+                    return RedirectToAction(MVC.ContactEnterprise.ListStage());
+                }
+                var stageEditPageViewModel = Mapper.Map<ViewModels.Stage.Edit>(stage);
                 return View(stageEditPageViewModel);
             }
             return HttpNotFound();
@@ -133,9 +141,18 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult Edit(ViewModels.Stage.Edit editStageViewModel)
         {
             var stage = _stageRepository.GetById(editStageViewModel.Id);
+            var user = _contactEnterpriseRepository.GetById(_httpContextService.GetUserId());
+            
+            
             if (stage == null)
             {
                 return HttpNotFound();
+            }
+
+            if (stage.CompanyName != user.EnterpriseName)
+            {
+                this.Flash("Impossible de modifier le stage", FlashEnum.Error);
+                return RedirectToAction(MVC.ContactEnterprise.ListStage());
             }
 
             if (!ModelState.IsValid)
@@ -147,14 +164,85 @@ namespace Stagio.Web.Controllers
 
            _stageRepository.Update(stage);
 
-           string message = "L'entreprise " + " " + stage.CompanyName +
-                             " " + ContactEntrepriseToCoordinator.EditStageMessage + "<a href=" + Url.Action(MVC.Stage.Details(editStageViewModel.Id)) + "> "+stage.StageTitle+" </a>";
-           _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.EditStageTitle, message);
-            string messageToStudent = stage.CompanyName + ContactEnterpriseToStudent.EditStageMessage + stage.StageTitle;
+                string message = "L'entreprise " + " " + stage.CompanyName + " " +
+                                 ContactEntrepriseToCoordinator.EditStageMessage + " " + stage.StageTitle + " " +
+                                 ContactEntrepriseToCoordinator.NewStageLink + editStageViewModel.Id + '"' +
+                                 ContactEntrepriseToCoordinator.NewStageEndLink;
+                _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.EditStageTitle,
+                    message);
+                string messageToStudent = stage.CompanyName + ContactEnterpriseToStudent.EditStageMessage +
+                                          stage.StageTitle;
             _notificationService.SendNotificationToAllStudent(ContactEnterpriseToStudent.EditStageTitle,
                 messageToStudent);
 
+            this.Flash("Modification réussi", FlashEnum.Success);
             return RedirectToAction(MVC.ContactEnterprise.ListStage());
+         
+        }
+                
+        [Authorize(Roles = RoleName.ContactEnterprise)]
+        public virtual ActionResult DraftEdit(int id)
+        {
+            var stage = _stageRepository.GetById(id);
+
+            if (stage != null)
+            {
+                var stageDraftPageViewModel = Mapper.Map<ViewModels.Stage.Edit>(stage);
+
+                return View(stageDraftPageViewModel);
+            }
+            return HttpNotFound();
+        }
+               
+        [Authorize(Roles = RoleName.ContactEnterprise)]
+        [HttpPost]
+        public virtual ActionResult DraftEdit(ViewModels.Stage.Edit draftStageViewModel, string buttonClick = "")
+        {
+            if (buttonClick.Equals("Enregistrer"))
+            {
+                var stage = _stageRepository.GetById(draftStageViewModel.Id);
+                if (stage == null)
+                {
+                    return HttpNotFound();
+                }
+
+                Mapper.Map(draftStageViewModel, stage);
+
+                _stageRepository.Update(stage);
+
+                return RedirectToAction(MVC.ContactEnterprise.DraftList());
+
+            }
+            else
+            {
+                if (!ModelState.IsValid)
+                {
+                    return View(draftStageViewModel);
+                }
+
+                var stage = Mapper.Map<Stage>(draftStageViewModel);
+                stage.PublicationDate = DateTime.Now.ToString();
+                stage.Draft = false;
+
+                _stageRepository.Update(stage);
+                string message = "L'entreprise " + stage.CompanyName + " " + ContactEntrepriseToCoordinator.NewStageMessage + " " + ContactEntrepriseToCoordinator.NewStageLink + stage.Id.ToString() + '"' + ContactEntrepriseToCoordinator.NewStageEndLink;
+                _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.NewStageTitle, message);
+
+                return RedirectToAction(MVC.ContactEnterprise.CreateStageSucceed());
+            }
+        }
+
+        public virtual ActionResult DraftDelete(int id)
+        {
+            var stage = _stageRepository.GetById(id);
+            if (stage == null)
+            {
+                return HttpNotFound();
+            }
+
+            _stageRepository.Delete(stage);
+
+            return RedirectToAction(MVC.ContactEnterprise.DraftList());
         }
     }
 }

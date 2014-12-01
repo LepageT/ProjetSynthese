@@ -12,7 +12,7 @@ namespace Stagio.Web.ViewModels.Stage
         public int Id { get; set; }
 
         [DisplayName("Date de l'offre:")]
-        public DateTime PublicationDate { get; set; }
+        public string PublicationDate { get; set; }
 
         //Maybe an enterprise entity must be created.
         [DisplayName("Entreprise ou Organisation:")]
@@ -62,7 +62,7 @@ namespace Stagio.Web.ViewModels.Stage
         [DisplayName("Courriel:")]
         public String SubmitToEmail { get; set; }
         [DisplayName("Date limite pour soummettre une candidature:")]
-        public DateTime LimitDate { get; set; }
+        public String LimitDate { get; set; }
 
         public int Status { get; set; }
     }

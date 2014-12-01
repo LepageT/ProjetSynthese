@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using Stagio.DataLayer;
@@ -12,16 +13,17 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
     public class StageControllerBaseClassTests : AllControllersBaseClassTests
     {
         protected IEntityRepository<Stage> stageRepository;
-        protected INotificationService notificationService;
         protected IEntityRepository<ContactEnterprise> contactEnterpriseRepository;
+        protected INotificationService notificationService;
         protected StageController stageController;
         protected IHttpContextService httpContextService;
         protected IEntityRepository<Coordinator> coordinatorRepository;
-            
+        
         [TestInitialize]
         public void StageControllerTestInit()
         {
             stageRepository = Substitute.For<IEntityRepository<Stage>>();
+            httpContextService = Substitute.For<IHttpContextService>();
             notificationService = Substitute.For<INotificationService>();
             contactEnterpriseRepository = Substitute.For<IEntityRepository<ContactEnterprise>>();
             httpContextService = Substitute.For<IHttpContextService>();

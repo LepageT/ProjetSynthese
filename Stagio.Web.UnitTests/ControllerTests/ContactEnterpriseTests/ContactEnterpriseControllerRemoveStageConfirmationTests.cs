@@ -20,6 +20,10 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
         public void contact_enterprise_remove_stage_should_render_view()
         {
             var stage = _fixture.Create<Stage>();
+            var user = _fixture.Create<ContactEnterprise>();
+            httpContext.GetUserId().Returns(user.Id);
+            enterpriseRepository.GetById(user.Id).Returns(user);
+            stage.CompanyName = user.EnterpriseName;
             var applies = _fixture.Build<Apply>().With(x => x.IdStage, stage.Id).CreateMany(3);
             stageRepository.GetById(stage.Id).Returns(stage);
             applyRepository.GetAll().Returns(applies.AsQueryable());
@@ -33,6 +37,10 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
         public void contact_enterprise_remove_stage_should_update_DB()
         {
             var stage = _fixture.Create<Stage>();
+            var user = _fixture.Create<ContactEnterprise>();
+            httpContext.GetUserId().Returns(user.Id);
+            enterpriseRepository.GetById(user.Id).Returns(user);
+            stage.CompanyName = user.EnterpriseName;
             var applies = _fixture.Build<Apply>().With(x => x.IdStage, stage.Id).CreateMany(3);
             stageRepository.GetById(stage.Id).Returns(stage);
             applyRepository.GetAll().Returns(applies.AsQueryable());

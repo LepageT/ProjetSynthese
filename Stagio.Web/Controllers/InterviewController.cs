@@ -9,6 +9,7 @@ using Stagio.DataLayer;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
 using Stagio.Web.Module.Strings.Notification;
+using Stagio.Web.Module;
 using Stagio.Web.Services;
 
 namespace Stagio.Web.Controllers
@@ -54,6 +55,7 @@ namespace Stagio.Web.Controllers
                     Value = ((int)apply.IdStage).ToString()
                 };
             
+            var applis = interview.Apply.ToList();
 
             return View(interview);
         }
@@ -64,10 +66,9 @@ namespace Stagio.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (createdInterview.StudentId == 0)
-                {
+               
                     createdInterview.StudentId = _httpContextService.GetUserId();
-                }
+            
             
                 var interviewCreated = Mapper.Map<Interview>(createdInterview);
                 var student = _studentRepository.GetById(interviewCreated.StudentId);
@@ -95,10 +96,10 @@ namespace Stagio.Web.Controllers
                 _notificationService.SendNotificationToAllCoordinator(
                     StudentToCoordinator.CreateInterviewTitle, message);
                 _interviewRepository.Add(interviewCreated);
-
+                this.Flash("Ajout avec succes", FlashEnum.Success);
                 return RedirectToAction(MVC.Interview.InterviewCreateConfirmation());
             }
-
+            this.Flash("Erreur sur la page", FlashEnum.Error);
             return View(createdInterview);
         }
 
@@ -138,6 +139,17 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult Edit(int id)
         {
             var interview = _interviewRepository.GetById(id);
+            if (interview == null)
+            {
+                this.Flash("L'entrevue que vous tentez de visualiser n'existe pas!", FlashEnum.Warning);
+                return RedirectToAction(MVC.Interview.List());
+            }
+            var student = _studentRepository.GetById(_httpContextService.GetUserId());
+            if (interview.StudentId != student.Id )
+            {
+                this.Flash("Vous n'avez pas les accès pour visualiser cette entrevue", FlashEnum.Warning);
+                return RedirectToAction(MVC.Interview.List());
+            }
             if (ModelState.IsValid)
             {
                 if (interview != null)
@@ -164,10 +176,8 @@ namespace Stagio.Web.Controllers
             var interview = _interviewRepository.GetById(editInterviewViewModel.Id);
             if (interview != null)
             {
-                Mapper.Map(editInterviewViewModel, interview);
 
-                _interviewRepository.Update(interview);
-                if (interview.Present)
+                if (editInterviewViewModel.Present && !interview.Present)
                 {
                     var student = _studentRepository.GetById(interview.StudentId);
                     var stage = _stageRepository.GetById(interview.StageId);
@@ -176,11 +186,23 @@ namespace Stagio.Web.Controllers
                     _notificationService.SendNotificationToAllCoordinator(StudentToCoordinator.EditInterviewTitle,
                         message);
                 }
+                if (editInterviewViewModel.Date != interview.Date)
+                {
+                    var student = _studentRepository.GetById(interview.StudentId);
+                    var stage = _stageRepository.GetById(interview.StageId);
+                    string message = StudentToCoordinator.EditDateInterviewMessagePart1 + " " + student.FirstName + " " + student.LastName + " " +
+                                     StudentToCoordinator.EditDateInterviewMessagePart2 + " " + editInterviewViewModel.Date + " pour le stage " + stage.StageTitle + " de " + stage.CompanyName;
+                    _notificationService.SendNotificationToAllCoordinator(StudentToCoordinator.EditDateInterviewTitle,
+                        message);
+                }
+
+                Mapper.Map(editInterviewViewModel, interview);
+
+                _interviewRepository.Update(interview);
+                this.Flash("Modification réussi", FlashEnum.Success);
                 return RedirectToAction(MVC.Interview.List());
             }
             return HttpNotFound();
-
-           
         }
 
     }

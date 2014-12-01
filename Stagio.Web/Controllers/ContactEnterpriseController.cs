@@ -15,9 +15,11 @@ using Stagio.Web.Module.Strings.Controller;
 using Stagio.Web.Module.Strings.Notification;
 using Stagio.Web.Services;
 using Stagio.Web.Module.Strings.Email;
+using Stagio.Web.ViewModels.Stage;
 
 namespace Stagio.Web.Controllers
 {
+    [Authorize(Roles = RoleName.ContactEnterprise)]
     public partial class ContactEnterpriseController : Controller
     {
         private readonly IEntityRepository<ContactEnterprise> _contactEnterpriseRepository;
@@ -98,6 +100,7 @@ namespace Stagio.Web.Controllers
                 _mailler.SendEmail(newContactEnterprise.Email, EmailAccountCreation.Subject, EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
 
                 //ADD NOTIFICATIONS: À la coordination et aux autres employés de l'entreprise.
+                this.Flash("Création du profil réussi", FlashEnum.Success);
                 return RedirectToAction(MVC.ContactEnterprise.CreateConfirmation(newContactEnterprise.Id));
 
 
@@ -148,6 +151,7 @@ namespace Stagio.Web.Controllers
 
             if (!ModelState.IsValid)
             {
+                this.Flash("Erreur sur la page", FlashEnum.Error);
                 return View(createViewModel);
             }
 
@@ -172,7 +176,7 @@ namespace Stagio.Web.Controllers
                         _mailler.SendEmail(createViewModel.Email, EmailAccountCreation.Subject,
                             EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
 
-
+                        this.Flash("Réactivation réussi", FlashEnum.Success);
                         return RedirectToAction(MVC.ContactEnterprise.CreateConfirmation(contactEnterprise.Id));
                     }
                 }
@@ -193,28 +197,45 @@ namespace Stagio.Web.Controllers
         [Authorize(Roles = RoleName.ContactEnterprise)]
         public virtual ActionResult CreateStage()
         {
-            return View();
+            var user = _contactEnterpriseRepository.GetById(_httpContext.GetUserId());
+            var viewModel = Mapper.Map<Create>(user);
+            return View(viewModel);
         }
 
         [Authorize(Roles = RoleName.ContactEnterprise)]
         [HttpPost]
-        public virtual ActionResult CreateStage(ViewModels.Stage.Create createdStage)
+        public virtual ActionResult CreateStage(ViewModels.Stage.Create createdStage, string ButtonClick = "")
+        {
+
+            if (ButtonClick.Equals("Sauvegarder comme brouillon"))
+            {
+                var stage = Mapper.Map<Stage>(createdStage);
+                stage.PublicationDate = DateTime.Now.ToString();
+                stage.Draft = true;
+                _stageRepository.Add(stage);
+
+                return View(MVC.ContactEnterprise.Views.ViewNames.DraftConfirmation);
+            }
+            else
         {
 
             if (!ModelState.IsValid)
             {
+                this.Flash("Erreur sur la page", FlashEnum.Error);
                 return View(createdStage);
             }
 
             var stage = Mapper.Map<Stage>(createdStage);
-            stage.PublicationDate = DateTime.Now;
+            stage.CompanyName = _contactEnterpriseRepository.GetById(_httpContext.GetUserId()).EnterpriseName;
+            stage.PublicationDate = DateTime.Now.ToString();
 
             _stageRepository.Add(stage);
-            string message = "L'entreprise " + stage.CompanyName + " " + ContactEntrepriseToCoordinator.NewStageMessage +
-                             " " + "<a href=" + Url.Action(MVC.Stage.Details(stage.Id)) +"> "+stage.StageTitle+" </a>";
+            this.Flash("Stage en attente d'approbation", FlashEnum.Info);
+            string message = "L'entreprise " + stage.CompanyName + " " + ContactEntrepriseToCoordinator.NewStageMessage + " " + ContactEntrepriseToCoordinator.NewStageLink + stage.Id.ToString() + '"' + ContactEntrepriseToCoordinator.NewStageEndLink;
             _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.NewStageTitle, message);
             
             return RedirectToAction(MVC.ContactEnterprise.CreateStageSucceed());
+        }
         }
 
         [Authorize(Roles = RoleName.ContactEnterprise)]
@@ -237,6 +258,7 @@ namespace Stagio.Web.Controllers
 
             if (!ModelState.IsValid)
             {
+                this.Flash("Erreurs sur la page", FlashEnum.Error);
                 return View(createdInviteContactEnterpriseViewModel);
             }
 
@@ -259,6 +281,7 @@ namespace Stagio.Web.Controllers
             if (!_mailler.SendEmail(createdInviteContactEnterpriseViewModel.Email, EmailEnterpriseResources.InviteSubject, messageText))
             {
                 ModelState.AddModelError("Email", EmailResources.CantSendEmail);
+                this.Flash("Erreurs sur la page", FlashEnum.Error);
                 return View();
             }
 
@@ -273,7 +296,7 @@ namespace Stagio.Web.Controllers
                 Poste = createdInviteContactEnterpriseViewModel.Poste,
                 Used = false
             });
-
+            this.Flash("Invitation envoyé", FlashEnum.Info);
             return RedirectToAction(MVC.Coordinator.InviteContactEnterpriseConfirmation());
         }
 
@@ -281,7 +304,13 @@ namespace Stagio.Web.Controllers
         {
 
             var applies = new List<Apply>();
-
+            var user = _contactEnterpriseRepository.GetById(_httpContext.GetUserId());
+            var stage = _stageRepository.GetById(id);
+            if (stage.CompanyName != user.EnterpriseName)
+            {
+                this.Flash("Vous n'avez pas accès à ce stage", FlashEnum.Warning);
+                return RedirectToAction(MVC.ContactEnterprise.ListStage());
+            }
             try
             {
                 applies = _applyRepository.GetAll().Where(x => x.IdStage == id).ToList();
@@ -291,33 +320,20 @@ namespace Stagio.Web.Controllers
                 return HttpNotFound();
             }
 
-            var listStudents = new List<Student>();
             var students = _studentRepository.GetAll().ToList();
 
-            foreach (var apply in applies)
-            {
-                foreach (var student in students)
-                {
-                    if (student.Id == apply.Id)
-                    {
-                        listStudents.Add(student);
-                    }
-                }
-            }
+            var listStudents = (from apply in applies from student in students where student.Id == apply.IdStudent select student).ToList();
 
             var listStudentsApply = Mapper.Map<IEnumerable<ViewModels.Apply.StudentApply>>(applies).ToList();
 
             foreach (var studentApply in listStudentsApply)
             {
-                foreach (var listStudent in listStudents)
-                {
-                    if (listStudent.Id == studentApply.IdStudent)
+                foreach (var listStudent in listStudents.Where(listStudent => listStudent.Id == studentApply.IdStudent))
                     {
                         studentApply.FirstName = listStudent.FirstName;
                         studentApply.LastName = listStudent.LastName;
                     }
                 }
-            }
 
             return View(listStudentsApply);
         }
@@ -354,12 +370,24 @@ namespace Stagio.Web.Controllers
 
                 return HttpNotFound();
             }
-
+            if (apply == null)
+            {
+                this.Flash("La postulation n'existe pas", FlashEnum.Info);
+                return RedirectToAction(MVC.ContactEnterprise.ListStage());
+            }
+            var stage = _stageRepository.GetById(apply.IdStage);
+            var user = _contactEnterpriseRepository.GetById(_httpContext.GetUserId());
+            var student = _studentRepository.GetAll().FirstOrDefault(x => x.Id == apply.IdStudent);
+            if (stage.CompanyName != user.EnterpriseName)
+            {
+                this.Flash("Vous n'avez pas les accès pour visualiser cette postulation", FlashEnum.Warning);
+                return RedirectToAction(MVC.ContactEnterprise.ListStage());
+            }
             var applyModel = Mapper.Map<ViewModels.Apply.StudentApply>(apply);
 
-            applyModel.FirstName = _studentRepository.GetAll().FirstOrDefault(x => x.Id == apply.IdStudent).FirstName;
-            applyModel.LastName = _studentRepository.GetAll().FirstOrDefault(x => x.Id == apply.IdStudent).LastName;
-            applyModel.StageTitle = _stageRepository.GetAll().FirstOrDefault(x => x.Id == apply.IdStage).StageTitle;
+            applyModel.FirstName = student.FirstName;
+            applyModel.LastName = student.LastName;
+            applyModel.StageTitle = stage.StageTitle;
             return View(applyModel);
         }
 
@@ -382,7 +410,7 @@ namespace Stagio.Web.Controllers
                 _applyRepository.Update(apply);
                 var acceptApply =
                     Mapper.Map<ViewModels.ContactEnterprise.AcceptApply>(_studentRepository.GetById(apply.IdStudent));   
-                string message =stage.CompanyName + " " + ContactEntrepriseToCoordinator.InterestedBy + " " + student.LastName + " " + student.FirstName;
+                string message = stage.CompanyName + " " + ContactEntrepriseToCoordinator.InterestedBy + " " + student.LastName + " " + student.FirstName;
                 _notificationService.SendNotificationToAllCoordinator(
                     ContactEntrepriseToCoordinator.InterestedByTitle, message);
                 return View(MVC.ContactEnterprise.Views.ViewNames.AcceptApplyConfirmation, acceptApply);
@@ -411,42 +439,43 @@ namespace Stagio.Web.Controllers
 
         public virtual ActionResult Download(string file, int id)
         {
+            var readFile = new ReadFile();
             try
             {
-                string path = AppDomain.CurrentDomain.GetData("DataDirectory").ToString();
-                path = path + "\\UploadedFiles\\" + file;
-                byte[] fileBytes = System.IO.File.ReadAllBytes((path));
-                string fileName = file;
-                return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+               return File(readFile.Download(file), System.Net.Mime.MediaTypeNames.Application.Octet, file);
             }
             catch (Exception)
             {
                 return RedirectToAction(MVC.ContactEnterprise.DetailsStudentApply(id, true));
             }
-
-
         }
 
         public virtual ActionResult RemoveStageConfirmation(int idStage)
         {
             var stage = _stageRepository.GetById(idStage);
             var applies = _applyRepository.GetAll().ToList().Where(x => x.IdStage == idStage);
+            var user = _contactEnterpriseRepository.GetById(_httpContext.GetUserId());
             if (stage == null)
             {
                 return HttpNotFound();
             }
-
-            string message = stage.CompanyName + " " + ContactEntrepriseToCoordinator.RemoveStage  + " "  + stage.StageTitle;
-            _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.RemoveStageTitle,message);
-            foreach (var apply in applies)
+            if (stage.CompanyName != user.EnterpriseName)
             {
-                _notificationService.SendNotificationTo(apply.IdStudent,ContactEntrepriseToCoordinator.RemoveStageTitle, message);
+                this.Flash("Vous n'avez pas enlever ce stage", FlashEnum.Warning);
+                return RedirectToAction(MVC.ContactEnterprise.ListStage());
             }
+            string path = _httpContext.GetPathDetailStage(idStage);
+            string message = stage.CompanyName + " " + ContactEntrepriseToCoordinator.RemoveStage + " " + "<a href=" + "../../Stage/Details/" + idStage + "> " + stage.StageTitle + " </a>";
+            _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.RemoveStageTitle, message);
+
+            message = stage.CompanyName + " " + ContactEntrepriseToCoordinator.RemoveStage + " " + stage.StageTitle ;
+            _notificationService.SendNotificationToAllStudent(ContactEntrepriseToCoordinator.RemoveStageTitle, message);
+
             
             
             stage.Status = StageStatus.Removed;
             _stageRepository.Update(stage);
-          
+            this.Flash("Stage désactivé", FlashEnum.Warning);
             return View();
         }
 
@@ -458,12 +487,25 @@ namespace Stagio.Web.Controllers
                 return HttpNotFound();
             }
             stage.Status = StageStatus.New;
-            stage.PublicationDate = DateTime.Now;
+            stage.PublicationDate = DateTime.Now.ToString();
             _stageRepository.Update(stage);
+            this.Flash("Stage réactivé", FlashEnum.Info);
             return View();
         }
 
+        public virtual ActionResult DraftList()
+        {
+            var user = _contactEnterpriseRepository.GetById(_httpContext.GetUserId());
+            var draftList = _stageRepository.GetAll();
 
+            if (draftList.Any())
+            {
+                draftList = draftList.Where(x => x.CompanyName == user.EnterpriseName).Where(x => x.Draft == true);
+            }
+
+            var listDrafts = Mapper.Map<IEnumerable<ViewModels.ContactEnterprise.Draft>>(draftList).ToList();
+            return View(listDrafts);
+        }
 
     }
 }

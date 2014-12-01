@@ -72,6 +72,18 @@ namespace Stagio.Web.Controllers
 		{
 			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
 		}
+		[NonAction]
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public virtual System.Web.Mvc.ActionResult DraftEdit()
+		{
+			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DraftEdit);
+		}
+		[NonAction]
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public virtual System.Web.Mvc.ActionResult DraftDelete()
+		{
+			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DraftDelete);
+		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public StageController Actions { get { return MVC.Stage; } }
@@ -92,6 +104,8 @@ namespace Stagio.Web.Controllers
 			public readonly string ViewStageInfo = "ViewStageInfo";
 			public readonly string Details = "Details";
 			public readonly string Edit = "Edit";
+			public readonly string DraftEdit = "DraftEdit";
+			public readonly string DraftDelete = "DraftDelete";
 		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -101,6 +115,8 @@ namespace Stagio.Web.Controllers
 			public const string ViewStageInfo = "ViewStageInfo";
 			public const string Details = "Details";
 			public const string Edit = "Edit";
+			public const string DraftEdit = "DraftEdit";
+			public const string DraftDelete = "DraftDelete";
 		}
 
 
@@ -130,6 +146,24 @@ namespace Stagio.Web.Controllers
 			public readonly string id = "id";
 			public readonly string editStageViewModel = "editStageViewModel";
 		}
+		static readonly ActionParamsClass_DraftEdit s_params_DraftEdit = new ActionParamsClass_DraftEdit();
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public ActionParamsClass_DraftEdit DraftEditParams { get { return s_params_DraftEdit; } }
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public class ActionParamsClass_DraftEdit
+		{
+			public readonly string id = "id";
+			public readonly string draftStageViewModel = "draftStageViewModel";
+			public readonly string buttonClick = "buttonClick";
+		}
+		static readonly ActionParamsClass_DraftDelete s_params_DraftDelete = new ActionParamsClass_DraftDelete();
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public ActionParamsClass_DraftDelete DraftDeleteParams { get { return s_params_DraftDelete; } }
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public class ActionParamsClass_DraftDelete
+		{
+			public readonly string id = "id";
+		}
 		static readonly ViewsClass s_views = new ViewsClass();
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public ViewsClass Views { get { return s_views; } }
@@ -141,11 +175,15 @@ namespace Stagio.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Details = "Details";
+                public readonly string DraftDelete = "DraftDelete";
+                public readonly string DraftEdit = "DraftEdit";
                 public readonly string Edit = "Edit";
                 public readonly string ListNewStages = "ListNewStages";
                 public readonly string ViewStageInfo = "ViewStageInfo";
             }
             public readonly string Details = "~/Views/Stage/Details.cshtml";
+            public readonly string DraftDelete = "~/Views/Stage/DraftDelete.cshtml";
+            public readonly string DraftEdit = "~/Views/Stage/DraftEdit.cshtml";
             public readonly string Edit = "~/Views/Stage/Edit.cshtml";
             public readonly string ListNewStages = "~/Views/Stage/ListNewStages.cshtml";
             public readonly string ViewStageInfo = "~/Views/Stage/ViewStageInfo.cshtml";
@@ -226,6 +264,43 @@ namespace Stagio.Web.Controllers
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
 			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "editStageViewModel", editStageViewModel);
 			EditOverride(callInfo, editStageViewModel);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void DraftEditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult DraftEdit(int id)
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DraftEdit);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+			DraftEditOverride(callInfo, id);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void DraftEditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Stagio.Web.ViewModels.Stage.Edit draftStageViewModel, string buttonClick);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult DraftEdit(Stagio.Web.ViewModels.Stage.Edit draftStageViewModel, string buttonClick)
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DraftEdit);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "draftStageViewModel", draftStageViewModel);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "buttonClick", buttonClick);
+			DraftEditOverride(callInfo, draftStageViewModel, buttonClick);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void DraftDeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult DraftDelete(int id)
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DraftDelete);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+			DraftDeleteOverride(callInfo, id);
 			return callInfo;
 		}
 

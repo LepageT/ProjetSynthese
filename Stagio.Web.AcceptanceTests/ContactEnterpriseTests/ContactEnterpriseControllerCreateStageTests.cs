@@ -45,5 +45,17 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
 
         }
 
+        [TestMethod]
+        public void contact_enterprise_should_be_able_to_save_draft()
+        {
+            LoginPage.GoTo();
+            LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
+            CreateStageContactEnterprisePage.GoTo();
+
+            CreateStageContactEnterprisePage.CreateDraft();
+
+            CreateStageContactEnterprisePage.DraftConfirmationPageIsDisplayed.Should().BeTrue();
+        }
+
     }
 }

@@ -51,13 +51,13 @@ namespace Stagio.Web.Mappers
                 .IgnoreAllNonExisting();
 
             Mapper.CreateMap<ViewModels.Interviews.Edit, Interview>()
-             .IgnoreAllNonExisting();
+                .IgnoreAllNonExisting();
 
             Mapper.CreateMap<ViewModels.ContactEnterprise.Create, ContactEnterprise>()
-               .IgnoreAllNonExisting();
+                .IgnoreAllNonExisting();
 
             Mapper.CreateMap<ViewModels.Stage.Edit, Stage>()
-           .IgnoreAllNonExisting();
+                .IgnoreAllNonExisting();
         }
     }
 }

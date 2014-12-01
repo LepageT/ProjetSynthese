@@ -40,6 +40,7 @@ namespace Stagio.TestUtilities.Database
             addNotificationStudent();
             addNotificationContactEnterprise();
             addNotificationCoordinator();
+            addDraft();
 
         }
 
@@ -119,6 +120,11 @@ namespace Stagio.TestUtilities.Database
         {
             _notificationRepository.Add(TestData.notificationCoordinator1);
             _notificationRepository.Add(TestData.notificationCoordinator2);
+        }
+
+        private void addDraft()
+        {
+            _stageRepository.Add(TestData.draft1);
         }
     }
 }
