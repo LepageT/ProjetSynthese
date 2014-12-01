@@ -215,6 +215,7 @@
     <Compile Include="Mappers\EntityToViewModelMappingProfile.cs" />
     <Compile Include="Mappers\MappingExpressionExtensions.cs" />
     <Compile Include="Mappers\ViewModelToEntityMappingProfile.cs" />
+    <Compile Include="Module\FlashHelper.cs" />
     <Compile Include="Module\ReadFile.cs" />
     <Compile Include="Module\Strings\Controller\AccountResources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -359,6 +360,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Flash.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\signin.css" />
     <Content Include="favicon.ico" />
@@ -415,6 +417,7 @@
     <Content Include="Content\bootstrap\alerts.less" />
     <Content Include="Content\less\bootstrap-datetimepicker-build.less" />
     <Content Include="Content\less\bootstrap-datetimepicker.less" />
+    <Content Include="App_Code\Flash.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
@@ -563,6 +566,7 @@
     <EmbeddedResource Include="Module\Strings\Controller\StudentResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StudentResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Module\Strings\Email\EmailCoordinatorResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

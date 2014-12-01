@@ -90,11 +90,15 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
             var apply = _fixture.CreateMany<Apply>(1).ToList();
             var student = _fixture.CreateMany<Student>(1).ToList();
             var stage = _fixture.CreateMany<Stage>(1).ToList();
+            var user = _fixture.Create<Domain.Entities.ContactEnterprise>();
             apply[0].IdStudent = student[0].Id;
             apply[0].IdStage = stage[0].Id;
+            httpContext.GetUserId().Returns(user.Id);
+            stage[0].CompanyName = user.EnterpriseName;
+            enterpriseRepository.GetById(user.Id).Returns(user);
             applyRepository.GetAll().Returns(apply.AsQueryable());
             studentRepository.GetAll().Returns(student.AsQueryable());
-            stageRepository.GetAll().Returns(stage.AsQueryable());
+            stageRepository.GetById(stage[0].Id).Returns(stage[0]);
 
             var result = enterpriseController.DetailsStudentApply(apply[0].Id, false) as ViewResult;
 
@@ -114,11 +118,15 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
             var apply = _fixture.CreateMany<Apply>(1).ToList();
             var student = _fixture.CreateMany<Student>(1).ToList();
             var stage = _fixture.CreateMany<Stage>(1).ToList();
+            var user = _fixture.Create<Domain.Entities.ContactEnterprise>();
             apply[0].IdStudent = student[0].Id;
             apply[0].IdStage = stage[0].Id;
+            httpContext.GetUserId().Returns(user.Id);
+            stage[0].CompanyName = user.EnterpriseName;
+            enterpriseRepository.GetById(user.Id).Returns(user);
             applyRepository.GetAll().Returns(apply.AsQueryable());
             studentRepository.GetAll().Returns(student.AsQueryable());
-            stageRepository.GetAll().Returns(stage.AsQueryable());
+            stageRepository.GetById(stage[0].Id).Returns(stage[0]);
 
             var result = enterpriseController.DetailsStudentApply(apply[0].Id, true) as ViewResult;
 

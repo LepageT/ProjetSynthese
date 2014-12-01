@@ -99,5 +99,19 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
             result.Should().BeOfType<HttpNotFoundResult>();
         }
 
+        [TestMethod]
+        public void edit_should_return_view_with_user_information_with_wrong_id()
+        {
+            var student = _fixture.Create<Student>();
+            httpContextService.GetUserId().Returns(student.Id);
+            studentRepository.GetById(student.Id).Returns(student);
+            var viewModelExpected = Mapper.Map<ViewModels.Student.Edit>(student);
+
+            var viewResult = studentController.Edit(INVALID_ID) as ViewResult;
+            var viewModelObtained = viewResult.ViewData.Model as ViewModels.Student.Edit;
+
+            viewModelObtained.ShouldBeEquivalentTo(viewModelExpected);
+        }
+
     }
 }

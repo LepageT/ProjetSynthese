@@ -67,15 +67,17 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
             stage.Id = 3;
             stageRepository.GetById(stage.Id).Returns(stage);
             stageRepository.Add(stage);
-            var apply = _fixture.Create<Apply>();
-            apply.IdStage = 3;
-            applyRepository.GetById(apply.Id).Returns(apply);
-            var studentApplyPageViewModel = Mapper.Map<ViewModels.Student.Apply>(apply);
-            applyRepository.GetById(apply.Id).Returns(apply);
+            var apply = _fixture.CreateMany<Apply>(1).ToList();
+            apply[0].IdStage = 3;
+            applyRepository.GetById(apply[0].Id).Returns(apply[0]);
+            var studentApplyPageViewModel = Mapper.Map<ViewModels.Student.Apply>(apply[0]);
+            applyRepository.GetAll().Returns(apply.AsQueryable());
             studentController.ModelState.AddModelError("Error", "Error");
             var listFiles = new List<HttpPostedFileBase>();
             var postedfile1 = Substitute.For<HttpPostedFileBase>();
             var postedfile2 = Substitute.For<HttpPostedFileBase>();
+            var user = _fixture.Create<Domain.Entities.Student>();
+            httpContextService.GetUserId().Returns(user.Id);
             listFiles.Add(postedfile1);
             listFiles.Add(postedfile2);
 
@@ -98,6 +100,22 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
             var result = studentController.ApplyStage(listFiles, studentApplyPageViewModel);
 
             result.Should().BeOfType<HttpNotFoundResult>();
+        }
+
+        [TestMethod]
+        public void ApplyRemove_should_redirect_to_applylist_with_wrong_id()
+        {
+            var apply = _fixture.Create<Apply>();
+            var user = _fixture.Create<Student>();
+            apply.IdStudent = INVALID_ID;
+            applyRepository.GetById(apply.Id).Returns(apply);
+            studentRepository.GetById(user.Id).Returns(user);
+            httpContextService.GetUserId().Returns(user.Id);
+
+            var routeResult = studentController.ApplyRemoveConfirmation(apply.Id) as RedirectToRouteResult;
+            var routeAction = routeResult.RouteValues["Action"];
+
+            routeAction.Should().Be("ApplyList");
         }
 
     }

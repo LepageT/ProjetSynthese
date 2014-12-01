@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Web;
+using System.Web.Caching;
 using System.Web.Mvc;
 using AutoMapper;
 using Microsoft.Ajax.Utilities;
@@ -13,6 +13,7 @@ using Stagio.Web.Module;
 using Stagio.Web.Module.Strings.Controller;
 using Stagio.Web.Module.Strings.Notification;
 using Stagio.Web.Services;
+using Stagio.Web.ViewModels.Student;
 using Stagio.Utilities.Encryption;
 using Stagio.Web.Module.Strings.Email;
 
@@ -55,7 +56,7 @@ namespace Stagio.Web.Controllers
 
 
 
-
+        
 
         // GET: Student/Create
         public virtual ActionResult Create()
@@ -83,6 +84,7 @@ namespace Stagio.Web.Controllers
 
             if (!ModelState.IsValid)
             {
+                this.Flash("Erreur sur la page", FlashEnum.Error);
                 return View(createStudentViewModel);
             }
 
@@ -101,12 +103,11 @@ namespace Stagio.Web.Controllers
             _notificationService.SendNotificationToAllCoordinator(
                 StudentToCoordinator.CreateStudentTitle, message);
             _mailler.SendEmail(student.Email, EmailAccountCreation.Subject, EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
-
+            this.Flash("Création du compte réussi", FlashEnum.Success);
             return RedirectToAction(MVC.Student.CreateConfirmation());
         }
 
         [Authorize(Roles = RoleName.Student)]
-        // GET: Student/Edit/5
         public virtual ActionResult Edit(int id)
         {
             var userID = _httpContextService.GetUserId();
@@ -129,7 +130,6 @@ namespace Stagio.Web.Controllers
 
 
         [Authorize(Roles = RoleName.Student)]
-        // POST: Student/Edit/5
         [HttpPost]
         public virtual ActionResult Edit(ViewModels.Student.Edit editStudentViewModel)
         {
@@ -149,6 +149,7 @@ namespace Stagio.Web.Controllers
 
             if (!ModelState.IsValid)
             {
+                this.Flash("Huston, we have an problem!!", FlashEnum.Error);
                 return View(editStudentViewModel);
             }
             if (!editStudentViewModel.PasswordConfirmation.IsNullOrWhiteSpace())
@@ -162,7 +163,7 @@ namespace Stagio.Web.Controllers
             Mapper.Map(editStudentViewModel, student);
 
             _studentRepository.Update(student);
-
+            this.Flash("Modification réussi", FlashEnum.Success);
             return RedirectToAction(MVC.Student.Index());
         }
 
@@ -186,33 +187,41 @@ namespace Stagio.Web.Controllers
 
             if (stage != null)
             {
-
                 var applyViewModel = new ViewModels.Student.Apply();
                 applyViewModel.IdStage = id;
-
-                var identity = (ClaimsIdentity)User.Identity;
-                var nameIdentifier = identity.FindFirst(ClaimTypes.NameIdentifier).Value;
-
-                applyViewModel.IdStudent = Int32.Parse(nameIdentifier);
+                applyViewModel.IdStudent = _httpContextService.GetUserId();
                 return View(applyViewModel);
             }
             return HttpNotFound();
-
         }
 
         [HttpPost]
         public virtual ActionResult ApplyStage(IEnumerable<HttpPostedFileBase> files, ViewModels.Student.Apply applyStudentViewModel)
         {
             var stage = _stageRepository.GetById(applyStudentViewModel.IdStage);
-
+            var studentID = _httpContextService.GetUserId();
             if (stage == null)
             {
                 ViewBag.Message = StudentResources.NoFileToUpload;
                 return HttpNotFound();
             }
+            var appliedStages = _applyRepository.GetAll().Where(x => x.IdStudent == studentID);
+            if (appliedStages != null)
+            {
+                foreach (var appliedStage in appliedStages)
+                {
+                    if (stage.Id == appliedStage.IdStage)
+                    {
+                        this.Flash("Vous avez déjà postuler sur ce stage", FlashEnum.Info);
+                        return View(applyStudentViewModel);
+                    }
+                }
+            }
+
             if (files.Any(file => file == null || (!file.FileName.Contains(".pdf") && !file.FileName.Contains(".do"))))
             {
                 ViewBag.Message = "Fichier invalide, le fichier doit être un fichier Word ou PDF";
+                this.Flash("Erreur de la page", FlashEnum.Error);
                 return View(applyStudentViewModel);
             }
             var readFile = new ReadFile();
@@ -235,11 +244,12 @@ namespace Stagio.Web.Controllers
                 _notificationService.SendNotificationToAllCoordinator(StudentToCoordinator.ApplyTilte, messageToCoordinator);
                 string messageToContactEnterprise = student.FirstName + " " + student.LastName + StudentToContactEnterprise.ApplyMessage + stage.StageTitle + StudentToContactEnterprise.ApplyLinkPart1 + stage.Id + StudentToContactEnterprise.ApplyLinkPart2; 
                 _notificationService.SendNotificationToAllContactEnterpriseOf(stage.CompanyName, StudentToContactEnterprise.ApplyTitle, messageToContactEnterprise);
+                this.Flash("Postulation réussi", FlashEnum.Success);
                 return RedirectToAction(MVC.Student.ApplyConfirmation());
             }
             else
             {
-
+                this.Flash("Erreur sur la page", FlashEnum.Error);
                 return View(applyStudentViewModel);
             }
         }
@@ -256,27 +266,40 @@ namespace Stagio.Web.Controllers
 
                 return HttpNotFound();
             }
-
-
+            
+            
         }
-
+        [Authorize(Roles = RoleName.Student)]
         public virtual ActionResult ApplyRemoveConfirmation(int id)
         {
             var stageApply = _applyRepository.GetById(id);
+            var student = _studentRepository.GetById(_httpContextService.GetUserId());
+            if (stageApply.IdStudent != student.Id)
+            {
+                this.Flash("Vous n'avez pas les accès requis pour visualiser cette postulation", FlashEnum.Warning);
+                return RedirectToAction(MVC.Student.ApplyList());
+            }
             stageApply.Status = StatusApply.Removed;
             _applyRepository.Update(stageApply);
-            var student = _studentRepository.GetById(stageApply.IdStudent);
+            
             var stage = _stageRepository.GetById(stageApply.IdStage);
             _notificationService.SendNotificationToAllCoordinator(StudentToCoordinator.RemoveApplyTitle,
                 String.Format(StudentToCoordinator.RemoveApplyMessage, student.FirstName + " " + student.LastName, "<a href=" + "../../Stage/Details/" + stage.Id + "> " + stage.StageTitle + " </a>"));
+            this.Flash("Postulation retirée", FlashEnum.Warning);
             return View();
         }
-
+        [Authorize(Roles = RoleName.Student)]
         public virtual ActionResult ApplyReApplyConfirmation(int id)
         {
             var stageApply = _applyRepository.GetById(id);
+            if (stageApply.IdStudent != _httpContextService.GetUserId())
+            {
+                this.Flash("Vous n'avez pas les accès requis pour visualiser cette postulation", FlashEnum.Warning);
+                return RedirectToAction(MVC.Student.ApplyList());
+            }
             stageApply.Status = StatusApply.Waitting;
             _applyRepository.Update(stageApply);
+            this.Flash("Postulation réactivée", FlashEnum.Info);
             return View();
         }
 
