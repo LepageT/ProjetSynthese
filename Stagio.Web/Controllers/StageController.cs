@@ -91,8 +91,7 @@ namespace Stagio.Web.Controllers
                 var contactsEnterprise = _contactEnterpriseRepository.GetAll().ToList();
 
                 _notificationService.SendNotificationToAllContactEnterpriseOf(stage.CompanyName, CoordinatorToContactEnterprise.StageAcceptedTitle, CoordinatorToContactEnterprise.StageAcceptedMessage);
-                string messageToStudent = "L'entreprise " + stage.CompanyName + ContactEnterpriseToStudent.NewStageMessage +
-                                       stage.StageTitle + ContactEnterpriseToStudent.NewStageLinkStart + stage.Id + '"' + ContactEnterpriseToStudent.NewStageLinkEnd + stage.Id + "</a>";
+                string messageToStudent = String.Format(ContactEnterpriseToStudent.NewStageMessage, stage.CompanyName, stage.Id, stage.StageTitle);
                 _notificationService.SendNotificationToAllStudent(ContactEnterpriseToStudent.NewStageTitle, messageToStudent);
             }
             else if (command.Equals("Refuser"))
@@ -229,7 +228,7 @@ namespace Stagio.Web.Controllers
 
                 var stage = Mapper.Map<Stage>(draftStageViewModel);
                 stage.PublicationDate = DateTime.Now.ToString();
-                stage.Draft = false;
+                stage.Status = StageStatus.New;
 
                 _stageRepository.Update(stage);
                 string message = "L'entreprise " + stage.CompanyName + " " + ContactEntrepriseToCoordinator.NewStageMessage + " " + ContactEntrepriseToCoordinator.NewStageLink + stage.Id.ToString() + '"' + ContactEntrepriseToCoordinator.NewStageEndLink;

@@ -55,7 +55,7 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult NotificationList()
         {
             var notifications = _notificationRepository.GetAll().ToList();
-            var notificationsList = notifications.Where(x => x.For == _httpContextService.GetUserId());
+            var notificationsList = notifications.OrderByDescending(x => x.Date).Where(x => x.For == _httpContextService.GetUserId());
             var notificationsListViewModel = Mapper.Map<IEnumerable<ViewModels.Notification.Notification>>(notificationsList).ToList();
 
             return View(notificationsListViewModel);
