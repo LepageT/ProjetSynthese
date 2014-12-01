@@ -22,7 +22,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
             contactEnterprise.EnterpriseName = "Test";
             var drafts = _fixture.Build<Stage>()
                 .With(x => x.CompanyName, contactEnterprise.EnterpriseName)
-                .With(x => x.Draft, true)
+                .With(x => x.Status, StageStatus.Draft)
                 .CreateMany(5);
             stageRepository.GetAll().Returns(drafts.AsQueryable());
             httpContext.GetUserId().Returns(contactEnterprise.Id);
@@ -40,7 +40,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
             contactEnterprise.EnterpriseName = "Test";
             var drafts = _fixture.Build<Stage>()
                 .With(x => x.CompanyName, contactEnterprise.EnterpriseName)
-                .With(x => x.Draft, true)
+                .With(x => x.Status, StageStatus.Draft)
                 .CreateMany(5);
             stageRepository.GetAll().Returns(drafts.AsQueryable());
             httpContext.GetUserId().Returns(contactEnterprise.Id);
@@ -60,7 +60,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
             contactEnterprise.EnterpriseName = "Test";
             var drafts = _fixture.Build<Stage>()
                 .With(x => x.CompanyName, "Test2")
-                .With(x => x.Draft, true)
+                .With(x => x.Status, StageStatus.Draft)
                 .CreateMany(5);
             stageRepository.GetAll().Returns(drafts.AsQueryable());
             httpContext.GetUserId().Returns(contactEnterprise.Id);
@@ -78,7 +78,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
             contactEnterprise.EnterpriseName = "Test";
             var drafts = _fixture.Build<Stage>()
                 .With(x => x.CompanyName, contactEnterprise.EnterpriseName)
-                .With(x => x.Draft, true)
+                .With(x => x.Status, StageStatus.Draft)
                 .CreateMany(5);
 
             drafts.FirstOrDefault().CompanyName = "test 2";

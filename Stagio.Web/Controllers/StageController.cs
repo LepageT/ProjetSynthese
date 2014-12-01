@@ -215,7 +215,7 @@ namespace Stagio.Web.Controllers
 
                 var stage = Mapper.Map<Stage>(draftStageViewModel);
                 stage.PublicationDate = DateTime.Now.ToString();
-                stage.Draft = false;
+                stage.Status = StageStatus.New;
 
                 _stageRepository.Update(stage);
                 string message = "L'entreprise " + stage.CompanyName + " " + ContactEntrepriseToCoordinator.NewStageMessage + " " + ContactEntrepriseToCoordinator.NewStageLink + stage.Id.ToString() + '"' + ContactEntrepriseToCoordinator.NewStageEndLink;
