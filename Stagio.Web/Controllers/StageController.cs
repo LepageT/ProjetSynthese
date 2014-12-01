@@ -18,13 +18,17 @@ namespace Stagio.Web.Controllers
     {
         private readonly IEntityRepository<Stage> _stageRepository;
         private readonly INotificationService _notificationService;
-        private readonly IEntityRepository<ContactEnterprise> _contactEnterpriseRepository; 
+        private readonly IEntityRepository<ContactEnterprise> _contactEnterpriseRepository;
+        private readonly IHttpContextService _httpContextService;
+        private readonly IEntityRepository<Coordinator> _coordinatorRepository;
 
-        public StageController(IEntityRepository<Stage> stageRepository, INotificationService notificationService, IEntityRepository<ContactEnterprise> contactEnterpriseRepository)
+        public StageController(IEntityRepository<Stage> stageRepository, INotificationService notificationService, IEntityRepository<ContactEnterprise> contactEnterpriseRepository, IHttpContextService httpContextService, IEntityRepository<Coordinator> coordinatorRepository)
         {
             _stageRepository = stageRepository;
             _notificationService = notificationService;
             _contactEnterpriseRepository = contactEnterpriseRepository;
+            _httpContextService = httpContextService;
+            _coordinatorRepository = coordinatorRepository;
         }
 
         [Authorize(Roles = RoleName.Coordinator)]
@@ -92,8 +96,11 @@ namespace Stagio.Web.Controllers
             }
             else if (command.Equals("Refuser"))
             {
+                var userId = _httpContextService.GetUserId();
+                var coordinator = _coordinatorRepository.GetById(userId);
+                string messageContact = " Nom du coordonateur: " + coordinator.FirstName + " " + coordinator.LastName + " Email: " + coordinator.Email;
                 _notificationService.SendNotificationToAllContactEnterpriseOf(stage.CompanyName,
-                    CoordinatorToContactEnterprise.StageRefusedTitle, CoordinatorToContactEnterprise.StageRefusedMessage);
+                    CoordinatorToContactEnterprise.StageRefusedTitle, CoordinatorToContactEnterprise.StageRefusedMessage + messageContact);
                 stage.Status = StageStatus.Refused;
             }
             else if (command.Equals("Retirer"))
@@ -140,7 +147,8 @@ namespace Stagio.Web.Controllers
 
            _stageRepository.Update(stage);
 
-           string message = "L'entreprise " +  " "+ stage.CompanyName +  " " + ContactEntrepriseToCoordinator.EditStageMessage + " " + stage.StageTitle + " " + ContactEntrepriseToCoordinator.NewStageLink + editStageViewModel.Id + '"' + ContactEntrepriseToCoordinator.NewStageEndLink;
+           string message = "L'entreprise " + " " + stage.CompanyName +
+                             " " + ContactEntrepriseToCoordinator.EditStageMessage + "<a href=" + Url.Action(MVC.Stage.Details(editStageViewModel.Id)) + "> "+stage.StageTitle+" </a>";
            _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.EditStageTitle, message);
             string messageToStudent = stage.CompanyName + ContactEnterpriseToStudent.EditStageMessage + stage.StageTitle;
             _notificationService.SendNotificationToAllStudent(ContactEnterpriseToStudent.EditStageTitle,

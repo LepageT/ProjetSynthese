@@ -334,6 +334,8 @@
     <Compile Include="ViewModels\Interviews\Edit.cs" />
     <Compile Include="ViewModels\Interviews\List.cs" />
     <Compile Include="ViewModels\Notification\Detail.cs" />
+    <Compile Include="ViewModels\StageAgreement\ListStageAgreement.cs" />
+    <Compile Include="ViewModels\StageAgreement\StageAgreementDetail.cs" />
     <Compile Include="ViewModels\Stage\Create.cs" />
     <Compile Include="ViewModels\Stage\Details.cs" />
     <Compile Include="ViewModels\Stage\Edit.cs" />
@@ -496,6 +498,7 @@
     <Content Include="Views\ContactEnterprise\ReactivateStageConfirmation.cshtml" />
     <Content Include="Views\Stage\Edit.cshtml" />
     <Content Include="Views\StageAgreement\CreateConfirmation.cshtml" />
+    <Content Include="Views\StageAgreement\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt.hooks.t4" />

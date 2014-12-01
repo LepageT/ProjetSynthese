@@ -136,12 +136,6 @@
   <data name="InterestedByTitle" xml:space="preserve">
     <value>Une entreprise est intéressé par la candidature d'un étudiant</value>
   </data>
-  <data name="NewStageEndLink" xml:space="preserve">
-    <value>&gt;Cliquer ici pour voir les détails de ce stage&lt;/a&gt;</value>
-  </data>
-  <data name="NewStageLink" xml:space="preserve">
-    <value>&lt;a href="http://jenkins.cegep-ste-foy.qc.ca/thomarelau/Stage/Details/</value>
-  </data>
   <data name="NewStageMessage" xml:space="preserve">
     <value>a ajouté un stage. Vous devez l'approuver pour qu'il soit visible pour les étudiants.</value>
   </data>

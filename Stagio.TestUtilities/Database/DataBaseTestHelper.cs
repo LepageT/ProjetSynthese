@@ -80,8 +80,8 @@ namespace Stagio.TestUtilities.Database
         {
             var coordinator1 = TestData.coordinator1;
             var coordinator2 = TestData.coordinator2;
-            _userRepository.Add(coordinator1);
-            _userRepository.Add(coordinator2);
+            _coordonnatorRepository.Add(coordinator1);
+            _coordonnatorRepository.Add(coordinator2);
         }
 
         private void addInvitation()

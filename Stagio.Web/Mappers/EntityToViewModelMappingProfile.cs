@@ -108,7 +108,8 @@ namespace Stagio.Web.Mappers
                 .ForMember(dest => dest.NotificationId, opt => opt.MapFrom(src => src.Id))
                 .IgnoreAllNonExisting();
 
-
+            Mapper.CreateMap<StageAgreement, ViewModels.StageAgreement.StageAgreementDetail>()
+                .IgnoreAllNonExisting();
         }
     }
 }

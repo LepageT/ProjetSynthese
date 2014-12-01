@@ -17,14 +17,16 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageAgreementTests
         protected StageAgreementController stageAgreementController;
         protected IEntityRepository<StageAgreement> stageAgreementRepository;
         protected IEntityRepository<Apply> applyRepository;
-
+        protected IEntityRepository<Stage> stageRepository;
+            
         [TestInitialize]
         public void stageAgreementTestInit()
         {
             stageAgreementRepository = Substitute.For<IEntityRepository<StageAgreement>>();
             applyRepository = Substitute.For<IEntityRepository<Apply>>();
+            stageRepository = Substitute.For<IEntityRepository<Stage>>();
 
-            stageAgreementController = new StageAgreementController(stageAgreementRepository, applyRepository);
+            stageAgreementController = new StageAgreementController(stageAgreementRepository, applyRepository, stageRepository);
         }
     }
 }

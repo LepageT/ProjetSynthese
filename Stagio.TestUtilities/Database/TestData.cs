@@ -9,11 +9,11 @@ namespace Stagio.TestUtilities.Database
     public class TestData
     {
         #region Coordinator1
-        static public ApplicationUser coordinator1
+        static public Coordinator coordinator1
         {
             get
             {
-                var user = new ApplicationUser()
+                var user = new Coordinator()
                 {
 
                     Roles = new List<UserRole>()
@@ -24,7 +24,8 @@ namespace Stagio.TestUtilities.Database
                     Email = "coordonnateur@stagio.com",
                     FirstName = "Jean-Dominic",
                     LastName = "Rousseau",
-                    Active = true
+                    Active = true,
+                    Id = 4
                 };
 
                 user.UserName = user.Email;

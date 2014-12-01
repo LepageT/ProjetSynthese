@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using Microsoft.Ajax.Utilities;
+using NSubstitute.Core;
 using Stagio.DataLayer;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
@@ -233,7 +234,10 @@ namespace Stagio.Web.Controllers
                 var student = _studentRepository.GetById(applyStudentViewModel.IdStudent);
                 string messageToCoordinator = student.FirstName + " " + student.LastName + StudentToCoordinator.ApplyMessage + stage.StageTitle;
                 _notificationService.SendNotificationToAllCoordinator(StudentToCoordinator.ApplyTilte, messageToCoordinator);
-                string messageToContactEnterprise = student.FirstName + " " + student.LastName + StudentToContactEnterprise.ApplyMessage + stage.StageTitle + StudentToContactEnterprise.ApplyLinkPart1 + stage.Id + StudentToContactEnterprise.ApplyLinkPart2; 
+                string messageToContactEnterprise = student.FirstName + " " + student.LastName +
+                                                    StudentToContactEnterprise.ApplyMessage + 
+                                                    "<a href=" + Url.Action(MVC.ContactEnterprise.ListStudentApply(stage.Id)) + "> " +
+                                                    stage.StageTitle + " </a>"; 
                 _notificationService.SendNotificationToAllContactEnterpriseOf(stage.CompanyName, StudentToContactEnterprise.ApplyTitle, messageToContactEnterprise);
                 return RedirectToAction(MVC.Student.ApplyConfirmation());
             }
@@ -329,6 +333,8 @@ namespace Stagio.Web.Controllers
                 return RedirectToAction(MVC.Student.Index());
             }
         }
+
+        
     }
 }
 
