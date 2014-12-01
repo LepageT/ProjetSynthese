@@ -48,6 +48,9 @@
         <th>
             @Html.DisplayNameFor(model => model.DateAcceptStage)
         </th>
+        <th>
+            Détails de la candidature
+        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -92,6 +95,20 @@
                 else
                 {
                     <p>Inconnu</p>
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Voir les détails", MVC.Coordinator.DetailsApplyStudent(item.Id, false))
+            </td>
+            <td>
+                @if (item.DateAcceptStage != null)
+                {
+                    @Html.ActionLink("Créer la convention de stage", MVC.StageAgreement.CreateConfirmation(item.Id), new { id = "create-stageAgreement" + item.Id })
+                }
+                else
+                {
+                    //TEMP
+                    @Html.ActionLink("Créer la convention de stage", MVC.StageAgreement.CreateConfirmation(item.Id), new { id = "create-stageAgreement" + item.Id })
                 }
             </td>
         </tr>

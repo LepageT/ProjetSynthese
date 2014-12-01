@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using NSubstitute.Core;
 using Ploeh.AutoFixture;
 using Stagio.Domain.Entities;
 
@@ -60,6 +62,9 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
         [TestMethod]
         public void edit_post_should_redirect_to_index_on_success()
         {
+
+       
+            
             var stage = _fixture.Create<Stage>();
             stageRepository.GetById(stage.Id).Returns(stage);
             var user = _fixture.Create<Domain.Entities.ContactEnterprise>();

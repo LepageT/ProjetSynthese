@@ -102,5 +102,21 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
             result.Should().BeOfType<HttpNotFoundResult>();
         }
 
+        [TestMethod]
+        public void ApplyRemove_should_redirect_to_applylist_with_wrong_id()
+        {
+            var apply = _fixture.Create<Apply>();
+            var user = _fixture.Create<Student>();
+            apply.IdStudent = INVALID_ID;
+            applyRepository.GetById(apply.Id).Returns(apply);
+            studentRepository.GetById(user.Id).Returns(user);
+            httpContextService.GetUserId().Returns(user.Id);
+
+            var routeResult = studentController.ApplyRemoveConfirmation(apply.Id) as RedirectToRouteResult;
+            var routeAction = routeResult.RouteValues["Action"];
+
+            routeAction.Should().Be("ApplyList");
+        }
+
     }
 }

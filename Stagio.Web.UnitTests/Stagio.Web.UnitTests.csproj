@@ -98,6 +98,7 @@
   <ItemGroup>
     <Compile Include="ControllerTests\AccountTests\AccountControllerBaseClassTests.cs" />
     <Compile Include="ControllerTests\AccountTests\AccountControllerDetailsTests.cs" />
+    <Compile Include="ControllerTests\ContactEnterpriseTests\ContactEnterpriseControllerRefuseApplyConfirmation.cs" />
     <Compile Include="ControllerTests\ContactEnterpriseTests\ContactEnterpriseControllerBaseClassTests.cs" />
     <Compile Include="ControllerTests\ContactEnterpriseTests\ContactEnterpriseControllerInviteTests.cs" />
     <Compile Include="ControllerTests\ContactEnterpriseTests\ContactEnterpriseControllerListStudentApplyTests.cs" />
@@ -109,6 +110,7 @@
     <Compile Include="ControllerTests\ContactEnterpriseTests\ContactEnterpriseControllerNotification.cs" />
     <Compile Include="ControllerTests\ContactEnterpriseTests\ContactEnterpriseDownloadTest.cs" />
     <Compile Include="ControllerTests\ContactEnterpriseTests\ContactEnterpriseIndexTests.cs" />
+    <Compile Include="ControllerTests\ContactEnterpriseTests\ContactEnterpriseControllerDraftListTest.cs" />
     <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerInviteContactEnterpriseTests.cs" />
     <Compile Include="ControllerTests\ContactEnterpriseTests\ContactEnterpriseControllerReactivateTests.cs" />
     <Compile Include="AllControllersBaseClassTests.cs" />
@@ -118,6 +120,8 @@
     <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerStudentApplyList.cs" />
     <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerStudentListTests.cs" />
     <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerNotificationTests.cs" />
+    <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerDetailsAppltStudent.Tests.cs" />
+    <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerDownloadTests.cs" />
     <Compile Include="ControllerTests\HomeTest\HomeControllerBaseTest.cs" />
     <Compile Include="ControllerTests\HomeTest\HomeControllerIndexTest.cs" />
     <Compile Include="ControllerTests\InterviewTests\InterviewControllerBaseClassTests.cs" />
@@ -129,9 +133,13 @@
     <Compile Include="ControllerTests\NotificationTests\NotificationControllerDetailTest.cs" />
     <Compile Include="ControllerTests\NotificationTests\NotificationControllerErrorTest.cs" />
     <Compile Include="ControllerTests\NotificationTests\NotificationControllerListTest.cs" />
+    <Compile Include="ControllerTests\StageAgreementTests\StageAgreementControllerBaseClassTests.cs" />
+    <Compile Include="ControllerTests\StageAgreementTests\StageAgreementControllerCreateTests.cs" />
     <Compile Include="ControllerTests\StageTests\StageControllerListNewStagesTests.cs" />
     <Compile Include="ControllerTests\StageTests\StageControllerBaseClassTests.cs" />
     <Compile Include="ControllerTests\StageTests\StageControllerEditTests.cs" />
+    <Compile Include="ControllerTests\StageTests\StageControllerDraftDelete.cs" />
+    <Compile Include="ControllerTests\StageTests\StageControllerDraftEdit.cs" />
     <Compile Include="ControllerTests\StudentTests\StudentControllerApplyTests.cs" />
     <Compile Include="ControllerTests\StudentTests\StudentControllerBaseClassTests.cs" />
     <Compile Include="ControllerTests\StageTests\StageControllerStageDescriptionTests.cs" />

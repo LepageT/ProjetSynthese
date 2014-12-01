@@ -56,7 +56,7 @@ namespace Stagio.Web.Controllers
 
 
 
-
+        
 
         // GET: Student/Create
         public virtual ActionResult Create()
@@ -224,13 +224,13 @@ namespace Stagio.Web.Controllers
                 this.Flash("Erreur de la page", FlashEnum.Error);
                 return View(applyStudentViewModel);
             }
-            var readFile = new ReadFile<String>();
+            var readFile = new ReadFile();
 
             if (readFile.ReadFileCVLetter(files, Server, applyStudentViewModel.Id))
             {
                 var files1 = files.ToList();
-                applyStudentViewModel.Cv =   files1[0].FileName;
-                applyStudentViewModel.Letter = files1[1].FileName ;
+                applyStudentViewModel.Cv = files1[0].FileName;
+                applyStudentViewModel.Letter = files1[1].FileName;
                 var newApplicationStudent = Mapper.Map<Stagio.Domain.Entities.Apply>(applyStudentViewModel);
                 newApplicationStudent.Status = 0;   //0 = En attente
                 newApplicationStudent.DateApply = DateTime.Now;
@@ -239,6 +239,11 @@ namespace Stagio.Web.Controllers
                 stage.NbApply = nbApplyCurrently + 1;
                 _stageRepository.Update(stage);
                 TempData["files"] = files;
+                var student = _studentRepository.GetById(applyStudentViewModel.IdStudent);
+                string messageToCoordinator = student.FirstName + " " + student.LastName + StudentToCoordinator.ApplyMessage + stage.StageTitle;
+                _notificationService.SendNotificationToAllCoordinator(StudentToCoordinator.ApplyTilte, messageToCoordinator);
+                string messageToContactEnterprise = student.FirstName + " " + student.LastName + StudentToContactEnterprise.ApplyMessage + stage.StageTitle + StudentToContactEnterprise.ApplyLinkPart1 + stage.Id + StudentToContactEnterprise.ApplyLinkPart2; 
+                _notificationService.SendNotificationToAllContactEnterpriseOf(stage.CompanyName, StudentToContactEnterprise.ApplyTitle, messageToContactEnterprise);
                 this.Flash("Postulation réussi", FlashEnum.Success);
                 return RedirectToAction(MVC.Student.ApplyConfirmation());
             }
@@ -279,7 +284,7 @@ namespace Stagio.Web.Controllers
             
             var stage = _stageRepository.GetById(stageApply.IdStage);
             _notificationService.SendNotificationToAllCoordinator(StudentToCoordinator.RemoveApplyTitle,
-                String.Format(StudentToCoordinator.RemoveApplyMessage, student.FirstName + " " + student.LastName, stage.StageTitle));
+                String.Format(StudentToCoordinator.RemoveApplyMessage, student.FirstName + " " + student.LastName, "<a href=" + "../../Stage/Details/" + stage.Id + "> " + stage.StageTitle + " </a>"));
             this.Flash("Postulation retirée", FlashEnum.Warning);
             return View();
         }
@@ -332,19 +337,17 @@ namespace Stagio.Web.Controllers
 
         public virtual ActionResult Download(string file)
         {
+            var readFile = new ReadFile();
             try
             {
-                string path = AppDomain.CurrentDomain.GetData("DataDirectory").ToString();
-                path = path + "\\UploadedFiles\\" + file;
-                byte[] fileBytes = System.IO.File.ReadAllBytes((path));
-                string fileName = file;
-                return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+                return File(readFile.Download(file), System.Net.Mime.MediaTypeNames.Application.Octet, file);
             }
             catch (Exception)
             {
                 return RedirectToAction(MVC.Student.Index());
             }
         }
+
     }
 }
 

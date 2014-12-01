@@ -58,7 +58,7 @@ namespace Stagio.Web.Mappers
             Mapper.CreateMap<Stage, ViewModels.Student.StageList>()
                 .IgnoreAllNonExisting();
             Mapper.CreateMap<Apply, ViewModels.Apply.StudentApply>()
-            .IgnoreAllNonExisting();
+                .IgnoreAllNonExisting();
 
             Mapper.CreateMap<Apply, ViewModels.Apply.StudentApply>()
                 .IgnoreAllNonExisting();
@@ -70,6 +70,8 @@ namespace Stagio.Web.Mappers
                 .IgnoreAllNonExisting();
 
             Mapper.CreateMap<Interview, ViewModels.Interviews.Edit>()
+                .IgnoreAllNonExisting();
+            Mapper.CreateMap<Interview, ViewModels.Interviews.Create>()
                 .IgnoreAllNonExisting();
 
             Mapper.CreateMap<ApplicationUser, ViewModels.Account.Details>()
@@ -100,12 +102,17 @@ namespace Stagio.Web.Mappers
             Mapper.CreateMap<Apply, ViewModels.Coordinator.StudentApplyList>()
                 .IgnoreAllNonExisting();
 
+            Mapper.CreateMap<Apply, ViewModels.Coordinator.DetailsApplyStudent>()
+           .IgnoreAllNonExisting();
+
             Mapper.CreateMap<Notification, ViewModels.Notification.Notification>()
                 .ForMember(dest => dest.NotificationId, opt => opt.MapFrom(src => src.Id))
                 .IgnoreAllNonExisting();
 
             Mapper.CreateMap<Notification, ViewModels.Notification.Detail>()
                 .ForMember(dest => dest.NotificationId, opt => opt.MapFrom(src => src.Id))
+                .IgnoreAllNonExisting();
+            Mapper.CreateMap<Stage, ViewModels.ContactEnterprise.Draft>()
                 .IgnoreAllNonExisting();
 
 

@@ -53,6 +53,7 @@
     <Compile Include="Entities\InvitationContactEnterprise.cs" />
     <Compile Include="Entities\Notification.cs" />
     <Compile Include="Entities\Stage.cs" />
+    <Compile Include="Entities\StageAgreement.cs" />
     <Compile Include="Entities\Student.cs" />
     <Compile Include="Entities\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

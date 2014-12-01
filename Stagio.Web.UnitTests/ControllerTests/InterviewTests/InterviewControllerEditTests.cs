@@ -17,7 +17,11 @@ namespace Stagio.Web.UnitTests.ControllerTests.InterviewTests
         public void edit_should_return_view_with_EditViewModel_when_interviewId_is_valid()
         {
             var stages = _fixture.CreateMany<Stage>(2).ToList();
+            var user = _fixture.Create<Student>();
             var interview = _fixture.Create<Interview>();
+            interview.StudentId = user.Id;
+            studentRepository.GetById(user.Id).Returns(user);
+            httpContextService.GetUserId().Returns(user.Id);
             stageRepository.GetAll().Returns(stages.AsQueryable());
             interview.StageId = stages[0].Id;
             interviewRepository.GetById(interview.Id).Returns(interview);
@@ -34,9 +38,27 @@ namespace Stagio.Web.UnitTests.ControllerTests.InterviewTests
         [TestMethod]
         public void edit_should_return_http_not_found_when_studentId_is_not_valid()
         {
-            var result = interviewController.Edit(INVALID_ID);
+            var user = _fixture.Create<Student>();
+            studentRepository.GetById(user.Id).Returns(user);
+            httpContextService.GetUserId().Returns(user.Id);
+            var interview = _fixture.Create<Interview>();
+            interview.StudentId = INVALID_ID;
+            interviewRepository.GetById(interview.Id).Returns(interview);
+            
+            var routeResult = interviewController.Edit(interview.Id) as RedirectToRouteResult;
+            var routeAction = routeResult.RouteValues["Action"];
 
-            result.Should().BeOfType<HttpNotFoundResult>();
+            routeAction.Should().Be("List");
+        }
+
+        [TestMethod]
+        public void edit_should_return_http_not_found_when_interviewId_is_not_valid()
+        {
+
+            var routeResult = interviewController.Edit(INVALID_ID) as RedirectToRouteResult;
+            var routeAction = routeResult.RouteValues["Action"];
+
+            routeAction.Should().Be("List");
         }
 
         [TestMethod]
