@@ -20,9 +20,9 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<Stage> _stageRepository;
         private readonly IHttpContextService _httpContext;
         private readonly INotificationService _notificationService;
-        private readonly IEntityRepository<ContactEnterprise> _contactEnterpriseRepository; 
+        private readonly IEntityRepository<ContactEnterprise> _contactEnterpriseRepository;
 
-        public StageController(IEntityRepository<Stage> stageRepository, IHttpContextService httpContextService, IEntityRepository<ContactEnterprise> contactEnterpriseRepository, INotificationService notificationService )
+        public StageController(IEntityRepository<Stage> stageRepository, IHttpContextService httpContextService, IEntityRepository<ContactEnterprise> contactEnterpriseRepository, INotificationService notificationService)
         {
             _stageRepository = stageRepository;
             _httpContext = httpContextService;
@@ -66,7 +66,7 @@ namespace Stagio.Web.Controllers
             var stage = _stageRepository.GetById(id);
 
             var details = Mapper.Map<Details>(stage);
-            
+
             return View(details);
         }
 
@@ -82,7 +82,7 @@ namespace Stagio.Web.Controllers
                 return View();
             }
 
-            
+
 
             if (command.Equals("Accepter"))
             {
@@ -135,8 +135,8 @@ namespace Stagio.Web.Controllers
         {
             var stage = _stageRepository.GetById(editStageViewModel.Id);
             var user = _contactEnterpriseRepository.GetById(_httpContext.GetUserId());
-            
-            
+
+
             if (stage == null)
             {
                 return HttpNotFound();
@@ -152,27 +152,24 @@ namespace Stagio.Web.Controllers
             {
                 return View(editStageViewModel);
             }
-        
+
             Mapper.Map(editStageViewModel, stage);
 
-           _stageRepository.Update(stage);
+            _stageRepository.Update(stage);
 
-                string message = "L'entreprise " + " " + stage.CompanyName + " " +
-                                 ContactEntrepriseToCoordinator.EditStageMessage + " " + stage.StageTitle + " " +
-                                 ContactEntrepriseToCoordinator.NewStageLink + editStageViewModel.Id + '"' +
-                                 ContactEntrepriseToCoordinator.NewStageEndLink;
-                _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.EditStageTitle,
-                    message);
-                string messageToStudent = stage.CompanyName + ContactEnterpriseToStudent.EditStageMessage +
-                                          stage.StageTitle;
+            string message = String.Format(ContactEntrepriseToCoordinator.EditStageMessage, stage.CompanyName, stage.Id, stage.StageTitle);
+
+            _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.EditStageTitle,
+                message);
+
             _notificationService.SendNotificationToAllStudent(ContactEnterpriseToStudent.EditStageTitle,
-                messageToStudent);
+                message);
 
             this.Flash("Modification réussi", FlashEnum.Success);
             return RedirectToAction(MVC.ContactEnterprise.ListStage());
-         
+
         }
-                
+
         [Authorize(Roles = RoleName.ContactEnterprise)]
         public virtual ActionResult DraftEdit(int id)
         {
@@ -186,7 +183,7 @@ namespace Stagio.Web.Controllers
             }
             return HttpNotFound();
         }
-               
+
         [Authorize(Roles = RoleName.ContactEnterprise)]
         [HttpPost]
         public virtual ActionResult DraftEdit(ViewModels.Stage.Edit draftStageViewModel, string buttonClick = "")
@@ -218,7 +215,9 @@ namespace Stagio.Web.Controllers
                 stage.Status = StageStatus.New;
 
                 _stageRepository.Update(stage);
-                string message = "L'entreprise " + stage.CompanyName + " " + ContactEntrepriseToCoordinator.NewStageMessage + " " + ContactEntrepriseToCoordinator.NewStageLink + stage.Id.ToString() + '"' + ContactEntrepriseToCoordinator.NewStageEndLink;
+                
+                string message = String.Format(ContactEntrepriseToCoordinator.NewStageMessage, stage.CompanyName, stage.Id, stage.StageTitle);
+
                 _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.NewStageTitle, message);
 
                 return RedirectToAction(MVC.ContactEnterprise.CreateStageSucceed());
