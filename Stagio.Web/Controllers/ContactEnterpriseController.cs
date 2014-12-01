@@ -211,7 +211,7 @@ namespace Stagio.Web.Controllers
             {
                 var stage = Mapper.Map<Stage>(createdStage);
                 stage.PublicationDate = DateTime.Now.ToString();
-                stage.Draft = true;
+                stage.Status = StageStatus.Draft;
                 _stageRepository.Add(stage);
 
                 return View(MVC.ContactEnterprise.Views.ViewNames.DraftConfirmation);
@@ -500,7 +500,7 @@ namespace Stagio.Web.Controllers
 
             if (draftList.Any())
             {
-                draftList = draftList.Where(x => x.CompanyName == user.EnterpriseName).Where(x => x.Draft == true);
+                draftList = draftList.Where(x => x.CompanyName == user.EnterpriseName).Where(x => x.Status == StageStatus.Draft);
             }
 
             var listDrafts = Mapper.Map<IEnumerable<ViewModels.ContactEnterprise.Draft>>(draftList).ToList();

@@ -389,8 +389,7 @@ namespace Stagio.TestUtilities.Database
                     EnvironnementDescription = "Poste de travail Windows 8.1/Mac OS X, Logiciel Adobe CS6, SQL Server, HTML, CSS",
                     StageTitle = "Programmeur Web",
                     NbrStagiaire = 2,
-                    Status = 0,
-                    Draft = true
+                    Status = StageStatus.Draft,
                 };
 
                 return stage;

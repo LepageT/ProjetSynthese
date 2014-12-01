@@ -56,9 +56,7 @@ namespace Stagio.Web.Controllers
             var account = _accountRepository.GetById(userId);
             List<StageAgreement> listStageAgreementsNotSigned;
             List<StageAgreement> listStageAgreementsSigned;
-            List<Stage> stagesEnterprise;
-            var allStages = _stageRepository.GetAll();
-            
+
 
             if (account.Roles.First().RoleName == RoleName.Coordinator)
             {
@@ -80,7 +78,7 @@ namespace Stagio.Web.Controllers
                         var stageAgreementsEnterprise = stageAgreements.Where(stageAgreementId => stageAgreementId.IdStage == stage.Id);
                         listStageAgreementsEnterprise.Add(stageAgreementsEnterprise.First());
                     }
-                    
+
                 }
                 listStageAgreementsNotSigned =
                     listStageAgreementsEnterprise.Where(agreementNotSigned => agreementNotSigned.ContactEnterpriseHasSigned == false)
@@ -105,25 +103,24 @@ namespace Stagio.Web.Controllers
             int count = 0;
             foreach (var stageAgreementNotSigned in listStageAgreement.ListStageAgreementNotSigned)
             {
-                
-                    stageAgreementNotSigned.EnterpriseName =
-                        _stageRepository.GetById(listStageAgreementsNotSigned[count].IdStage).CompanyName;
-                    stageAgreementNotSigned.StageName = _stageRepository.GetById(listStageAgreementsNotSigned[count].IdStage).StageTitle;
-                    stageAgreementNotSigned.StudentFirstName = _studentRepository.GetById(listStageAgreementsNotSigned[count].IdStudentSigned).FirstName;
-                    stageAgreementNotSigned.StudentLastName = _studentRepository.GetById(listStageAgreementsNotSigned[count].IdStudentSigned).LastName;
+
+                stageAgreementNotSigned.EnterpriseName =
+                    _stageRepository.GetById(listStageAgreementsNotSigned[count].IdStage).CompanyName;
+                stageAgreementNotSigned.StageName = _stageRepository.GetById(listStageAgreementsNotSigned[count].IdStage).StageTitle;
+                stageAgreementNotSigned.StudentFirstName = _studentRepository.GetById(listStageAgreementsNotSigned[count].IdStudentSigned).FirstName;
+                stageAgreementNotSigned.StudentLastName = _studentRepository.GetById(listStageAgreementsNotSigned[count].IdStudentSigned).LastName;
                 count = count + 1;
             }
 
             foreach (var stageAgreementSigned in listStageAgreement.ListStagesAgreementsSigned)
             {
-                foreach (var stageAgreement in listStageAgreementsSigned)
-                {
-                    stageAgreementSigned.EnterpriseName =
-                        _stageRepository.GetById(stageAgreement.IdStage).CompanyName;
-                    stageAgreementSigned.StageName = _stageRepository.GetById(stageAgreement.IdStage).StageTitle;
-                    stageAgreementSigned.StudentFirstName = _studentRepository.GetById(stageAgreement.IdStudentSigned).FirstName;
-                    stageAgreementSigned.StudentLastName = _studentRepository.GetById(stageAgreement.IdStudentSigned).LastName;
-                }
+                count = 0;
+                stageAgreementSigned.EnterpriseName =
+                    _stageRepository.GetById(listStageAgreementsSigned[count].IdStage).CompanyName;
+                stageAgreementSigned.StageName = _stageRepository.GetById(listStageAgreementsSigned[count].IdStage).StageTitle;
+                stageAgreementSigned.StudentFirstName = _studentRepository.GetById(listStageAgreementsSigned[count].IdStudentSigned).FirstName;
+                stageAgreementSigned.StudentLastName = _studentRepository.GetById(listStageAgreementsSigned[count].IdStudentSigned).LastName;
+                count = count + 1;
             }
 
             return View(listStageAgreement);

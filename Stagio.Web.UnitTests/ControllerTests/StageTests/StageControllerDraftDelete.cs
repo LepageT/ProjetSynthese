@@ -16,7 +16,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
         [TestMethod]
         public void contact_enterprise_remove_draft_should_render_view()
         {
-            var draft = _fixture.Build<Stage>().With(x => x.Draft, true).Create();
+            var draft = _fixture.Build<Stage>().With(x => x.Status, StageStatus.Draft).Create();
             stageRepository.GetById(draft.Id).Returns(draft);
 
             var result = stageController.DraftDelete(draft.Id) as RedirectToRouteResult;
@@ -30,7 +30,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
         [TestMethod]
         public void contact_enterprise_remove_draft_should_update_DB()
         {
-            var draft = _fixture.Build<Stage>().With(x => x.Draft, true).Create();
+            var draft = _fixture.Build<Stage>().With(x => x.Status, StageStatus.Draft).Create();
             stageRepository.GetById(draft.Id).Returns(draft);
 
             stageController.DraftDelete(draft.Id);
