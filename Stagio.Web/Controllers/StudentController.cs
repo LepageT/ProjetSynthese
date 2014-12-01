@@ -212,7 +212,7 @@ namespace Stagio.Web.Controllers
                 {
                     if (stage.Id == appliedStage.IdStage)
                     {
-                        this.Flash("Vous avez déjà postuler sur ce stage", FlashEnum.Info);
+                        this.Flash("Vous avez déjà postulé sur ce stage", FlashEnum.Info);
                         return View(applyStudentViewModel);
                     }
                 }
@@ -240,9 +240,9 @@ namespace Stagio.Web.Controllers
                 _stageRepository.Update(stage);
                 TempData["files"] = files;
                 var student = _studentRepository.GetById(applyStudentViewModel.IdStudent);
-                string messageToCoordinator = student.FirstName + " " + student.LastName + StudentToCoordinator.ApplyMessage + stage.StageTitle;
+                string messageToCoordinator = student.FirstName + " " + student.LastName + StudentToCoordinator.ApplyMessage + "<a href=" + "../../Stage/Details/" + stage.Id + "> " + stage.StageTitle + " </a>";
                 _notificationService.SendNotificationToAllCoordinator(StudentToCoordinator.ApplyTilte, messageToCoordinator);
-                string messageToContactEnterprise = student.FirstName + " " + student.LastName + StudentToContactEnterprise.ApplyMessage + stage.StageTitle + StudentToContactEnterprise.ApplyLinkPart1 + stage.Id + StudentToContactEnterprise.ApplyLinkPart2; 
+                string messageToContactEnterprise = student.FirstName + " " + student.LastName + StudentToContactEnterprise.ApplyMessage + StudentToContactEnterprise.ApplyLinkPart1 + stage.Id + '"' + "> " + stage.StageTitle   + StudentToContactEnterprise.ApplyLinkPart2; 
                 _notificationService.SendNotificationToAllContactEnterpriseOf(stage.CompanyName, StudentToContactEnterprise.ApplyTitle, messageToContactEnterprise);
                 this.Flash("Postulation réussi", FlashEnum.Success);
                 return RedirectToAction(MVC.Student.ApplyConfirmation());
