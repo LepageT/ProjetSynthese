@@ -17,7 +17,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
         public void contact_enterprise_remove_draft_should_render_view()
         {
             var user = _fixture.Create<ContactEnterprise>();
-            var draft = _fixture.Build<Stage>().With(x => x.Draft, true).Create();
+            var draft = _fixture.Build<Stage>().With(x => x.Status, StageStatus.Draft).Create();
             stageRepository.GetById(draft.Id).Returns(draft);
             contactEnterpriseRepository.GetById(user.Id).Returns(user);
             httpContextService.GetUserId().Returns(user.Id);
@@ -34,7 +34,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
         public void contact_enterprise_remove_draft_should_update_DB()
         {
             var user = _fixture.Create<ContactEnterprise>();
-            var draft = _fixture.Build<Stage>().With(x => x.Draft, true).Create();
+            var draft = _fixture.Build<Stage>().With(x => x.Status, StageStatus.Draft).Create();
             stageRepository.GetById(draft.Id).Returns(draft);
             contactEnterpriseRepository.GetById(user.Id).Returns(user);
             httpContextService.GetUserId().Returns(user.Id);
