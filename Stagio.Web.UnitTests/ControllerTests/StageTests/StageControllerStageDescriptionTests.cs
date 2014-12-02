@@ -19,9 +19,9 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
         public void stage_viewStageInfo_should_render_view()
         {
             var stage = _fixture.Create<Stage>();
-            stageRepository.GetById(1).Returns(stage);
-
-            var result = stageController.ViewStageInfo(1) as ViewResult;
+            stageRepository.GetById(stage.Id).Returns(stage);
+            stage.Status = StageStatus.Accepted;
+            var result = stageController.ViewStageInfo(stage.Id) as ViewResult;
 
             result.ViewName.Should().Be("");
         }
