@@ -1,11 +1,10 @@
-﻿using System.Data.Entity;
+﻿using Stagio.DataLayer;
+using Stagio.Web.Mappers;
 using System.Security.Claims;
 using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using Stagio.DataLayer;
-using Stagio.Web.Mappers;
 
 namespace Stagio.Web
 {

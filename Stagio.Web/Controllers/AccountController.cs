@@ -1,18 +1,15 @@
 ﻿
-using System;
-using System.Linq;
-using System.Security.Claims;
-using System.Web.Mvc;
-using System.Web.Security;
 using AutoMapper;
 using Microsoft.AspNet.Identity;
 using Stagio.DataLayer;
-using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
 using Stagio.Web.Module;
 using Stagio.Web.Module.Strings.Controller;
 using Stagio.Web.Services;
 using Stagio.Web.ViewModels.Account;
+using System.Linq;
+using System.Security.Claims;
+using System.Web.Mvc;
 
 namespace Stagio.Web.Controllers
 {

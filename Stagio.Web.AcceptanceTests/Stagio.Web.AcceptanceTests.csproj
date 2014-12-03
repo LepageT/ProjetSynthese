@@ -77,7 +77,6 @@
     <Compile Include="ContactEnterpriseTests\ContactEnterpriseControllerListStage.cs" />
     <Compile Include="ContactEnterpriseTests\ContactEnterpriseControllerReactivateTests.cs" />
     <Compile Include="ContactEnterpriseTests\ContactEnterpriseInviteTests.cs" />
-    <Compile Include="ContactEnterpriseTests\ContactEnterpriseNotificationTests.cs" />
     <Compile Include="ContactEnterpriseTests\ContactEnterpriseEditTest.cs" />
     <Compile Include="CoordinatorTests\CoordinatorControllerCreateListTests.cs" />
     <Compile Include="CoordinatorTests\CoordinatorControllerInviteEnterpriseTests.cs" />

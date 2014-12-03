@@ -1,13 +1,9 @@
 ﻿
-using System;
-using System.Security.Claims;
-using System.Security.Policy;
-using System.Web;
-using System.Web.Security;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
-using NSubstitute.Core;
-using Stagio.Domain.Application;
+using System;
+using System.Security.Claims;
+using System.Web;
 
 namespace Stagio.Web.Services
 {

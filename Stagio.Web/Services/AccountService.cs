@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Stagio.DataLayer;
+﻿using Stagio.DataLayer;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
 using Stagio.Utilities.Encryption;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Stagio.Web.Services
 {

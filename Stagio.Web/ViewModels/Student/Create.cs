@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Stagio.Web.Validations;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Web.Mvc;
-using Stagio.DataLayer;
-using Stagio.Web.Validations;
 
 namespace Stagio.Web.ViewModels.Student
 {

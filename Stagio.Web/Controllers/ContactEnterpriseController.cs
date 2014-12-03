@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.UI.WebControls;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.Ajax.Utilities;
 using Stagio.DataLayer;
 using Stagio.Domain.Application;
@@ -14,11 +6,14 @@ using Stagio.Domain.Entities;
 using Stagio.Utilities.Encryption;
 using Stagio.Web.Module;
 using Stagio.Web.Module.Strings.Controller;
+using Stagio.Web.Module.Strings.Email;
 using Stagio.Web.Module.Strings.Notification;
 using Stagio.Web.Module.Strings.Shared;
 using Stagio.Web.Services;
-using Stagio.Web.Module.Strings.Email;
-using Stagio.Web.ViewModels.Stage;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Stagio.Web.Controllers
 {

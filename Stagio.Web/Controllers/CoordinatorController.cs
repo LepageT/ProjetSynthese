@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Web;
-using System.Web.Mvc;
-using AutoMapper;
+﻿using AutoMapper;
 using Stagio.DataLayer;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
+using Stagio.Web.Module;
 using Stagio.Web.Module.Strings.Controller;
 using Stagio.Web.Module.Strings.Email;
 using Stagio.Web.Module.Strings.Shared;
 using Stagio.Web.Services;
-using Stagio.Web.Module;
 using Stagio.Web.ViewModels.Coordinator;
 using Stagio.Web.ViewModels.Student;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
 using Apply = Stagio.Domain.Entities.Apply;
 
 namespace Stagio.Web.Controllers

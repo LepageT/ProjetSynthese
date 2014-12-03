@@ -1,8 +1,8 @@
-﻿using System;
-using System.Web.Mvc;
-using System.Data.SqlClient;
-using Stagio.DataLayer;
+﻿using Stagio.DataLayer;
 using Stagio.TestUtilities.Database;
+using System;
+using System.Data.SqlClient;
+using System.Web.Mvc;
 
 namespace Stagio.Web.Controllers
 {

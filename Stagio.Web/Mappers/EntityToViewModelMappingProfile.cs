@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography;
-using AutoMapper;
-using Ninject.Infrastructure.Language;
+﻿using AutoMapper;
 using Stagio.Domain.Entities;
 using Stagio.Web.ViewModels.Stage;
 
