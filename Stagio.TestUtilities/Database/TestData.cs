@@ -9,11 +9,11 @@ namespace Stagio.TestUtilities.Database
     public class TestData
     {
         #region Coordinator1
-        static public ApplicationUser coordinator1
+        static public Coordinator coordinator1
         {
             get
             {
-                var user = new ApplicationUser()
+                var user = new Coordinator()
                 {
 
                     Roles = new List<UserRole>()
@@ -24,7 +24,8 @@ namespace Stagio.TestUtilities.Database
                     Email = "coordonnateur@stagio.com",
                     FirstName = "Jean-Dominic",
                     LastName = "Rousseau",
-                    Active = true
+                    Active = true,
+                    Id = 4
                 };
 
                 user.UserName = user.Email;
@@ -195,7 +196,8 @@ namespace Stagio.TestUtilities.Database
                     Telephone = "007-007-7000",
                     Email = "bond.james.007@hotmail.com",
                     Password = PasswordHash.CreateHash("qwerty12"),
-                    Active = true
+                    Active = true,
+                    Id = 6
                 };
                 enterprise.UserName = enterprise.Email;
                 return enterprise;
@@ -585,6 +587,60 @@ namespace Stagio.TestUtilities.Database
                 };
 
                 return notification;
+            }
+        }
+
+        #endregion
+
+
+        #region StageAgreementSigned
+
+        static public StageAgreement stageAgreementSigned
+        {
+            get
+            {
+                var stageAgreement = new StageAgreement()
+                {
+                    StudentHasSigned = true,
+                    DateStudentSigned = "2014, 10, 15",
+                    IdStudentSigned = 1,
+                    CoordinatorHasSigned = true,
+                    IdCoordinatorSigned = 4,
+                    DateCoordinatorSigned = "2014, 10, 15",
+                    ContactEnterpriseHasSigned = true,
+                    IdContactEnterpriseSigned = 6,
+                    DateContactEnterpriseSigned = "2014, 10, 15",
+                    IdStage = 1
+                    
+                };
+
+                return stageAgreement;
+            }
+        }
+
+        #endregion
+        #region StageAgreementNotSigned
+
+        static public StageAgreement stageAgreementNotSigned
+        {
+            get
+            {
+                var stageAgreement = new StageAgreement()
+                {
+                    StudentHasSigned = false,
+                    DateStudentSigned = "2014, 10, 15",
+                    IdStudentSigned = 1,
+                    CoordinatorHasSigned = false,
+                    IdCoordinatorSigned = 4,
+                    DateCoordinatorSigned = "2014, 10, 15",
+                    ContactEnterpriseHasSigned = false,
+                    IdContactEnterpriseSigned = 6,
+                    DateContactEnterpriseSigned = "2014, 10, 15",
+                    IdStage = 1
+
+                };
+
+                return stageAgreement;
             }
         }
 

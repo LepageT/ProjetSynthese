@@ -49,6 +49,9 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
         {
             var stage = _fixture.Create<Stage>();
             stageRepository.GetById(stage.Id).Returns(stage);
+            var user = _fixture.Create<Domain.Entities.Coordinator>();
+            httpContextService.GetUserId().Returns(user.Id);
+            coordinatorRepository.GetById(user.Id).Returns(user);
 
             var result = stageController.Details("Refuser", stage.Id) as RedirectToRouteResult;
             var routeAction = result.RouteValues["Action"];

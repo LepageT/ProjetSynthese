@@ -11,15 +11,6 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
     public class CoordinatorCreateTests : BaseTests
     {
         [TestMethod]
-        public void coordinator_should_be_able_to_create_an_account_with_valid_invitation()
-        {
-            CreateCoordinatorPage.GoToByUrl();
-
-            CreateCoordinatorPage.IsDisplayed.Should().BeTrue();
-
-            }
-
-        [TestMethod]
         public void coordinator_create_should_create_account_if_invitation_is_valid()
         {
             CreateCoordinatorPage.GoToByUrl();

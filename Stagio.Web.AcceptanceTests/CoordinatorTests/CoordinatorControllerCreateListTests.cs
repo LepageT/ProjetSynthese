@@ -13,19 +13,6 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
     public class StudentControllerCreateListTests : BaseTests
     {
         [TestMethod]
-        public void coordinator_should_be_able_to_see_the_page_createList_student_if_logged_in()
-        {
-            LoginPage.GoTo();
-            LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
-
-            AddStudentsCoordinatorPage.GoTo();
-            AddStudentsCoordinatorPage.SelectCsvFile("C:\\dev\\abc.csv");
-
-            CreateListStudentsCoordinatorPage.IsDisplayed.Should().BeTrue();
-           
-        }
-
-        [TestMethod]
         public void coordinator_not_should_be_able_to_see_the_page_createList_student_not_if_logged_in()
         {
             CreateListStudentsCoordinatorPage.GoToByUrl();

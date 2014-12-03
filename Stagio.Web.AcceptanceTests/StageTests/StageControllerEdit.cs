@@ -15,16 +15,6 @@ namespace Stagio.Web.AcceptanceTests.StageTests
     public class StageControllerEdit : BaseTests
     {
         [TestMethod]
-        public void contact_enterprise_should_be_able_to_edit_stage_if_id_is_valid()
-        {
-            LoginPage.GoToByUrl();
-            LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
-
-            EditStagePage.GoToByUrl();
-            EditStagePage.IsDisplayed.Should().BeTrue();
-        }
-
-        [TestMethod]
         public void contact_enterprise_not_should_be_able_to_edit_his_profil_if_not_logged_in()
         {
             EditStagePage.GoToByUrl();
@@ -44,23 +34,10 @@ namespace Stagio.Web.AcceptanceTests.StageTests
             EditStagePage.GoToByUrl();
             EditStagePage.EditAStage(NEW_RESPONSABLE_NAME);
 
+            ListStageContactEnterprisePage.IsDisplayed.Should().BeTrue();
             EditStagePage.EditVerification(NEW_RESPONSABLE_NAME).Should().BeTrue();
         }
 
-        [TestMethod]
-        public void contact_enterprise_edit_should_redirect_to_index_if_updated()
-        {
-            const string NEW_RESPONSABLE_NAME = "Ticoune";
-
-            LoginPage.GoToByUrl();
-            LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
-
-            EditStagePage.GoToByUrl();
-            EditStagePage.EditAStage(NEW_RESPONSABLE_NAME);
-
-           ListStageContactEnterprisePage.IsDisplayed.Should().BeTrue();
-
-
-        }
+        
     }
 }

@@ -9,6 +9,7 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using Ploeh.AutoFixture;
+using Stagio.Domain.Entities;
 
 namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
 {
@@ -26,6 +27,9 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
         [TestMethod]
         public void enterprise_createStage_post_should_return_default_view_when_modelState_is_not_valid()
         {
+            var contactEnterprise = _fixture.Create<ContactEnterprise>();
+            httpContext.GetUserId().Returns(contactEnterprise.Id);
+            enterpriseRepository.GetById(contactEnterprise.Id).Returns(contactEnterprise);
             var stageViewModel = _fixture.Create<ViewModels.Stage.Create>();
             enterpriseController.ModelState.AddModelError("Error", "Error");
 
@@ -37,11 +41,12 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
         [TestMethod]
         public void enterprise_createStage_post_should_return_index_on_success()
         {
-
-
-         
+            var contactEnterprise = _fixture.Create<ContactEnterprise>();
+            httpContext.GetUserId().Returns(contactEnterprise.Id);
+            enterpriseRepository.GetById(contactEnterprise.Id).Returns(contactEnterprise);
             var stageViewModel = _fixture.Create<ViewModels.Stage.Create>();
-
+            
+            
             var result = enterpriseController.CreateStage(stageViewModel) as RedirectToRouteResult;
             var action = result.RouteValues["Action"];
 
@@ -56,9 +61,13 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
             result.ViewName.Should().Be("");
         }
 
+
         [TestMethod]
         public void contact_enterprise_save_draft_should_render_confirmation_page()
         {
+            var contactEnterprise = _fixture.Create<ContactEnterprise>();
+            httpContext.GetUserId().Returns(contactEnterprise.Id);
+            enterpriseRepository.GetById(contactEnterprise.Id).Returns(contactEnterprise);
             var stageViewModel = _fixture.Create<ViewModels.Stage.Create>();
 
             var result = enterpriseController.CreateStage(stageViewModel, "Sauvegarder comme brouillon") as ViewResult;

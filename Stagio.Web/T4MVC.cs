@@ -94,6 +94,14 @@ namespace Links
     	public static readonly string jquery_validate_unobtrusive_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.validate.unobtrusive.min.js") ? Url("jquery.validate.unobtrusive.min.js") : Url("jquery.validate.unobtrusive.js");
     	public static readonly string jquery_validate_unobtrusive_min_js = Url("jquery.validate.unobtrusive.min.js");
     	public static readonly string less_1_4_1_min_js = Url("less-1.4.1.min.js");
+    	[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    	public static class locales {
+    		private const string URLPATH = "~/Scripts/locales";
+    		public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+    		public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+        	public static readonly string fr_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/fr.min.js") ? Url("fr.min.js") : Url("fr.js");
+    	}
+    
     	public static readonly string modernizr_2_6_2_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/modernizr-2.6.2.min.js") ? Url("modernizr-2.6.2.min.js") : Url("modernizr-2.6.2.js");
     	public static readonly string moment_with_locales_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/moment-with-locales.min.js") ? Url("moment-with-locales.min.js") : Url("moment-with-locales.js");
     	public static readonly string moment_with_locales_min_js = Url("moment-with-locales.min.js");
@@ -155,6 +163,8 @@ namespace Links
         	public static readonly string wells_less = Url("wells.less");
     	}
     
+    	public static readonly string bootstrap_datetimepicker_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/bootstrap-datetimepicker.min.css") ? Url("bootstrap-datetimepicker.min.css") : Url("bootstrap-datetimepicker.css");
+    		 
     	public static readonly string bootstrap_datetimepicker_min_css = Url("bootstrap-datetimepicker.min.css");
     	public static readonly string bootstrap_theme_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/bootstrap-theme.min.css") ? Url("bootstrap-theme.min.css") : Url("bootstrap-theme.css");
     		 

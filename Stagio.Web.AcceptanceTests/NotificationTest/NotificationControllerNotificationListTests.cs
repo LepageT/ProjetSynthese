@@ -2,8 +2,10 @@
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Stagio.Web.Automation.PageObjects;
+using Stagio.Web.Automation.PageObjects.ContactEnterprise;
 using Stagio.Web.Automation.PageObjects.Coordinator;
 using Stagio.Web.Automation.PageObjects.Notification;
+using Stagio.Web.Automation.PageObjects.Student;
 
 namespace Stagio.Web.AcceptanceTests.NotificationTest
 {
@@ -77,6 +79,40 @@ namespace Stagio.Web.AcceptanceTests.NotificationTest
             NotificationListPage.GoToNotification(1);
 
             NotificationListPage.IsDetailDisplayed.Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void student_should_be_able_to_see_notification_list_on_index()
+        {
+            LoginPage.GoTo();
+            LoginPage.LoginAs(StudentUsername, StudentPassword);
+
+            IndexStudentPage.GoTo();
+
+            IndexStudentPage.IsNotificationShowing.Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void coordinator_should_be_able_to_see_notification_list_on_index()
+        {
+            LoginPage.GoTo();
+            LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
+
+            IndexCoordinatorPage.Goto();
+
+            IndexCoordinatorPage.IsNotificationShowing.Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void contact_enterprise_should_be_able_to_see_notification_list_on_index()
+        {
+            LoginPage.GoTo();
+            LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
+
+            IndexContactEnterprisePage.Goto();
+
+            IndexContactEnterprisePage.IsDisplayed.Should().BeTrue();
+
         }
 
     }

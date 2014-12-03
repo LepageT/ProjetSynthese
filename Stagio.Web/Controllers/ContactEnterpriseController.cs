@@ -18,6 +18,7 @@ using Stagio.Web.Module.Strings.Notification;
 using Stagio.Web.Module.Strings.Shared;
 using Stagio.Web.Services;
 using Stagio.Web.Module.Strings.Email;
+using Stagio.Web.ViewModels.Stage;
 
 namespace Stagio.Web.Controllers
 {
@@ -192,14 +193,16 @@ namespace Stagio.Web.Controllers
         [Authorize(Roles = RoleName.ContactEnterprise)]
         public virtual ActionResult CreateStage()
         {
-            return View();
+            var viewModelCreateStage =
+                Mapper.Map<ViewModels.Stage.Create>(_contactEnterpriseRepository.GetById(_httpContext.GetUserId()));
+            return View(viewModelCreateStage);
         }
 
         [Authorize(Roles = RoleName.ContactEnterprise)]
         [HttpPost]
         public virtual ActionResult CreateStage(ViewModels.Stage.Create createdStage, string ButtonClick = "")
         {
-
+            createdStage.CompanyName = _contactEnterpriseRepository.GetById(_httpContext.GetUserId()).EnterpriseName;
             if (ButtonClick.Equals(ContactEnterpriseResources.SaveHasDraft))
             {
                 var stage = Mapper.Map<Stage>(createdStage);

@@ -343,6 +343,8 @@
     <Compile Include="ViewModels\Interviews\Edit.cs" />
     <Compile Include="ViewModels\Interviews\List.cs" />
     <Compile Include="ViewModels\Notification\Detail.cs" />
+    <Compile Include="ViewModels\StageAgreement\ListStageAgreement.cs" />
+    <Compile Include="ViewModels\StageAgreement\StageAgreementDetail.cs" />
     <Compile Include="ViewModels\Stage\Create.cs" />
     <Compile Include="ViewModels\Stage\Details.cs" />
     <Compile Include="ViewModels\Stage\Edit.cs" />
@@ -510,6 +512,7 @@
     <Content Include="Views\Stage\Edit.cshtml" />
     <Content Include="Views\Coordinator\DetailsApplyStudent.cshtml" />
     <Content Include="Views\StageAgreement\CreateConfirmation.cshtml" />
+    <Content Include="Views\StageAgreement\List.cshtml" />
     <Content Include="Views\ContactEnterprise\DraftConfirmation.cshtml" />
     <Content Include="Views\ContactEnterprise\DraftList.cshtml" />
     <Content Include="Views\Stage\DraftEdit.cshtml" />

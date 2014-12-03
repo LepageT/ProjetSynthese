@@ -124,6 +124,13 @@ namespace Stagio.Web.Mappers
                 .ForMember(dest => dest.OldPassword, opt => opt.Ignore())
                 .ForMember(dest => dest.Password, opt => opt.Ignore())
                 .IgnoreAllNonExisting();
+
+            Mapper.CreateMap<StageAgreement, ViewModels.StageAgreement.StageAgreementDetail>()
+                .IgnoreAllNonExisting();
+
+            Mapper.CreateMap<ContactEnterprise, ViewModels.Stage.Create>()
+                .ForMember(dest => dest.CompanyName, opt => opt.MapFrom(src => src.EnterpriseName))
+                .IgnoreAllNonExisting();
         }
     }
 }

@@ -9,11 +9,6 @@ namespace Stagio.Web.Automation.PageObjects.Coordinator
 {
     public class InviteContactEnterpriseCoordinatorPage
     {
-        public static bool IsDisplayed
-        {
-            get { return Driver.Instance.FindElement(By.Id("invite-enterprise-page")) != null; }
-        }
-
         public static void GoTo()
         {
             Navigation.Coordinator.InviteContactEnterprise.Select();

@@ -20,7 +20,6 @@ namespace Stagio.Web.ViewModels.Stage
         }
 
         [DisplayName("Entreprise ou Organisation")]
-        [Required(ErrorMessage = "Requis")]
         //Maybe an enterprise entity must be created.
         public String CompanyName { get; set; }
 
