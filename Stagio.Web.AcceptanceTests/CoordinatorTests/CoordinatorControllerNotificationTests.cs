@@ -1,8 +1,6 @@
-﻿using System;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Stagio.Web.Automation.PageObjects;
-using Stagio.Web.Automation.PageObjects.ContactEnterprise;
 using Stagio.Web.Automation.PageObjects.Coordinator;
 using Stagio.Web.Automation.PageObjects.Notification;
 

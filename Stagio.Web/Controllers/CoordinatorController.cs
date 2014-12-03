@@ -555,23 +555,54 @@ namespace Stagio.Web.Controllers
 
         public virtual ActionResult SetApplyDates()
         {
-            return View();
+
+            var misc = _miscRepository.GetAll().FirstOrDefault();
+            if (misc == null)
+            {
+                return View();
+            }
+
+            var miscViewModel = Mapper.Map<ViewModels.Coordinator.ApplyDatesLimit>(misc);
+            miscViewModel.DateBegin = misc.StartApplyDate;
+            miscViewModel.DateEnd = misc.EndApplyDate;
+            return View(miscViewModel);
         }
 
         [HttpPost]
         public virtual ActionResult SetApplyDates(ViewModels.Coordinator.ApplyDatesLimit ApplyDates)
         {
+            bool isFirstRowInDB = false;
             if (ModelState.IsValid)
             {
+                
                 if (Convert.ToDateTime(ApplyDates.DateBegin) >= DateTime.Now)
                 {
                     if (Convert.ToDateTime(ApplyDates.DateBegin) < Convert.ToDateTime(ApplyDates.DateEnd))
                     {
-                        var miscs = _miscRepository.GetAll().ToList();
-                        var misc = miscs.FirstOrDefault();
-                        misc.StartApplyDate = ApplyDates.DateBegin;
-                        misc.EndApplyDate = ApplyDates.DateEnd;
-                        _miscRepository.Update(misc);
+                        var misc = _miscRepository.GetAll().FirstOrDefault(); //Cette table ne doit avoir qu'un seul entré
+                        if (misc == null)
+                        {
+                            isFirstRowInDB = true;
+                        }
+                        
+                        if (isFirstRowInDB)
+                        {
+                            misc = new Misc()
+                            {
+                                StartApplyDate = ApplyDates.DateBegin,
+                                EndApplyDate = ApplyDates.DateEnd
+                            };
+                            this.Flash(FlashMessageResources.AddSuccess, FlashEnum.Success);
+                            _miscRepository.Add(misc);
+                        }
+                        else
+                        {
+                            misc.StartApplyDate = ApplyDates.DateBegin;
+                            misc.EndApplyDate = ApplyDates.DateEnd;
+                            this.Flash(FlashMessageResources.EditSuccess, FlashEnum.Success);
+                            _miscRepository.Update(misc);
+                        }
+                        
                         return RedirectToAction(MVC.Coordinator.Index());
                     }
                 }

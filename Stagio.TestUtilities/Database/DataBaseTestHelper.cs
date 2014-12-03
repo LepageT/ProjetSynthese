@@ -43,7 +43,7 @@ namespace Stagio.TestUtilities.Database
             addNotificationContactEnterprise();
             addNotificationCoordinator();
             addDraft();
-            addMiscs();
+            //addMiscs();
         }
 
         private void addMiscs()
