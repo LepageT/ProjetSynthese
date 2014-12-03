@@ -115,8 +115,6 @@ namespace Stagio.Web.Mappers
             Mapper.CreateMap<Stage, ViewModels.ContactEnterprise.Draft>()
                 .IgnoreAllNonExisting();
 
-            Mapper.CreateMap<Misc, ViewModels.Coordinator.SystemInformation>()
-                .IgnoreAllNonExisting();
 
         }
     }
