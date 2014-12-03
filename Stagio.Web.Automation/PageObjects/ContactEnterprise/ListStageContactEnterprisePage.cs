@@ -41,17 +41,5 @@ namespace Stagio.Web.Automation.PageObjects.ContactEnterprise
             get { return Driver.Instance.FindElement(By.Id("reactivateStage-page")) != null; }
         }
 
-        public static bool AccessStageDetail()
-        {
-            try
-            {
-                Driver.Instance.FindElement(By.Id("list-stages1"));
-                return true;
-            }
-            catch (NoSuchElementException)
-            {
-                return false;
-            }
-        }
     }
 }

@@ -9,25 +9,10 @@ namespace Stagio.Web.Automation.PageObjects.ContactEnterprise
 {
     public class DetailsStudentApplyContactEnterprisePage
     {
-        public static bool IsDisplayed
-        {
-            get { return Driver.Instance.FindElement(By.Id("details-apply-student")) != null; }
-        }
-
-        public static void GoToApply1()
-        {
-            Navigation.ContactEnterprise.DetailsApplyStudent1.Select();
-        }
-
         public static void GoToByUrl()
         {
             Driver.Instance.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(2));
             Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/ContactEnterprise/DetailsStudentApply/2?canNotDownload=False");
-        }
-
-        public static void GoToByUrlApply3()
-        {
-            Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/ContactEnterprise/DetailsStudentApply/3?canNotDownload=False");
         }
 
         public static void AcceptApply()

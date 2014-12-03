@@ -16,19 +16,6 @@ namespace Stagio.Web.AcceptanceTests.InterviewTests
     public class InterviewControllerList: BaseTests
     {
         [TestMethod]
-        public void student_can_see_a_list_of_interview_page()
-        {
-            LoginPage.GoTo();
-            LoginPage.LoginAs(StudentUsername, StudentPassword);
-
-            ListInterview.GoTo();
-
-            ListInterview.IsDisplayed.Should().BeTrue();
-
-        }
-
-
-        [TestMethod]
         public void student_can_see_a_list_of_interviews()
         {
             LoginPage.GoTo();

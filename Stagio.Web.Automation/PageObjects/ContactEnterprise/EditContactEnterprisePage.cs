@@ -9,11 +9,6 @@ namespace Stagio.Web.Automation.PageObjects.ContactEnterprise
 {
     public class EditContactEnterprisePage
     {
-        public static bool IsDisplayed
-        {
-            get { return Driver.Instance.FindElement(By.Id("edit-contact-page")) != null; }
-        }
-
         public static void GoTo()
         {
             Navigation.ContactEnterprise.EditProfil.Select();

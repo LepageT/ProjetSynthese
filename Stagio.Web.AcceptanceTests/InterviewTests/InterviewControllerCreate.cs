@@ -12,18 +12,6 @@ namespace Stagio.Web.AcceptanceTests.InterviewTests
     public class InterviewControllerCreate : BaseTests
     {
         [TestMethod]
-        public void student_should_be_able_to_see_the_page_to_add_interview_if_logged_in()
-        {
-            LoginPage.GoTo();
-            LoginPage.LoginAs(StudentUsername, StudentPassword);
-
-            CreateInterviewStudentPage.GoTo();
-
-            CreateInterviewStudentPage.IsDisplayed.Should().BeTrue();
-
-        }
-
-        [TestMethod]
         public void student_should_not_be_able_to_see_the_page_to_add_interview_if_not_logged_in_and_redirected_to_login()
         {
             CreateInterviewStudentPage.GoToByUrl();
