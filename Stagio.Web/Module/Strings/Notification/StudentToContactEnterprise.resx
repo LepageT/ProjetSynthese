@@ -117,20 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ApplyLinkPart1" xml:space="preserve">
-    <value>. Voici le lien: &lt;a href="http://jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/ListStudentApply/</value>
-  </data>
-  <data name="ApplyLinkPart2" xml:space="preserve">
-    <value>"&gt;Postulations&lt;/a&gt;</value>
-  </data>
   <data name="ApplyMessage" xml:space="preserve">
-    <value> a postulé sur ce stage: </value>
+    <value>{0} {1} a postulé sur le stage &lt;a href="../../ContactEnterprise/ListStudentApply/{2}"&gt;{3}&lt;/a&gt;</value>
   </data>
   <data name="ApplyTitle" xml:space="preserve">
     <value>Un étudiant a postulé sur un de vos stages</value>
   </data>
   <data name="RemoveApplyMessage" xml:space="preserve">
-    <value> a retiré sa candidature à ce stage: </value>
+    <value>{0} {1} a retiré sa candidature à ce stage: &lt;a href="../../Stage/Details/{2}&gt;{3}&lt;/a&gt;</value>
   </data>
   <data name="RemoveApplyTitle" xml:space="preserve">
     <value>Un étudiant a retiré sa candidature à un de vos stages</value>

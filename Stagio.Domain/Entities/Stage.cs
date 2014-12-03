@@ -66,7 +66,6 @@ namespace Stagio.Domain.Entities
         [DefaultValue(0)]
         public int NbApply { get; set; }
 
-        public bool Draft { get; set; }
     }
 
 
@@ -76,6 +75,7 @@ namespace Stagio.Domain.Entities
         New = 0,
         Accepted = 1,
         Refused = 2,
-        Removed = 3
+        Removed = 3,
+        Draft = 4
     }
 }

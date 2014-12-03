@@ -109,8 +109,7 @@ namespace Stagio.Web.Services
             var notifications = _notificationRepository.GetAll().ToList();
             var userNotifications = notifications.Where(x => x.For == userId).ToList();
 
-            return userNotifications.OrderByDescending(x => x.Date).ToList().GetRange(0, userNotifications.Count>count?count:userNotifications.Count);
-
+            return userNotifications.OrderBy(x => x.Date).ToList().GetRange(0, userNotifications.Count>count?count:userNotifications.Count);
         }
 
         public ICollection<Notification> GetDashboardNotificationForUser(int userId)

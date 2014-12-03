@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -10,6 +11,7 @@ using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
 using Stagio.Web.Module.Strings.Controller;
 using Stagio.Web.Module.Strings.Email;
+using Stagio.Web.Module.Strings.Shared;
 using Stagio.Web.Services;
 using Stagio.Web.Module;
 using Stagio.Web.ViewModels.Coordinator;
@@ -34,7 +36,7 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<Notification> _notificationRepository;
         private readonly IHttpContextService _httpContextService;
         private readonly INotificationService _notificationService;
-        private readonly IEntityRepository<ApplicationUser> _applicationRepository;
+        private readonly IEntityRepository<ApplicationUser> _applicationRepository; 
 
         public CoordinatorController(IEntityRepository<ContactEnterprise> enterpriseContactRepository,
             IEntityRepository<Coordinator> coordinatorRepository,
@@ -108,7 +110,8 @@ namespace Stagio.Web.Controllers
 
                     if (!ModelState.IsValid)
                     {
-                        return View(InviteContactEnterprise());
+                        this.Flash(FlashMessageResources.ErrorsOnPage, FlashEnum.Error);
+                        return RedirectToAction(MVC.Coordinator.InviteContactEnterprise());
                     }
 
                     String messageText = EmailEnterpriseResources.InviteMessageBody;
@@ -128,7 +131,8 @@ namespace Stagio.Web.Controllers
                             messageText))
                     {
                         ModelState.AddModelError("Email", EmailResources.CantSendEmail);
-                        return View(InviteContactEnterprise());
+                        this.Flash(FlashMessageResources.ErrorsOnPage, FlashEnum.Error);
+                        return RedirectToAction(MVC.Coordinator.InviteContactEnterprise());
                     }
 
                     _invitationContactRepository.Add(new InvitationContactEnterprise()
@@ -145,7 +149,8 @@ namespace Stagio.Web.Controllers
 
 
 
-                }
+            }
+                this.Flash(FlashMessageResources.InvitationSend, FlashEnum.Success);
                 return RedirectToAction(MVC.Coordinator.InviteContactEnterpriseConfirmation());
             }
 
@@ -198,6 +203,7 @@ namespace Stagio.Web.Controllers
 
             if (!ModelState.IsValid)
             {
+                this.Flash(FlashMessageResources.ErrorsOnPage, FlashEnum.Error);
                 return View(createdCoordinator);
             }
 
@@ -218,6 +224,7 @@ namespace Stagio.Web.Controllers
 
                     _mailler.SendEmail(createdCoordinator.Email, EmailAccountCreation.Subject, EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
 
+                    this.Flash(FlashMessageResources.CreateAccountSuccess, FlashEnum.Success);
                     return RedirectToAction(MVC.Coordinator.CreateConfirmation());
                 }
             }
@@ -237,6 +244,7 @@ namespace Stagio.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
+                this.Flash(FlashMessageResources.ErrorsOnPage, FlashEnum.Error);
                 return View(createdInvite);
             }
 
@@ -259,16 +267,17 @@ namespace Stagio.Web.Controllers
             if (!_mailler.SendEmail(createdInvite.Email, EmailCoordinatorResources.CoordinatorInviteSubject, messageText))
             {
                 ModelState.AddModelError("Email", EmailResources.CantSendEmail);
+                this.Flash(FlashMessageResources.ErrorsOnPage, FlashEnum.Error);
                 return View(createdInvite);
             }
 
             _invitationRepository.Add(new Invitation()
                                      {
-                                         Token = token,
-                                         Email = createdInvite.Email,
-                                         Used = false
-                                     });
-
+                                        Token = token,
+                                        Email = createdInvite.Email,
+                                        Used = false
+                                      });
+            this.Flash(FlashMessageResources.InvitationSend, FlashEnum.Success);
             return RedirectToAction(MVC.Coordinator.InvitationSucceed());
 
         }
@@ -320,7 +329,7 @@ namespace Stagio.Web.Controllers
                 student.NbDateInterview = nbDateInterview;
                 nbDateInterview = 0;
             }
-
+           
 
             return View(studentListViewModels);
         }
@@ -371,7 +380,7 @@ namespace Stagio.Web.Controllers
                 }
             }
 
-
+            
 
             return View(studentListApplyViewModels);
         }
@@ -440,6 +449,7 @@ namespace Stagio.Web.Controllers
         {
             var listStudents = TempData["listStudent"] as List<ListStudent>;
             TempData["listStudent"] = listStudents;
+            TempData.Keep();
             return View(listStudents);
         }
 

@@ -123,14 +123,8 @@
   <data name="EditStageTitle" xml:space="preserve">
     <value>Une entreprise a modifié son offre de stage</value>
   </data>
-  <data name="NewStageLinkEnd" xml:space="preserve">
-    <value>&gt;jenkins.cegep-ste-foy.qc.ca/thomarelau/Stage/ViewStageInfo/</value>
-  </data>
-  <data name="NewStageLinkStart" xml:space="preserve">
-    <value>. Voici le lien: &lt;a href ="http://jenkins.cegep-ste-foy.qc.ca/thomarelau/Stage/ViewStageInfo/</value>
-  </data>
   <data name="NewStageMessage" xml:space="preserve">
-    <value> a ajouté ce stage: </value>
+    <value>L'entreprise {0} a ajouté ce stage: &lt;a href="../../Stage/ViewStageInfo/{1}"&gt;{2}&lt;/a&gt; </value>
   </data>
   <data name="NewStageTitle" xml:space="preserve">
     <value>Un nouveau stage est disponible</value>

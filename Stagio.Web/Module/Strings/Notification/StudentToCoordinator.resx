@@ -117,17 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CreateInterviewPart1" xml:space="preserve">
-    <value>a une entrevue le</value>
-  </data>
-  <data name="CreateInterviewPart2" xml:space="preserve">
-    <value>pour un stage chez</value>
+  <data name="CreateInterview" xml:space="preserve">
+    <value>{0} {1} a une entrevue le {2} pour un stage chez {3}</value>
   </data>
   <data name="CreateInterviewTitle" xml:space="preserve">
     <value>Un étudiant a inscrit une date d'entrevue pour un stage</value>
   </data>
   <data name="CreateStudent" xml:space="preserve">
-    <value>s'est inscrit sur le site.</value>
+    <value>{0} {1} s'est inscrit sur le site.</value>
   </data>
   <data name="CreateStudentTitle" xml:space="preserve">
     <value>Un étudiant s'est inscrit sur le site Stagio</value>
@@ -139,22 +136,19 @@
     <value>Un étudiant à retiré sa candidature à un stage</value>
   </data>
   <data name="EditInterviewMessage" xml:space="preserve">
-    <value>s'est présenté à son entrevue chez</value>
+    <value>{0} {1} s'est présenté à son entrevue chez {2} le {3}.</value>
   </data>
   <data name="EditInterviewTitle" xml:space="preserve">
     <value>Un étudiant s'est présenté à une entrevue</value>
   </data>
   <data name="ApplyMessage" xml:space="preserve">
-    <value> a postulé pour ce stage: </value>
+    <value>{0} {1} a postulé pour ce stage: &lt;a href="../../Stage/Details/{2}"&gt;{3}&lt;/a&gt;</value>
   </data>
   <data name="ApplyTilte" xml:space="preserve">
     <value>Un étudiant a postulé pour un stage</value>
   </data>
-  <data name="EditDateInterviewMessagePart1" xml:space="preserve">
-    <value>L'entrevue de </value>
-  </data>
-  <data name="EditDateInterviewMessagePart2" xml:space="preserve">
-    <value>sera le </value>
+  <data name="EditDateInterviewMessage" xml:space="preserve">
+    <value>L'entrevue de {0} {1} sera le {2} pour le stage {3} de {4}.</value>
   </data>
   <data name="EditDateInterviewTitle" xml:space="preserve">
     <value>Un étudiant a changé une date d'entrevue</value>

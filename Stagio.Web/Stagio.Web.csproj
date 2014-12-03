@@ -215,6 +215,7 @@
     <Compile Include="Mappers\EntityToViewModelMappingProfile.cs" />
     <Compile Include="Mappers\MappingExpressionExtensions.cs" />
     <Compile Include="Mappers\ViewModelToEntityMappingProfile.cs" />
+    <Compile Include="Module\FlashHelper.cs" />
     <Compile Include="Module\ReadFile.cs" />
     <Compile Include="Module\Strings\Controller\AccountResources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -276,6 +277,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CoordinatorToContactEnterprise.resx</DependentUpon>
     </Compile>
+    <Compile Include="Module\Strings\Shared\FlashMessageResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FlashMessageResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Module\Strings\Shared\Navigation.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -324,6 +330,7 @@
     <Compile Include="ViewModels\ContactEnterprise\AcceptApply.cs" />
     <Compile Include="ViewModels\ContactEnterprise\Create.cs" />
     <Compile Include="ViewModels\ContactEnterprise\Draft.cs" />
+    <Compile Include="ViewModels\ContactEnterprise\Edit.cs" />
     <Compile Include="ViewModels\ContactEnterprise\Invite.cs" />
     <Compile Include="ViewModels\ContactEnterprise\ListStudentApply.cs" />
     <Compile Include="ViewModels\ContactEnterprise\ListStage.cs" />
@@ -359,6 +366,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Flash.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\signin.css" />
     <Content Include="favicon.ico" />
@@ -415,6 +423,7 @@
     <Content Include="Content\bootstrap\alerts.less" />
     <Content Include="Content\less\bootstrap-datetimepicker-build.less" />
     <Content Include="Content\less\bootstrap-datetimepicker.less" />
+    <Content Include="App_Code\Flash.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
@@ -503,6 +512,7 @@
     <Content Include="Views\ContactEnterprise\DraftList.cshtml" />
     <Content Include="Views\Stage\DraftEdit.cshtml" />
     <Content Include="Views\Stage\DraftDelete.cshtml" />
+    <Content Include="Views\ContactEnterprise\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt.hooks.t4" />
@@ -563,6 +573,7 @@
     <EmbeddedResource Include="Module\Strings\Controller\StudentResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StudentResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Module\Strings\Email\EmailCoordinatorResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -595,6 +606,10 @@
     <EmbeddedResource Include="Module\Strings\Notification\CoordinatorToContactEnterprise.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>CoordinatorToContactEnterprise.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Module\Strings\Shared\FlashMessageResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FlashMessageResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Module\Strings\Shared\Navigation.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
