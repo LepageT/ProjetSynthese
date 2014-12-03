@@ -66,6 +66,5 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
 
         }
 
-        //TODO: Validation du mot de passe à faire lorsque le login sera disponible.
     }
 }

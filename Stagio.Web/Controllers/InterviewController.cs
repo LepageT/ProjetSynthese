@@ -51,8 +51,8 @@ namespace Stagio.Web.Controllers
             interview.Apply = from apply in applies
                 select new SelectListItem
                 {
-                    Text = _stageRepository.GetById(apply.IdStage).StageTitle.ToString() + " - " + _stageRepository.GetById(apply.IdStage).CompanyName.ToString(),
-                    Value = ((int)apply.IdStage).ToString()
+                    Text = _stageRepository.GetById(apply.IdStage).StageTitle + " - " + _stageRepository.GetById(apply.IdStage).CompanyName,
+                    Value = apply.IdStage.ToString()
                 };
             
             var applis = interview.Apply.ToList();
@@ -85,14 +85,14 @@ namespace Stagio.Web.Controllers
                         createdInterview.Apply = from apply in applies
                                           select new SelectListItem
                                           {
-                                              Text = _stageRepository.GetById(apply.IdStage).StageTitle.ToString() + " - " + _stageRepository.GetById(apply.IdStage).CompanyName.ToString(),
-                                              Value = ((int)apply.IdStage).ToString()
+                                              Text = _stageRepository.GetById(apply.IdStage).StageTitle + " - " + _stageRepository.GetById(apply.IdStage).CompanyName,
+                                              Value = apply.IdStage.ToString()
                                           };
                         return View(createdInterview);
                     }
                 }
-                string message = student.FirstName + " " + student.LastName + " " +
-                                     StudentToCoordinator.CreateInterviewPart1 + " " + interviewCreated.Date + " " + StudentToCoordinator.CreateInterviewPart2 + " " + stage.CompanyName ;
+                string message = String.Format(StudentToCoordinator.CreateInterview, student.FirstName, student.LastName, interviewCreated.Date, stage.CompanyName);
+                
                 _notificationService.SendNotificationToAllCoordinator(
                     StudentToCoordinator.CreateInterviewTitle, message);
                 _interviewRepository.Add(interviewCreated);
@@ -181,8 +181,7 @@ namespace Stagio.Web.Controllers
                 {
                     var student = _studentRepository.GetById(interview.StudentId);
                     var stage = _stageRepository.GetById(interview.StageId);
-                    string message = student.FirstName + " " + student.LastName + " " +
-                                     StudentToCoordinator.EditInterviewMessage + " " + stage.CompanyName + " le  " + interview.Date;
+                    string message = String.Format(StudentToCoordinator.EditInterviewMessage, student.FirstName, student.LastName, stage.CompanyName, interview.Date);
                     _notificationService.SendNotificationToAllCoordinator(StudentToCoordinator.EditInterviewTitle,
                         message);
                 }
@@ -190,8 +189,9 @@ namespace Stagio.Web.Controllers
                 {
                     var student = _studentRepository.GetById(interview.StudentId);
                     var stage = _stageRepository.GetById(interview.StageId);
-                    string message = StudentToCoordinator.EditDateInterviewMessagePart1 + " " + student.FirstName + " " + student.LastName + " " +
-                                     StudentToCoordinator.EditDateInterviewMessagePart2 + " " + editInterviewViewModel.Date + " pour le stage " + stage.StageTitle + " de " + stage.CompanyName;
+                    string message  = String.Format(StudentToCoordinator.EditDateInterviewMessage, student.FirstName,
+                        student.LastName, editInterviewViewModel.Date, stage.StageTitle, stage.CompanyName);
+
                     _notificationService.SendNotificationToAllCoordinator(StudentToCoordinator.EditDateInterviewTitle,
                         message);
                 }

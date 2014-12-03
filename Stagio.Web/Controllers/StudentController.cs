@@ -52,12 +52,6 @@ namespace Stagio.Web.Controllers
             return View(notificationsViewModels);
         }
 
-
-
-
-
-        
-
         // GET: Student/Create
         public virtual ActionResult Create()
         {
@@ -98,10 +92,9 @@ namespace Stagio.Web.Controllers
             student.UserName = createStudentViewModel.Matricule.ToString();
 
             _studentRepository.Update(student);
-            string message = student.FirstName + " " + student.LastName + " " +
-                                     StudentToCoordinator.CreateStudent;
-            _notificationService.SendNotificationToAllCoordinator(
-                StudentToCoordinator.CreateStudentTitle, message);
+            string message = String.Format(StudentToCoordinator.CreateStudent, student.FirstName, student.LastName);
+
+            _notificationService.SendNotificationToAllCoordinator(StudentToCoordinator.CreateStudentTitle, message);
             _mailler.SendEmail(student.Email, EmailAccountCreation.Subject, EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
             this.Flash("Création du compte réussi", FlashEnum.Success);
             return RedirectToAction(MVC.Student.CreateConfirmation());
@@ -147,6 +140,8 @@ namespace Stagio.Web.Controllers
                 }
             }
 
+            
+
             if (!ModelState.IsValid)
             {
                 this.Flash("Huston, we have an problem!!", FlashEnum.Error);
@@ -173,8 +168,6 @@ namespace Stagio.Web.Controllers
             var stages = _stageRepository.GetAll().ToList();
             var stagesAccepted = stages.Where(x => x.Status == StageStatus.Accepted);
             var studentStageListViewModels = Mapper.Map<IEnumerable<ViewModels.Student.StageList>>(stagesAccepted);
-
-
 
             return View(studentStageListViewModels);
 
@@ -240,11 +233,17 @@ namespace Stagio.Web.Controllers
                 _stageRepository.Update(stage);
                 TempData["files"] = files;
                 var student = _studentRepository.GetById(applyStudentViewModel.IdStudent);
-                string messageToCoordinator = student.FirstName + " " + student.LastName + StudentToCoordinator.ApplyMessage + "<a href=" + "../../Stage/Details/" + stage.Id + "> " + stage.StageTitle + " </a>";
+               
+                
+                string messageToCoordinator = String.Format(StudentToCoordinator.ApplyMessage, student.FirstName, student.LastName, stage.Id, stage.StageTitle);
+                
                 _notificationService.SendNotificationToAllCoordinator(StudentToCoordinator.ApplyTilte, messageToCoordinator);
-                string messageToContactEnterprise = student.FirstName + " " + student.LastName + StudentToContactEnterprise.ApplyMessage + StudentToContactEnterprise.ApplyLinkPart1 + stage.Id + '"' + "> " + stage.StageTitle   + StudentToContactEnterprise.ApplyLinkPart2; 
+                
+                string messageToContactEnterprise = String.Format(StudentToContactEnterprise.ApplyMessage, student.FirstName, student.LastName, stage.Id, stage.StageTitle);
+
                 _notificationService.SendNotificationToAllContactEnterpriseOf(stage.CompanyName, StudentToContactEnterprise.ApplyTitle, messageToContactEnterprise);
                 this.Flash("Postulation réussi", FlashEnum.Success);
+                
                 return RedirectToAction(MVC.Student.ApplyConfirmation());
             }
             else
@@ -283,9 +282,10 @@ namespace Stagio.Web.Controllers
             _applyRepository.Update(stageApply);
             
             var stage = _stageRepository.GetById(stageApply.IdStage);
-            _notificationService.SendNotificationToAllCoordinator(StudentToCoordinator.RemoveApplyTitle,
-                String.Format(StudentToCoordinator.RemoveApplyMessage, student.FirstName + " " + student.LastName, "<a href=" + "../../Stage/Details/" + stage.Id + "> " + stage.StageTitle + " </a>"));
+            string message = String.Format(StudentToCoordinator.RemoveApplyMessage, student.FirstName, student.LastName, stage.Id, stage.StageTitle);
+            _notificationService.SendNotificationToAllCoordinator(StudentToCoordinator.RemoveApplyTitle, message);
             this.Flash("Postulation retirée", FlashEnum.Warning);
+            
             return View();
         }
         [Authorize(Roles = RoleName.Student)]
