@@ -9,11 +9,6 @@ namespace Stagio.Web.Automation.PageObjects.ContactEnterprise
 {
     public class CreateStageContactEnterprisePage
     {
-        public static bool IsDisplayed
-        {
-            get { return Driver.Instance.FindElement(By.Id("create-stage")) != null; }
-        }
-
         public static void GoTo()
         {
             Navigation.ContactEnterprise.CreateStage.Select();

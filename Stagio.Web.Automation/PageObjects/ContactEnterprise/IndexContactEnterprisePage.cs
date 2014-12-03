@@ -20,9 +20,5 @@ namespace Stagio.Web.Automation.PageObjects.ContactEnterprise
             Navigation.ContactEnterprise.Index.Select();
         }
 
-        public static bool IsNotificationShowing
-        {
-            get { return Driver.Instance.FindElement(By.Id("notification-detail4")) != null; }
-        }
     }
 }

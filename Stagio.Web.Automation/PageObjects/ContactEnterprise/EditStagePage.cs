@@ -15,11 +15,6 @@ namespace Stagio.Web.Automation.PageObjects.ContactEnterprise
             Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/Stage/Edit/1");
         }
 
-        public static bool IsDisplayed
-        {
-            get { return Driver.Instance.FindElement(By.Id("edit-page")) != null; }
-        }
-
         public static void EditAStage(string newResponsableName)
         {
 
