@@ -11,6 +11,7 @@ using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
 using Stagio.Web.Module.Strings.Controller;
 using Stagio.Web.Module.Strings.Email;
+using Stagio.Web.Module.Strings.Shared;
 using Stagio.Web.Services;
 using Stagio.Web.Module;
 using Stagio.Web.ViewModels.Coordinator;
@@ -109,7 +110,7 @@ namespace Stagio.Web.Controllers
 
                     if (!ModelState.IsValid)
                     {
-                        this.Flash("Erreur sur la page", FlashEnum.Error);
+                        this.Flash(FlashMessageResources.ErrorsOnPage, FlashEnum.Error);
                         return RedirectToAction(MVC.Coordinator.InviteContactEnterprise());
                     }
 
@@ -130,7 +131,7 @@ namespace Stagio.Web.Controllers
                             messageText))
                     {
                         ModelState.AddModelError("Email", EmailResources.CantSendEmail);
-                        this.Flash("Erreur sur la page", FlashEnum.Error);
+                        this.Flash(FlashMessageResources.ErrorsOnPage, FlashEnum.Error);
                         return RedirectToAction(MVC.Coordinator.InviteContactEnterprise());
                     }
 
@@ -149,7 +150,7 @@ namespace Stagio.Web.Controllers
 
 
             }
-                this.Flash("Invitation réussi", FlashEnum.Success);
+                this.Flash(FlashMessageResources.InvitationSend, FlashEnum.Success);
                 return RedirectToAction(MVC.Coordinator.InviteContactEnterpriseConfirmation());
             }
 
@@ -202,7 +203,7 @@ namespace Stagio.Web.Controllers
 
             if (!ModelState.IsValid)
             {
-                this.Flash("Erreur sur la page", FlashEnum.Error);
+                this.Flash(FlashMessageResources.ErrorsOnPage, FlashEnum.Error);
                 return View(createdCoordinator);
             }
 
@@ -223,7 +224,7 @@ namespace Stagio.Web.Controllers
 
                     _mailler.SendEmail(createdCoordinator.Email, EmailAccountCreation.Subject, EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
 
-                    this.Flash("Création réussi", FlashEnum.Success);
+                    this.Flash(FlashMessageResources.CreateAccountSuccess, FlashEnum.Success);
                     return RedirectToAction(MVC.Coordinator.CreateConfirmation());
                 }
             }
@@ -243,7 +244,7 @@ namespace Stagio.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                this.Flash("Erreur sur la page", FlashEnum.Error);
+                this.Flash(FlashMessageResources.ErrorsOnPage, FlashEnum.Error);
                 return View(createdInvite);
             }
 
@@ -266,7 +267,7 @@ namespace Stagio.Web.Controllers
             if (!_mailler.SendEmail(createdInvite.Email, EmailCoordinatorResources.CoordinatorInviteSubject, messageText))
             {
                 ModelState.AddModelError("Email", EmailResources.CantSendEmail);
-                this.Flash("Erreur sur la page", FlashEnum.Error);
+                this.Flash(FlashMessageResources.ErrorsOnPage, FlashEnum.Error);
                 return View(createdInvite);
             }
 
@@ -276,7 +277,7 @@ namespace Stagio.Web.Controllers
                                         Email = createdInvite.Email,
                                         Used = false
                                       });
-            this.Flash("Invitation envoyée", FlashEnum.Success);
+            this.Flash(FlashMessageResources.InvitationSend, FlashEnum.Success);
             return RedirectToAction(MVC.Coordinator.InvitationSucceed());
 
         }
