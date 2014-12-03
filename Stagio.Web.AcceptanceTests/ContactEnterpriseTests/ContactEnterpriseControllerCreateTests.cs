@@ -24,7 +24,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
 
             CreateContactEnterprisePage.CreateContactEnterpriseWithoutInvitation();
 
-            LoginPage.IsDisplayed.Should().BeTrue();
+            CreateContactEnterprisePage.ConfirmationIsDisplayed.Should().BeTrue();
             
         }
 
