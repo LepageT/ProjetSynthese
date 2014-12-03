@@ -15,8 +15,12 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
         [TestMethod]
         public void edit_draft_should_return_view_with_stageViewModel_when_stageId_is_valid()
         {
+            var user = _fixture.Create<ContactEnterprise>();
             var stage = _fixture.Create<Stage>();
             stageRepository.GetById(stage.Id).Returns(stage);
+            contactEnterpriseRepository.GetById(user.Id).Returns(user);
+            httpContextService.GetUserId().Returns(user.Id);
+            stage.CompanyName = user.EnterpriseName;
             var viewModelExpected = Mapper.Map<ViewModels.Stage.Edit>(stage);
 
             var viewResult = stageController.DraftEdit(stage.Id) as ViewResult;
@@ -37,8 +41,12 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
         [TestMethod]
         public void edit_draft_post_should_update_stage_when_stageId_is_valid()
         {
+            var user = _fixture.Create<ContactEnterprise>();
             var stage = _fixture.Create<Stage>();
             stageRepository.GetById(stage.Id).Returns(stage);
+            contactEnterpriseRepository.GetById(user.Id).Returns(user);
+            httpContextService.GetUserId().Returns(user.Id);
+            stage.CompanyName = user.EnterpriseName;
             var stageViewModel = Mapper.Map<ViewModels.Stage.Edit>(stage);
             stageViewModel.ContactToName = "Bobino";
 
@@ -50,8 +58,12 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
         [TestMethod]
         public void edit_save_draft_post_should_redirect_to_index_on_success()
         {
+            var user = _fixture.Create<ContactEnterprise>();
             var stage = _fixture.Create<Stage>();
             stageRepository.GetById(stage.Id).Returns(stage);
+            contactEnterpriseRepository.GetById(user.Id).Returns(user);
+            httpContextService.GetUserId().Returns(user.Id);
+            stage.CompanyName = user.EnterpriseName;
             var stageEditPageViewModel = Mapper.Map<Stage, ViewModels.Stage.Edit>(stage);
             stageEditPageViewModel.ContactToName = "Bobino";
 
@@ -80,9 +92,11 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
         [TestMethod]
         public void edit_draft_post_should_return_http_not_found_when_stageID_is_not_valid()
         {
+            var user = _fixture.Create<ContactEnterprise>();
             var stage = _fixture.Create<ViewModels.Stage.Edit>();
             stageRepository.GetById(Arg.Any<int>()).Returns(a => null);
-
+            contactEnterpriseRepository.GetById(user.Id).Returns(user);
+            httpContextService.GetUserId().Returns(user.Id);
             var result = stageController.DraftEdit(stage, "Enregistrer");
 
             result.Should().BeOfType<HttpNotFoundResult>();
@@ -91,8 +105,12 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
         [TestMethod]
         public void edit_publish_draft_post_should_redirect_to_index_on_success()
         {
+            var user = _fixture.Create<ContactEnterprise>();
             var stage = _fixture.Create<Stage>();
             stageRepository.GetById(stage.Id).Returns(stage);
+            contactEnterpriseRepository.GetById(user.Id).Returns(user);
+            httpContextService.GetUserId().Returns(user.Id);
+            stage.CompanyName = user.EnterpriseName;
             var stageEditPageViewModel = Mapper.Map<Stage, ViewModels.Stage.Edit>(stage);
             stageEditPageViewModel.ContactToName = "Bobino";
 

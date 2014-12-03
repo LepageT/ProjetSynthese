@@ -277,6 +277,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CoordinatorToContactEnterprise.resx</DependentUpon>
     </Compile>
+    <Compile Include="Module\Strings\Shared\FlashMessageResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FlashMessageResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Module\Strings\Shared\Navigation.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -601,6 +606,10 @@
     <EmbeddedResource Include="Module\Strings\Notification\CoordinatorToContactEnterprise.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>CoordinatorToContactEnterprise.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Module\Strings\Shared\FlashMessageResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FlashMessageResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Module\Strings\Shared\Navigation.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
