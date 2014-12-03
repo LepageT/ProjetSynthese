@@ -134,6 +134,7 @@ namespace Stagio.Web.Controllers
 			public readonly string RemoveStageConfirmation = "RemoveStageConfirmation";
 			public readonly string ReactivateStageConfirmation = "ReactivateStageConfirmation";
 			public readonly string DraftList = "DraftList";
+			public readonly string Edit = "Edit";
 		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -155,6 +156,7 @@ namespace Stagio.Web.Controllers
 			public const string RemoveStageConfirmation = "RemoveStageConfirmation";
 			public const string ReactivateStageConfirmation = "ReactivateStageConfirmation";
 			public const string DraftList = "DraftList";
+			public const string Edit = "Edit";
 		}
 
 
@@ -251,6 +253,14 @@ namespace Stagio.Web.Controllers
 		{
 			public readonly string idStage = "idStage";
 		}
+		static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public ActionParamsClass_Edit EditParams { get { return s_params_Edit; } }
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public class ActionParamsClass_Edit
+		{
+			public readonly string editContactInformation = "editContactInformation";
+		}
 		static readonly ViewsClass s_views = new ViewsClass();
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public ViewsClass Views { get { return s_views; } }
@@ -269,6 +279,7 @@ namespace Stagio.Web.Controllers
                 public readonly string DetailsStudentApply = "DetailsStudentApply";
                 public readonly string DraftConfirmation = "DraftConfirmation";
                 public readonly string DraftList = "DraftList";
+                public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
                 public readonly string InviteContactEnterprise = "InviteContactEnterprise";
                 public readonly string ListStage = "ListStage";
@@ -286,6 +297,7 @@ namespace Stagio.Web.Controllers
             public readonly string DetailsStudentApply = "~/Views/ContactEnterprise/DetailsStudentApply.cshtml";
             public readonly string DraftConfirmation = "~/Views/ContactEnterprise/DraftConfirmation.cshtml";
             public readonly string DraftList = "~/Views/ContactEnterprise/DraftList.cshtml";
+            public readonly string Edit = "~/Views/ContactEnterprise/Edit.cshtml";
             public readonly string Index = "~/Views/ContactEnterprise/Index.cshtml";
             public readonly string InviteContactEnterprise = "~/Views/ContactEnterprise/InviteContactEnterprise.cshtml";
             public readonly string ListStage = "~/Views/ContactEnterprise/ListStage.cshtml";
@@ -535,6 +547,29 @@ namespace Stagio.Web.Controllers
 		{
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DraftList);
 			DraftListOverride(callInfo);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult Edit()
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
+			EditOverride(callInfo);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Stagio.Web.ViewModels.ContactEnterprise.Edit editContactInformation);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult Edit(Stagio.Web.ViewModels.ContactEnterprise.Edit editContactInformation)
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "editContactInformation", editContactInformation);
+			EditOverride(callInfo, editContactInformation);
 			return callInfo;
 		}
 

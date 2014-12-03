@@ -28,7 +28,7 @@ namespace Stagio.Web.AcceptanceTests
         [TestInitialize]
         public void Initialize()
         {
-            _fixture = new Fixture();
+            _fixture = new Fixture();//??fixture dans les acceptances tests??
             _fixture.Customizations.Add(new VirtualMembersOmitter());
 
             Driver.Initialize();
