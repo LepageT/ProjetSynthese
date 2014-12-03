@@ -1,14 +1,20 @@
-﻿using FluentAssertions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium;
 using Stagio.Web.Automation.PageObjects;
 using Stagio.Web.Automation.PageObjects.ContactEnterprise;
+using Stagio.Domain.Entities;
 
 namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
 {
     [TestClass]
     public class ContactEnterpriseInviteTests : BaseTests
     {
-
         [TestMethod]
         public void contact_enterprise_should_not_be_able_to_access_invite_another_contact_page_if_not_logged_in()
         {

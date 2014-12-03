@@ -19,16 +19,18 @@ namespace Stagio.Web.Controllers
     public partial class StageController : Controller
     {
         private readonly IEntityRepository<Stage> _stageRepository;
-        private readonly IHttpContextService _httpContext;
         private readonly INotificationService _notificationService;
         private readonly IEntityRepository<ContactEnterprise> _contactEnterpriseRepository; 
+        private readonly IHttpContextService _httpContextService;
+        private readonly IEntityRepository<Coordinator> _coordinatorRepository;
 
-        public StageController(IEntityRepository<Stage> stageRepository, IHttpContextService httpContextService, IEntityRepository<ContactEnterprise> contactEnterpriseRepository, INotificationService notificationService )
+        public StageController(IEntityRepository<Stage> stageRepository, INotificationService notificationService, IEntityRepository<ContactEnterprise> contactEnterpriseRepository, IHttpContextService httpContextService, IEntityRepository<Coordinator> coordinatorRepository)
         {
             _stageRepository = stageRepository;
-            _httpContext = httpContextService;
-            _contactEnterpriseRepository = contactEnterpriseRepository;
             _notificationService = notificationService;
+            _contactEnterpriseRepository = contactEnterpriseRepository;
+            _httpContextService = httpContextService;
+            _coordinatorRepository = coordinatorRepository;
         }
 
         [Authorize(Roles = RoleName.Coordinator)]
@@ -96,8 +98,12 @@ namespace Stagio.Web.Controllers
             }
             else if (command.Equals("Refuser"))
             {
+                var userId = _httpContextService.GetUserId();
+                var coordinator = _coordinatorRepository.GetById(userId);
+                string messageEdit = CoordinatorToContactEnterprise.StageRefusedMessage;
+                string messageContact = " Nom du coordonateur: " + coordinator.FirstName + " " + coordinator.LastName + " Email: " + coordinator.Email;
                 _notificationService.SendNotificationToAllContactEnterpriseOf(stage.CompanyName,
-                    CoordinatorToContactEnterprise.StageRefusedTitle, CoordinatorToContactEnterprise.StageRefusedMessage);
+                    CoordinatorToContactEnterprise.StageRefusedTitle, messageEdit + messageContact);
                 stage.Status = StageStatus.Refused;
             }
             else if (command.Equals("Retirer"))
@@ -115,7 +121,7 @@ namespace Stagio.Web.Controllers
 
             if (stage != null)
             {
-                var user = _contactEnterpriseRepository.GetById(_httpContext.GetUserId());
+                var user = _contactEnterpriseRepository.GetById(_httpContextService.GetUserId());
 
                 if (stage.CompanyName != user.EnterpriseName)
                 {
@@ -135,7 +141,7 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult Edit(ViewModels.Stage.Edit editStageViewModel)
         {
             var stage = _stageRepository.GetById(editStageViewModel.Id);
-            var user = _contactEnterpriseRepository.GetById(_httpContext.GetUserId());
+            var user = _contactEnterpriseRepository.GetById(_httpContextService.GetUserId());
             
             
             if (stage == null)
@@ -178,7 +184,7 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult DraftEdit(int id)
         {
             var stage = _stageRepository.GetById(id);
-            var user = _contactEnterpriseRepository.GetById(_httpContext.GetUserId());
+            var user = _contactEnterpriseRepository.GetById(_httpContextService.GetUserId());
            
             if (stage != null)
             {
@@ -201,7 +207,7 @@ namespace Stagio.Web.Controllers
             if (buttonClick.Equals("Enregistrer"))
             {
                 var stage = _stageRepository.GetById(draftStageViewModel.Id);
-                var user = _contactEnterpriseRepository.GetById(_httpContext.GetUserId());
+                var user = _contactEnterpriseRepository.GetById(_httpContextService.GetUserId());
                 if (stage == null)
                 {
                     
@@ -241,7 +247,7 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult DraftDelete(int id)
         {
             var stage = _stageRepository.GetById(id);
-            var user = _contactEnterpriseRepository.GetById(_httpContext.GetUserId());
+            var user = _contactEnterpriseRepository.GetById(_httpContextService.GetUserId());
              if (stage == null)
             {
                 return HttpNotFound();

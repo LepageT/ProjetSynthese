@@ -9,12 +9,6 @@ namespace Stagio.Web.Automation.PageObjects.ContactEnterprise
 {
     public class CreateContactEnterprisePage
     {
-        public static bool IsDisplayed
-        {
-            get { return Driver.Instance.FindElement(By.Id("create-page")) != null; }
-        }
-
-
         public static void GoToByUrl()
         {
             Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/ContactEnterprise/Create");

@@ -9,7 +9,6 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
     [TestClass]
     public class CoordinatorControllerDetailsApplyStudentTests : BaseTests
     {
-
         [TestMethod]
         public void contactEnterprise_should_not_download_files_isfiles_not_valid()
         {

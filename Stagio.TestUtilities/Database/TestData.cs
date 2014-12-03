@@ -9,23 +9,23 @@ namespace Stagio.TestUtilities.Database
     public class TestData
     {
         #region Coordinator1
-
-        public static ApplicationUser coordinator1
+        static public Coordinator coordinator1
         {
             get
             {
-                var user = new ApplicationUser()
+                var user = new Coordinator()
                 {
 
                     Roles = new List<UserRole>()
-                    {
-                        new UserRole() {RoleName = RoleName.Coordinator},
-                    },
+                   {
+                       new UserRole() {RoleName = RoleName.Coordinator},
+                   },
                     Password = PasswordHash.CreateHash("test4test1"),
                     Email = "coordonnateur@stagio.com",
                     FirstName = "Jean-Dominic",
                     LastName = "Rousseau",
-                    Active = true
+                    Active = true,
+                    Id = 4
                 };
 
                 user.UserName = user.Email;
@@ -44,9 +44,9 @@ namespace Stagio.TestUtilities.Database
                 var coordonnate = new Coordinator()
                 {
                     Roles = new List<UserRole>()
-                    {
-                        new UserRole() {RoleName = RoleName.Coordinator},
-                    },
+                   {
+                       new UserRole() {RoleName = RoleName.Coordinator},
+                   },
                     Password = PasswordHash.CreateHash("123456QW"),
                     Email = "admin@admin.com",
                     FirstName = "Nathalie",
@@ -70,9 +70,9 @@ namespace Stagio.TestUtilities.Database
                 var student = new Student()
                 {
                     Roles = new List<UserRole>()
-                    {
-                        new UserRole() {RoleName = RoleName.Student}
-                    },
+                             {
+                                 new UserRole() {RoleName = RoleName.Student}
+                             },
                     FirstName = "Quentin",
                     LastName = "Tarantino",
                     Telephone = "123-456-7890",
@@ -81,7 +81,7 @@ namespace Stagio.TestUtilities.Database
                     Active = true,
                     Id = 1
                 };
-
+                
                 student.UserName = student.Matricule.ToString();
                 return student;
             }
@@ -98,9 +98,9 @@ namespace Stagio.TestUtilities.Database
                 var student = new Student()
                 {
                     Roles = new List<UserRole>()
-                    {
-                        new UserRole() {RoleName = RoleName.Student}
-                    },
+                             {
+                                 new UserRole() {RoleName = RoleName.Student}
+                             },
                     FirstName = "Christopher",
                     LastName = "Nolan",
                     Telephone = "123-456-7890",
@@ -126,9 +126,9 @@ namespace Stagio.TestUtilities.Database
                 var student = new Student()
                 {
                     Roles = new List<UserRole>()
-                    {
-                        new UserRole() {RoleName = RoleName.Student}
-                    },
+                             {
+                                 new UserRole() {RoleName = RoleName.Student}
+                             },
                     FirstName = "Denis",
                     LastName = "Lebrun",
                     Matricule = 1031739,
@@ -141,7 +141,7 @@ namespace Stagio.TestUtilities.Database
 
         #endregion
 
-
+       
         #region Invitation 1
 
         public static Invitation invitation1
@@ -170,9 +170,9 @@ namespace Stagio.TestUtilities.Database
                 var enterprise = new ContactEnterprise()
                 {
                     Roles = new List<UserRole>()
-                    {
-                        new UserRole() {RoleName = RoleName.ContactEnterprise}
-                    },
+                             {
+                                 new UserRole() {RoleName = RoleName.ContactEnterprise}
+                             },
                     EnterpriseName = "L'industrielle Alliance",
                     FirstName = "Quentin",
                     LastName = "Tarantino",
@@ -197,16 +197,17 @@ namespace Stagio.TestUtilities.Database
                 var enterprise = new ContactEnterprise()
                 {
                     Roles = new List<UserRole>()
-                    {
-                        new UserRole() {RoleName = RoleName.ContactEnterprise}
-                    },
+                             {
+                                 new UserRole() {RoleName = RoleName.ContactEnterprise}
+                             },
                     EnterpriseName = "MI6",
                     FirstName = "James",
                     LastName = "Bond",
                     Telephone = "007-007-7000",
                     Email = "bond.james.007@hotmail.com",
                     Password = PasswordHash.CreateHash("qwerty12"),
-                    Active = true
+                    Active = true,
+                    Id = 6
                 };
                 enterprise.UserName = enterprise.Email;
                 return enterprise;
@@ -298,7 +299,7 @@ namespace Stagio.TestUtilities.Database
                     ResponsableToPoste = null,
                     ResponsableToEmail = "Denyse.Gilbert",
                     StageDescription = "Notre centre dévoloppe des applications pédagogiques multimédias pour" +
-                                       " l'enseignement et l'apprentissage dans le domaine dede la musique.",
+                                        " l'enseignement et l'apprentissage dans le domaine dede la musique.",
                     EnvironnementDescription = "Poste de travail Windows 8.1, Visual Studio 2013, SQL Server",
                     StageTitle = "Programmeur C++",
                     NbrStagiaire = 2,
@@ -333,13 +334,13 @@ namespace Stagio.TestUtilities.Database
                     ResponsableToPoste = null,
                     ResponsableToEmail = "Denyse.Gilbert",
                     StageDescription = "Notre centre de dévoloppe des applications pédagogiques multimédias pour" +
-                                       " l'enseignement et l'apprentissage dans le domaine des sciences de la santé au niveau" +
-                                       " universitaire. Nous avons remporté le prix du Ministre de l'éducation pour notre application" +
-                                       " pédagogique en cardiopédiatrie ainsi que de nombreux prix d'excelloence en développement " +
-                                       "d'applications pédagogiques multimédias",
+                                        " l'enseignement et l'apprentissage dans le domaine des sciences de la santé au niveau" +
+                                        " universitaire. Nous avons remporté le prix du Ministre de l'éducation pour notre application" +
+                                        " pédagogique en cardiopédiatrie ainsi que de nombreux prix d'excelloence en développement " +
+                                        "d'applications pédagogiques multimédias",
                     EnvironnementDescription =
                         "asdkjlh wef yuijshd jefy wfu scj hldsjyt wu jhlgyaej hhj uiytolral  aluir" +
-                        " laksdjh z;l sdutypa fhhjyla GFHELA /n kkhjgdkhjfL GFOIA /n saut de ligne",
+                                                " laksdjh z;l sdutypa fhhjyla GFHELA /n kkhjgdkhjfL GFOIA /n saut de ligne",
                     StageTitle = "patate",
                     NbrStagiaire = 2,
                     StagiaireIfKnew = "",
@@ -615,25 +616,64 @@ namespace Stagio.TestUtilities.Database
 
         #endregion
 
-        #region Miscs
 
-        public static Misc miscs
+        #region StageAgreementSigned
+
+        static public StageAgreement stageAgreementSigned
         {
             get
             {
-                var miscs = new Misc()
+                var stageAgreement = new StageAgreement()
                 {
-                    StartApplyDate = new DateTime(2014, 10, 15).ToString(),
-                    EndApplyDate = new DateTime(2014, 10, 15).ToString()
+                    StudentHasSigned = true,
+                    DateStudentSigned = "2014, 10, 15",
+                    IdStudentSigned = 1,
+                    CoordinatorHasSigned = true,
+                    IdCoordinatorSigned = 4,
+                    DateCoordinatorSigned = "2014, 10, 15",
+                    ContactEnterpriseHasSigned = true,
+                    IdContactEnterpriseSigned = 6,
+                    DateContactEnterpriseSigned = "2014, 10, 15",
+                    IdStage = 1
+                    
                 };
 
-                return miscs;
+                return stageAgreement;
             }
         }
 
         #endregion
+        #region StageAgreementNotSigned
 
+        static public StageAgreement stageAgreementNotSigned
+        {
+            get
+            {
+                var stageAgreement = new StageAgreement()
+                {
+                    StudentHasSigned = false,
+                    DateStudentSigned = "2014, 10, 15",
+                    IdStudentSigned = 1,
+                    CoordinatorHasSigned = false,
+                    IdCoordinatorSigned = 4,
+                    DateCoordinatorSigned = "2014, 10, 15",
+                    ContactEnterpriseHasSigned = false,
+                    IdContactEnterpriseSigned = 6,
+                    DateContactEnterpriseSigned = "2014, 10, 15",
+                    IdStage = 1
+
+                };
+
+                return stageAgreement;
+            }
+        }
+
+        #endregion
     }
+
+        #endregion
+
+}
 }
 
 

@@ -14,6 +14,7 @@ namespace Stagio.TestUtilities.Database
         private EfEntityRepository<Apply> _applyRepository;
         private EfEntityRepository<InvitationContactEnterprise> _invitationContactEnterpriseRepository;
         private EfEntityRepository<Notification> _notificationRepository;
+        private EfEntityRepository<StageAgreement> _stageAgreementRepository; 
         private EfEntityRepository<Misc> _miscRepository;
 
         public DataBaseTestHelper()
@@ -27,6 +28,7 @@ namespace Stagio.TestUtilities.Database
             _applyRepository = new EfEntityRepository<Apply>();
             _invitationContactEnterpriseRepository = new EfEntityRepository<InvitationContactEnterprise>();
             _notificationRepository = new EfEntityRepository<Notification>();
+            _stageAgreementRepository = new EfEntityRepository<StageAgreement>();
             _miscRepository = new EfEntityRepository<Misc>();
         }
 
@@ -43,13 +45,7 @@ namespace Stagio.TestUtilities.Database
             addNotificationContactEnterprise();
             addNotificationCoordinator();
             addDraft();
-            //addMiscs();
-        }
-
-        private void addMiscs()
-        {
-            var misc = TestData.miscs;
-            _miscRepository.Add(misc);
+            addStageAgreement();
         }
         private void addApplies()
         {
@@ -88,8 +84,8 @@ namespace Stagio.TestUtilities.Database
         {
             var coordinator1 = TestData.coordinator1;
             var coordinator2 = TestData.coordinator2;
-            _userRepository.Add(coordinator1);
-            _userRepository.Add(coordinator2);
+            _coordonnatorRepository.Add(coordinator1);
+            _coordonnatorRepository.Add(coordinator2);
         }
 
         private void addInvitation()
@@ -132,6 +128,12 @@ namespace Stagio.TestUtilities.Database
         private void addDraft()
         {
             _stageRepository.Add(TestData.draft1);
+        }
+
+        private void addStageAgreement()
+        {
+            _stageAgreementRepository.Add(TestData.stageAgreementNotSigned);
+            _stageAgreementRepository.Add(TestData.stageAgreementSigned);
         }
     }
 }

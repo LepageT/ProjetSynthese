@@ -9,10 +9,6 @@ namespace Stagio.Web.Automation.PageObjects.Coordinator
 {
     public class StudentApplyListCoordinatorPage
     {
-        public static bool IsDisplayed
-        {
-            get { return Driver.Instance.FindElement(By.Id("studentApply-list")) != null; }
-        }
 
         public static void GoTo()
         {

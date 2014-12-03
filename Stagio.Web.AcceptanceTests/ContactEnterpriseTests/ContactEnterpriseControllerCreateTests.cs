@@ -7,7 +7,6 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
     [TestClass]
     public class ContactEnterpriseControllerCreateTests : BaseTests
     {
-
         [TestMethod]
         public void contact_enterprise_create_should_create_account()
         {

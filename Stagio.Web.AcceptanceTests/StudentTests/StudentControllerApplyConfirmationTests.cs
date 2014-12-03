@@ -17,14 +17,6 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
             ApplyStudentPage.GoToByUrl();
             ApplyStudentPage.SelectFiles("file1.pdf", "file2.pdf");
 
-            ConfirmationUploadCVLetterPage.ClickFile();
-            //Ce test ne peut fonctionner que si FireFox n'ouvre pas de boite de dialogue.
-            //Voir comment indiquer à FireFox de ne pas ouvrir de boite de dialogue avec l'utlisation d'un profile
-            //dans les méthodes Initialize et CreateSeleniumProfile de la classe Driver (dossier Selenium du projet Web.Automation)
-
-            //En cas d'erreur, une page autre que DownloadIndex sera affichée. 
-            //Donc s'il n'y a pas d'erreur, la page affichée est DownloadIndex.
-
             ConfirmationUploadCVLetterPage.IsDisplayed.Should().BeTrue();
         }
 

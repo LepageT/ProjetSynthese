@@ -9,17 +9,6 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
     public class ContactEnterpriseListStudentApplyTests : BaseTests
     {
         [TestMethod]
-        public void contactEnterprise_can_see_a_list_of_student_for_stage()
-        {
-            LoginPage.GoToByUrl();
-            LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
-            StudentApplyContactEnterprisePage.GoToByUrl();
-
-            StudentApplyContactEnterprisePage.IsDisplayed.Should().BeTrue();
-            
-        }
-
-        [TestMethod]
         public void contactEnterprise_can_click_on_a_student()
         {
             LoginPage.GoToByUrl();
