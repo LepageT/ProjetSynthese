@@ -263,7 +263,7 @@ namespace Stagio.Web.Controllers
 
             //Sending invitation with the Mailler class
             String messageText = EmailEnterpriseResources.InviteCoworker;
-            String invitationUrl = EmailEnterpriseResources.InviteLinkCoworker + token + '"' + EmailEnterpriseResources.EndLink + token + "</a>";
+            String invitationUrl = String.Format(EmailEnterpriseResources.InviteLinkCoworker, token);
 
             messageText += invitationUrl;
 
@@ -537,7 +537,7 @@ namespace Stagio.Web.Controllers
 
             if (!ModelState.IsValid)
             {
-                this.Flash("Temp", FlashEnum.Error);
+                this.Flash(FlashMessageResources.ErrorsOnPage, FlashEnum.Error);
                 return View(editContactInformation);
             }
 
@@ -553,7 +553,7 @@ namespace Stagio.Web.Controllers
             Mapper.Map(editContactInformation, contact);
 
             _contactEnterpriseRepository.Update(contact);
-            this.Flash("Modification réussie", FlashEnum.Success);
+            this.Flash(FlashMessageResources.EditSuccess, FlashEnum.Success);
 
             return RedirectToAction(MVC.ContactEnterprise.Index());
         }

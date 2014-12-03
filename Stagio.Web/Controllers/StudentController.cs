@@ -288,7 +288,7 @@ namespace Stagio.Web.Controllers
             var stage = _stageRepository.GetById(stageApply.IdStage);
             string message = String.Format(StudentToCoordinator.RemoveApplyMessage, student.FirstName, student.LastName, stage.Id, stage.StageTitle);
             _notificationService.SendNotificationToAllCoordinator(StudentToCoordinator.RemoveApplyTitle, message);
-            this.Flash("Postulation retirée", FlashEnum.Warning);
+            this.Flash(FlashMessageResources.ApplyDelete, FlashEnum.Warning);
             
             return View();
         }

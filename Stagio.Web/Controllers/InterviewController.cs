@@ -161,8 +161,7 @@ namespace Stagio.Web.Controllers
                     {
                         if (stage.Id == interview.StageId)
                         {
-                            interviewEditPageViewModel.StageTitleAndCompagny = stage.StageTitle.ToString() + " - " +
-                                                 stage.CompanyName.ToString();
+                            interviewEditPageViewModel.StageTitleAndCompagny = stage.StageTitle + " - " + stage.CompanyName;
                         }
                     }
                     return View(interviewEditPageViewModel);

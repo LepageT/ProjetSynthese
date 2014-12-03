@@ -115,7 +115,7 @@ namespace Stagio.Web.Controllers
                     }
 
                     String messageText = EmailEnterpriseResources.InviteMessageBody;
-                    String invitationUrl = EmailEnterpriseResources.InviteLink + token + EmailEnterpriseResources.EndLink + token + "</a>";
+                    String invitationUrl = String.Format(EmailEnterpriseResources.InviteLink, token);
 
                     messageText += invitationUrl;
 
@@ -254,7 +254,7 @@ namespace Stagio.Web.Controllers
 
             //Sending invitation with the Mailler class
             String messageText = EmailCoordinatorResources.CoordinatorInviteMessageBody;
-            String invitationUrl = EmailCoordinatorResources.CoordinatorInviteLink + token + "\">jenkins.cegep-ste-foy.qc.ca/thomarelau/Coordinator/Create?token=" + token + "</a>";
+            String invitationUrl = String.Format(EmailCoordinatorResources.CoordinatorInviteLink, token);
 
             messageText += invitationUrl;
 

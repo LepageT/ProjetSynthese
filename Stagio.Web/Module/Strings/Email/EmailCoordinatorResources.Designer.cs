@@ -70,7 +70,7 @@ namespace Stagio.Web.Module.Strings.Email {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;a href =&quot;http://jenkins.cegep-ste-foy.qc.ca/thomarelau/Coordinator/Create?token=.
+        ///   Looks up a localized string similar to &lt;a href =&quot;http://jenkins.cegep-ste-foy.qc.ca/thomarelau/Coordinator/Create?token={0}&quot;&gt;jenkins.cegep-ste-foy.qc.ca/thomarelau/Coordinator/Create?token={0}&lt;/a&gt;.
         /// </summary>
         public static string CoordinatorInviteLink {
             get {
