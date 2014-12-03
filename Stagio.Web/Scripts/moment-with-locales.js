@@ -795,7 +795,7 @@
             }
         },
 
-        _months : 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
+        _months : 'Janvier_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
         months : function (m) {
             return this._months[m.month()];
         },
@@ -4409,8 +4409,8 @@
 (function (factory) {
     factory(moment);
 }(function (moment) {
-    return moment.defineLocale('en-au', {
-        months : "January_February_March_April_May_June_July_August_September_October_November_December".split("_"),
+    return moment.defineLocale('fr-FR', {
+        months : "Janvier_February_March_April_May_June_July_August_September_October_November_December".split("_"),
         monthsShort : "Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec".split("_"),
         weekdays : "Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"),
         weekdaysShort : "Sun_Mon_Tue_Wed_Thu_Fri_Sat".split("_"),
@@ -4467,7 +4467,7 @@
     factory(moment);
 }(function (moment) {
     return moment.defineLocale('en-ca', {
-        months : "January_February_March_April_May_June_July_August_September_October_November_December".split("_"),
+        months : "Janvier_February_March_April_May_June_July_August_September_October_November_December".split("_"),
         monthsShort : "Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec".split("_"),
         weekdays : "Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"),
         weekdaysShort : "Sun_Mon_Tue_Wed_Thu_Fri_Sat".split("_"),
@@ -4520,7 +4520,7 @@
     factory(moment);
 }(function (moment) {
     return moment.defineLocale('en-gb', {
-        months : "January_February_March_April_May_June_July_August_September_October_November_December".split("_"),
+        months : "Janvier_February_March_April_May_June_July_August_September_October_November_December".split("_"),
         monthsShort : "Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec".split("_"),
         weekdays : "Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"),
         weekdaysShort : "Sun_Mon_Tue_Wed_Thu_Fri_Sat".split("_"),

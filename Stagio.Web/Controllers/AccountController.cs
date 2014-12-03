@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using AutoMapper;
 using Microsoft.AspNet.Identity;
+using Ninject.Infrastructure.Disposal;
 using Stagio.DataLayer;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
@@ -21,13 +22,17 @@ namespace Stagio.Web.Controllers
         private readonly IHttpContextService _httpContext;
         private readonly IAccountService _accountService;
         private readonly IEntityRepository<ApplicationUser> _accountRepository;
+        private readonly IEntityRepository<StageAgreement> _stageAgreementRepository;
+        private readonly IEntityRepository<Stage> _stageRepository;
 
         public AccountController(IHttpContextService httpContext,
-            IAccountService accountService, IEntityRepository<ApplicationUser> accountRepository)
+            IAccountService accountService, IEntityRepository<ApplicationUser> accountRepository, IEntityRepository<StageAgreement> stageAgreemenrRepository, IEntityRepository<Stage> stageRepository  )
         {
             _accountRepository = accountRepository;
             _httpContext = httpContext;
             _accountService = accountService;
+            _stageAgreementRepository = stageAgreemenrRepository;
+            _stageRepository = stageRepository;
         }
 
         public virtual ActionResult Login()
@@ -102,6 +107,94 @@ namespace Stagio.Web.Controllers
             }
 
             return View(details);
+        }
+
+        public virtual ActionResult SignStageAgreement(int idStageAgreement)
+        {
+            var stageAgreement = _stageAgreementRepository.GetById(idStageAgreement);
+            var stage = _stageRepository.GetById(stageAgreement.IdStage);
+
+            if (stageAgreement != null)
+            {
+                var stageAgreementEditPageViewModel = Mapper.Map<SignStageAgreement>(stageAgreement);
+                stageAgreementEditPageViewModel.CompanyName = stage.CompanyName;
+                stageAgreementEditPageViewModel.Adresse = stage.Adresse;
+                stageAgreementEditPageViewModel.ResponsableToEmail = stage.ResponsableToEmail;
+                stageAgreementEditPageViewModel.ResponsableToName = stage.ResponsableToName;
+                stageAgreementEditPageViewModel.ResponsableToPhone = stage.ResponsableToPhone;
+                stageAgreementEditPageViewModel.ResponsableToTitle = stage.ResponsableToTitle;
+                stageAgreementEditPageViewModel.ResponsableToPoste = stage.ResponsableToPoste;
+                stageAgreementEditPageViewModel.StudentName = _accountRepository.GetById(stageAgreement.IdStudentSigned).FirstName + " " + _accountRepository.GetById(stageAgreement.IdStudentSigned).LastName;
+                stageAgreementEditPageViewModel.Matricule =
+                        Convert.ToInt32(_accountRepository.GetById(stageAgreement.IdStudentSigned).UserName);
+                stageAgreementEditPageViewModel.CoordinatorName = _accountRepository.GetById(stageAgreement.IdCoordinatorSigned).FirstName + " " + _accountRepository.GetById(stageAgreement.IdCoordinatorSigned).LastName;
+                stageAgreementEditPageViewModel.CoordinatorPhone =
+                    _accountRepository.GetById(stageAgreement.IdCoordinatorSigned).Telephone;
+                stageAgreementEditPageViewModel.CoordinatorEmail =
+                  _accountRepository.GetById(stageAgreement.IdCoordinatorSigned).Email;
+                stageAgreementEditPageViewModel.CoordinatorPoste =
+                  _accountRepository.GetById(stageAgreement.IdCoordinatorSigned).Poste;
+                
+                return View(stageAgreementEditPageViewModel);
+            }
+            return HttpNotFound();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public virtual ActionResult SignStageAgreement(SignStageAgreement signStageAgreementViewModel)
+        {
+            var stageAgreement = _stageAgreementRepository.GetById(signStageAgreementViewModel.Id);
+            var user = _accountRepository.GetById(_httpContext.GetUserId());
+            if (!ModelState.IsValid)
+            {
+                return View(stageAgreement.Id);
+            }
+
+            if (!stageAgreement.StudentHasSigned && signStageAgreementViewModel.StudentSignature != null)
+            {
+                if(_accountService.HashPassword(signStageAgreementViewModel.StudentSignature) == user.Password )
+                {
+                    signStageAgreementViewModel.DateStudentSigned = DateTime.Now.ToShortDateString();
+                    signStageAgreementViewModel.StudentHasSigned = true; 
+                }
+                else
+                {
+                    return View(stageAgreement.Id);
+                }
+            }
+
+            if (!stageAgreement.CoordinatorHasSigned && signStageAgreementViewModel.CoordinatorSignature != null)
+            {
+                if (_accountService.HashPassword(signStageAgreementViewModel.CoordinatorSignature) == user.Password)
+                {
+                    signStageAgreementViewModel.DateCoordinatorSigned = DateTime.Now.ToShortDateString();
+                    signStageAgreementViewModel.CoordinatorHasSigned = true;
+                }
+                else
+                {
+                    return View(stageAgreement.Id);
+                }
+            }
+
+            if (!stageAgreement.ContactEnterpriseHasSigned && signStageAgreementViewModel.ContactEnterpriseSignature != null)
+            {
+                if (_accountService.HashPassword(signStageAgreementViewModel.ContactEnterpriseSignature) == user.Password)
+                {
+                    signStageAgreementViewModel.DateContactEnterpriseSigned = DateTime.Now.ToShortDateString();
+                    signStageAgreementViewModel.ContactEnterpriseHasSigned = true;
+                }
+                else
+                {
+                    return View(stageAgreement.Id);
+                }
+            }
+
+            Mapper.Map(signStageAgreementViewModel, stageAgreement);
+
+            _stageAgreementRepository.Update(stageAgreement);
+
+            return RedirectToAction(MVC.Home.Index());
         }
     }
 

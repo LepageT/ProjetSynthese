@@ -158,13 +158,14 @@ namespace Stagio.Web.Controllers
            _stageRepository.Update(stage);
 
                 string message = "L'entreprise " + " " + stage.CompanyName + " " +
-                                 ContactEntrepriseToCoordinator.EditStageMessage + " " + stage.StageTitle + " " +
-                                 ContactEntrepriseToCoordinator.NewStageLink + editStageViewModel.Id + '"' +
+                                 ContactEntrepriseToCoordinator.EditStageMessage +
+                                 ContactEntrepriseToCoordinator.NewStageLink + editStageViewModel.Id + '"'+ "> " + stage.StageTitle + " " +
                                  ContactEntrepriseToCoordinator.NewStageEndLink;
                 _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.EditStageTitle,
                     message);
                 string messageToStudent = stage.CompanyName + ContactEnterpriseToStudent.EditStageMessage +
-                                          stage.StageTitle;
+                                          ContactEntrepriseToCoordinator.NewStageLink + editStageViewModel.Id + '"' + "> " + stage.StageTitle + " " +
+                                 ContactEntrepriseToCoordinator.NewStageEndLink;
             _notificationService.SendNotificationToAllStudent(ContactEnterpriseToStudent.EditStageTitle,
                 messageToStudent);
 

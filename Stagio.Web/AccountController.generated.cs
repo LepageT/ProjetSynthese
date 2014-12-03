@@ -60,6 +60,12 @@ namespace Stagio.Web.Controllers
 		{
 			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
 		}
+		[NonAction]
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public virtual System.Web.Mvc.ActionResult SignStageAgreement()
+		{
+			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SignStageAgreement);
+		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public AccountController Actions { get { return MVC.Account; } }
@@ -79,6 +85,7 @@ namespace Stagio.Web.Controllers
 			public readonly string Login = "Login";
 			public readonly string Logout = "Logout";
 			public readonly string Details = "Details";
+			public readonly string SignStageAgreement = "SignStageAgreement";
 		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -87,6 +94,7 @@ namespace Stagio.Web.Controllers
 			public const string Login = "Login";
 			public const string Logout = "Logout";
 			public const string Details = "Details";
+			public const string SignStageAgreement = "SignStageAgreement";
 		}
 
 
@@ -106,6 +114,15 @@ namespace Stagio.Web.Controllers
 		{
 			public readonly string id = "id";
 		}
+		static readonly ActionParamsClass_SignStageAgreement s_params_SignStageAgreement = new ActionParamsClass_SignStageAgreement();
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public ActionParamsClass_SignStageAgreement SignStageAgreementParams { get { return s_params_SignStageAgreement; } }
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public class ActionParamsClass_SignStageAgreement
+		{
+			public readonly string idStageAgreement = "idStageAgreement";
+			public readonly string signStageAgreementViewModel = "signStageAgreementViewModel";
+		}
 		static readonly ViewsClass s_views = new ViewsClass();
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public ViewsClass Views { get { return s_views; } }
@@ -118,9 +135,11 @@ namespace Stagio.Web.Controllers
             {
                 public readonly string Details = "Details";
                 public readonly string Login = "Login";
+                public readonly string SignStageAgreement = "SignStageAgreement";
             }
             public readonly string Details = "~/Views/Account/Details.cshtml";
             public readonly string Login = "~/Views/Account/Login.cshtml";
+            public readonly string SignStageAgreement = "~/Views/Account/SignStageAgreement.cshtml";
 		}
 	}
 
@@ -172,6 +191,30 @@ namespace Stagio.Web.Controllers
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
 			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
 			DetailsOverride(callInfo, id);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void SignStageAgreementOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int idStageAgreement);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult SignStageAgreement(int idStageAgreement)
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SignStageAgreement);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "idStageAgreement", idStageAgreement);
+			SignStageAgreementOverride(callInfo, idStageAgreement);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void SignStageAgreementOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Stagio.Web.ViewModels.Account.SignStageAgreement signStageAgreementViewModel);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult SignStageAgreement(Stagio.Web.ViewModels.Account.SignStageAgreement signStageAgreementViewModel)
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SignStageAgreement);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "signStageAgreementViewModel", signStageAgreementViewModel);
+			SignStageAgreementOverride(callInfo, signStageAgreementViewModel);
 			return callInfo;
 		}
 

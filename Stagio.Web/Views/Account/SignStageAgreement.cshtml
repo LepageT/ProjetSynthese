@@ -1,0 +1,481 @@
+﻿@using System.Data.Entity.ModelConfiguration.Conventions
+@model Stagio.Web.ViewModels.Account.SignStageAgreement
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>SignStageAgreement</title>
+</head>
+
+<body>
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-signin", role = "form" }))
+    {
+
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id)
+        <div class="form-horizontal">
+            <h2>Convention de stage</h2>
+            <h4>Engagement</h4>
+            <hr />
+            @Html.ValidationSummary(true)
+
+            @if (@User.IsInRole("Contact entreprise"))
+            {
+                <div class="row">
+
+                    @Html.LabelFor(model => model.DateStageStart, new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.DateStageStart, new { htmlAttributes = new { @class = "form-control", @type = "text", @id = "datetimepickerDebutStage" } })
+                        @Html.ValidationMessageFor(model => model.DateStageStart)
+                    </div>
+
+
+                    @Html.LabelFor(model => model.DateStageEnd, new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.DateStageEnd, new { htmlAttributes = new { @class = "form-control", @type = "text", @id = "datetimepickerFinStage" } })
+                        @Html.ValidationMessageFor(model => model.DateStageEnd)
+                    </div>
+
+                </div>
+            }
+            else
+            {
+                <div class="row">
+
+                    @Html.LabelFor(model => model.DateStageStart, new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        @Html.DisplayFor(model => model.DateStageStart)
+                        @Html.ValidationMessageFor(model => model.DateStageStart)
+                    </div>
+
+
+                    @Html.LabelFor(model => model.DateStageEnd, new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        @Html.DisplayFor(model => model.DateStageEnd)
+                        @Html.ValidationMessageFor(model => model.DateStageEnd)
+                    </div>
+
+                </div>
+            }
+
+            <hr />
+
+            <h2>Engagement de l'entreprise</h2>
+
+            @if (@User.IsInRole("Contact entreprise"))
+            {
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CompanyName, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DisplayFor(model => model.CompanyName)
+                        @Html.ValidationMessageFor(model => model.CompanyName)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Adresse, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Adresse)
+                        @Html.ValidationMessageFor(model => model.Adresse)
+                    </div>
+                </div>
+                <div class="row">
+                    @Html.LabelFor(model => model.ResponsableToName, new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.ResponsableToName)
+                        @Html.ValidationMessageFor(model => model.ResponsableToName)
+                    </div>
+                    @Html.LabelFor(model => model.ResponsableToTitle, new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.ResponsableToTitle)
+                        @Html.ValidationMessageFor(model => model.ResponsableToTitle)
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    @Html.LabelFor(model => model.ResponsableToEmail, new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.ResponsableToEmail)
+                        @Html.ValidationMessageFor(model => model.ResponsableToEmail)
+                    </div>
+                    @Html.LabelFor(model => model.ResponsableToPhone, new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.ResponsableToPhone)
+                        @Html.ValidationMessageFor(model => model.ResponsableToPhone)
+                    </div>
+                    @Html.LabelFor(model => model.ResponsableToPoste, new { @class = "control-label col-md-2" })
+                    <div class="col-md-1">
+                        @Html.EditorFor(model => model.ResponsableToPoste)
+                        @Html.ValidationMessageFor(model => model.ResponsableToPoste)
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Renumeration, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Renumeration)
+                        @Html.ValidationMessageFor(model => model.Renumeration)
+                    </div>
+                </div>
+
+            }
+            else
+            {
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CompanyName, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DisplayFor(model => model.CompanyName)
+                        @Html.ValidationMessageFor(model => model.CompanyName)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Adresse, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DisplayFor(model => model.Adresse)
+                        @Html.ValidationMessageFor(model => model.Adresse)
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    @Html.LabelFor(model => model.ResponsableToName, new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        @Html.DisplayFor(model => model.ResponsableToName)
+                        @Html.ValidationMessageFor(model => model.ResponsableToName)
+                    </div>
+                    @Html.LabelFor(model => model.ResponsableToTitle, new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        @Html.DisplayFor(model => model.ResponsableToTitle)
+                        @Html.ValidationMessageFor(model => model.ResponsableToTitle)
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+
+                    @Html.LabelFor(model => model.ResponsableToEmail, new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        @Html.DisplayFor(model => model.ResponsableToEmail)
+                        @Html.ValidationMessageFor(model => model.ResponsableToEmail)
+                    </div>
+                    @Html.LabelFor(model => model.ResponsableToPhone, new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        @Html.DisplayFor(model => model.ResponsableToPhone)
+                        @Html.ValidationMessageFor(model => model.ResponsableToPhone)
+                    </div>
+                    @Html.LabelFor(model => model.ResponsableToPoste, new { @class = "control-label col-md-2" })
+                    <div class="col-md-1">
+                        @Html.DisplayFor(model => model.ResponsableToPoste)
+                        @Html.ValidationMessageFor(model => model.ResponsableToPoste)
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Renumeration, new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DisplayFor(model => model.Renumeration)
+                        @Html.ValidationMessageFor(model => model.Renumeration)
+                    </div>
+                </div>
+            }
+
+
+            <p>
+                Nous nous engageons pour la période du stage à confier aux étudiants identifiés ci-dessous des tâches équivalentes à son niveau
+                de compétence et à exercer la supervision requise.
+            </p>
+
+            @Html.LabelFor(model => model.ContactEnterpriseSignature, new { @class = "control-label col-md-3" })
+            @if (@User.IsInRole("Contact entreprise"))
+            {
+                if (Model.ContactEnterpriseHasSigned)
+                {
+                    <div class="col-md-4">Vous avez signé la convention de stage</div>
+                }
+                else
+                {
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.ContactEnterpriseSignature, new { @class = "form-control", placeholder = "Mot de passe", type = "password" })
+                        @Html.ValidationMessageFor(model => model.ContactEnterpriseSignature)
+                    </div>
+                }
+            }
+            else
+            {
+                if (Model.ContactEnterpriseHasSigned)
+                {
+                    <div class="col-md-4">Le responsable a signé la convention de stage</div>
+                }
+                else
+                {
+                    <div class="col-md-4">Le responsable n'a pas signé la convention de stage</div>
+                }
+            }
+
+            @Html.LabelFor(model => model.DateContactEnterpriseSigned, new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.DisplayFor(model => model.DateContactEnterpriseSigned)
+                @Html.ValidationMessageFor(model => model.DateContactEnterpriseSigned)
+            </div>
+
+
+
+            <div class="col-md-12">
+                <hr />
+            </div>
+
+            <h2>Engagement des stagiaires</h2>
+
+            <p>
+                Ayant rencontré le responsable du milieu de stage ci-haut mentionné et ayant pris connaissance de la nature du projet de stage que j'aurai
+                à réaliser, je m'engage à respecter les politiques de l'entreprise et à résaliser les tâches qui me seront
+                confiées au meilleur de ma connaissance pour toute la durée du stage.
+            </p>
+
+            @if (@User.IsInRole("Étudiant"))
+            {
+
+                <div class="row">
+
+                    @Html.LabelFor(model => model.Matricule, new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        @Html.DisplayFor(model => model.Matricule)
+                        @Html.ValidationMessageFor(model => model.Matricule)
+                    </div>
+
+
+
+                    @Html.LabelFor(model => model.StudentName, new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.StudentName)
+                        @Html.ValidationMessageFor(model => model.StudentName)
+                    </div>
+
+                </div>
+
+
+            }
+            else
+            {
+
+                <div class="row">
+
+
+                    @Html.LabelFor(model => model.StudentName, new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        @Html.DisplayFor(model => model.StudentName)
+                        @Html.ValidationMessageFor(model => model.StudentName)
+
+                    </div>
+                    @Html.LabelFor(model => model.Matricule, new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        @Html.DisplayFor(model => model.Matricule)
+                        @Html.ValidationMessageFor(model => model.Matricule)
+                    </div>
+
+                </div>
+
+            }
+            <br />
+
+            @Html.LabelFor(model => model.StudentSignature, new { @class = "control-label col-md-3" })
+            @if (@User.IsInRole("Étudiant"))
+            {
+                if (Model.StudentHasSigned)
+                {
+                    <div class="col-md-4">Vous avez signé la convention de stage</div>
+                }
+                else
+                {
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.StudentSignature, new { @class = "form-control", placeholder = "Mot de passe", type = "password" })
+                        @Html.ValidationMessageFor(model => model.StudentSignature)
+                    </div>
+                }
+            }
+            else
+            {
+                if (Model.StudentHasSigned)
+                {
+                    <div class="col-md-4">Le stagiaire a signé la convention de stage</div>
+                }
+                else
+                {
+                    <div class="col-md-4">Le stagiaire n'a pas signé la convention de stage</div>
+                }
+            }
+
+            @Html.LabelFor(model => model.DateStudentSigned, new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.DisplayFor(model => model.DateStudentSigned)
+                @Html.ValidationMessageFor(model => model.DateStudentSigned)
+            </div>
+
+
+
+            <div class="col-md-12">
+                <hr />
+            </div>
+
+
+           
+
+            <h2>Engagement du milieu d'enseignement</h2>
+
+
+            @if (@User.IsInRole("Coordonnateur"))
+            {
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CoordinatorName, new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.CoordinatorName)
+                        @Html.ValidationMessageFor(model => model.CoordinatorName)
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    @Html.LabelFor(model => model.CoordinatorPhone, new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.CoordinatorPhone)
+                        @Html.ValidationMessageFor(model => model.CoordinatorPhone)
+                    </div>
+                    @Html.LabelFor(model => model.CoordinatorPoste, new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.CoordinatorPoste)
+                        @Html.ValidationMessageFor(model => model.CoordinatorPoste)
+                    </div>
+                    @Html.LabelFor(model => model.CoordinatorEmail, new { @class = "control-label col-md-2" })
+                    <div class="col-md-1">
+                        @Html.EditorFor(model => model.CoordinatorEmail)
+                        @Html.ValidationMessageFor(model => model.CoordinatorEmail)
+                    </div>
+
+                </div>
+
+            }
+            else
+            {
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CoordinatorName, new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.DisplayFor(model => model.CoordinatorName)
+                        @Html.ValidationMessageFor(model => model.CoordinatorName)
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    @Html.LabelFor(model => model.CoordinatorPhone, new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        @Html.DisplayFor(model => model.CoordinatorPhone)
+                        @Html.ValidationMessageFor(model => model.CoordinatorPhone)
+                    </div>
+                    @Html.LabelFor(model => model.CoordinatorPoste, new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        @Html.DisplayFor(model => model.CoordinatorPoste)
+                        @Html.ValidationMessageFor(model => model.CoordinatorPoste)
+                    </div>
+                    @Html.LabelFor(model => model.CoordinatorEmail, new { @class = "control-label col-md-2" })
+                    <div class="col-md-1">
+                        @Html.DisplayFor(model => model.CoordinatorEmail)
+                        @Html.ValidationMessageFor(model => model.CoordinatorEmail)
+                    </div>
+
+                </div>
+            }
+            <br />
+            <p>
+                Ayant pris connaissance de la nature du projet de stage offert, le Département d'informatique du Cégep
+                de Sainte-Foy en reconnaît la validité. Il s'engage à fournir, à l'entreprise et à l'étudiant, l'encadrement
+                et le support nécessaires à la réalisation de ce stage.
+
+
+            </p>
+
+            @Html.LabelFor(model => model.CoordinatorSignature, new { @class = "control-label col-md-3" })
+            @if (@User.IsInRole("Coordonnateur"))
+            {
+                if (Model.CoordinatorHasSigned)
+                {
+                    <div class="col-md-4">Vous avez signé la convention de stage</div>
+                }
+                else
+                {         
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.CoordinatorSignature, new { @class = "form-control", placeholder = "Mot de passe", type = "password" })
+                            @Html.ValidationMessageFor(model => model.CoordinatorSignature)
+                        </div>
+                }
+            }
+            else
+            {
+                if (Model.CoordinatorHasSigned)
+                {
+                    <div class="col-md-4">Le coordonnateur a signé la convention de stage</div>
+                }
+                else
+                {
+                    <div class="col-md-4">Le coordonnateur n'a pas signé la convention de stage</div>
+                }
+            }
+
+                @Html.LabelFor(model => model.DateCoordinatorSigned, new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
+                    @Html.DisplayFor(model => model.DateCoordinatorSigned)
+                    @Html.ValidationMessageFor(model => model.DateCoordinatorSigned)
+                </div>
+      
+          
+            @if (@User.IsInRole("Coordonnateur"))
+            {
+                   <div class="form-group">
+                    @Html.LabelFor(model => model.SupervisorName, new { @class = "control-label col-md-4" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.SupervisorName)
+                        @Html.ValidationMessageFor(model => model.SupervisorName)
+                    </div>
+                </div>
+            }
+            else
+            {
+               <div class="form-group">
+                    @Html.LabelFor(model => model.SupervisorName, new { @class = "control-label col-md-4" })
+                    <div class="col-md-10">
+                        @Html.DisplayFor(model => model.SupervisorName)
+                        @Html.ValidationMessageFor(model => model.SupervisorName)
+                    </div>
+                </div>
+            }
+
+            <div class="col-md-12">
+                <hr />
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                   
+                    <input type="submit" value="Sauvegarder" class="btn btn-default" />
+                </div>
+            </div>
+
+
+            @*<div>
+                    @Html.ActionLink("Back to List", "Index")
+                </div>*@
+
+        </div>
+
+    }
+
+</body>
+</html>

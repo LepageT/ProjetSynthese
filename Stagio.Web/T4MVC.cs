@@ -164,6 +164,8 @@ namespace Links
     		 
     	public static readonly string bootstrap_css_map = Url("bootstrap.css.map");
     	public static readonly string bootstrap_min_css = Url("bootstrap.min.css");
+    	public static readonly string Flash_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/Flash.min.css") ? Url("Flash.min.css") : Url("Flash.css");
+    		 
     	[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     	public static class fonts {
     		private const string URLPATH = "~/Content/fonts";

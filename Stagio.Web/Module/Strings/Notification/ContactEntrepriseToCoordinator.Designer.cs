@@ -115,7 +115,7 @@ namespace Stagio.Web.Module.Strings.Notification {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à &gt;Cliquer ici pour voir les détails de ce stage&lt;/a&gt;.
+        ///   Recherche une chaîne localisée semblable à &lt;/a&gt;.
         /// </summary>
         internal static string NewStageEndLink {
             get {
@@ -124,7 +124,7 @@ namespace Stagio.Web.Module.Strings.Notification {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à &lt;a href=&quot;http://jenkins.cegep-ste-foy.qc.ca/thomarelau/Stage/Details/.
+        ///   Recherche une chaîne localisée semblable à &lt;a href=&quot;../../Stage/Details/.
         /// </summary>
         internal static string NewStageLink {
             get {
