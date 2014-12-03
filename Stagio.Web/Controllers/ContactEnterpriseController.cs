@@ -7,9 +7,11 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using AutoMapper;
+using Microsoft.Ajax.Utilities;
 using Stagio.DataLayer;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
+using Stagio.Utilities.Encryption;
 using Stagio.Web.Module;
 using Stagio.Web.Module.Strings.Controller;
 using Stagio.Web.Module.Strings.Notification;
@@ -105,8 +107,6 @@ namespace Stagio.Web.Controllers
                 this.Flash(FlashMessageResources.CreateAccountSuccess, FlashEnum.Success);
                 return RedirectToAction(MVC.ContactEnterprise.CreateConfirmation(newContactEnterprise.Id));
 
-
-
             }
             return View(createViewModel);
         }
@@ -157,8 +157,6 @@ namespace Stagio.Web.Controllers
                 return View(createViewModel);
             }
 
-            if (ModelState.IsValid)
-            {
                 var invitation = _invitationRepository.GetById(createViewModel.InvitationId);
                 if (invitation != null)
                 {
@@ -183,7 +181,6 @@ namespace Stagio.Web.Controllers
                     }
                 }
 
-            }
             return HttpNotFound();
 
         }
@@ -320,7 +317,7 @@ namespace Stagio.Web.Controllers
             }
 
             var students = _studentRepository.GetAll().ToList();
-
+//TODO A vérifier!!!!!
             var listStudents = (from apply in applies from student in students where student.Id == apply.IdStudent select student).ToList();
 
             var listStudentsApply = Mapper.Map<IEnumerable<ViewModels.Apply.StudentApply>>(applies).ToList();
@@ -359,6 +356,7 @@ namespace Stagio.Web.Controllers
             {
                 ViewBag.Message = ContactEnterpriseResources.FilesCantBeDownload;
             }
+            //TODO À arranger
             var apply = new Apply();
             try
             {
@@ -451,6 +449,7 @@ namespace Stagio.Web.Controllers
 
         public virtual ActionResult RemoveStageConfirmation(int idStage)
         {
+            //TODO
             var stage = _stageRepository.GetById(idStage);
             var applies = _applyRepository.GetAll().ToList().Where(x => x.IdStage == idStage);
             var user = _contactEnterpriseRepository.GetById(_httpContext.GetUserId());
@@ -504,6 +503,58 @@ namespace Stagio.Web.Controllers
 
             var listDrafts = Mapper.Map<IEnumerable<ViewModels.ContactEnterprise.Draft>>(draftList).ToList();
             return View(listDrafts);
+        }
+
+        public virtual ActionResult Edit()
+        {
+            var contactEnterprise = _contactEnterpriseRepository.GetById(_httpContext.GetUserId());
+            if (contactEnterprise == null)
+            {
+                return HttpNotFound();
+            }
+            var viewModel = Mapper.Map<ViewModels.ContactEnterprise.Edit>(contactEnterprise);
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public virtual ActionResult Edit(ViewModels.ContactEnterprise.Edit editContactInformation)
+        {
+            var contact = _contactEnterpriseRepository.GetById(editContactInformation.Id);
+            if (contact == null)
+            {
+                return HttpNotFound();
+            }
+
+            if (!editContactInformation.OldPassword.IsNullOrWhiteSpace())
+            {
+                if (!PasswordHash.ValidatePassword(editContactInformation.OldPassword, contact.Password))
+                {
+                    ModelState.AddModelError("OldPassword", StudentResources.OldPasswordInvalid);
+                }
+            }
+
+            if (!ModelState.IsValid)
+            {
+                this.Flash("Temp", FlashEnum.Error);
+                return View(editContactInformation);
+            }
+
+            if (!editContactInformation.PasswordConfirmation.IsNullOrWhiteSpace())
+            {
+                editContactInformation.Password = PasswordHash.CreateHash(editContactInformation.PasswordConfirmation);
+            }
+            if (editContactInformation.Password == null)
+            {
+                editContactInformation.Password = contact.Password;
+            }
+
+            Mapper.Map(editContactInformation, contact);
+
+            _contactEnterpriseRepository.Update(contact);
+            this.Flash("Modification réussie", FlashEnum.Success);
+
+            return RedirectToAction(MVC.ContactEnterprise.Index());
         }
 
     }

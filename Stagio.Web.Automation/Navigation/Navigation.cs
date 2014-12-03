@@ -103,6 +103,21 @@ namespace Stagio.Web.Automation
                     MenuSelector.SelectTopLevel("index-enterprise");
                 }
             }
+            public class EditProfil
+            {
+                public static void Select()
+                {
+                    MenuSelector.Select("index-enterprise", "details-user-page");
+                    MenuSelector.SelectTopLevel("edit-enterprise");
+                }
+            }
+            public class EditProfilInIndex
+            {
+                public static void Select()
+                {
+                    MenuSelector.Select("details-user-page", "edit-enterprise");
+                }
+            }
 
             public class InviteContactEnterprise
             {

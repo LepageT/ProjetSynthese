@@ -112,7 +112,17 @@ namespace Stagio.Web.Mappers
             Mapper.CreateMap<Notification, ViewModels.Notification.Detail>()
                 .ForMember(dest => dest.NotificationId, opt => opt.MapFrom(src => src.Id))
                 .IgnoreAllNonExisting();
+
             Mapper.CreateMap<Stage, ViewModels.ContactEnterprise.Draft>()
+                .IgnoreAllNonExisting();
+
+            Mapper.CreateMap<ContactEnterprise, ViewModels.ContactEnterprise.Edit>()
+                .IgnoreAllNonExisting();
+
+            Mapper.CreateMap<ContactEnterprise, ViewModels.ContactEnterprise.Edit>()
+                .ForMember(dest => dest.PasswordConfirmation, opt => opt.Ignore())
+                .ForMember(dest => dest.OldPassword, opt => opt.Ignore())
+                .ForMember(dest => dest.Password, opt => opt.Ignore())
                 .IgnoreAllNonExisting();
 
             Mapper.CreateMap<StageAgreement, ViewModels.StageAgreement.StageAgreementDetail>()
