@@ -41,17 +41,6 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
 
         }
 
-        [TestMethod]
-        public void contactEnterprise_can_see_a_page_of_detail_apply()
-        {
-            LoginPage.GoTo();
-            LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
-
-            DetailsStudentApplyContactEnterprisePage.GoToByUrl();
-
-            DetailsStudentApplyContactEnterprisePage.IsDisplayed.Should().BeTrue();
-           
-        }
 
         [TestMethod]
         public void contactEnterprise_should_not_download_files_isfiles_not_valid()

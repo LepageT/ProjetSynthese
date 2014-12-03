@@ -15,18 +15,6 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
     public class CoordinatorControllerInviteTests : BaseTests
     {
         [TestMethod]
-        public void coordinator_should_be_able_to_access_invite_enterprise_page()
-        {
-            LoginPage.GoTo();
-            LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
-
-            InviteContactEnterpriseCoordinatorPage.GoTo();
-
-            InviteContactEnterpriseCoordinatorPage.IsDisplayed.Should().BeTrue();
-        }
-
-
-        [TestMethod]
         public void coordinator_should_be_able_to_invite_enterprise()
         {
 

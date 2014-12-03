@@ -9,12 +9,6 @@ namespace Stagio.Web.Automation.PageObjects.Coordinator
 {
     public class CreateCoordinatorPage
     {
-        public static bool IsDisplayed
-        {
-            get { return Driver.Instance.FindElement(By.Id("create-coordinator-page")) != null; }
-        }
-
-
         public static void GoToByUrl()
         {
             Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/Coordinator/Create?token=123456");
@@ -32,10 +26,6 @@ namespace Stagio.Web.Automation.PageObjects.Coordinator
             Driver.Instance.FindElement(By.Id("btn-create")).Click();
         }
 
-        public static bool CoordinatorHomePageIsDisplayed
-        {
-            get { return Driver.Instance.FindElement(By.Id("coordinator-home")) != null; }
-        }
 
         public static bool ConfirmationPageIsDisplayed
         {

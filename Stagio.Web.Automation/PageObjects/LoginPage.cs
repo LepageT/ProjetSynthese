@@ -45,34 +45,6 @@ namespace Stagio.Web.Automation.PageObjects
             loginButton.Click();
         }
 
-        public static bool VerifyCoordinatorLogin()
-        {
-            var body = Driver.Instance.FindElement(By.ClassName("navbar"));
-
-            if (body.Text.Contains("Jean-Dominic Rousseau"))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public static void Logout()
-        {
-            var logOut = Driver.Instance.FindElement(By.Id("logout-link"));
-            logOut.Click();
-        }
-
-        public static bool VerifyLogout()
-        {
-             var body = Driver.Instance.FindElement(By.ClassName("navbar"));
-
-            if (body.Text.Contains("Se connecter"))
-            {
-                return true;
-            }
-            return false;
-        }
-
         public static void GoToByUrl()
         {
             Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/Account/Login");

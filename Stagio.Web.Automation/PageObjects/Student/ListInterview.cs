@@ -14,10 +14,6 @@ namespace Stagio.Web.Automation.PageObjects.Student
             Navigation.Student.ListInterview.Select();
         }
 
-        public static bool AccessInterviewEdit()
-        {
-            return false;
-        }
         public static bool IsDisplayed
         {
             get { return Driver.Instance.FindElement(By.Id("list-page")) != null; }
@@ -36,21 +32,6 @@ namespace Stagio.Web.Automation.PageObjects.Student
             }
             
         }
-
-        public static bool ButtonEditIsDisplayed()
-        {
-            try
-            {
-                Driver.Instance.FindElement(By.Id("btn-edit-interview1"));
-                return true;
-            }
-            catch (NoSuchElementException)
-            {
-                return false;
-            }
-
-        }
-        
-        
+ 
     }
 }

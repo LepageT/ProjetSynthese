@@ -10,11 +10,6 @@ namespace Stagio.Web.Automation.PageObjects.Coordinator
 {
     public class DetailsStageCoordinatorPage
     {
-        public static bool IsDisplayed
-        {
-            get { return Driver.Instance.FindElement(By.Id("details-stage-page")) != null; }
-        }
-
         public static void GoToDetailsStage1()
         {
             Navigation.Coordinator.DetailsStage1.Select();

@@ -12,18 +12,6 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
     public class StudentControllerUploadTests : BaseTests
     {
         [TestMethod]
-        public void coordinator_should_be_able_to_see_the_page_upload_student_if_logged_in()
-        {
-            LoginPage.GoTo();
-            LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
-
-            AddStudentsCoordinatorPage.GoTo();
-
-            AddStudentsCoordinatorPage.IsDisplayed.Should().BeTrue();
-
-        }
-
-        [TestMethod]
         public void coordinator_not_should_be_able_to_see_the_page_upload_student_if_not_logged_in()
         {
             AddStudentsCoordinatorPage.GoToByUrl();
@@ -41,8 +29,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
             AddStudentsCoordinatorPage.GoTo();
 
             AddStudentsCoordinatorPage.SelectCsvFile("C:\\dev\\abc.csv").Should().BeTrue();
-
-
+            CreateListStudentsCoordinatorPage.IsDisplayed.Should().BeTrue();
         }
 
         [TestMethod]
@@ -55,19 +42,6 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
             AddStudentsCoordinatorPage.SelectCsvFile("C:\\dev\\abc.txt");
 
             AddStudentsCoordinatorPage.IsDisplayed.Should().BeTrue();
-
-        }
-
-        [TestMethod]
-        public void coordinator_upload_should_redirect_to_CreateList_is_valid()
-        {
-            LoginPage.GoTo();
-            LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
-            AddStudentsCoordinatorPage.GoTo();
-
-            AddStudentsCoordinatorPage.SelectCsvFile("C:\\dev\\abc.csv");
-
-            CreateListStudentsCoordinatorPage.IsDisplayed.Should().BeTrue();
 
         }
 
