@@ -29,7 +29,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
             httpContextService = Substitute.For<IHttpContextService>();
             coordinatorRepository = Substitute.For<IEntityRepository<Coordinator>>();
 
-            stageController = new StageController(stageRepository, notificationService, contactEnterpriseRepository, httpContextService, coordinatorRepository);
+            stageController = new StageController(stageRepository, httpContextService, contactEnterpriseRepository, notificationService, coordinatorRepository);
         }
     }
 }
