@@ -50,4 +50,41 @@
 </table>
 
 <h3>Les conventions de stage signées</h3>
+<table class="table">
+    <tr class="row">
+        <th class="col-md-2">
+            @Html.DisplayNameFor(model => model.ListStagesAgreementsSigned[0].StageName)
+        </th>
+        <th class="col-md-3">
+            @Html.DisplayNameFor(model => model.ListStagesAgreementsSigned[0].EnterpriseName)
+        </th>
+        <th class="col-md-3">
+            @Html.DisplayNameFor(model => model.ListStagesAgreementsSigned[0].StudentFirstName)
+        </th>
+        <th class="col-md-2">
+            @Html.DisplayNameFor(model => model.ListStagesAgreementsSigned[0].StudentLastName)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.ListStageAgreementNotSigned)
+    {
+        <tr class="row">
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.StageName)
+            </td>
+            <td class="col-md-3">
+                @Html.DisplayFor(modelItem => item.EnterpriseName)
+            </td>
+            <td class="col-md-3">
+                @Html.DisplayFor(modelItem => item.StudentFirstName)
+            </td>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.StudentLastName)
+            </td>
+        </tr>
+    }
+
+</table>
 

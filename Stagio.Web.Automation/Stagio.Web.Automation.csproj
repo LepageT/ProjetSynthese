@@ -98,6 +98,7 @@
     <Compile Include="PageObjects\LoginPage.cs" />
     <Compile Include="PageObjects\Notification\DetailNotificationPage.cs" />
     <Compile Include="PageObjects\Notification\NotificationListPage.cs" />
+    <Compile Include="PageObjects\StageAgreement\StageAgreementListPage.cs" />
     <Compile Include="PageObjects\Student\ApplyListStudentPage.cs" />
     <Compile Include="PageObjects\Student\ApplyStudentPage.cs" />
     <Compile Include="PageObjects\Student\ConfirmationUploadCVLetterPage.cs" />

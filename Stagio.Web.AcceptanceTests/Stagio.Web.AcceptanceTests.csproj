@@ -99,6 +99,7 @@
     <Compile Include="InterviewTests\InterviewControllerList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StageAgreementTests\StageAgreementControllerCreate.cs" />
+    <Compile Include="StageAgreementTests\StageAgreementControllerList.cs" />
     <Compile Include="StageTests\StageControllerDetails.cs" />
     <Compile Include="StageTests\StageControllerEdit.cs" />
     <Compile Include="StageTests\StageControllerListNewStages.cs" />

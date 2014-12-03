@@ -73,10 +73,9 @@ namespace Stagio.Web.Controllers
                 foreach (var stageAgreement in stageAgreements)
                 {
                     var stage = _stageRepository.GetById(stageAgreement.IdStage);
-                    if (stage.CompanyName == contactEnteprise.EnterpriseName)
+                    if (stage.CompanyName == contactEnteprise.EnterpriseName && stageAgreement.IdStage == stage.Id)
                     {
-                        var stageAgreementsEnterprise = stageAgreements.Where(stageAgreementId => stageAgreementId.IdStage == stage.Id);
-                        listStageAgreementsEnterprise.Add(stageAgreementsEnterprise.First());
+                        listStageAgreementsEnterprise.Add(stageAgreement);
                     }
 
                 }
