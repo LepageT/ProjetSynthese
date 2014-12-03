@@ -184,7 +184,7 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult DraftEdit(int id)
         {
             var stage = _stageRepository.GetById(id);
-            var user = _contactEnterpriseRepository.GetById(_httpContext.GetUserId());
+            var user = _contactEnterpriseRepository.GetById(_httpContextService.GetUserId());
            
             if (stage != null)
             {
@@ -207,7 +207,7 @@ namespace Stagio.Web.Controllers
             if (buttonClick.Equals("Enregistrer"))
             {
                 var stage = _stageRepository.GetById(draftStageViewModel.Id);
-                var user = _contactEnterpriseRepository.GetById(_httpContext.GetUserId());
+                var user = _contactEnterpriseRepository.GetById(_httpContextService.GetUserId());
                 if (stage == null)
                 {
                     
@@ -247,7 +247,7 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult DraftDelete(int id)
         {
             var stage = _stageRepository.GetById(id);
-            var user = _contactEnterpriseRepository.GetById(_httpContext.GetUserId());
+            var user = _contactEnterpriseRepository.GetById(_httpContextService.GetUserId());
              if (stage == null)
             {
                 return HttpNotFound();

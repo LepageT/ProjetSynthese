@@ -39,6 +39,7 @@ namespace Stagio.Web.Automation
             {
                 public static void Select()
                 {
+                    MenuSelector.SelectTopLevel("details-user-page");
                     MenuSelector.Select("details-user-page", "edit-Student") ;
                 }
             }
