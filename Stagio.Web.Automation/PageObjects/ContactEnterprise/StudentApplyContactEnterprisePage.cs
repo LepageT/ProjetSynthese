@@ -21,6 +21,7 @@ namespace Stagio.Web.Automation.PageObjects.ContactEnterprise
 
         public static void GoToByUrl()
         {
+            Driver.Instance.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(2));
             Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/ContactEnterprise/ListStudentApply/1");
         }
 

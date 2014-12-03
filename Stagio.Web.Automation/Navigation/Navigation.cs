@@ -39,6 +39,7 @@ namespace Stagio.Web.Automation
             {
                 public static void Select()
                 {
+                    MenuSelector.SelectTopLevel("details-user-page");
                     MenuSelector.Select("details-user-page", "edit-Student") ;
                 }
             }
@@ -84,8 +85,12 @@ namespace Stagio.Web.Automation
                 }
             }
 
-            public class EditInterviewInIndex
+            public class StageAgreementList
             {
+                public static void Select()
+                {
+                    MenuSelector.Select("student-stage-menu", "stageAgreement-list");
+                }
             }
         }
 
@@ -151,6 +156,14 @@ namespace Stagio.Web.Automation
                     MenuSelector.Select("contactEnterprise-menu", "listContact");
                     MenuSelector.SelectTopLevel("list-stages1");
 
+                }
+            }
+
+            public class StageAgreementList
+            {
+                public static void Select()
+                {
+                    MenuSelector.Select("contactEnterprise-menu-stage", "stageAgreement-list");
                 }
             }
         }
@@ -239,6 +252,14 @@ namespace Stagio.Web.Automation
                     MenuSelector.Select("student-stages1", "create-stageAgreement1");
                 }
             }
+
+            public class StageAgreementList
+            {
+                public static void Select()
+                {
+                    MenuSelector.Select("Coordinator-menu", "stageAgreement-list");
+                }
+            }
         }
 
         public class AllUsers
@@ -276,6 +297,8 @@ namespace Stagio.Web.Automation
                     MenuSelector.SelectTopLevel("notification-list");
                 }
             }
+
+            
 
             
         }

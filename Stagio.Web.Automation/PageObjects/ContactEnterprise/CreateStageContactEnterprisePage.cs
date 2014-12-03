@@ -26,7 +26,6 @@ namespace Stagio.Web.Automation.PageObjects.ContactEnterprise
 
         public static void CreateStage()
         {
-            const string ENTERPRISE_NAME = "Les lapins joyeux";
             const string ENTERPRISE_ADRESSE = "10 rue des Bucherons";
             const string ENTERPRISE_RESP_NAME = "Luke";
             const string ENTERPRISE_RESP_TITLE = "Jedi";
@@ -47,7 +46,6 @@ namespace Stagio.Web.Automation.PageObjects.ContactEnterprise
             const string SUBMIT_TO_EMAIL = "yoda@r2d2.com";
             const string SUBMIT_LIMIT_DATE = "2301-10-31";
 
-            Driver.Instance.FindElement(By.Id("CompanyName")).SendKeys(ENTERPRISE_NAME);
             Driver.Instance.FindElement(By.Id("Adresse")).SendKeys(ENTERPRISE_ADRESSE);
             Driver.Instance.FindElement(By.Id("ResponsableToName")).SendKeys(ENTERPRISE_RESP_NAME);
             Driver.Instance.FindElement(By.Id("ResponsableToTitle")).SendKeys(ENTERPRISE_RESP_TITLE);
@@ -79,10 +77,10 @@ namespace Stagio.Web.Automation.PageObjects.ContactEnterprise
         public static void CreateDraft()
         {
 
-           const string ENTERPRISE_NAME = "Les lapins joyeux";
+           const string ENTERPRISE_ADRESSE = "123 Rue";
            
 
-            Driver.Instance.FindElement(By.Id("CompanyName")).SendKeys(ENTERPRISE_NAME);
+            Driver.Instance.FindElement(By.Id("Adresse")).SendKeys(ENTERPRISE_ADRESSE);
            
 
             Driver.Instance.FindElement(By.Id("btn-draft")).Click();

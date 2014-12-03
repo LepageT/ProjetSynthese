@@ -6,6 +6,7 @@ using System.Web.Caching;
 using System.Web.Mvc;
 using AutoMapper;
 using Microsoft.Ajax.Utilities;
+using NSubstitute.Core;
 using Stagio.DataLayer;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;

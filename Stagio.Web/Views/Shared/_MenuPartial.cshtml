@@ -8,7 +8,9 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="student-stage-menu">Stage <b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li>@Html.ActionLink("Voir les offres de stages", MVC.Student.DisplayStageList(), new { id = "stageList-student" })</li>
-                <li>@Html.ActionLink("Voir les stages avec postulation", MVC.Student.ApplyList(), new { id = "apply-list-menu-item" })</li>          
+                <li>@Html.ActionLink("Voir les stages avec postulation", MVC.Student.ApplyList(), new { id = "apply-list-menu-item" })</li>  
+                <li>@Html.ActionLink("Afficher les conventions de stage", MVC.StageAgreement.List(), new { id = "stageAgreement-list" })</li>
+        
             </ul>
         </li>
 
@@ -41,6 +43,8 @@
             <li>@Html.ActionLink("Crée un stage", MVC.ContactEnterprise.CreateStage(), new { id = "create-stage-enterprise" })</li>
             <li>@Html.ActionLink("Afficher la liste des stages pour une entreprise", MVC.ContactEnterprise.ListStage(), new { id = "listContact" })</li>
             <li>@Html.ActionLink("Afficher la liste des brouillons", MVC.ContactEnterprise.DraftList(), new { id = "draft-list" }) </li>
+            <li>@Html.ActionLink("Afficher les conventions de stage", MVC.StageAgreement.List(), new { id = "stageAgreement-list" })</li>
+
         </ul>
     </li>
 
@@ -59,6 +63,8 @@
                 <li>@Html.ActionLink("Inviter les employés d'entreprise", MVC.Coordinator.InviteContactEnterprise(), new { id = "invite-enterprise" })</li>
                 <li>@Html.ActionLink("Afficher la liste des stages", MVC.Stage.ListNewStages(), new { id="list" }) </li>
                 <li>@Html.ActionLink("Afficher la liste des étudiants", MVC.Coordinator.StudentList(), new { id = "student-list" })</li>
+                <li>@Html.ActionLink("Afficher les conventions de stage", MVC.StageAgreement.List(), new { id = "stageAgreement-list" })</li>
+
             </ul>
         </li>
 

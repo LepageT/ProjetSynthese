@@ -18,6 +18,7 @@ using Stagio.Web.Module.Strings.Notification;
 using Stagio.Web.Module.Strings.Shared;
 using Stagio.Web.Services;
 using Stagio.Web.Module.Strings.Email;
+using Stagio.Web.ViewModels.Stage;
 
 namespace Stagio.Web.Controllers
 {
