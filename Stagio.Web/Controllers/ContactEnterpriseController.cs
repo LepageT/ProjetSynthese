@@ -196,14 +196,16 @@ namespace Stagio.Web.Controllers
         [Authorize(Roles = RoleName.ContactEnterprise)]
         public virtual ActionResult CreateStage()
         {
-            return View();
+            var viewModelCreateStage =
+                Mapper.Map<ViewModels.Stage.Create>(_contactEnterpriseRepository.GetById(_httpContext.GetUserId()));
+            return View(viewModelCreateStage);
         }
 
         [Authorize(Roles = RoleName.ContactEnterprise)]
         [HttpPost]
         public virtual ActionResult CreateStage(ViewModels.Stage.Create createdStage, string ButtonClick = "")
         {
-
+            createdStage.CompanyName = _contactEnterpriseRepository.GetById(_httpContext.GetUserId()).EnterpriseName;
             if (ButtonClick.Equals(ContactEnterpriseResources.SaveHasDraft))
             {
                 var stage = Mapper.Map<Stage>(createdStage);
