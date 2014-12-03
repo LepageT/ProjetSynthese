@@ -10,17 +10,17 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
     [TestClass]
     public class StudentControllerStageListTest : BaseTests
     {
-        [TestMethod]
-        public void student_home_page_should_display_stages_if_logged_in()
-        {
-            LoginPage.GoTo();
-            LoginPage.LoginAs(StudentUsername, StudentPassword);
+        //[TestMethod]
+        //public void student_home_page_should_display_stages_if_logged_in()
+        //{
+        //    LoginPage.GoTo();
+        //    LoginPage.LoginAs(StudentUsername, StudentPassword);
 
-            StageListStudentPage.GoTo();
+        //    StageListStudentPage.GoTo();
 
-            StageListStudentPage.HasStage.Should().BeTrue();
+        //    StageListStudentPage.HasStage.Should().BeTrue();
             
-        }
+        //}
 
         [TestMethod]
         public void student_home_page_not_should_display_stages_not_if_logged_in()

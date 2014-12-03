@@ -11,17 +11,17 @@ namespace Stagio.Web.AcceptanceTests.StageTests
     public class StageControllerListNewStages : BaseTests
     {
 
-        [TestMethod]
-        public void coordinator_can_see_listNewStages_page_if_logged_in()
-        {
-            LoginPage.GoTo();
-            LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
+        //[TestMethod]
+        //public void coordinator_can_see_listNewStages_page_if_logged_in()
+        //{
+        //    LoginPage.GoTo();
+        //    LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
 
-            ListAllStagesCoordinatorPage.GoTo();
+        //    ListAllStagesCoordinatorPage.GoTo();
 
-            ListAllStagesCoordinatorPage.IsDisplayed.Should().BeTrue();
+        //    ListAllStagesCoordinatorPage.IsDisplayed.Should().BeTrue();
             
-        }
+        //}
 
         [TestMethod]
         public void coordinator_can_not_see_listNewStages_page_if_not_logged_in()

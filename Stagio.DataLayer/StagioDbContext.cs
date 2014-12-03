@@ -23,6 +23,8 @@ namespace Stagio.DataLayer
 
         public DbSet<StageAgreement> StageAgreements { get; set; }
 
+        public DbSet<Misc> Misc { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

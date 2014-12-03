@@ -13,17 +13,17 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
     [TestClass]
     public class CoordinatorControllerStudentListTests : BaseTests
     {
-        [TestMethod]
-        public void coordinator_should_be_able_to_access_StudentList_page_if_logged_in()
-        {
-            LoginPage.GoTo();
-            LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
+        //[TestMethod]
+        //public void coordinator_should_be_able_to_access_StudentList_page_if_logged_in()
+        //{
+        //    LoginPage.GoTo();
+        //    LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
 
-            StudentListCoordinatorPage.GoTo();
+        //    StudentListCoordinatorPage.GoTo();
 
-            StudentListCoordinatorPage.IsDisplayed.Should().BeTrue();
+        //    StudentListCoordinatorPage.IsDisplayed.Should().BeTrue();
 
-        }
+        //}
 
         [TestMethod]
         public void coordinator_should_not_be_able_to_access_StudentList_page_if_not_logged_in()
@@ -45,16 +45,16 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
             StudentListCoordinatorPage.AccessStudent1ApplyList().Should().BeTrue();
         }
 
-        [TestMethod]
-        public void coordinator_should_be_able_to_see_StudentList_with_students()
-        {
-            LoginPage.GoTo();
-            LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
+        //[TestMethod]
+        //public void coordinator_should_be_able_to_see_StudentList_with_students()
+        //{
+        //    LoginPage.GoTo();
+        //    LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
 
-            StudentListCoordinatorPage.GoTo();
+        //    StudentListCoordinatorPage.GoTo();
 
-            StudentListCoordinatorPage.CountNbStudents().Should().NotBe(0);
+        //    StudentListCoordinatorPage.CountNbStudents().Should().NotBe(0);
 
-        }
+        //}
     }
 }

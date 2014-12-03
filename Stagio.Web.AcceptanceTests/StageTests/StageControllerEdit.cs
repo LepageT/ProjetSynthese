@@ -14,15 +14,15 @@ namespace Stagio.Web.AcceptanceTests.StageTests
     [TestClass]
     public class StageControllerEdit : BaseTests
     {
-        [TestMethod]
-        public void contact_enterprise_should_be_able_to_edit_stage_if_id_is_valid()
-        {
-            LoginPage.GoToByUrl();
-            LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
+        //[TestMethod]
+        //public void contact_enterprise_should_be_able_to_edit_stage_if_id_is_valid()
+        //{
+        //    LoginPage.GoToByUrl();
+        //    LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
 
-            EditStagePage.GoToByUrl();
-            EditStagePage.IsDisplayed.Should().BeTrue();
-        }
+        //    EditStagePage.GoToByUrl();
+        //    EditStagePage.IsDisplayed.Should().BeTrue();
+        //}
 
         [TestMethod]
         public void contact_enterprise_not_should_be_able_to_edit_his_profil_if_not_logged_in()
@@ -32,20 +32,20 @@ namespace Stagio.Web.AcceptanceTests.StageTests
             LoginPage.IsDisplayed.Should().BeTrue();
         }
 
-        [TestMethod]
-        public void contact_enterprise_edit_should_update_his_stage_if_id_is_valid()
-        {
-            const string NEW_RESPONSABLE_NAME = "Ticoune";
+        //[TestMethod]
+        //public void contact_enterprise_edit_should_update_his_stage_if_id_is_valid()
+        //{
+        //    const string NEW_RESPONSABLE_NAME = "Ticoune";
        
 
-            LoginPage.GoToByUrl();
-            LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
+        //    LoginPage.GoToByUrl();
+        //    LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
 
-            EditStagePage.GoToByUrl();
-            EditStagePage.EditAStage(NEW_RESPONSABLE_NAME);
+        //    EditStagePage.GoToByUrl();
+        //    EditStagePage.EditAStage(NEW_RESPONSABLE_NAME);
 
-            EditStagePage.EditVerification(NEW_RESPONSABLE_NAME).Should().BeTrue();
-        }
+        //    EditStagePage.EditVerification(NEW_RESPONSABLE_NAME).Should().BeTrue();
+        //}
 
         [TestMethod]
         public void contact_enterprise_edit_should_redirect_to_index_if_updated()

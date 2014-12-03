@@ -10,24 +10,24 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
     [TestClass]
     public class StudentControllerApplyListTests : BaseTests
     {
-        [TestMethod]
-        public void student_ApplyList_page_should_display_applied_stages_if_logged_in()
-        {
-            LoginPage.GoTo();
-            LoginPage.LoginAs(StudentUsername, StudentPassword);
+        //[TestMethod]
+        //public void student_ApplyList_page_should_display_applied_stages_if_logged_in()
+        //{
+        //    LoginPage.GoTo();
+        //    LoginPage.LoginAs(StudentUsername, StudentPassword);
 
-            ApplyListStudentPage.GoTo();
+        //    ApplyListStudentPage.GoTo();
 
-            ApplyListStudentPage.HasStage.Should().BeTrue();
-        }
+        //    ApplyListStudentPage.HasStage.Should().BeTrue();
+        //}
 
-        [TestMethod]
-        public void student_ApplyList_page_not_should_display_applied_stages_not_if_logged_in()
-        {
-            ApplyListStudentPage.GoToByUrl();
+        //[TestMethod]
+        //public void student_ApplyList_page_not_should_display_applied_stages_not_if_logged_in()
+        //{
+        //    ApplyListStudentPage.GoToByUrl();
 
-            LoginPage.IsDisplayed.Should().BeTrue();
-        }
+        //    LoginPage.IsDisplayed.Should().BeTrue();
+        //}
 
         [TestMethod]
         public void student_should_be_able_to_access_stage_descritpion()

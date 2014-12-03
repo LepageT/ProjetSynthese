@@ -57,8 +57,10 @@
                 <li>@Html.ActionLink("Inviter un autre coordonnateur", MVC.Coordinator.Invite(), new { id = "create-coordinator" })</li>
                 <li>@Html.ActionLink("Ajouter des étudiants", MVC.Coordinator.Upload(), new { id = "upload-student" })</li>
                 <li>@Html.ActionLink("Inviter les employés d'entreprise", MVC.Coordinator.InviteContactEnterprise(), new { id = "invite-enterprise" })</li>
-                <li>@Html.ActionLink("Afficher la liste des stages", MVC.Stage.ListNewStages(), new { id="list" }) </li>
+                <li>@Html.ActionLink("Afficher la liste des stages", MVC.Stage.ListNewStages(), new { id = "list" }) </li>
                 <li>@Html.ActionLink("Afficher la liste des étudiants", MVC.Coordinator.StudentList(), new { id = "student-list" })</li>
+
+                <li>@Html.ActionLink("Changer la date de début et fin des postulations pour stages", MVC.Coordinator.SetApplyDates(), new { id = "setApplyDates" })</li>
             </ul>
         </li>
 

@@ -15,17 +15,17 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
     [TestClass]
     public class ContactEnterpriseControllerReactivateTests : BaseTests
     {
-        [TestMethod]
-        public void contact_enterprise_should_be_able_to_access_reactivate_page()
-        {
-            LoginPage.GoTo();
-            LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
+        //[TestMethod]
+        //public void contact_enterprise_should_be_able_to_access_reactivate_page()
+        //{
+        //    LoginPage.GoTo();
+        //    LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
 
-            ReactivateContactEnterprisePage.GoToByUrl();
+        //    ReactivateContactEnterprisePage.GoToByUrl();
 
-            ReactivateContactEnterprisePage.IsDisplayed.Should().BeTrue();
+        //    ReactivateContactEnterprisePage.IsDisplayed.Should().BeTrue();
 
-        }
+        //}
 
         [TestMethod]
         public void contact_enterprise_should_be_able_to_create_account_if_invitation_is_valid()

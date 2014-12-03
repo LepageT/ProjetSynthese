@@ -9,17 +9,17 @@ namespace Stagio.Web.AcceptanceTests.StudentTests
     [TestClass]
     public class StudentControllerApplyConfirmationTests : BaseTests
     {
-        [TestMethod]
-        public void student_should_see_apply_confirmation_after_he_apply_on_a_stage()
-        {
-            LoginPage.GoTo();
-            LoginPage.LoginAs(StudentUsername, StudentPassword);
-            ApplyStudentPage.GoToByUrl();
+        //[TestMethod]
+        //public void student_should_see_apply_confirmation_after_he_apply_on_a_stage()
+        //{
+        //    LoginPage.GoTo();
+        //    LoginPage.LoginAs(StudentUsername, StudentPassword);
+        //    ApplyStudentPage.GoToByUrl();
 
-            ApplyStudentPage.SelectFiles("file1.pdf", "file2.pdf");
+        //    ApplyStudentPage.SelectFiles("file1.pdf", "file2.pdf");
 
-            ConfirmationUploadCVLetterPage.IsDisplayed.Should().BeTrue();
-        }
+        //    ConfirmationUploadCVLetterPage.IsDisplayed.Should().BeTrue();
+        //}
 
         [TestMethod]
         public void student_should_download_his_files_of_the_apply()

@@ -11,17 +11,17 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
     [TestClass]
     public class ContactEnterpriseControllerListStage : BaseTests
     {
-        [TestMethod]
-        public void contactEnterprise_can_see_a_list_of_stage()
-        {
-            LoginPage.GoTo();
-            LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
+        //[TestMethod]
+        //public void contactEnterprise_can_see_a_list_of_stage()
+        //{
+        //    LoginPage.GoTo();
+        //    LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
 
-            ListStageContactEnterprisePage.GoTo();
+        //    ListStageContactEnterprisePage.GoTo();
 
-            ListStageContactEnterprisePage.IsDisplayed.Should().BeTrue();
+        //    ListStageContactEnterprisePage.IsDisplayed.Should().BeTrue();
             
-        }
+        //}
 
         [TestMethod]
         public void contactEnterprise_can_click_on_a_stage()
@@ -35,17 +35,17 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             
         }
 
-        [TestMethod]
-        public void contactEnterprise_can_remove_a_stage()
-        {
-            LoginPage.GoTo();
-            LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
+        //[TestMethod]
+        //public void contactEnterprise_can_remove_a_stage()
+        //{
+        //    LoginPage.GoTo();
+        //    LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
 
-            ListStageContactEnterprisePage.GoTo();
-            ListStageContactEnterprisePage.ClickRemoveStage1();
+        //    ListStageContactEnterprisePage.GoTo();
+        //    ListStageContactEnterprisePage.ClickRemoveStage1();
 
-            ListStageContactEnterprisePage.RemoveStageConfirmationIsDisplayed.Should().BeTrue();
-        }
+        //    ListStageContactEnterprisePage.RemoveStageConfirmationIsDisplayed.Should().BeTrue();
+        //}
 
         [TestMethod]
         public void contactEnterprise_can_reactivate_a_stage()

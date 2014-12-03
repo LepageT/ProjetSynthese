@@ -23,14 +23,14 @@ namespace Stagio.Web.AcceptanceTests.AccountTests
            
         }
 
-        [TestMethod]
-        public void application_user_should_be_able_to_view_the_login_page()
-        {
-            LoginPage.GoTo();
+        //[TestMethod]
+        //public void application_user_should_be_able_to_view_the_login_page()
+        //{
+        //    LoginPage.GoTo();
 
-            LoginPage.IsDisplayed.Should().BeTrue();
+        //    LoginPage.IsDisplayed.Should().BeTrue();
 
-        }
+        //}
 
         [TestMethod]
         public void authentificated_user_should_be_able_to_logout_after_valid_login()

@@ -10,17 +10,17 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
     public class CoordinatorInviteTests : BaseTests
     {
 
-        [TestMethod]
-        public void coordinator_should_be_able_to_send_invitation_if_logged_in()
-        {
-            LoginPage.GoTo();
-            LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
+        //[TestMethod]
+        //public void coordinator_should_be_able_to_send_invitation_if_logged_in()
+        //{
+        //    LoginPage.GoTo();
+        //    LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
 
-            InviteCoordinatorPage.GoTo();
+        //    InviteCoordinatorPage.GoTo();
 
-            InviteCoordinatorPage.IsDisplayed.Should().BeTrue();
+        //    InviteCoordinatorPage.IsDisplayed.Should().BeTrue();
            
-            }
+        //    }
 
         [TestMethod]
         public void coordinator_not_should_be_able_to_send_invitation_if_not_logged_in()

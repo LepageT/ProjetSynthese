@@ -9,16 +9,16 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
     [TestClass]
     public class CoordinatorControllerDetailsApplyStudentTests : BaseTests
     {
-        [TestMethod]
-        public void contactEnterprise_can_see_a_page_of_detail_apply() 
-        {
-            LoginPage.GoTo();
-            LoginPage.LoginAs(CoordonatorUsername, CoordonatorUsername);
+        //[TestMethod]
+        //public void contactEnterprise_can_see_a_page_of_detail_apply() 
+        //{
+        //    LoginPage.GoTo();
+        //    LoginPage.LoginAs(CoordonatorUsername, CoordonatorUsername);
 
-            DetailsStudentApplyCoordinatorPage.GoToByUrl();
+        //    DetailsStudentApplyCoordinatorPage.GoToByUrl();
 
-            DetailsStudentApplyCoordinatorPage.IsDisplayed.Should().BeTrue();
-        }
+        //    DetailsStudentApplyCoordinatorPage.IsDisplayed.Should().BeTrue();
+        //}
 
         [TestMethod]
         public void contactEnterprise_should_not_download_files_isfiles_not_valid()

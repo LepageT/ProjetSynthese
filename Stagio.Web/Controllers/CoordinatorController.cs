@@ -20,6 +20,7 @@ using Apply = Stagio.Domain.Entities.Apply;
 
 namespace Stagio.Web.Controllers
 {
+    [Authorize(Roles = RoleName.Coordinator)]
     public partial class CoordinatorController : Controller
     {
         private readonly IAccountService _accountService;
@@ -36,7 +37,8 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<Notification> _notificationRepository;
         private readonly IHttpContextService _httpContextService;
         private readonly INotificationService _notificationService;
-        private readonly IEntityRepository<ApplicationUser> _applicationRepository; 
+        private readonly IEntityRepository<ApplicationUser> _applicationRepository;
+        private readonly IEntityRepository<Misc> _miscRepository; 
 
         public CoordinatorController(IEntityRepository<ContactEnterprise> enterpriseContactRepository,
             IEntityRepository<Coordinator> coordinatorRepository,
@@ -50,7 +52,8 @@ namespace Stagio.Web.Controllers
             IEntityRepository<Interview> interviewRepository,
             IEntityRepository<Notification> notificationRepository,
             IHttpContextService httpContextService,
-            IEntityRepository<ApplicationUser> applicationRepository)
+            IEntityRepository<ApplicationUser> applicationRepository,
+            IEntityRepository<Misc> miscRepository)
         {
             _enterpriseContactRepository = enterpriseContactRepository;
             _coordinatorRepository = coordinatorRepository;
@@ -66,7 +69,7 @@ namespace Stagio.Web.Controllers
             _httpContextService = httpContextService;
             _applicationRepository = applicationRepository;
             _notificationService = new NotificationService(_applicationRepository, notificationRepository);
-
+            _miscRepository = miscRepository;
         }
         // GET: Coordinator
         public virtual ActionResult Index()
@@ -163,7 +166,7 @@ namespace Stagio.Web.Controllers
         {
             return View();
         }
-
+        [AllowAnonymous]
         public virtual ActionResult Create(string token)
         {
             if (!String.IsNullOrEmpty(token))
@@ -186,7 +189,7 @@ namespace Stagio.Web.Controllers
 
             return HttpNotFound();
         }
-
+        [AllowAnonymous]
         [HttpPost]
         public virtual ActionResult Create(ViewModels.Coordinator.Create createdCoordinator)
         {
@@ -549,6 +552,35 @@ namespace Stagio.Web.Controllers
                 return RedirectToAction(MVC.Coordinator.DetailsApplyStudent(id, true));
             }
         }
+
+        public virtual ActionResult SetApplyDates()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public virtual ActionResult SetApplyDates(ViewModels.Coordinator.ApplyDatesLimit ApplyDates)
+        {
+            if (ModelState.IsValid)
+            {
+                if (Convert.ToDateTime(ApplyDates.DateBegin) >= DateTime.Now)
+                {
+                    if (Convert.ToDateTime(ApplyDates.DateBegin) < Convert.ToDateTime(ApplyDates.DateEnd))
+                    {
+                        var miscs = _miscRepository.GetAll().ToList();
+                        var misc = miscs.FirstOrDefault();
+                        misc.StartApplyDate = ApplyDates.DateBegin;
+                        misc.EndApplyDate = ApplyDates.DateEnd;
+                        _miscRepository.Update(misc);
+                        return RedirectToAction(MVC.Coordinator.Index());
+                    }
+                }
+                this.Flash(FlashMessageResources.ErrorsOnPage, FlashEnum.Error);
+                return View();
+            }
+            return HttpNotFound();
+        }
+
 
     }
 }
