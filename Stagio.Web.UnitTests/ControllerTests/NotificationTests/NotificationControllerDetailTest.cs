@@ -27,7 +27,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.NotificationTests
         {
             var notification = _fixture.Create<Notification>();
             notification.For = 1;
-            notificationRepository.GetById(1).Returns(notification);
+            notificationService.GetNotification(1).Returns(notification);
             httpContextService.GetUserId().Returns(2);
 
             var result = notificationController.Detail(1) as RedirectToRouteResult;
@@ -42,7 +42,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.NotificationTests
         {
             var notification = _fixture.Create<Notification>();
             notification.For = 1;
-            notificationRepository.GetById(1).Returns(notification);
+            notificationService.GetNotification(1).Returns(notification);
             httpContextService.GetUserId().Returns(1);
 
             var viewResult = notificationController.Detail(notification.For) as ViewResult;

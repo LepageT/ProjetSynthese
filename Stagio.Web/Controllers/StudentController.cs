@@ -28,10 +28,9 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<Stagio.Domain.Entities.Apply> _applyRepository;
         private readonly IMailler _mailler;
         private readonly IAccountService _accountService;
-        private readonly IEntityRepository<ApplicationUser> _applicationUserRepository;
         private readonly INotificationService _notificationService;
 
-        public StudentController(IEntityRepository<Student> studentRepository, IEntityRepository<Stage> stageRepository, IEntityRepository<Stagio.Domain.Entities.Apply> applyRepository, IHttpContextService httpContextService, IMailler mailler, IAccountService accountService, IEntityRepository<Stagio.Domain.Entities.Notification> notificationRepository, IEntityRepository<ApplicationUser> applicationUserRepository)
+        public StudentController(IEntityRepository<Student> studentRepository, IEntityRepository<Stage> stageRepository, IEntityRepository<Stagio.Domain.Entities.Apply> applyRepository, IHttpContextService httpContextService, IMailler mailler, IAccountService accountService, INotificationService notificationService)
         {
             _studentRepository = studentRepository;
             _stageRepository = stageRepository;
@@ -39,8 +38,7 @@ namespace Stagio.Web.Controllers
             _applyRepository = applyRepository;
             _mailler = mailler;
             _accountService = accountService;
-            _applicationUserRepository = applicationUserRepository;
-            _notificationService = new NotificationService(applicationUserRepository, notificationRepository);
+            _notificationService = notificationService;
         }
 
         [Authorize(Roles = RoleName.Student)]

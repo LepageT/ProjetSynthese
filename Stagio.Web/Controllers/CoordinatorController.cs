@@ -33,10 +33,8 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<Stage> _stageRepository;
         private readonly IEntityRepository<Student> _studentRepository;
         private readonly IEntityRepository<Interview> _interviewRepository;
-        private readonly IEntityRepository<Notification> _notificationRepository;
         private readonly IHttpContextService _httpContextService;
         private readonly INotificationService _notificationService;
-        private readonly IEntityRepository<ApplicationUser> _applicationRepository; 
 
         public CoordinatorController(IEntityRepository<ContactEnterprise> enterpriseContactRepository,
             IEntityRepository<Coordinator> coordinatorRepository,
@@ -48,9 +46,8 @@ namespace Stagio.Web.Controllers
             IEntityRepository<Stage> stageRepository,
             IEntityRepository<Student> studentRepository,
             IEntityRepository<Interview> interviewRepository,
-            IEntityRepository<Notification> notificationRepository,
-            IHttpContextService httpContextService,
-            IEntityRepository<ApplicationUser> applicationRepository)
+            INotificationService notificationService,
+            IHttpContextService httpContextService)
         {
             _enterpriseContactRepository = enterpriseContactRepository;
             _coordinatorRepository = coordinatorRepository;
@@ -62,10 +59,8 @@ namespace Stagio.Web.Controllers
             _stageRepository = stageRepository;
             _studentRepository = studentRepository;
             _interviewRepository = interviewRepository;
-            _notificationRepository = notificationRepository;
             _httpContextService = httpContextService;
-            _applicationRepository = applicationRepository;
-            _notificationService = new NotificationService(_applicationRepository, notificationRepository);
+            _notificationService = notificationService;
 
         }
         // GET: Coordinator

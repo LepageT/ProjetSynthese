@@ -22,21 +22,16 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<Student> _studentRepository;
         private readonly IEntityRepository<Interview> _interviewRepository; 
         private readonly IHttpContextService _httpContextService;
-        private readonly IEntityRepository<ApplicationUser> _applicationUserRepository;
-        private readonly IEntityRepository<Notification> _notificationRepository;
         private readonly INotificationService _notificationService;
 
-        public InterviewController(IEntityRepository<Stagio.Domain.Entities.Apply> applyRepository, IEntityRepository<Stage> stageRepository, IHttpContextService httpContextService, IEntityRepository<Interview> interviewRepository, IEntityRepository<Student> studentRepository, IEntityRepository<Notification> notificationRepository, IEntityRepository<ApplicationUser> applicationUserRepository)
+        public InterviewController(IEntityRepository<Stagio.Domain.Entities.Apply> applyRepository, IEntityRepository<Stage> stageRepository, IHttpContextService httpContextService, IEntityRepository<Interview> interviewRepository, IEntityRepository<Student> studentRepository, INotificationService notificationService)
         {
             _applyRepository = applyRepository;
             _stageRepository = stageRepository;
             _httpContextService = httpContextService;
             _interviewRepository = interviewRepository;
             _studentRepository = studentRepository;
-            _notificationRepository = notificationRepository;
-            _applicationUserRepository = applicationUserRepository;
-            _notificationService = new NotificationService(applicationUserRepository, notificationRepository);
-
+            _notificationService = notificationService;
 
         }
 

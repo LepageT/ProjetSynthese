@@ -31,6 +31,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
         protected IEntityRepository<Notification> notificationRepository;
         protected IEntityRepository<ApplicationUser> applicationRepository; 
         protected IAccountService accountService;
+        protected INotificationService notificationService;
         protected IMailler mailler;
 
         [TestInitialize]
@@ -50,10 +51,15 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
             httpContextService = Substitute.For<IHttpContextService>();
             notificationRepository = Substitute.For<IEntityRepository<Notification>>();
             applicationRepository = Substitute.For<IEntityRepository<ApplicationUser>>();
-
             mailler = Substitute.For<IMailler>();
 
-            coordinatorController = new CoordinatorController(enterpriseRepository, coordinatorRepository, invitationRepository, mailler, accountService, invitationContactRepository, applyRepository, stageRepository, studentRepository, interviewRepository,notificationRepository,httpContextService, applicationRepository);
+            notificationService = new NotificationService(applicationRepository, notificationRepository);
+
+            coordinatorController = new CoordinatorController(enterpriseRepository, coordinatorRepository, invitationRepository, mailler,
+                accountService, invitationContactRepository, applyRepository, stageRepository, studentRepository,
+                interviewRepository, notificationService, httpContextService);
+
+
         }
     }
 }
