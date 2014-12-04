@@ -14,5 +14,7 @@ namespace Stagio.Web.Services
         string HashPassword(string password);
 
         bool UserEmailExist(string email);
+
+        bool ValidatePassword(string hashedPassword, string passwordToValidate);
     }
 }

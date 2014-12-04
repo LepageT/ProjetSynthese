@@ -1,5 +1,5 @@
 ﻿@using System.Data.Entity.ModelConfiguration.Conventions
-@model Stagio.Web.ViewModels.Account.SignStageAgreement
+@model Stagio.Web.ViewModels.StageAgreement.EditStageAgreement
 
 
 <!DOCTYPE html>
@@ -16,6 +16,10 @@
 
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.IdStage)
+         @Html.HiddenFor(model => model.IdStudentSigned)
+         @Html.HiddenFor(model => model.IdCoordinatorSigned)
+         @Html.HiddenFor(model => model.IdContactEnterpriseSigned)
         <div class="form-horizontal">
             <h2>Convention de stage</h2>
             <h4>Engagement</h4>
@@ -464,7 +468,7 @@
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                    
-                    <input type="submit" value="Sauvegarder" class="btn btn-default" />
+                    <input type="submit" value="Sauvegarder" class="btn btn-default" id="edit-button" />
                 </div>
             </div>
 

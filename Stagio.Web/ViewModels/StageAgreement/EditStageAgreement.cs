@@ -5,9 +5,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Stagio.Web.ViewModels.Account
+namespace Stagio.Web.ViewModels.StageAgreement
 {
-    public class SignStageAgreement
+    public class EditStageAgreement
     {
         public int Id { get; set; }
 

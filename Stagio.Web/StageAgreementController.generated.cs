@@ -60,6 +60,12 @@ namespace Stagio.Web.Controllers
 		{
 			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateConfirmation);
 		}
+		[NonAction]
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public virtual System.Web.Mvc.ActionResult Edit()
+		{
+			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
+		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public StageAgreementController Actions { get { return MVC.StageAgreement; } }
@@ -77,12 +83,14 @@ namespace Stagio.Web.Controllers
 		public class ActionNamesClass
 		{
 			public readonly string CreateConfirmation = "CreateConfirmation";
+			public readonly string Edit = "Edit";
 		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public class ActionNameConstants
 		{
 			public const string CreateConfirmation = "CreateConfirmation";
+			public const string Edit = "Edit";
 		}
 
 
@@ -93,6 +101,15 @@ namespace Stagio.Web.Controllers
 		public class ActionParamsClass_CreateConfirmation
 		{
 			public readonly string idApply = "idApply";
+		}
+		static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public ActionParamsClass_Edit EditParams { get { return s_params_Edit; } }
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public class ActionParamsClass_Edit
+		{
+			public readonly string idStageAgreement = "idStageAgreement";
+			public readonly string signStageAgreementViewModel = "signStageAgreementViewModel";
 		}
 		static readonly ViewsClass s_views = new ViewsClass();
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -105,8 +122,10 @@ namespace Stagio.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string CreateConfirmation = "CreateConfirmation";
+                public readonly string Edit = "Edit";
             }
             public readonly string CreateConfirmation = "~/Views/StageAgreement/CreateConfirmation.cshtml";
+            public readonly string Edit = "~/Views/StageAgreement/Edit.cshtml";
 		}
 	}
 
@@ -124,6 +143,30 @@ namespace Stagio.Web.Controllers
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateConfirmation);
 			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "idApply", idApply);
 			CreateConfirmationOverride(callInfo, idApply);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int idStageAgreement);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult Edit(int idStageAgreement)
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "idStageAgreement", idStageAgreement);
+			EditOverride(callInfo, idStageAgreement);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Stagio.Web.ViewModels.StageAgreement.EditStageAgreement signStageAgreementViewModel);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult Edit(Stagio.Web.ViewModels.StageAgreement.EditStageAgreement signStageAgreementViewModel)
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "signStageAgreementViewModel", signStageAgreementViewModel);
+			EditOverride(callInfo, signStageAgreementViewModel);
 			return callInfo;
 		}
 

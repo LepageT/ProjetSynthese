@@ -31,7 +31,7 @@ namespace Stagio.Web.Mappers
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .IgnoreAllNonExisting();
 
-            Mapper.CreateMap<ViewModels.Account.SignStageAgreement, StageAgreement>()
+            Mapper.CreateMap<ViewModels.StageAgreement.EditStageAgreement, StageAgreement>()
               .IgnoreAllNonExisting();
 
             Mapper.CreateMap<ViewModels.Coordinator.Create, Coordinator>()

@@ -87,7 +87,7 @@ namespace Stagio.Web.Mappers
                 .IgnoreAllNonExisting();
 
 
-            Mapper.CreateMap<StageAgreement, ViewModels.Account.SignStageAgreement>()
+            Mapper.CreateMap<StageAgreement, ViewModels.StageAgreement.EditStageAgreement>()
                 .IgnoreAllNonExisting();
 
             Mapper.CreateMap<Student, ViewModels.ContactEnterprise.AcceptApply>()
