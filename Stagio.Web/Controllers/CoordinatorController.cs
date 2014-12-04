@@ -293,7 +293,6 @@ namespace Stagio.Web.Controllers
             var allStudent = _studentRepository.GetAll().ToList();
             var studentListViewModels = Mapper.Map<IEnumerable<ViewModels.Coordinator.StudentList>>(allStudent).ToList();
 
-
             int nbAppliesStudent = 0;
 
             var appliedStages = _applyRepository.GetAll().ToList();
@@ -324,9 +323,19 @@ namespace Stagio.Web.Controllers
                 student.NbDateInterview = nbDateInterview;
                 nbDateInterview = 0;
             }
+
+            var studentStageFound = allStudent;
+            var studentStageNotFound = allStudent;
+
+            var students = new ViewModels.Coordinator.StudentLists()
+            {
+                StudentStageFound = studentListViewModels,
+
+                StudentStageNotFound = studentListViewModels
+            };
            
 
-            return View(studentListViewModels);
+            return View(students);
         }
 
         [Authorize(Roles = RoleName.Coordinator)]
