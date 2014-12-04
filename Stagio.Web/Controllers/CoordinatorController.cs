@@ -322,19 +322,23 @@ namespace Stagio.Web.Controllers
                 foreach (var interview in interviewsSpecificStudent)
                 {
                     nbDateInterview = nbDateInterview + 1;
+                    if (interview.DateAcceptOffer != null || interview.DateAcceptOffer == "Inconnue")
+                    {
+                        student.DateAccepted = interview.DateAcceptOffer;
+                    }
                 }
                 student.NbDateInterview = nbDateInterview;
                 nbDateInterview = 0;
             }
 
-            var studentStageFound = allStudent;
-            var studentStageNotFound = allStudent;
+            var studentStageFound = studentListViewModels.Where(x => x.DateAccepted != null);
+            var studentStageNotFound =
+                studentListViewModels.Where(x => x.DateAccepted == null).OrderBy(x => x.NbDateInterview);
 
             var students = new ViewModels.Coordinator.StudentLists()
             {
-                StudentStageFound = studentListViewModels,
-
-                StudentStageNotFound = studentListViewModels
+                StudentStageFound = studentStageFound.ToList(),
+                StudentStageNotFound = studentStageNotFound.ToList()
             };
            
 
@@ -395,8 +399,6 @@ namespace Stagio.Web.Controllers
                     }
                 }
             }
-
-            
 
             return View(studentListApplyViewModels);
         }
