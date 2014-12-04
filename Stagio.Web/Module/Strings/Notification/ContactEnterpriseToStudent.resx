@@ -129,4 +129,10 @@
   <data name="NewStageTitle" xml:space="preserve">
     <value>Un nouveau stage est disponible</value>
   </data>
+  <data name="RemoveStage" xml:space="preserve">
+    <value>{0} a retiré le stage {1}&lt;/a&gt;</value>
+  </data>
+  <data name="RemoveStageTitle" xml:space="preserve">
+    <value>Une entreprise à retiré une de ses offres de stages</value>
+  </data>
 </root>

@@ -17,9 +17,13 @@ namespace Stagio.Web.Services
 
         bool SendNotificationToAllStudent(String title, String message);
 
-        ICollection<Notification> GetNotificationForUser(int userId, int count);
+        ICollection<Notification> GetNotificationForUser(int userId, int count = -1);
 
         ICollection<Notification> GetDashboardNotificationForUser(int userId);
+
+        Notification GetNotification(int notifiactionIdid);
+
+        void MarkNotificationAsSeen(Notification notifiactionId);
 
     }
 }

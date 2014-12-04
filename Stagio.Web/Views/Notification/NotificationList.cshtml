@@ -20,7 +20,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.ActionLink(item.Title, MVC.Notification.Detail().AddRouteValues(new { id = item.NotificationId }), new { id = "notification-detail" + item.NotificationId })
+            @Html.ActionLink(item.Title, MVC.Notification.Detail().AddRouteValues(new { notificationId = item.NotificationId }), new { id = "notification-detail" + item.NotificationId })
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Date)

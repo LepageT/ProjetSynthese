@@ -36,7 +36,6 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<StageAgreement> _stageAgreementRepository;
         private readonly IHttpContextService _httpContextService;
         private readonly INotificationService _notificationService;
-        private readonly IEntityRepository<ApplicationUser> _applicationRepository; 
 
         public CoordinatorController(IEntityRepository<ContactEnterprise> enterpriseContactRepository,
             IEntityRepository<Coordinator> coordinatorRepository,
@@ -48,10 +47,9 @@ namespace Stagio.Web.Controllers
             IEntityRepository<Stage> stageRepository,
             IEntityRepository<Student> studentRepository,
             IEntityRepository<Interview> interviewRepository,
-            IEntityRepository<Notification> notificationRepository,
-            IHttpContextService httpContextService,
-            IEntityRepository<ApplicationUser> applicationRepository,
-            IEntityRepository<StageAgreement> stageAgreementRepository)
+            IEntityRepository<StageAgreement> stageAgreementRepository,
+            INotificationService notificationService,
+            IHttpContextService httpContextService)
         {
             _enterpriseContactRepository = enterpriseContactRepository;
             _coordinatorRepository = coordinatorRepository;
@@ -65,8 +63,7 @@ namespace Stagio.Web.Controllers
             _interviewRepository = interviewRepository;
             _stageAgreementRepository = stageAgreementRepository;
             _httpContextService = httpContextService;
-            _applicationRepository = applicationRepository;
-            _notificationService = new NotificationService(_applicationRepository, notificationRepository);
+            _notificationService = notificationService;
 
         }
         // GET: Coordinator
@@ -116,7 +113,7 @@ namespace Stagio.Web.Controllers
                     }
 
                     String messageText = EmailEnterpriseResources.InviteMessageBody;
-                    String invitationUrl = EmailEnterpriseResources.InviteLink + token + EmailEnterpriseResources.EndLink + token + "</a>";
+                    String invitationUrl = String.Format(EmailEnterpriseResources.InviteLink, token);
 
                     messageText += invitationUrl;
 
@@ -255,7 +252,7 @@ namespace Stagio.Web.Controllers
 
             //Sending invitation with the Mailler class
             String messageText = EmailCoordinatorResources.CoordinatorInviteMessageBody;
-            String invitationUrl = EmailCoordinatorResources.CoordinatorInviteLink + token + "\">jenkins.cegep-ste-foy.qc.ca/thomarelau/Coordinator/Create?token=" + token + "</a>";
+            String invitationUrl = String.Format(EmailCoordinatorResources.CoordinatorInviteLink, token);
 
             messageText += invitationUrl;
 

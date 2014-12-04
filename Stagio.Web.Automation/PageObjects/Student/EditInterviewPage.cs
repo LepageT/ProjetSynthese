@@ -24,8 +24,9 @@ namespace Stagio.Web.Automation.PageObjects.Student
             Driver.Instance.FindElement(By.Id("datetimepickerDateOffer")).SendKeys(dateOffer.ToString());
             Driver.Instance.FindElement(By.Id("datetimepickerDateAcceptOffer")).Clear();
             Driver.Instance.FindElement(By.Id("datetimepickerDateAcceptOffer")).SendKeys(dateAcceptOffer.ToString());
+            Driver.Instance.FindElement(By.Id("datetimepickerDateAcceptOffer")).Submit();
+
          
-            Driver.Instance.FindElement(By.Id("edit-button")).Click();
         }
 
         public static bool EditVerification(DateTime dateInterview, DateTime dateOffer, DateTime dateAcceptOffer)
@@ -36,7 +37,7 @@ namespace Stagio.Web.Automation.PageObjects.Student
             var dateOfferDisplayed = Driver.Instance.FindElement(By.Id("datetimepickerDateOffer")).GetAttribute("value");
             var dateAcceptOfferDisplayed = Driver.Instance.FindElement(By.Id("datetimepickerDateAcceptOffer")).GetAttribute("value");
 
-            if (DateTime.Parse(dateInterviewDisplayed) == dateInterview && DateTime.Parse(dateOfferDisplayed) == dateOffer && DateTime.Parse(dateAcceptOfferDisplayed) == dateAcceptOffer)
+            if (DateTime.Parse(dateInterviewDisplayed) == dateInterview && DateTime.Parse(dateOfferDisplayed).ToShortDateString() == dateOffer.ToShortDateString() && DateTime.Parse(dateAcceptOfferDisplayed).ToShortDateString() == dateAcceptOffer.ToShortDateString())
             {
                 return true;
             }

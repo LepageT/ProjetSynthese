@@ -6,7 +6,8 @@
 $(function () {
     $('#datetimepickerStage').datetimepicker(
     {
-        pickTime: false
+        pickTime: false,
+        language: 'fr'
     });
 });
 
