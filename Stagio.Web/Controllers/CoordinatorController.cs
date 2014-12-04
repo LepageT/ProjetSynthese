@@ -33,7 +33,7 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<Stage> _stageRepository;
         private readonly IEntityRepository<Student> _studentRepository;
         private readonly IEntityRepository<Interview> _interviewRepository;
-        private readonly IEntityRepository<Notification> _notificationRepository;
+        private readonly IEntityRepository<StageAgreement> _stageAgreementRepository;
         private readonly IHttpContextService _httpContextService;
         private readonly INotificationService _notificationService;
         private readonly IEntityRepository<ApplicationUser> _applicationRepository; 
@@ -50,7 +50,8 @@ namespace Stagio.Web.Controllers
             IEntityRepository<Interview> interviewRepository,
             IEntityRepository<Notification> notificationRepository,
             IHttpContextService httpContextService,
-            IEntityRepository<ApplicationUser> applicationRepository)
+            IEntityRepository<ApplicationUser> applicationRepository,
+            IEntityRepository<StageAgreement> stageAgreementRepository)
         {
             _enterpriseContactRepository = enterpriseContactRepository;
             _coordinatorRepository = coordinatorRepository;
@@ -62,7 +63,7 @@ namespace Stagio.Web.Controllers
             _stageRepository = stageRepository;
             _studentRepository = studentRepository;
             _interviewRepository = interviewRepository;
-            _notificationRepository = notificationRepository;
+            _stageAgreementRepository = stageAgreementRepository;
             _httpContextService = httpContextService;
             _applicationRepository = applicationRepository;
             _notificationService = new NotificationService(_applicationRepository, notificationRepository);
@@ -348,11 +349,19 @@ namespace Stagio.Web.Controllers
             var stages = _stageRepository.GetAll().ToList();
             var students = _studentRepository.GetAll().ToList();
             var interviews = _interviewRepository.GetAll().ToList();
+            var stageAgreements = _stageAgreementRepository.GetAll().ToList();
 
             var studentListApplyViewModels = Mapper.Map<IEnumerable<ViewModels.Coordinator.StudentApplyList>>(studentSpecificApplies).ToList();
 
             foreach (var appliedStage in studentListApplyViewModels)
             {
+                foreach (var stageAgreement in stageAgreements)
+                {
+                    if (appliedStage.IdStage == stageAgreement.IdStage)
+                    {
+                        appliedStage.StageAgreementCreated = true;
+                    }
+                }
                 foreach (var stage in stages)
                 {
                     if (appliedStage.IdStage == stage.Id)
@@ -375,7 +384,8 @@ namespace Stagio.Web.Controllers
                     if (appliedStage.IdStudent == interview.StudentId)
                     {
                         appliedStage.DateInterview = interview.Date;
-
+                        appliedStage.DateStageOffer = interview.DateOffer;
+                        appliedStage.DateAcceptStage = interview.DateAcceptOffer;
                     }
                 }
             }
