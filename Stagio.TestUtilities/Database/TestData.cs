@@ -448,7 +448,7 @@ namespace Stagio.TestUtilities.Database
             {
                 var apply = new Apply()
                 {
-                    IdStage = 3,
+                    IdStage = 4,
                     IdStudent = 1,
                     Cv = "Le cv de l'étudiant",
                     Letter = "La lettre de présentation.",
