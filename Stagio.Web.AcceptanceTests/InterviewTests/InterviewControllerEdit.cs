@@ -20,17 +20,19 @@ namespace Stagio.Web.AcceptanceTests.InterviewTests
         [TestMethod]
         public void student_edit_should_update_his_interview_if_id_is_valid()
         {
-            var NEW_DATE = new DateTime(1999,12,24,12,30, 0);
+            var DATE_INTERVIEW = new DateTime(1999,12,24,12,30, 0);
+            var DATE_OFFER = new DateTime(1999, 12, 24, 12, 30, 0);
+            var DATE_ACCEPT_OFFER = new DateTime(1999, 12, 24, 12, 30, 0);
 
             LoginPage.GoTo();
             LoginPage.LoginAs(StudentUsername, StudentPassword);
             addInterview();
             EditInterviewPage.GoToByUrl();
 
-            EditInterviewPage.EditAnInterview(NEW_DATE, true);
+            EditInterviewPage.EditAnInterview(DATE_INTERVIEW, DATE_OFFER, DATE_ACCEPT_OFFER, true);
 
             ListInterview.IsDisplayed.Should().BeTrue();
-            EditInterviewPage.EditVerification(NEW_DATE).Should().BeTrue();
+            EditInterviewPage.EditVerification(DATE_INTERVIEW, DATE_OFFER, DATE_ACCEPT_OFFER).Should().BeTrue();
         }
 
         private void addInterview()
