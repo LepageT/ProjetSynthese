@@ -9,3 +9,17 @@ $(function () {
         pickTime: false
     });
 });
+
+$(function () {
+    $('#datetimepickerDateOffer').datetimepicker(
+    {
+        pickTime: false
+    });
+});
+
+$(function () {
+    $('#datetimepickerDateAcceptOffer').datetimepicker(
+    {
+        pickTime: false
+    });
+});

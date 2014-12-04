@@ -15,21 +15,28 @@ namespace Stagio.Web.Automation.PageObjects.Student
             Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/Interview/Edit?id=1");
         }
         
-        public static void EditAnInterview(DateTime date, bool isPresent)
+        public static void EditAnInterview(DateTime dateInterview, DateTime dateOffer, DateTime dateAcceptOffer, bool isPresent)
         {
             Driver.Instance.FindElement(By.Id("datetimepicker")).Clear();
-            Driver.Instance.FindElement(By.Id("datetimepicker")).SendKeys(date.ToString());
+            Driver.Instance.FindElement(By.Id("datetimepicker")).SendKeys(dateInterview.ToString());
             Driver.Instance.FindElement(By.Id("Present")).SendKeys(isPresent.ToString());
+            Driver.Instance.FindElement(By.Id("datetimepickerDateOffer")).Clear();
+            Driver.Instance.FindElement(By.Id("datetimepickerDateOffer")).SendKeys(dateOffer.ToString());
+            Driver.Instance.FindElement(By.Id("datetimepickerDateAcceptOffer")).Clear();
+            Driver.Instance.FindElement(By.Id("datetimepickerDateAcceptOffer")).SendKeys(dateAcceptOffer.ToString());
          
             Driver.Instance.FindElement(By.Id("edit-button")).Click();
         }
 
-        public static bool EditVerification(DateTime date)
+        public static bool EditVerification(DateTime dateInterview, DateTime dateOffer, DateTime dateAcceptOffer)
         {
             GoToByUrl();
             
-            var dateDisplayed = Driver.Instance.FindElement(By.Id("datetimepicker")).GetAttribute("value");
-            if (DateTime.Parse(dateDisplayed) == date)
+            var dateInterviewDisplayed = Driver.Instance.FindElement(By.Id("datetimepicker")).GetAttribute("value");
+            var dateOfferDisplayed = Driver.Instance.FindElement(By.Id("datetimepickerDateOffer")).GetAttribute("value");
+            var dateAcceptOfferDisplayed = Driver.Instance.FindElement(By.Id("datetimepickerDateAcceptOffer")).GetAttribute("value");
+
+            if (DateTime.Parse(dateInterviewDisplayed) == dateInterview && DateTime.Parse(dateOfferDisplayed) == dateOffer && DateTime.Parse(dateAcceptOfferDisplayed) == dateAcceptOffer)
             {
                 return true;
             }

@@ -17,5 +17,10 @@ namespace Stagio.Domain.Entities
         public bool Present { get; set; }
 
         public int StudentId { get; set; }
+
+        public String DateOffer { get; set; }
+
+        public String DateAcceptOffer { get; set; }
+
     }
 }
