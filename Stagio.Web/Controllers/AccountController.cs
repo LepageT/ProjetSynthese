@@ -54,18 +54,7 @@ namespace Stagio.Web.Controllers
             }
 
             AuthentificateUser(user.First());
-            if (User.IsInRole("Étudiant"))
-            {
-                return RedirectToAction(MVC.Student.Index());
-            }
-            else if (User.IsInRole("Coordonnateur"))
-            {
-                return RedirectToAction(MVC.Coordinator.Index());
-            }
-            else if (User.IsInRole("Contact entreprise"))
-            {
-                return RedirectToAction(MVC.ContactEnterprise.Index());
-            }
+
             return RedirectToAction(MVC.Home.Index());
         }
 
