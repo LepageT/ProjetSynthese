@@ -39,5 +39,8 @@ namespace Stagio.Web.ViewModels.Coordinator
 
         [DisplayName("Date d'acceptation de l'offre")]
         public string DateAcceptStage { get; set; }
+
+        [DefaultValue(false)]
+        public bool StageAgreementCreated { get; set; }
     }
 }

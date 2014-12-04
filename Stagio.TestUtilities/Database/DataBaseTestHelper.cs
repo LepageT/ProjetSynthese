@@ -50,8 +50,10 @@ namespace Stagio.TestUtilities.Database
         {
             var apply1 = TestData.apply1;
             var apply2 = TestData.apply2;
+            var apply3 = TestData.apply3;
             _applyRepository.Add(apply1);
             _applyRepository.Add(apply2);
+            _applyRepository.Add(apply3);
         }
 
         private void addStages()

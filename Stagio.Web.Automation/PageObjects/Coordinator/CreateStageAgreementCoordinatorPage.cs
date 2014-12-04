@@ -16,7 +16,7 @@ namespace Stagio.Web.Automation.PageObjects.Coordinator
 
         public static void GoTo()
         {
-            Navigation.Coordinator.StageAgreementCreate1.Select();
+            Navigation.Coordinator.StageAgreementCreate3.Select();
         }
 
         public static void GoToByUrl()

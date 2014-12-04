@@ -80,7 +80,7 @@
             <td>
                 @if (item.DateStageOffer != null)
                 {
-                    @Html.Label(item.DateInterview)
+                    @Html.Label(item.DateStageOffer)
                 }
                 else
                 {
@@ -90,7 +90,7 @@
             <td>
                 @if (item.DateAcceptStage != null)
                 {
-                    @Html.Label(item.DateInterview)
+                    @Html.Label(item.DateAcceptStage)
                 }
                 else
                 {
@@ -101,15 +101,11 @@
                 @Html.ActionLink("Voir les détails", MVC.Coordinator.DetailsApplyStudent(item.Id, false))
             </td>
             <td>
-                @if (item.DateAcceptStage != null)
+                @if (item.StageAgreementCreated == false)
                 {
                     @Html.ActionLink("Créer la convention de stage", MVC.StageAgreement.CreateConfirmation(item.Id), new { id = "create-stageAgreement" + item.Id })
                 }
-                else
-                {
-                    //TEMP
-                    @Html.ActionLink("Créer la convention de stage", MVC.StageAgreement.CreateConfirmation(item.Id), new { id = "create-stageAgreement" + item.Id })
-                }
+                
             </td>
         </tr>
     }
