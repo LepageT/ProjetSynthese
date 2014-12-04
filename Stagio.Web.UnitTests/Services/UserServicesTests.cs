@@ -1,13 +1,17 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using Ploeh.AutoFixture;
 using Stagio.DataLayer;
+using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
 using Stagio.Utilities.Encryption;
 using Stagio.Web.Services;
 using Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests;
+using Stagio.Web.ViewModels.Interviews;
 
 
 namespace Stagio.Web.UnitTests.Services
@@ -16,13 +20,15 @@ namespace Stagio.Web.UnitTests.Services
     public class UserServicesTests : AllControllersBaseClassTests
     {
         private IEntityRepository<ApplicationUser> _userRepository;
+        private IEntityRepository<Misc> _miscRepository;
         private AccountService _accountService;
 
         [TestInitialize]
         public void test_initialize()
         {
             _userRepository = Substitute.For<IEntityRepository<ApplicationUser>>();
-            _accountService = new AccountService(_userRepository);
+            _miscRepository = Substitute.For<IEntityRepository<Misc>>();
+            _accountService = new AccountService(_userRepository, _miscRepository);
         }
 
         [TestMethod]
@@ -101,6 +107,89 @@ namespace Stagio.Web.UnitTests.Services
             var user = _accountService.UserEmailExist("test@hotmail.com");
 
             user.Should().BeFalse();
+        }
+
+        [TestMethod]
+        public void isCoordonator_should_return_true_if_coordonator()
+        {
+            var user = _fixture.Create<ApplicationUser>();
+            user.Roles = new List<UserRole>()
+            {
+                new UserRole() {RoleName = RoleName.Coordinator},
+            };
+
+            var result = _accountService.isCoordonator(user);
+            
+            result.Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void isCoordonator_should_return_false_if_not_coordonator()
+        {
+            var user = _fixture.Create<ApplicationUser>();
+            user.Roles = new List<UserRole>()
+            {
+                new UserRole() {RoleName = RoleName.Student},
+                new UserRole() {RoleName = RoleName.ContactEnterprise}
+            };
+
+            var result = _accountService.isCoordonator(user);
+
+            result.Should().BeFalse();
+        }
+
+        [TestMethod]
+        public void isBetweenAccesibleDates_should_return_false_with_null_misc()
+        {
+            IQueryable<Misc> miscs = new EnumerableQuery<Misc>(new List<Misc>());
+
+            _miscRepository.GetAll().Returns(miscs);
+
+            var result = _accountService.isBetweenAccesibleDates();
+
+            result.Should().BeFalse();
+        }
+
+        [TestMethod]
+        public void isBetweenAccesibleDates_should_return_false_with_invalid_StartDate()
+        {
+            var miscs = _fixture.CreateMany<Misc>(2).AsQueryable();
+            var misc = miscs.First();
+            misc.StartApplyDate = (DateTime.Today.AddDays(2)).ToString();
+            misc.EndApplyDate = (DateTime.Today.AddDays(3)).ToString();
+            _miscRepository.GetAll().Returns(miscs);
+
+            var result = _accountService.isBetweenAccesibleDates();
+
+            result.Should().BeFalse();
+        }
+
+        [TestMethod]
+        public void isBetweenAccesibleDates_should_return_false_with_invalid_EndDate()
+        {
+            var miscs = _fixture.CreateMany<Misc>(2).AsQueryable();
+            var misc = miscs.First();
+            misc.StartApplyDate = (DateTime.Today.AddDays(-5)).ToString();
+            misc.EndApplyDate = (DateTime.Today.AddDays(-3)).ToString();
+            _miscRepository.GetAll().Returns(miscs);
+
+            var result = _accountService.isBetweenAccesibleDates();
+
+            result.Should().BeFalse();
+        }
+
+        [TestMethod]
+        public void isBetweenAccesibleDates_should_return_true_with_valid_dates()
+        {
+            var miscs = _fixture.CreateMany<Misc>(2).AsQueryable();
+            var misc = miscs.First();
+            misc.StartApplyDate = (DateTime.Today.AddDays(-1)).ToString();
+            misc.EndApplyDate = (DateTime.Today.AddDays(3)).ToString();
+            _miscRepository.GetAll().Returns(miscs);
+
+            var result = _accountService.isBetweenAccesibleDates();
+
+            result.Should().BeTrue();
         }
     }
 }

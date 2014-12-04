@@ -2,6 +2,7 @@
 using AutoMapper;
 using Microsoft.AspNet.Identity;
 using Stagio.DataLayer;
+using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
 using Stagio.Web.Module;
 using Stagio.Web.Module.Strings.Controller;
@@ -31,7 +32,7 @@ namespace Stagio.Web.Controllers
         {
             return View();
         }
-
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public virtual ActionResult Login(ViewModels.Account.Login accountLoginViewModel)
@@ -43,13 +44,19 @@ namespace Stagio.Web.Controllers
 
             var user = _accountService.ValidateUser(accountLoginViewModel.Username, accountLoginViewModel.Password);
 
+
             if (!user.Any())
             {
                 ModelState.AddModelError("loginError", AccountResources.ErrorLogin);
                 this.Flash(AccountResources.ErrorLogin, FlashEnum.Error);
                 return View("");
             }
-
+            if (!_accountService.isCoordonator(user.First()) && !_accountService.isBetweenAccesibleDates())
+            {
+                ModelState.AddModelError("loginError", AccountResources.ErrorLogin);
+                this.Flash(AccountResources.ErrorLoginOutOfApplyDateRange, FlashEnum.Error);
+                return View("");
+            }
             AuthentificateUser(user.First());
 
             return RedirectToAction(MVC.Home.Index());

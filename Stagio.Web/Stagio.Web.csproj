@@ -518,6 +518,7 @@
     <Content Include="Views\Stage\DraftDelete.cshtml" />
     <Content Include="Views\Coordinator\SetApplyDates.cshtml" />
     <Content Include="Views\ContactEnterprise\Edit.cshtml" />
+    <Content Include="Views\ContactEnterprise\InviteContactEnterpriseConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt.hooks.t4" />

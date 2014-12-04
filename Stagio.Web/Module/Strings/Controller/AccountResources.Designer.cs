@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Stagio.Web.Module.Strings.Controller
-{
-
-
+namespace Stagio.Web.Module.Strings.Controller {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -66,6 +66,15 @@ namespace Stagio.Web.Module.Strings.Controller
         internal static string ErrorLogin {
             get {
                 return ResourceManager.GetString("ErrorLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vous n&apos;avez pas accès au site présentement.
+        /// </summary>
+        internal static string ErrorLoginOutOfApplyDateRange {
+            get {
+                return ResourceManager.GetString("ErrorLoginOutOfApplyDateRange", resourceCulture);
             }
         }
     }

@@ -159,6 +159,7 @@ namespace Stagio.Web.Controllers
 
         }
 
+
         // GET: Coordinator/InviteContactEnterpriseConfirmation
         public virtual ActionResult InviteContactEnterpriseConfirmation()
         {
@@ -287,7 +288,7 @@ namespace Stagio.Web.Controllers
         {
             return View();
         }
-
+        [AllowAnonymous]
         public virtual ActionResult CreateConfirmation()
         {
             return View();
@@ -571,13 +572,12 @@ namespace Stagio.Web.Controllers
         {
             bool isFirstRowInDB = false;
             if (ModelState.IsValid)
-            {
-                
-                if (Convert.ToDateTime(ApplyDates.DateBegin) >= DateTime.Now)
+            { 
+                if (Convert.ToDateTime(ApplyDates.DateBegin) >= DateTime.Now.Date)
                 {
                     if (Convert.ToDateTime(ApplyDates.DateBegin) < Convert.ToDateTime(ApplyDates.DateEnd))
                     {
-                        var misc = _miscRepository.GetAll().FirstOrDefault(); //Cette table ne doit avoir qu'un seul entré
+                        var misc = _miscRepository.GetAll().FirstOrDefault(); 
                         if (misc == null)
                         {
                             isFirstRowInDB = true;
@@ -603,13 +603,13 @@ namespace Stagio.Web.Controllers
                         
                         return RedirectToAction(MVC.Coordinator.Index());
                     }
+                    ModelState.AddModelError("DateEnd", CoordinatorResources.EndDateLowerThanStartDate);
                 }
+                ModelState.AddModelError("DateBegin", CoordinatorResources.StartDateLowerThanNow);
                 this.Flash(FlashMessageResources.ErrorsOnPage, FlashEnum.Error);
-                return View();
+                return View(ApplyDates);
             }
             return HttpNotFound();
         }
-
-
     }
 }

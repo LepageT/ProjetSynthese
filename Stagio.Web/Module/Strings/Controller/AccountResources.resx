@@ -120,4 +120,7 @@
   <data name="ErrorLogin" xml:space="preserve">
     <value>Mot de passe ou nom d'utilisateur non existant</value>
   </data>
+  <data name="ErrorLoginOutOfApplyDateRange" xml:space="preserve">
+    <value>Vous n'avez pas accès au site présentement</value>
+  </data>
 </root>

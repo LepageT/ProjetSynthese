@@ -1,4 +1,6 @@
-﻿using Stagio.DataLayer;
+﻿using System;
+using FluentAssertions.Events;
+using Stagio.DataLayer;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
 using Stagio.Utilities.Encryption;
@@ -10,10 +12,12 @@ namespace Stagio.Web.Services
     public class AccountService : IAccountService
     {
         private IEntityRepository<ApplicationUser> _userRepository;
+        private IEntityRepository<Misc> _miscRepository;
 
-        public AccountService(IEntityRepository<ApplicationUser> userRepository)
+        public AccountService(IEntityRepository<ApplicationUser> userRepository, IEntityRepository<Misc> miscRepository )
         {
             _userRepository = userRepository;
+            _miscRepository = miscRepository;
         }
         public MayBe<ApplicationUser> ValidateUser(string userName, string password)
         {
@@ -35,6 +39,7 @@ namespace Stagio.Web.Services
             {
                 return new MayBe<ApplicationUser>();
             }
+           
 
             return new MayBe<ApplicationUser>(user);
         }
@@ -56,6 +61,36 @@ namespace Stagio.Web.Services
             if (emails.Contains(email))
             {
                 return true;
+            }
+            return false;
+        }
+
+        public bool isCoordonator(ApplicationUser user)
+        {
+            foreach (var role in user.Roles)
+            {
+                if (role.RoleName == RoleName.Coordinator)
+                {
+                   return true; 
+                }
+            }
+            return false;
+        }
+
+        public bool isBetweenAccesibleDates()
+        {
+            var misc = _miscRepository.GetAll().FirstOrDefault();
+            if (misc == null)
+            {
+                return false;
+            }
+            
+            if (DateTime.Now >= Convert.ToDateTime(misc.StartApplyDate))
+            {
+                if (DateTime.Now <= Convert.ToDateTime(misc.EndApplyDate))
+                {
+                    return true;
+                }
             }
             return false;
         }

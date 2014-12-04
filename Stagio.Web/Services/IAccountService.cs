@@ -10,5 +10,9 @@ namespace Stagio.Web.Services
         string HashPassword(string password);
 
         bool UserEmailExist(string email);
+
+        bool isCoordonator(ApplicationUser user);
+
+        bool isBetweenAccesibleDates();
     }
 }

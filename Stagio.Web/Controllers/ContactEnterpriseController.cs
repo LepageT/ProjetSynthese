@@ -105,7 +105,7 @@ namespace Stagio.Web.Controllers
             }
             return View(createViewModel);
         }
-
+        [AllowAnonymous]
         // GET: Enterprise/Reactivate
         public virtual ActionResult Reactivate(string token)
         {
@@ -130,7 +130,7 @@ namespace Stagio.Web.Controllers
 
             return HttpNotFound();
         }
-
+        [AllowAnonymous]
         // POST: Enterprise/Reactivate
         [HttpPost]
         public virtual ActionResult Reactivate(ViewModels.ContactEnterprise.Reactive createViewModel)
@@ -180,7 +180,7 @@ namespace Stagio.Web.Controllers
 
         }
 
-
+        [AllowAnonymous]
         public virtual ActionResult CreateConfirmation(int idContactEnterprise)
         {
             var newContactEnterprise = _contactEnterpriseRepository.GetById(idContactEnterprise);
@@ -290,7 +290,12 @@ namespace Stagio.Web.Controllers
                 Used = false
             });
             this.Flash(FlashMessageResources.InvitationSend, FlashEnum.Info);
-            return RedirectToAction(MVC.Coordinator.InviteContactEnterpriseConfirmation());
+            return RedirectToAction(MVC.ContactEnterprise.InviteContactEnterpriseConfirmation());
+        }
+
+        public virtual ActionResult InviteContactEnterpriseConfirmation()
+        {
+            return View();
         }
 
         public virtual ActionResult ListStudentApply(int id)
