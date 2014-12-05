@@ -12,7 +12,7 @@ namespace Stagio.Web.Automation.PageObjects.Student
 
         public static void GoToByUrl()
         {
-            Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/Interview/Edit?id=1");
+            Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/Interview/Edit?id=2");
         }
         
         public static void EditAnInterview(DateTime dateInterview, DateTime dateOffer, DateTime dateAcceptOffer, bool isPresent)

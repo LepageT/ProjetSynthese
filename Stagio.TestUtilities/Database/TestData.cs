@@ -324,7 +324,7 @@ namespace Stagio.TestUtilities.Database
                                         "d'applications pédagogiques multimédias",
                     EnvironnementDescription = "asdkjlh wef yuijshd jefy wfu scj hldsjyt wu jhlgyaej hhj uiytolral  aluir" +
                                                 " laksdjh z;l sdutypa fhhjyla GFHELA /n kkhjgdkhjfL GFOIA /n saut de ligne",
-                    StageTitle = "patate",
+                    StageTitle = "Programmeur C++",
                     NbrStagiaire = 2,
                     StagiaireIfKnew = "",
                     SubmitToName = "Denyse Gilbert",
@@ -513,7 +513,7 @@ namespace Stagio.TestUtilities.Database
                     Date = "2014-20-10",
                     StageId = 3,
                     Present = true,
-                    StudentId = 3,
+                    StudentId = 1,
                     DateOffer = "2014-22-10"
                 };
 
