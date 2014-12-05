@@ -88,14 +88,14 @@ namespace Stagio.Web.Controllers
                     }
                 }
                 string message = String.Format(StudentToCoordinator.CreateInterview, student.FirstName, student.LastName, interviewCreated.Date, stage.CompanyName);
-                
-                _notificationService.SendNotificationToAllCoordinator(
-                    StudentToCoordinator.CreateInterviewTitle, message);
+                _notificationService.SendNotificationToAllCoordinator(StudentToCoordinator.CreateInterviewTitle, message);
                 _interviewRepository.Add(interviewCreated);
                 this.Flash(FlashMessageResources.AddSuccess, FlashEnum.Success);
+
                 return RedirectToAction(MVC.Interview.InterviewCreateConfirmation());
             }
             this.Flash(FlashMessageResources.ErrorsOnPage, FlashEnum.Error);
+
             return View(createdInterview);
         }
 

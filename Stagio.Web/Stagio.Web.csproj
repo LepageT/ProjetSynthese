@@ -339,6 +339,7 @@
     <Compile Include="ViewModels\Apply\DetailsApplyStudent.cs" />
     <Compile Include="ViewModels\Coordinator\StudentApplyList.cs" />
     <Compile Include="ViewModels\Coordinator\StudentList.cs" />
+    <Compile Include="ViewModels\Coordinator\StudentLists.cs" />
     <Compile Include="ViewModels\Interviews\Create.cs" />
     <Compile Include="ViewModels\Interviews\Edit.cs" />
     <Compile Include="ViewModels\Interviews\List.cs" />

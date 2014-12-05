@@ -324,7 +324,7 @@ namespace Stagio.TestUtilities.Database
                                         "d'applications pédagogiques multimédias",
                     EnvironnementDescription = "asdkjlh wef yuijshd jefy wfu scj hldsjyt wu jhlgyaej hhj uiytolral  aluir" +
                                                 " laksdjh z;l sdutypa fhhjyla GFHELA /n kkhjgdkhjfL GFOIA /n saut de ligne",
-                    StageTitle = "patate",
+                    StageTitle = "Programmeur C++",
                     NbrStagiaire = 2,
                     StagiaireIfKnew = "",
                     SubmitToName = "Denyse Gilbert",
@@ -408,7 +408,7 @@ namespace Stagio.TestUtilities.Database
                 var apply = new Apply()
                 {
                     IdStage = 1,
-                    IdStudent = 1,
+                    IdStudent = 3,
                     Status = StatusApply.Accepted,
                     Cv = "Le cv de l'étudiant",
                     Letter = "La lettre de présentation",
@@ -456,6 +456,68 @@ namespace Stagio.TestUtilities.Database
                 };
 
                 return apply;
+            }
+        }
+
+        #endregion
+        #region Apply 4
+
+        static public Apply apply4
+        {
+            get
+            {
+                var apply = new Apply()
+                {
+                    IdStage = 3,
+                    IdStudent = 2,
+                    Cv = "Le cv de l'étudiant",
+                    Letter = "La lettre de présentation.",
+                    DateApply = new DateTime(2014, 11, 20)
+                };
+
+                return apply;
+            }
+        }
+
+        #endregion
+
+        #region Interview 1
+
+        static public Interview interview1
+        {
+            get
+            {
+                var interview = new Interview()
+                {
+                    Date = "2014-20-10",
+                    StageId = 3,
+                    Present = true,
+                    StudentId = 2,
+                    DateOffer = "2014-22-10",
+                    DateAcceptOffer = "2014-23-10"
+                };
+
+                return interview;
+            }
+        }
+
+        #endregion
+        #region Interview 2
+
+        static public Interview interview2
+        {
+            get
+            {
+                var interview = new Interview()
+                {
+                    Date = "2014-20-10",
+                    StageId = 3,
+                    Present = true,
+                    StudentId = 1,
+                    DateOffer = "2014-22-10"
+                };
+
+                return interview;
             }
         }
 
