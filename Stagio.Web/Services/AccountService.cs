@@ -77,6 +77,30 @@ namespace Stagio.Web.Services
             return false;
         }
 
+        public bool isStudent(ApplicationUser user)
+        {
+            foreach (var role in user.Roles)
+            {
+                if (role.RoleName == RoleName.Student)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool isContactEnterprise(ApplicationUser user)
+        {
+            foreach (var role in user.Roles)
+            {
+                if (role.RoleName == RoleName.ContactEnterprise)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public bool isBetweenAccesibleDates()
         {
             var misc = _miscRepository.GetAll().FirstOrDefault();

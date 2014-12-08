@@ -10,8 +10,8 @@
 
 namespace Stagio.Web.Module.Strings.Email {
     using System;
-    
-    
+
+
     /// <summary>
     ///   Une classe de ressource fortement typée destinée, entre autres, à la consultation des chaînes localisées.
     /// </summary>
@@ -70,7 +70,7 @@ namespace Stagio.Web.Module.Strings.Email {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Pour vous créer un compte, copier-coller ce lien: &lt;a href =&quot;http://jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token=&quot;{0}&quot;/&gt;jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token={0}&lt;/a&gt;.
+        ///   Looks up a localized string similar to Pour vous créer un compte, copier-coller ce lien: &lt;a href =&quot;http://jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token={0}&quot;/&gt;jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token={0}&lt;/a&gt;.
         /// </summary>
         internal static string InviteLink {
             get {
@@ -79,7 +79,7 @@ namespace Stagio.Web.Module.Strings.Email {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Pour vous créer un compte, copier-coller ce lien: &lt;a href =&quot;http://jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token=&quot;{0}&quot;/&gt;jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token={0}&lt;/a&gt;.
+        ///   Looks up a localized string similar to Pour vous créer un compte, copier-coller ce lien: &lt;a href =&quot;http://jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token={0}&quot;/&gt;jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token={0}&lt;/a&gt;.
         /// </summary>
         internal static string InviteLinkCoworker {
             get {

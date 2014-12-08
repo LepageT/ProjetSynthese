@@ -22,7 +22,7 @@ namespace Stagio.Web.Automation
             {
                 public static void Select()
                 {
-                    MenuSelector.Select("index-Student", "details-user-page");
+                    MenuSelector.SelectTopLevel("details-user-page");
                     MenuSelector.SelectTopLevel("edit-Student");
                 }
             }
@@ -97,7 +97,7 @@ namespace Stagio.Web.Automation
             {
                 public static void Select()
                 {
-                    MenuSelector.Select("index-enterprise", "edit-profil");
+                    MenuSelector.SelectTopLevel("edit-profil");
                 }
             }
             public class EditProfilInIndex
@@ -222,7 +222,7 @@ namespace Stagio.Web.Automation
                 public static void Select()
                 {
                     MenuSelector.Select("Coordinator-menu", "student-list");
-                    MenuSelector.Select("student-stages1", "create-stageAgreement3");
+                    MenuSelector.Select("student-stages2", "create-stageAgreement4");
                 }
             }
 

@@ -16,9 +16,6 @@ namespace Stagio.Web.ViewModels.ContactEnterprise
         [DisplayName("Nom")]
         public String LastName { get; set; }
 
-        [DisplayName("Nom de l'entreprise")]
-        public String EnterpriseName { get; set; }
-
         [DisplayName("Téléphone")]
         public String Telephone { get; set; }
 

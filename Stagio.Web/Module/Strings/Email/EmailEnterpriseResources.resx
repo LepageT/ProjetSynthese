@@ -121,10 +121,10 @@
     <value>&lt;h3&gt;Stagio&lt;/h3&gt;&lt;p&gt; Bonjour, &lt;/p&gt;&lt;br/&gt;Vous êtes invité à vous inscrire au site Stagio.</value>
   </data>
   <data name="InviteLink" xml:space="preserve">
-    <value>Pour vous créer un compte, copier-coller ce lien: &lt;a href ="http://jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token="{0}"/&gt;jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token={0}&lt;/a&gt;</value>
+    <value>Pour vous créer un compte, copier-coller ce lien: &lt;a href ="http://jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token={0}"/&gt;jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token={0}&lt;/a&gt;</value>
   </data>
   <data name="InviteLinkCoworker" xml:space="preserve">
-    <value>Pour vous créer un compte, copier-coller ce lien: &lt;a href ="http://jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token="{0}"/&gt;jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token={0}&lt;/a&gt;</value>
+    <value>Pour vous créer un compte, copier-coller ce lien: &lt;a href ="http://jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token={0}"/&gt;jenkins.cegep-ste-foy.qc.ca/thomarelau/ContactEnterprise/Reactivate?token={0}&lt;/a&gt;</value>
   </data>
   <data name="InviteMessageBody" xml:space="preserve">
     <value>&lt;h3&gt;Stagio&lt;/h3&gt;&lt;p&gt; Bonjour, &lt;/p&gt;&lt;br/&gt;Un coordonateur de stage vous invite à vous inscrire au site Stagio. &lt;/br&gt;</value>

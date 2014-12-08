@@ -235,6 +235,7 @@ namespace Stagio.Web.Controllers
         [Authorize(Roles = RoleName.ContactEnterprise)]
         public virtual ActionResult InviteContactEnterprise()
         {
+
             return View();
         }
 
@@ -272,14 +273,14 @@ namespace Stagio.Web.Controllers
                 this.Flash(FlashMessageResources.ErrorsOnPage, FlashEnum.Error);
                 return View();
             }
-
+            var enterpriseName = _contactEnterpriseRepository.GetById(_httpContext.GetUserId()).EnterpriseName;
             _invitationRepository.Add(new InvitationContactEnterprise()
             {
                 Token = token,
                 Email = createdInviteContactEnterpriseViewModel.Email,
                 FirstName = createdInviteContactEnterpriseViewModel.FirstName,
                 LastName = createdInviteContactEnterpriseViewModel.LastName,
-                EnterpriseName = createdInviteContactEnterpriseViewModel.EnterpriseName,
+                EnterpriseName = enterpriseName,
                 Telephone = createdInviteContactEnterpriseViewModel.Telephone,
                 Poste = createdInviteContactEnterpriseViewModel.Poste,
                 Used = false
@@ -428,7 +429,6 @@ namespace Stagio.Web.Controllers
 
         public virtual ActionResult RefuseApplyConfirmation()
         {
-
             return View();
         }
 
@@ -449,7 +449,6 @@ namespace Stagio.Web.Controllers
         {
             //TODO
             var stage = _stageRepository.GetById(idStage);
-            var applies = _applyRepository.GetAll().ToList().Where(x => x.IdStage == idStage);
             var user = _contactEnterpriseRepository.GetById(_httpContext.GetUserId());
             if (stage == null)
             {
@@ -460,7 +459,6 @@ namespace Stagio.Web.Controllers
                 this.Flash(FlashMessageResources.NotAccessStageRemove, FlashEnum.Warning);
                 return RedirectToAction(MVC.ContactEnterprise.ListStage());
             }
-            string path = _httpContext.GetPathDetailStage(idStage);
             string message = String.Format(ContactEntrepriseToCoordinator.RemoveStage, stage.CompanyName, idStage, stage.StageTitle);
             
             _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.RemoveStageTitle, message);
@@ -468,8 +466,6 @@ namespace Stagio.Web.Controllers
             message = String.Format(ContactEnterpriseToStudent.RemoveStage, stage.CompanyName, stage.StageTitle);
             _notificationService.SendNotificationToAllStudent(ContactEnterpriseToStudent.RemoveStageTitle, message);
 
-            
-            
             stage.Status = StageStatus.Removed;
             _stageRepository.Update(stage);
             this.Flash(FlashMessageResources.StageDesactivated, FlashEnum.Warning);

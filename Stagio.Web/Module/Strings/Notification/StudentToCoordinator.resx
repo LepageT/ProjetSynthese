@@ -133,7 +133,7 @@
     <value>{0} a retiré sa candidature pour le stage: {1}</value>
   </data>
   <data name="RemoveApplyTitle" xml:space="preserve">
-    <value>Un étudiant à retiré sa candidature à un stage</value>
+    <value>Un étudiant a retiré sa candidature à un stage</value>
   </data>
   <data name="EditInterviewMessage" xml:space="preserve">
     <value>{0} {1} s'est présenté à son entrevue chez {2} le {3}.</value>
