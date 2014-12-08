@@ -645,8 +645,8 @@ namespace Stagio.Web.Controllers
                  this.Flash(FlashMessageResources.SiteNotOpen, FlashEnum.Warning);
                  return RedirectToAction(MVC.Coordinator.Index());
              }
-             misc.StartApplyDate = DateTime.Now.AddDays(-2).ToString();
-             misc.EndApplyDate = DateTime.Now.AddDays(-1).ToString();
+             misc.StartApplyDate =  String.Format("{0:yyyy-MM-dd}", DateTime.Today.AddDays(-2));
+             misc.EndApplyDate = String.Format("{0:yyyy-MM-dd}", DateTime.Today.AddDays(-1));
              _miscRepository.Update(misc);
 
              this.Flash(FlashMessageResources.SiteClosed, FlashEnum.Info);

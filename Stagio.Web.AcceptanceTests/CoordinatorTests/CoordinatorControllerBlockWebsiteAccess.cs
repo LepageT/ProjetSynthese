@@ -10,7 +10,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
     public class CoordinatorControllerBlockWebsiteAccess : BaseTests
     {
         [TestMethod]
-        public void Coordinator_can_block_access_to_wenbsite()
+        public void Coordinator_can_block_access_to_website()
         {
             LoginPage.GoTo();
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
