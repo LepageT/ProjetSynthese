@@ -13,6 +13,12 @@ namespace Stagio.Web.Services
 
         bool isCoordonator(ApplicationUser user);
 
+        bool isStudent(ApplicationUser user);
+
+        bool isContactEnterprise(ApplicationUser user);
+
         bool isBetweenAccesibleDates();
+
+        bool ValidatePassword(string hashedPassword, string passwordToValidate);
     }
 }

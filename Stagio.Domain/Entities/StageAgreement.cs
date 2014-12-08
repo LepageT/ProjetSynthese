@@ -19,7 +19,7 @@ namespace Stagio.Domain.Entities
         public bool CoordinatorHasSigned { get; set; }
 
         public int IdCoordinatorSigned { get; set; }
-
+        [DisplayName("Date")]
         public string DateCoordinatorSigned { get; set; }
 
         [DefaultValue(false)]
@@ -35,5 +35,10 @@ namespace Stagio.Domain.Entities
         public int IdContactEnterpriseSigned { get; set; }
 
         public string DateContactEnterpriseSigned { get; set; }
+
+        public bool Renumeration { get; set; }
+        [DisplayName("Nom du professeur superviseur du stage de l'étudiant")]
+        public string SupervisorName { get; set; }
+
     }
 }

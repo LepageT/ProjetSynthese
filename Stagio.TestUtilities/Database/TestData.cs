@@ -24,6 +24,7 @@ namespace Stagio.TestUtilities.Database
                     Email = "coordonnateur@stagio.com",
                     FirstName = "Jean-Dominic",
                     LastName = "Rousseau",
+                    Telephone = "819-764-9999",
                     Active = true,
                     Id = 4
                 };
@@ -51,6 +52,7 @@ namespace Stagio.TestUtilities.Database
                     Email = "admin@admin.com",
                     FirstName = "Nathalie",
                     LastName = "Leduc",
+                    Telephone = "581-999-4444",
                     Active = true
                 };
                 coordonnate.UserName = coordonnate.Email;
@@ -103,7 +105,7 @@ namespace Stagio.TestUtilities.Database
                              },
                     FirstName = "Christopher",
                     LastName = "Nolan",
-                    Telephone = "123-456-7890",
+                    Telephone = "123-456-7891",
                     Matricule = 1234560,
                     Email = "1234@stagio.web",
                     Password = PasswordHash.CreateHash("qwerty98"),
@@ -176,7 +178,7 @@ namespace Stagio.TestUtilities.Database
                     EnterpriseName = "L'industrielle Alliance",
                     FirstName = "Quentin",
                     LastName = "Tarantino",
-                    Telephone = "123-456-7890",
+                    Telephone = "123-456-7892",
                     Email = "blabla@hotmail.com",
                     Password = PasswordHash.CreateHash("qwerty12"),
                     Active = false
@@ -227,7 +229,7 @@ namespace Stagio.TestUtilities.Database
                     EnterpriseName = "Stagio",
                     FirstName = "Christopher",
                     LastName = "Nolan",
-                    Telephone = "123-456-7890",
+                    Telephone = "123-456-7893",
                     Email = "toto@hotmail.com",
                     Password = PasswordHash.CreateHash("qwerty98"),
                     Active = false
@@ -252,7 +254,7 @@ namespace Stagio.TestUtilities.Database
                 {
                     Id = 1,
                     NbApply = 1,
-                    LimitDate = DateTime.Now.ToString(),
+                    LimitDate = DateTime.Today.AddDays(8).ToShortDateString(),
                     PublicationDate = DateTime.Now.ToString(),
                     Status = (StageStatus) 1,
                     NbrStagiaire = 3,
@@ -307,7 +309,7 @@ namespace Stagio.TestUtilities.Database
                     SubmitToName = "Denyse Gilbert",
                     SubmitToTitle = "Coordinatrice aux développements APTIC",
                     SubmitToEmail = "Denyse.Gilbert@musiqueinc.co",
-                    LimitDate = new DateTime(2008, 12, 10).ToString(),
+                    LimitDate = DateTime.Today.AddDays(30).ToShortDateString(),
                     Status = 0
                 };
 
@@ -347,7 +349,7 @@ namespace Stagio.TestUtilities.Database
                     SubmitToName = "Denyse Gilbert",
                     SubmitToTitle = "Coordinatrice aux développements APTIC",
                     SubmitToEmail = "Denyse.Gilbert",
-                    LimitDate = new DateTime(2008, 12, 10).ToString(),
+                    LimitDate = DateTime.Today.AddDays(10).ToShortDateString(),
                     Status = StageStatus.Accepted
 
 
@@ -384,7 +386,7 @@ namespace Stagio.TestUtilities.Database
                     SubmitToName = "Serge Lavoie",
                     SubmitToTitle = "Coordinateur aux développements Web",
                     SubmitToEmail = "serge.lavoie@email.com",
-                    LimitDate = new DateTime(2008, 12, 10).ToString(),
+                    LimitDate = DateTime.Today.AddDays(2).ToShortDateString(),
                     Status = 0
                 };
 

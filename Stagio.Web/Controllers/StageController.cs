@@ -180,7 +180,7 @@ namespace Stagio.Web.Controllers
         {
             var stage = _stageRepository.GetById(id);
             var user = _contactEnterpriseRepository.GetById(_httpContextService.GetUserId());
-           
+
             if (stage != null)
             {
                 if (stage.CompanyName != user.EnterpriseName)
@@ -245,7 +245,7 @@ namespace Stagio.Web.Controllers
         {
             var stage = _stageRepository.GetById(id);
             var user = _contactEnterpriseRepository.GetById(_httpContextService.GetUserId());
-             if (stage == null)
+            if (stage == null)
             {
                 return HttpNotFound();
             }

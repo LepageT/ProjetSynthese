@@ -1,6 +1,7 @@
 ﻿
 using AutoMapper;
 using Microsoft.AspNet.Identity;
+using Ninject.Infrastructure.Disposal;
 using Stagio.DataLayer;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
@@ -19,13 +20,15 @@ namespace Stagio.Web.Controllers
         private readonly IHttpContextService _httpContext;
         private readonly IAccountService _accountService;
         private readonly IEntityRepository<ApplicationUser> _accountRepository;
+   
 
         public AccountController(IHttpContextService httpContext,
-            IAccountService accountService, IEntityRepository<ApplicationUser> accountRepository)
+            IAccountService accountService, IEntityRepository<ApplicationUser> accountRepository  )
         {
             _accountRepository = accountRepository;
             _httpContext = httpContext;
             _accountService = accountService;
+          
         }
 
         public virtual ActionResult Login()
@@ -58,7 +61,18 @@ namespace Stagio.Web.Controllers
                 return View("");
             }
             AuthentificateUser(user.First());
-
+            if (_accountService.isStudent(user.First()))
+            {
+                return RedirectToAction(MVC.Student.Index());
+            }
+            else if (_accountService.isCoordonator(user.First()))
+            {
+                return RedirectToAction(MVC.Coordinator.Index());
+            }
+            else if (_accountService.isContactEnterprise(user.First()))
+            {
+                return RedirectToAction(MVC.ContactEnterprise.Index());
+            }
             return RedirectToAction(MVC.Home.Index());
         }
 
@@ -107,6 +121,8 @@ namespace Stagio.Web.Controllers
 
             return View(details);
         }
+
+       
     }
 
 }
