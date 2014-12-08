@@ -1,10 +1,15 @@
 ﻿@using System.Web.Mvc.Html
 @model IEnumerable<Stagio.Web.ViewModels.ContactEnterprise.Reactive>
 <h4 id="invite-enterprise-page">Inviter des employés d'entreprise à s'inscrire</h4>
-Cochez les employés à inviter
+
 @using (Html.BeginForm())
 {
-
+    <div class="row">
+        <p class="col-md-8">Cochez les employés à inviter</p>
+        <p class="col-md-offset-8"> @Html.ActionLink("Cliquer ici pour inviter un nouvel employé d'entreprise", MVC.Coordinator.InviteOneContactEnterprise())</p>
+    </div>
+     
+    
     <table class="table">
         <tr class="row">
             <th class="col-md-2">

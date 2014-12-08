@@ -1,10 +1,10 @@
 ﻿@using Stagio.Web.Module.Strings.Shared;
-@model Stagio.Web.ViewModels.ContactEnterprise.Reactive
+@model Stagio.Web.ViewModels.Coordinator.InviteContactEnterprise
 @{
-    ViewBag.Title = "InviteContactEnterprise";
+    ViewBag.Title = "InviteOneContactEnterprise";
 }
 
-<h2 id="inviteContact-page">Inviter un autre employé d'entreprise à s'inscrire</h2>
+<h2 id="inviteContact-page">Inviter un employé d'une entreprise à s'inscrire</h2>
 
 @using (Html.BeginForm())
 {
@@ -38,9 +38,15 @@
             </div>
         </div>
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.EnterpriseName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EnterpriseName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EnterpriseName, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
-
             @Html.LabelFor(model => model.Telephone, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Telephone, new { htmlAttributes = new { @class = "form-control" } })
@@ -65,10 +71,8 @@
             </div>
         </div>
     </div>
-    
+}
 
-        }
-
-        <div>
-            @Html.ActionLink(Navigation.ReturnHome, MVC.Home.Index())
-        </div>
+<div>
+    @Html.ActionLink(Navigation.ReturnHome, MVC.Home.Index())
+</div>

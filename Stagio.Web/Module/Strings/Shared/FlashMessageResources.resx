@@ -169,7 +169,7 @@
     <value>Vous ne pouvez pas enlever ce stage</value>
   </data>
   <data name="ReactivateSuccess" xml:space="preserve">
-    <value>Réactivation réussi</value>
+    <value>Réactivation réussie</value>
   </data>
   <data name="SiteClosed" xml:space="preserve">
     <value>L'accès au site est fermer pour les étudiants et les contacts entreprises</value>

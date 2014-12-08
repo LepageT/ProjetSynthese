@@ -5,9 +5,10 @@ using System.Web;
 using OpenQA.Selenium;
 using Stagio.Web.Automation.Selenium;
 
-namespace Stagio.Web.Automation.PageObjects.ContactEnterprise
+
+namespace Stagio.Web.Automation.PageObjects.Coordinator
 {
-    public class InviteContactEnterprisePage
+    public class InviteContactOneEnterprisePage
     {
         public static bool IsDisplayed
         {
@@ -21,7 +22,7 @@ namespace Stagio.Web.Automation.PageObjects.ContactEnterprise
 
         public static void GoToByUrl()
         {
-            Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/ContactEnterprise/InviteContactEnterprise");
+            Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/Coordinator/InviteOneContactEnterprise");
         }
 
         public static void InviteContactEnterprise()
@@ -31,12 +32,14 @@ namespace Stagio.Web.Automation.PageObjects.ContactEnterprise
             const string FIRST_NAME = "Bob";
             const string LAST_NAME = "Bobby";
             const string TELEPHONE = "111-111-1111";
+            const string ENTERPRISE_NAME = "test";
             Driver.Instance.FindElement(By.Id("Message")).SendKeys(MESSAGE_INVITATION);
             Driver.Instance.FindElement(By.Id("Email")).SendKeys(EMAIL);
             Driver.Instance.FindElement(By.Id("FirstName")).SendKeys(FIRST_NAME);
             Driver.Instance.FindElement(By.Id("LastName")).SendKeys(LAST_NAME);
             Driver.Instance.FindElement(By.Id("Telephone")).SendKeys(TELEPHONE);
-            
+            Driver.Instance.FindElement(By.Id("EnterpriseName")).SendKeys(ENTERPRISE_NAME);
+
         }
 
         public static void SendInvite()

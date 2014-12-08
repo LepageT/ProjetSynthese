@@ -630,6 +630,68 @@ namespace Stagio.Web.Controllers
             return HttpNotFound();
         }
 
+        [Authorize(Roles = RoleName.Coordinator)]
+        public virtual ActionResult InviteOneContactEnterprise()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = RoleName.Coordinator)]
+        [HttpPost]
+        public virtual ActionResult InviteOneContactEnterprise(ViewModels.Coordinator.InviteContactEnterprise createdInviteContactEnterpriseViewModel)
+        {
+
+
+          //  if (!ModelState.IsValid)
+          //  {
+            //    this.Flash(FlashMessageResources.ErrorsOnPage, FlashEnum.Error);
+             //   return View(createdInviteContactEnterpriseViewModel);
+           // }
+
+            TokenGenerator tokenGenerator = new TokenGenerator();
+
+            string token = tokenGenerator.GenerateToken();
+
+            //Sending invitation with the Mailler class
+            String messageText = EmailEnterpriseResources.InviteCoworker;
+            String invitationUrl = String.Format(EmailEnterpriseResources.InviteLinkCoworker, token);
+
+            messageText += invitationUrl;
+
+            if (createdInviteContactEnterpriseViewModel.Message != null)
+            {
+                messageText += EmailEnterpriseResources.MessageHeader;
+                messageText += createdInviteContactEnterpriseViewModel.Message;
+            }
+
+            if (!_mailler.SendEmail(createdInviteContactEnterpriseViewModel.Email, EmailEnterpriseResources.InviteSubject, messageText))
+            {
+                ModelState.AddModelError("Email", EmailResources.CantSendEmail);
+                this.Flash(FlashMessageResources.ErrorsOnPage, FlashEnum.Error);
+                return View();
+            }
+
+            _invitationContactRepository.Add(new InvitationContactEnterprise()
+            {
+                Token = token,
+                Email = createdInviteContactEnterpriseViewModel.Email,
+                FirstName = createdInviteContactEnterpriseViewModel.FirstName,
+                LastName = createdInviteContactEnterpriseViewModel.LastName,
+                EnterpriseName = createdInviteContactEnterpriseViewModel.EnterpriseName,
+                Telephone = createdInviteContactEnterpriseViewModel.Telephone,
+                Poste = createdInviteContactEnterpriseViewModel.Poste,
+                Used = false
+            });
+            this.Flash(FlashMessageResources.InvitationSend, FlashEnum.Info);
+            return RedirectToAction(MVC.Coordinator.InviteContactEnterpriseConfirmation());
+        }
+
+        [Authorize(Roles = RoleName.Coordinator)]
+        public virtual ActionResult InviteOneContactEnterpriseConfirmation()
+        {
+            return View();
+        }
+
         public virtual ActionResult BlockWebsiteAccess()
         {
             return View();
