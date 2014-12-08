@@ -13,6 +13,10 @@ namespace Stagio.Web.Services
 
         bool isCoordonator(ApplicationUser user);
 
+        bool isStudent(ApplicationUser user);
+
+        bool isContactEnterprise(ApplicationUser user);
+
         bool isBetweenAccesibleDates();
     }
 }
