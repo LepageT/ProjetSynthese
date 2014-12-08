@@ -36,7 +36,7 @@ namespace Stagio.Web.Controllers
         private readonly IHttpContextService _httpContextService;
         private readonly INotificationService _notificationService;
 
-        private readonly IEntityRepository<Misc> _miscRepository; 
+        private readonly IEntityRepository<Misc> _miscRepository;
 
         public CoordinatorController(IEntityRepository<ContactEnterprise> enterpriseContactRepository,
             IEntityRepository<Coordinator> coordinatorRepository,
@@ -150,7 +150,7 @@ namespace Stagio.Web.Controllers
 
 
 
-            }
+                }
                 this.Flash(FlashMessageResources.InvitationSend, FlashEnum.Success);
                 return RedirectToAction(MVC.Coordinator.InviteContactEnterpriseConfirmation());
             }
@@ -275,10 +275,10 @@ namespace Stagio.Web.Controllers
 
             _invitationRepository.Add(new Invitation()
                                      {
-                                        Token = token,
-                                        Email = createdInvite.Email,
-                                        Used = false
-                                      });
+                                         Token = token,
+                                         Email = createdInvite.Email,
+                                         Used = false
+                                     });
             this.Flash(FlashMessageResources.InvitationSend, FlashEnum.Success);
             return RedirectToAction(MVC.Coordinator.InvitationSucceed());
 
@@ -334,7 +334,7 @@ namespace Stagio.Web.Controllers
                 student.NbDateInterview = nbDateInterview;
                 nbDateInterview = 0;
             }
-           
+
             var studentStageFound = studentListViewModels.Where(x => x.DateAccepted != null);
             var studentStageNotFound =
                 studentListViewModels.Where(x => x.DateAccepted == null).OrderBy(x => x.NbDateInterview);
@@ -344,7 +344,7 @@ namespace Stagio.Web.Controllers
                 StudentStageFound = studentStageFound.ToList(),
                 StudentStageNotFound = studentStageNotFound.ToList()
             };
-           
+
 
             return View(students);
         }
@@ -561,10 +561,10 @@ namespace Stagio.Web.Controllers
 
         public virtual ActionResult Download(string file, int id)
         {
-          var readFile = new ReadFile();
+            var readFile = new ReadFile();
             try
             {
-               return File(readFile.Download(file), System.Net.Mime.MediaTypeNames.Application.Octet, file);
+                return File(readFile.Download(file), System.Net.Mime.MediaTypeNames.Application.Octet, file);
             }
             catch (Exception)
             {
@@ -574,7 +574,6 @@ namespace Stagio.Web.Controllers
 
         public virtual ActionResult SetApplyDates()
         {
-
             var misc = _miscRepository.GetAll().FirstOrDefault();
             if (misc == null)
             {
@@ -590,44 +589,36 @@ namespace Stagio.Web.Controllers
         [HttpPost]
         public virtual ActionResult SetApplyDates(ViewModels.Coordinator.ApplyDatesLimit ApplyDates)
         {
-            if (ModelState.IsValid)
+            var misc = _miscRepository.GetAll().FirstOrDefault();
+            bool isFirstMisc = false;
+            if (misc == null)
             {
-                if (Convert.ToDateTime(ApplyDates.DateBegin) >= DateTime.Now.Date)
+                misc = new Misc();
+                isFirstMisc = true;
+            }
+            if (!(Convert.ToDateTime(ApplyDates.DateBegin) < Convert.ToDateTime(ApplyDates.DateEnd)))
+            {
+                ModelState.AddModelError("DateEnd", CoordinatorResources.EndDateLowerThanStartDate);
+            }
+            if (ModelState.IsValid)
+            {  
+                misc.StartApplyDate = ApplyDates.DateBegin;
+                misc.EndApplyDate = ApplyDates.DateEnd;
+                if (isFirstMisc)
                 {
-                    if (Convert.ToDateTime(ApplyDates.DateBegin) < Convert.ToDateTime(ApplyDates.DateEnd))
-                    {
-                        var misc = _miscRepository.GetAll().FirstOrDefault();
-                        if (misc == null)
-                        {
-                            misc = new Misc()
-                            {
-                                StartApplyDate = ApplyDates.DateBegin,
-                                EndApplyDate = ApplyDates.DateEnd
-                            };
-                            this.Flash(FlashMessageResources.AddSuccess, FlashEnum.Success);
-                            _miscRepository.Add(misc);
-                        }
-                        else
-                        {
-                            misc.StartApplyDate = ApplyDates.DateBegin;
-                            misc.EndApplyDate = ApplyDates.DateEnd;
-                            this.Flash(FlashMessageResources.EditSuccess, FlashEnum.Success);
-                            _miscRepository.Update(misc);
-                        }
-
-                        return RedirectToAction(MVC.Coordinator.Index());
-                    }
-                        ModelState.AddModelError("DateEnd", CoordinatorResources.EndDateLowerThanStartDate);
+                    this.Flash(FlashMessageResources.AddSuccess, FlashEnum.Success);
+                    _miscRepository.Add(misc);
                 }
                 else
                 {
-                    ModelState.AddModelError("DateBegin", CoordinatorResources.StartDateLowerThanNow);
+                    this.Flash(FlashMessageResources.EditSuccess, FlashEnum.Success);
+                    _miscRepository.Update(misc);
                 }
-                
-                this.Flash(FlashMessageResources.ErrorsOnPage, FlashEnum.Error);
-                return View(ApplyDates);
+
+                return RedirectToAction(MVC.Coordinator.Index());
             }
-            return HttpNotFound();
+            this.Flash(FlashMessageResources.ErrorsOnPage, FlashEnum.Error);
+            return View(ApplyDates);
         }
 
         [Authorize(Roles = RoleName.Coordinator)]
@@ -642,11 +633,11 @@ namespace Stagio.Web.Controllers
         {
 
 
-          //  if (!ModelState.IsValid)
-          //  {
+            //  if (!ModelState.IsValid)
+            //  {
             //    this.Flash(FlashMessageResources.ErrorsOnPage, FlashEnum.Error);
-             //   return View(createdInviteContactEnterpriseViewModel);
-           // }
+            //   return View(createdInviteContactEnterpriseViewModel);
+            // }
 
             TokenGenerator tokenGenerator = new TokenGenerator();
 
@@ -697,24 +688,46 @@ namespace Stagio.Web.Controllers
             return View();
         }
 
-         [HttpPost, ActionName("BlockWebsiteAccess")]
+        [HttpPost, ActionName("BlockWebsiteAccess")]
         public virtual ActionResult BlockWebsiteAccessPost()
+        {
+            var misc = _miscRepository.GetAll().FirstOrDefault();
+
+            if (misc == null)
+            {
+                this.Flash(FlashMessageResources.SiteNotOpen, FlashEnum.Warning);
+                return RedirectToAction(MVC.Coordinator.Index());
+            }
+            misc.StartApplyDate = String.Format("{0:yyyy-MM-dd}", DateTime.Today.AddDays(-2));
+            misc.EndApplyDate = String.Format("{0:yyyy-MM-dd}", DateTime.Today.AddDays(-1));
+            _miscRepository.Update(misc);
+
+            this.Flash(FlashMessageResources.SiteClosed, FlashEnum.Info);
+            return RedirectToAction(MVC.Coordinator.Index());
+        }
+
+
+
+         public virtual ActionResult RemoveStudentFromListStudent(int matricule)
          {
-             var misc = _miscRepository.GetAll().FirstOrDefault();
-      
-             if (misc == null)
+             var listStudents = TempData["listStudent"] as List<ListStudent>;
+            
+             bool remove = false;
+             int counter = 0;
+             while(!remove)
              {
-                 this.Flash(FlashMessageResources.SiteNotOpen, FlashEnum.Warning);
-                 return RedirectToAction(MVC.Coordinator.Index());
+                 if(listStudents[counter].Matricule == matricule)
+                 {
+                     listStudents.Remove(listStudents[counter]);
+                     remove = true;
+                 }
+                 counter++;
              }
-             misc.StartApplyDate =  String.Format("{0:yyyy-MM-dd}", DateTime.Today.AddDays(-2));
-             misc.EndApplyDate = String.Format("{0:yyyy-MM-dd}", DateTime.Today.AddDays(-1));
-             _miscRepository.Update(misc);
 
-             this.Flash(FlashMessageResources.SiteClosed, FlashEnum.Info);
-             return RedirectToAction(MVC.Coordinator.Index());
+             TempData["listStudent"] = listStudents;
+             TempData.Keep();
+             return RedirectToAction(MVC.Coordinator.CreateList());
+
          }
-
-
     }
 }

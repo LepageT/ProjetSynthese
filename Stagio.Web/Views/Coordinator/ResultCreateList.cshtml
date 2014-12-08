@@ -9,29 +9,29 @@
 
 <p>Étudiants qui ont  été ajoutés</p>
 <table class="table">
-    <tr class="row">
+    <tr >
         <th class="col-md-2">
 
             Matricule
         </th>
-        <th class="col-md-4">
+        <th class="col-md-2">
             Nom
         </th>
-        <th class="col-md-4">
+        <th class="col-md-2">
             Prénom
         </th>
     </tr>
 
     @foreach (var item in Model.ListStudentAdded)
     {
-        <tr class="row">
+        <tr>
             <td class="col-md-2">
                 @Html.DisplayFor(modelItem => item.Matricule)
             </td>
-            <td class="col-md-4">
+            <td class="col-md-2">
                 @Html.DisplayFor(modelItem => item.LastName)
             </td>
-            <td class="col-md-4">
+            <td class="col-md-2">
                 @Html.DisplayFor(modelItem => item.FirstName)
             </td>
         </tr>
@@ -42,29 +42,29 @@
 <p>Étudiants qui n'ont pas été ajoutés</p>
 
 <table class="table">
-    <tr class="row">
+    <tr>
         <th class="col-md-2">
 
             Matricule
         </th>
-        <th class="col-md-4">
+        <th class="col-md-2">
             Nom
         </th>
-        <th class="col-md-4">
+        <th class="col-md-2">
             Prénom
         </th>
     </tr>
 
     @foreach (var item in Model.ListStudentNotAdded)
     {
-        <tr class="row">
+        <tr>
             <td class="col-md-2">
                 @Html.DisplayFor(modelItem => item.Matricule)
             </td>
-            <td class="col-md-4">
+            <td class="col-md-2">
                 @Html.DisplayFor(modelItem => item.LastName)
             </td>
-            <td class="col-md-4">
+            <td class="col-md-2">
                 @Html.DisplayFor(modelItem => item.FirstName)
             </td>
         </tr>
