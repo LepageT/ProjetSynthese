@@ -1,4 +1,4 @@
-﻿
+﻿using System;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Stagio.Web.Automation.PageObjects;
@@ -7,19 +7,18 @@ using Stagio.Web.Automation.PageObjects.Coordinator;
 namespace Stagio.Web.AcceptanceTests.CoordinatorTests
 {
     [TestClass]
-    public class CoordinatorControllerDetailsApplyStudentTests : BaseTests
+    public class CoordinatorChangeStageApplyDates : BaseTests
     {
         [TestMethod]
-        public void Coordinator_should_not_download_files_isfiles_not_valid()
+        public void coordinator_can_change_dates_of_stage_apply()
         {
             LoginPage.GoTo();
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
-            DetailsStudentApplyCoordinatorPage.GoToByUrl();
 
-            DetailsStudentApplyCoordinatorPage.DownloadPage();
+            ChangeStageApplyDatesCoordinatorPage.GoTo();
+            ChangeStageApplyDatesCoordinatorPage.AddDates();
 
-            DetailsStudentApplyCoordinatorPage.ErrorDisplayed.Should().BeTrue();
+            IndexCoordinatorPage.isDiplayed.Should().BeTrue();
         }
-
     }
 }

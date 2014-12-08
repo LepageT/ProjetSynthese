@@ -24,3 +24,17 @@ $(function () {
         pickTime: false
     });
 });
+
+$(function () {
+    $('#datetimepickerStart').datetimepicker(
+    {
+        pickTime: false
+    });
+});
+
+$(function () {
+    $('#datetimepickerEnd').datetimepicker(
+    {
+        pickTime: false
+    });
+});

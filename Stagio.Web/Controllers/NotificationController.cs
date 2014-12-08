@@ -1,14 +1,9 @@
-﻿using System;
+﻿using AutoMapper;
+using Stagio.DataLayer;
+using Stagio.Web.Services;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
-using AutoMapper;
-using Ninject.Activation;
-using Stagio.DataLayer;
-using Stagio.Domain.Application;
-using Stagio.Web.Services;
 
 namespace Stagio.Web.Controllers
 {

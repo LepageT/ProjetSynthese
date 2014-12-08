@@ -59,7 +59,9 @@ namespace Stagio.Web.UnitTests.ControllerTests.AccountTests
             };
             var valideUser = new MayBe<ApplicationUser>(user);
             accountService.ValidateUser(loginViewModel.Username, loginViewModel.Password).Returns(valideUser);
-   
+            accountService.isCoordonator(user).Returns(true);
+            accountService.isBetweenAccesibleDates().Returns(true);
+
             var routeResult = accountController.Login(loginViewModel) as RedirectToRouteResult;
             var routeAction = routeResult.RouteValues["Action"];
 
@@ -82,7 +84,9 @@ namespace Stagio.Web.UnitTests.ControllerTests.AccountTests
             };
             var valideUser = new MayBe<ApplicationUser>(user);
             accountService.ValidateUser(loginViewModel.Username, loginViewModel.Password).Returns(valideUser);
-    
+            accountService.isCoordonator(user).Returns(true);
+            accountService.isBetweenAccesibleDates().Returns(true);
+
             accountController.Login(loginViewModel);
 
             httpContext.Received().AuthenticationSignIn(Arg.Any<ClaimsIdentity>());

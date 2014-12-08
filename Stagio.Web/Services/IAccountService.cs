@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Stagio.Domain.Application;
+﻿using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
 
 namespace Stagio.Web.Services
@@ -14,5 +10,9 @@ namespace Stagio.Web.Services
         string HashPassword(string password);
 
         bool UserEmailExist(string email);
+
+        bool isCoordonator(ApplicationUser user);
+
+        bool isBetweenAccesibleDates();
     }
 }

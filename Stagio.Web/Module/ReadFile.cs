@@ -1,11 +1,9 @@
-﻿using System;
+﻿using Stagio.Web.ViewModels.Student;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Web;
-using System.Web.Mvc;
-using Stagio.Domain.Entities;
-using Stagio.Web.ViewModels.Student;
 
 namespace Stagio.Web.Module
 {

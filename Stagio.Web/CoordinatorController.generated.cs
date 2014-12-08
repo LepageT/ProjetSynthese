@@ -7,19 +7,10 @@
 #pragma warning disable 1591, 3008, 3009
 #region T4MVC
 
-using System;
-using System.Diagnostics;
 using System.CodeDom.Compiler;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
+using System.Diagnostics;
 using System.Threading.Tasks;
-using System.Web;
-using System.Web.Hosting;
 using System.Web.Mvc;
-using System.Web.Mvc.Ajax;
-using System.Web.Mvc.Html;
-using System.Web.Routing;
 using T4MVC;
 namespace Stagio.Web.Controllers
 {
@@ -117,6 +108,7 @@ namespace Stagio.Web.Controllers
 			public readonly string CreateListPost = "CreateList";
 			public readonly string DetailsApplyStudent = "DetailsApplyStudent";
 			public readonly string Download = "Download";
+			public readonly string SetApplyDates = "SetApplyDates";
 		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -139,6 +131,7 @@ namespace Stagio.Web.Controllers
 			public const string CreateListPost = "CreateList";
 			public const string DetailsApplyStudent = "DetailsApplyStudent";
 			public const string Download = "Download";
+			public const string SetApplyDates = "SetApplyDates";
 		}
 
 
@@ -202,6 +195,14 @@ namespace Stagio.Web.Controllers
 			public readonly string file = "file";
 			public readonly string id = "id";
 		}
+		static readonly ActionParamsClass_SetApplyDates s_params_SetApplyDates = new ActionParamsClass_SetApplyDates();
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public ActionParamsClass_SetApplyDates SetApplyDatesParams { get { return s_params_SetApplyDates; } }
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public class ActionParamsClass_SetApplyDates
+		{
+			public readonly string ApplyDates = "ApplyDates";
+		}
 		static readonly ViewsClass s_views = new ViewsClass();
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public ViewsClass Views { get { return s_views; } }
@@ -222,6 +223,7 @@ namespace Stagio.Web.Controllers
                 public readonly string InviteContactEnterprise = "InviteContactEnterprise";
                 public readonly string InviteContactEnterpriseConfirmation = "InviteContactEnterpriseConfirmation";
                 public readonly string ResultCreateList = "ResultCreateList";
+                public readonly string SetApplyDates = "SetApplyDates";
                 public readonly string StudentApplyList = "StudentApplyList";
                 public readonly string StudentList = "StudentList";
                 public readonly string Upload = "Upload";
@@ -236,6 +238,7 @@ namespace Stagio.Web.Controllers
             public readonly string InviteContactEnterprise = "~/Views/Coordinator/InviteContactEnterprise.cshtml";
             public readonly string InviteContactEnterpriseConfirmation = "~/Views/Coordinator/InviteContactEnterpriseConfirmation.cshtml";
             public readonly string ResultCreateList = "~/Views/Coordinator/ResultCreateList.cshtml";
+            public readonly string SetApplyDates = "~/Views/Coordinator/SetApplyDates.cshtml";
             public readonly string StudentApplyList = "~/Views/Coordinator/StudentApplyList.cshtml";
             public readonly string StudentList = "~/Views/Coordinator/StudentList.cshtml";
             public readonly string Upload = "~/Views/Coordinator/Upload.cshtml";
@@ -475,6 +478,29 @@ namespace Stagio.Web.Controllers
 			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "file", file);
 			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
 			DownloadOverride(callInfo, file, id);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void SetApplyDatesOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult SetApplyDates()
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SetApplyDates);
+			SetApplyDatesOverride(callInfo);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void SetApplyDatesOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Stagio.Web.ViewModels.Coordinator.ApplyDatesLimit ApplyDates);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult SetApplyDates(Stagio.Web.ViewModels.Coordinator.ApplyDatesLimit ApplyDates)
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SetApplyDates);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ApplyDates", ApplyDates);
+			SetApplyDatesOverride(callInfo, ApplyDates);
 			return callInfo;
 		}
 

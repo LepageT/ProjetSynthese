@@ -1,25 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Web;
-using System.Web.Mvc;
-using AutoMapper;
+﻿using AutoMapper;
 using Stagio.DataLayer;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
+using Stagio.Web.Module;
 using Stagio.Web.Module.Strings.Controller;
 using Stagio.Web.Module.Strings.Email;
 using Stagio.Web.Module.Strings.Shared;
 using Stagio.Web.Services;
-using Stagio.Web.Module;
 using Stagio.Web.ViewModels.Coordinator;
 using Stagio.Web.ViewModels.Student;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
 using Apply = Stagio.Domain.Entities.Apply;
 
 namespace Stagio.Web.Controllers
 {
+    [Authorize(Roles = RoleName.Coordinator)]
     public partial class CoordinatorController : Controller
     {
         private readonly IAccountService _accountService;
@@ -37,6 +36,8 @@ namespace Stagio.Web.Controllers
         private readonly IHttpContextService _httpContextService;
         private readonly INotificationService _notificationService;
 
+        private readonly IEntityRepository<Misc> _miscRepository; 
+
         public CoordinatorController(IEntityRepository<ContactEnterprise> enterpriseContactRepository,
             IEntityRepository<Coordinator> coordinatorRepository,
             IEntityRepository<Invitation> invitationRepository,
@@ -49,7 +50,8 @@ namespace Stagio.Web.Controllers
             IEntityRepository<Interview> interviewRepository,
             IEntityRepository<StageAgreement> stageAgreementRepository,
             INotificationService notificationService,
-            IHttpContextService httpContextService)
+            IHttpContextService httpContextService,
+            IEntityRepository<Misc> miscRepository)
         {
             _enterpriseContactRepository = enterpriseContactRepository;
             _coordinatorRepository = coordinatorRepository;
@@ -63,8 +65,9 @@ namespace Stagio.Web.Controllers
             _interviewRepository = interviewRepository;
             _stageAgreementRepository = stageAgreementRepository;
             _httpContextService = httpContextService;
-            _notificationService = notificationService;
 
+            _notificationService = notificationService;
+            _miscRepository = miscRepository;
         }
         // GET: Coordinator
         public virtual ActionResult Index()
@@ -156,12 +159,13 @@ namespace Stagio.Web.Controllers
 
         }
 
+
         // GET: Coordinator/InviteContactEnterpriseConfirmation
         public virtual ActionResult InviteContactEnterpriseConfirmation()
         {
             return View();
         }
-
+        [AllowAnonymous]
         public virtual ActionResult Create(string token)
         {
             if (!String.IsNullOrEmpty(token))
@@ -184,7 +188,7 @@ namespace Stagio.Web.Controllers
 
             return HttpNotFound();
         }
-
+        [AllowAnonymous]
         [HttpPost]
         public virtual ActionResult Create(ViewModels.Coordinator.Create createdCoordinator)
         {
@@ -284,7 +288,7 @@ namespace Stagio.Web.Controllers
         {
             return View();
         }
-
+        [AllowAnonymous]
         public virtual ActionResult CreateConfirmation()
         {
             return View();
@@ -330,7 +334,7 @@ namespace Stagio.Web.Controllers
                 student.NbDateInterview = nbDateInterview;
                 nbDateInterview = 0;
             }
-
+           
             var studentStageFound = studentListViewModels.Where(x => x.DateAccepted != null);
             var studentStageNotFound =
                 studentListViewModels.Where(x => x.DateAccepted == null).OrderBy(x => x.NbDateInterview);
@@ -568,5 +572,62 @@ namespace Stagio.Web.Controllers
             }
         }
 
+        public virtual ActionResult SetApplyDates()
+        {
+
+            var misc = _miscRepository.GetAll().FirstOrDefault();
+            if (misc == null)
+            {
+                return View();
+            }
+
+            var miscViewModel = Mapper.Map<ViewModels.Coordinator.ApplyDatesLimit>(misc);
+            miscViewModel.DateBegin = misc.StartApplyDate;
+            miscViewModel.DateEnd = misc.EndApplyDate;
+            return View(miscViewModel);
+        }
+
+        [HttpPost]
+        public virtual ActionResult SetApplyDates(ViewModels.Coordinator.ApplyDatesLimit ApplyDates)
+        {
+            if (ModelState.IsValid)
+            {
+                if (Convert.ToDateTime(ApplyDates.DateBegin) >= DateTime.Now.Date)
+                {
+                    if (Convert.ToDateTime(ApplyDates.DateBegin) < Convert.ToDateTime(ApplyDates.DateEnd))
+                    {
+                        var misc = _miscRepository.GetAll().FirstOrDefault();
+                        if (misc == null)
+                        {
+                            misc = new Misc()
+                            {
+                                StartApplyDate = ApplyDates.DateBegin,
+                                EndApplyDate = ApplyDates.DateEnd
+                            };
+                            this.Flash(FlashMessageResources.AddSuccess, FlashEnum.Success);
+                            _miscRepository.Add(misc);
+                        }
+                        else
+                        {
+                            misc.StartApplyDate = ApplyDates.DateBegin;
+                            misc.EndApplyDate = ApplyDates.DateEnd;
+                            this.Flash(FlashMessageResources.EditSuccess, FlashEnum.Success);
+                            _miscRepository.Update(misc);
+                        }
+
+                        return RedirectToAction(MVC.Coordinator.Index());
+                    }
+                        ModelState.AddModelError("DateEnd", CoordinatorResources.EndDateLowerThanStartDate);
+                }
+                else
+                {
+                    ModelState.AddModelError("DateBegin", CoordinatorResources.StartDateLowerThanNow);
+                }
+                
+                this.Flash(FlashMessageResources.ErrorsOnPage, FlashEnum.Error);
+                return View(ApplyDates);
+            }
+            return HttpNotFound();
+        }
     }
 }

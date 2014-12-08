@@ -14,8 +14,9 @@ namespace Stagio.TestUtilities.Database
         private EfEntityRepository<Apply> _applyRepository;
         private EfEntityRepository<InvitationContactEnterprise> _invitationContactEnterpriseRepository;
         private EfEntityRepository<Notification> _notificationRepository;
-        private EfEntityRepository<StageAgreement> _stageAgreementRepository;
+        private EfEntityRepository<StageAgreement> _stageAgreementRepository; 
         private EfEntityRepository<Interview> _interviewRepository;
+        private EfEntityRepository<Misc> _miscRepository;
 
         public DataBaseTestHelper()
         {
@@ -30,6 +31,7 @@ namespace Stagio.TestUtilities.Database
             _notificationRepository = new EfEntityRepository<Notification>();
             _stageAgreementRepository = new EfEntityRepository<StageAgreement>();
             _interviewRepository = new EfEntityRepository<Interview>();
+            _miscRepository = new EfEntityRepository<Misc>();
         }
 
         public void SeedTables()
@@ -47,8 +49,13 @@ namespace Stagio.TestUtilities.Database
             addDraft();
             addStageAgreement();
             addInterview();
+            addMisc();
         }
 
+        private void addMisc()
+        {
+            _miscRepository.Add(TestData.misc);
+        }
         private void addApplies()
         {
             _applyRepository.Add(TestData.apply1);

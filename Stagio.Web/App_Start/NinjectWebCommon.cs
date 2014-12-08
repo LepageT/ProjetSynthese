@@ -1,4 +1,3 @@
-using FluentAssertions.Specialized;
 using Stagio.DataLayer;
 using Stagio.DataLayer.EntityFramework;
 using Stagio.Domain.Entities;
@@ -9,13 +8,11 @@ using Stagio.Web.Services;
 
 namespace Stagio.Web.App_Start
 {
-    using System;
-    using System.Web;
-
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
     using Ninject;
     using Ninject.Web.Common;
+    using System;
+    using System.Web;
 
     public static class NinjectWebCommon 
     {
@@ -78,7 +75,7 @@ namespace Stagio.Web.App_Start
             kernel.Bind<IEntityRepository<InvitationContactEnterprise>>().To<EfEntityRepository<InvitationContactEnterprise>>().InRequestScope();
             kernel.Bind<IEntityRepository<Notification>>().To<EfEntityRepository<Notification>>().InRequestScope();
             kernel.Bind<IEntityRepository<StageAgreement>>().To<EfEntityRepository<StageAgreement>>().InRequestScope();
-
+            kernel.Bind<IEntityRepository<Misc>>().To<EfEntityRepository<Misc>>().InRequestScope();
 
             kernel.Bind<IMailler>().ToConstant(Mailler.Instance);
 

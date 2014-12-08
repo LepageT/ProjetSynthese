@@ -18,5 +18,21 @@ namespace Stagio.Web.Automation.PageObjects.Coordinator
         {
             get { return Driver.Instance.FindElement(By.Id("notification-detail5")) != null; }
         }
+
+        public static bool isDiplayed
+        {
+            get
+            {
+                try
+                {
+                    Driver.Instance.FindElement(By.Id("coordinator-home"));
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
     }
 }

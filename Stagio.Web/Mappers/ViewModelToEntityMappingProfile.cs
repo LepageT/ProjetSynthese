@@ -1,7 +1,5 @@
-﻿using System.Security.Cryptography;
-using AutoMapper;
+﻿using AutoMapper;
 using Stagio.Domain.Entities;
-using Stagio.Web.ViewModels.ContactEnterprise;
 
 namespace Stagio.Web.Mappers
 {
