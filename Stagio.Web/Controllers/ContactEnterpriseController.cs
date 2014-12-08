@@ -1,5 +1,7 @@
-﻿using AutoMapper;
+﻿using System.Security.Claims;
+using AutoMapper;
 using Microsoft.Ajax.Utilities;
+using Microsoft.AspNet.Identity;
 using Stagio.DataLayer;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
@@ -340,7 +342,7 @@ namespace Stagio.Web.Controllers
 
             if (stages.Any())
             {
-                stages = stages.Where(x => x.CompanyName == user.EnterpriseName);
+                stages = stages.Where(x => x.CompanyName == user.EnterpriseName).Where(x => x.Status != StageStatus.Draft);
             }
 
             var listStages = Mapper.Map<IEnumerable<ViewModels.ContactEnterprise.ListStage>>(stages).ToList();
@@ -425,7 +427,6 @@ namespace Stagio.Web.Controllers
                 return View("");
             }
         }
-
 
         public virtual ActionResult RefuseApplyConfirmation()
         {
@@ -548,6 +549,22 @@ namespace Stagio.Web.Controllers
 
             _contactEnterpriseRepository.Update(contact);
             this.Flash(FlashMessageResources.EditSuccess, FlashEnum.Success);
+
+            var identity = new ClaimsIdentity(new[]
+            {
+                new Claim(ClaimTypes.Name, contact.FirstName + " " + contact.LastName),
+                new Claim(ClaimTypes.NameIdentifier, contact.Id.ToString()),
+
+
+            },
+               DefaultAuthenticationTypes.ApplicationCookie);
+
+            foreach (var role in contact.Roles)
+            {
+                identity.AddClaim(new Claim(ClaimTypes.Role, role.RoleName));
+            }
+
+            _httpContext.AuthenticationSignIn(identity);
 
             return RedirectToAction(MVC.ContactEnterprise.Index());
         }
