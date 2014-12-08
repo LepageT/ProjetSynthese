@@ -163,7 +163,7 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult DisplayStageList()
         {
             var stages = _stageRepository.GetAll().ToList();
-            var stagesAccepted = stages.Where(x => x.Status == StageStatus.Accepted);
+            var stagesAccepted = stages.Where(x => x.Status == StageStatus.Accepted && Convert.ToDateTime(x.LimitDate) >= DateTime.Today);
             var studentStageListViewModels = Mapper.Map<IEnumerable<ViewModels.Student.StageList>>(stagesAccepted);
 
             return View(studentStageListViewModels);
