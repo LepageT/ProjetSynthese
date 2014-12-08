@@ -80,6 +80,14 @@ namespace Stagio.Web.Controllers
 		}
 
 
+		static readonly ActionParamsClass_Index s_params_Index = new ActionParamsClass_Index();
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public ActionParamsClass_Index IndexParams { get { return s_params_Index; } }
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public class ActionParamsClass_Index
+		{
+			public readonly string isPresentation = "isPresentation";
+		}
 		static readonly ViewsClass s_views = new ViewsClass();
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public ViewsClass Views { get { return s_views; } }
@@ -100,13 +108,14 @@ namespace Stagio.Web.Controllers
 		public T4MVC_CIController() : base(Dummy.Instance) { }
 
 		[NonAction]
-		partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+		partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, bool isPresentation);
 
 		[NonAction]
-		public override System.Web.Mvc.ActionResult Index()
+		public override System.Web.Mvc.ActionResult Index(bool isPresentation)
 		{
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
-			IndexOverride(callInfo);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "isPresentation", isPresentation);
+			IndexOverride(callInfo, isPresentation);
 			return callInfo;
 		}
 

@@ -15,12 +15,19 @@ namespace Stagio.Web.Controllers
             _dbHelper = dbHelper;
         }
 
-        public virtual ActionResult Index()
+        public virtual ActionResult Index(bool isPresentation = false)
         {
             try
             {
                 DeleteDB();
-                SeedDb();
+                if (isPresentation)
+                {
+                    SeedDbPresentation();
+                }
+                else
+                {
+                    SeedDb();
+                }
             }
             catch (Exception ex)
             {
@@ -39,6 +46,12 @@ namespace Stagio.Web.Controllers
         {
             var testData = new DataBaseTestHelper();
             testData.SeedTables();
+        }
+
+        private void SeedDbPresentation()
+        {
+            var testData = new DataBaseTestHelper();
+            testData.SeedPresentationTables();
         }
     }
 }
