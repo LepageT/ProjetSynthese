@@ -164,7 +164,7 @@ namespace Stagio.Web.Controllers
 
             string message = String.Format(ContactEntrepriseToCoordinator.EditStageMessage, stage.CompanyName, stage.Id, stage.StageTitle);
 
-                _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.EditStageTitle,
+            _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.EditStageTitle,
                     message);
 
             _notificationService.SendNotificationToAllStudent(ContactEnterpriseToStudent.EditStageTitle,
