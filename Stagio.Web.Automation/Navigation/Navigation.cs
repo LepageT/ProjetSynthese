@@ -246,7 +246,7 @@ namespace Stagio.Web.Automation
             {
                 public static void Select()
                 {
-                    MenuSelector.Select("index-coordonnateur", "blockAccess");
+                    MenuSelector.SelectTopLevel("blockAccess");
                 }
             }
         }
