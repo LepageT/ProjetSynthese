@@ -716,5 +716,27 @@ namespace Stagio.Web.Controllers
          }
 
 
+
+         public virtual ActionResult RemoveStudentFromListStudent(int matricule)
+         {
+             var listStudents = TempData["listStudent"] as List<ListStudent>;
+            
+             bool remove = false;
+             int counter = 0;
+             while(!remove)
+             {
+                 if(listStudents[counter].Matricule == matricule)
+                 {
+                     listStudents.Remove(listStudents[counter]);
+                     remove = true;
+                 }
+                 counter++;
+             }
+
+             TempData["listStudent"] = listStudents;
+             TempData.Keep();
+             return RedirectToAction(MVC.Coordinator.CreateList());
+
+         }
     }
 }
