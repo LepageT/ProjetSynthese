@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography;
-using AutoMapper;
-using Ninject.Infrastructure.Language;
+﻿using AutoMapper;
 using Stagio.Domain.Entities;
 using Stagio.Web.ViewModels.Stage;
 
@@ -86,6 +84,10 @@ namespace Stagio.Web.Mappers
             Mapper.CreateMap<Apply, ViewModels.Student.AppliedStages>()
                 .IgnoreAllNonExisting();
 
+
+            Mapper.CreateMap<StageAgreement, ViewModels.StageAgreement.EditStageAgreement>()
+                .IgnoreAllNonExisting();
+
             Mapper.CreateMap<Student, ViewModels.ContactEnterprise.AcceptApply>()
                 .IgnoreAllNonExisting();
 
@@ -130,6 +132,8 @@ namespace Stagio.Web.Mappers
 
             Mapper.CreateMap<ContactEnterprise, ViewModels.Stage.Create>()
                 .ForMember(dest => dest.CompanyName, opt => opt.MapFrom(src => src.EnterpriseName))
+                .IgnoreAllNonExisting();
+            Mapper.CreateMap<Misc, ViewModels.Coordinator.ApplyDatesLimit>()
                 .IgnoreAllNonExisting();
         }
     }

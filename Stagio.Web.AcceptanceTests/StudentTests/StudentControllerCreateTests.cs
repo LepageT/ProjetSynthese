@@ -1,12 +1,8 @@
-﻿using System;
-using System.Net.Mime;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium;
-using Stagio.Domain.Entities;
-using Stagio.Web.Automation.PageObjects;
-using Stagio.Web.Automation.PageObjects.Student;
 using Ploeh.AutoFixture;
+using Stagio.Domain.Entities;
+using Stagio.Web.Automation.PageObjects.Student;
 
 namespace Stagio.Web.AcceptanceTests.StudentTests
 {

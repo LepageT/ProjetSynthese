@@ -1381,4 +1381,6 @@ THE SOFTWARE.
         daysOfWeekDisabled: [],
         widgetParent: false
     };
+	
+
 }));

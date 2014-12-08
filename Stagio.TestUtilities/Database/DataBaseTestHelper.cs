@@ -15,6 +15,8 @@ namespace Stagio.TestUtilities.Database
         private EfEntityRepository<InvitationContactEnterprise> _invitationContactEnterpriseRepository;
         private EfEntityRepository<Notification> _notificationRepository;
         private EfEntityRepository<StageAgreement> _stageAgreementRepository; 
+        private EfEntityRepository<Interview> _interviewRepository;
+        private EfEntityRepository<Misc> _miscRepository;
 
         public DataBaseTestHelper()
         {
@@ -28,6 +30,8 @@ namespace Stagio.TestUtilities.Database
             _invitationContactEnterpriseRepository = new EfEntityRepository<InvitationContactEnterprise>();
             _notificationRepository = new EfEntityRepository<Notification>();
             _stageAgreementRepository = new EfEntityRepository<StageAgreement>();
+            _interviewRepository = new EfEntityRepository<Interview>();
+            _miscRepository = new EfEntityRepository<Misc>();
         }
 
         public void SeedTables()
@@ -44,16 +48,20 @@ namespace Stagio.TestUtilities.Database
             addNotificationCoordinator();
             addDraft();
             addStageAgreement();
+            addInterview();
+            addMisc();
         }
 
+        private void addMisc()
+        {
+            _miscRepository.Add(TestData.misc);
+        }
         private void addApplies()
         {
-            var apply1 = TestData.apply1;
-            var apply2 = TestData.apply2;
-            var apply3 = TestData.apply3;
-            _applyRepository.Add(apply1);
-            _applyRepository.Add(apply2);
-            _applyRepository.Add(apply3);
+            _applyRepository.Add(TestData.apply1);
+            _applyRepository.Add(TestData.apply2);
+            _applyRepository.Add(TestData.apply3);
+            _applyRepository.Add(TestData.apply4);
         }
 
         private void addStages()
@@ -72,13 +80,10 @@ namespace Stagio.TestUtilities.Database
 
         private void addStudents()
         {
-            var student1 = TestData.student1;
-            var student2 = TestData.student2;
-            var student3 = TestData.student3;
+            _studentRepository.Add(TestData.student1);
+            _studentRepository.Add(TestData.student2);
+            _studentRepository.Add(TestData.student3);
 
-            _studentRepository.Add(student1);
-            _studentRepository.Add(student2);
-            _studentRepository.Add(student3);
         }
 
         private void addCoordonnator()
@@ -135,6 +140,13 @@ namespace Stagio.TestUtilities.Database
         {
             _stageAgreementRepository.Add(TestData.stageAgreementNotSigned);
             _stageAgreementRepository.Add(TestData.stageAgreementSigned);
+        }
+
+        private void addInterview()
+        {
+            _interviewRepository.Add(TestData.interview1);
+            _interviewRepository.Add(TestData.interview2);
+
         }
     }
 }

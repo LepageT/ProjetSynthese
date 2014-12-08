@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Resources;
-using System.Web;
-using System.Web.Mvc;
-using AutoMapper;
+﻿using AutoMapper;
 using Stagio.DataLayer;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
@@ -13,6 +7,10 @@ using Stagio.Web.Module.Strings.Notification;
 using Stagio.Web.Module.Strings.Shared;
 using Stagio.Web.Services;
 using Stagio.Web.ViewModels.Stage;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Stagio.Web.Controllers
 {
@@ -182,7 +180,7 @@ namespace Stagio.Web.Controllers
         {
             var stage = _stageRepository.GetById(id);
             var user = _contactEnterpriseRepository.GetById(_httpContextService.GetUserId());
-           
+
             if (stage != null)
             {
                 if (stage.CompanyName != user.EnterpriseName)
@@ -247,7 +245,7 @@ namespace Stagio.Web.Controllers
         {
             var stage = _stageRepository.GetById(id);
             var user = _contactEnterpriseRepository.GetById(_httpContextService.GetUserId());
-             if (stage == null)
+            if (stage == null)
             {
                 return HttpNotFound();
             }

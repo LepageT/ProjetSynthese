@@ -74,7 +74,7 @@
                 }
                 else
                 {
-                    <p>Inconnu</p>
+                    <p>Inconnue</p>
                 }
             </td>
             <td>
@@ -84,7 +84,7 @@
                 }
                 else
                 {
-                    <p>Inconnu</p>
+                    <p>Inconnue</p>
                 }
             </td>
             <td>
@@ -94,14 +94,14 @@
                 }
                 else
                 {
-                    <p>Inconnu</p>
+                    <p>Inconnue</p>
                 }
             </td>
             <td>
                 @Html.ActionLink("Voir les détails", MVC.Coordinator.DetailsApplyStudent(item.Id, false))
             </td>
             <td>
-                @if (item.StageAgreementCreated == false)
+                @if (item.StageAgreementCreated == false && item.DateAcceptStage != null)
                 {
                     @Html.ActionLink("Créer la convention de stage", MVC.StageAgreement.CreateConfirmation(item.Id), new { id = "create-stageAgreement" + item.Id })
                 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel;
 
 namespace Stagio.Web.ViewModels.StageAgreement
 {
@@ -19,6 +15,8 @@ namespace Stagio.Web.ViewModels.StageAgreement
 
         [DisplayName("Stage")]
         public string StageName { get; set; }
+
+        public int Id { get; set; }
 
     }
 }

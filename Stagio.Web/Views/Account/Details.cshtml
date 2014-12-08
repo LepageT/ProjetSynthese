@@ -61,6 +61,12 @@
         <div>
             @Html.ActionLink("Modifier le profil", MVC.Student.Edit(Model.Id), new { id = "edit-Student" })
         </div>
+    } 
+    @if (@User.IsInRole("Contact entreprise"))
+    {
+        <div>
+            @Html.ActionLink("Modifier le profil", MVC.ContactEnterprise.Edit(), new { id = "edit-enterprise" })
+        </div>
     }
     <p>
         @Html.ActionLink(Navigation.ReturnHome, MVC.Home.Index())
@@ -72,11 +78,6 @@
             </div>
         }*@
 
-    @if (@User.IsInRole("Contact entreprise"))
-    {
-        <div>
-            @Html.ActionLink("Modifier le profil", MVC.ContactEnterprise.Edit(), new { id = "edit-enterprise" })
-        </div>
-    }
+
 </body>
 </html>

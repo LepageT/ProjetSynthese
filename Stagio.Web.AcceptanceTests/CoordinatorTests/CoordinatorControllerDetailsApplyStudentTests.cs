@@ -10,10 +10,10 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
     public class CoordinatorControllerDetailsApplyStudentTests : BaseTests
     {
         [TestMethod]
-        public void contactEnterprise_should_not_download_files_isfiles_not_valid()
+        public void Coordinator_should_not_download_files_isfiles_not_valid()
         {
             LoginPage.GoTo();
-            LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
+            LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
             DetailsStudentApplyCoordinatorPage.GoToByUrl();
 
             DetailsStudentApplyCoordinatorPage.DownloadPage();

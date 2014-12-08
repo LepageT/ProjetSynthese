@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel;
 
 namespace Stagio.Web.ViewModels.Coordinator
 {
@@ -34,7 +30,7 @@ namespace Stagio.Web.ViewModels.Coordinator
         [DisplayName("Date de l'entrevue")]
         public string DateInterview { get; set; }
 
-        [DisplayName("Date de l'offre reçu")]
+        [DisplayName("Date de l'offre reçue")]
         public string DateStageOffer { get; set; }
 
         [DisplayName("Date d'acceptation de l'offre")]

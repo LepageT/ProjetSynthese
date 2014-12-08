@@ -136,6 +136,12 @@
   <data name="InterestedByTitle" xml:space="preserve">
     <value>Une entreprise est intéressé par la candidature d'un étudiant</value>
   </data>
+  <data name="NewStageEndLink" xml:space="preserve">
+    <value>&lt;/a&gt;</value>
+  </data>
+  <data name="NewStageLink" xml:space="preserve">
+    <value>&lt;a href="../../Stage/Details/</value>
+  </data>
   <data name="NewStageMessage" xml:space="preserve">
     <value>L'entreprise {0} a ajouté un stage: &lt;a href="../../Stage/Details/{1}"&gt;{2}&lt;/a&gt; Vous devez l'approuver pour qu'il soit visible pour les étudiants.</value>
   </data>

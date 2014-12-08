@@ -46,7 +46,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
             var result = enterpriseController.InviteContactEnterprise(enterpriseValid) as RedirectToRouteResult;
             var action = result.RouteValues["Action"];
 
-            action.ShouldBeEquivalentTo("InviteContactEnterpriseConfirmation");
+            action.ShouldBeEquivalentTo(MVC.ContactEnterprise.Views.ViewNames.InviteContactEnterpriseConfirmation);
         }
 
         [TestMethod]

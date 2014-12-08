@@ -68,5 +68,14 @@ namespace Stagio.Web.Module.Strings.Controller {
                 return ResourceManager.GetString("ErrorLogin", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vous n&apos;avez pas accès au site présentement.
+        /// </summary>
+        internal static string ErrorLoginOutOfApplyDateRange {
+            get {
+                return ResourceManager.GetString("ErrorLoginOutOfApplyDateRange", resourceCulture);
+            }
+        }
     }
 }

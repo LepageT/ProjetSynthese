@@ -1,23 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Caching;
-using System.Web.Mvc;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.Ajax.Utilities;
-using NSubstitute.Core;
 using Stagio.DataLayer;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
+using Stagio.Utilities.Encryption;
 using Stagio.Web.Module;
 using Stagio.Web.Module.Strings.Controller;
+using Stagio.Web.Module.Strings.Email;
 using Stagio.Web.Module.Strings.Notification;
 using Stagio.Web.Module.Strings.Shared;
 using Stagio.Web.Services;
-using Stagio.Web.ViewModels.Student;
-using Stagio.Utilities.Encryption;
-using Stagio.Web.Module.Strings.Email;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
 
 namespace Stagio.Web.Controllers
 {
@@ -355,6 +352,7 @@ namespace Stagio.Web.Controllers
                 return RedirectToAction(MVC.Student.Index());
             }
         }
+
 
     }
 }

@@ -32,7 +32,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageAgreementTests
             var stage = _fixture.Create<Stage>();
             stageRepository.GetById(stage.Id).Returns(stage);
             var student = _fixture.Create<Student>();
-            studentRepository.GetById(student.Id).Returns(student);
+            accountRepository.GetById(student.Id).Returns(student);
             foreach (var stageAgreement in stageAgreements)
             {
                 stageAgreement.IdStudentSigned = student.Id;
@@ -59,7 +59,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageAgreementTests
             var stage = _fixture.Create<Stage>();
             stageRepository.GetById(stage.Id).Returns(stage);
             var student = _fixture.Create<Student>();
-            studentRepository.GetById(student.Id).Returns(student);
+            accountRepository.GetById(student.Id).Returns(student);
             foreach (var stageAgreement in stageAgreements)
             {
                 stageAgreement.IdStudentSigned = student.Id;
@@ -88,7 +88,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageAgreementTests
             var stage = _fixture.Create<Stage>();
             stageRepository.GetById(stage.Id).Returns(stage);
             var student = _fixture.Create<Student>();
-            studentRepository.GetById(student.Id).Returns(student);
+            accountRepository.GetById(student.Id).Returns(student);
             foreach (var stageAgreement in stageAgreements)
             {
                 stageAgreement.IdStudentSigned = student.Id;
