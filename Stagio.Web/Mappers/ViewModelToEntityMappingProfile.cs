@@ -18,7 +18,6 @@ namespace Stagio.Web.Mappers
                 .ForMember(dest => dest.FirstName, opt => opt.Ignore())
                 .ForMember(dest => dest.LastName, opt => opt.Ignore())
                 .ForMember(dest => dest.Matricule, opt => opt.Ignore())
-         
                 .IgnoreAllNonExisting();
 
             Mapper.CreateMap<ViewModels.Student.ListStudent, Student>()
@@ -61,6 +60,13 @@ namespace Stagio.Web.Mappers
 
             Mapper.CreateMap<ViewModels.Stage.Edit, Stage>()
                 .IgnoreAllNonExisting();
+
+            Mapper.CreateMap<ViewModels.ContactEnterprise.Edit, ContactEnterprise>()
+                .ForMember(dest => dest.FirstName, opt => opt.Ignore())
+                .ForMember(dest => dest.LastName, opt => opt.Ignore())
+                .ForMember(dest => dest.EnterpriseName, opt => opt.Ignore())
+                .IgnoreAllNonExisting();
+
         }
     }
 }

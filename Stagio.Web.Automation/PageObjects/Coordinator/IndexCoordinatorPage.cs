@@ -9,11 +9,6 @@ namespace Stagio.Web.Automation.PageObjects.Coordinator
 {
     public class IndexCoordinatorPage
     {
-        /*public static bool IsDisplayed
-        {
-            
-        }*/
-
         public static void Goto()
         {
             Navigation.Coordinator.Index.Select();

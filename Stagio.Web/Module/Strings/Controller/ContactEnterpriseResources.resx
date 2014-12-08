@@ -123,4 +123,13 @@
   <data name="FilesCantBeDownload" xml:space="preserve">
     <value>Un ou des fichiers ne peuvent pas être téléchargés</value>
   </data>
+  <data name="Interested" xml:space="preserve">
+    <value>Je suis intéressé</value>
+  </data>
+  <data name="NotInterested" xml:space="preserve">
+    <value>Je ne suis pas intéressé</value>
+  </data>
+  <data name="SaveHasDraft" xml:space="preserve">
+    <value>Sauvegarder comme brouillon</value>
+  </data>
 </root>

@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Security;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using NSubstitute.Core;
 using Stagio.Domain.Application;
 
 namespace Stagio.Web.Services

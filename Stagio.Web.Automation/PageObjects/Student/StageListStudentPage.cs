@@ -9,11 +9,6 @@ namespace Stagio.Web.Automation.PageObjects.Student
 {
     public class StageListStudentPage
     {
-        public static bool IsDisplayed
-        {
-            get { return Driver.Instance.FindElement(By.Id("student-StageList")) != null; }
-        }
-
         public static void GoTo()
         {
             Navigation.Student.SeeStages.Select();
@@ -22,20 +17,6 @@ namespace Stagio.Web.Automation.PageObjects.Student
         public static void GoToByUrl()
         {
             Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/Student/DisplayStageList");
-        }
-
-        public static bool HasStage
-        {
-            get
-            {
-                return GetStageCount() > 0;
-            }
-        }
-
-        private static int GetStageCount()
-        {
-            var countText = Driver.Instance.FindElement(By.Id("stages-count")).Text;
-            return int.Parse(countText.Split(' ')[0]);
         }
 
         public static bool AccessStageDescription()

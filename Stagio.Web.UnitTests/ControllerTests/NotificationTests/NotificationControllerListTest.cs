@@ -16,14 +16,15 @@ namespace Stagio.Web.UnitTests.ControllerTests.NotificationTests
         [TestMethod]
         public void notification_should_display_user_notification_list()
         {
-            var notificationList = _fixture.CreateMany<Notification>(5);
+            const int USER_ID = 1;
+            var notificationList = _fixture.CreateMany<Notification>(5).AsQueryable();
             foreach (var notification in notificationList)
             {
-                notification.For = 1;
+                notification.For = USER_ID;
             }
             notificationList.FirstOrDefault().For = 4;
-            notificationRepository.GetAll().Returns(notificationList.AsQueryable());
-            httpContextService.GetUserId().Returns(1);
+            httpContextService.GetUserId().Returns(USER_ID);
+            notificationRepository.GetAll().Returns(notificationList);
 
             var result = notificationController.NotificationList() as ViewResult;
             var model = result.Model as IEnumerable<ViewModels.Notification.Notification>;

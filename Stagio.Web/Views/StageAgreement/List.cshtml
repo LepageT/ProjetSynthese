@@ -1,0 +1,90 @@
+﻿@model Stagio.Web.ViewModels.StageAgreement.ListStageAgreement
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2 id="stageAgreement-list">Liste de vos conventions de stage</h2>
+<div id="stageAgreement-count">@(Model.ListStageAgreementNotSigned.Count() + Model.ListStagesAgreementsSigned.Count()) Convention(s) de stage</div>
+
+<h3>Les conventions de stage à signer</h3>
+<table class="table">
+    <tr class="row">
+        <th class="col-md-2">
+            @Html.DisplayNameFor(model => model.ListStageAgreementNotSigned[0].StageName)
+        </th>
+        <th class="col-md-3">
+            @Html.DisplayNameFor(model => model.ListStageAgreementNotSigned[0].EnterpriseName)
+        </th>
+        <th class="col-md-3">
+            @Html.DisplayNameFor(model => model.ListStageAgreementNotSigned[0].StudentFirstName)
+        </th>
+        <th class="col-md-2">
+            @Html.DisplayNameFor(model => model.ListStageAgreementNotSigned[0].StudentLastName)
+        </th>
+       
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.ListStageAgreementNotSigned)
+    {
+        <tr class="row">
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.StageName)
+            </td>
+            <td class="col-md-3">
+                @Html.DisplayFor(modelItem => item.EnterpriseName)
+            </td>
+            <td class="col-md-3">
+                @Html.DisplayFor(modelItem => item.StudentFirstName)
+            </td>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.StudentLastName)
+            </td>
+            <td>
+                @Html.ActionLink("Signer", MVC.StageAgreement.Edit(item.Id))
+            </td>
+        </tr>
+    }
+
+</table>
+
+<h3>Les conventions de stage signées</h3>
+<table class="table">
+    <tr class="row">
+        <th class="col-md-2">
+            @Html.DisplayNameFor(model => model.ListStagesAgreementsSigned[0].StageName)
+        </th>
+        <th class="col-md-3">
+            @Html.DisplayNameFor(model => model.ListStagesAgreementsSigned[0].EnterpriseName)
+        </th>
+        <th class="col-md-3">
+            @Html.DisplayNameFor(model => model.ListStagesAgreementsSigned[0].StudentFirstName)
+        </th>
+        <th class="col-md-2">
+            @Html.DisplayNameFor(model => model.ListStagesAgreementsSigned[0].StudentLastName)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.ListStageAgreementNotSigned)
+    {
+        <tr class="row">
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.StageName)
+            </td>
+            <td class="col-md-3">
+                @Html.DisplayFor(modelItem => item.EnterpriseName)
+            </td>
+            <td class="col-md-3">
+                @Html.DisplayFor(modelItem => item.StudentFirstName)
+            </td>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.StudentLastName)
+            </td>
+        </tr>
+    }
+
+</table>
+

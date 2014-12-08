@@ -14,12 +14,6 @@ namespace Stagio.Web.Automation.PageObjects.Coordinator
             Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/Coordinator/DetailsApplyStudent/1?error=False");
         }
 
-        public static bool IsDisplayed
-        {
-            get { return Driver.Instance.FindElement(By.Id("details-apply-student")) != null; }
-        }
-
-
         public static void DownloadPage()
         {
             Driver.Instance.FindElement(By.Id("download-cv")).Click();

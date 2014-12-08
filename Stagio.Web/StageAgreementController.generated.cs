@@ -84,6 +84,7 @@ namespace Stagio.Web.Controllers
 		{
 			public readonly string CreateConfirmation = "CreateConfirmation";
 			public readonly string Edit = "Edit";
+			public readonly string List = "List";
 		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -91,6 +92,7 @@ namespace Stagio.Web.Controllers
 		{
 			public const string CreateConfirmation = "CreateConfirmation";
 			public const string Edit = "Edit";
+			public const string List = "List";
 		}
 
 
@@ -123,9 +125,11 @@ namespace Stagio.Web.Controllers
             {
                 public readonly string CreateConfirmation = "CreateConfirmation";
                 public readonly string Edit = "Edit";
+                public readonly string List = "List";
             }
             public readonly string CreateConfirmation = "~/Views/StageAgreement/CreateConfirmation.cshtml";
             public readonly string Edit = "~/Views/StageAgreement/Edit.cshtml";
+            public readonly string List = "~/Views/StageAgreement/List.cshtml";
 		}
 	}
 
@@ -167,6 +171,17 @@ namespace Stagio.Web.Controllers
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
 			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "signStageAgreementViewModel", signStageAgreementViewModel);
 			EditOverride(callInfo, signStageAgreementViewModel);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void ListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult List()
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.List);
+			ListOverride(callInfo);
 			return callInfo;
 		}
 

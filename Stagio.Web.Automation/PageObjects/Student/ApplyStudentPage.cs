@@ -26,18 +26,6 @@ namespace Stagio.Web.Automation.PageObjects.Student
             Driver.Instance.Navigate().GoToUrl("http://thomarelau.local/Student/ApplyStage/3");
         }
 
-        public static void ApplyStudent(string cv, string letter)
-        {
-            Driver.Instance.FindElement(By.Id("file1")).SendKeys(cv);
-            Driver.Instance.FindElement(By.Id("file2")).SendKeys(letter);
-            Driver.Instance.FindElement(By.Id("apply-button")).Click();
-        }
-
-        public static bool ConfirmationPageIsDisplayed
-        {
-            get { return Driver.Instance.FindElement(By.Id("confirmationApplyStudent-page")) != null; }
-        }
-
         public static bool SelectFiles(string file1, string file2)
         {
             try
@@ -63,9 +51,5 @@ namespace Stagio.Web.Automation.PageObjects.Student
             return true;
         }
 
-        public static void Goto()
-        {
-            Driver.Instance.Navigate().GoToUrl(Driver.BaseAddress + "/File/Upload");
-        }
     }
 }

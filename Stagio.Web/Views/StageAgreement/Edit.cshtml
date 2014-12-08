@@ -26,7 +26,7 @@
             <hr />
             @Html.ValidationSummary(true)
 
-            @if (@User.IsInRole("Contact entreprise"))
+            @if (@User.IsInRole("Contact entreprise") || @User.IsInRole("Coordonnateur"))
             {
                 <div class="row">
 
@@ -443,8 +443,8 @@
             @if (@User.IsInRole("Coordonnateur"))
             {
                    <div class="form-group">
-                    @Html.LabelFor(model => model.SupervisorName, new { @class = "control-label col-md-4" })
-                    <div class="col-md-10">
+                    @Html.LabelFor(model => model.SupervisorName, new { @class = "control-label col-md-5" })
+                    <div class="col-md-7">
                         @Html.EditorFor(model => model.SupervisorName)
                         @Html.ValidationMessageFor(model => model.SupervisorName)
                     </div>
@@ -453,8 +453,8 @@
             else
             {
                <div class="form-group">
-                    @Html.LabelFor(model => model.SupervisorName, new { @class = "control-label col-md-4" })
-                    <div class="col-md-10">
+                    @Html.LabelFor(model => model.SupervisorName, new { @class = "control-label col-md-5" })
+                    <div class="col-md-6">
                         @Html.DisplayFor(model => model.SupervisorName)
                         @Html.ValidationMessageFor(model => model.SupervisorName)
                     </div>

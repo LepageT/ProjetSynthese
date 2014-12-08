@@ -9,10 +9,6 @@ namespace Stagio.Web.Automation.PageObjects.Student
 {
     public class CreateStudentPage
     {
-        public static bool IsDisplayed
-        {
-            get { return Driver.Instance.FindElement(By.Id("create-student")) != null; }
-        }
 
         public static void GoTo()
         {
