@@ -118,44 +118,38 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CreateContactEnterprise" xml:space="preserve">
-    <value>s'est inscrit sur le site.</value>
+    <value>{0} {1} s'est inscrit sur le site.</value>
     <comment>Ajouté le nom du contact </comment>
   </data>
   <data name="CreateContactEnterpriseTitle" xml:space="preserve">
     <value>Un employé s'est inscrit sur le site Stagio</value>
   </data>
   <data name="EditStageMessage" xml:space="preserve">
-    <value>a modifié le stage</value>
+    <value>L'entreprise {0} a modifié le stage:  &lt;a href="../../Stage/Details/{1}"&gt;{2}&lt;/a&gt;</value>
   </data>
   <data name="EditStageTitle" xml:space="preserve">
     <value>Une entreprise a modifié un stage</value>
   </data>
   <data name="InterestedBy" xml:space="preserve">
-    <value>est  intéressé par la candidature de</value>
+    <value>{0} est intéressé par la candidature de {1} {2}</value>
   </data>
   <data name="InterestedByTitle" xml:space="preserve">
     <value>Une entreprise est intéressé par la candidature d'un étudiant</value>
   </data>
-  <data name="NewStageEndLink" xml:space="preserve">
-    <value>&gt;Cliquer ici pour voir les détails de ce stage&lt;/a&gt;</value>
-  </data>
-  <data name="NewStageLink" xml:space="preserve">
-    <value>&lt;a href="../../Stage/Details/</value>
-  </data>
   <data name="NewStageMessage" xml:space="preserve">
-    <value>Vous devez l'approuver pour qu'il soit visible pour les étudiants.</value>
+    <value>L'entreprise {0} a ajouté un stage: &lt;a href="../../Stage/Details/{1}"&gt;{2}&lt;/a&gt; Vous devez l'approuver pour qu'il soit visible pour les étudiants.</value>
   </data>
   <data name="NewStageTitle" xml:space="preserve">
     <value>Un nouveau stage est en attente d'approbation</value>
   </data>
   <data name="NotInterestedBy" xml:space="preserve">
-    <value>n'est pas intéressé par la candidature de</value>
+    <value>{0} n'est pas intéressé par la candidature de {1} {2}</value>
   </data>
   <data name="NotInterestedByTitle" xml:space="preserve">
     <value>Une entreprise n'est pas intéressé par la candidature d'un étudiant</value>
   </data>
   <data name="RemoveStage" xml:space="preserve">
-    <value>a retiré le stage</value>
+    <value>{0} a retiré le stage &lt;a href="../../Stage/Details/{1}"&gt;{2}&lt;/a&gt;</value>
   </data>
   <data name="RemoveStageTitle" xml:space="preserve">
     <value>Une entreprise à retiré une de ses offres de stages</value>

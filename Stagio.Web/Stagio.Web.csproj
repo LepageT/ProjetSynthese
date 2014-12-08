@@ -340,6 +340,7 @@
     <Compile Include="ViewModels\Coordinator\ApplyDatesLimit.cs" />
     <Compile Include="ViewModels\Coordinator\StudentApplyList.cs" />
     <Compile Include="ViewModels\Coordinator\StudentList.cs" />
+    <Compile Include="ViewModels\Coordinator\StudentLists.cs" />
     <Compile Include="ViewModels\Interviews\Create.cs" />
     <Compile Include="ViewModels\Interviews\Edit.cs" />
     <Compile Include="ViewModels\Interviews\List.cs" />
@@ -364,6 +365,7 @@
     <Compile Include="ViewModels\Student\StageList.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-datetimepicker.css" />
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -381,6 +383,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="App_Code\Flash.cshtml" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
@@ -426,7 +429,6 @@
     <Content Include="Content\bootstrap\alerts.less" />
     <Content Include="Content\less\bootstrap-datetimepicker-build.less" />
     <Content Include="Content\less\bootstrap-datetimepicker.less" />
-    <Content Include="App_Code\Flash.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
@@ -434,6 +436,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\datetimepicker-setup.js" />
+    <Content Include="Scripts\locales\fr.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />

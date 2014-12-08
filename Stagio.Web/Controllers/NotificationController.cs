@@ -10,18 +10,18 @@ namespace Stagio.Web.Controllers
     public partial class NotificationController : Controller
     {
         private readonly IHttpContextService _httpContextService;
-        private readonly IEntityRepository<Stagio.Domain.Entities.Notification> _notificationRepository;
+        private readonly INotificationService _notificationService;
 
-        public NotificationController(IHttpContextService httpContextService, IEntityRepository<Stagio.Domain.Entities.Notification> notificationRepository)
+        public NotificationController(IHttpContextService httpContextService, INotificationService notificationService)
         {
             _httpContextService = httpContextService;
-            _notificationRepository = notificationRepository;
+            _notificationService = notificationService;
         }
 
         [Authorize]
         public virtual ActionResult Detail(int id)
         {
-            var notification = _notificationRepository.GetById(id);
+            var notification = _notificationService.GetNotification(id);
 
             if (notification != null)
             {
@@ -34,7 +34,7 @@ namespace Stagio.Web.Controllers
 
                 notification.Seen = true;
 
-                _notificationRepository.Update(notification);
+                _notificationService.MarkNotificationAsSeen(notification);
 
                 return View(notificationViewModel);
             }
@@ -49,7 +49,7 @@ namespace Stagio.Web.Controllers
         [Authorize]
         public virtual ActionResult NotificationList()
         {
-            var notifications = _notificationRepository.GetAll().ToList();
+            var notifications = _notificationService.GetNotificationForUser(_httpContextService.GetUserId());
             var notificationsList = notifications.OrderByDescending(x => x.Date).Where(x => x.For == _httpContextService.GetUserId());
             var notificationsListViewModel = Mapper.Map<IEnumerable<ViewModels.Notification.Notification>>(notificationsList).ToList();
 

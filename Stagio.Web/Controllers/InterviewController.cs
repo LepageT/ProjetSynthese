@@ -20,21 +20,16 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<Student> _studentRepository;
         private readonly IEntityRepository<Interview> _interviewRepository; 
         private readonly IHttpContextService _httpContextService;
-        private readonly IEntityRepository<ApplicationUser> _applicationUserRepository;
-        private readonly IEntityRepository<Notification> _notificationRepository;
         private readonly INotificationService _notificationService;
 
-        public InterviewController(IEntityRepository<Stagio.Domain.Entities.Apply> applyRepository, IEntityRepository<Stage> stageRepository, IHttpContextService httpContextService, IEntityRepository<Interview> interviewRepository, IEntityRepository<Student> studentRepository, IEntityRepository<Notification> notificationRepository, IEntityRepository<ApplicationUser> applicationUserRepository)
+        public InterviewController(IEntityRepository<Stagio.Domain.Entities.Apply> applyRepository, IEntityRepository<Stage> stageRepository, IHttpContextService httpContextService, IEntityRepository<Interview> interviewRepository, IEntityRepository<Student> studentRepository, INotificationService notificationService)
         {
             _applyRepository = applyRepository;
             _stageRepository = stageRepository;
             _httpContextService = httpContextService;
             _interviewRepository = interviewRepository;
             _studentRepository = studentRepository;
-            _notificationRepository = notificationRepository;
-            _applicationUserRepository = applicationUserRepository;
-            _notificationService = new NotificationService(applicationUserRepository, notificationRepository);
-
+            _notificationService = notificationService;
 
         }
 
@@ -91,14 +86,14 @@ namespace Stagio.Web.Controllers
                     }
                 }
                 string message = String.Format(StudentToCoordinator.CreateInterview, student.FirstName, student.LastName, interviewCreated.Date, stage.CompanyName);
-                
-                _notificationService.SendNotificationToAllCoordinator(
-                    StudentToCoordinator.CreateInterviewTitle, message);
+                _notificationService.SendNotificationToAllCoordinator(StudentToCoordinator.CreateInterviewTitle, message);
                 _interviewRepository.Add(interviewCreated);
                 this.Flash(FlashMessageResources.AddSuccess, FlashEnum.Success);
+
                 return RedirectToAction(MVC.Interview.InterviewCreateConfirmation());
             }
             this.Flash(FlashMessageResources.ErrorsOnPage, FlashEnum.Error);
+
             return View(createdInterview);
         }
 
@@ -159,8 +154,7 @@ namespace Stagio.Web.Controllers
                     {
                         if (stage.Id == interview.StageId)
                         {
-                            interviewEditPageViewModel.StageTitleAndCompagny = stage.StageTitle.ToString() + " - " +
-                                                 stage.CompanyName.ToString();
+                            interviewEditPageViewModel.StageTitleAndCompagny = stage.StageTitle + " - " + stage.CompanyName;
                         }
                     }
                     return View(interviewEditPageViewModel);

@@ -164,7 +164,7 @@ namespace Stagio.Web.UnitTests.Services
             allNotification.AddRange(notificationForUser);
             _notificationRepository.GetAll().Returns(allNotification.AsQueryable());
 
-            var result = _notificationService.GetNotificationForUser(1, 2);
+            var result = _notificationService.GetNotificationForUser(1, 2).ToList();
 
             result.Count.Should().Be(2);
         }
@@ -178,9 +178,20 @@ namespace Stagio.Web.UnitTests.Services
             allNotification.AddRange(notificationForUser);
             _notificationRepository.GetAll().Returns(allNotification.AsQueryable());
 
-            var result = _notificationService.GetDashboardNotificationForUser(1);
+            var result = _notificationService.GetDashboardNotificationForUser(1).ToList();
 
             result.Count.Should().Be(notificationForUser.Count);
+        }
+
+        [TestMethod]
+        public void markNotificationAsSeen_should_update_notification()
+        {
+            var notification = _fixture.Create<Notification>();
+            notification.Seen = false;
+
+            _notificationService.MarkNotificationAsSeen(notification);
+
+            _notificationRepository.Received().Update(Arg.Is<Notification>(x => x.Id == notification.Id));
         }
     }
 }

@@ -32,10 +32,10 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<Stage> _stageRepository;
         private readonly IEntityRepository<Student> _studentRepository;
         private readonly IEntityRepository<Interview> _interviewRepository;
-        private readonly IEntityRepository<Notification> _notificationRepository;
+        private readonly IEntityRepository<StageAgreement> _stageAgreementRepository;
         private readonly IHttpContextService _httpContextService;
         private readonly INotificationService _notificationService;
-        private readonly IEntityRepository<ApplicationUser> _applicationRepository;
+
         private readonly IEntityRepository<Misc> _miscRepository; 
 
         public CoordinatorController(IEntityRepository<ContactEnterprise> enterpriseContactRepository,
@@ -48,9 +48,9 @@ namespace Stagio.Web.Controllers
             IEntityRepository<Stage> stageRepository,
             IEntityRepository<Student> studentRepository,
             IEntityRepository<Interview> interviewRepository,
-            IEntityRepository<Notification> notificationRepository,
+            IEntityRepository<StageAgreement> stageAgreementRepository,
+            INotificationService notificationService,
             IHttpContextService httpContextService,
-            IEntityRepository<ApplicationUser> applicationRepository,
             IEntityRepository<Misc> miscRepository)
         {
             _enterpriseContactRepository = enterpriseContactRepository;
@@ -63,10 +63,10 @@ namespace Stagio.Web.Controllers
             _stageRepository = stageRepository;
             _studentRepository = studentRepository;
             _interviewRepository = interviewRepository;
-            _notificationRepository = notificationRepository;
+            _stageAgreementRepository = stageAgreementRepository;
             _httpContextService = httpContextService;
-            _applicationRepository = applicationRepository;
-            _notificationService = new NotificationService(_applicationRepository, notificationRepository);
+
+            _notificationService = notificationService;
             _miscRepository = miscRepository;
         }
         // GET: Coordinator
@@ -116,7 +116,7 @@ namespace Stagio.Web.Controllers
                     }
 
                     String messageText = EmailEnterpriseResources.InviteMessageBody;
-                    String invitationUrl = EmailEnterpriseResources.InviteLink + token + EmailEnterpriseResources.EndLink + token + "</a>";
+                    String invitationUrl = String.Format(EmailEnterpriseResources.InviteLink, token);
 
                     messageText += invitationUrl;
 
@@ -256,7 +256,7 @@ namespace Stagio.Web.Controllers
 
             //Sending invitation with the Mailler class
             String messageText = EmailCoordinatorResources.CoordinatorInviteMessageBody;
-            String invitationUrl = EmailCoordinatorResources.CoordinatorInviteLink + token + "\">jenkins.cegep-ste-foy.qc.ca/thomarelau/Coordinator/Create?token=" + token + "</a>";
+            String invitationUrl = String.Format(EmailCoordinatorResources.CoordinatorInviteLink, token);
 
             messageText += invitationUrl;
 
@@ -300,7 +300,6 @@ namespace Stagio.Web.Controllers
             var allStudent = _studentRepository.GetAll().ToList();
             var studentListViewModels = Mapper.Map<IEnumerable<ViewModels.Coordinator.StudentList>>(allStudent).ToList();
 
-
             int nbAppliesStudent = 0;
 
             var appliedStages = _applyRepository.GetAll().ToList();
@@ -327,13 +326,27 @@ namespace Stagio.Web.Controllers
                 foreach (var interview in interviewsSpecificStudent)
                 {
                     nbDateInterview = nbDateInterview + 1;
+                    if (interview.DateAcceptOffer != null || interview.DateAcceptOffer == "Inconnue")
+                    {
+                        student.DateAccepted = interview.DateAcceptOffer;
+                    }
                 }
                 student.NbDateInterview = nbDateInterview;
                 nbDateInterview = 0;
             }
            
+            var studentStageFound = studentListViewModels.Where(x => x.DateAccepted != null);
+            var studentStageNotFound =
+                studentListViewModels.Where(x => x.DateAccepted == null).OrderBy(x => x.NbDateInterview);
 
-            return View(studentListViewModels);
+            var students = new ViewModels.Coordinator.StudentLists()
+            {
+                StudentStageFound = studentStageFound.ToList(),
+                StudentStageNotFound = studentStageNotFound.ToList()
+            };
+           
+
+            return View(students);
         }
 
         [Authorize(Roles = RoleName.Coordinator)]
@@ -350,11 +363,19 @@ namespace Stagio.Web.Controllers
             var stages = _stageRepository.GetAll().ToList();
             var students = _studentRepository.GetAll().ToList();
             var interviews = _interviewRepository.GetAll().ToList();
+            var stageAgreements = _stageAgreementRepository.GetAll().ToList();
 
             var studentListApplyViewModels = Mapper.Map<IEnumerable<ViewModels.Coordinator.StudentApplyList>>(studentSpecificApplies).ToList();
 
             foreach (var appliedStage in studentListApplyViewModels)
             {
+                foreach (var stageAgreement in stageAgreements)
+                {
+                    if (appliedStage.IdStage == stageAgreement.IdStage)
+                    {
+                        appliedStage.StageAgreementCreated = true;
+                    }
+                }
                 foreach (var stage in stages)
                 {
                     if (appliedStage.IdStage == stage.Id)
@@ -377,12 +398,11 @@ namespace Stagio.Web.Controllers
                     if (appliedStage.IdStudent == interview.StudentId)
                     {
                         appliedStage.DateInterview = interview.Date;
-
+                        appliedStage.DateStageOffer = interview.DateOffer;
+                        appliedStage.DateAcceptStage = interview.DateAcceptOffer;
                     }
                 }
             }
-
-            
 
             return View(studentListApplyViewModels);
         }

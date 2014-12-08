@@ -95,5 +95,23 @@ namespace Stagio.Web.Module.Strings.Notification
                 return ResourceManager.GetString("NewStageTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} a retiré le stage {1}&lt;/a&gt;.
+        /// </summary>
+        internal static string RemoveStage {
+            get {
+                return ResourceManager.GetString("RemoveStage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Une entreprise à retiré une de ses offres de stages.
+        /// </summary>
+        internal static string RemoveStageTitle {
+            get {
+                return ResourceManager.GetString("RemoveStageTitle", resourceCulture);
+            }
+        }
     }
 }

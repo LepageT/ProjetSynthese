@@ -102,13 +102,20 @@ namespace Stagio.Web.Services
         }
 
 
-        public ICollection<Notification> GetNotificationForUser(int userId, int count)
+        public ICollection<Notification> GetNotificationForUser(int userId, int count = -1)
         {
             var notifications = _notificationRepository.GetAll().ToList();
             var userNotifications = notifications.Where(x => x.For == userId).ToList();
 
-            return userNotifications.OrderBy(x => x.Date).ToList().GetRange(0, userNotifications.Count>count?count:userNotifications.Count);
+            int notificationToDisplay = count;
+            if (notificationToDisplay == -1)
+            {
+                notificationToDisplay = userNotifications.Count;
+            }
+
+            return userNotifications.OrderBy(x => x.Date).ToList().GetRange(0, notificationToDisplay);
         }
+
 
         public ICollection<Notification> GetDashboardNotificationForUser(int userId)
         {
@@ -117,6 +124,19 @@ namespace Stagio.Web.Services
             var notSeenNotifications = userNotifications.Where(x => x.Seen == false).ToList();
 
             return notSeenNotifications.OrderByDescending(x => x.Date).ToList().GetRange(0, notSeenNotifications.Count>10?10:notSeenNotifications.Count);
+        }
+
+        public Notification GetNotification(int notifiactionId)
+        {
+            var notification = _notificationRepository.GetById(notifiactionId);
+
+            return notification;
+        }
+
+        public void MarkNotificationAsSeen(Notification notification)
+        {
+            notification.Seen = true;
+            _notificationRepository.Update(notification);
         }
 
         private void SendNotification(int id, String title, String message)
@@ -132,6 +152,7 @@ namespace Stagio.Web.Services
             _notificationRepository.Add(notification);
         }
 
+        
         
     }
 }
