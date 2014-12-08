@@ -254,7 +254,7 @@ namespace Stagio.TestUtilities.Database
                 {
                     Id = 1,
                     NbApply = 1,
-                    LimitDate = DateTime.Now.ToString(),
+                    LimitDate = DateTime.Today.AddDays(8).ToShortDateString(),
                     PublicationDate = DateTime.Now.ToString(),
                     Status = (StageStatus) 1,
                     NbrStagiaire = 3,
@@ -309,7 +309,7 @@ namespace Stagio.TestUtilities.Database
                     SubmitToName = "Denyse Gilbert",
                     SubmitToTitle = "Coordinatrice aux développements APTIC",
                     SubmitToEmail = "Denyse.Gilbert@musiqueinc.co",
-                    LimitDate = new DateTime(2008, 12, 10).ToString(),
+                    LimitDate = DateTime.Today.AddDays(30).ToShortDateString(),
                     Status = 0
                 };
 
@@ -349,7 +349,7 @@ namespace Stagio.TestUtilities.Database
                     SubmitToName = "Denyse Gilbert",
                     SubmitToTitle = "Coordinatrice aux développements APTIC",
                     SubmitToEmail = "Denyse.Gilbert",
-                    LimitDate = new DateTime(2008, 12, 10).ToString(),
+                    LimitDate = DateTime.Today.AddDays(10).ToShortDateString(),
                     Status = StageStatus.Accepted
 
 
@@ -386,7 +386,7 @@ namespace Stagio.TestUtilities.Database
                     SubmitToName = "Serge Lavoie",
                     SubmitToTitle = "Coordinateur aux développements Web",
                     SubmitToEmail = "serge.lavoie@email.com",
-                    LimitDate = new DateTime(2008, 12, 10).ToString(),
+                    LimitDate = DateTime.Today.AddDays(2).ToShortDateString(),
                     Status = 0
                 };
 

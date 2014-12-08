@@ -87,8 +87,6 @@ namespace Stagio.Web.AcceptanceTests.NotificationTest
             LoginPage.GoTo();
             LoginPage.LoginAs(StudentUsername, StudentPassword);
 
-            IndexStudentPage.GoTo();
-
             IndexStudentPage.IsNotificationShowing.Should().BeTrue();
         }
 
@@ -98,8 +96,6 @@ namespace Stagio.Web.AcceptanceTests.NotificationTest
             LoginPage.GoTo();
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
 
-            IndexCoordinatorPage.Goto();
-
             IndexCoordinatorPage.IsNotificationShowing.Should().BeTrue();
         }
 
@@ -108,8 +104,6 @@ namespace Stagio.Web.AcceptanceTests.NotificationTest
         {
             LoginPage.GoTo();
             LoginPage.LoginAs(ContactEnterpriseUsername, ContactEnterprisePassword);
-
-            IndexContactEnterprisePage.Goto();
 
             IndexContactEnterprisePage.IsDisplayed.Should().BeTrue();
 
