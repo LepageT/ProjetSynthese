@@ -59,7 +59,7 @@
     @if (@User.IsInRole("Étudiant"))
     {
         <div>
-            @Html.ActionLink("Modifier le profil", MVC.Student.Edit(Model.Id), new { id = "edit-Student" })
+            @Html.ActionLink("Modifier le profil", MVC.Student.Edit(), new { id = "edit-Student" })
         </div>
     } 
     @if (@User.IsInRole("Contact entreprise"))

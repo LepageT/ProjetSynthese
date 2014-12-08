@@ -76,11 +76,8 @@ namespace Stagio.Web.Controllers
             var identity = new ClaimsIdentity(new[]
             {
                 new Claim(ClaimTypes.Name, applicationUser.FirstName + " " + applicationUser.LastName),
-                new Claim(ClaimTypes.NameIdentifier, applicationUser.Id.ToString()),
-
-
-            },
-                DefaultAuthenticationTypes.ApplicationCookie);
+                new Claim(ClaimTypes.NameIdentifier, applicationUser.Id.ToString())
+            }, DefaultAuthenticationTypes.ApplicationCookie);
 
             foreach (var role in applicationUser.Roles)
             {
@@ -90,16 +87,11 @@ namespace Stagio.Web.Controllers
             _httpContext.AuthenticationSignIn(identity);
         }
 
-        public virtual ActionResult Details(int id)
+        public virtual ActionResult Details()
         {
             var userID = _httpContext.GetUserId();
-
-            if (id != userID)
-            {
-                id = userID;
-            }
             
-            var account = _accountRepository.GetById(id);
+            var account = _accountRepository.GetById(userID);
 
             var details = Mapper.Map<Details>(account);
 

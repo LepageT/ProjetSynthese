@@ -17,7 +17,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.AccountTests
             var account = _fixture.Create<ApplicationUser>();
             httpContext.GetUserId().Returns(account.Id);
             accountRepository.GetById(account.Id).Returns(account);
-            var result = accountController.Details(account.Id) as ViewResult;
+            var result = accountController.Details() as ViewResult;
 
             result.ViewName.Should().Be("");
         }
@@ -25,7 +25,8 @@ namespace Stagio.Web.UnitTests.ControllerTests.AccountTests
         [TestMethod]
         public void accountDetails_should_render_httpNotFound_if_invalid_id()
         {
-            var result = accountController.Details(INVALID_ID);
+            httpContext.GetUserId().Returns(INVALID_ID);
+            var result = accountController.Details();
 
             result.Should().BeOfType<HttpNotFoundResult>();
         }

@@ -98,16 +98,11 @@ namespace Stagio.Web.Controllers
         }
 
         [Authorize(Roles = RoleName.Student)]
-        public virtual ActionResult Edit(int id)
+        public virtual ActionResult Edit()
         {
             var userID = _httpContextService.GetUserId();
 
-            if (id != userID)
-            {
-                id = userID;
-            }
-
-            var student = _studentRepository.GetById(id);
+            var student = _studentRepository.GetById(userID);
 
             if (student != null)
             {
