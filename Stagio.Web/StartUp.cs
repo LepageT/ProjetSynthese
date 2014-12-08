@@ -1,8 +1,8 @@
-﻿using Stagio.Web;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
+using Stagio.Web;
 
 [assembly: OwinStartup(typeof(Startup))]
 

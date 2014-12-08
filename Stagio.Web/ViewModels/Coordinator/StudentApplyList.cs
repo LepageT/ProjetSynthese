@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel;
 
 namespace Stagio.Web.ViewModels.Coordinator
 {
@@ -39,5 +35,8 @@ namespace Stagio.Web.ViewModels.Coordinator
 
         [DisplayName("Date d'acceptation de l'offre")]
         public string DateAcceptStage { get; set; }
+
+        [DefaultValue(false)]
+        public bool StageAgreementCreated { get; set; }
     }
 }

@@ -20,6 +20,34 @@ $(function () {
     });
 });
 
+$(function () {
+    $('#datetimepickerDateOffer').datetimepicker(
+    {
+        pickTime: false
+    });
+});
+
+$(function () {
+    $('#datetimepickerDateAcceptOffer').datetimepicker(
+    {
+        pickTime: false
+    });
+});
+
+$(function () {
+    $('#datetimepickerStart').datetimepicker(
+    {
+        pickTime: false
+    });
+});
+
+$(function () {
+    $('#datetimepickerEnd').datetimepicker(
+    {
+        pickTime: false
+    });
+});
+
 
 $(function () {
     $('#datetimepickerFinStage').datetimepicker(

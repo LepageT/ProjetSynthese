@@ -1,7 +1,5 @@
-﻿using System.Security.Cryptography;
-using AutoMapper;
+﻿using AutoMapper;
 using Stagio.Domain.Entities;
-using Stagio.Web.ViewModels.ContactEnterprise;
 
 namespace Stagio.Web.Mappers
 {
@@ -62,8 +60,6 @@ namespace Stagio.Web.Mappers
                 .IgnoreAllNonExisting();
 
             Mapper.CreateMap<ViewModels.ContactEnterprise.Edit, ContactEnterprise>()
-                .ForMember(dest => dest.FirstName, opt => opt.Ignore())
-                .ForMember(dest => dest.LastName, opt => opt.Ignore())
                 .ForMember(dest => dest.EnterpriseName, opt => opt.Ignore())
                 .IgnoreAllNonExisting();
 

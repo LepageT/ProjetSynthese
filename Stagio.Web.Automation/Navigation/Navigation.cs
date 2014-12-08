@@ -217,12 +217,12 @@ namespace Stagio.Web.Automation
                 }
             }
 
-            public class StageAgreementCreate1
+            public class StageAgreementCreate3
             {
                 public static void Select()
                 {
                     MenuSelector.Select("Coordinator-menu", "student-list");
-                    MenuSelector.Select("student-stages1", "create-stageAgreement1");
+                    MenuSelector.Select("student-stages1", "create-stageAgreement3");
                 }
             }
 
@@ -231,6 +231,14 @@ namespace Stagio.Web.Automation
                 public static void Select()
                 {
                     MenuSelector.Select("Coordinator-menu", "stageAgreement-list");
+                }
+            }
+
+            public class ChangeStageDates
+            {
+                public static void Select()
+                {
+                    MenuSelector.Select("Coordinator-menu", "setApplyDates");
                 }
             }
         }

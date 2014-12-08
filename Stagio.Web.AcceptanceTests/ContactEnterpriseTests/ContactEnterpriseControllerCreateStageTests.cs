@@ -1,7 +1,5 @@
-﻿using System;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium;
 using Stagio.Web.Automation.PageObjects;
 using Stagio.Web.Automation.PageObjects.ContactEnterprise;
 
@@ -9,7 +7,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
 {
     [TestClass]
     public class ContactEnterpriseControllerCreateStageTests : BaseTests
-    {        
+    {
         [TestMethod]
         public void enterprise_should_not_be_able_to_see_the_page_to_create_stage_if_not_logged_in_and_redirected_to_login()
         {

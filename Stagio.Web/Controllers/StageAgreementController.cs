@@ -7,14 +7,14 @@ using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
 using AutoMapper;
-using Microsoft.AspNet.Identity;
-using NSubstitute;
-using Stagio.Domain.Application;
 using Stagio.DataLayer;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
 using Stagio.Web.Services;
 using Stagio.Web.ViewModels.StageAgreement;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Stagio.Web.Controllers
 {
@@ -27,7 +27,7 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<ApplicationUser> _accountRepository;
         private readonly IAccountService _accountService;
         private readonly IEntityRepository<ContactEnterprise> _contactEnterpriseRepository; 
-    
+
         public StageAgreementController(IEntityRepository<StageAgreement> stageAgreement, IEntityRepository<Apply> applyRepository, IEntityRepository<Stage> stageRepository, IEntityRepository<Student> studentRepository, IHttpContextService httpContextService, IEntityRepository<ApplicationUser> accountRepository, IEntityRepository<ContactEnterprise> contactEnterpriseRepository, IAccountService accountService)
         {
             _httpContextService = httpContextService;

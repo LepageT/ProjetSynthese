@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Stagio.Web.Module.Strings.Notification {
-    using System;
-    
-    
+namespace Stagio.Web.Module.Strings.Notification
+{
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>

@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.UI.WebControls;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.Ajax.Utilities;
 using Stagio.DataLayer;
 using Stagio.Domain.Application;
@@ -14,11 +6,14 @@ using Stagio.Domain.Entities;
 using Stagio.Utilities.Encryption;
 using Stagio.Web.Module;
 using Stagio.Web.Module.Strings.Controller;
+using Stagio.Web.Module.Strings.Email;
 using Stagio.Web.Module.Strings.Notification;
 using Stagio.Web.Module.Strings.Shared;
 using Stagio.Web.Services;
-using Stagio.Web.Module.Strings.Email;
-using Stagio.Web.ViewModels.Stage;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Stagio.Web.Controllers
 {
@@ -33,7 +28,6 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<Student> _studentRepository;
         private readonly IHttpContextService _httpContext;
         private readonly IEntityRepository<InvitationContactEnterprise> _invitationRepository;
-        private readonly IEntityRepository<ApplicationUser> _applicationUserRepository;
         private readonly INotificationService _notificationService;
 
 
@@ -43,7 +37,6 @@ namespace Stagio.Web.Controllers
             _accountService = accountService;
             _applyRepository = applyRepository;
             _stageRepository = stageRepository;
-            _applyRepository = applyRepository;
             _studentRepository = studentRepository;
             _mailler = mailler;
             _httpContext = httpContext;
@@ -107,7 +100,7 @@ namespace Stagio.Web.Controllers
             }
             return View(createViewModel);
         }
-
+        [AllowAnonymous]
         // GET: Enterprise/Reactivate
         public virtual ActionResult Reactivate(string token)
         {
@@ -132,7 +125,7 @@ namespace Stagio.Web.Controllers
 
             return HttpNotFound();
         }
-
+        [AllowAnonymous]
         // POST: Enterprise/Reactivate
         [HttpPost]
         public virtual ActionResult Reactivate(ViewModels.ContactEnterprise.Reactive createViewModel)
@@ -182,7 +175,7 @@ namespace Stagio.Web.Controllers
 
         }
 
-
+        [AllowAnonymous]
         public virtual ActionResult CreateConfirmation(int idContactEnterprise)
         {
             var newContactEnterprise = _contactEnterpriseRepository.GetById(idContactEnterprise);
@@ -292,7 +285,12 @@ namespace Stagio.Web.Controllers
                 Used = false
             });
             this.Flash(FlashMessageResources.InvitationSend, FlashEnum.Info);
-            return RedirectToAction(MVC.Coordinator.InviteContactEnterpriseConfirmation());
+            return RedirectToAction(MVC.ContactEnterprise.InviteContactEnterpriseConfirmation());
+        }
+
+        public virtual ActionResult InviteContactEnterpriseConfirmation()
+        {
+            return View();
         }
 
         public virtual ActionResult ListStudentApply(int id)

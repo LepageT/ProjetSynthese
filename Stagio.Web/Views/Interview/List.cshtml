@@ -20,6 +20,12 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Present)
                 </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateOffer)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateAcceptOffer)
+                </th>
                 <th></th>
             </tr>
 
@@ -34,6 +40,26 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Present)
+                    </td>
+                    <td>
+                        @if (item.DateOffer == null)
+                        {
+                            <p>Inconnue</p>
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.DateOffer)
+                        }
+                    </td>
+                    <td>
+                        @if (item.DateAcceptOffer == null)
+                        {
+                            <p>Inconnue</p>
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.DateAcceptOffer)
+                        }
                     </td>
                     <td>
                         @Html.ActionLink("Modifier", MVC.Interview.Edit(item.Id), new { id = "list-interview" + item.Id })

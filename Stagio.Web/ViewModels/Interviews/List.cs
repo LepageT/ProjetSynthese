@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 
 namespace Stagio.Web.ViewModels.Interviews
 {
@@ -23,6 +19,12 @@ namespace Stagio.Web.ViewModels.Interviews
 
         [DisplayName("Je me suis présenté à l'entrevue")]
         public bool Present { get; set; }
+
+        [DisplayName("Date de l'offre")]
+        public String DateOffer { get; set; }
+
+        [DisplayName("Date d'acceptation")]
+        public String DateAcceptOffer { get; set; }
 
         public int Id { get; set; }
     }

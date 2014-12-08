@@ -29,12 +29,13 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
         public void coordinator_StudentList_should_return_list_with_students()
         {
             var students = _fixture.CreateMany<Student>(3);
+
             studentRepository.GetAll().Returns(students.AsQueryable());
 
             var result = coordinatorController.StudentList() as ViewResult;
-            var model = result.Model as List<StudentList>;
+            var model = result.Model as ViewModels.Coordinator.StudentLists;
 
-            model.Count.Should().NotBe(0);
+            model.StudentStageNotFound.Count.Should().NotBe(0);
         }
 
         [TestMethod]
@@ -47,9 +48,9 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
             studentRepository.GetAll().Returns(students.AsQueryable());
 
             var result = coordinatorController.StudentList() as ViewResult;
-            var model = result.Model as List<StudentList>;
+            var model = result.Model as ViewModels.Coordinator.StudentLists;
 
-            model.Count.Should().NotBe(0);
+            model.StudentStageNotFound.Count.Should().NotBe(0);
         }
 
         [TestMethod]
@@ -58,22 +59,27 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
             var students = _fixture.CreateMany<Student>(3).ToList();
             var interviews = _fixture.CreateMany<Interview>(3).ToList();
             interviews[0].StudentId = students[0].Id;
+            interviews[0].DateAcceptOffer = "2010-23-2";
             interviewRepository.GetAll().Returns(interviews.AsQueryable());
             studentRepository.GetAll().Returns(students.AsQueryable());
 
             var result = coordinatorController.StudentList() as ViewResult;
-            var model = result.Model as List<StudentList>;
+            var model = result.Model as ViewModels.Coordinator.StudentLists;
 
-            model.Count.Should().NotBe(0);
+            model.StudentStageNotFound.Count.Should().NotBe(0);
+            model.StudentStageFound.Count.Should().Be(1);
+
         }
 
         [TestMethod]
         public void coordinator_StudentList_should_return_empty_list_when_there_is_no_student()
         {
             var result = coordinatorController.StudentList() as ViewResult;
-            var model = result.Model as List<StudentList>;
+            var model = result.Model as ViewModels.Coordinator.StudentLists;
 
-            model.Count.Should().Be(0);
+            model.StudentStageNotFound.Count.Should().Be(0);
+            model.StudentStageFound.Count.Should().Be(0);
+
         }
     }
 }

@@ -30,9 +30,11 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
         protected IHttpContextService httpContextService;
         protected IEntityRepository<Notification> notificationRepository;
         protected IEntityRepository<ApplicationUser> applicationRepository; 
+        protected IEntityRepository<Misc> miscRepository; 
         protected IAccountService accountService;
         protected INotificationService notificationService;
         protected IMailler mailler;
+        protected IEntityRepository<StageAgreement> stageAgreementRepository;
 
         [TestInitialize]
         public void CoordinatorControllerTestInit()
@@ -52,14 +54,17 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
             notificationRepository = Substitute.For<IEntityRepository<Notification>>();
             applicationRepository = Substitute.For<IEntityRepository<ApplicationUser>>();
             mailler = Substitute.For<IMailler>();
+            stageAgreementRepository = Substitute.For<IEntityRepository<StageAgreement>>();
 
             notificationService = new NotificationService(applicationRepository, notificationRepository);
+            miscRepository = Substitute.For<IEntityRepository<Misc>>();
 
             coordinatorController = new CoordinatorController(enterpriseRepository, coordinatorRepository, invitationRepository, mailler,
                 accountService, invitationContactRepository, applyRepository, stageRepository, studentRepository,
-                interviewRepository, notificationService, httpContextService);
+                interviewRepository, stageAgreementRepository,notificationService, httpContextService, miscRepository);
 
 
+            coordinatorController = new CoordinatorController(enterpriseRepository, coordinatorRepository, invitationRepository, mailler, accountService, invitationContactRepository, applyRepository, stageRepository, studentRepository, interviewRepository, stageAgreementRepository, notificationService,httpContextService,  miscRepository);
         }
     }
 }
