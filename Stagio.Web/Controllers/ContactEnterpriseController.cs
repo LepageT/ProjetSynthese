@@ -235,6 +235,7 @@ namespace Stagio.Web.Controllers
         [Authorize(Roles = RoleName.ContactEnterprise)]
         public virtual ActionResult InviteContactEnterprise()
         {
+
             return View();
         }
 
