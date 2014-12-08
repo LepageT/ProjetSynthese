@@ -118,6 +118,7 @@ namespace Stagio.Web.Controllers
 			public readonly string DetailsApplyStudent = "DetailsApplyStudent";
 			public readonly string Download = "Download";
 			public readonly string SetApplyDates = "SetApplyDates";
+			public readonly string InviteOneContactEnterprise = "InviteOneContactEnterprise";
 		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -141,6 +142,7 @@ namespace Stagio.Web.Controllers
 			public const string DetailsApplyStudent = "DetailsApplyStudent";
 			public const string Download = "Download";
 			public const string SetApplyDates = "SetApplyDates";
+			public const string InviteOneContactEnterprise = "InviteOneContactEnterprise";
 		}
 
 
@@ -231,6 +233,7 @@ namespace Stagio.Web.Controllers
                 public readonly string Invite = "Invite";
                 public readonly string InviteContactEnterprise = "InviteContactEnterprise";
                 public readonly string InviteContactEnterpriseConfirmation = "InviteContactEnterpriseConfirmation";
+                public readonly string InviteOneContactEnterprise = "InviteOneContactEnterprise";
                 public readonly string ResultCreateList = "ResultCreateList";
                 public readonly string SetApplyDates = "SetApplyDates";
                 public readonly string StudentApplyList = "StudentApplyList";
@@ -246,6 +249,7 @@ namespace Stagio.Web.Controllers
             public readonly string Invite = "~/Views/Coordinator/Invite.cshtml";
             public readonly string InviteContactEnterprise = "~/Views/Coordinator/InviteContactEnterprise.cshtml";
             public readonly string InviteContactEnterpriseConfirmation = "~/Views/Coordinator/InviteContactEnterpriseConfirmation.cshtml";
+            public readonly string InviteOneContactEnterprise = "~/Views/Coordinator/InviteOneContactEnterprise.cshtml";
             public readonly string ResultCreateList = "~/Views/Coordinator/ResultCreateList.cshtml";
             public readonly string SetApplyDates = "~/Views/Coordinator/SetApplyDates.cshtml";
             public readonly string StudentApplyList = "~/Views/Coordinator/StudentApplyList.cshtml";
@@ -510,6 +514,17 @@ namespace Stagio.Web.Controllers
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SetApplyDates);
 			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ApplyDates", ApplyDates);
 			SetApplyDatesOverride(callInfo, ApplyDates);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void InviteOneContactEnterpriseOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult InviteOneContactEnterprise()
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InviteOneContactEnterprise);
+			InviteOneContactEnterpriseOverride(callInfo);
 			return callInfo;
 		}
 
