@@ -7,10 +7,19 @@
 #pragma warning disable 1591, 3008, 3009
 #region T4MVC
 
-using System.CodeDom.Compiler;
+using System;
 using System.Diagnostics;
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
+using System.Web.Mvc.Ajax;
+using System.Web.Mvc.Html;
+using System.Web.Routing;
 using T4MVC;
 namespace Stagio.Web.Controllers
 {
@@ -116,6 +125,7 @@ namespace Stagio.Web.Controllers
 			public readonly string CreateStage = "CreateStage";
 			public readonly string CreateStageSucceed = "CreateStageSucceed";
 			public readonly string InviteContactEnterprise = "InviteContactEnterprise";
+			public readonly string InviteContactEnterpriseConfirmation = "InviteContactEnterpriseConfirmation";
 			public readonly string ListStudentApply = "ListStudentApply";
 			public readonly string ListStage = "ListStage";
 			public readonly string DetailsStudentApply = "DetailsStudentApply";
@@ -138,6 +148,7 @@ namespace Stagio.Web.Controllers
 			public const string CreateStage = "CreateStage";
 			public const string CreateStageSucceed = "CreateStageSucceed";
 			public const string InviteContactEnterprise = "InviteContactEnterprise";
+			public const string InviteContactEnterpriseConfirmation = "InviteContactEnterpriseConfirmation";
 			public const string ListStudentApply = "ListStudentApply";
 			public const string ListStage = "ListStage";
 			public const string DetailsStudentApply = "DetailsStudentApply";
@@ -273,6 +284,7 @@ namespace Stagio.Web.Controllers
                 public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
                 public readonly string InviteContactEnterprise = "InviteContactEnterprise";
+                public readonly string InviteContactEnterpriseConfirmation = "InviteContactEnterpriseConfirmation";
                 public readonly string ListStage = "ListStage";
                 public readonly string ListStudentApply = "ListStudentApply";
                 public readonly string Reactivate = "Reactivate";
@@ -291,6 +303,7 @@ namespace Stagio.Web.Controllers
             public readonly string Edit = "~/Views/ContactEnterprise/Edit.cshtml";
             public readonly string Index = "~/Views/ContactEnterprise/Index.cshtml";
             public readonly string InviteContactEnterprise = "~/Views/ContactEnterprise/InviteContactEnterprise.cshtml";
+            public readonly string InviteContactEnterpriseConfirmation = "~/Views/ContactEnterprise/InviteContactEnterpriseConfirmation.cshtml";
             public readonly string ListStage = "~/Views/ContactEnterprise/ListStage.cshtml";
             public readonly string ListStudentApply = "~/Views/ContactEnterprise/ListStudentApply.cshtml";
             public readonly string Reactivate = "~/Views/ContactEnterprise/Reactivate.cshtml";
@@ -430,6 +443,17 @@ namespace Stagio.Web.Controllers
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InviteContactEnterprise);
 			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "createdInviteContactEnterpriseViewModel", createdInviteContactEnterpriseViewModel);
 			InviteContactEnterpriseOverride(callInfo, createdInviteContactEnterpriseViewModel);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void InviteContactEnterpriseConfirmationOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult InviteContactEnterpriseConfirmation()
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.InviteContactEnterpriseConfirmation);
+			InviteContactEnterpriseConfirmationOverride(callInfo);
 			return callInfo;
 		}
 
