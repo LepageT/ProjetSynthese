@@ -56,12 +56,6 @@ namespace Stagio.Web.Controllers
 
 		[NonAction]
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-		public virtual System.Web.Mvc.ActionResult Edit()
-		{
-			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
-		}
-		[NonAction]
-		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public virtual System.Web.Mvc.ActionResult ApplyStage()
 		{
 			return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ApplyStage);
@@ -144,7 +138,6 @@ namespace Stagio.Web.Controllers
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public class ActionParamsClass_Edit
 		{
-			public readonly string id = "id";
 			public readonly string editStudentViewModel = "editStudentViewModel";
 		}
 		static readonly ActionParamsClass_ApplyStage s_params_ApplyStage = new ActionParamsClass_ApplyStage();
@@ -259,14 +252,13 @@ namespace Stagio.Web.Controllers
 		}
 
 		[NonAction]
-		partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+		partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
 		[NonAction]
-		public override System.Web.Mvc.ActionResult Edit(int id)
+		public override System.Web.Mvc.ActionResult Edit()
 		{
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
-			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-			EditOverride(callInfo, id);
+			EditOverride(callInfo);
 			return callInfo;
 		}
 
