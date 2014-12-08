@@ -19,7 +19,7 @@ namespace Stagio.Web.Automation.PageObjects.Coordinator
             get { return Driver.Instance.FindElement(By.Id("notification-detail5")) != null; }
         }
 
-        public static bool isDiplayed
+        public static bool IsDisplayed
         {
             get
             {
