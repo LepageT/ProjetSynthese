@@ -327,6 +327,7 @@
     <Compile Include="Validations\ValidationRequireField.cs" />
     <Compile Include="ViewModels\Account\Details.cs" />
     <Compile Include="ViewModels\Coordinator\RemoveStudent.cs" />
+    <Compile Include="ViewModels\Coordinator\InviteContactEnterprise.cs" />
     <Compile Include="ViewModels\StageAgreement\EditStageAgreement.cs" />
     <Compile Include="ViewModels\Apply\StudentApply.cs" />
     <Compile Include="ViewModels\ContactEnterprise\AcceptApply.cs" />
@@ -527,6 +528,9 @@
     <Content Include="Views\ContactEnterprise\InviteContactEnterpriseConfirmation.cshtml" />
     <Content Include="Views\Coordinator\RemoveStudent.cshtml" />
     <Content Include="Views\Coordinator\RemoveStudentConfirmation.cshtml" />
+    <Content Include="Views\Coordinator\BlockWebsiteAccess.cshtml" />
+    <Content Include="Views\Coordinator\InviteOneContactEnterprise.cshtml" />
+    <Content Include="Views\Coordinator\InviteOneContactEnterpriseConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt.hooks.t4" />
@@ -566,6 +570,10 @@
     <ProjectReference Include="..\Stagio.Utilities\Stagio.Utilities.csproj">
       <Project>{12547a44-ff09-479d-820e-e54a227c939c}</Project>
       <Name>Stagio.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Stagio.Web.Automation\Stagio.Web.Automation.csproj">
+      <Project>{BB170CE2-A741-484B-A14D-519938B351A5}</Project>
+      <Name>Stagio.Web.Automation</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

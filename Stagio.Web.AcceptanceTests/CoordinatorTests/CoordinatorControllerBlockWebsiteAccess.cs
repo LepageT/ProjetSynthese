@@ -4,28 +4,21 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Stagio.Web.Automation.PageObjects;
 using Stagio.Web.Automation.PageObjects.Coordinator;
 
-namespace Stagio.Web.AcceptanceTests.StageAgreementTests
+namespace Stagio.Web.AcceptanceTests.CoordinatorTests
 {
     [TestClass]
-    public class StageAgreementControllerEdit : BaseTests
+    public class CoordinatorControllerBlockWebsiteAccess : BaseTests
     {
         [TestMethod]
-        public void user_can_sign_stage_agreement()
+        public void Coordinator_can_block_access_to_website()
         {
-         
-        
-            const string SIGNATURE = "test4test1";
-
             LoginPage.GoTo();
             LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
 
-            CreateStageAgreementCoordinatorPage.GoTo();
-            EditStageAgreementPage.GoByUrl();
-            EditStageAgreementPage.EditAStageAgreement(SIGNATURE);
+            BlockWebsiteAccessCoordinatorPage.GoTo();
+            BlockWebsiteAccessCoordinatorPage.ClickResultButton();
 
             IndexCoordinatorPage.IsDisplayed.Should().BeTrue();
         }
-
-
     }
 }

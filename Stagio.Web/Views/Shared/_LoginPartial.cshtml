@@ -2,7 +2,7 @@
 @if (Request.IsAuthenticated)
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink(@User.Identity.Name, MVC.Account.Details(Int32.Parse(@User.Identity.GetUserId())))</li>
+        <li>@Html.ActionLink(@User.Identity.Name, MVC.Account.Details())</li>
         <li>@Html.ActionLink("Se déconnecter", MVC.Account.Logout(), new { id = "logout-link" })</li>
     </ul>
 }

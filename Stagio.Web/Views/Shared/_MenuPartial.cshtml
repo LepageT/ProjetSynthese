@@ -8,45 +8,45 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="student-stage-menu">Stage <b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li>@Html.ActionLink("Voir les offres de stages", MVC.Student.DisplayStageList(), new { id = "stageList-student" })</li>
-                <li>@Html.ActionLink("Voir les stages avec postulation", MVC.Student.ApplyList(), new { id = "apply-list-menu-item" })</li>  
+                <li>@Html.ActionLink("Voir les stages avec postulation", MVC.Student.ApplyList(), new { id = "apply-list-menu-item" })</li>
                 <li>@Html.ActionLink("Afficher les conventions de stage", MVC.StageAgreement.List(), new { id = "stageAgreement-list" })</li>
-        
+
             </ul>
         </li>
 
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="student-interview-menu">Entrevue <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-            <li>@Html.ActionLink("Inscrire une date d'entrevue", MVC.Interview.Create(), new { id = "add-entrevue-menu-item" }) </li>
-            <li>@Html.ActionLink("Faire le suivi des entrevues", MVC.Interview.List(), new { id = "list-interview" })</li>
-        </ul>
-    </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="student-interview-menu">Entrevue <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li>@Html.ActionLink("Inscrire une date d'entrevue", MVC.Interview.Create(), new { id = "add-entrevue-menu-item" }) </li>
+                <li>@Html.ActionLink("Faire le suivi des entrevues", MVC.Interview.List(), new { id = "list-interview" })</li>
+            </ul>
+        </li>
 
         <li class="dropdown">
         <li>@Html.ActionLink("Notifications", MVC.Notification.NotificationList(), new { id = "notification-list" })</li>
         </li>
     }
-    
+
     @if (Request.IsAuthenticated && User.IsInRole(RoleName.ContactEnterprise))
     {
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="contactEnterprise-menu">Contact entreprise <b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li>@Html.ActionLink("Inviter un autre employé", MVC.ContactEnterprise.InviteContactEnterprise(), new { id = "invite-contact-enterprise" })</li>
-                <li>@Html.ActionLink("Afficher les informations du profil", MVC.Account.Details(Int32.Parse(@User.Identity.GetUserId())), new { id = "details-contact" }) </li>
+                <li>@Html.ActionLink("Afficher les informations du profil", MVC.Account.Details(), new { id = "details-contact" }) </li>
             </ul>
         </li>
 
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="contactEnterprise-menu-stage">Stage <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-            <li>@Html.ActionLink("Crée un stage", MVC.ContactEnterprise.CreateStage(), new { id = "create-stage-enterprise" })</li>
-            <li>@Html.ActionLink("Afficher la liste des stages", MVC.ContactEnterprise.ListStage(), new { id = "listContact" })</li>
-            <li>@Html.ActionLink("Afficher la liste des brouillons", MVC.ContactEnterprise.DraftList(), new { id = "draft-list" }) </li>
-            <li>@Html.ActionLink("Afficher les conventions de stage", MVC.StageAgreement.List(), new { id = "stageAgreement-list" })</li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="contactEnterprise-menu-stage">Stage <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li>@Html.ActionLink("Crée un stage", MVC.ContactEnterprise.CreateStage(), new { id = "create-stage-enterprise" })</li>
+                <li>@Html.ActionLink("Afficher la liste des stages", MVC.ContactEnterprise.ListStage(), new { id = "listContact" })</li>
+                <li>@Html.ActionLink("Afficher la liste des brouillons", MVC.ContactEnterprise.DraftList(), new { id = "draft-list" }) </li>
+                <li>@Html.ActionLink("Afficher les conventions de stage", MVC.StageAgreement.List(), new { id = "stageAgreement-list" })</li>
 
-        </ul>
-    </li>
+            </ul>
+        </li>
 
         <li class="dropdown">
         <li>@Html.ActionLink("Notifications", MVC.Notification.NotificationList(), new { id = "notification-list" })</li>
@@ -55,24 +55,47 @@
 
     @if (Request.IsAuthenticated && User.IsInRole(RoleName.Coordinator))
     {
+
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="Coordinator-menu">Coordonnateur <b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="stage-menu">Stage<b class="caret"></b></a>
             <ul class="dropdown-menu">
+                <li>@Html.ActionLink("Afficher la liste des stages", MVC.Stage.ListNewStages(), new { id = "list" }) </li>
+                <li>@Html.ActionLink("Afficher les conventions de stage", MVC.StageAgreement.List(), new { id = "stageAgreement-list" })</li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="Coordinator-student-menu">Étudiants<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+<<<<<<< HEAD
                 <li>@Html.ActionLink("Inviter un autre coordonnateur", MVC.Coordinator.Invite(), new { id = "create-coordinator" })</li>
                 <li>@Html.ActionLink("Inviter les employés d'entreprise", MVC.Coordinator.InviteContactEnterprise(), new { id = "invite-enterprise" })</li>
                 <li>@Html.ActionLink("Ajouter des étudiants", MVC.Coordinator.Upload(), new { id = "upload-student" })</li>
                 <li>@Html.ActionLink("Retirer des étudiants", MVC.Coordinator.RemoveStudent(), new { id = "remove-student" })</li>
                 <li>@Html.ActionLink("Afficher la liste des stages", MVC.Stage.ListNewStages(), new { id="list" }) </li>
+=======
+                <li>@Html.ActionLink("Ajouter des étudiants", MVC.Coordinator.Upload(), new { id = "upload-student" })</li>
+>>>>>>> e853e020144a15466984d828c35536ff9ddb1d72
                 <li>@Html.ActionLink("Afficher la liste des étudiants", MVC.Coordinator.StudentList(), new { id = "student-list" })</li>
-                <li>@Html.ActionLink("Afficher les conventions de stage", MVC.StageAgreement.List(), new { id = "stageAgreement-list" })</li>
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="invitation-menu">Invitation<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li>@Html.ActionLink("Inviter un autre coordonnateur", MVC.Coordinator.Invite(), new { id = "create-coordinator" })</li>
+                <li>@Html.ActionLink("Inviter les employés d'entreprise", MVC.Coordinator.InviteContactEnterprise(), new { id = "invite-enterprise" })</li>
+            </ul>
+        </li>
+
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="gestion-menu">Gestion<b class="caret"></b></a>
+            <ul class="dropdown-menu">
                 <li>@Html.ActionLink("Changer la date de début et fin des postulations pour stages", MVC.Coordinator.SetApplyDates(), new { id = "setApplyDates" })</li>
             </ul>
         </li>
 
-    <li class="dropdown">
-    <li>@Html.ActionLink("Notifications", MVC.Notification.NotificationList(), new { id = "notification-list" })</li>
-    </li>
+        <li>@Html.ActionLink("Notifications", MVC.Notification.NotificationList(), new { id = "notification-list" })</li>
     }
-    
+
 
 </ul>

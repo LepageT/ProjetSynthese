@@ -61,18 +61,7 @@ namespace Stagio.Web.Controllers
                 return View("");
             }
             AuthentificateUser(user.First());
-            if (_accountService.isStudent(user.First()))
-            {
-                return RedirectToAction(MVC.Student.Index());
-            }
-            else if (_accountService.isCoordonator(user.First()))
-            {
-                return RedirectToAction(MVC.Coordinator.Index());
-            }
-            else if (_accountService.isContactEnterprise(user.First()))
-            {
-                return RedirectToAction(MVC.ContactEnterprise.Index());
-            }
+
             return RedirectToAction(MVC.Home.Index());
         }
 
@@ -87,11 +76,8 @@ namespace Stagio.Web.Controllers
             var identity = new ClaimsIdentity(new[]
             {
                 new Claim(ClaimTypes.Name, applicationUser.FirstName + " " + applicationUser.LastName),
-                new Claim(ClaimTypes.NameIdentifier, applicationUser.Id.ToString()),
-
-
-            },
-                DefaultAuthenticationTypes.ApplicationCookie);
+                new Claim(ClaimTypes.NameIdentifier, applicationUser.Id.ToString())
+            }, DefaultAuthenticationTypes.ApplicationCookie);
 
             foreach (var role in applicationUser.Roles)
             {
@@ -101,16 +87,11 @@ namespace Stagio.Web.Controllers
             _httpContext.AuthenticationSignIn(identity);
         }
 
-        public virtual ActionResult Details(int id)
+        public virtual ActionResult Details()
         {
             var userID = _httpContext.GetUserId();
-
-            if (id != userID)
-            {
-                id = userID;
-            }
             
-            var account = _accountRepository.GetById(id);
+            var account = _accountRepository.GetById(userID);
 
             var details = Mapper.Map<Details>(account);
 

@@ -574,7 +574,6 @@ namespace Stagio.Web.Controllers
 
         public virtual ActionResult SetApplyDates()
         {
-
             var misc = _miscRepository.GetAll().FirstOrDefault();
             if (misc == null)
             {
@@ -590,44 +589,145 @@ namespace Stagio.Web.Controllers
         [HttpPost]
         public virtual ActionResult SetApplyDates(ViewModels.Coordinator.ApplyDatesLimit ApplyDates)
         {
-            if (ModelState.IsValid)
-            {
-                if (Convert.ToDateTime(ApplyDates.DateBegin) >= DateTime.Now.Date)
-                {
-                    if (Convert.ToDateTime(ApplyDates.DateBegin) < Convert.ToDateTime(ApplyDates.DateEnd))
-                    {
                         var misc = _miscRepository.GetAll().FirstOrDefault();
+            bool isFirstMisc = false;
                         if (misc == null)
                         {
-                            misc = new Misc()
+                misc = new Misc();
+                isFirstMisc = true;
+            }
+            if (!(Convert.ToDateTime(ApplyDates.DateBegin) < Convert.ToDateTime(ApplyDates.DateEnd)))
                             {
-                                StartApplyDate = ApplyDates.DateBegin,
-                                EndApplyDate = ApplyDates.DateEnd
-                            };
+                ModelState.AddModelError("DateEnd", CoordinatorResources.EndDateLowerThanStartDate);
+            }
+            if (ModelState.IsValid)
+            {  
+                misc.StartApplyDate = ApplyDates.DateBegin;
+                misc.EndApplyDate = ApplyDates.DateEnd;
+                if (isFirstMisc)
+                {
                             this.Flash(FlashMessageResources.AddSuccess, FlashEnum.Success);
                             _miscRepository.Add(misc);
                         }
                         else
                         {
-                            misc.StartApplyDate = ApplyDates.DateBegin;
-                            misc.EndApplyDate = ApplyDates.DateEnd;
                             this.Flash(FlashMessageResources.EditSuccess, FlashEnum.Success);
                             _miscRepository.Update(misc);
                         }
 
                         return RedirectToAction(MVC.Coordinator.Index());
                     }
-                        ModelState.AddModelError("DateEnd", CoordinatorResources.EndDateLowerThanStartDate);
+            this.Flash(FlashMessageResources.ErrorsOnPage, FlashEnum.Error);
+            return View(ApplyDates);
                 }
-                else
+
+        [Authorize(Roles = RoleName.Coordinator)]
+        public virtual ActionResult InviteOneContactEnterprise()
                 {
-                    ModelState.AddModelError("DateBegin", CoordinatorResources.StartDateLowerThanNow);
+            return View();
                 }
                 
-                this.Flash(FlashMessageResources.ErrorsOnPage, FlashEnum.Error);
-                return View(ApplyDates);
+        [Authorize(Roles = RoleName.Coordinator)]
+        [HttpPost]
+        public virtual ActionResult InviteOneContactEnterprise(ViewModels.Coordinator.InviteContactEnterprise createdInviteContactEnterpriseViewModel)
+        {
+
+
+            //  if (!ModelState.IsValid)
+            //  {
+            //    this.Flash(FlashMessageResources.ErrorsOnPage, FlashEnum.Error);
+            //   return View(createdInviteContactEnterpriseViewModel);
+            // }
+
+            TokenGenerator tokenGenerator = new TokenGenerator();
+
+            string token = tokenGenerator.GenerateToken();
+
+            //Sending invitation with the Mailler class
+            String messageText = EmailEnterpriseResources.InviteCoworker;
+            String invitationUrl = String.Format(EmailEnterpriseResources.InviteLinkCoworker, token);
+
+            messageText += invitationUrl;
+
+            if (createdInviteContactEnterpriseViewModel.Message != null)
+            {
+                messageText += EmailEnterpriseResources.MessageHeader;
+                messageText += createdInviteContactEnterpriseViewModel.Message;
             }
-            return HttpNotFound();
+
+            if (!_mailler.SendEmail(createdInviteContactEnterpriseViewModel.Email, EmailEnterpriseResources.InviteSubject, messageText))
+            {
+                ModelState.AddModelError("Email", EmailResources.CantSendEmail);
+                this.Flash(FlashMessageResources.ErrorsOnPage, FlashEnum.Error);
+                return View();
+            }
+
+            _invitationContactRepository.Add(new InvitationContactEnterprise()
+            {
+                Token = token,
+                Email = createdInviteContactEnterpriseViewModel.Email,
+                FirstName = createdInviteContactEnterpriseViewModel.FirstName,
+                LastName = createdInviteContactEnterpriseViewModel.LastName,
+                EnterpriseName = createdInviteContactEnterpriseViewModel.EnterpriseName,
+                Telephone = createdInviteContactEnterpriseViewModel.Telephone,
+                Poste = createdInviteContactEnterpriseViewModel.Poste,
+                Used = false
+            });
+            this.Flash(FlashMessageResources.InvitationSend, FlashEnum.Info);
+            return RedirectToAction(MVC.Coordinator.InviteContactEnterpriseConfirmation());
+        }
+
+        [Authorize(Roles = RoleName.Coordinator)]
+        public virtual ActionResult InviteOneContactEnterpriseConfirmation()
+        {
+            return View();
+        }
+
+        public virtual ActionResult BlockWebsiteAccess()
+        {
+            return View();
+        }
+
+        [HttpPost, ActionName("BlockWebsiteAccess")]
+        public virtual ActionResult BlockWebsiteAccessPost()
+        {
+            var misc = _miscRepository.GetAll().FirstOrDefault();
+
+            if (misc == null)
+            {
+                this.Flash(FlashMessageResources.SiteNotOpen, FlashEnum.Warning);
+                return RedirectToAction(MVC.Coordinator.Index());
+            }
+            misc.StartApplyDate = String.Format("{0:yyyy-MM-dd}", DateTime.Today.AddDays(-2));
+            misc.EndApplyDate = String.Format("{0:yyyy-MM-dd}", DateTime.Today.AddDays(-1));
+            _miscRepository.Update(misc);
+
+            this.Flash(FlashMessageResources.SiteClosed, FlashEnum.Info);
+            return RedirectToAction(MVC.Coordinator.Index());
+        }
+
+
+
+         public virtual ActionResult RemoveStudentFromListStudent(int matricule)
+         {
+             var listStudents = TempData["listStudent"] as List<ListStudent>;
+            
+             bool remove = false;
+             int counter = 0;
+             while(!remove)
+             {
+                 if(listStudents[counter].Matricule == matricule)
+                 {
+                     listStudents.Remove(listStudents[counter]);
+                     remove = true;
+                 }
+                 counter++;
+            }
+
+             TempData["listStudent"] = listStudents;
+             TempData.Keep();
+             return RedirectToAction(MVC.Coordinator.CreateList());
+
         }
 
         [Authorize(Roles = RoleName.Coordinator)]

@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="StageAcceptedMessage" xml:space="preserve">
-    <value>Votre offre de stage est maintenant visible pour les élèves.</value>
+    <value>Votre offre de stage est maintenant visible pour les étudiants.</value>
   </data>
   <data name="StageAcceptedTitle" xml:space="preserve">
     <value>Votre offre de stage a été acceptée par un coordonnateur</value>

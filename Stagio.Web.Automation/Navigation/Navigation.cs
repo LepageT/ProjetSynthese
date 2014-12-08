@@ -147,28 +147,28 @@ namespace Stagio.Web.Automation
             {
                 public static void Select()
                 {
-                    MenuSelector.Select("Coordinator-menu", "create-coordinator");
+                    MenuSelector.Select("invitation-menu", "create-coordinator");
                 }
             }
             public class AddStudents
             {
                 public static void Select()
                 {
-                    MenuSelector.Select("Coordinator-menu", "upload-student");
+                    MenuSelector.Select("Coordinator-student-menu", "upload-student");
                 }
             }
             public class InviteContactEnterprise
             {
                 public static void Select()
                 {
-                    MenuSelector.Select("Coordinator-menu", "invite-enterprise");
+                    MenuSelector.Select("invitation-menu", "invite-enterprise");
                 }
             }
             public class ListAllStages
             {
                 public static void Select()
                 {
-                    MenuSelector.Select("Coordinator-menu", "list");
+                    MenuSelector.Select("stage-menu", "list");
                 }
 
             }
@@ -177,7 +177,7 @@ namespace Stagio.Web.Automation
             {
                 public static void Select()
                 {
-                    MenuSelector.Select("Coordinator-menu", "list");
+                    MenuSelector.Select("stage-menu", "list");
                     MenuSelector.SelectTopLevel("details-stages2");
                 }
 
@@ -186,7 +186,7 @@ namespace Stagio.Web.Automation
             {
                 public static void Select()
                 {
-                    MenuSelector.Select("Coordinator-menu", "list");
+                    MenuSelector.Select("stage-menu", "list");
                     MenuSelector.SelectTopLevel("details-stages3");
                 }
 
@@ -204,7 +204,7 @@ namespace Stagio.Web.Automation
             {
                 public static void Select()
                 {
-                    MenuSelector.Select("Coordinator-menu", "student-list");
+                    MenuSelector.Select("Coordinator-student-menu", "student-list");
                 }
             }
 
@@ -212,7 +212,7 @@ namespace Stagio.Web.Automation
             {
                 public static void Select()
                 {
-                    MenuSelector.Select("Coordinator-menu", "student-list");
+                    MenuSelector.Select("Coordinator-student-menu", "student-list");
                     MenuSelector.SelectTopLevel("student-stages1");
                 }
             }
@@ -221,7 +221,7 @@ namespace Stagio.Web.Automation
             {
                 public static void Select()
                 {
-                    MenuSelector.Select("Coordinator-menu", "student-list");
+                    MenuSelector.Select("Coordinator-student-menu", "student-list");
                     MenuSelector.Select("student-stages2", "create-stageAgreement4");
                 }
             }
@@ -230,7 +230,7 @@ namespace Stagio.Web.Automation
             {
                 public static void Select()
                 {
-                    MenuSelector.Select("Coordinator-menu", "stageAgreement-list");
+                    MenuSelector.Select("stage-menu", "stageAgreement-list");
                 }
             }
 
@@ -238,7 +238,15 @@ namespace Stagio.Web.Automation
             {
                 public static void Select()
                 {
-                    MenuSelector.Select("Coordinator-menu", "setApplyDates");
+                    MenuSelector.Select("gestion-menu", "setApplyDates");
+                }
+            }
+
+            public class BlockWebsiteAccess
+            {
+                public static void Select()
+                {
+                    MenuSelector.SelectTopLevel("blockAccess");
                 }
             }
 

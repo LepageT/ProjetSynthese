@@ -10,8 +10,8 @@
 
 namespace Stagio.Web.Module.Strings.Notification {
     using System;
-    
-    
+
+
     /// <summary>
     ///   Une classe de ressource fortement typée destinée, entre autres, à la consultation des chaînes localisées.
     /// </summary>
@@ -115,25 +115,7 @@ namespace Stagio.Web.Module.Strings.Notification {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à &lt;/a&gt;.
-        /// </summary>
-        internal static string NewStageEndLink {
-            get {
-                return ResourceManager.GetString("NewStageEndLink", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à &lt;a href=&quot;../../Stage/Details/.
-        /// </summary>
-        internal static string NewStageLink {
-            get {
-                return ResourceManager.GetString("NewStageLink", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à L&apos;entreprise {0} a ajouté un stage: &lt;a href=&quot;../../Stage/Details/{1}&quot;&gt;{2}&lt;/a&gt; Vous devez l&apos;approuver pour qu&apos;il soit visible pour les étudiants..
+        ///   Looks up a localized string similar to L&apos;entreprise {0} a ajouté un stage: &lt;a href=&quot;../../Stage/Details/{1}&quot;&gt;{2}&lt;/a&gt; Vous devez l&apos;approuver pour qu&apos;il soit visible pour les étudiants..
         /// </summary>
         internal static string NewStageMessage {
             get {

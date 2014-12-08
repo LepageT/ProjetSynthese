@@ -43,43 +43,16 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
             viewModelObtained.ShouldBeEquivalentTo(viewModelExpected); 
         }
 
-        [TestMethod]
-        public void SetApplyDates_post_should_return_httpnotfound_with_invalid_model()
-        {
-            var misc = _fixture.Create<Misc>();
-            misc.StartApplyDate = DateTime.Now.ToString();
-            misc.EndApplyDate = DateTime.Now.AddDays(1).ToString();
-            var viewModelExpected = Mapper.Map<ViewModels.Coordinator.ApplyDatesLimit>(misc);
-            viewModelExpected.DateBegin = misc.StartApplyDate;
-            viewModelExpected.DateEnd = misc.EndApplyDate;
-            coordinatorController.ModelState.AddModelError("Error", "Error");
+       
 
-            var result = coordinatorController.SetApplyDates(viewModelExpected);
-
-            result.Should().BeOfType<HttpNotFoundResult>();
-        }
-
-        [TestMethod]
-        public void SetApplyDates_post_should_return_default_view_with_invalid_startdate()
-        {
-            var miscs = _fixture.CreateMany<Misc>(2).AsQueryable();
-            var misc = miscs.First();
-            misc.StartApplyDate = DateTime.Now.AddDays(-1).ToString();
-            misc.EndApplyDate = DateTime.Now.AddDays(1).ToString();
-            var viewModelExpected = Mapper.Map<ViewModels.Coordinator.ApplyDatesLimit>(misc);
-            viewModelExpected.DateBegin = misc.StartApplyDate;
-            viewModelExpected.DateEnd = misc.EndApplyDate;
-
-            var result = coordinatorController.SetApplyDates(viewModelExpected) as ViewResult;
-
-            result.ViewName.Should().Be("");
-        }
+        
 
         [TestMethod]
         public void SetApplyDates_post_should_return_default_view_with_invalid_enddate()
         {
             var miscs = _fixture.CreateMany<Misc>(2).AsQueryable();
             var misc = miscs.First();
+            miscRepository.GetAll().Returns(miscs);
             misc.StartApplyDate = DateTime.Now.AddDays(1).ToString();
             misc.EndApplyDate = DateTime.Now.AddDays(-1).ToString();
             var viewModelExpected = Mapper.Map<ViewModels.Coordinator.ApplyDatesLimit>(misc);

@@ -125,6 +125,10 @@
     <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerDetailsAppltStudent.Tests.cs" />
     <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerDownloadTests.cs" />
     <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerSetApplyDatesTests.cs" />
+    <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerBlockWebsiteAccess.cs" />
+    <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerInviteOneContactEnterprise.Tests.cs" />
+    <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerInviteOneContactEnterpriseConfirmationTests.cs" />
+    <Compile Include="ControllerTests\CoordinatorTests\CoordinatorControllerRemovestudentFromListStudentTests.cs" />
     <Compile Include="ControllerTests\HomeTest\HomeControllerBaseTest.cs" />
     <Compile Include="ControllerTests\HomeTest\HomeControllerIndexTest.cs" />
     <Compile Include="ControllerTests\InterviewTests\InterviewControllerBaseClassTests.cs" />

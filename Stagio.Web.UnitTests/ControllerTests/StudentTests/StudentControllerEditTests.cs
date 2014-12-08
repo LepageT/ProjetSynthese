@@ -20,7 +20,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
             studentRepository.GetById(student.Id).Returns(student);
             var viewModelExpected = Mapper.Map<ViewModels.Student.Edit>(student);
             
-            var viewResult = studentController.Edit(student.Id) as ViewResult;
+            var viewResult = studentController.Edit() as ViewResult;
             var viewModelObtained = viewResult.ViewData.Model as ViewModels.Student.Edit;
 
             viewModelObtained.ShouldBeEquivalentTo(viewModelExpected); 
@@ -32,7 +32,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         {
             httpContextService.GetUserId().Returns(INVALID_ID);
 
-            var result = studentController.Edit(INVALID_ID);
+            var result = studentController.Edit();
             
             result.Should().BeOfType<HttpNotFoundResult>();
         }
@@ -97,20 +97,6 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
             var result = studentController.Edit(student);
 
             result.Should().BeOfType<HttpNotFoundResult>();
-        }
-
-        [TestMethod]
-        public void edit_should_return_view_with_user_information_with_wrong_id()
-        {
-            var student = _fixture.Create<Student>();
-            httpContextService.GetUserId().Returns(student.Id);
-            studentRepository.GetById(student.Id).Returns(student);
-            var viewModelExpected = Mapper.Map<ViewModels.Student.Edit>(student);
-
-            var viewResult = studentController.Edit(INVALID_ID) as ViewResult;
-            var viewModelObtained = viewResult.ViewData.Model as ViewModels.Student.Edit;
-
-            viewModelObtained.ShouldBeEquivalentTo(viewModelExpected);
         }
 
     }

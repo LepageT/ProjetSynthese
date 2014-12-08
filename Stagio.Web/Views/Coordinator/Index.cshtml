@@ -27,12 +27,11 @@
 </div>
 
 <div>
-    Pour changer les dates de début et fin de la période pour appliquer sur les offres de stages, cliquez @Html.ActionLink("ici", MVC.Coordinator.SetApplyDates(), new { id = "setApplyDates" })
+    Pour changer les dates de début et fin de la période pour appliquer sur les offres de stages, cliquez @Html.ActionLink("ici", MVC.Coordinator.SetApplyDates(), new { id = "setApplyDates" })<br/>
+    Si vous désirez bloquer le site immédiatement, cliquez @Html.ActionLink("ici", MVC.Coordinator.BlockWebsiteAccess(), new { id = "blockAccess" })
 </div>
 
-<div>@Html.ActionLink("Afficher les informations du profil", MVC.Account.Details(Int32.Parse(@User.Identity.GetUserId())), new { id = "details-coordo" })</div>
-
-<div>@Html.ActionLink("Afficher la liste des étudiants", MVC.Coordinator.StudentList(), new { id = "student-list" })</div>
+<div>@Html.ActionLink("Afficher les informations du profil", MVC.Account.Details(), new { id = "details-coordo" })</div>
 
 <h3>Notifications:</h3>
 <br />
