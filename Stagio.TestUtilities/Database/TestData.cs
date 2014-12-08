@@ -669,6 +669,24 @@ namespace Stagio.TestUtilities.Database
         }
 
         #endregion
+
+        #region misc
+
+        static public Misc misc
+        {
+            get
+            {
+                var miscForTest = new Misc()
+                {
+                    StartApplyDate = DateTime.Now.AddDays(-1).ToString(),
+                    EndApplyDate = DateTime.Now.AddDays(5).ToString()
+                };
+                return miscForTest;
+            }
+
+        }
+        #endregion
+
     }
 
  

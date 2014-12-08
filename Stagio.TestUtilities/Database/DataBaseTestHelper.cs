@@ -46,6 +46,12 @@ namespace Stagio.TestUtilities.Database
             addNotificationCoordinator();
             addDraft();
             addStageAgreement();
+            addMisc();
+        }
+
+        private void addMisc()
+        {
+            _miscRepository.Add(TestData.misc);
         }
         private void addApplies()
         {
