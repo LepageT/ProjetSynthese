@@ -235,7 +235,10 @@ namespace Stagio.Web.Controllers
         [Authorize(Roles = RoleName.ContactEnterprise)]
         public virtual ActionResult InviteContactEnterprise()
         {
-            return View();
+            var enterpriseToInvite = _contactEnterpriseRepository.GetById(_httpContext.GetUserId());
+            var viewModelInviteContactEnterprise =
+                Mapper.Map<ViewModels.ContactEnterprise.Reactive>(enterpriseToInvite);
+            return View(viewModelInviteContactEnterprise);
         }
 
         [Authorize(Roles = RoleName.ContactEnterprise)]

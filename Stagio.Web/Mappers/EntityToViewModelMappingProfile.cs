@@ -135,6 +135,15 @@ namespace Stagio.Web.Mappers
                 .IgnoreAllNonExisting();
             Mapper.CreateMap<Misc, ViewModels.Coordinator.ApplyDatesLimit>()
                 .IgnoreAllNonExisting();
+
+            Mapper.CreateMap<ContactEnterprise, ViewModels.ContactEnterprise.Reactive>()
+               .ForMember(dest => dest.Email, opt => opt.Ignore())
+               .ForMember(dest => dest.Active, opt => opt.Ignore())
+               .ForMember(dest => dest.FirstName, opt => opt.Ignore())
+               .ForMember(dest => dest.LastName, opt => opt.Ignore())
+               .ForMember(dest => dest.Poste, opt => opt.Ignore())
+               .ForMember(dest => dest.Telephone, opt => opt.Ignore())
+               .IgnoreAllNonExisting();
         }
     }
 }
