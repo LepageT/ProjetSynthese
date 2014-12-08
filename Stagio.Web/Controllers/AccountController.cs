@@ -61,18 +61,7 @@ namespace Stagio.Web.Controllers
                 return View("");
             }
             AuthentificateUser(user.First());
-            if (_accountService.isStudent(user.First()))
-            {
-                return RedirectToAction(MVC.Student.Index());
-            }
-            else if (_accountService.isCoordonator(user.First()))
-            {
-                return RedirectToAction(MVC.Coordinator.Index());
-            }
-            else if (_accountService.isContactEnterprise(user.First()))
-            {
-                return RedirectToAction(MVC.ContactEnterprise.Index());
-            }
+
             return RedirectToAction(MVC.Home.Index());
         }
 

@@ -23,7 +23,7 @@ namespace Stagio.Web.AcceptanceTests.StageAgreementTests
             EditStageAgreementPage.GoByUrl();
             EditStageAgreementPage.EditAStageAgreement(SIGNATURE);
 
-            HomePage.IsDisplayed.Should().BeTrue();
+            IndexCoordinatorPage.IsDisplayed.Should().BeTrue();
         }
 
 
