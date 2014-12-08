@@ -252,7 +252,6 @@ namespace Stagio.TestUtilities.Database
             {
                 var stage = new Stage()
                 {
-                    Id = 1,
                     NbApply = 1,
                     LimitDate = DateTime.Today.AddDays(8).ToShortDateString(),
                     PublicationDate = DateTime.Now.ToString(),
@@ -327,6 +326,7 @@ namespace Stagio.TestUtilities.Database
             {
                 var stage = new Stage()
                 {
+                    
                     PublicationDate = new DateTime(2008, 9, 28, 16, 5, 7, 123).ToString(),
                     CompanyName = "Centre de développement pédagogique",
                     Adresse = "Faculté de médecine, 3358 B pav. Vandry, Université Laval, G1K 7P4",
@@ -758,8 +758,8 @@ namespace Stagio.TestUtilities.Database
             {
                 var miscForTest = new Misc()
                 {
-                    StartApplyDate = DateTime.Now.AddDays(-1).ToString(),
-                    EndApplyDate = DateTime.Now.AddDays(5).ToString()
+                    StartApplyDate = String.Format("{0:yyyy-MM-dd}", DateTime.Today.AddDays(-2)),
+                    EndApplyDate = String.Format("{0:yyyy-MM-dd}", DateTime.Today.AddDays(5))
                 };
                 return miscForTest;
             }

@@ -81,6 +81,7 @@
     <Compile Include="PageObjects\ContactEnterprise\ReactivateContactEnterprisePage.cs" />
     <Compile Include="PageObjects\ContactEnterprise\StudentApplyContactEnterprisePage.cs" />
     <Compile Include="PageObjects\Coordinator\AddStudentsCoordinatorPage.cs" />
+    <Compile Include="PageObjects\Coordinator\BlockWebsiteAccessCoordinatorPage.cs" />
     <Compile Include="PageObjects\Coordinator\ChangeStageApplyDatesCoordinatorPage.cs" />
     <Compile Include="PageObjects\Coordinator\CreateCoordinatorPage.cs" />
     <Compile Include="PageObjects\Coordinator\CreateListStudentsCoordinatorPage.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="PageObjects\Coordinator\DetailsStudentApplyCoordinatorPage.cs" />
     <Compile Include="PageObjects\Coordinator\IndexCoordinatorPage.cs" />
     <Compile Include="PageObjects\Coordinator\InviteContactEnterpriseCoordinatorPage.cs" />
+    <Compile Include="PageObjects\Coordinator\InviteContactOneEnterprisePage.cs" />
     <Compile Include="PageObjects\Coordinator\InviteCoordinatorPage.cs" />
     <Compile Include="PageObjects\Coordinator\ListAllStagesCoordinatorPage.cs" />
     <Compile Include="PageObjects\Coordinator\ResultCreateListStudentsCoordinatorPage.cs" />

@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "BlockWebsiteAccess";
+}
+
+<h2 class="col-md-offset-2 col-md-10">Bloquer l'accès au site pour les étudiants <br/>et les contacts entreprises</h2>
+
+<div class="col-md-offset-2 col-md-10">
+    <p>
+        Attention! Seul les coordonnateurs pourront se connecter au site après.<br/>
+        L'action suivante va immédiatement fermer l'accès aux étudiants et aux contacts entreprises.<br/>
+        Pour réouvrir l'accès le site, vous devrez utiliser le formulaire @Html.ActionLink("suivant", MVC.Coordinator.SetApplyDates(), new { id = "setApplyDates" })<br/>
+        et inscrire les dates pour lesquelles le site sera ouvert.<br/>
+    </p>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <div class="col-md-offset-2 col-md-10">
+
+        <input id="blockAccess-button" type="submit" value="Confirmer" />
+
+    </div>
+}
+
+<div class="col-md-offset-2 col-md-10">
+    @Html.ActionLink("Annuler", MVC.Coordinator.Index())
+</div>

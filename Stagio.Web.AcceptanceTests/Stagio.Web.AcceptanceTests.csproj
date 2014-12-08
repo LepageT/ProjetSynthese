@@ -80,6 +80,7 @@
     <Compile Include="ContactEnterpriseTests\ContactEnterpriseEditTest.cs" />
     <Compile Include="CoordinatorTests\CoordinatorControllerCreateListTests.cs" />
     <Compile Include="CoordinatorTests\CoordinatorControllerInviteEnterpriseTests.cs" />
+    <Compile Include="CoordinatorTests\CoordinatorControllerInviteOneContactEnterprise.cs" />
     <Compile Include="CoordinatorTests\CoordinatorControllerInviteTests.cs" />
     <Compile Include="CoordinatorTests\CoordinatorControllerResultCreateList.cs" />
     <Compile Include="CoordinatorTests\CoordinatorControllerStudentApplyListTests.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="ContactEnterpriseTests\ContactEnterpriseControllerCreateStageTests.cs" />
     <Compile Include="CoordinatorTests\CoordinatorControllerDetailsApplyStudentTests.cs" />
     <Compile Include="CoordinatorTests\CoordinatorChangeStageApplyDates.cs" />
+    <Compile Include="CoordinatorTests\CoordinatorControllerBlockWebsiteAccess.cs" />
     <Compile Include="InterviewTests\InterviewControllerCreate.cs" />
     <Compile Include="InterviewTests\InterviewControllerEdit.cs" />
     <Compile Include="NotificationTest\NotificationControllerNotificationListTests.cs" />
