@@ -20,7 +20,10 @@
         Pour voir la liste des stages acceptés, refusés ou à approuver, cliquez  @Html.ActionLink("ici", MVC.Stage.ListNewStages(), new { id = "list" })
 </div>
 <div>
-        Pour voir la liste des étudiants, cliquez @Html.ActionLink("ici", MVC.Coordinator.StudentList(), new { id = "student-list" })
+    Pour voir la liste des étudiants, cliquez @Html.ActionLink("ici", MVC.Coordinator.StudentList(), new { id = "student-list" })
+</div>
+<div>
+    Pour voir la liste des conventions de stage, cliquez @Html.ActionLink("ici", MVC.StageAgreement.List(), new { id = "student-list" })
 </div>
 
 <div>@Html.ActionLink("Afficher les informations du profil", MVC.Account.Details(Int32.Parse(@User.Identity.GetUserId())), new { id = "details-coordo" })</div>
