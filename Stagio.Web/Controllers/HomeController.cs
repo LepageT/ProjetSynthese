@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using Stagio.Domain.Application;
 
 namespace Stagio.Web.Controllers
 {
@@ -7,7 +8,22 @@ namespace Stagio.Web.Controllers
 
         public virtual ActionResult Index()
         {
-            return View();
+            if (User.IsInRole(RoleName.Student))
+            {
+                return RedirectToAction(MVC.Student.Index());
+            }
+            else if (User.IsInRole(RoleName.Coordinator))
+            {
+                return RedirectToAction(MVC.Coordinator.Index());
+            }
+            else if (User.IsInRole(RoleName.ContactEnterprise))
+            {
+                return RedirectToAction(MVC.ContactEnterprise.Index());
+            }
+            else
+            {
+                return View();
+            }
         }
 
     }
