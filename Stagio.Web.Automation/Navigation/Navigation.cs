@@ -222,7 +222,7 @@ namespace Stagio.Web.Automation
                 public static void Select()
                 {
                     MenuSelector.Select("Coordinator-menu", "student-list");
-                    MenuSelector.Select("student-stages1", "create-stageAgreement3");
+                    MenuSelector.Select("student-stages2", "create-stageAgreement4");
                 }
             }
 

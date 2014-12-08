@@ -9,6 +9,7 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using Ploeh.AutoFixture;
+using Stagio.Domain.Entities;
 
 
 namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
@@ -42,6 +43,9 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
             var enterpriseValid = _fixture.Create<ViewModels.ContactEnterprise.Invite>();
             enterpriseValid.Email = "test@hotmail.com";
             mailler.SendEmail(enterpriseValid.Email, "Test", "").ReturnsForAnyArgs(true);
+            var contactEnterprise = _fixture.Create<ContactEnterprise>();
+            enterpriseRepository.GetById(contactEnterprise.Id).Returns(contactEnterprise);
+            httpContext.GetUserId().Returns(contactEnterprise.Id);
 
             var result = enterpriseController.InviteContactEnterprise(enterpriseValid) as RedirectToRouteResult;
             var action = result.RouteValues["Action"];
