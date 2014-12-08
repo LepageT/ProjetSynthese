@@ -568,6 +568,10 @@
       <Project>{12547a44-ff09-479d-820e-e54a227c939c}</Project>
       <Name>Stagio.Utilities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Stagio.Web.Automation\Stagio.Web.Automation.csproj">
+      <Project>{BB170CE2-A741-484B-A14D-519938B351A5}</Project>
+      <Name>Stagio.Web.Automation</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
