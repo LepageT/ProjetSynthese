@@ -83,6 +83,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="gestion-menu">Gestion<b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li>@Html.ActionLink("Changer la date de début et fin des postulations pour stages", MVC.Coordinator.SetApplyDates(), new { id = "setApplyDates" })</li>
+                <li>@Html.ActionLink("Bloquer l'accès au site immédiatement", MVC.Coordinator.BlockWebsiteAccess(), new { id = "blockAccess" })</li>
             </ul>
         </li>
 
