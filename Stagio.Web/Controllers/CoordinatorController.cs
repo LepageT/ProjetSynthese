@@ -26,7 +26,7 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<Coordinator> _coordinatorRepository;
         private readonly IEntityRepository<Invitation> _invitationRepository;
         private readonly IEntityRepository<InvitationContactEnterprise> _invitationContactRepository;
-       
+
         private readonly IMailler _mailler;
         private readonly IEntityRepository<Apply> _applyRepository;
         private readonly IEntityRepository<Stage> _stageRepository;
@@ -691,5 +691,30 @@ namespace Stagio.Web.Controllers
         {
             return View();
         }
+
+        public virtual ActionResult BlockWebsiteAccess()
+        {
+            return View();
+        }
+
+         [HttpPost, ActionName("BlockWebsiteAccess")]
+        public virtual ActionResult BlockWebsiteAccessPost()
+         {
+             var misc = _miscRepository.GetAll().FirstOrDefault();
+      
+             if (misc == null)
+             {
+                 this.Flash(FlashMessageResources.SiteNotOpen, FlashEnum.Warning);
+                 return RedirectToAction(MVC.Coordinator.Index());
+             }
+             misc.StartApplyDate =  String.Format("{0:yyyy-MM-dd}", DateTime.Today.AddDays(-2));
+             misc.EndApplyDate = String.Format("{0:yyyy-MM-dd}", DateTime.Today.AddDays(-1));
+             _miscRepository.Update(misc);
+
+             this.Flash(FlashMessageResources.SiteClosed, FlashEnum.Info);
+             return RedirectToAction(MVC.Coordinator.Index());
+         }
+
+
     }
 }

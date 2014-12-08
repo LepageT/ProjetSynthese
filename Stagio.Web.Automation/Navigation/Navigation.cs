@@ -241,6 +241,14 @@ namespace Stagio.Web.Automation
                     MenuSelector.Select("Coordinator-menu", "setApplyDates");
                 }
             }
+
+            public class BlockWebsiteAccess
+            {
+                public static void Select()
+                {
+                    MenuSelector.SelectTopLevel("blockAccess");
+                }
+            }
         }
 
         public class AllUsers

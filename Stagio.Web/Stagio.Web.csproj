@@ -525,6 +525,7 @@
     <Content Include="Views\Coordinator\SetApplyDates.cshtml" />
     <Content Include="Views\ContactEnterprise\Edit.cshtml" />
     <Content Include="Views\ContactEnterprise\InviteContactEnterpriseConfirmation.cshtml" />
+    <Content Include="Views\Coordinator\BlockWebsiteAccess.cshtml" />
     <Content Include="Views\Coordinator\InviteOneContactEnterprise.cshtml" />
     <Content Include="Views\Coordinator\InviteOneContactEnterpriseConfirmation.cshtml" />
   </ItemGroup>

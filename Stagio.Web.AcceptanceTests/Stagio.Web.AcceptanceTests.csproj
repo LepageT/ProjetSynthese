@@ -91,6 +91,7 @@
     <Compile Include="ContactEnterpriseTests\ContactEnterpriseControllerCreateStageTests.cs" />
     <Compile Include="CoordinatorTests\CoordinatorControllerDetailsApplyStudentTests.cs" />
     <Compile Include="CoordinatorTests\CoordinatorChangeStageApplyDates.cs" />
+    <Compile Include="CoordinatorTests\CoordinatorControllerBlockWebsiteAccess.cs" />
     <Compile Include="InterviewTests\InterviewControllerCreate.cs" />
     <Compile Include="InterviewTests\InterviewControllerEdit.cs" />
     <Compile Include="NotificationTest\NotificationControllerNotificationListTests.cs" />
