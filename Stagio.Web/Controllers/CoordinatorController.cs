@@ -629,5 +629,39 @@ namespace Stagio.Web.Controllers
             }
             return HttpNotFound();
         }
+
+        [Authorize(Roles = RoleName.Coordinator)]
+        public virtual ActionResult RemoveStudent()
+        {
+            var allStudents = _studentRepository.GetAll().ToList();
+            var removeStudentViewModel = Mapper.Map<IEnumerable<ViewModels.Coordinator.RemoveStudent>>(allStudents).ToList();
+            return View(removeStudentViewModel);
+        }
+
+        [Authorize(Roles = RoleName.Coordinator)]
+        [HttpPost]
+        public virtual ActionResult RemoveStudent(IEnumerable<int> idStudentsToRemove)
+        {
+            List<Student> studentsToRemove = new List<Student>();
+            if (idStudentsToRemove != null)
+            {
+                foreach (var idStudents in idStudentsToRemove)
+                {
+                    studentsToRemove.Add(_studentRepository.GetById(idStudents));
+                }
+
+                foreach (var studentToRemove in studentsToRemove)
+                {
+                    _studentRepository.Delete(studentToRemove);
+                }
+            }
+            return RedirectToAction(MVC.Coordinator.RemoveStudentConfirmation());
+        }
+
+        [Authorize(Roles = RoleName.Coordinator)]
+        public virtual ActionResult RemoveStudentConfirmation()
+        {
+            return View();
+        }
     }
 }

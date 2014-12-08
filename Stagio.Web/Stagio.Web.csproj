@@ -326,6 +326,7 @@
     <Compile Include="Validations\ValidationPassword.cs" />
     <Compile Include="Validations\ValidationRequireField.cs" />
     <Compile Include="ViewModels\Account\Details.cs" />
+    <Compile Include="ViewModels\Coordinator\RemoveStudent.cs" />
     <Compile Include="ViewModels\StageAgreement\EditStageAgreement.cs" />
     <Compile Include="ViewModels\Apply\StudentApply.cs" />
     <Compile Include="ViewModels\ContactEnterprise\AcceptApply.cs" />
@@ -524,6 +525,8 @@
     <Content Include="Views\Coordinator\SetApplyDates.cshtml" />
     <Content Include="Views\ContactEnterprise\Edit.cshtml" />
     <Content Include="Views\ContactEnterprise\InviteContactEnterpriseConfirmation.cshtml" />
+    <Content Include="Views\Coordinator\RemoveStudent.cshtml" />
+    <Content Include="Views\Coordinator\RemoveStudentConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt.hooks.t4" />

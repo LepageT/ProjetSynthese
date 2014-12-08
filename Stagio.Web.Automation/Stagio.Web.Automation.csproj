@@ -91,6 +91,7 @@
     <Compile Include="PageObjects\Coordinator\InviteContactEnterpriseCoordinatorPage.cs" />
     <Compile Include="PageObjects\Coordinator\InviteCoordinatorPage.cs" />
     <Compile Include="PageObjects\Coordinator\ListAllStagesCoordinatorPage.cs" />
+    <Compile Include="PageObjects\Coordinator\RemoveStudentsCoordinatorPage.cs" />
     <Compile Include="PageObjects\Coordinator\ResultCreateListStudentsCoordinatorPage.cs" />
     <Compile Include="PageObjects\Coordinator\StudentApplyListCoordinatorPage.cs" />
     <Compile Include="PageObjects\Coordinator\StudentListCoordinatorPage.cs" />

@@ -13,14 +13,7 @@ namespace Stagio.Web.AcceptanceTests.StageAgreementTests
     [TestClass]
     public class StageAgreementControllerList : BaseTests
     {
-        //[TestMethod]
-        //public void user_can_not_see_stageAgreement_list_if_not_logged_in()
-        //{
-        //    StageAgreementListPage.GoToByUrl();
-
-        //    LoginPage.IsDisplayed.Should().BeTrue();
-        //}
-
+       
         [TestMethod]
         public void coordinator_can_see_stageAgreement_list_with_elements()
         {
