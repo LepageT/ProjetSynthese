@@ -256,7 +256,7 @@ namespace Stagio.TestUtilities.Database
                     NbApply = 1,
                     LimitDate = DateTime.Today.AddDays(8).ToShortDateString(),
                     PublicationDate = DateTime.Now.ToString(),
-                    Status = (StageStatus) 1,
+                    Status = StageStatus.Accepted,
                     NbrStagiaire = 3,
                     StageTitle = "Apprentis",
                     CompanyName = "MI6",
@@ -310,7 +310,7 @@ namespace Stagio.TestUtilities.Database
                     SubmitToTitle = "Coordinatrice aux développements APTIC",
                     SubmitToEmail = "Denyse.Gilbert@musiqueinc.co",
                     LimitDate = DateTime.Today.AddDays(30).ToShortDateString(),
-                    Status = 0
+                    Status = StageStatus.New
                 };
 
                 return stage;
@@ -387,7 +387,7 @@ namespace Stagio.TestUtilities.Database
                     SubmitToTitle = "Coordinateur aux développements Web",
                     SubmitToEmail = "serge.lavoie@email.com",
                     LimitDate = DateTime.Today.AddDays(2).ToShortDateString(),
-                    Status = 0
+                    Status = StageStatus.Accepted
                 };
 
                 return stage;
@@ -442,7 +442,6 @@ namespace Stagio.TestUtilities.Database
         }
 
         #endregion
-
         #region Apply 2
 
         public static Apply apply2

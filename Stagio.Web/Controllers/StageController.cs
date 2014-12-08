@@ -41,6 +41,11 @@ namespace Stagio.Web.Controllers
             var stagesRefusedByCoordinator = stages.Where(stage => stage.Status == StageStatus.Refused).ToList();
             var stagesRemoveByContact = stages.Where(stage => stage.Status == StageStatus.Removed).ToList();
 
+            stagesNotStatus = stagesNotStatus.OrderBy(x => x.PublicationDate).ToList();
+            stagesStatus = stagesStatus.OrderBy(x => x.PublicationDate).ToList();
+            stagesRefusedByCoordinator = stagesRefusedByCoordinator.OrderBy(x => x.PublicationDate).ToList();
+            stagesRemoveByContact = stagesRemoveByContact.OrderBy(x => x.PublicationDate).ToList();
+
             listAllStages.ListNewStages = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesNotStatus).ToList();
             listAllStages.ListStagesAccepted = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesStatus).ToList();
             listAllStages.ListStagesRefused = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesRefusedByCoordinator).ToList();

@@ -63,6 +63,8 @@ namespace Stagio.Web.Mappers
                 .ForMember(dest => dest.EnterpriseName, opt => opt.Ignore())
                 .IgnoreAllNonExisting();
 
+           
+
         }
     }
 }

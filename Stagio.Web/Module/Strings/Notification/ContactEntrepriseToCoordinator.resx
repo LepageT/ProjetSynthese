@@ -131,10 +131,10 @@
     <value>Une entreprise a modifié un stage</value>
   </data>
   <data name="InterestedBy" xml:space="preserve">
-    <value>{0} est intéressé par la candidature de {1} {2}</value>
+    <value>{0} est intéressée par la candidature de {1} {2}</value>
   </data>
   <data name="InterestedByTitle" xml:space="preserve">
-    <value>Une entreprise est intéressé par la candidature d'un étudiant</value>
+    <value>Une entreprise est intéressée par la candidature d'un étudiant</value>
   </data>
   <data name="NewStageMessage" xml:space="preserve">
     <value>L'entreprise {0} a ajouté un stage: &lt;a href="../../Stage/Details/{1}"&gt;{2}&lt;/a&gt; Vous devez l'approuver pour qu'il soit visible pour les étudiants.</value>
@@ -143,15 +143,15 @@
     <value>Un nouveau stage est en attente d'approbation</value>
   </data>
   <data name="NotInterestedBy" xml:space="preserve">
-    <value>{0} n'est pas intéressé par la candidature de {1} {2}</value>
+    <value>{0} n'est pas intéressée par la candidature de {1} {2}</value>
   </data>
   <data name="NotInterestedByTitle" xml:space="preserve">
-    <value>Une entreprise n'est pas intéressé par la candidature d'un étudiant</value>
+    <value>Une entreprise n'est pas intéressée par la candidature d'un étudiant</value>
   </data>
   <data name="RemoveStage" xml:space="preserve">
     <value>{0} a retiré le stage &lt;a href="../../Stage/Details/{1}"&gt;{2}&lt;/a&gt;</value>
   </data>
   <data name="RemoveStageTitle" xml:space="preserve">
-    <value>Une entreprise à retiré une de ses offres de stages</value>
+    <value>Une entreprise a retiré une de ses offres de stages</value>
   </data>
 </root>

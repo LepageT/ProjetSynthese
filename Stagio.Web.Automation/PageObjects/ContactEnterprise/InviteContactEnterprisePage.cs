@@ -31,7 +31,6 @@ namespace Stagio.Web.Automation.PageObjects.ContactEnterprise
             const string FIRST_NAME = "Bob";
             const string LAST_NAME = "Bobby";
             const string TELEPHONE = "111-111-1111";
-            const string ENTERPRISE_NAME = "test";
             Driver.Instance.FindElement(By.Id("Message")).SendKeys(MESSAGE_INVITATION);
             Driver.Instance.FindElement(By.Id("Email")).SendKeys(EMAIL);
             Driver.Instance.FindElement(By.Id("FirstName")).SendKeys(FIRST_NAME);
