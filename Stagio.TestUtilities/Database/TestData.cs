@@ -255,7 +255,7 @@ namespace Stagio.TestUtilities.Database
                     NbApply = 1,
                     LimitDate = DateTime.Today.AddDays(8).ToShortDateString(),
                     PublicationDate = DateTime.Now.ToString(),
-                    Status = (StageStatus) 1,
+                    Status = StageStatus.Accepted,
                     NbrStagiaire = 3,
                     StageTitle = "Apprentis",
                     CompanyName = "MI6",
@@ -309,7 +309,7 @@ namespace Stagio.TestUtilities.Database
                     SubmitToTitle = "Coordinatrice aux développements APTIC",
                     SubmitToEmail = "Denyse.Gilbert@musiqueinc.co",
                     LimitDate = DateTime.Today.AddDays(30).ToShortDateString(),
-                    Status = 0
+                    Status = StageStatus.New
                 };
 
                 return stage;
@@ -387,7 +387,7 @@ namespace Stagio.TestUtilities.Database
                     SubmitToTitle = "Coordinateur aux développements Web",
                     SubmitToEmail = "serge.lavoie@email.com",
                     LimitDate = DateTime.Today.AddDays(2).ToShortDateString(),
-                    Status = 0
+                    Status = StageStatus.Accepted
                 };
 
                 return stage;
@@ -442,7 +442,6 @@ namespace Stagio.TestUtilities.Database
         }
 
         #endregion
-
         #region Apply 2
 
         public static Apply apply2
@@ -574,9 +573,9 @@ namespace Stagio.TestUtilities.Database
             {
                 var notification = new Notification()
                 {
-                    Title = "Nouvelle offre de stage",
+                    Title = "Un nouveau stage est disponible",
                     Message =
-                        "Une nouvelle offre de stage à été ajoutée. Vous pouvez la consulter <a href=\"\\Stage/ViewStageInfo/3\"> ici </a>",
+                        "L'entreprise MI6 a ajouté ce stage: <a href=\"../../Stage/ViewStageInfo/1\">Apprentis</a> ",
                     For = 1,
                     Seen = false,
                     Date = new DateTime(2014, 10, 15)
@@ -587,7 +586,6 @@ namespace Stagio.TestUtilities.Database
         }
 
         #endregion
-
         #region NotificationStudent 2
 
         public static Notification notificationStudent2
@@ -596,9 +594,9 @@ namespace Stagio.TestUtilities.Database
             {
                 var notification = new Notification()
                 {
-                    Title = "Offre de stage modifiée",
+                    Title = "Une entreprise a modifié son offre de stage",
                     Message =
-                        "Une  offre de stage à été modifiéé. Vous pouvez la consulter <a href=\"\\Stage/ViewStageInfo/3\"> ici </a>",
+                        "L'entreprise Centre de développement pédagogique a modifié le stage: <a href=\"../../Stage/Details/3\">Programmeur C++</a>",
                     For = 1,
                     Seen = false,
                     Date = new DateTime(2014, 10, 15)
@@ -619,9 +617,9 @@ namespace Stagio.TestUtilities.Database
             {
                 var notification = new Notification()
                 {
-                    Title = "Offre de stage acceptée",
+                    Title = "Votre offre de stage a été acceptée par un coordonnateur",
                     Message =
-                        "Votre offre de stage à été acceptée par un coordonnateur.",
+                        "Votre offre de stage est maintenant visible pour les étudiants.",
                     For = 8,
                     Seen = false,
                     Date = new DateTime(2014, 10, 15)
@@ -632,7 +630,6 @@ namespace Stagio.TestUtilities.Database
         }
 
         #endregion
-
         #region NotificationContactEnterprise 2
 
         public static Notification notificationContactEnterprise2
@@ -641,9 +638,9 @@ namespace Stagio.TestUtilities.Database
             {
                 var notification = new Notification()
                 {
-                    Title = "Offre de stage refusée",
+                    Title = "Votre offre de stage a été refusée par un coordonnateur",
                     Message =
-                        "Votre offre de stage à été refusée par un coordonnateur.",
+                        "Votre offre de stage a été refusée. Vous pouvez la modifier et elle devra être approuvée de nouveau.",
                     For = 8,
                     Seen = false,
                     Date = new DateTime(2014, 10, 15)
@@ -664,9 +661,9 @@ namespace Stagio.TestUtilities.Database
             {
                 var notification = new Notification()
                 {
-                    Title = "Offre de stage à valider",
+                    Title = "Un nouveau stage est en attente d'approbation",
                     Message =
-                        "Une nouvelle offre de stage à été ajouter. Vous pouvez l'accepter ou la refuser.",
+                        "L'entreprise Musique inc a ajouté un stage: <a href=\"../../Stage/Details/2\">Programmeur C++</a> Vous devez l'approuver pour qu'il soit visible pour les étudiants.",
                     For = 4,
                     Seen = false,
                     Date = new DateTime(2014, 10, 15)
@@ -677,7 +674,6 @@ namespace Stagio.TestUtilities.Database
         }
 
         #endregion
-
         #region NotificationCoordinator 2
 
         public static Notification notificationCoordinator2
@@ -686,9 +682,9 @@ namespace Stagio.TestUtilities.Database
             {
                 var notification = new Notification()
                 {
-                    Title = "Offre de stage modifiée",
+                    Title = "Une entreprise a modifié un stage",
                     Message =
-                        "Une offre de stage à été modifiée.",
+                        "L'entreprise Centre de développement pédagogique a modifié le stage: <a href=\"../../Stage/Details/3\">Programmeur C++</a>",
                     For = 4,
                     Seen = false,
                     Date = new DateTime(2014, 10, 15)

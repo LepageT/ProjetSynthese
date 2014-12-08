@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Stagio.Web.Module.Strings.Notification
-{
-
-
+namespace Stagio.Web.Module.Strings.Notification {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -61,7 +61,7 @@ namespace Stagio.Web.Module.Strings.Notification
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Votre offre de stage est maintenant visible pour les élèves..
+        ///   Looks up a localized string similar to Votre offre de stage est maintenant visible pour les étudiants..
         /// </summary>
         internal static string StageAcceptedMessage {
             get {

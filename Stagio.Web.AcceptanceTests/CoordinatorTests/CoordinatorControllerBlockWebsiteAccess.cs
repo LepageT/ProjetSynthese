@@ -18,7 +18,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
             BlockWebsiteAccessCoordinatorPage.GoTo();
             BlockWebsiteAccessCoordinatorPage.ClickResultButton();
 
-            IndexCoordinatorPage.isDiplayed.Should().BeTrue();
+            IndexCoordinatorPage.IsDisplayed.Should().BeTrue();
         }
     }
 }

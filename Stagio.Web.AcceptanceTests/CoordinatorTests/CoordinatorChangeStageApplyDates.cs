@@ -18,7 +18,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
             ChangeStageApplyDatesCoordinatorPage.GoTo();
             ChangeStageApplyDatesCoordinatorPage.AddDates();
 
-            IndexCoordinatorPage.isDiplayed.Should().BeTrue();
+            IndexCoordinatorPage.IsDisplayed.Should().BeTrue();
         }
     }
 }

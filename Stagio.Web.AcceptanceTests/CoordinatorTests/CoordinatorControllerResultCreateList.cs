@@ -30,7 +30,7 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
 
             ResultCreateListStudentsCoordinatorPage.ClickResultButton();
 
-            HomePage.IsDisplayed.Should().BeTrue();
+            IndexCoordinatorPage.IsDisplayed.Should().BeTrue();
 
         }
     }
