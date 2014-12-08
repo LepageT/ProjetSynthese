@@ -570,20 +570,14 @@ namespace Stagio.Web.Controllers
         [HttpPost]
         public virtual ActionResult SetApplyDates(ViewModels.Coordinator.ApplyDatesLimit ApplyDates)
         {
-            bool isFirstRowInDB = false;
             if (ModelState.IsValid)
-            { 
+            {
                 if (Convert.ToDateTime(ApplyDates.DateBegin) >= DateTime.Now.Date)
                 {
                     if (Convert.ToDateTime(ApplyDates.DateBegin) < Convert.ToDateTime(ApplyDates.DateEnd))
                     {
-                        var misc = _miscRepository.GetAll().FirstOrDefault(); 
+                        var misc = _miscRepository.GetAll().FirstOrDefault();
                         if (misc == null)
-                        {
-                            isFirstRowInDB = true;
-                        }
-                        
-                        if (isFirstRowInDB)
                         {
                             misc = new Misc()
                             {
@@ -600,12 +594,16 @@ namespace Stagio.Web.Controllers
                             this.Flash(FlashMessageResources.EditSuccess, FlashEnum.Success);
                             _miscRepository.Update(misc);
                         }
-                        
+
                         return RedirectToAction(MVC.Coordinator.Index());
                     }
-                    ModelState.AddModelError("DateEnd", CoordinatorResources.EndDateLowerThanStartDate);
+                        ModelState.AddModelError("DateEnd", CoordinatorResources.EndDateLowerThanStartDate);
                 }
-                ModelState.AddModelError("DateBegin", CoordinatorResources.StartDateLowerThanNow);
+                else
+                {
+                    ModelState.AddModelError("DateBegin", CoordinatorResources.StartDateLowerThanNow);
+                }
+                
                 this.Flash(FlashMessageResources.ErrorsOnPage, FlashEnum.Error);
                 return View(ApplyDates);
             }
