@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Stagio.Web.Module.Strings.Shared
-{
-
-
+namespace Stagio.Web.Module.Strings.Shared {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -219,6 +219,24 @@ namespace Stagio.Web.Module.Strings.Shared
         internal static string ReactivateSuccess {
             get {
                 return ResourceManager.GetString("ReactivateSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to L&apos;accès au site est fermer pour les étudiants et les contacts entreprises.
+        /// </summary>
+        internal static string SiteClosed {
+            get {
+                return ResourceManager.GetString("SiteClosed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Le site est pas encore ouvert.
+        /// </summary>
+        internal static string SiteNotOpen {
+            get {
+                return ResourceManager.GetString("SiteNotOpen", resourceCulture);
             }
         }
         

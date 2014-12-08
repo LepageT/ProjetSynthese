@@ -522,6 +522,7 @@
     <Content Include="Views\Coordinator\SetApplyDates.cshtml" />
     <Content Include="Views\ContactEnterprise\Edit.cshtml" />
     <Content Include="Views\ContactEnterprise\InviteContactEnterpriseConfirmation.cshtml" />
+    <Content Include="Views\Coordinator\BlockWebsiteAccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt.hooks.t4" />

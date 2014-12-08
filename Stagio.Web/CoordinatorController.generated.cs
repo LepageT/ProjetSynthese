@@ -118,6 +118,8 @@ namespace Stagio.Web.Controllers
 			public readonly string DetailsApplyStudent = "DetailsApplyStudent";
 			public readonly string Download = "Download";
 			public readonly string SetApplyDates = "SetApplyDates";
+			public readonly string BlockWebsiteAccess = "BlockWebsiteAccess";
+			public readonly string BlockWebsiteAccessPost = "BlockWebsiteAccess";
 		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -141,6 +143,8 @@ namespace Stagio.Web.Controllers
 			public const string DetailsApplyStudent = "DetailsApplyStudent";
 			public const string Download = "Download";
 			public const string SetApplyDates = "SetApplyDates";
+			public const string BlockWebsiteAccess = "BlockWebsiteAccess";
+			public const string BlockWebsiteAccessPost = "BlockWebsiteAccess";
 		}
 
 
@@ -222,6 +226,7 @@ namespace Stagio.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string BlockWebsiteAccess = "BlockWebsiteAccess";
                 public readonly string Create = "Create";
                 public readonly string CreateConfirmation = "CreateConfirmation";
                 public readonly string CreateList = "CreateList";
@@ -237,6 +242,7 @@ namespace Stagio.Web.Controllers
                 public readonly string StudentList = "StudentList";
                 public readonly string Upload = "Upload";
             }
+            public readonly string BlockWebsiteAccess = "~/Views/Coordinator/BlockWebsiteAccess.cshtml";
             public readonly string Create = "~/Views/Coordinator/Create.cshtml";
             public readonly string CreateConfirmation = "~/Views/Coordinator/CreateConfirmation.cshtml";
             public readonly string CreateList = "~/Views/Coordinator/CreateList.cshtml";
@@ -510,6 +516,28 @@ namespace Stagio.Web.Controllers
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.SetApplyDates);
 			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "ApplyDates", ApplyDates);
 			SetApplyDatesOverride(callInfo, ApplyDates);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void BlockWebsiteAccessOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult BlockWebsiteAccess()
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.BlockWebsiteAccess);
+			BlockWebsiteAccessOverride(callInfo);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void BlockWebsiteAccessPostOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult BlockWebsiteAccessPost()
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.BlockWebsiteAccessPost);
+			BlockWebsiteAccessPostOverride(callInfo);
 			return callInfo;
 		}
 

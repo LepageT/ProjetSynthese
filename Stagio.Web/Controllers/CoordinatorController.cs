@@ -629,5 +629,30 @@ namespace Stagio.Web.Controllers
             }
             return HttpNotFound();
         }
+
+        public virtual ActionResult BlockWebsiteAccess()
+        {
+            return View();
+        }
+
+         [HttpPost, ActionName("BlockWebsiteAccess")]
+        public virtual ActionResult BlockWebsiteAccessPost()
+         {
+             var misc = _miscRepository.GetAll().FirstOrDefault();
+      
+             if (misc == null)
+             {
+                 this.Flash(FlashMessageResources.SiteNotOpen, FlashEnum.Warning);
+                 return RedirectToAction(MVC.Coordinator.Index());
+             }
+             misc.StartApplyDate = DateTime.Now.AddDays(-2).ToString();
+             misc.EndApplyDate = DateTime.Now.AddDays(-1).ToString();
+             _miscRepository.Update(misc);
+
+             this.Flash(FlashMessageResources.SiteClosed, FlashEnum.Info);
+             return RedirectToAction(MVC.Coordinator.Index());
+         }
+
+
     }
 }
