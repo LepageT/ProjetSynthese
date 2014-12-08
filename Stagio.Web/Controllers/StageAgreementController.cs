@@ -34,13 +34,9 @@ namespace Stagio.Web.Controllers
             _stageAgreementRepository = stageAgreement;
             _applyRepository = applyRepository;
             _stageRepository = stageRepository;
-
             _accountRepository = accountRepository;
             _accountService = accountService;
-
-           // _studentRepository = studentRepository;
             _httpContextService = httpContextService;
-            _accountRepository = accountRepository;
             _contactEnterpriseRepository = contactEnterpriseRepository;
 
         }
