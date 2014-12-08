@@ -254,7 +254,7 @@ namespace Stagio.Web.Automation
             {
                 public static void Select()
                 {
-                    MenuSelector.Select("Coordinator-menu", "remove-student");
+                    MenuSelector.Select("Coordinator-student-menu", "remove-student");
                 }
             }
         }
