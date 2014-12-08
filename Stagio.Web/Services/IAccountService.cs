@@ -14,5 +14,7 @@ namespace Stagio.Web.Services
         bool isCoordonator(ApplicationUser user);
 
         bool isBetweenAccesibleDates();
+
+        bool ValidatePassword(string hashedPassword, string passwordToValidate);
     }
 }
