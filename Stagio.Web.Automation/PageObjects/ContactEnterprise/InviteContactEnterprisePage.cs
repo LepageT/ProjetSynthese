@@ -37,7 +37,6 @@ namespace Stagio.Web.Automation.PageObjects.ContactEnterprise
             Driver.Instance.FindElement(By.Id("FirstName")).SendKeys(FIRST_NAME);
             Driver.Instance.FindElement(By.Id("LastName")).SendKeys(LAST_NAME);
             Driver.Instance.FindElement(By.Id("Telephone")).SendKeys(TELEPHONE);
-            Driver.Instance.FindElement(By.Id("EnterpriseName")).SendKeys(ENTERPRISE_NAME);
             
         }
 
