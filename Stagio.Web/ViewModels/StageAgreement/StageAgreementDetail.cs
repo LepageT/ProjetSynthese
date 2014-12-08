@@ -16,5 +16,7 @@ namespace Stagio.Web.ViewModels.StageAgreement
         [DisplayName("Stage")]
         public string StageName { get; set; }
 
+        public int Id { get; set; }
+
     }
 }

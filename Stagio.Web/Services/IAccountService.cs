@@ -18,5 +18,7 @@ namespace Stagio.Web.Services
         bool isContactEnterprise(ApplicationUser user);
 
         bool isBetweenAccesibleDates();
+
+        bool ValidatePassword(string hashedPassword, string passwordToValidate);
     }
 }
