@@ -406,7 +406,7 @@
 
             </p>
 
-            @Html.LabelFor(model => model.CoordinatorSignature, new { @class = "control-label col-md-3" })
+            @Html.LabelFor(model => model.CoordinatorSignature, new { @class = "control-label col-md-4" })
             @if (@User.IsInRole("Coordonnateur"))
             {
                 if (Model.CoordinatorHasSigned)

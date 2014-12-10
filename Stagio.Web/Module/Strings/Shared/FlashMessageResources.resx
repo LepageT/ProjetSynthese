@@ -123,6 +123,9 @@
   <data name="AlreadyApplied" xml:space="preserve">
     <value>Vous avez déjà postulé sur ce stage</value>
   </data>
+  <data name="AlreadyHadStage" xml:space="preserve">
+    <value>Vous avez déjà un stage</value>
+  </data>
   <data name="ApplyDelete" xml:space="preserve">
     <value>Postulation retirée</value>
   </data>
@@ -172,7 +175,7 @@
     <value>Réactivation réussie</value>
   </data>
   <data name="SiteClosed" xml:space="preserve">
-    <value>L'accès au site est fermer pour les étudiants et les contacts entreprises</value>
+    <value>L'accès au site est fermé pour les étudiants et les contacts entreprises</value>
   </data>
   <data name="SiteNotOpen" xml:space="preserve">
     <value>Le site est pas encore ouvert</value>

@@ -68,14 +68,14 @@ namespace Stagio.Web.ViewModels.StageAgreement
         public string CoordinatorPoste { get; set; }
         [DisplayName("Courriel")]
         public string CoordinatorEmail { get; set; }
-        [DisplayName("Signature du responsable")]
+        [DisplayName("Signature du responsable(mot de passe)")]
         [DataType(DataType.Password)] 
         public string ContactEnterpriseSignature { get; set; }
-         [DisplayName("Signature du stagiaire")]
+         [DisplayName("Signature du stagiaire(mot de passe)")]
          [DataType(DataType.Password)] 
         public string StudentSignature { get; set; }
-         [DataType(DataType.Password)] 
-         [DisplayName("Signature du coordonnateur")]
+         [DataType(DataType.Password)]
+         [DisplayName("Signature du coordonnateur(mot de passe)")]
         public string CoordinatorSignature { get; set; }
 
          [DisplayName("Nom du professeur superviseur du stage de l'étudiant")]

@@ -27,6 +27,8 @@ namespace Stagio.Web.UnitTests.ControllerTests.InterviewTests
             interviewRepository.GetById(interview.Id).Returns(interview);
             var viewModelExpected = Mapper.Map<ViewModels.Interviews.Edit>(interview);
             viewModelExpected.StageTitleAndCompagny = stages[0].StageTitle + " - " + stages[0].CompanyName;
+            viewModelExpected.hadStage = true;
+            viewModelExpected.IdStageAcceptedByStudent = stages[0].Id;
 
             var viewResult = interviewController.Edit(interview.Id) as ViewResult;
             var viewModelObtained = viewResult.ViewData.Model as ViewModels.Interviews.Edit;
@@ -109,10 +111,29 @@ namespace Stagio.Web.UnitTests.ControllerTests.InterviewTests
             studentRepository.GetById(student.Id).Returns(student);
             stageRepository.GetById(stage.Id).Returns(stage);
             interview.StageId = stage.Id;
-
+            interview.StudentId = student.Id;
             interviewRepository.GetById(Arg.Any<int>()).Returns(a => null);
 
             var result = interviewController.Edit(interview);
+
+            result.Should().BeOfType<HttpNotFoundResult>();
+        }
+
+        [TestMethod]
+        public void interview_edit__get_should_return_httpNotFound_when_modelState_is_not_valid()
+        {
+            var stages = _fixture.CreateMany<Stage>(2).ToList();
+            var user = _fixture.Create<Student>();
+            var interview = _fixture.Create<Interview>();
+            interview.StudentId = user.Id;
+            studentRepository.GetById(user.Id).Returns(user);
+            httpContextService.GetUserId().Returns(user.Id);
+            stageRepository.GetAll().Returns(stages.AsQueryable());
+            interview.StageId = stages[0].Id;
+            interviewRepository.GetById(interview.Id).Returns(interview);
+            interviewController.ModelState.AddModelError("Error", "Error");
+
+            var result = interviewController.Edit(interview.Id);
 
             result.Should().BeOfType<HttpNotFoundResult>();
         }

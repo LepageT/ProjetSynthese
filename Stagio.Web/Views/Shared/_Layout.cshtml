@@ -13,8 +13,6 @@
 
     @RenderSection("SectionCss", required: false)
 
-
-
 </head>
 <body>
 
@@ -27,22 +25,22 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                    @if (Request.IsAuthenticated && User.IsInRole(RoleName.Student))
-                    {
+                @if (Request.IsAuthenticated && User.IsInRole(RoleName.Student))
+                {
                         <div>@Html.ActionLink("Stagio", MVC.Student.Index(), new { @class = "navbar-brand glyphicon glyphicon-bookmark", id = "home-link", @style = "font-weight: bold; font-size: 25px" })</div>
-                    }
-                    @if (Request.IsAuthenticated && User.IsInRole(RoleName.Coordinator))
-                    {
+                }
+                @if (Request.IsAuthenticated && User.IsInRole(RoleName.Coordinator))
+                {
                         <div>@Html.ActionLink("Stagio", MVC.Coordinator.Index(), new { @class = "navbar-brand glyphicon glyphicon-bookmark", id = "home-link", @style = "font-weight: bold; font-size: 25px" })</div>
-                    }
-                    @if (Request.IsAuthenticated && User.IsInRole(RoleName.ContactEnterprise))
-                    {
+                }
+                @if (Request.IsAuthenticated && User.IsInRole(RoleName.ContactEnterprise))
+                {
                         <div>@Html.ActionLink("Stagio", MVC.ContactEnterprise.Index(), new { @class = "navbar-brand glyphicon glyphicon-bookmark", id = "home-link", @style = "font-weight: bold; font-size: 25px" })</div>
-                    }
-                    @if (!Request.IsAuthenticated)
-                    {
+                }
+                @if (!Request.IsAuthenticated)
+                {
                         <div>@Html.ActionLink("Stagio", MVC.Home.Index(), new { @class = "navbar-brand glyphicon glyphicon-bookmark", id = "home-link", @style = "font-weight: bold; font-size: 25px" })</div>
-                    }
+                }
             </div>
             <div class="navbar-collapse collapse">
                 @Html.Partial("_MenuPartial")
@@ -64,8 +62,9 @@
         <hr />
 
         <footer>
-            <p>Stagio</p>
+                <p style="color:#808080">© Stagio 2014 |    Martin Barbeau - Élise Carbonneau-Leclerc - Laurie Lavoie - Thomas Lepage</p>
         </footer>
+            
     </div>
 
     @Scripts.Render("~/bundles/jquery")
@@ -75,4 +74,5 @@
 
     @RenderSection("scripts", required: false)
 </body>
+
 </html>

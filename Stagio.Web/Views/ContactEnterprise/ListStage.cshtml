@@ -50,14 +50,14 @@
 
                     </td>
                     <td style="border-left: 0px">
-                        @if (item.Status != 3)
-                        {
+                     @if (item.Status != 3)
+                     {
                             @Html.ActionLink("Retirer", MVC.ContactEnterprise.RemoveStageConfirmation(item.Id), new { id = "remove-stage" + item.Id })
-                        }
-                        else
-                        {
-                            @Html.ActionLink("Remettre disponible", MVC.ContactEnterprise.ReactivateStageConfirmation(item.Id), new { id = "reactivate-stage" + item.Id })
-                        }
+                     }
+                     else
+                     {
+                        @Html.ActionLink("Remettre disponible", MVC.ContactEnterprise.ReactivateStageConfirmation(item.Id), new { id = "reactivate-stage" + item.Id })
+                     }
                     </td>
                 </tr>
             }

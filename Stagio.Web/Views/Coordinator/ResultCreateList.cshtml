@@ -5,42 +5,42 @@
     ViewBag.Title = "ResultCreateList";
 }
 
-<h2 id="resultCreateList-page"></h2>
+<h1 id="resultCreateList-page"></h1>
 
 <h3>Étudiants qui ont  été ajoutés</h3>
 
 @if (Model.ListStudentAdded.Count > 0)
 {
-    <table class="table">
+<table class="table">
         <tr>
-            <th class="col-md-2">
+        <th class="col-md-2">
 
-                Matricule
-            </th>
-            <th class="col-md-2">
-                Nom
-            </th>
-            <th class="col-md-2">
-                Prénom
-            </th>
+            Matricule
+        </th>
+        <th class="col-md-2">
+            Nom
+        </th>
+        <th class="col-md-2">
+            Prénom
+        </th>
+    </tr>
+
+    @foreach (var item in Model.ListStudentAdded)
+    {
+        <tr>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.Matricule)
+            </td>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
         </tr>
+    }
 
-        @foreach (var item in Model.ListStudentAdded)
-        {
-            <tr>
-                <td class="col-md-2">
-                    @Html.DisplayFor(modelItem => item.Matricule)
-                </td>
-                <td class="col-md-2">
-                    @Html.DisplayFor(modelItem => item.LastName)
-                </td>
-                <td class="col-md-2">
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
-            </tr>
-        }
-
-    </table>
+</table>
 }
 else
 {
@@ -53,36 +53,36 @@ else
 
 @if (Model.ListStudentNotAdded.Count > 0)
 {
-    <table class="table">
+<table class="table">
+    <tr>
+        <th class="col-md-2">
+
+            Matricule
+        </th>
+        <th class="col-md-2">
+            Nom
+        </th>
+        <th class="col-md-2">
+            Prénom
+        </th>
+    </tr>
+
+    @foreach (var item in Model.ListStudentNotAdded)
+    {
         <tr>
-            <th class="col-md-2">
-
-                Matricule
-            </th>
-            <th class="col-md-2">
-                Nom
-            </th>
-            <th class="col-md-2">
-                Prénom
-            </th>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.Matricule)
+            </td>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
         </tr>
+    }
 
-        @foreach (var item in Model.ListStudentNotAdded)
-        {
-            <tr>
-                <td class="col-md-2">
-                    @Html.DisplayFor(modelItem => item.Matricule)
-                </td>
-                <td class="col-md-2">
-                    @Html.DisplayFor(modelItem => item.LastName)
-                </td>
-                <td class="col-md-2">
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
-            </tr>
-        }
-
-    </table>
+</table>
 }
 else
 {
