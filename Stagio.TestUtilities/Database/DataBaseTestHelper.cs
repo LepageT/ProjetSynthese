@@ -52,6 +52,14 @@ namespace Stagio.TestUtilities.Database
             addMisc();
         }
 
+        public void SeedPresentationTables()
+        {
+            addStudents();
+            addCoordonnator();
+            addEnterprises();
+            addMisc();
+        }
+
         private void addMisc()
         {
             _miscRepository.Add(TestData.misc);

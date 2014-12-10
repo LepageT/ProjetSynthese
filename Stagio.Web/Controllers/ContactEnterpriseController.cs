@@ -553,11 +553,8 @@ namespace Stagio.Web.Controllers
             var identity = new ClaimsIdentity(new[]
             {
                 new Claim(ClaimTypes.Name, contact.FirstName + " " + contact.LastName),
-                new Claim(ClaimTypes.NameIdentifier, contact.Id.ToString()),
-
-
-            },
-               DefaultAuthenticationTypes.ApplicationCookie);
+                new Claim(ClaimTypes.NameIdentifier, contact.Id.ToString())
+            }, DefaultAuthenticationTypes.ApplicationCookie);
 
             foreach (var role in contact.Roles)
             {

@@ -33,7 +33,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="contactEnterprise-menu">Contact entreprise <b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li>@Html.ActionLink("Inviter un autre employé", MVC.ContactEnterprise.InviteContactEnterprise(), new { id = "invite-contact-enterprise" })</li>
-                <li>@Html.ActionLink("Afficher les informations du profil", MVC.Account.Details(Int32.Parse(@User.Identity.GetUserId())), new { id = "details-contact" }) </li>
+                <li>@Html.ActionLink("Afficher les informations du profil", MVC.Account.Details(), new { id = "details-contact" }) </li>
             </ul>
         </li>
 
@@ -67,6 +67,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="Coordinator-student-menu">Étudiants<b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li>@Html.ActionLink("Ajouter des étudiants", MVC.Coordinator.Upload(), new { id = "upload-student" })</li>
+                <li>@Html.ActionLink("Retirer des étudiants", MVC.Coordinator.RemoveStudent(), new { id = "remove-student" })</li>
                 <li>@Html.ActionLink("Afficher la liste des étudiants", MVC.Coordinator.StudentList(), new { id = "student-list" })</li>
             </ul>
         </li>

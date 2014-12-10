@@ -116,19 +116,21 @@ namespace Stagio.Web.Controllers
 			public readonly string StudentList = "StudentList";
 			public readonly string StudentApplyList = "StudentApplyList";
 			public readonly string Upload = "Upload";
-			public readonly string UploadPost = "Upload";
+			public readonly string UploadPost = "UploadPost";
 			public readonly string ResultCreateList = "ResultCreateList";
-			public readonly string PostResultCreateList = "ResultCreateList";
+			public readonly string PostResultCreateList = "PostResultCreateList";
 			public readonly string CreateList = "CreateList";
-			public readonly string CreateListPost = "CreateList";
+			public readonly string CreateListPost = "CreateListPost";
 			public readonly string DetailsApplyStudent = "DetailsApplyStudent";
 			public readonly string Download = "Download";
 			public readonly string SetApplyDates = "SetApplyDates";
 			public readonly string InviteOneContactEnterprise = "InviteOneContactEnterprise";
 			public readonly string InviteOneContactEnterpriseConfirmation = "InviteOneContactEnterpriseConfirmation";
 			public readonly string BlockWebsiteAccess = "BlockWebsiteAccess";
-			public readonly string BlockWebsiteAccessPost = "BlockWebsiteAccess";
+			public readonly string BlockWebsiteAccessPost = "BlockWebsiteAccessPost";
 			public readonly string RemoveStudentFromListStudent = "RemoveStudentFromListStudent";
+			public readonly string RemoveStudent = "RemoveStudent";
+			public readonly string RemoveStudentConfirmation = "RemoveStudentConfirmation";
 		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -144,19 +146,21 @@ namespace Stagio.Web.Controllers
 			public const string StudentList = "StudentList";
 			public const string StudentApplyList = "StudentApplyList";
 			public const string Upload = "Upload";
-			public const string UploadPost = "Upload";
+			public const string UploadPost = "UploadPost";
 			public const string ResultCreateList = "ResultCreateList";
-			public const string PostResultCreateList = "ResultCreateList";
+			public const string PostResultCreateList = "PostResultCreateList";
 			public const string CreateList = "CreateList";
-			public const string CreateListPost = "CreateList";
+			public const string CreateListPost = "CreateListPost";
 			public const string DetailsApplyStudent = "DetailsApplyStudent";
 			public const string Download = "Download";
 			public const string SetApplyDates = "SetApplyDates";
 			public const string InviteOneContactEnterprise = "InviteOneContactEnterprise";
 			public const string InviteOneContactEnterpriseConfirmation = "InviteOneContactEnterpriseConfirmation";
 			public const string BlockWebsiteAccess = "BlockWebsiteAccess";
-			public const string BlockWebsiteAccessPost = "BlockWebsiteAccess";
+			public const string BlockWebsiteAccessPost = "BlockWebsiteAccessPost";
 			public const string RemoveStudentFromListStudent = "RemoveStudentFromListStudent";
+			public const string RemoveStudent = "RemoveStudent";
+			public const string RemoveStudentConfirmation = "RemoveStudentConfirmation";
 		}
 
 
@@ -244,6 +248,14 @@ namespace Stagio.Web.Controllers
 		{
 			public readonly string matricule = "matricule";
 		}
+		static readonly ActionParamsClass_RemoveStudent s_params_RemoveStudent = new ActionParamsClass_RemoveStudent();
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public ActionParamsClass_RemoveStudent RemoveStudentParams { get { return s_params_RemoveStudent; } }
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public class ActionParamsClass_RemoveStudent
+		{
+			public readonly string idStudentsToRemove = "idStudentsToRemove";
+		}
 		static readonly ViewsClass s_views = new ViewsClass();
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public ViewsClass Views { get { return s_views; } }
@@ -266,6 +278,8 @@ namespace Stagio.Web.Controllers
                 public readonly string InviteContactEnterpriseConfirmation = "InviteContactEnterpriseConfirmation";
                 public readonly string InviteOneContactEnterprise = "InviteOneContactEnterprise";
                 public readonly string InviteOneContactEnterpriseConfirmation = "InviteOneContactEnterpriseConfirmation";
+                public readonly string RemoveStudent = "RemoveStudent";
+                public readonly string RemoveStudentConfirmation = "RemoveStudentConfirmation";
                 public readonly string ResultCreateList = "ResultCreateList";
                 public readonly string SetApplyDates = "SetApplyDates";
                 public readonly string StudentApplyList = "StudentApplyList";
@@ -284,6 +298,8 @@ namespace Stagio.Web.Controllers
             public readonly string InviteContactEnterpriseConfirmation = "~/Views/Coordinator/InviteContactEnterpriseConfirmation.cshtml";
             public readonly string InviteOneContactEnterprise = "~/Views/Coordinator/InviteOneContactEnterprise.cshtml";
             public readonly string InviteOneContactEnterpriseConfirmation = "~/Views/Coordinator/InviteOneContactEnterpriseConfirmation.cshtml";
+            public readonly string RemoveStudent = "~/Views/Coordinator/RemoveStudent.cshtml";
+            public readonly string RemoveStudentConfirmation = "~/Views/Coordinator/RemoveStudentConfirmation.cshtml";
             public readonly string ResultCreateList = "~/Views/Coordinator/ResultCreateList.cshtml";
             public readonly string SetApplyDates = "~/Views/Coordinator/SetApplyDates.cshtml";
             public readonly string StudentApplyList = "~/Views/Coordinator/StudentApplyList.cshtml";
@@ -616,6 +632,40 @@ namespace Stagio.Web.Controllers
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RemoveStudentFromListStudent);
 			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "matricule", matricule);
 			RemoveStudentFromListStudentOverride(callInfo, matricule);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void RemoveStudentOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult RemoveStudent()
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RemoveStudent);
+			RemoveStudentOverride(callInfo);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void RemoveStudentOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, System.Collections.Generic.IEnumerable<int> idStudentsToRemove);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult RemoveStudent(System.Collections.Generic.IEnumerable<int> idStudentsToRemove)
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RemoveStudent);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "idStudentsToRemove", idStudentsToRemove);
+			RemoveStudentOverride(callInfo, idStudentsToRemove);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void RemoveStudentConfirmationOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult RemoveStudentConfirmation()
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RemoveStudentConfirmation);
+			RemoveStudentConfirmationOverride(callInfo);
 			return callInfo;
 		}
 
