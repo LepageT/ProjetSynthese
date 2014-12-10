@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Stagio.Web.ViewModels.ContactEnterprise.Draft>
+﻿@using Stagio.Web.Module.Strings.Shared
+@model IEnumerable<Stagio.Web.ViewModels.ContactEnterprise.Draft>
 
 @{
     ViewBag.Title = "DraftList";
@@ -17,19 +18,24 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.PublicationDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StageTitle)
-        </td>
-        <td>
-            @Html.ActionLink("Modifier", MVC.Stage.DraftEdit(item.Id), new { id = "edit-draft" + item.Id }) |
-            @Html.ActionLink("Supprimer", MVC.Stage.DraftDelete(item.Id), new { id = "remove-draft" + item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PublicationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StageTitle)
+            </td>
+            <td>
+                @Html.ActionLink("Modifier", MVC.Stage.DraftEdit(item.Id), new { id = "edit-draft" + item.Id }) |
+                @Html.ActionLink("Supprimer", MVC.Stage.DraftDelete(item.Id), new { id = "remove-draft" + item.Id })
+            </td>
+        </tr>
+    }
 
 </table>
+
+<div>
+    @Html.ActionLink(Navigation.ReturnHome, MVC.ContactEnterprise.Index())
+</div>
