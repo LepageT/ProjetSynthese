@@ -210,11 +210,11 @@ namespace Stagio.Web.Controllers
             }
             var readFile = new ReadFile();
 
-            if (readFile.ReadFileCVLetter(files, Server, applyStudentViewModel.Id))
+            if (readFile.ReadFileCVLetter(files, Server, applyStudentViewModel.IdStage, applyStudentViewModel.IdStudent))
             {
                 var files1 = files.ToList();
-                applyStudentViewModel.Cv = files1[0].FileName;
-                applyStudentViewModel.Letter = files1[1].FileName;
+                applyStudentViewModel.Cv = applyStudentViewModel.IdStage +"-" + applyStudentViewModel.IdStudent + "-CV-" + files1[0].FileName;
+                applyStudentViewModel.Letter = applyStudentViewModel.IdStage + "-" + applyStudentViewModel.IdStudent + "-LP-" + files1[1].FileName;
                 var newApplicationStudent = Mapper.Map<Stagio.Domain.Entities.Apply>(applyStudentViewModel);
                 newApplicationStudent.Status = 0;   //0 = En attente
                 newApplicationStudent.DateApply = DateTime.Now;

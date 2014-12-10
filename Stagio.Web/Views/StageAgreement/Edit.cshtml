@@ -1,7 +1,6 @@
 ﻿@using System.Data.Entity.ModelConfiguration.Conventions
 @model Stagio.Web.ViewModels.StageAgreement.EditStageAgreement
 
-
 <!DOCTYPE html>
 <html>
 
@@ -471,15 +470,11 @@
                     <input type="submit" value="Sauvegarder" class="btn btn-default" id="edit-button" />
                 </div>
             </div>
-
-
-            @*<div>
-                    @Html.ActionLink("Back to List", "Index")
-                </div>*@
-
         </div>
 
     }
-
+    <div>
+            @Html.ActionLink("Retour à la liste des conventions", MVC.StageAgreement.List())
+        </div>
 </body>
 </html>
