@@ -13,67 +13,67 @@
 
     @RenderSection("SectionCss", required: false)
 
-
-
 </head>
-<body>
+    <body>
 
-    <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    @if (Request.IsAuthenticated && User.IsInRole(RoleName.Student))
+                    {
+                        <div>@Html.ActionLink("Accueil", MVC.Student.Index(), new { @class = "navbar-brand", id = "home-link" })</div>
+                    }
+                    @if (Request.IsAuthenticated && User.IsInRole(RoleName.Coordinator))
+                    {
+                        <div>@Html.ActionLink("Accueil", MVC.Coordinator.Index(), new { @class = "navbar-brand", id = "home-link" })</div>
+                    }
+                    @if (Request.IsAuthenticated && User.IsInRole(RoleName.ContactEnterprise))
+                    {
+                        <div>@Html.ActionLink("Accueil", MVC.ContactEnterprise.Index(), new { @class = "navbar-brand", id = "home-link" })</div>
+                    }
+                    @if (!Request.IsAuthenticated)
+                    {
+                        <div>@Html.ActionLink("Accueil", MVC.Home.Index(), new { @class = "navbar-brand", id = "home-link" })</div>
+                    }
+                </div>
+                <div class="navbar-collapse collapse">
+                    @Html.Partial("_MenuPartial")
+
+                    @Html.Partial("_LoginPartial")
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+        </div>
+
+        <div id="test"></div>
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
 
-                @if (Request.IsAuthenticated && User.IsInRole(RoleName.Student))
-                {
-                    <div>@Html.ActionLink("Accueil", MVC.Student.Index(), new { @class = "navbar-brand", id = "home-link" })</div>
-                }
-                @if (Request.IsAuthenticated && User.IsInRole(RoleName.Coordinator))
-                {
-                    <div>@Html.ActionLink("Accueil", MVC.Coordinator.Index(), new { @class = "navbar-brand", id = "home-link" })</div>
-                }
-                @if (Request.IsAuthenticated && User.IsInRole(RoleName.ContactEnterprise))
-                {
-                    <div>@Html.ActionLink("Accueil", MVC.ContactEnterprise.Index(), new { @class = "navbar-brand", id = "home-link" })</div>
-                }
-                @if (!Request.IsAuthenticated)
-                {
-                    <div>@Html.ActionLink("Accueil", MVC.Home.Index(), new { @class = "navbar-brand", id = "home-link" })</div>
-                }
+            <div class="row">
+                <div class="col-md-12">
+                    @RenderBody()
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                @Html.Partial("_MenuPartial")
+            <hr />
 
-                @Html.Partial("_LoginPartial")
-            </div>
-            <!--/.nav-collapse -->
+            <footer>
+                <p style="color:#808080">© Stagio 2014 |    Martin Barbeau - Élise Carbonneau-Leclerc - Laurie Lavoie - Thomas Lepage</p>
+            </footer>
+            
         </div>
-    </div>
+        
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+    
+        @Flash.FlashMessage(TempData)
 
-    <div id="test"></div>
-    <div class="container">
+        @RenderSection("scripts", required: false)
+    </body>
 
-        <div class="row">
-            <div class="col-md-12">
-                @RenderBody()
-            </div>
-        </div>
-        <hr />
-
-        <footer>
-            <p>Stagio</p>
-        </footer>
-    </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-
-    @Flash.FlashMessage(TempData)
-
-    @RenderSection("scripts", required: false)
-</body>
 </html>

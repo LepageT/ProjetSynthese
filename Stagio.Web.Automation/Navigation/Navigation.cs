@@ -246,7 +246,7 @@ namespace Stagio.Web.Automation
             {
                 public static void Select()
                 {
-                    MenuSelector.SelectTopLevel("blockAccess");
+                    MenuSelector.Select("gestion-menu", "blockAccess");
                 }
             }
 
