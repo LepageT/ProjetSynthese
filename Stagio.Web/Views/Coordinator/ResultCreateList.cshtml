@@ -1,0 +1,88 @@
+﻿@using Stagio.Web.Module.Strings.Shared;
+@model Stagio.Web.ViewModels.Student.ResultCreateList
+
+@{
+    ViewBag.Title = "ResultCreateList";
+}
+
+<h2 id="resultCreateList-page"></h2>
+
+<p>Étudiants qui ont  été ajoutés</p>
+<table class="table">
+    <tr >
+        <th class="col-md-2">
+
+            Matricule
+        </th>
+        <th class="col-md-2">
+            Nom
+        </th>
+        <th class="col-md-2">
+            Prénom
+        </th>
+    </tr>
+
+    @foreach (var item in Model.ListStudentAdded)
+    {
+        <tr>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.Matricule)
+            </td>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<p>Étudiants qui n'ont pas été ajoutés</p>
+
+<table class="table">
+    <tr>
+        <th class="col-md-2">
+
+            Matricule
+        </th>
+        <th class="col-md-2">
+            Nom
+        </th>
+        <th class="col-md-2">
+            Prénom
+        </th>
+    </tr>
+
+    @foreach (var item in Model.ListStudentNotAdded)
+    {
+        <tr>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.Matricule)
+            </td>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+        </tr>
+    }
+
+</table>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <div class="panel-body">
+
+        <input id="resultCreateList-button" type="submit" value="Ok" />
+
+    </div>
+}
+
+<div>
+    @Html.ActionLink(Navigation.ReturnHome, MVC.Home.Index())
+</div>
+

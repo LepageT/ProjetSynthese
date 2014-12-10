@@ -1,59 +1,81 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Stagio.Domain.Entities
 {
     public class Stage : Entity
     {
-        public DateTime publicationDate { get; set; }
+        [DisplayName("Date de l'offre")]
+        public string PublicationDate { get; set; }
 
         //Maybe an enterprise entity must be created.
-        public String companyName { get; set; }
+        [DisplayName("Entreprise ou Organisation")]
+        public String CompanyName { get; set; }
 
-        public String adresse { get; set; }
-
+        public String Adresse { get; set; }
 
         //Responsable
-        public String responsableToName { get; set; }
-
-        public String responsableToTitle { get; set; }
-
-        public String responsableToEmail { get; set; }
-
-        public String responsableToPhone { get; set; }
-
-        public int? responsableToPoste { get; set; }
+        [DisplayName("Nom")]
+        public String ResponsableToName { get; set; }
+        [DisplayName("Titre")]
+        public String ResponsableToTitle { get; set; }
+        [DisplayName("Courriel")]
+        public String ResponsableToEmail { get; set; }
+        [DisplayName("Téléphone")]
+        public String ResponsableToPhone { get; set; }
+        [DisplayName("Poste")]
+        public string ResponsableToPoste { get; set; }
 
         //Contact
+        [DisplayName("Nom")]
+        public String ContactToName { get; set; }
+        [DisplayName("Titre")]
+        public String ContactToTitle { get; set; }
+        [DisplayName("Courriel")]
+        public String ContactToEmail { get; set; }
+        [DisplayName("Téléphone")]
+        public String ContactToPhone { get; set; }
+        [DisplayName("Poste")]
+        public string ContactToPoste { get; set; }
 
-        public String contactToName { get; set; }
-
-        public String contactToTitle { get; set; }
-
-        public String contactToEmail { get; set; }
-
-        public String contactToPhone { get; set; }
-
-        public int? contactToPoste { get; set; }
-
-
-        public String stageDescription { get; set; }
-
-        public String environnementDescription { get; set; }
-
-        public int nbrStagiaire { get; set; }
+        [DisplayName("Description du projet pour le stage")]
+        public String StageDescription { get; set; }
+        //Stage information
+        [DisplayName("Environnement matériel et logiciel spécifique au projet")]
+        public String EnvironnementDescription { get; set; }
+        public string StageTitle { get; set; }
+        [DisplayName("Nombre de stagiaires")]
+        public int? NbrStagiaire { get; set; }
+        [DisplayName("Stagiaire si connu:")]
+        public string StagiaireIfKnew { get; set; }
+        [DisplayName("Nom")]
 
         //Submit to:
-        public String submitToName { get; set; }
+        public String SubmitToName { get; set; }
+        [DisplayName("Titre")]
+        public String SubmitToTitle { get; set; }
+        [DisplayName("Courriel")]
+        public String SubmitToEmail { get; set; }
+        [DisplayName("Date limite pour soummettre une candidature")]
+        public string LimitDate { get; set; }
 
-        public String submitToTitle { get; set; }
+        [DefaultValue(StageStatus.New)]
+        public StageStatus Status { get; set; }
 
-        public String submitToEmail { get; set; }
+        [DefaultValue(0)]
+        public int NbApply { get; set; }
 
-        public DateTime limitDate { get; set; }
+    }
 
+
+    [Flags]
+    public enum StageStatus
+    {
+        New = 0,
+        Accepted = 1,
+        Refused = 2,
+        Removed = 3,
+        Draft = 4
     }
 }

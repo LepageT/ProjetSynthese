@@ -16,10 +16,11 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         public void edit_should_return_view_with_studentViewModel_when_studentId_is_valid()
         {
             var student = _fixture.Create<Student>();
+            httpContextService.GetUserId().Returns(student.Id);
             studentRepository.GetById(student.Id).Returns(student);
             var viewModelExpected = Mapper.Map<ViewModels.Student.Edit>(student);
             
-            var viewResult = studentController.Edit(student.Id) as ViewResult;
+            var viewResult = studentController.Edit() as ViewResult;
             var viewModelObtained = viewResult.ViewData.Model as ViewModels.Student.Edit;
 
             viewModelObtained.ShouldBeEquivalentTo(viewModelExpected); 
@@ -29,8 +30,10 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         [TestMethod]
         public void edit_should_return_http_not_found_when_studentId_is_not_valid()
         {
-            var result = studentController.Edit(999999999);
+            httpContextService.GetUserId().Returns(INVALID_ID);
 
+            var result = studentController.Edit();
+            
             result.Should().BeOfType<HttpNotFoundResult>();
         }
 
@@ -38,6 +41,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         public void edit_post_should_update_student_when_studentId_is_valid()
         {
             var student = _fixture.Create<Student>();
+            httpContextService.GetUserId().Returns(student.Id);
             studentRepository.GetById(student.Id).Returns(student);
             var studentViewModel = Mapper.Map<ViewModels.Student.Edit>(student);
             studentViewModel.OldPassword = student.Password;
@@ -52,6 +56,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         public void edit_post_should_redirect_to_index_on_success()
         {
             var student = _fixture.Create<Student>();
+            httpContextService.GetUserId().Returns(student.Id);
             studentRepository.GetById(student.Id).Returns(student);
             var studentEditPageViewModel = Mapper.Map<Student, ViewModels.Student.Edit>(student);
             studentEditPageViewModel.OldPassword = student.Password;
@@ -69,6 +74,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         public void edit_post_should_return_default_view_when_modelState_is_not_valid()
         {
             var student = _fixture.Create<Student>();
+            httpContextService.GetUserId().Returns(student.Id);
             var studentEditPageViewModel = _fixture.Build<ViewModels.Student.Edit>()
                                                       .With(x => x.Id, student.Id)
                                                       .Create();
@@ -78,13 +84,14 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 
             var result = studentController.Edit(studentEditPageViewModel) as ViewResult;
 
-            Assert.AreEqual(result.ViewName, "");
+            result.ViewName.Should().Be("");
         }
 
         [TestMethod]
         public void edit_post_should_return_http_not_found_when_studentID_is_not_valid()
         {
             var student = _fixture.Create<ViewModels.Student.Edit>();
+            httpContextService.GetUserId().Returns(student.Id);
             studentRepository.GetById(Arg.Any<int>()).Returns(a => null);
 
             var result = studentController.Edit(student);

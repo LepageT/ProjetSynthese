@@ -1,0 +1,55 @@
+﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<Stagio.Web.ViewModels.Notification.Notification>
+
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 id="student-home-page">Accueil</h2>
+@*
+<div>
+    @Html.ActionLink("Voir les offres de stages", MVC.Student.DisplayStageList(), new { id = "stageList-student" })
+</div>
+
+<div>
+    @Html.ActionLink("Inscrire une date d'entrevue", MVC.Interview.Create(), new { id = "add-entrevue" })
+</div>
+<div>
+    @Html.ActionLink("Voir les stages avec postulation", MVC.Student.ApplyList(), new { id = "list-applies" })
+</div>*@
+<div>
+    @Html.ActionLink("Afficher les informations du profil", MVC.Account.Details(), new { id = "details-user-page" })
+</div>
+
+
+@*<div>@Html.ActionLink("Afficher la liste des entrevues", MVC.Interview.List(), new {id = "list-interview"})</div>*@
+
+<h3>Notifications:</h3>
+<br/>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.Title, MVC.Notification.Detail().AddRouteValues(new { id = item.NotificationId }), new { id = "notification-detail" + item.NotificationId })
+            </td>
+            <td>
+                @Html.Label(item.Date.ToShortDateString())
+            </td>
+
+        </tr>
+    }
+
+</table>

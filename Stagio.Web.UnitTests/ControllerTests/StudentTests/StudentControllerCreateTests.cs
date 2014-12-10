@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using Ploeh.AutoFixture;
 using Stagio.Domain.Entities;
-using AutoMapper;
 using FluentAssertions;
-using Stagio.Web.UnitTests.ControllerTests.EnterpriseTests;
+using Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests;
+
 
 namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 {
@@ -21,7 +18,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         {
             var result = studentController.Create() as ViewResult;
 
-            Assert.AreEqual(result.ViewName, "");
+            result.ViewName.Should().Be("");
         }
 
         [TestMethod]
@@ -29,7 +26,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         {
             var students = _fixture.CreateMany<Student>(3);
             var student = students.First();
-            student.Activated = false;
+            student.Active = false;
             studentRepository.GetAll().Returns(students.AsQueryable());
             var viewModel = _fixture.Create<ViewModels.Student.Create>();
             viewModel.Matricule = student.Matricule;
@@ -40,7 +37,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 
             var result = studentController.Create(viewModel) as ViewResult;
 
-            Assert.AreEqual(result.ViewName, "");
+            result.ViewName.Should().Be("");
         }
 
         [TestMethod]
@@ -48,47 +45,13 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         {
             var students = _fixture.CreateMany<Student>(3);
             var student = students.First();
-            student.Activated = false;
+            student.Active = false;
             studentRepository.GetAll().Returns(students.AsQueryable());
             var viewModel = _fixture.Create<ViewModels.Student.Create>();
 
             var result = studentController.Create(viewModel) as ViewResult;
 
-            Assert.AreEqual(result.ViewName, "");
-        }
-
-        [TestMethod]
-        public void student_create_post_should_return_default_view_when_firstname_dont_correspond_with_matricule()
-        {
-            var students = _fixture.CreateMany<Student>(3);
-            var student = students.First();
-            student.Activated = false;
-            studentRepository.GetAll().Returns(students.AsQueryable());
-            var viewModel = _fixture.Create<ViewModels.Student.Create>();
-            viewModel.Matricule = student.Matricule;
-            viewModel.LastName = student.LastName;
-            viewModel.PasswordConfirmation = viewModel.Password;
-
-            var result = studentController.Create(viewModel) as ViewResult;
-
-            Assert.AreEqual(result.ViewName, "");
-        }
-
-        [TestMethod]
-        public void student_create_post_should_return_default_view_when_lastname_dont_correspond_with_matricule()
-        {
-            var students = _fixture.CreateMany<Student>(3);
-            var student = students.First();
-            student.Activated = false;
-            studentRepository.GetAll().Returns(students.AsQueryable());
-            var viewModel = _fixture.Create<ViewModels.Student.Create>();
-            viewModel.Matricule = student.Matricule;
-            viewModel.FirstName = student.FirstName;
-            viewModel.PasswordConfirmation = viewModel.Password;
-
-            var result = studentController.Create(viewModel) as ViewResult;
-
-            Assert.AreEqual(result.ViewName, "");
+            result.ViewName.Should().Be("");
         }
 
         [TestMethod]
@@ -96,7 +59,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         {
             var students = _fixture.CreateMany<Student>(3);
             var student = students.First();
-            student.Activated = false;
+            student.Active= false;
             studentRepository.GetAll().Returns(students.AsQueryable());
             var viewModel = _fixture.Create<ViewModels.Student.Create>();
             viewModel.Matricule = student.Matricule;
@@ -107,7 +70,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
             var routeResult = studentController.Create(viewModel) as RedirectToRouteResult;
             var routeAction = routeResult.RouteValues["Action"];
 
-            routeAction.Should().Be(MVC.Home.Views.ViewNames.Index);
+            routeAction.Should().Be(MVC.Student.Views.ViewNames.CreateConfirmation);
         }
 
         [TestMethod]
@@ -115,8 +78,8 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
         {
             var students = _fixture.CreateMany<Student>(3);
             var student = students.First();
-            student.Activated = true;
-          studentRepository.GetAll().Returns(students.AsQueryable());
+            student.Active = true;
+            studentRepository.GetAll().Returns(students.AsQueryable());
             var viewModel = _fixture.Create<ViewModels.Student.Create>();
             viewModel.Matricule = student.Matricule;
             viewModel.FirstName = student.FirstName;
@@ -125,7 +88,15 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 
             var result = studentController.Create(viewModel) as ViewResult;
 
-            Assert.AreEqual(result.ViewName, "");
+            result.ViewName.Should().Be("");
+        }
+
+        [TestMethod]
+        public void student_createConfirmation_should_render_view()
+        {
+            var result = studentController.CreateConfirmation() as ViewResult;
+
+            result.ViewName.Should().Be("");
         }
     }
 }

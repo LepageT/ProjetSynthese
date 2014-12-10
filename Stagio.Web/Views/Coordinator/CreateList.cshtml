@@ -1,0 +1,69 @@
+﻿@using Stagio.Web.Module.Strings.Shared;
+
+@model IEnumerable<Stagio.Web.ViewModels.Student.ListStudent>
+
+@{
+    ViewBag.Title = "Liste des étudiants qui seront ajoutés";
+}
+
+
+
+<h2 id="createList-page">Liste des étudiants qui seront ajoutés</h2>
+
+<table class="table">
+    <tr>
+        <th class="col-md-2">
+            @Html.DisplayNameFor(model => model.Matricule)
+        </th>
+        <th class="col-md-2">
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th class="col-md-2">
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th class="col-md-2">
+            Retirer l'étudiant
+        </th>
+       
+
+</tr>
+
+    @foreach (var item in Model)
+    {
+        
+        <tr>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.Matricule)
+            </td>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td class="col-md-2">
+                @Html.ActionLink("Retirer", MVC.Coordinator.RemoveStudentFromListStudent(item.Matricule))
+            </td>
+        </tr>
+    }
+
+
+
+</table>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <div class="panel-body">
+
+        <input id="createList-button" type="submit" value="Confirmer" />
+
+    </div>
+}
+
+
+
+<div>
+    @Html.ActionLink(Navigation.ReturnHome, MVC.Home.Index())
+</div>
+

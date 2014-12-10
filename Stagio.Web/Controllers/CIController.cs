@@ -1,8 +1,8 @@
-﻿using System;
-using System.Web.Mvc;
-using System.Data.SqlClient;
-using Stagio.DataLayer;
+﻿using Stagio.DataLayer;
 using Stagio.TestUtilities.Database;
+using System;
+using System.Data.SqlClient;
+using System.Web.Mvc;
 
 namespace Stagio.Web.Controllers
 {
@@ -15,12 +15,19 @@ namespace Stagio.Web.Controllers
             _dbHelper = dbHelper;
         }
 
-        public virtual ActionResult Index()
+        public virtual ActionResult Index(bool isPresentation = false)
         {
             try
             {
                 DeleteDB();
-                SeedDb();
+                if (isPresentation)
+                {
+                    SeedDbPresentation();
+                }
+                else
+                {
+                    SeedDb();
+                }
             }
             catch (Exception ex)
             {
@@ -33,15 +40,18 @@ namespace Stagio.Web.Controllers
         {
             SqlConnection.ClearAllPools();
             _dbHelper.DeleteAll();
-                }
+        }
 
         private void SeedDb()
-            {
+        {
             var testData = new DataBaseTestHelper();
             testData.SeedTables();
-            
-            
+        }
 
+        private void SeedDbPresentation()
+        {
+            var testData = new DataBaseTestHelper();
+            testData.SeedPresentationTables();
         }
     }
 }

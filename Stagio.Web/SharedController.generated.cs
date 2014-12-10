@@ -23,26 +23,28 @@ using System.Web.Routing;
 using T4MVC;
 namespace T4MVC
 {
-    public class SharedController
-    {
+	public class SharedController
+	{
 
-        static readonly ViewsClass s_views = new ViewsClass();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ViewsClass Views { get { return s_views; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ViewsClass
-        {
+		static readonly ViewsClass s_views = new ViewsClass();
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public ViewsClass Views { get { return s_views; } }
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public class ViewsClass
+		{
             static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
                 public readonly string _Layout = "_Layout";
                 public readonly string _LoginPartial = "_LoginPartial";
+                public readonly string _MenuPartial = "_MenuPartial";
             }
             public readonly string _Layout = "~/Views/Shared/_Layout.cshtml";
             public readonly string _LoginPartial = "~/Views/Shared/_LoginPartial.cshtml";
-        }
-    }
+            public readonly string _MenuPartial = "~/Views/Shared/_MenuPartial.cshtml";
+		}
+	}
 
 }
 

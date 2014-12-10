@@ -27,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{1FC578
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stagio.Utilities", "Stagio.Utilities\Stagio.Utilities.csproj", "{12547A44-FF09-479D-820E-E54A227C939C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stagio.Web.Automation", "Stagio.Web.Automation\Stagio.Web.Automation.csproj", "{BB170CE2-A741-484B-A14D-519938B351A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{12547A44-FF09-479D-820E-E54A227C939C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12547A44-FF09-479D-820E-E54A227C939C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12547A44-FF09-479D-820E-E54A227C939C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB170CE2-A741-484B-A14D-519938B351A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB170CE2-A741-484B-A14D-519938B351A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB170CE2-A741-484B-A14D-519938B351A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB170CE2-A741-484B-A14D-519938B351A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

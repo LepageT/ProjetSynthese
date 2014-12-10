@@ -1,22 +1,40 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Security.Principal;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using Stagio.DataLayer;
 using Stagio.Web.Controllers;
+using Stagio.Domain.Entities;
 using Stagio.Web.Services;
-using Stagio.Web.UnitTests.ControllerTests.EnterpriseTests;
 
 namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
 {
     public class StudentControllerBaseClassTests : AllControllersBaseClassTests
     {
         protected StudentController studentController;
-        protected IEntityRepository<Stagio.Domain.Entities.Student> studentRepository;
-
-        [TestInitialize]
+        protected IEntityRepository<Student> studentRepository;
+        protected IEntityRepository<Stage> stageRepository;
+        protected IHttpContextService httpContextService;
+        protected IEntityRepository<Apply> applyRepository;
+        protected IMailler mailler;
+        protected IAccountService accountService;
+        protected IEntityRepository<ApplicationUser> applicationUserRepository;
+        protected IEntityRepository<Notification> notificationRepository;
+        protected INotificationService notification;
+ 
+            
+            [TestInitialize]
         public void StudentControllerTestInit()
         {
-            studentRepository = Substitute.For<IEntityRepository<Stagio.Domain.Entities.Student>>();
-            studentController = new StudentController(studentRepository);
+            studentRepository = Substitute.For<IEntityRepository<Student>>();
+            stageRepository = Substitute.For<IEntityRepository<Stage>>();
+            httpContextService = Substitute.For<IHttpContextService>();
+            mailler = Substitute.For<IMailler>();
+            accountService = Substitute.For<IAccountService>();
+            applyRepository = Substitute.For<IEntityRepository<Apply>>();
+            notificationRepository = Substitute.For<IEntityRepository<Notification>>();
+            applicationUserRepository = Substitute.For<IEntityRepository<ApplicationUser>>();
+            notification = new NotificationService(applicationUserRepository, notificationRepository);
+            studentController = new StudentController(studentRepository, stageRepository, applyRepository, httpContextService, mailler, accountService, notification);
         }
     }
 }

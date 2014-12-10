@@ -154,7 +154,15 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
             var routeResult = coordinatorController.Create(viewModel) as RedirectToRouteResult;
             var routeAction = routeResult.RouteValues["Action"];
 
-            routeAction.Should().Be(MVC.Coordinator.Views.ViewNames.Index);
+            routeAction.Should().Be(MVC.Coordinator.Views.ViewNames.CreateConfirmation);
+        }
+
+        [TestMethod]
+        public void coordinator_createConfirmation_should_renderView()
+        {
+            var result = coordinatorController.CreateConfirmation() as ViewResult;
+
+            result.ViewName.Should().Be("");
         }
     }
 }

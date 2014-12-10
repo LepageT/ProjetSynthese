@@ -1,0 +1,199 @@
+﻿@using System.Web.Mvc.Html
+@using Stagio.Web.Module.Strings.Shared;
+@model Stagio.Web.ViewModels.Stage.ListAllStages
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2 id="listNewStages-page">Liste des stages <mark>à approuver</mark></h2> 
+<div id="stages-count">@(Model.ListNewStages.Count()+ Model.ListStagesAccepted.Count() + Model.ListStagesRefused.Count()) Stage(s)</div>
+                     
+<table class="table">
+    <tr class="row">
+        <th class="col-md-2">
+            @Html.DisplayNameFor(model => model.ListNewStages[0].StageTitle)
+        </th>
+        <th class="col-md-3">
+            @Html.DisplayNameFor(model => model.ListNewStages[0].CompanyName)
+        </th>
+        <th class="col-md-2">
+            @Html.DisplayNameFor(model => model.ListNewStages[0].NbrStagiaire)
+        </th>
+        <th class="col-md-2">
+            @Html.DisplayNameFor(model => model.ListNewStages[0].PublicationDate)
+        </th>
+        <th class="col-md-2">
+            @Html.DisplayNameFor(model => model.ListNewStages[0].LimitDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.ListNewStages)
+    {
+        <tr class="row">
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.StageTitle)
+            </td>
+            <td class="col-md-3">
+                @Html.DisplayFor(modelItem => item.CompanyName)
+            </td>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.NbrStagiaire)
+            </td>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.PublicationDate)
+            </td>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.LimitDate)
+            </td>
+            <td>
+                @Html.ActionLink("Détails", "Details", new { id = item.Id }, new { id = "details-stages" + item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<h2 id="listNewStages-page">Liste des stages acceptés</h2>
+
+<table class="table">
+    <tr class="row">
+        <th class="col-md-2">
+            @Html.DisplayNameFor(model => model.ListStagesAccepted[0].StageTitle)
+        </th>
+        <th class="col-md-3">
+            @Html.DisplayNameFor(model => model.ListStagesAccepted[0].CompanyName)
+        </th>
+        <th class="col-md-2">
+            @Html.DisplayNameFor(model => model.ListStagesAccepted[0].NbrStagiaire)
+        </th>
+        <th class="col-md-2">
+            @Html.DisplayNameFor(model => model.ListStagesAccepted[0].PublicationDate)   
+        </th>
+        <th class="col-md-2">
+            @Html.DisplayNameFor(model => model.ListStagesAccepted[0].LimitDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.ListStagesAccepted)
+    {
+        <tr class="row">
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.StageTitle)
+            </td>
+            <td class="col-md-3">
+                @Html.DisplayFor(modelItem => item.CompanyName)
+            </td>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.NbrStagiaire)
+            </td>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.PublicationDate)
+            </td>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.LimitDate)
+            </td>
+            <td>
+                @Html.ActionLink("Détails", "Details", new { id = item.Id }, new { id = "details-stages" + item.Id }) 
+            </td>
+        </tr>
+    }
+
+</table>
+
+<h2 id="listNewStages-page">Liste des stages refusés</h2>
+
+<table class="table">
+    <tr class="row">
+        <th class="col-md-2">
+            @Html.DisplayNameFor(model => model.ListStagesRefused[0].StageTitle)
+        </th>
+        <th class="col-md-3">
+            @Html.DisplayNameFor(model => model.ListStagesRefused[0].CompanyName)
+        </th>
+        <th class="col-md-2">
+            @Html.DisplayNameFor(model => model.ListStagesRefused[0].NbrStagiaire)
+        </th>
+        <th class="col-md-2">
+            @Html.DisplayNameFor(model => model.ListStagesRefused[0].PublicationDate)
+        </th>
+        <th class="col-md-2">
+            @Html.DisplayNameFor(model => model.ListStagesRefused[0].LimitDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.ListStagesRefused)
+    {
+        <tr class="row">
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.StageTitle)
+            </td>
+            <td class="col-md-3">
+                @Html.DisplayFor(modelItem => item.CompanyName)
+            </td>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.NbrStagiaire)
+            </td>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.PublicationDate)
+            </td>
+            <td class="col-md-2">
+                @Html.DisplayFor(modelItem => item.LimitDate)
+            </td>
+            <td>
+                @Html.ActionLink("Détails", "Details", new { id = item.Id }, new { id = "details-stages" + item.Id })
+            </td>
+        </tr>
+    }
+    </table>
+    <h2 id="listNewStages-page">Liste des stages retirés par une entreprise</h2>
+
+    <table class="table">
+        <tr class="row">
+            <th class="col-md-2">
+                @Html.DisplayNameFor(model => model.ListStagesRemoved[0].StageTitle)
+            </th>
+            <th class="col-md-3">
+                @Html.DisplayNameFor(model => model.ListStagesRemoved[0].CompanyName)
+            </th>
+            <th class="col-md-2">
+                @Html.DisplayNameFor(model => model.ListStagesRemoved[0].NbrStagiaire)
+            </th>
+            <th class="col-md-2">
+                @Html.DisplayNameFor(model => model.ListStagesRemoved[0].PublicationDate)
+            </th>
+            <th class="col-md-2">
+                @Html.DisplayNameFor(model => model.ListStagesRemoved[0].LimitDate)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.ListStagesRemoved)
+        {
+            <tr class="row">
+                <td class="col-md-2">
+                    @Html.DisplayFor(modelItem => item.StageTitle)
+                </td>
+                <td class="col-md-3">
+                    @Html.DisplayFor(modelItem => item.CompanyName)
+                </td>
+                <td class="col-md-2">
+                    @Html.DisplayFor(modelItem => item.NbrStagiaire)
+                </td>
+                <td class="col-md-2">
+                    @Html.DisplayFor(modelItem => item.PublicationDate)
+                </td>
+                <td class="col-md-2">
+                    @Html.DisplayFor(modelItem => item.LimitDate)
+                </td>
+                <td>
+                    @Html.ActionLink("Détails", "Details", new { id = item.Id }, new { id = "details-stages" + item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+@Html.ActionLink(Navigation.ReturnHome, MVC.Coordinator.Index())

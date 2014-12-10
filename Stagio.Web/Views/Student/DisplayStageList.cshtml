@@ -1,0 +1,53 @@
+﻿@using Stagio.Web.Module.Strings.Shared;
+@model IEnumerable<Stagio.Web.ViewModels.Student.StageList>
+
+@{
+    ViewBag.Title = "Liste des stages";
+}
+
+<h2 id="student-StageList">Liste des offres de stages</h2>
+
+<div class="text-right" id="stages-count">@Model.Count() stage(s)</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.stageTitle)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.companyName)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.limitDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.stageTitle, MVC.Stage.ViewStageInfo().AddRouteValues(new { id = item.Id }), new { id = "details-stages" + item.Id })
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.companyName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.limitDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td></td>
+        </tr>
+    }
+
+</table>
+@Html.ActionLink(Navigation.ReturnHome, MVC.Student.Index())

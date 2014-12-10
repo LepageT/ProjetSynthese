@@ -1,4 +1,6 @@
-﻿@model Stagio.Web.ViewModels.Student.Edit
+﻿
+@using Stagio.Web.Module.Strings.Shared;
+@model Stagio.Web.ViewModels.Student.Edit
 
 @using (Html.BeginForm())
 {
@@ -84,5 +86,5 @@
 }
 
 <div>
-    @Html.ActionLink("Retour à l'accueil", MVC.Home.Index())
+    @Html.ActionLink(Navigation.ReturnHome, MVC.Student.Index())
 </div>

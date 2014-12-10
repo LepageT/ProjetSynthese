@@ -1,10 +1,10 @@
-﻿using System.Security.Claims;
+﻿using Stagio.DataLayer;
+using Stagio.Web.Mappers;
+using System.Security.Claims;
 using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using Stagio.DataLayer;
-using Stagio.Web.Mappers;
 
 namespace Stagio.Web
 {
@@ -12,6 +12,7 @@ namespace Stagio.Web
     {
         protected void Application_Start()
         {
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
@@ -24,6 +25,8 @@ namespace Stagio.Web
             AutoMapperConfiguration.Configure();
 
             AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.NameIdentifier;
+
+
         }
     }
 }

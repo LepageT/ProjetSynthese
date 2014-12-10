@@ -8,13 +8,11 @@ using Stagio.Web.Services;
 
 namespace Stagio.Web.App_Start
 {
-    using System;
-    using System.Web;
-
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
     using Ninject;
     using Ninject.Web.Common;
+    using System;
+    using System.Web;
 
     public static class NinjectWebCommon 
     {
@@ -72,14 +70,22 @@ namespace Stagio.Web.App_Start
             kernel.Bind<IEntityRepository<ApplicationUser>>().To<EfEntityRepository<ApplicationUser>>().InRequestScope();
             kernel.Bind<IEntityRepository<ContactEnterprise>>().To<EfEntityRepository<ContactEnterprise>>().InRequestScope();
             kernel.Bind<IEntityRepository<Stage>>().To<EfEntityRepository<Stage>>().InRequestScope();
+            kernel.Bind<IEntityRepository<Apply>>().To<EfEntityRepository<Apply>>().InRequestScope();
+            kernel.Bind<IEntityRepository<Interview>>().To<EfEntityRepository<Interview>>().InRequestScope();
+            kernel.Bind<IEntityRepository<InvitationContactEnterprise>>().To<EfEntityRepository<InvitationContactEnterprise>>().InRequestScope();
+            kernel.Bind<IEntityRepository<Notification>>().To<EfEntityRepository<Notification>>().InRequestScope();
+            kernel.Bind<IEntityRepository<StageAgreement>>().To<EfEntityRepository<StageAgreement>>().InRequestScope();
+            kernel.Bind<IEntityRepository<Misc>>().To<EfEntityRepository<Misc>>().InRequestScope();
 
-            
             kernel.Bind<IMailler>().ToConstant(Mailler.Instance);
 
             kernel.Bind<IDatabaseHelper>().To<EfDatabaseHelper>().InRequestScope();
 
             kernel.Bind<IHttpContextService>().To<HttpContextService>().InRequestScope();
             kernel.Bind<IAccountService>().To<AccountService>().InRequestScope();
+            kernel.Bind<INotificationService>().To<NotificationService>().InRequestScope();
+
+
         }        
     }
 }

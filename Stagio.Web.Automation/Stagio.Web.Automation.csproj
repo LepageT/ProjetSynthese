@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BB170CE2-A741-484B-A14D-519938B351A5}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Stagio.Web.Automation</RootNamespace>
+    <AssemblyName>Stagio.Web.Automation</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebDriver">
+      <HintPath>..\packages\Selenium.WebDriver.2.43.1\lib\net40\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support">
+      <HintPath>..\packages\Selenium.Support.2.43.1\lib\net40\WebDriver.Support.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Navigation\MenuSelector.cs" />
+    <Compile Include="Navigation\Navigation.cs" />
+    <Compile Include="PageObjects\ContactEnterprise\CreateContactEnterprisePage.cs" />
+    <Compile Include="PageObjects\ContactEnterprise\CreateStageContactEnterprisePage.cs" />
+    <Compile Include="PageObjects\ContactEnterprise\DetailsStudentApplyContactEnterprisePage.cs" />
+    <Compile Include="PageObjects\ContactEnterprise\EditContactEnterprisePage.cs" />
+    <Compile Include="PageObjects\ContactEnterprise\EditStagePage.cs" />
+    <Compile Include="PageObjects\ContactEnterprise\IndexContactEnterprisePage.cs" />
+    <Compile Include="PageObjects\ContactEnterprise\InviteContactEnterprisePage.cs" />
+    <Compile Include="PageObjects\ContactEnterprise\ListStageContactEnterprisePage.cs" />
+    <Compile Include="PageObjects\ContactEnterprise\ReactivateContactEnterprisePage.cs" />
+    <Compile Include="PageObjects\ContactEnterprise\StudentApplyContactEnterprisePage.cs" />
+    <Compile Include="PageObjects\Coordinator\AddStudentsCoordinatorPage.cs" />
+    <Compile Include="PageObjects\Coordinator\BlockWebsiteAccessCoordinatorPage.cs" />
+    <Compile Include="PageObjects\Coordinator\ChangeStageApplyDatesCoordinatorPage.cs" />
+    <Compile Include="PageObjects\Coordinator\CreateCoordinatorPage.cs" />
+    <Compile Include="PageObjects\Coordinator\CreateListStudentsCoordinatorPage.cs" />
+    <Compile Include="PageObjects\Coordinator\CreateStageAgreementCoordinatorPage.cs" />
+    <Compile Include="PageObjects\Coordinator\DetailsStageCoordinatorPage.cs" />
+    <Compile Include="PageObjects\Coordinator\DetailsStudentApplyCoordinatorPage.cs" />
+    <Compile Include="PageObjects\Coordinator\IndexCoordinatorPage.cs" />
+    <Compile Include="PageObjects\Coordinator\InviteContactEnterpriseCoordinatorPage.cs" />
+    <Compile Include="PageObjects\Coordinator\InviteContactOneEnterprisePage.cs" />
+    <Compile Include="PageObjects\Coordinator\InviteCoordinatorPage.cs" />
+    <Compile Include="PageObjects\Coordinator\ListAllStagesCoordinatorPage.cs" />
+    <Compile Include="PageObjects\Coordinator\RemoveStudentsCoordinatorPage.cs" />
+    <Compile Include="PageObjects\Coordinator\ResultCreateListStudentsCoordinatorPage.cs" />
+    <Compile Include="PageObjects\Coordinator\StudentApplyListCoordinatorPage.cs" />
+    <Compile Include="PageObjects\Coordinator\StudentListCoordinatorPage.cs" />
+    <Compile Include="PageObjects\EditStageAgreementPage.cs" />
+    <Compile Include="PageObjects\HomePage.cs" />
+    <Compile Include="PageObjects\LoginPage.cs" />
+    <Compile Include="PageObjects\Notification\NotificationListPage.cs" />
+    <Compile Include="PageObjects\StageAgreement\StageAgreementListPage.cs" />
+    <Compile Include="PageObjects\Student\ApplyListStudentPage.cs" />
+    <Compile Include="PageObjects\Student\ApplyStudentPage.cs" />
+    <Compile Include="PageObjects\Student\ConfirmationUploadCVLetterPage.cs" />
+    <Compile Include="PageObjects\Student\CreateInterviewStudentPage.cs" />
+    <Compile Include="PageObjects\Student\CreateStudentPage.cs" />
+    <Compile Include="PageObjects\Student\EditInterviewPage.cs" />
+    <Compile Include="PageObjects\Student\ListInterview.cs" />
+    <Compile Include="PageObjects\Student\ResultatCreateListStudentPage.cs" />
+    <Compile Include="PageObjects\Student\EditStudentPage.cs" />
+    <Compile Include="PageObjects\Student\IndexStudentPage.cs" />
+    <Compile Include="PageObjects\Student\StageListStudentPage.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Selenium\Driver.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Stagio.Domain\Stagio.Domain.csproj">
+      <Project>{976fe607-b2b5-412f-98b1-b8106d6b610c}</Project>
+      <Name>Stagio.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>16497</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:16497/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Ce projet fait référence à des packages NuGet qui sont manquants sur cet ordinateur. Activez l'option de restauration des packages NuGet pour les télécharger. Pour plus d'informations, consultez http://go.microsoft.com/fwlink/?LinkID=322105. Le fichier manquant est le suivant : {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

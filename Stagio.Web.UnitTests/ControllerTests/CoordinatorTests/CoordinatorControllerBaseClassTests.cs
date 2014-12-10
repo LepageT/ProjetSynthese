@@ -10,7 +10,7 @@ using Stagio.Web.Controllers;
 using Stagio.Web.Mappers;
 using NSubstitute;
 using Stagio.Web.Services;
-using Stagio.Web.UnitTests.ControllerTests.EnterpriseTests;
+using Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests;
 
 namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
 {
@@ -22,10 +22,19 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
         protected IEntityRepository<Coordinator> coordinatorRepository;
         protected IEntityRepository<Invitation> invitationRepository;
         protected IEntityRepository<ContactEnterprise> enterpriseRepository;
-
-        
-        protected IAccountService _accountService;
+        protected IEntityRepository<Apply> applyRepository;
+        protected IEntityRepository<Stage> stageRepository;
+        protected IEntityRepository<Student> studentRepository;
+        protected IEntityRepository<Interview> interviewRepository; 
+        protected IEntityRepository<InvitationContactEnterprise> invitationContactRepository;
+        protected IHttpContextService httpContextService;
+        protected IEntityRepository<Notification> notificationRepository;
+        protected IEntityRepository<ApplicationUser> applicationRepository; 
+        protected IEntityRepository<Misc> miscRepository; 
+        protected IAccountService accountService;
+        protected INotificationService notificationService;
         protected IMailler mailler;
+        protected IEntityRepository<StageAgreement> stageAgreementRepository;
 
         [TestInitialize]
         public void CoordinatorControllerTestInit()
@@ -34,12 +43,28 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
             coordinatorRepository = Substitute.For<IEntityRepository<Coordinator>>();
             invitationRepository = Substitute.For<IEntityRepository<Invitation>>();
             enterpriseRepository = Substitute.For<IEntityRepository<ContactEnterprise>>();
-            _accountService = Substitute.For<IAccountService>();
-            
-
+            applyRepository = Substitute.For<IEntityRepository<Apply>>();
+            stageRepository = Substitute.For<IEntityRepository<Stage>>();
+            studentRepository = Substitute.For<IEntityRepository<Student>>();
+            interviewRepository = Substitute.For<IEntityRepository<Interview>>();
+            accountService = Substitute.For<IAccountService>();
+            invitationContactRepository = Substitute.For<IEntityRepository<InvitationContactEnterprise>>();
+            accountService = Substitute.For<IAccountService>();
+            httpContextService = Substitute.For<IHttpContextService>();
+            notificationRepository = Substitute.For<IEntityRepository<Notification>>();
+            applicationRepository = Substitute.For<IEntityRepository<ApplicationUser>>();
             mailler = Substitute.For<IMailler>();
+            stageAgreementRepository = Substitute.For<IEntityRepository<StageAgreement>>();
 
-            coordinatorController = new CoordinatorController(enterpriseRepository, coordinatorRepository, invitationRepository, mailler, _accountService);
+            notificationService = new NotificationService(applicationRepository, notificationRepository);
+            miscRepository = Substitute.For<IEntityRepository<Misc>>();
+
+            coordinatorController = new CoordinatorController(enterpriseRepository, coordinatorRepository, invitationRepository, mailler,
+                accountService, invitationContactRepository, applyRepository, stageRepository, studentRepository,
+                interviewRepository, stageAgreementRepository,notificationService, httpContextService, miscRepository);
+
+
+            coordinatorController = new CoordinatorController(enterpriseRepository, coordinatorRepository, invitationRepository, mailler, accountService, invitationContactRepository, applyRepository, stageRepository, studentRepository, interviewRepository, stageAgreementRepository, notificationService,httpContextService,  miscRepository);
         }
     }
 }

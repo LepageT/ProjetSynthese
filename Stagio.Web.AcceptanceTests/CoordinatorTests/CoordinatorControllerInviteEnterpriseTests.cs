@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using Stagio.Web.Automation.PageObjects;
+using Stagio.Web.Automation.PageObjects.Coordinator;
 
 namespace Stagio.Web.AcceptanceTests.CoordinatorTests
 {
@@ -12,37 +15,27 @@ namespace Stagio.Web.AcceptanceTests.CoordinatorTests
     public class CoordinatorControllerInviteEnterpriseTests : BaseTests
     {
         [TestMethod]
-        public void coordinator_should_be_able_to_access_invite_enterprise_page()
+        public void coordinator_not_should_be_able_to_access_invite_enterprise_page_if_not_logged_in()
         {
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Coordinator/InviteContactEnterprise");
+            InviteContactEnterpriseCoordinatorPage.GoToByUrl();
 
-            try
-            {
-                _driver.FindElement(By.Id("invite-enterprise-page"));
-            }
-            catch (NoSuchElementException)
-            {
-                Assert.Fail("Identifiant invite-enterprise-page non trouvé sur la page.");
-            }
+            LoginPage.IsDisplayed.Should().BeTrue();
+           
         }
 
 
         [TestMethod]
         public void coordinator_should_be_able_to_invite_enterprise()
         {
+            LoginPage.GoTo();
+            LoginPage.LoginAs(CoordonatorUsername, CoordonatorPassword);
+            InviteContactEnterpriseCoordinatorPage.GoTo();
             const string MESSAGE_INVITATION = "test";
-            _driver.Navigate().GoToUrl("http://thomarelau.local/Coordinator/InviteContactEnterprise");
-            _driver.FindElement(By.Id("Message")).SendKeys(MESSAGE_INVITATION);
-            _driver.FindElement(By.Id("send-button")).Click();
-            try
-            {
-                _driver.FindElement(By.Id("confirmationInvitationContact-page"));
-            }
-            catch (NoSuchElementException)
-            {
-                Assert.Fail("Identifiant confirmationInvitationContact-page non trouvé sur la page.");
-            }
-           
+
+            InviteContactEnterpriseCoordinatorPage.AddMessageInvitationAndSend(MESSAGE_INVITATION);
+
+            InviteContactEnterpriseCoordinatorPage.ConfirmationPageIsDisplayed.Should().BeTrue();
+            
 
         }
     }

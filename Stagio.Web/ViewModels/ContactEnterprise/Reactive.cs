@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Stagio.Web.Validations;
+using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Stagio.DataLayer;
-using Stagio.Web.Validations;
 
 namespace Stagio.Web.ViewModels.ContactEnterprise
 {
@@ -18,8 +14,13 @@ namespace Stagio.Web.ViewModels.ContactEnterprise
         [DisplayName("Courriel")]
         [Required(ErrorMessage = "Requis")]
         [DataType(DataType.EmailAddress)]
-        [ValidationVerifyIfEmailIsUnique]
         public string Email { get; set; }
+
+        [DisplayName("Confirmation Courriel")]
+        [Required(ErrorMessage = "Requis")]
+        [DataType(DataType.EmailAddress)]
+        [System.ComponentModel.DataAnnotations.CompareAttribute("Email", ErrorMessage = "Les emails ne correspondent pas")]
+        public string ConfirmEmail { get; set; }
 
         [DisplayName("Nom")]
         [Required(ErrorMessage = "Requis")]
@@ -39,7 +40,7 @@ namespace Stagio.Web.ViewModels.ContactEnterprise
         public string Telephone { get; set; }
 
         [DisplayName("Poste")]
-        public int? Poste { get; set; }
+        public string Poste { get; set; }
 
         [DisplayName("Mot de passe")]
         [Required(ErrorMessage = "Requis")]
@@ -55,8 +56,17 @@ namespace Stagio.Web.ViewModels.ContactEnterprise
 
         [HiddenInput(DisplayValue = false)]
         public bool Active { get; set; }
+
+        [DataType(DataType.MultilineText)]
+        [DisplayName("Message")]
+        public String Message { get; set; }
+
+        [HiddenInput(DisplayValue = false)]
+        public string Token { get; set; }
+
+        public int InvitationId { get; set; }
     }
 
-    
-   
+
+
 }

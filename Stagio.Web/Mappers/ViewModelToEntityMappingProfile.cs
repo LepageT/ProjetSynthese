@@ -16,7 +16,6 @@ namespace Stagio.Web.Mappers
                 .ForMember(dest => dest.FirstName, opt => opt.Ignore())
                 .ForMember(dest => dest.LastName, opt => opt.Ignore())
                 .ForMember(dest => dest.Matricule, opt => opt.Ignore())
-                .ForMember(dest => dest.Activated, opt => opt.Ignore())
                 .IgnoreAllNonExisting();
 
             Mapper.CreateMap<ViewModels.Student.ListStudent, Student>()
@@ -29,6 +28,9 @@ namespace Stagio.Web.Mappers
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .IgnoreAllNonExisting();
 
+            Mapper.CreateMap<ViewModels.StageAgreement.EditStageAgreement, StageAgreement>()
+              .IgnoreAllNonExisting();
+
             Mapper.CreateMap<ViewModels.Coordinator.Create, Coordinator>()
                 .IgnoreAllNonExisting();
 
@@ -37,7 +39,32 @@ namespace Stagio.Web.Mappers
 
             Mapper.CreateMap<ViewModels.Stage.Create, Stage>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
-                .ForMember(dest => dest.publicationDate, opt => opt.Ignore());
+                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => 0))
+                .ForMember(dest => dest.PublicationDate, opt => opt.Ignore())
+                .IgnoreAllNonExisting();
+
+            Mapper.CreateMap<ViewModels.Student.Apply, Apply>()
+               .IgnoreAllNonExisting();
+
+            Mapper.CreateMap<ViewModels.Interviews.Create, Interview>()
+                .ForMember(dest => dest.Present, opt => opt.Ignore())
+                .IgnoreAllNonExisting();
+
+            Mapper.CreateMap<ViewModels.Interviews.Edit, Interview>()
+                .IgnoreAllNonExisting();
+
+            Mapper.CreateMap<ViewModels.ContactEnterprise.Create, ContactEnterprise>()
+                .IgnoreAllNonExisting();
+
+            Mapper.CreateMap<ViewModels.Stage.Edit, Stage>()
+                .IgnoreAllNonExisting();
+
+            Mapper.CreateMap<ViewModels.ContactEnterprise.Edit, ContactEnterprise>()
+                .ForMember(dest => dest.EnterpriseName, opt => opt.Ignore())
+                .IgnoreAllNonExisting();
+
+           
+
         }
     }
 }

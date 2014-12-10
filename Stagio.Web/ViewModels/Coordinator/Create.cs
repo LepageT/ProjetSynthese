@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Web.Mvc;
-using Stagio.DataLayer;
 
 namespace Stagio.Web.ViewModels.Coordinator
 {
@@ -35,6 +31,12 @@ namespace Stagio.Web.ViewModels.Coordinator
         [DisplayName("Courriel")]
         [Required]
         public string Email { get; set; }
+
+        [DisplayName("Confirmation Courriel")]
+        [Required(ErrorMessage = "Requis")]
+        [DataType(DataType.EmailAddress)]
+        [System.ComponentModel.DataAnnotations.CompareAttribute("Email", ErrorMessage = "Les emails ne correspondent pas")]
+        public string ConfirmEmail { get; set; }
 
         [HiddenInput(DisplayValue = false)]
         public string Token { get; set; }

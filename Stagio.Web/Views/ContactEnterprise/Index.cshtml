@@ -1,0 +1,52 @@
+﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<Stagio.Web.ViewModels.Notification.Notification>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 id="contact-index-page">Accueil Entreprise</h2>
+
+
+    <div>
+       Pour ajouter un autre employé de votre entreprise, cliquez  @Html.ActionLink("ici", MVC.ContactEnterprise.InviteContactEnterprise(), new { id = "invite-contact-enterprise" })
+    </div>
+    <div>
+       Pour ajouter un offre de stage, cliquez @Html.ActionLink("ici", MVC.ContactEnterprise.CreateStage(), new { id = "create-stage-enterprise" })
+    </div>
+    <div>
+       Pour afficher la liste de vos stages, cliquez  @Html.ActionLink("ici", MVC.ContactEnterprise.ListStage(), new { id = "listContact" })
+    </div>
+    <div>
+        Pour modifier votre profil, cliquez  @Html.ActionLink("ici", MVC.ContactEnterprise.Edit(), new { id = "edit-profil" })
+    </div>
+
+<h3>Notifications:</h3>
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.Title, MVC.Notification.Detail().AddRouteValues(new { id = item.NotificationId }), new { id = "notification-detail" + item.NotificationId })
+            </td>
+            <td>
+                @Html.Label(item.Date.ToShortDateString())
+            </td>
+
+        </tr>
+    }
+
+</table>
+    

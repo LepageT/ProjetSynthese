@@ -1,0 +1,16 @@
+﻿@using Stagio.Web.Module.Strings.Shared;
+@{
+    ViewBag.Title = "RefuseApplyConfirmation";
+}
+
+<h2 id="confirmationRefuseApply-page">Confirmation</h2>
+<p>Vous n'êtes pas intéressé par la candidature de cet étudiant.</p>
+
+<div>
+
+    @Html.ActionLink(Navigation.ReturnHome, MVC.Home.Index())
+
+    @Html.ActionLink("Retour à la liste de stages", MVC.ContactEnterprise.ListStage())
+
+</div>
+

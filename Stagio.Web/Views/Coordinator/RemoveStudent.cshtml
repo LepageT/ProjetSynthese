@@ -1,0 +1,66 @@
+﻿@using Stagio.Web.Module.Strings.Shared
+@model IEnumerable<Stagio.Web.ViewModels.Coordinator.RemoveStudent>
+
+<h2>Retirer des étudiants du système</h2>
+
+<p>Cochez les étudiants que vous voulez retirer du système</p>
+
+<div class="text-right" id="student-count">@Model.Count() étudiant(s)</div>
+
+@using (Html.BeginForm())
+{
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Matricule)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remove)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.Matricule)
+
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.LastName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => item.FirstName)
+            </td>
+            <td>
+                <input type="checkbox" name="idStudentsToRemove" value=@item.Id>
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+    <div class="form-group">
+        <div class="col-md-2">
+            <input type="submit" id="remove-button" value="Retirer" class="btn btn-default" />
+        </div>
+    </div>
+}
+
+<br/>
+<br/>
+
+<div>
+    @Html.ActionLink(Navigation.ReturnHome, "Index")
+</div>

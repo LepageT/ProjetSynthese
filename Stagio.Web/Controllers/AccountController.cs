@@ -1,10 +1,17 @@
 ﻿
+using AutoMapper;
+using Microsoft.AspNet.Identity;
+using Ninject.Infrastructure.Disposal;
+using Stagio.DataLayer;
+using Stagio.Domain.Application;
+using Stagio.Domain.Entities;
+using Stagio.Web.Module;
+using Stagio.Web.Module.Strings.Controller;
+using Stagio.Web.Services;
+using Stagio.Web.ViewModels.Account;
 using System.Linq;
 using System.Security.Claims;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Stagio.Domain.Entities;
-using Stagio.Web.Services;
 
 namespace Stagio.Web.Controllers
 {
@@ -12,24 +19,23 @@ namespace Stagio.Web.Controllers
     {
         private readonly IHttpContextService _httpContext;
         private readonly IAccountService _accountService;
+        private readonly IEntityRepository<ApplicationUser> _accountRepository;
+   
 
         public AccountController(IHttpContextService httpContext,
-                                 IAccountService accountService)
+            IAccountService accountService, IEntityRepository<ApplicationUser> accountRepository  )
         {
+            _accountRepository = accountRepository;
             _httpContext = httpContext;
             _accountService = accountService;
-        }
-        // GET: Account
-        public virtual ActionResult Index()
-        {
-            return View();
+          
         }
 
         public virtual ActionResult Login()
         {
             return View();
         }
-
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public virtual ActionResult Login(ViewModels.Account.Login accountLoginViewModel)
@@ -41,12 +47,19 @@ namespace Stagio.Web.Controllers
 
             var user = _accountService.ValidateUser(accountLoginViewModel.Username, accountLoginViewModel.Password);
 
+
             if (!user.Any())
             {
-                ModelState.AddModelError("loginError", "Mot de passe ou nom d'utilisateur non existant");
+                ModelState.AddModelError("loginError", AccountResources.ErrorLogin);
+                this.Flash(AccountResources.ErrorLogin, FlashEnum.Error);
                 return View("");
             }
-
+            if (!_accountService.isCoordonator(user.First()) && !_accountService.isBetweenAccesibleDates())
+            {
+                ModelState.AddModelError("loginError", AccountResources.ErrorLogin);
+                this.Flash(AccountResources.ErrorLoginOutOfApplyDateRange, FlashEnum.Error);
+                return View("");
+            }
             AuthentificateUser(user.First());
 
             return RedirectToAction(MVC.Home.Index());
@@ -62,10 +75,9 @@ namespace Stagio.Web.Controllers
         {
             var identity = new ClaimsIdentity(new[]
             {
-                new Claim(ClaimTypes.Name, applicationUser.Name),
-                new Claim(ClaimTypes.NameIdentifier, applicationUser.Id.ToString()),
-            },
-                DefaultAuthenticationTypes.ApplicationCookie);
+                new Claim(ClaimTypes.Name, applicationUser.FirstName + " " + applicationUser.LastName),
+                new Claim(ClaimTypes.NameIdentifier, applicationUser.Id.ToString())
+            }, DefaultAuthenticationTypes.ApplicationCookie);
 
             foreach (var role in applicationUser.Roles)
             {
@@ -74,5 +86,24 @@ namespace Stagio.Web.Controllers
 
             _httpContext.AuthenticationSignIn(identity);
         }
+
+        public virtual ActionResult Details()
+        {
+            var userID = _httpContext.GetUserId();
+            
+            var account = _accountRepository.GetById(userID);
+
+            var details = Mapper.Map<Details>(account);
+
+            if (account == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(details);
+        }
+
+       
     }
+
 }

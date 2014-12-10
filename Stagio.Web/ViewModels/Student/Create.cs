@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Stagio.Web.Validations;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Web.Mvc;
-using Stagio.DataLayer;
-using Stagio.Web.Validations;
 
 namespace Stagio.Web.ViewModels.Student
 {
@@ -48,5 +44,10 @@ namespace Stagio.Web.ViewModels.Student
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
+        [DisplayName("Confirmation Courriel")]
+        [Required(ErrorMessage = "Requis")]
+        [DataType(DataType.EmailAddress)]
+        [System.ComponentModel.DataAnnotations.CompareAttribute("Email", ErrorMessage = "Les emails ne correspondent pas")]
+        public string ConfirmEmail { get; set; }
     }
 }

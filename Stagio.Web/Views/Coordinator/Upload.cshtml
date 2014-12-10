@@ -1,0 +1,21 @@
+﻿@using Stagio.Web.Module.Strings.Shared;
+<h2 id="upload-page">Importer les matricules des étudiants</h2>
+
+<p>Le fichier doit être un fichier csv</p>
+
+<form action="" method="post" enctype="multipart/form-data">
+
+    <label for="file">Fichier csv:</label>
+    <input  type="file" name="file" id="file" />
+ 
+    <input type="submit" id="button-upload" value ="Importer"/>
+       
+</form>
+
+<div>
+    @ViewBag.Message
+</div>
+
+<div>
+    @Html.ActionLink(Navigation.ReturnHome, MVC.Home.Index())
+</div>

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Web;
+﻿using System.Security.Claims;
 
 namespace Stagio.Web.Services
 {
@@ -11,5 +7,6 @@ namespace Stagio.Web.Services
         int GetUserId();
         void AuthenticationSignIn(ClaimsIdentity identity);
         void AuthenticationSignOut();
+
     }
 }

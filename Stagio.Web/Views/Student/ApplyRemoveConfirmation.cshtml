@@ -1,0 +1,11 @@
+﻿@using Stagio.Web.Module.Strings.Shared;
+@model Stagio.Web.ViewModels.Student.Apply
+
+<h2 id="confirmationRemoveApplyStudent-page">Postulation retirée</h2>
+<p>Vous avez bien retiré votre postulation de stage.</p>
+<p>Veuillez prendre note que si vous avez reçu une offre de l'entreprise, vous devez communiquer avec celle-ci pour l'informer que vous n'êtes plus intéressé par leur offre de stage.</p>
+
+
+<div>
+    @Html.ActionLink(Navigation.ReturnToStageList, MVC.Student.ApplyList())
+</div>

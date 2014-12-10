@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using Ploeh.AutoFixture;
-using Stagio.Domain.Entities;
-using AutoMapper;
 using FluentAssertions;
 
 namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
@@ -56,6 +51,14 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
 
             routeAction.Should().Be(MVC.Coordinator.Views.ViewNames.InvitationSucceed);
 
+        }
+
+        [TestMethod]
+        public void coordinator_inviteSucceed_should_render_view()
+        {
+            var result = coordinatorController.InvitationSucceed() as ViewResult;
+
+            result.ViewName.Should().Be("");
         }
     }
 }

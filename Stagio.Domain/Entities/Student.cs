@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Stagio.Domain.Entities
@@ -14,11 +9,6 @@ namespace Stagio.Domain.Entities
 
         public int Matricule { get; set; }
 
-
-        [DefaultValue(false)]
-        public bool Activated { get; set; }
-
-        public string Email { get; set; }
-
+        public bool hadStage { get; set; }
     }
 }

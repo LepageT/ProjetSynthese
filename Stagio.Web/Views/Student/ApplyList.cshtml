@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Stagio.Web.ViewModels.Student.AppliedStages>
+
+@{
+    ViewBag.Title = "ApplyList";
+}
+
+<h2 id="student-ApplyList">Listes des stages avec candidature</h2>
+<div class="text-right" id="stages-count">@Model.Count() stage(s)</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.stageTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateApply)
+
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.stageTitle, MVC.Stage.ViewStageInfo().AddRouteValues(new { id = item.IdStage }), new { id = "details-stages" + item.IdStage })
+            </td>
+            <td>
+                @Html.Label(item.DateApply.ToShortDateString())
+            </td>
+            @if (item.Status == 3)
+            {
+                <td>
+                    Candidature retirée
+           
+                </td>
+            }
+            <td>
+                @if (item.Status != 3)
+                {
+
+                    using (Html.BeginForm("ApplyRemoveConfirmation", "Student", new {id = item.Id}, FormMethod.Get))
+                    {
+                        <input type="submit" value="Retirer" id="remove-apply" />
+                    }
+                }
+                else
+                {
+                    using (Html.BeginForm("ApplyReApplyConfirmation", "Student", new { id = item.Id }, FormMethod.Get))
+                    {
+                        <input type="submit" value="Resoumettre" id="reapply-apply" />
+                    }
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+

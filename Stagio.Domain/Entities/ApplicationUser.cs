@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Stagio.Domain.Entities
 {
@@ -12,11 +8,8 @@ namespace Stagio.Domain.Entities
         //[Required(ErrorMessage = "Requis")]
         [MinLength(8)]
         public string Password { get; set; }
-        [Required]
+       // [Required]
         public string UserName { get; set; }
-
-        public string Name { get; set; }
-
 
         public string LastName { get; set; }
 
@@ -25,13 +18,12 @@ namespace Stagio.Domain.Entities
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Entrez un numéro valide.")]
         public string Telephone { get; set; }
 
-        public string Email { get; set; }
-        /*Si nombre X maximum de connexions echoues, ajouter un fail counter + timestamp de quand le counter est rendu a 4
-         */ 
-        
-        //Navigation properties
-        public virtual ICollection<UserRole> Roles { get; set; }
+        public string Poste { get; set; }
 
+        public string Email { get; set; }
+
+        public virtual ICollection<UserRole> Roles { get; set; }
+        public bool Active { get; set; }
         public ApplicationUser()
         {
             Roles = new List<UserRole>();
