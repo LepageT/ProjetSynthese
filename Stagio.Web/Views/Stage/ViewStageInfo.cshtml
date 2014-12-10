@@ -205,10 +205,16 @@
 
         </div>
     </div>
-
-    @using (Html.BeginForm("ApplyStage", "Student", new { id = Model.Id}, FormMethod.Get))
+    @if (!Model.HadStage)
     {
-       <input type="submit" value="Postuler" id="accept-stage" />
+        using (Html.BeginForm("ApplyStage", "Student", new { id = Model.Id }, FormMethod.Get))
+        {
+            <input type="submit" value="Postuler" id="accept-stage" />
+        }
+    }
+    else
+    {
+        <p>Vous avez déjà trouvé votre stage</p>
     }
 
     <p>
