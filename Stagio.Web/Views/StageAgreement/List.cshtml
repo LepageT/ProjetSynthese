@@ -68,7 +68,7 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model.ListStageAgreementNotSigned)
+    @foreach (var item in Model.ListStagesAgreementsSigned)
     {
         <tr class="row">
             <td class="col-md-2">
@@ -82,6 +82,9 @@
             </td>
             <td class="col-md-2">
                 @Html.DisplayFor(modelItem => item.StudentLastName)
+            </td>
+            <td>
+                @Html.ActionLink("Détail", MVC.StageAgreement.Edit(item.Id))
             </td>
         </tr>
     }

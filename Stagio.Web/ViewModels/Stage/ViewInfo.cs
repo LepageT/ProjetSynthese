@@ -93,5 +93,7 @@ namespace Stagio.Web.ViewModels.Stage
 
         [DisplayName("Stagiaire si connu")]
         public string StagiaireIfKnew { get; set; }
+
+        public bool HadStage { get; set; }
     }
 }

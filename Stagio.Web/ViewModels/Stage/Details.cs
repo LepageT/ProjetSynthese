@@ -18,27 +18,27 @@ namespace Stagio.Web.ViewModels.Stage
 
 
         //Responsable
-        [DisplayName("Nom:")]
+        [DisplayName("Nom")]
         public String ResponsableToName { get; set; }
-        [DisplayName("Titre:")]
+        [DisplayName("Titre")]
         public String ResponsableToTitle { get; set; }
-        [DisplayName("Courriel:")]
+        [DisplayName("Courriel")]
         public String ResponsableToEmail { get; set; }
-        [DisplayName("Téléphone:")]
+        [DisplayName("Téléphone")]
         public String ResponsableToPhone { get; set; }
-        [DisplayName("Poste:")]
+        [DisplayName("Poste")]
         public string ResponsableToPoste { get; set; }
 
         //Contact
-        [DisplayName("Nom:")]
+        [DisplayName("Nom")]
         public String ContactToName { get; set; }
-        [DisplayName("Titre:")]
+        [DisplayName("Titre")]
         public String ContactToTitle { get; set; }
-        [DisplayName("Courriel:")]
+        [DisplayName("Courriel")]
         public String ContactToEmail { get; set; }
-        [DisplayName("Téléphone:")]
+        [DisplayName("Téléphone")]
         public String ContactToPhone { get; set; }
-        [DisplayName("Poste:")]
+        [DisplayName("Poste")]
         public string ContactToPoste { get; set; }
 
         [DisplayName("Description du projet pour le stage")]
@@ -48,14 +48,14 @@ namespace Stagio.Web.ViewModels.Stage
         [DisplayName("Nombre de stagiaires")]
         public int NbrStagiaire { get; set; }
 
-        [DisplayName("Stagiaire si connu:")]
+        [DisplayName("Stagiaire si connu")]
         public string StagiaireIfKnew { get; set; }
-        [DisplayName("Nom:")]
+        [DisplayName("Nom")]
         //Submit to:
         public String SubmitToName { get; set; }
-        [DisplayName("Titre:")]
+        [DisplayName("Titre")]
         public String SubmitToTitle { get; set; }
-        [DisplayName("Courriel:")]
+        [DisplayName("Courriel")]
         public String SubmitToEmail { get; set; }
         [DisplayName("Date limite pour soummettre une candidature")]
         public String LimitDate { get; set; }

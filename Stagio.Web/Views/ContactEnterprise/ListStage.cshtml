@@ -47,6 +47,10 @@
 
                     </td>
                     <td>
+                        @Html.ActionLink("Détails", MVC.Stage.Details(item.Id))
+
+                    </td>
+                    <td>
                      @if (item.Status != 3)
                      {
                          @Html.ActionLink("Retirer", MVC.ContactEnterprise.RemoveStageConfirmation(item.Id), new {id = "remove-stage" + item.Id})

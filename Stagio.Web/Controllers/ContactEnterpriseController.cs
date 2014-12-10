@@ -150,10 +150,9 @@ namespace Stagio.Web.Controllers
             }
 
                 var invitation = _invitationRepository.GetById(createViewModel.InvitationId);
-                if (invitation != null)
+                if (invitation != null && invitation.Email == createViewModel.Email)
                 {
-                    if (invitation.Email == createViewModel.Email)
-                    {
+                    
                         invitation.Used = true;
 
                         _invitationRepository.Update(invitation);
@@ -170,7 +169,7 @@ namespace Stagio.Web.Controllers
 
                         this.Flash(FlashMessageResources.ReactivateSuccess, FlashEnum.Success);
                         return RedirectToAction(MVC.ContactEnterprise.CreateConfirmation(contactEnterprise.Id));
-                    }
+                    
                 }
 
             return HttpNotFound();

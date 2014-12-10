@@ -211,10 +211,9 @@ namespace Stagio.Web.Controllers
 
             var invitation = _invitationRepository.GetById(createdCoordinator.InvitationId);
             //TODO Return a view with an error description instead of httpnotfound().
-            if (invitation != null)
+            if (invitation != null && invitation.Email == createdCoordinator.Email)
             {
-                if (invitation.Email == createdCoordinator.Email)
-                {
+                
                     invitation.Used = true;
 
                     _invitationRepository.Update(invitation);
@@ -228,7 +227,7 @@ namespace Stagio.Web.Controllers
 
                     this.Flash(FlashMessageResources.CreateAccountSuccess, FlashEnum.Success);
                     return RedirectToAction(MVC.Coordinator.CreateConfirmation());
-                }
+                
             }
 
             return HttpNotFound();

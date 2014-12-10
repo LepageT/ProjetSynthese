@@ -123,6 +123,9 @@
   <data name="AlreadyApplied" xml:space="preserve">
     <value>Vous avez déjà postulé sur ce stage</value>
   </data>
+  <data name="AlreadyHadStage" xml:space="preserve">
+    <value>Vous avez déjà un stage</value>
+  </data>
   <data name="ApplyDelete" xml:space="preserve">
     <value>Postulation retirée</value>
   </data>

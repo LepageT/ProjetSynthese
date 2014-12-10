@@ -33,10 +33,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StudentTests
             applyRepository = Substitute.For<IEntityRepository<Apply>>();
             notificationRepository = Substitute.For<IEntityRepository<Notification>>();
             applicationUserRepository = Substitute.For<IEntityRepository<ApplicationUser>>();
-
             notification = new NotificationService(applicationUserRepository, notificationRepository);
-
-
             studentController = new StudentController(studentRepository, stageRepository, applyRepository, httpContextService, mailler, accountService, notification);
         }
     }
