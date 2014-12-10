@@ -36,7 +36,7 @@ namespace Stagio.Web.Controllers
         private readonly IHttpContextService _httpContextService;
         private readonly INotificationService _notificationService;
 
-        private readonly IEntityRepository<Misc> _miscRepository; 
+        private readonly IEntityRepository<Misc> _miscRepository;
 
         public CoordinatorController(IEntityRepository<ContactEnterprise> enterpriseContactRepository,
             IEntityRepository<Coordinator> coordinatorRepository,
@@ -150,7 +150,7 @@ namespace Stagio.Web.Controllers
 
 
 
-            }
+                }
                 this.Flash(FlashMessageResources.InvitationSend, FlashEnum.Success);
                 return RedirectToAction(MVC.Coordinator.InviteContactEnterpriseConfirmation());
             }
@@ -275,10 +275,10 @@ namespace Stagio.Web.Controllers
 
             _invitationRepository.Add(new Invitation()
                                      {
-                                        Token = token,
-                                        Email = createdInvite.Email,
-                                        Used = false
-                                      });
+                                         Token = token,
+                                         Email = createdInvite.Email,
+                                         Used = false
+                                     });
             this.Flash(FlashMessageResources.InvitationSend, FlashEnum.Success);
             return RedirectToAction(MVC.Coordinator.InvitationSucceed());
 
@@ -334,7 +334,7 @@ namespace Stagio.Web.Controllers
                 student.NbDateInterview = nbDateInterview;
                 nbDateInterview = 0;
             }
-           
+
             var studentStageFound = studentListViewModels.Where(x => x.DateAccepted != null);
             var studentStageNotFound =
                 studentListViewModels.Where(x => x.DateAccepted == null).OrderBy(x => x.NbDateInterview);
@@ -344,7 +344,7 @@ namespace Stagio.Web.Controllers
                 StudentStageFound = studentStageFound.ToList(),
                 StudentStageNotFound = studentStageNotFound.ToList()
             };
-           
+
 
             return View(students);
         }
@@ -561,10 +561,10 @@ namespace Stagio.Web.Controllers
 
         public virtual ActionResult Download(string file, int id)
         {
-          var readFile = new ReadFile();
+            var readFile = new ReadFile();
             try
             {
-               return File(readFile.Download(file), System.Net.Mime.MediaTypeNames.Application.Octet, file);
+                return File(readFile.Download(file), System.Net.Mime.MediaTypeNames.Application.Octet, file);
             }
             catch (Exception)
             {
@@ -589,44 +589,44 @@ namespace Stagio.Web.Controllers
         [HttpPost]
         public virtual ActionResult SetApplyDates(ViewModels.Coordinator.ApplyDatesLimit ApplyDates)
         {
-                        var misc = _miscRepository.GetAll().FirstOrDefault();
+            var misc = _miscRepository.GetAll().FirstOrDefault();
             bool isFirstMisc = false;
-                        if (misc == null)
-                        {
+            if (misc == null)
+            {
                 misc = new Misc();
                 isFirstMisc = true;
             }
             if (!(Convert.ToDateTime(ApplyDates.DateBegin) < Convert.ToDateTime(ApplyDates.DateEnd)))
-                            {
+            {
                 ModelState.AddModelError("DateEnd", CoordinatorResources.EndDateLowerThanStartDate);
             }
             if (ModelState.IsValid)
-            {  
+            {
                 misc.StartApplyDate = ApplyDates.DateBegin;
                 misc.EndApplyDate = ApplyDates.DateEnd;
                 if (isFirstMisc)
                 {
-                            this.Flash(FlashMessageResources.AddSuccess, FlashEnum.Success);
-                            _miscRepository.Add(misc);
-                        }
-                        else
-                        {
-                            this.Flash(FlashMessageResources.EditSuccess, FlashEnum.Success);
-                            _miscRepository.Update(misc);
-                        }
+                    this.Flash(FlashMessageResources.AddSuccess, FlashEnum.Success);
+                    _miscRepository.Add(misc);
+                }
+                else
+                {
+                    this.Flash(FlashMessageResources.EditSuccess, FlashEnum.Success);
+                    _miscRepository.Update(misc);
+                }
 
-                        return RedirectToAction(MVC.Coordinator.Index());
-                    }
+                return RedirectToAction(MVC.Coordinator.Index());
+            }
             this.Flash(FlashMessageResources.ErrorsOnPage, FlashEnum.Error);
             return View(ApplyDates);
-                }
+        }
 
         [Authorize(Roles = RoleName.Coordinator)]
         public virtual ActionResult InviteOneContactEnterprise()
-                {
+        {
             return View();
-                }
-                
+        }
+
         [Authorize(Roles = RoleName.Coordinator)]
         [HttpPost]
         public virtual ActionResult InviteOneContactEnterprise(ViewModels.Coordinator.InviteContactEnterprise createdInviteContactEnterpriseViewModel)
@@ -708,25 +708,25 @@ namespace Stagio.Web.Controllers
 
 
 
-         public virtual ActionResult RemoveStudentFromListStudent(int matricule)
-         {
-             var listStudents = TempData["listStudent"] as List<ListStudent>;
-            
-             bool remove = false;
-             int counter = 0;
-             while(!remove)
-             {
-                 if(listStudents[counter].Matricule == matricule)
-                 {
-                     listStudents.Remove(listStudents[counter]);
-                     remove = true;
-                 }
-                 counter++;
+        public virtual ActionResult RemoveStudentFromListStudent(int matricule)
+        {
+            var listStudents = TempData["listStudent"] as List<ListStudent>;
+
+            bool remove = false;
+            int counter = 0;
+            while (!remove)
+            {
+                if (listStudents[counter].Matricule == matricule)
+                {
+                    listStudents.Remove(listStudents[counter]);
+                    remove = true;
+                }
+                counter++;
             }
 
-             TempData["listStudent"] = listStudents;
-             TempData.Keep();
-             return RedirectToAction(MVC.Coordinator.CreateList());
+            TempData["listStudent"] = listStudents;
+            TempData.Keep();
+            return RedirectToAction(MVC.Coordinator.CreateList());
 
         }
 
