@@ -35,7 +35,7 @@
     {
         if (item.NbDateInterview == 0)
          {
-             <tr style="color: red">
+             <tr class="studentProblem">
                  <td>
                     @Html.ActionLink(item.Matricule.ToString(), MVC.Coordinator.StudentApplyList(item.Id), new { id = "student-stages" + item.Id })
 
@@ -61,7 +61,7 @@
          }
         else
         {
-            <tr style="color: blue">
+            <tr class="studentCorrect">
 
                 <td>
                     @Html.ActionLink(item.Matricule.ToString(), MVC.Coordinator.StudentApplyList(item.Id), new { id = "student-stages" + item.Id })
@@ -118,7 +118,7 @@
 
     @foreach (var item in Model.StudentStageFound)
     {
-        <tr style="color: green">
+        <tr>
                 <td>
                     @Html.ActionLink(item.Matricule.ToString(), MVC.Coordinator.StudentApplyList(item.Id), new { id = "student-stages" + item.Id })
 

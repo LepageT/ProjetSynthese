@@ -21,9 +21,19 @@
 </div><br />
 @if (!Request.IsAuthenticated)
 {
-    @Html.ActionLink("Créer un profil étudiant", MVC.Student.Create(), new { id = "create-student" })<br />
+    <div class="row">
+        <div class="col-md-5 col-md-offset-2">
+            <div>
+                @Html.ActionLink("Créer un profil étudiant", MVC.Student.Create(), new { id = "create-student", @class="btnMenu btnMenu-default"})<br />
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div>
+                @Html.ActionLink("Créer un profil entreprise", MVC.ContactEnterprise.Create(), new { id = "create-enterprise", @class = "btnMenu btnMenu-default" })<br />
 
-    @Html.ActionLink("Créer un profil entreprise", MVC.ContactEnterprise.Create(), new { id = "create-enterprise" })<br />
+            </div>
+        </div>
+    </div>
 }
 
 @if (@User.IsInRole("Étudiant"))
