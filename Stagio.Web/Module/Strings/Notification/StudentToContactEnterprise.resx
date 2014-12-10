@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ApplyMessage" xml:space="preserve">
-    <value>{0} {1} a postulé sur le stage &lt;a href="../../ContactEnterprise/ListStudentApply/{2}"&gt;{3}&lt;/a&gt;</value>
+    <value>{0} {1} a postulé sur le stage &lt;a href="../../Stage/Details/{2}"&gt;{3}&lt;/a&gt; . &lt;a href="../../ContactEnterprise/ListStudentApply/{2}"&gt;Voir la liste des postulants pour ce stage.&lt;/a&gt;</value>
   </data>
   <data name="ApplyTitle" xml:space="preserve">
     <value>Un étudiant a postulé sur un de vos stages</value>

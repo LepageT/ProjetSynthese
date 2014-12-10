@@ -145,6 +145,8 @@ namespace Stagio.Web.Controllers
 
             return RedirectToAction(MVC.Home.Index());
         }
+
+        [Authorize()]
         public virtual ActionResult List()
         {
             var stageAgreements = _stageAgreementRepository.GetAll().ToList();

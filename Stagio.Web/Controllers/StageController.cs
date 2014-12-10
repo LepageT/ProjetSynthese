@@ -53,6 +53,7 @@ namespace Stagio.Web.Controllers
 
             return View(listAllStages);
         }
+
          [Authorize(Roles = RoleName.Student)]
         public virtual ActionResult ViewStageInfo(int id)
         {
