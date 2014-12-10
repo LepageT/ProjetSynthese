@@ -25,8 +25,10 @@ namespace Stagio.Web.ViewModels.Interviews
 
         [DisplayName("Date d'acceptation")]
         public String DateAcceptOffer { get; set; }
-
+        public int StudentId { get; set; }
         public int Id { get; set; }
+        public int IdStageAcceptedByStudent { get; set; }
+        public bool hadStage { get; set; }
     }
     
 }
