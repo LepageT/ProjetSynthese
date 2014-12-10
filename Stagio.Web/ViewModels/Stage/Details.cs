@@ -7,13 +7,13 @@ namespace Stagio.Web.ViewModels.Stage
     {
         public int Id { get; set; }
 
-        [DisplayName("Date de l'offre:")]
+        [DisplayName("Date de l'offre")]
         public string PublicationDate { get; set; }
 
         //Maybe an enterprise entity must be created.
-        [DisplayName("Entreprise ou Organisation:")]
+        [DisplayName("Entreprise ou Organisation")]
         public String CompanyName { get; set; }
-        [DisplayName("Adresse:")]
+        [DisplayName("Adresse")]
         public String Adresse { get; set; }
 
 
@@ -45,7 +45,7 @@ namespace Stagio.Web.ViewModels.Stage
         public String StageDescription { get; set; }
         [DisplayName("Environnement matériel et logiciel spécifique au projet")]
         public String EnvironnementDescription { get; set; }
-        [DisplayName("Nombre de stagiaires:")]
+        [DisplayName("Nombre de stagiaires")]
         public int NbrStagiaire { get; set; }
 
         [DisplayName("Stagiaire si connu:")]
@@ -57,7 +57,7 @@ namespace Stagio.Web.ViewModels.Stage
         public String SubmitToTitle { get; set; }
         [DisplayName("Courriel:")]
         public String SubmitToEmail { get; set; }
-        [DisplayName("Date limite pour soummettre une candidature:")]
+        [DisplayName("Date limite pour soummettre une candidature")]
         public String LimitDate { get; set; }
 
         public int Status { get; set; }
