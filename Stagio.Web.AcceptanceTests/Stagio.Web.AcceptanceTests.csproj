@@ -82,6 +82,7 @@
     <Compile Include="CoordinatorTests\CoordinatorControllerInviteEnterpriseTests.cs" />
     <Compile Include="CoordinatorTests\CoordinatorControllerInviteOneContactEnterprise.cs" />
     <Compile Include="CoordinatorTests\CoordinatorControllerInviteTests.cs" />
+    <Compile Include="CoordinatorTests\CoordinatorControllerRemoveStudentsTests.cs" />
     <Compile Include="CoordinatorTests\CoordinatorControllerResultCreateList.cs" />
     <Compile Include="CoordinatorTests\CoordinatorControllerStudentApplyListTests.cs" />
     <Compile Include="CoordinatorTests\CoordinatorControllerStudentListTests.cs" />

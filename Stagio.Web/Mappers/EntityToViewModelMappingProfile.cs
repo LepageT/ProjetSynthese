@@ -136,6 +136,9 @@ namespace Stagio.Web.Mappers
             Mapper.CreateMap<Misc, ViewModels.Coordinator.ApplyDatesLimit>()
                 .IgnoreAllNonExisting();
 
+            Mapper.CreateMap<Student, ViewModels.Coordinator.RemoveStudent>()
+                .IgnoreAllNonExisting();
+
    
         }
     }

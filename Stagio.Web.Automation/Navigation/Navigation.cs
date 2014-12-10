@@ -249,6 +249,14 @@ namespace Stagio.Web.Automation
                     MenuSelector.SelectTopLevel("blockAccess");
                 }
             }
+
+            public class RemoveStudents
+            {
+                public static void Select()
+                {
+                    MenuSelector.Select("Coordinator-student-menu", "remove-student");
+                }
+            }
         }
 
         public class AllUsers
