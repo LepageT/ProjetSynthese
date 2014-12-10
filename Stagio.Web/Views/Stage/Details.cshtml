@@ -207,22 +207,24 @@
     </div>
     @using (Html.BeginForm("Details", "Stage"))
     {
-        @Html.HiddenFor(model => model.Id)
+        if (@User.IsInRole("Coordonnateur"))
+        {
+            @Html.HiddenFor(model => model.Id)
 
-        if (Model.Status == 1)
-        {
-            <input type="submit" value="Retirer" name="command" id="remove-stage" />
+            if (Model.Status == 1)
+            {
+                <input type="submit" value="Retirer" name="command" id="remove-stage" />
+            }
+            else if (Model.Status == 0)
+            {
+                <input type="submit" value="Accepter" name="command" id="accept-stage" />
+                <input type="submit" value="Refuser" name="command" id="refuse-stage" />
+            }
+            else if (Model.Status == 2)
+            {
+                <input type="submit" value="Accepter" name="command" id="accept-stage" />
+            }
         }
-        else if (Model.Status == 0)
-        {
-            <input type="submit" value="Accepter" name="command" id="accept-stage" />
-            <input type="submit" value="Refuser" name="command" id="refuse-stage" />
-        }
-        else if (Model.Status == 2)
-        {
-            <input type="submit" value="Accepter" name="command" id="accept-stage" />
-        }
-
     }
     <br />
     <br />
