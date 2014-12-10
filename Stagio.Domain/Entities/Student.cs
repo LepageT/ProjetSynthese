@@ -9,5 +9,6 @@ namespace Stagio.Domain.Entities
 
         public int Matricule { get; set; }
 
+        public bool hadStage { get; set; }
     }
 }

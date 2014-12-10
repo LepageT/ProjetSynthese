@@ -27,6 +27,8 @@ namespace Stagio.Web.UnitTests.ControllerTests.InterviewTests
             interviewRepository.GetById(interview.Id).Returns(interview);
             var viewModelExpected = Mapper.Map<ViewModels.Interviews.Edit>(interview);
             viewModelExpected.StageTitleAndCompagny = stages[0].StageTitle + " - " + stages[0].CompanyName;
+            viewModelExpected.hadStage = true;
+            viewModelExpected.IdStageAcceptedByStudent = stages[0].Id;
 
             var viewResult = interviewController.Edit(interview.Id) as ViewResult;
             var viewModelObtained = viewResult.ViewData.Model as ViewModels.Interviews.Edit;
@@ -109,7 +111,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.InterviewTests
             studentRepository.GetById(student.Id).Returns(student);
             stageRepository.GetById(stage.Id).Returns(stage);
             interview.StageId = stage.Id;
-
+            interview.StudentId = student.Id;
             interviewRepository.GetById(Arg.Any<int>()).Returns(a => null);
 
             var result = interviewController.Edit(interview);

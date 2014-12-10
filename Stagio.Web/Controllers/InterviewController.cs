@@ -139,6 +139,7 @@ namespace Stagio.Web.Controllers
                 return RedirectToAction(MVC.Interview.List());
             }
             var student = _studentRepository.GetById(_httpContextService.GetUserId());
+         
             if (interview.StudentId != student.Id )
             {
                 this.Flash(FlashMessageResources.NotAccessInterview, FlashEnum.Warning);
@@ -149,6 +150,14 @@ namespace Stagio.Web.Controllers
                 if (interview != null)
                 {
                     var interviewEditPageViewModel = Mapper.Map<ViewModels.Interviews.Edit>(interview);
+                    if (student.hadStage)
+                    {
+                        interviewEditPageViewModel.hadStage = true;
+                        if(interview.DateAcceptOffer != null)
+                        {
+                            interviewEditPageViewModel.IdStageAcceptedByStudent = interview.StageId;
+                        }
+                    }
                     var stages = _stageRepository.GetAll();
                     foreach (var stage in stages)
                     {
@@ -167,12 +176,13 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult Edit(ViewModels.Interviews.Edit editInterviewViewModel)
         {
             var interview = _interviewRepository.GetById(editInterviewViewModel.Id);
+          
             if (interview != null)
             {
-
+                var student = _studentRepository.GetById(interview.StudentId);
                 if (editInterviewViewModel.Present && !interview.Present)
                 {
-                    var student = _studentRepository.GetById(interview.StudentId);
+                   
                     var stage = _stageRepository.GetById(interview.StageId);
                     string message = String.Format(StudentToCoordinator.EditInterviewMessage, student.FirstName, student.LastName, stage.CompanyName, interview.Date);
                     _notificationService.SendNotificationToAllCoordinator(StudentToCoordinator.EditInterviewTitle,
@@ -180,7 +190,6 @@ namespace Stagio.Web.Controllers
                 }
                 if (editInterviewViewModel.Date != interview.Date)
                 {
-                    var student = _studentRepository.GetById(interview.StudentId);
                     var stage = _stageRepository.GetById(interview.StageId);
                     string message  = String.Format(StudentToCoordinator.EditDateInterviewMessage, student.FirstName,
                         student.LastName, editInterviewViewModel.Date, stage.StageTitle, stage.CompanyName);
@@ -189,8 +198,17 @@ namespace Stagio.Web.Controllers
                         message);
                 }
 
-                Mapper.Map(editInterviewViewModel, interview);
+                if(editInterviewViewModel.DateAcceptOffer != null)
+                {
+                    student.hadStage = true;
+                }
+                else
+                {
+                    student.hadStage = false;
+                }
 
+                Mapper.Map(editInterviewViewModel, interview);
+                _studentRepository.Update(student);
                 _interviewRepository.Update(interview);
                 this.Flash(FlashMessageResources.EditSuccess, FlashEnum.Success);
                 return RedirectToAction(MVC.Interview.List());

@@ -21,14 +21,16 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<ContactEnterprise> _contactEnterpriseRepository; 
         private readonly IHttpContextService _httpContextService;
         private readonly IEntityRepository<Coordinator> _coordinatorRepository;
+        private readonly IEntityRepository<Student> _studentRepository;
 
-        public StageController(IEntityRepository<Stage> stageRepository, IHttpContextService httpContextService, IEntityRepository<ContactEnterprise> contactEnterpriseRepository, INotificationService notificationService, IEntityRepository<Coordinator> cooridantorRepository)
+        public StageController(IEntityRepository<Stage> stageRepository, IHttpContextService httpContextService, IEntityRepository<ContactEnterprise> contactEnterpriseRepository, INotificationService notificationService, IEntityRepository<Coordinator> coordinatorRepository, IEntityRepository<Student> studentRepository)
         {
             _stageRepository = stageRepository;
             _notificationService = notificationService;
             _contactEnterpriseRepository = contactEnterpriseRepository;
             _httpContextService = httpContextService;
-            _coordinatorRepository = cooridantorRepository;
+            _coordinatorRepository = coordinatorRepository;
+            _studentRepository = studentRepository;
         }
 
         [Authorize(Roles = RoleName.Coordinator)]
@@ -58,11 +60,12 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult ViewStageInfo(int id)
         {
             var stage = _stageRepository.GetById(id);
+            var student = _studentRepository.GetById(_httpContextService.GetUserId());
 
             if (stage != null && stage.Status == StageStatus.Accepted)
             {
                 var stageInfoViewModel = Mapper.Map<ViewModels.Stage.ViewInfo>(stage);
-
+                stageInfoViewModel.HadStage = student.hadStage;
                 return View(stageInfoViewModel);
             }
             return HttpNotFound();

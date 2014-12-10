@@ -18,7 +18,7 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
         protected StageController stageController;
         protected IHttpContextService httpContextService;
         protected IEntityRepository<Coordinator> coordinatorRepository;
-        
+        protected IEntityRepository<Student> studentRepository;
         [TestInitialize]
         public void StageControllerTestInit()
         {
@@ -28,8 +28,8 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
             contactEnterpriseRepository = Substitute.For<IEntityRepository<ContactEnterprise>>();
             httpContextService = Substitute.For<IHttpContextService>();
             coordinatorRepository = Substitute.For<IEntityRepository<Coordinator>>();
-
-            stageController = new StageController(stageRepository, httpContextService, contactEnterpriseRepository, notificationService, coordinatorRepository);
+            studentRepository = Substitute.For<IEntityRepository<Student>>();
+            stageController = new StageController(stageRepository, httpContextService, contactEnterpriseRepository, notificationService, coordinatorRepository, studentRepository);
         }
     }
 }
