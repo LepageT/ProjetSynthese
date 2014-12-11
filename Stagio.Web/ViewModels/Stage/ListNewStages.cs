@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using Stagio.Domain.Entities;
 
 namespace Stagio.Web.ViewModels.Stage
 {
@@ -24,10 +25,20 @@ namespace Stagio.Web.ViewModels.Stage
         [Required(ErrorMessage = "Requis")]
         public String LimitDate { get; set; }
 
-        [DisplayName("Nombre de stagiaires")]
+        [DisplayName("Nombre de stagiaire(s) désiré(s)")]
         [Required(ErrorMessage = "Requis")]
         public int NbrStagiaire { get; set; }
+         [DisplayName("Nombre de candidature(s)")]
+        public int NbApply { get; set; }
+         [DisplayName("Nombre de stagiaire(s) trouvé(s)")]
+        public int NbrStagiaireFind { get; set; }
 
+
+         [DefaultValue(StageStatus.New)]
+         public StageStatus Status { get; set; }
+
+      
+    
        
     }
 }
