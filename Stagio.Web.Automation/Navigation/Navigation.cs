@@ -97,14 +97,15 @@ namespace Stagio.Web.Automation
             {
                 public static void Select()
                 {
-                    MenuSelector.SelectTopLevel("edit-profil");
+                    MenuSelector.SelectTopLevel("details-user-page");
+                    MenuSelector.SelectTopLevel("edit-enterprise");
                 }
             }
             public class EditProfilInIndex
             {
                 public static void Select()
                 {
-                    MenuSelector.SelectTopLevel("edit-profil");
+                    MenuSelector.Select("details-user-page", "edit-enterprise");
                 }
             }
 

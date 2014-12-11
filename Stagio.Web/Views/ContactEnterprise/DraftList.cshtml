@@ -7,7 +7,7 @@
 
 <h2>Brouillons</h2>
 
-<table class="table">
+<table class="table newTable">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.PublicationDate)
@@ -27,7 +27,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.StageTitle)
             </td>
-            <td>
+            <td style="text-align:right">
                 @Html.ActionLink("Modifier", MVC.Stage.DraftEdit(item.Id), new { id = "edit-draft" + item.Id }) |
                 @Html.ActionLink("Supprimer", MVC.Stage.DraftDelete(item.Id), new { id = "remove-draft" + item.Id })
             </td>

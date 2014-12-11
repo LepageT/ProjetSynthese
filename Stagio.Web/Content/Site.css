@@ -137,21 +137,25 @@ tr td {
 
 }
 
-table tr td {
+.newTable tr td{
      background-color: rgb(60, 84, 105);
     color: #fff;
 }
 
-table tr th {
+.newTable tr th{
     color: #fff;
     background-color: #122d46;
 }
 
-.studentProblem td {
+.newTable .studentProblem td {
     color: #ff0000;
 }
 
-.studentCorrect td {
+.newTable .studentCorrect td {
     color: yellow;
 }
 
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus {
+    color: #fff;
+    background-color: #2A4258;
+}
