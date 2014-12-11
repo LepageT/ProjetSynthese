@@ -145,10 +145,9 @@ namespace Stagio.Web.Controllers
                 this.Flash(FlashMessageResources.NotAccessInterview, FlashEnum.Warning);
                 return RedirectToAction(MVC.Interview.List());
             }
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && interview != null)
             {
-                if (interview != null)
-                {
+                
                     var interviewEditPageViewModel = Mapper.Map<ViewModels.Interviews.Edit>(interview);
                     if (student.hadStage)
                     {
@@ -168,7 +167,7 @@ namespace Stagio.Web.Controllers
                     }
                     return View(interviewEditPageViewModel);
                 }
-            }
+            
             return HttpNotFound();
         }
 

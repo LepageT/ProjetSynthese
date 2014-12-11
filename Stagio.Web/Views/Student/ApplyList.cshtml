@@ -4,10 +4,10 @@
     ViewBag.Title = "ApplyList";
 }
 
-<h2 id="student-ApplyList">Listes des stages avec postulation</h2>
+<h2 id="student-ApplyList">Listes des stages avec candidature</h2>
 <div class="text-right" id="stages-count">@Model.Count() stage(s)</div>
 
-<table class="table">
+<table class="table newTable">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.stageTitle)
@@ -15,6 +15,9 @@
         <th>
             @Html.DisplayNameFor(model => model.DateApply)
 
+        </th>
+        <th>
+            Retirer
         </th>
     </tr>
 
@@ -31,23 +34,23 @@
             {
                 <td>
                     Candidature retirée
-           
+
                 </td>
             }
             <td>
                 @if (item.Status != 3)
                 {
 
-                    using (Html.BeginForm("ApplyRemoveConfirmation", "Student", new {id = item.Id}, FormMethod.Get))
+                    using (Html.BeginForm("ApplyRemoveConfirmation", "Student", new { id = item.Id }, FormMethod.Get))
                     {
-                        <input type="submit" value="Retirer" id="remove-apply" />
+                        <input type="submit" value="Retirer" id="remove-apply" class="btn btn-default" />
                     }
                 }
                 else
                 {
                     using (Html.BeginForm("ApplyReApplyConfirmation", "Student", new { id = item.Id }, FormMethod.Get))
                     {
-                        <input type="submit" value="Resoumettre" id="reapply-apply" />
+                        <input type="submit" value="Resoumettre" id="reapply-apply" class="btn btn-default" />
                     }
                 }
             </td>

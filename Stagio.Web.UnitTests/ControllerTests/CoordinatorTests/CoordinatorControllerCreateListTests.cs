@@ -122,6 +122,8 @@ namespace Stagio.Web.UnitTests.ControllerTests.CoordinatorTests
             studentRepository.DidNotReceive().Add(Arg.Is<Student>(x => x.Matricule == listStudents[1].Matricule));
         }
 
+   
+
         private void StudentRepositoryAddMethodShouldHaveReceived(Student student)
         {
             studentRepository.Received().Add(Arg.Is<Student>(x => x.Id == student.Id));

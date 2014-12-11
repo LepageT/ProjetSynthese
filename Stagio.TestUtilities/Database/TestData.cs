@@ -714,6 +714,9 @@ namespace Stagio.TestUtilities.Database
                     ContactEnterpriseHasSigned = true,
                     IdContactEnterpriseSigned = 6,
                     DateContactEnterpriseSigned = "2014, 10, 15",
+                    DateStageStart = "2015, 03, 02",
+                    DateStageEnd = "2015, 05, 15",
+                    SupervisorName = "Bernard Barette",
                     IdStage = 1
                     
                 };

@@ -1,43 +1,41 @@
 ﻿@using System.Configuration
 @using Microsoft.AspNet.Identity
 <h2 id="home-page">Bienvenue</h2>
-<div>
 
-
-    <p>
-
-        Le site Stagio permet aux étudiants du cégep de Sainte-Foy d'avoir facilement accès aux offres de
-        stages proposées par les entreprises de la région de Québec. </p>
-       <p> Grâce à ses stages les étudiants peuvent perfectionner leurs compétences acquises durant leur passage au
-        cégep de Sainte-Foy.
-
-
-    </p>
-
-    <br />
-    <br />
-    Utilisateurs<br />
-    Coordonnateur (compte de tests, sauf pour les edit)
-    <br /> Username: coordonnateur@stagio.com
-    <br /> Password: test4test1
-    <br /><br />
-    Étudiant 1
-    <br />Username: 1234567
-    <br />Password: qwerty12
-    <br />
-    Étudiant 2
-    <br />Username: 1234560
-    <br />Password: qwerty98
-    <br /><br />
-    Employé
-    <br />Username: bond.james.007@hotmail.com
-    <br />Password: qwerty12
-</div><br />
 @if (!Request.IsAuthenticated)
 {
-    @Html.ActionLink("Créer un profil étudiant", MVC.Student.Create(), new { id = "create-student" })<br />
+    <div class="row">
+        <div class="col-md-5 col-md-offset-1">
+            <h3>
+                Étudiant
+            </h3>
+            <p>
+                Le site Stagio permet aux étudiants du cégep de Sainte-Foy d'avoir facilement accès aux offres de
+                stages proposées par les entreprises de la région de Québec.
+                Grâce à ses stages les étudiants peuvent perfectionner leurs compétences acquises durant leur passage au
+                cégep de Sainte-Foy.
+            </p>
+        </div>
+        <div class="col-md-5">
+            <h3>
+                Entreprise
+            </h3>
+            <p>
+                Le site Stagio permet aux entreprises de proposer des stages aux étudiants du cégep de Sainte-Foy.
+                Grâce à Stagio, les entreprises peuvent trouver plus facilement des étudiants pour combler leur poste de stagiaire.
+            </p>
+        </div>
+    </div>
 
-    @Html.ActionLink("Créer un profil entreprise", MVC.ContactEnterprise.Create(), new { id = "create-enterprise" })<br />
+    <div class="row">
+        <div class="col-md-5 col-md-offset-1">
+            @Html.ActionLink("Créer un profil étudiant", MVC.Student.Create(), new { id = "create-student", @class = "btnMenu btnMenu-default" })<br />
+        </div>
+        <div class="col-md-5">
+            @Html.ActionLink("Créer un profil entreprise", MVC.ContactEnterprise.Create(), new { id = "create-enterprise", @class = "btnMenu btnMenu-default" })<br />
+        </div>
+    </div>
+
 }
 
 @if (@User.IsInRole("Étudiant"))

@@ -119,5 +119,24 @@ namespace Stagio.Web.UnitTests.ControllerTests.InterviewTests
             result.Should().BeOfType<HttpNotFoundResult>();
         }
 
+        [TestMethod]
+        public void interview_edit__get_should_return_httpNotFound_when_modelState_is_not_valid()
+        {
+            var stages = _fixture.CreateMany<Stage>(2).ToList();
+            var user = _fixture.Create<Student>();
+            var interview = _fixture.Create<Interview>();
+            interview.StudentId = user.Id;
+            studentRepository.GetById(user.Id).Returns(user);
+            httpContextService.GetUserId().Returns(user.Id);
+            stageRepository.GetAll().Returns(stages.AsQueryable());
+            interview.StageId = stages[0].Id;
+            interviewRepository.GetById(interview.Id).Returns(interview);
+            interviewController.ModelState.AddModelError("Error", "Error");
+
+            var result = interviewController.Edit(interview.Id);
+
+            result.Should().BeOfType<HttpNotFoundResult>();
+        }
+
     }
 }

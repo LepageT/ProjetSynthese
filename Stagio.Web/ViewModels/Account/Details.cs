@@ -14,6 +14,9 @@ namespace Stagio.Web.ViewModels.Account
        
           [DisplayName("Téléphone")]
         public string Telephone { get; set; }
+
+        [DisplayName("Poste")]
+          public string Poste { get; set; }
           [DisplayName("Courriel")]
         public string Email { get; set; }
     }

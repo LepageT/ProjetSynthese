@@ -7,10 +7,10 @@
 }
 
 <h2 id="listNewStages-page">Liste des stages <mark>à approuver</mark></h2> 
-<div id="stages-count">@(Model.ListNewStages.Count()+ Model.ListStagesAccepted.Count() + Model.ListStagesRefused.Count()) Stage(s)</div>
+<div id="stages-count">@(Model.ListNewStages.Count() + Model.ListStagesAccepted.Count() + Model.ListStagesRefused.Count()) Stage(s)</div>
                      
-<table class="table">
-    <tr class="row">
+<table class="table newTable">
+    <tr>
         <th class="col-md-2">
             @Html.DisplayNameFor(model => model.ListNewStages[0].StageTitle)
         </th>
@@ -37,7 +37,7 @@
 
     @foreach (var item in Model.ListNewStages)
     {
-        <tr class="row">
+        <tr>
             <td class="col-md-2">
                 @Html.DisplayFor(modelItem => item.StageTitle)
             </td>
@@ -70,8 +70,8 @@
 
 <h2 id="listNewStages-page">Liste des stages acceptés</h2>
 
-<table class="table">
-    <tr class="row">
+<table class="table newTable">
+    <tr>
         <th class="col-md-2">
             @Html.DisplayNameFor(model => model.ListStagesAccepted[0].StageTitle)
         </th>
@@ -98,7 +98,7 @@
 
     @foreach (var item in Model.ListStagesAccepted)
     {
-        <tr class="row">
+        <tr>
             <td class="col-md-2">
                 @Html.DisplayFor(modelItem => item.StageTitle)
             </td>
@@ -129,9 +129,10 @@
 </table>
 
 <h2 id="listNewStages-page">Liste des stages refusés</h2>
-
-<table class="table">
-    <tr class="row">
+@if (Model.ListStagesRefused.Count > 0)
+{
+    <table class="table newTable">
+        <tr>
         <th class="col-md-2">
             @Html.DisplayNameFor(model => model.ListStagesRefused[0].StageTitle)
         </th>
@@ -158,7 +159,7 @@
 
     @foreach (var item in Model.ListStagesRefused)
     {
-        <tr class="row">
+            <tr>
             <td class="col-md-2">
                 @Html.DisplayFor(modelItem => item.StageTitle)
             </td>
@@ -187,10 +188,21 @@
         </tr>
     }
     </table>
+}
+else
+{
+    <div>
+        Aucun stage n'a été refusé par un coordonnateur.
+    </div>
+    
+}
     <h2 id="listNewStages-page">Liste des stages retirés par une entreprise</h2>
 
-    <table class="table">
-        <tr class="row">
+
+@if (Model.ListStagesRemoved.Count > 0)
+{
+    <table class="table newTable">
+        <tr>
             <th class="col-md-2">
                 @Html.DisplayNameFor(model => model.ListStagesRemoved[0].StageTitle)
             </th>
@@ -217,7 +229,7 @@
 
         @foreach (var item in Model.ListStagesRemoved)
         {
-            <tr class="row">
+            <tr>
                 <td class="col-md-2">
                     @Html.DisplayFor(modelItem => item.StageTitle)
                 </td>
@@ -246,4 +258,13 @@
         }
 
     </table>
+
+}
+else
+{
+    <div>
+        Aucun stage n'a été retiré par une entreprise.
+    </div>
+    <br/>
+}
 @Html.ActionLink(Navigation.ReturnHome, MVC.Coordinator.Index())
