@@ -123,6 +123,18 @@
   <data name="StageAcceptedTitle" xml:space="preserve">
     <value>Votre offre de stage a été acceptée par un coordonnateur</value>
   </data>
+  <data name="StageAgreementCreatedMessage" xml:space="preserve">
+    <value>Une convention de stage pour le stage {0} a été crée. Vous pouvez maintenant la &lt;a href="../../StageAgreement/List"&gt;signer&lt;/a&gt; .</value>
+  </data>
+  <data name="StageAgreementCreatedTitle" xml:space="preserve">
+    <value>Une convention de stage a été crée</value>
+  </data>
+  <data name="StageAgreementSignedMessage" xml:space="preserve">
+    <value>{0} {1} a signé la convention de stage pour le stage {2}. &lt;a href="../../StageAgreement/Edit?idStageAgreement={3}"&gt;Détails&lt;/a&gt;</value>
+  </data>
+  <data name="StageAgreementSignedTitle" xml:space="preserve">
+    <value>Un utilisateur a signé une convention de stage vous concernant</value>
+  </data>
   <data name="StageRefusedMessage" xml:space="preserve">
     <value>Votre offre de stage a été refusée. Vous pouvez la modifier et elle devra être approuvée de nouveau.</value>
   </data>

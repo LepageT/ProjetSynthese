@@ -21,6 +21,10 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
         public void contactEnterpriseController_listStage_should_render_view()
         {
             var contactEnterprise = _fixture.Create<ContactEnterprise>();
+            var applies = _fixture.CreateMany<Apply>(2);
+            var interviews = _fixture.CreateMany<Interview>(2);
+            applyRepository.GetAll().Returns(applies.AsQueryable());
+            interviewRepository.GetAll().Returns(interviews.AsQueryable());
             contactEnterprise.EnterpriseName = "Test";
             var stages = _fixture.CreateMany<Stage>(5).AsQueryable();
             foreach (var stage in stages)
@@ -42,13 +46,23 @@ namespace Stagio.Web.UnitTests.ControllerTests.ContactEnterpriseTests
         public void contactEnterpriseController_listStage_should_render_view_with_stages()
         {
             var contactEnterprise = _fixture.Create<ContactEnterprise>();
+            var applies = _fixture.CreateMany<Apply>(2).ToList();
+            var interviews = _fixture.CreateMany<Interview>(2).ToList();
+            
             contactEnterprise.EnterpriseName = "Test";
-            var stages = _fixture.CreateMany<Stage>(5).AsQueryable();
+            var stages = _fixture.CreateMany<Stage>(5).ToList();
             foreach (var stage in stages)
             {
                 stage.CompanyName = contactEnterprise.EnterpriseName;
+                
             }
-            stageRepository.GetAll().Returns(stages);
+            applies[1].IdStage = stages[1].Id;
+            
+            interviews[1].StageId = stages[1].Id;
+            interviews[1].DateAcceptOffer = DateTime.Today.ToShortDateString();
+            applyRepository.GetAll().Returns(applies.AsQueryable());
+            interviewRepository.GetAll().Returns(interviews.AsQueryable());
+            stageRepository.GetAll().Returns(stages.AsQueryable());
             httpContext.GetUserId().Returns(contactEnterprise.Id);
             enterpriseRepository.GetById(contactEnterprise.Id).Returns(contactEnterprise);
 

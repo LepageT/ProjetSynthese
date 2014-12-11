@@ -37,7 +37,7 @@ namespace Stagio.Web.Module
             return listStudentToCreate;
         }
 
-        public bool ReadFileCVLetter(IEnumerable<HttpPostedFileBase> files, HttpServerUtilityBase server, int id)
+        public bool ReadFileCVLetter(IEnumerable<HttpPostedFileBase> files, HttpServerUtilityBase server, int idStage, int idStudent)
         {
             bool firstfile = true;
 
@@ -51,12 +51,12 @@ namespace Stagio.Web.Module
                         var fileName = Path.GetFileName(file.FileName);
                         if (firstfile)
                         {
-                            path = Path.Combine(server.MapPath("~/App_Data/UploadedFiles"), fileName );
+                            path = Path.Combine(server.MapPath("~/App_Data/UploadedFiles"),idStage +"-" + idStudent + "-CV-"+ fileName );
                             firstfile = false;
                         }
                         else
                         {
-                            path = Path.Combine(server.MapPath("~/App_Data/UploadedFiles"), fileName );
+                            path = Path.Combine(server.MapPath("~/App_Data/UploadedFiles"), idStage + "-" + idStudent + "-LP-" + fileName);
                         }
                        
                         file.SaveAs(path);
