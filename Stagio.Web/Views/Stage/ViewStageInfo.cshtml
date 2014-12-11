@@ -205,11 +205,12 @@
 
         </div>
     </div>
+    <br/>
     @if (!Model.HadStage)
     {
         using (Html.BeginForm("ApplyStage", "Student", new { id = Model.Id }, FormMethod.Get))
         {
-            <input type="submit" value="Postuler" id="accept-stage" />
+            <input type="submit" value="Postuler" id="accept-stage" class="btnMenu btnMenu-default" style="width:100px" />
         }
     }
     else
