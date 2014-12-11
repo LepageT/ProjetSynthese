@@ -95,7 +95,6 @@ namespace Stagio.Web.Controllers
                     ContactEntrepriseToCoordinator.CreateContactEnterpriseTitle, message);
                 _mailler.SendEmail(newContactEnterprise.Email, EmailAccountCreation.Subject, EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
 
-                //ADD NOTIFICATIONS: À la coordination et aux autres employés de l'entreprise.
                 this.Flash(FlashMessageResources.CreateAccountSuccess, FlashEnum.Success);
                 return RedirectToAction(MVC.ContactEnterprise.CreateConfirmation(newContactEnterprise.Id));
 

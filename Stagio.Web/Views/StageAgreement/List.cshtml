@@ -8,8 +8,8 @@
 <div id="stageAgreement-count">@(Model.ListStageAgreementNotSigned.Count() + Model.ListStagesAgreementsSigned.Count()) Convention(s) de stage</div>
 
 <h3>Les conventions de stage à signer</h3>
-<table class="table">
-    <tr class="row">
+<table class="table newTable">
+    <tr>
         <th class="col-md-2">
             @Html.DisplayNameFor(model => model.ListStageAgreementNotSigned[0].StageName)
         </th>
@@ -22,13 +22,12 @@
         <th class="col-md-2">
             @Html.DisplayNameFor(model => model.ListStageAgreementNotSigned[0].StudentLastName)
         </th>
-       
         <th></th>
     </tr>
 
     @foreach (var item in Model.ListStageAgreementNotSigned)
     {
-        <tr class="row">
+        <tr>
             <td class="col-md-2">
                 @Html.DisplayFor(modelItem => item.StageName)
             </td>
@@ -50,8 +49,8 @@
 </table>
 
 <h3>Les conventions de stage signées</h3>
-<table class="table">
-    <tr class="row">
+<table class="table newTable">
+    <tr>
         <th class="col-md-2">
             @Html.DisplayNameFor(model => model.ListStagesAgreementsSigned[0].StageName)
         </th>
@@ -65,12 +64,12 @@
             @Html.DisplayNameFor(model => model.ListStagesAgreementsSigned[0].StudentLastName)
         </th>
 
-        <th></th>
+        <th style="border-left: 0px"></th>
     </tr>
 
     @foreach (var item in Model.ListStagesAgreementsSigned)
     {
-        <tr class="row">
+        <tr>
             <td class="col-md-2">
                 @Html.DisplayFor(modelItem => item.StageName)
             </td>
@@ -83,9 +82,7 @@
             <td class="col-md-2">
                 @Html.DisplayFor(modelItem => item.StudentLastName)
             </td>
-            <td>
-                @Html.ActionLink("Détail", MVC.StageAgreement.Edit(item.Id))
-            </td>
+            <td style="border-left: 0px"></td>
         </tr>
     }
 

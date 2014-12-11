@@ -7,7 +7,7 @@
 <h2>Étudiants qui n'ont pas trouvé de stage:</h2>
 <div class="text-right" id="student-count">@Model.StudentStageNotFound.Count() étudiant(s)</div>
 
-<table class="table">
+<table class="table newTable">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.StudentStageNotFound[0].Matricule)
@@ -34,34 +34,34 @@
     @foreach (var item in Model.StudentStageNotFound)
     {
         if (item.NbDateInterview == 0)
-         {
-             <tr style="color: red">
-                 <td>
+        {
+            <tr class="studentProblem">
+                <td>
                     @Html.ActionLink(item.Matricule.ToString(), MVC.Coordinator.StudentApplyList(item.Id), new { id = "student-stages" + item.Id })
 
-                 </td>
-                 <td>
-                     @Html.DisplayFor(model => item.FirstName)
-                 </td>
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.FirstName)
+                </td>
 
-                 <td>
-                     @Html.DisplayFor(model => item.LastName)
-                 </td>
-                 <td>
-                     @Html.DisplayFor(model => item.NbApply)
-                 </td>
-                 <td>
-                     @Html.DisplayFor(model => item.NbDateInterview)
-                 </td>
+                <td>
+                    @Html.DisplayFor(model => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.NbApply)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.NbDateInterview)
+                </td>
                 <td>
                     @Html.DisplayFor(model => item.DateAccepted)
                 </td>
-                 
-             </tr>
-         }
+
+            </tr>
+        }
         else
         {
-            <tr style="color: blue">
+            <tr class="studentCorrect">
 
                 <td>
                     @Html.ActionLink(item.Matricule.ToString(), MVC.Coordinator.StudentApplyList(item.Id), new { id = "student-stages" + item.Id })
@@ -89,11 +89,12 @@
 
 </table>
 
+
 <h2>Étudiants qui ont trouvé un stage:</h2>
 <div class="text-right" id="student-count">@Model.StudentStageFound.Count() étudiant(s)</div>
 
-<table class="table">
-            <tr>
+<table class="table newTable">
+    <tr>
         <th>
             @Html.DisplayNameFor(model => model.StudentStageFound[0].Matricule)
         </th>
@@ -118,30 +119,30 @@
 
     @foreach (var item in Model.StudentStageFound)
     {
-        <tr style="color: green">
-                <td>
-                    @Html.ActionLink(item.Matricule.ToString(), MVC.Coordinator.StudentApplyList(item.Id), new { id = "student-stages" + item.Id })
+        <tr>
+            <td>
+                @Html.ActionLink(item.Matricule.ToString(), MVC.Coordinator.StudentApplyList(item.Id), new { id = "student-stages" + item.Id })
 
-                </td>
-                <td>
-                    @Html.DisplayFor(model => item.FirstName)
-                </td>
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.FirstName)
+            </td>
 
-                <td>
-                    @Html.DisplayFor(model => item.LastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => item.NbApply)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => item.NbDateInterview)
-                </td>
+            <td>
+                @Html.DisplayFor(model => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.NbApply)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.NbDateInterview)
+            </td>
             <td>
                 @Html.DisplayFor(model => item.DateAccepted)
             </td>
-                
 
-            </tr>
+
+        </tr>
 
     }
 

@@ -10,7 +10,7 @@
     <body>
         <h2 id="list-stage">Liste des stages de votre entreprise</h2>
         <div class="text-right" id="stages-count">@Model.Count() stage(s)</div>
-        <table class="table">
+        <table class="table newTable">
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.PublicationDate)
@@ -23,9 +23,13 @@
                 </th>
 
                 <th></th>
+                <th></th>
+                <th style="border-left: 0px"></th>
+
             </tr>
-    
-            @foreach (var item in Model) {
+
+            @foreach (var item in Model)
+            {
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.PublicationDate)
@@ -39,30 +43,26 @@
 
                     <td>
                         @Html.ActionLink("Afficher les candidatures", "ListStudentApply", new { id = item.Id }, new { id = "list-stages" + item.Id })
-                
+
                     </td>
-                    
+
                     <td>
                         @Html.ActionLink("Modifier", MVC.Stage.Edit(item.Id))
 
                     </td>
-                    <td>
-                        @Html.ActionLink("Détails", MVC.Stage.Details(item.Id))
-
-                    </td>
-                    <td>
-                     @if (item.Status != 3)
-                     {
-                         @Html.ActionLink("Retirer", MVC.ContactEnterprise.RemoveStageConfirmation(item.Id), new {id = "remove-stage" + item.Id})
-                     }
-                     else
-                     {
-                        @Html.ActionLink("Remettre disponible", MVC.ContactEnterprise.ReactivateStageConfirmation(item.Id), new { id = "reactivate-stage" + item.Id })
-                     }
+                    <td style="border-left: 0px">
+                        @if (item.Status != 3)
+                        {
+                            @Html.ActionLink("Retirer", MVC.ContactEnterprise.RemoveStageConfirmation(item.Id), new { id = "remove-stage" + item.Id })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Remettre disponible", MVC.ContactEnterprise.ReactivateStageConfirmation(item.Id), new { id = "reactivate-stage" + item.Id })
+                        }
                     </td>
                 </tr>
             }
-    
+
         </table>
         <div>
             @Html.ActionLink("Retour à l'accueil", MVC.ContactEnterprise.Index())
