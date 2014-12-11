@@ -7,7 +7,8 @@ using System.Linq;
 using Stagio.DataLayer;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
-using Stagio.Web.Services;
+﻿using Stagio.Web.Module.Strings.Notification;
+﻿using Stagio.Web.Services;
 using Stagio.Web.ViewModels.StageAgreement;
 
 namespace Stagio.Web.Controllers
@@ -20,9 +21,12 @@ namespace Stagio.Web.Controllers
         private readonly IEntityRepository<Stage> _stageRepository;
         private readonly IEntityRepository<ApplicationUser> _accountRepository;
         private readonly IAccountService _accountService;
-        private readonly IEntityRepository<ContactEnterprise> _contactEnterpriseRepository; 
+        private readonly IEntityRepository<ContactEnterprise> _contactEnterpriseRepository;
+        private readonly INotificationService _notificationService;
+        private readonly IEntityRepository<Coordinator> _coordinatorRepository;
+        private readonly IEntityRepository<Student> _studentRepository; 
 
-        public StageAgreementController(IEntityRepository<StageAgreement> stageAgreement, IEntityRepository<Apply> applyRepository, IEntityRepository<Stage> stageRepository, IEntityRepository<Student> studentRepository, IHttpContextService httpContextService, IEntityRepository<ApplicationUser> accountRepository, IEntityRepository<ContactEnterprise> contactEnterpriseRepository, IAccountService accountService)
+        public StageAgreementController(IEntityRepository<StageAgreement> stageAgreement, IEntityRepository<Apply> applyRepository, IEntityRepository<Stage> stageRepository, IEntityRepository<Student> studentRepository, IHttpContextService httpContextService, IEntityRepository<ApplicationUser> accountRepository, IEntityRepository<ContactEnterprise> contactEnterpriseRepository, IAccountService accountService, INotificationService notificationService, IEntityRepository<Coordinator> coordinatorRepository)
         {
             _httpContextService = httpContextService;
             _stageAgreementRepository = stageAgreement;
@@ -30,9 +34,10 @@ namespace Stagio.Web.Controllers
             _stageRepository = stageRepository;
             _accountRepository = accountRepository;
             _accountService = accountService;
-            _httpContextService = httpContextService;
             _contactEnterpriseRepository = contactEnterpriseRepository;
-
+            _notificationService = notificationService;
+            _coordinatorRepository = coordinatorRepository;
+            _studentRepository = studentRepository;
         }
 
         [Authorize(Roles = RoleName.Coordinator)]
@@ -44,6 +49,17 @@ namespace Stagio.Web.Controllers
             stageAgreement.IdStudentSigned = apply.IdStudent;
             stageAgreement.IdCoordinatorSigned = _httpContextService.GetUserId();
             _stageAgreementRepository.Add(stageAgreement);
+
+            string stageTitle = _stageRepository.GetById(stageAgreement.IdStage).StageTitle;
+            string enterpriseName = _stageRepository.GetById(stageAgreement.IdStage).CompanyName;
+            string message = String.Format(CoordinatorToContactEnterprise.StageAgreementCreatedMessage, stageTitle);
+
+            _notificationService.SendNotificationToAllContactEnterpriseOf(enterpriseName,
+                CoordinatorToContactEnterprise.StageAgreementCreatedTitle, message);
+            _notificationService.SendNotificationToAllCoordinator(
+                CoordinatorToContactEnterprise.StageAgreementCreatedTitle, message);
+            _notificationService.SendNotificationTo(stageAgreement.IdStudentSigned,
+                CoordinatorToContactEnterprise.StageAgreementCreatedTitle, message);
 
             return View();
         }
@@ -89,6 +105,10 @@ namespace Stagio.Web.Controllers
         {
             var stageAgreement = _stageAgreementRepository.GetById(signStageAgreementViewModel.Id);
             var user = _accountRepository.GetById(_httpContextService.GetUserId());
+            var stage = _stageRepository.GetById(stageAgreement.IdStage);
+            string stageName = stage.StageTitle;
+            string enterpriseName = stage.CompanyName;
+
             if (!ModelState.IsValid)
             {
                 return RedirectToAction(MVC.StageAgreement.Edit(stageAgreement.Id));
@@ -100,6 +120,13 @@ namespace Stagio.Web.Controllers
                 {
                     signStageAgreementViewModel.DateStudentSigned = DateTime.Now.ToShortDateString();
                     signStageAgreementViewModel.StudentHasSigned = true;
+                    string firstName = _studentRepository.GetById(stageAgreement.IdStudentSigned).FirstName;
+                    string lastName = _studentRepository.GetById(stageAgreement.IdStudentSigned).LastName;
+                    string message = String.Format(CoordinatorToContactEnterprise.StageAgreementSignedMessage, firstName, lastName, stageName, stageAgreement.Id);
+                    _notificationService.SendNotificationToAllCoordinator(
+                    CoordinatorToContactEnterprise.StageAgreementSignedTitle, message);
+                    _notificationService.SendNotificationToAllContactEnterpriseOf(enterpriseName,
+                    CoordinatorToContactEnterprise.StageAgreementSignedTitle, message);
                 }
                 else
                 {
@@ -113,6 +140,13 @@ namespace Stagio.Web.Controllers
                 {
                     signStageAgreementViewModel.DateCoordinatorSigned = DateTime.Now.ToShortDateString();
                     signStageAgreementViewModel.CoordinatorHasSigned = true;
+                    string firstName = _coordinatorRepository.GetById(stageAgreement.IdCoordinatorSigned).FirstName;
+                    string lastName = _coordinatorRepository.GetById(stageAgreement.IdCoordinatorSigned).LastName;
+                    string message = String.Format(CoordinatorToContactEnterprise.StageAgreementSignedMessage, firstName, lastName, stageName, stageAgreement.Id);
+                    _notificationService.SendNotificationTo(stageAgreement.IdStudentSigned,
+                    CoordinatorToContactEnterprise.StageAgreementSignedTitle, message);
+                    _notificationService.SendNotificationToAllContactEnterpriseOf(enterpriseName,
+                    CoordinatorToContactEnterprise.StageAgreementSignedTitle, message);
                 }
                 else
                 {
@@ -126,6 +160,13 @@ namespace Stagio.Web.Controllers
                 {
                     signStageAgreementViewModel.DateContactEnterpriseSigned = DateTime.Now.ToShortDateString();
                     signStageAgreementViewModel.ContactEnterpriseHasSigned = true;
+                    string firstName = _contactEnterpriseRepository.GetById(_httpContextService.GetUserId()).FirstName;
+                    string lastName = _contactEnterpriseRepository.GetById(_httpContextService.GetUserId()).LastName;
+                    string message = String.Format(CoordinatorToContactEnterprise.StageAgreementSignedMessage, firstName, lastName, stageName, stageAgreement.Id);
+                    _notificationService.SendNotificationToAllCoordinator(
+                    CoordinatorToContactEnterprise.StageAgreementSignedTitle, message);
+                    _notificationService.SendNotificationTo(stageAgreement.IdStudentSigned,
+                    CoordinatorToContactEnterprise.StageAgreementSignedTitle, message);
                 }
                 else
                 {

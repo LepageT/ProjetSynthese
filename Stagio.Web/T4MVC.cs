@@ -82,6 +82,7 @@ namespace Links
     	public static readonly string bootstrap_datetimepicker_min_js = Url("bootstrap-datetimepicker.min.js");
     	public static readonly string bootstrap_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/bootstrap.min.js") ? Url("bootstrap.min.js") : Url("bootstrap.js");
     	public static readonly string bootstrap_min_js = Url("bootstrap.min.js");
+    	public static readonly string bootstrap_min_js_map = Url("bootstrap.min.js.map");
     	public static readonly string datetimepicker_setup_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/datetimepicker-setup.min.js") ? Url("datetimepicker-setup.min.js") : Url("datetimepicker-setup.js");
     	public static readonly string jquery_1_10_2_intellisense_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-1.10.2.intellisense.min.js") ? Url("jquery-1.10.2.intellisense.min.js") : Url("jquery-1.10.2.intellisense.js");
     	public static readonly string jquery_2_1_1_intellisense_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-2.1.1.intellisense.min.js") ? Url("jquery-2.1.1.intellisense.min.js") : Url("jquery-2.1.1.intellisense.js");

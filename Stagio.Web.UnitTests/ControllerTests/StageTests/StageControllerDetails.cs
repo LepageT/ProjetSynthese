@@ -67,6 +67,18 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageTests
             result.ViewName.Should().Be("");
         }
 
+        [TestMethod]
+        public void details_remove_stage_should_render_listStagesViews()
+        {
+            var stage = _fixture.Create<Stage>();
+            stageRepository.GetById(stage.Id).Returns(stage);
+
+            var result = stageController.Details("Retirer", stage.Id) as RedirectToRouteResult;
+            var routeAction = result.RouteValues["Action"];
+
+            routeAction.Should().Be(MVC.Stage.Views.ViewNames.ListNewStages);
+        }
+
 
     }
 }
