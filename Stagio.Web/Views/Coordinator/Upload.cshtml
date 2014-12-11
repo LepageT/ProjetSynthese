@@ -8,14 +8,14 @@
     <div><label for="file">Fichier csv:</label></div>
     <div><input  type="file" name="file" id="file" /><br/></div>
  
-    <div><input type="submit" id="button-upload" value="Importer" /></div>
+    <div><input type="submit" id="button-upload" value="Importer" class="btnMenu btnMenu-default" style="width:100px" /></div>
        
 </form>
 
 <div>
     @ViewBag.Message
 </div>
-
+<br />
 <div>
     @Html.ActionLink(Navigation.ReturnHome, MVC.Home.Index())
 </div>
