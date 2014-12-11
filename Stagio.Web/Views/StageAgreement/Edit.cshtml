@@ -1,7 +1,6 @@
 ﻿@using System.Data.Entity.ModelConfiguration.Conventions
 @model Stagio.Web.ViewModels.StageAgreement.EditStageAgreement
 
-
 <!DOCTYPE html>
 <html>
 
@@ -26,7 +25,7 @@
             <hr />
             @Html.ValidationSummary(true)
 
-            @if (@User.IsInRole("Contact entreprise") || @User.IsInRole("Coordonnateur"))
+            @if (@User.IsInRole("Coordonnateur"))
             {
                 <div class="row">
 
@@ -83,19 +82,19 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Adresse, new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Adresse)
+                        @Html.EditorFor(model => model.Adresse, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Adresse)
                     </div>
                 </div>
                 <div class="row">
                     @Html.LabelFor(model => model.ResponsableToName, new { @class = "control-label col-md-2" })
                     <div class="col-md-2">
-                        @Html.EditorFor(model => model.ResponsableToName)
+                        @Html.EditorFor(model => model.ResponsableToName, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.ResponsableToName)
                     </div>
                     @Html.LabelFor(model => model.ResponsableToTitle, new { @class = "control-label col-md-2" })
                     <div class="col-md-2">
-                        @Html.EditorFor(model => model.ResponsableToTitle)
+                        @Html.EditorFor(model => model.ResponsableToTitle, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.ResponsableToTitle)
                     </div>
 
@@ -105,17 +104,17 @@
 
                     @Html.LabelFor(model => model.ResponsableToEmail, new { @class = "control-label col-md-2" })
                     <div class="col-md-2">
-                        @Html.EditorFor(model => model.ResponsableToEmail)
+                        @Html.EditorFor(model => model.ResponsableToEmail, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.ResponsableToEmail)
                     </div>
                     @Html.LabelFor(model => model.ResponsableToPhone, new { @class = "control-label col-md-2" })
                     <div class="col-md-2">
-                        @Html.EditorFor(model => model.ResponsableToPhone)
+                        @Html.EditorFor(model => model.ResponsableToPhone, new { htmlAttributes = new { @style="width:150px",@class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.ResponsableToPhone)
                     </div>
                     @Html.LabelFor(model => model.ResponsableToPoste, new { @class = "control-label col-md-2" })
                     <div class="col-md-1">
-                        @Html.EditorFor(model => model.ResponsableToPoste)
+                        @Html.EditorFor(model => model.ResponsableToPoste, new { htmlAttributes = new { @style = "width:75px", @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.ResponsableToPoste)
                     </div>
 
@@ -208,7 +207,7 @@
                 else
                 {
                     <div class="col-md-4">
-                        @Html.EditorFor(model => model.ContactEnterpriseSignature, new { @class = "form-control", placeholder = "Mot de passe", type = "password" })
+                        @Html.EditorFor(model => model.ContactEnterpriseSignature, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.ContactEnterpriseSignature)
                     </div>
                 }
@@ -260,7 +259,7 @@
 
                     @Html.LabelFor(model => model.StudentName, new { @class = "control-label col-md-2" })
                     <div class="col-md-2">
-                        @Html.EditorFor(model => model.StudentName)
+                        @Html.EditorFor(model => model.StudentName, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.StudentName)
                     </div>
 
@@ -301,7 +300,7 @@
                 else
                 {
                     <div class="col-md-4">
-                        @Html.EditorFor(model => model.StudentSignature, new { @class = "form-control", placeholder = "Mot de passe", type = "password" })
+                        @Html.EditorFor(model => model.StudentSignature, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.StudentSignature)
                     </div>
                 }
@@ -341,7 +340,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.CoordinatorName, new { @class = "control-label col-md-3" })
                     <div class="col-md-9">
-                        @Html.EditorFor(model => model.CoordinatorName)
+                        @Html.EditorFor(model => model.CoordinatorName,  new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.CoordinatorName)
                     </div>
                 </div>
@@ -350,17 +349,17 @@
 
                     @Html.LabelFor(model => model.CoordinatorPhone, new { @class = "control-label col-md-2" })
                     <div class="col-md-2">
-                        @Html.EditorFor(model => model.CoordinatorPhone)
+                        @Html.EditorFor(model => model.CoordinatorPhone, new { htmlAttributes = new {@style="width:150px", @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.CoordinatorPhone)
                     </div>
                     @Html.LabelFor(model => model.CoordinatorPoste, new { @class = "control-label col-md-2" })
                     <div class="col-md-2">
-                        @Html.EditorFor(model => model.CoordinatorPoste)
+                        @Html.EditorFor(model => model.CoordinatorPoste, new { htmlAttributes = new { @style = "width:75px", @class = "form-control" } }))
                         @Html.ValidationMessageFor(model => model.CoordinatorPoste)
                     </div>
                     @Html.LabelFor(model => model.CoordinatorEmail, new { @class = "control-label col-md-2" })
                     <div class="col-md-1">
-                        @Html.EditorFor(model => model.CoordinatorEmail)
+                        @Html.EditorFor(model => model.CoordinatorEmail, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.CoordinatorEmail)
                     </div>
 
@@ -384,7 +383,7 @@
                         @Html.DisplayFor(model => model.CoordinatorPhone)
                         @Html.ValidationMessageFor(model => model.CoordinatorPhone)
                     </div>
-                    @Html.LabelFor(model => model.CoordinatorPoste, new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.CoordinatorPoste, new {@style="width:75px", @class = "control-label col-md-2" })
                     <div class="col-md-2">
                         @Html.DisplayFor(model => model.CoordinatorPoste)
                         @Html.ValidationMessageFor(model => model.CoordinatorPoste)
@@ -416,7 +415,7 @@
                 else
                 {         
                         <div class="col-md-4">
-                            @Html.EditorFor(model => model.CoordinatorSignature, new { @class = "form-control", placeholder = "Mot de passe", type = "password" })
+                            @Html.EditorFor(model => model.CoordinatorSignature, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.CoordinatorSignature)
                         </div>
                 }
@@ -445,7 +444,7 @@
                    <div class="form-group">
                     @Html.LabelFor(model => model.SupervisorName, new { @class = "control-label col-md-5" })
                     <div class="col-md-7">
-                        @Html.EditorFor(model => model.SupervisorName)
+                        @Html.EditorFor(model => model.SupervisorName, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.SupervisorName)
                     </div>
                 </div>
@@ -471,15 +470,11 @@
                     <input type="submit" value="Sauvegarder" class="btn btn-default" id="edit-button" />
                 </div>
             </div>
-
-
-            @*<div>
-                    @Html.ActionLink("Back to List", "Index")
-                </div>*@
-
         </div>
 
     }
-
+    <div>
+            @Html.ActionLink("Retour à la liste des conventions", MVC.StageAgreement.List())
+        </div>
 </body>
 </html>

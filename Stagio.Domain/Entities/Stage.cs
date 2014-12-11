@@ -68,7 +68,6 @@ namespace Stagio.Domain.Entities
 
     }
 
-
     [Flags]
     public enum StageStatus
     {
