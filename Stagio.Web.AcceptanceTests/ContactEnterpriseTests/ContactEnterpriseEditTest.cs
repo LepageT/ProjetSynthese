@@ -31,6 +31,7 @@ namespace Stagio.Web.AcceptanceTests.ContactEnterpriseTests
             EditContactEnterprisePage.GoTo();
             EditContactEnterprisePage.EditAStudent(NEW_TELEPHONE, OLD_PASSWORD, NEW_PASSWORD);
 
+            IndexContactEnterprisePage.IsDisplayed.Should().BeTrue();
             EditContactEnterprisePage.EditVerification(NEW_TELEPHONE).Should().BeTrue();
         }
     }

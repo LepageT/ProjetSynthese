@@ -5,38 +5,49 @@
     ViewBag.Title = "Coordinator";
 }
 
-<h2 id="coordinator-home">Index coordination</h2>
+<h1 id="coordinator-home">Coordination</h1>
 
-<br />
-    Pour envoyer un invitation à un autre coordonnateur, cliquez @Html.ActionLink("ici", MVC.Coordinator.Invite(), new { id = "create-coordinator" })
+<div class="row">
+    <div class="col-md-5 col-md-offset-1">
+        <h3>Invitation</h3>
+        <div>
+            @Html.ActionLink("Inviter un coordonnateur", MVC.Coordinator.Invite(), new { id = "create-coordinator", @class = "btnMenu-Top btnMenu-default" })
+            @Html.ActionLink("Inviter des employés d'entreprise", MVC.Coordinator.InviteContactEnterprise(), new { id = "invite-enterprise", @class = "btnMenu-Bottom btnMenu-default" })
+        </div>
 
-<div>
-        Pour ajouter des étudiants avec une liste .csv, cliquez  @Html.ActionLink("ici", MVC.Coordinator.Upload(), new { id = "upload-student" })
     </div>
-    <div>
-        Pour inviter des employés d'entreprises à se céer un compte, cliquez @Html.ActionLink("ici", MVC.Coordinator.InviteContactEnterprise(), new { id = "invite-enterprise" })
+
+    <div class ="col-md-5">
+        <h3>Étudiants</h3>
+        <div>
+            @Html.ActionLink("Importer des étudiants", MVC.Coordinator.Upload(), new { id = "upload-student", @class = "btnMenu-Top btnMenu-default" })
+            @Html.ActionLink("Liste des étudiants", MVC.Coordinator.StudentList(), new { id = "student-list", @class = "btnMenu-Bottom btnMenu-default" })
+        </div>
+    </div>
 </div>
-<div>
-        Pour voir la liste des stages acceptés, refusés ou à approuver, cliquez  @Html.ActionLink("ici", MVC.Stage.ListNewStages(), new { id = "list" })
-</div>
-<div>
-    Pour voir la liste des étudiants, cliquez @Html.ActionLink("ici", MVC.Coordinator.StudentList(), new { id = "student-list" })
-</div>
-<div>
-    Pour voir la liste des conventions de stage, cliquez @Html.ActionLink("ici", MVC.StageAgreement.List(), new { id = "student-list" })
+<div class="row">
+    <div class="col-md-5 col-md-offset-1">
+        <h3>Stages</h3>
+        <div>
+            @Html.ActionLink("Voir la liste des stages", MVC.Stage.ListNewStages(), new { id = "list", @class = "btnMenu-Top btnMenu-default" })
+            @Html.ActionLink("Liste des conventions de stage", MVC.StageAgreement.List(), new { id = "student-list", @class = "btnMenu-Bottom btnMenu-default" })
+        </div>
+    </div>
+    <div class="col-md-5">
+        <h3>Gestion</h3>
+        <div>
+            @Html.ActionLink("Modifier la période d'ouverture du site", MVC.Coordinator.SetApplyDates(), new { id = "setApplyDates", @class = "btnMenu-Top btnMenu-default" })
+            @Html.ActionLink("Bloquer le site", MVC.Coordinator.BlockWebsiteAccess(), new { id = "blockAccess", @class = "btnMenu-Bottom btnMenu-default" })
+        </div>
+    </div>
 </div>
 
-<div>
-    Pour changer les dates de début et fin de la période pour appliquer sur les offres de stages, cliquez @Html.ActionLink("ici", MVC.Coordinator.SetApplyDates(), new { id = "setApplyDates" })<br/>
-    Si vous désirez bloquer le site immédiatement, cliquez @Html.ActionLink("ici", MVC.Coordinator.BlockWebsiteAccess(), new { id = "blockAccess" })
-</div>
+<hr/>
 
-<div>@Html.ActionLink("Afficher les informations du profil", MVC.Account.Details(), new { id = "details-coordo" })</div>
-
-<h3>Notifications:</h3>
+<h3>Notifications</h3>
 <br />
 
-<table class="table">
+<table class="table newTable">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Title)

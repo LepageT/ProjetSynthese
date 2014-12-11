@@ -59,6 +59,10 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageAgreementTests
             stageAgreementRepository.GetById(stageAgreement.Id).Returns(stageAgreement);
             var stageAgreementViewModel = Mapper.Map<ViewModels.StageAgreement.EditStageAgreement>(stageAgreement);
             stageAgreementViewModel.Adresse = "27 rang Matalick Sud, Causapscal";
+            var stage = _fixture.Create<Stage>();
+            stage.Id = stageAgreement.IdStage;
+            stageRepository.GetById(stage.Id).Returns(stage);
+
 
             stageAgreementController.Edit(stageAgreementViewModel);
 
@@ -73,9 +77,12 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageAgreementTests
             var stageAgreementEditPageViewModel = _fixture.Build<ViewModels.StageAgreement.EditStageAgreement>()
                                                       .With(x => x.Id, stageAgreement.Id)
                                                       .Create();
+            var stage = _fixture.Create<Stage>();
+            stage.Id = stageAgreement.IdStage;
             accountRepository.GetById(student.Id).Returns(student);
             stageAgreementRepository.GetById(stageAgreement.Id).Returns(stageAgreement);
             stageAgreementController.ModelState.AddModelError("Error", "Error");
+            stageRepository.GetById(stage.Id).Returns(stage);
 
             var routeResult = stageAgreementController.Edit(stageAgreementEditPageViewModel) as RedirectToRouteResult;
             var routeAction = routeResult.RouteValues["Action"];
@@ -92,13 +99,15 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageAgreementTests
             var stageAgreementEditPageViewModel = _fixture.Build<ViewModels.StageAgreement.EditStageAgreement>()
                                                       .With(x => x.Id, stageAgreement.Id)
                                                       .Create();
+            var stage = _fixture.Create<Stage>();
+            stage.Id = stageAgreement.IdStage;
             stageAgreement.CoordinatorHasSigned = false;
             stageAgreementEditPageViewModel.StudentSignature = null;
             stageAgreementEditPageViewModel.ContactEnterpriseSignature= null;
             stageAgreementEditPageViewModel.CoordinatorSignature = "ABC";
             accountRepository.GetById(coordinator.Id).Returns(coordinator);
             stageAgreementRepository.GetById(stageAgreement.Id).Returns(stageAgreement);
-           
+            stageRepository.GetById(stage.Id).Returns(stage);
 
             var routeResult = stageAgreementController.Edit(stageAgreementEditPageViewModel) as RedirectToRouteResult;
             var routeAction = routeResult.RouteValues["Action"];
@@ -116,6 +125,8 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageAgreementTests
             var stageAgreementEditPageViewModel = _fixture.Build<ViewModels.StageAgreement.EditStageAgreement>()
                                                       .With(x => x.Id, stageAgreement.Id)
                                                       .Create();
+            var stage = _fixture.Create<Stage>();
+            stage.Id = stageAgreement.IdStage;
             stageAgreement.CoordinatorHasSigned = false;
             stageAgreementEditPageViewModel.StudentSignature = null;
             stageAgreementEditPageViewModel.ContactEnterpriseSignature = null;
@@ -123,6 +134,8 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageAgreementTests
                 .Returns(true);
             accountRepository.GetById(coordinator.Id).Returns(coordinator);
             stageAgreementRepository.GetById(stageAgreement.Id).Returns(stageAgreement);
+            coordinatorRepository.GetById(stageAgreement.IdCoordinatorSigned).Returns(coordinator);
+            stageRepository.GetById(stage.Id).Returns(stage);
 
             var routeResult = stageAgreementController.Edit(stageAgreementEditPageViewModel) as RedirectToRouteResult;
             var routeAction = routeResult.RouteValues["Action"];
@@ -139,13 +152,15 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageAgreementTests
             var stageAgreementEditPageViewModel = _fixture.Build<ViewModels.StageAgreement.EditStageAgreement>()
                                                       .With(x => x.Id, stageAgreement.Id)
                                                       .Create();
+            var stage = _fixture.Create<Stage>();
+            stage.Id = stageAgreement.IdStage;
             stageAgreement.StudentHasSigned = false;
             stageAgreementEditPageViewModel.ContactEnterpriseSignature = null;
             stageAgreementEditPageViewModel.CoordinatorSignature = null;
             stageAgreementEditPageViewModel.StudentSignature = "ABC";
             accountRepository.GetById(student.Id).Returns(student);
             stageAgreementRepository.GetById(stageAgreement.Id).Returns(stageAgreement);
-
+            stageRepository.GetById(stage.Id).Returns(stage);
 
             var routeResult = stageAgreementController.Edit(stageAgreementEditPageViewModel) as RedirectToRouteResult;
             var routeAction = routeResult.RouteValues["Action"];
@@ -163,6 +178,8 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageAgreementTests
             var stageAgreementEditPageViewModel = _fixture.Build<ViewModels.StageAgreement.EditStageAgreement>()
                                                       .With(x => x.Id, stageAgreement.Id)
                                                       .Create();
+            var stage = _fixture.Create<Stage>();
+            stage.Id = stageAgreement.IdStage;
             stageAgreement.StudentHasSigned = false;
             stageAgreementEditPageViewModel.CoordinatorSignature = null;
             stageAgreementEditPageViewModel.ContactEnterpriseSignature = null;
@@ -170,6 +187,8 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageAgreementTests
                 .Returns(true);
             accountRepository.GetById(student.Id).Returns(student);
             stageAgreementRepository.GetById(stageAgreement.Id).Returns(stageAgreement);
+            stageRepository.GetById(stage.Id).Returns(stage);
+            studentRepository.GetById(stageAgreement.IdStudentSigned).Returns(student);
 
             var routeResult = stageAgreementController.Edit(stageAgreementEditPageViewModel) as RedirectToRouteResult;
             var routeAction = routeResult.RouteValues["Action"];
@@ -186,12 +205,15 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageAgreementTests
             var stageAgreementEditPageViewModel = _fixture.Build<ViewModels.StageAgreement.EditStageAgreement>()
                                                       .With(x => x.Id, stageAgreement.Id)
                                                       .Create();
+            var stage = _fixture.Create<Stage>();
+            stage.Id = stageAgreement.IdStage;
             stageAgreement.ContactEnterpriseHasSigned = false;
             stageAgreementEditPageViewModel.StudentSignature = null;
             stageAgreementEditPageViewModel.CoordinatorSignature = null;
             stageAgreementEditPageViewModel.ContactEnterpriseSignature = "ABC";
             accountRepository.GetById(contactEnterprise.Id).Returns(contactEnterprise);
             stageAgreementRepository.GetById(stageAgreement.Id).Returns(stageAgreement);
+            stageRepository.GetById(stage.Id).Returns(stage);
 
 
             var routeResult = stageAgreementController.Edit(stageAgreementEditPageViewModel) as RedirectToRouteResult;
@@ -210,6 +232,8 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageAgreementTests
             var stageAgreementEditPageViewModel = _fixture.Build<ViewModels.StageAgreement.EditStageAgreement>()
                                                       .With(x => x.Id, stageAgreement.Id)
                                                       .Create();
+            var stage = _fixture.Create<Stage>();
+            stage.Id = stageAgreement.IdStage;
             stageAgreement.ContactEnterpriseHasSigned = false;
             stageAgreementEditPageViewModel.CoordinatorSignature = null;
             stageAgreementEditPageViewModel.StudentSignature = null;
@@ -217,6 +241,9 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageAgreementTests
                 .Returns(true);
             accountRepository.GetById(contactEnterprise.Id).Returns(contactEnterprise);
             stageAgreementRepository.GetById(stageAgreement.Id).Returns(stageAgreement);
+            stageRepository.GetById(stage.Id).Returns(stage);
+            contactEnterpriseRepository.GetById(contactEnterprise.Id).Returns(contactEnterprise);
+
 
             var routeResult = stageAgreementController.Edit(stageAgreementEditPageViewModel) as RedirectToRouteResult;
             var routeAction = routeResult.RouteValues["Action"];

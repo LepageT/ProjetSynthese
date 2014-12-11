@@ -23,8 +23,11 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageAgreementTests
         protected IHttpContextService httpContextService;
         protected IEntityRepository<ApplicationUser> accountRepository;
         protected IEntityRepository<ContactEnterprise> contactEnterpriseRepository;
-      
+        protected INotificationService notificationService;
+        protected IEntityRepository<Coordinator> coordinatorRepository; 
         protected IAccountService accountService;
+        protected IEntityRepository<ApplicationUser> applicationUserRepository;
+        protected IEntityRepository<Notification> notificationRepository;
    
 
         [TestInitialize]
@@ -37,7 +40,13 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageAgreementTests
             accountRepository = Substitute.For<IEntityRepository<ApplicationUser>>();
             accountService = Substitute.For<IAccountService>();
             httpContextService = Substitute.For<IHttpContextService>();
-            stageAgreementController = new StageAgreementController(stageAgreementRepository, applyRepository, stageRepository, studentRepository, httpContextService, accountRepository, contactEnterpriseRepository, accountService);
+            notificationRepository = Substitute.For<IEntityRepository<Notification>>();
+            applicationUserRepository = Substitute.For<IEntityRepository<ApplicationUser>>();
+            notificationService = new NotificationService(applicationUserRepository, notificationRepository);
+            coordinatorRepository = Substitute.For<IEntityRepository<Coordinator>>();
+            studentRepository = Substitute.For<IEntityRepository<Student>>();
+
+            stageAgreementController = new StageAgreementController(stageAgreementRepository, applyRepository, stageRepository, studentRepository, httpContextService, accountRepository, contactEnterpriseRepository, accountService, notificationService, coordinatorRepository);
           
            
         }

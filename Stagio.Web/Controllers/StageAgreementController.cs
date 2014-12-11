@@ -4,18 +4,12 @@ using System.Web.Mvc;
 using AutoMapper;
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
-using System.Web.Security;
-using AutoMapper;
 using Stagio.DataLayer;
 using Stagio.Domain.Application;
 using Stagio.Domain.Entities;
 ﻿using Stagio.Web.Module.Strings.Notification;
 ﻿using Stagio.Web.Services;
 using Stagio.Web.ViewModels.StageAgreement;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
 
 namespace Stagio.Web.Controllers
 {
@@ -40,7 +34,6 @@ namespace Stagio.Web.Controllers
             _stageRepository = stageRepository;
             _accountRepository = accountRepository;
             _accountService = accountService;
-            _httpContextService = httpContextService;
             _contactEnterpriseRepository = contactEnterpriseRepository;
             _notificationService = notificationService;
             _coordinatorRepository = coordinatorRepository;

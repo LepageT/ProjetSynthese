@@ -19,7 +19,10 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageAgreementTests
         public void create_stage_agreement_should_render_view()
         {
             var apply = _fixture.Create<Apply>();
+            var stage = _fixture.Create<Stage>();
+            stage.Id = apply.IdStage;
             applyRepository.GetById(apply.Id).Returns(apply);
+            stageRepository.GetById(stage.Id).Returns(stage);
 
             var result = stageAgreementController.CreateConfirmation(apply.Id) as ViewResult;
 
@@ -30,8 +33,10 @@ namespace Stagio.Web.UnitTests.ControllerTests.StageAgreementTests
         public void create_stage_agreement_should_add_stage_agreement_in_DB()
         {
             var apply = _fixture.Create<Apply>();
-            
+            var stage = _fixture.Create<Stage>();
+            stage.Id = apply.IdStage;
             applyRepository.GetById(apply.Id).Returns(apply);
+            stageRepository.GetById(stage.Id).Returns(stage);
 
             stageAgreementController.CreateConfirmation(apply.Id);
 
