@@ -252,7 +252,7 @@ namespace Stagio.TestUtilities.Database
             {
                 var stage = new Stage()
                 {
-                    NbApply = 1,
+                   
                     LimitDate = DateTime.Today.AddDays(8).ToShortDateString(),
                     PublicationDate = DateTime.Now.ToString(),
                     Status = StageStatus.Accepted,

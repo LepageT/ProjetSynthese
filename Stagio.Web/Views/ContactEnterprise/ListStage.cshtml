@@ -18,8 +18,18 @@
                 <th>
                     @Html.DisplayNameFor(model => model.StageTitle)
                 </th>
+                
+                <th>
+                    @Html.DisplayNameFor(model => model.NbrStagiaire)
+                </th>
                 <th>
                     @Html.DisplayNameFor(model => model.NbApply)
+                </th>
+                
+                
+                
+                <th>
+                    @Html.DisplayNameFor(model => model.nbStagiaireFind)
                 </th>
 
                 <th></th>
@@ -33,8 +43,16 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.StageTitle)
                     </td>
+                    
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NbrStagiaire)
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.NbApply)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nbStagiaireFind)
                     </td>
 
                     <td>

@@ -219,8 +219,6 @@ namespace Stagio.Web.Controllers
                 newApplicationStudent.Status = 0;   //0 = En attente
                 newApplicationStudent.DateApply = DateTime.Now;
                 _applyRepository.Add(newApplicationStudent);
-                int nbApplyCurrently = stage.NbApply;
-                stage.NbApply = nbApplyCurrently + 1;
                 _stageRepository.Update(stage);
                 TempData["files"] = files;
                 var student = _studentRepository.GetById(applyStudentViewModel.IdStudent);
