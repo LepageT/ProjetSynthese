@@ -1,4 +1,5 @@
 ﻿using System.Net.Mail;
+using Stagio.Domain.Entities;
 
 
 namespace Stagio.Web.Services
@@ -9,8 +10,8 @@ namespace Stagio.Web.Services
 
         private SmtpClient client;
 
-        const string SERVER = "jenkinssmtp.cegep-ste-foy.qc.ca";
-
+        private const string SERVER = "jenkinssmtp.cegep-ste-foy.qc.ca";
+        private const int SMTP_PORT = 25;
         static Mailler()
         {
 
@@ -18,7 +19,7 @@ namespace Stagio.Web.Services
         private Mailler()
         {
             client = new SmtpClient();
-            client.Port = 25;
+            client.Port = SMTP_PORT;
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
             client.UseDefaultCredentials = false;
             client.Host = SERVER;
@@ -49,6 +50,32 @@ namespace Stagio.Web.Services
             }
 
             return true;
+        }
+
+        public void SetNewSmtpOptions(Misc misc, string destination)
+        {
+            const string TEST_SUBJECT = "Stagio, test new smtp options";
+            const string TEST_CONTENT = "Testing new smtp options for the stagio website.";
+            client.Host = misc.SmtpServer;
+            client.Port = misc.SmtpPort;
+
+            if (misc.SmtpUsername != null && misc.SmtpPassword != null)
+            {
+                client.Credentials = new System.Net.NetworkCredential(misc.SmtpUsername, misc.SmtpPassword);
+                client.EnableSsl = true;
+            }
+            else
+            {
+                client.Credentials = null;
+                client.EnableSsl = false;
+            }
+            
+            //test new options
+            if (destination != null || destination != "")
+            {
+                SendEmail(destination, TEST_SUBJECT, TEST_CONTENT);
+            }
+           
         }
     }
 }

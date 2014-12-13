@@ -140,7 +140,10 @@ namespace Stagio.Web.Mappers
             Mapper.CreateMap<Student, ViewModels.Coordinator.RemoveStudent>()
                 .IgnoreAllNonExisting();
 
-   
+            Mapper.CreateMap<Misc, ViewModels.Coordinator.SmtpOption>()
+                .IgnoreAllNonExisting();
+
+
         }
     }
 }

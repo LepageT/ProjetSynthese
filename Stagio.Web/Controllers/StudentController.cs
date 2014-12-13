@@ -203,7 +203,7 @@ namespace Stagio.Web.Controllers
                 }
             }
 
-            if (files.Any(file => file == null || (!file.FileName.Contains(".pdf") && !file.FileName.Contains(".do"))))
+            if (files.Any(file => file != null || (!file.FileName.Contains(".pdf") && !file.FileName.Contains(".do"))))
             {
                 this.Flash(FlashMessageResources.InvalidFile, FlashEnum.Error);
                 return View(applyStudentViewModel);

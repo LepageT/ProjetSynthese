@@ -116,21 +116,22 @@ namespace Stagio.Web.Controllers
 			public readonly string StudentList = "StudentList";
 			public readonly string StudentApplyList = "StudentApplyList";
 			public readonly string Upload = "Upload";
-			public readonly string UploadPost = "UploadPost";
+			public readonly string UploadPost = "Upload";
 			public readonly string ResultCreateList = "ResultCreateList";
-			public readonly string PostResultCreateList = "PostResultCreateList";
+			public readonly string PostResultCreateList = "ResultCreateList";
 			public readonly string CreateList = "CreateList";
-			public readonly string CreateListPost = "CreateListPost";
+			public readonly string CreateListPost = "CreateList";
 			public readonly string DetailsApplyStudent = "DetailsApplyStudent";
 			public readonly string Download = "Download";
 			public readonly string SetApplyDates = "SetApplyDates";
 			public readonly string InviteOneContactEnterprise = "InviteOneContactEnterprise";
 			public readonly string InviteOneContactEnterpriseConfirmation = "InviteOneContactEnterpriseConfirmation";
 			public readonly string BlockWebsiteAccess = "BlockWebsiteAccess";
-			public readonly string BlockWebsiteAccessPost = "BlockWebsiteAccessPost";
+			public readonly string BlockWebsiteAccessPost = "BlockWebsiteAccess";
 			public readonly string RemoveStudentFromListStudent = "RemoveStudentFromListStudent";
 			public readonly string RemoveStudent = "RemoveStudent";
 			public readonly string RemoveStudentConfirmation = "RemoveStudentConfirmation";
+			public readonly string ChangeSmtpOptions = "ChangeSmtpOptions";
 		}
 
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -146,21 +147,22 @@ namespace Stagio.Web.Controllers
 			public const string StudentList = "StudentList";
 			public const string StudentApplyList = "StudentApplyList";
 			public const string Upload = "Upload";
-			public const string UploadPost = "UploadPost";
+			public const string UploadPost = "Upload";
 			public const string ResultCreateList = "ResultCreateList";
-			public const string PostResultCreateList = "PostResultCreateList";
+			public const string PostResultCreateList = "ResultCreateList";
 			public const string CreateList = "CreateList";
-			public const string CreateListPost = "CreateListPost";
+			public const string CreateListPost = "CreateList";
 			public const string DetailsApplyStudent = "DetailsApplyStudent";
 			public const string Download = "Download";
 			public const string SetApplyDates = "SetApplyDates";
 			public const string InviteOneContactEnterprise = "InviteOneContactEnterprise";
 			public const string InviteOneContactEnterpriseConfirmation = "InviteOneContactEnterpriseConfirmation";
 			public const string BlockWebsiteAccess = "BlockWebsiteAccess";
-			public const string BlockWebsiteAccessPost = "BlockWebsiteAccessPost";
+			public const string BlockWebsiteAccessPost = "BlockWebsiteAccess";
 			public const string RemoveStudentFromListStudent = "RemoveStudentFromListStudent";
 			public const string RemoveStudent = "RemoveStudent";
 			public const string RemoveStudentConfirmation = "RemoveStudentConfirmation";
+			public const string ChangeSmtpOptions = "ChangeSmtpOptions";
 		}
 
 
@@ -256,6 +258,15 @@ namespace Stagio.Web.Controllers
 		{
 			public readonly string idStudentsToRemove = "idStudentsToRemove";
 		}
+		static readonly ActionParamsClass_ChangeSmtpOptions s_params_ChangeSmtpOptions = new ActionParamsClass_ChangeSmtpOptions();
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public ActionParamsClass_ChangeSmtpOptions ChangeSmtpOptionsParams { get { return s_params_ChangeSmtpOptions; } }
+		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+		public class ActionParamsClass_ChangeSmtpOptions
+		{
+			public readonly string command = "command";
+			public readonly string smtpOption = "smtpOption";
+		}
 		static readonly ViewsClass s_views = new ViewsClass();
 		[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 		public ViewsClass Views { get { return s_views; } }
@@ -267,6 +278,7 @@ namespace Stagio.Web.Controllers
             public class _ViewNamesClass
             {
                 public readonly string BlockWebsiteAccess = "BlockWebsiteAccess";
+                public readonly string ChangeSMTPOptions = "ChangeSMTPOptions";
                 public readonly string Create = "Create";
                 public readonly string CreateConfirmation = "CreateConfirmation";
                 public readonly string CreateList = "CreateList";
@@ -287,6 +299,7 @@ namespace Stagio.Web.Controllers
                 public readonly string Upload = "Upload";
             }
             public readonly string BlockWebsiteAccess = "~/Views/Coordinator/BlockWebsiteAccess.cshtml";
+            public readonly string ChangeSMTPOptions = "~/Views/Coordinator/ChangeSMTPOptions.cshtml";
             public readonly string Create = "~/Views/Coordinator/Create.cshtml";
             public readonly string CreateConfirmation = "~/Views/Coordinator/CreateConfirmation.cshtml";
             public readonly string CreateList = "~/Views/Coordinator/CreateList.cshtml";
@@ -666,6 +679,30 @@ namespace Stagio.Web.Controllers
 		{
 			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.RemoveStudentConfirmation);
 			RemoveStudentConfirmationOverride(callInfo);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void ChangeSmtpOptionsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult ChangeSmtpOptions()
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ChangeSmtpOptions);
+			ChangeSmtpOptionsOverride(callInfo);
+			return callInfo;
+		}
+
+		[NonAction]
+		partial void ChangeSmtpOptionsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string command, Stagio.Web.ViewModels.Coordinator.SmtpOption smtpOption);
+
+		[NonAction]
+		public override System.Web.Mvc.ActionResult ChangeSmtpOptions(string command, Stagio.Web.ViewModels.Coordinator.SmtpOption smtpOption)
+		{
+			var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ChangeSmtpOptions);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "command", command);
+			ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "smtpOption", smtpOption);
+			ChangeSmtpOptionsOverride(callInfo, command, smtpOption);
 			return callInfo;
 		}
 

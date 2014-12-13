@@ -160,6 +160,7 @@ namespace Stagio.Web.Controllers
                         var contactEnterprise = Mapper.Map<ContactEnterprise>(createViewModel);
                         contactEnterprise.UserName = contactEnterprise.Email;
                         contactEnterprise.Password = _accountService.HashPassword(contactEnterprise.Password);
+                        contactEnterprise.Active = true;
                         _contactEnterpriseRepository.Add(contactEnterprise);
                         string message = String.Format(ContactEntrepriseToCoordinator.CreateContactEnterprise, contactEnterprise.FirstName, contactEnterprise.LastName);
 
