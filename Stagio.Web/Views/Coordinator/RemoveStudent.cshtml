@@ -9,46 +9,46 @@
 
 @using (Html.BeginForm())
 {
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Matricule)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Remove)
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+    <table class="table newTable">
         <tr>
-            <td>
-                @Html.DisplayFor(model => item.Matricule)
+            <th>
+                @Html.DisplayNameFor(model => model.Matricule)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
 
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.LastName)
-            </td>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
 
-            <td>
-                @Html.DisplayFor(model => item.FirstName)
-            </td>
-            <td>
-                <input type="checkbox" name="idStudentsToRemove" value=@item.Id>
-
-            </td>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Remove)
+            </th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.Matricule)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.LastName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => item.FirstName)
+                </td>
+                <td>
+                    <input type="checkbox" name="idStudentsToRemove" value=@item.Id>
+
+                </td>
+            </tr>
+        }
+
+    </table>
 
 
     <div class="form-group">

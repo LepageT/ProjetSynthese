@@ -10,7 +10,7 @@
 
 <h2 id="createList-page">Liste des étudiants qui seront ajoutés</h2>
 
-<table class="table">
+<table class="table newTable">
     <tr>
         <th class="col-md-2">
             @Html.DisplayNameFor(model => model.Matricule)
@@ -24,13 +24,11 @@
         <th class="col-md-2">
             Retirer l'étudiant
         </th>
-       
-
-</tr>
+    </tr>
 
     @foreach (var item in Model)
     {
-        
+
         <tr>
             <td class="col-md-2">
                 @Html.DisplayFor(modelItem => item.Matricule)
@@ -55,9 +53,7 @@
 {
     @Html.ValidationSummary(true)
     <div class="panel-body">
-
-        <input id="createList-button" type="submit" value="Confirmer" />
-
+        <input id="createList-button" type="submit" value="Confirmer" class="btnMenu btnMenu-default" style="width:100px" />
     </div>
 }
 

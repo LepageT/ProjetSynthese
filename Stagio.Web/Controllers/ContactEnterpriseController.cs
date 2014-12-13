@@ -31,9 +31,9 @@ namespace Stagio.Web.Controllers
         private readonly IHttpContextService _httpContext;
         private readonly IEntityRepository<InvitationContactEnterprise> _invitationRepository;
         private readonly INotificationService _notificationService;
+        private readonly IEntityRepository<Interview> _interviewRepository;
 
-
-        public ContactEnterpriseController(IEntityRepository<ContactEnterprise> enterpriseRepository, IEntityRepository<Stage> stageRepository, IAccountService accountService, IMailler mailler, IEntityRepository<Apply> applyRepository, IEntityRepository<Student> studentRepository, IHttpContextService httpContext, IEntityRepository<InvitationContactEnterprise> invitationRepository, INotificationService notificationService)
+        public ContactEnterpriseController(IEntityRepository<ContactEnterprise> enterpriseRepository, IEntityRepository<Stage> stageRepository, IAccountService accountService, IMailler mailler, IEntityRepository<Apply> applyRepository, IEntityRepository<Student> studentRepository, IHttpContextService httpContext, IEntityRepository<InvitationContactEnterprise> invitationRepository, INotificationService notificationService, IEntityRepository<Interview> interviewRepository)
         {
             _contactEnterpriseRepository = enterpriseRepository;
             _accountService = accountService;
@@ -44,6 +44,7 @@ namespace Stagio.Web.Controllers
             _httpContext = httpContext;
             _invitationRepository = invitationRepository;
             _notificationService = notificationService;
+            _interviewRepository = interviewRepository;
         }
 
         // GET: Enterprise
@@ -95,7 +96,6 @@ namespace Stagio.Web.Controllers
                     ContactEntrepriseToCoordinator.CreateContactEnterpriseTitle, message);
                 _mailler.SendEmail(newContactEnterprise.Email, EmailAccountCreation.Subject, EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
 
-                //ADD NOTIFICATIONS: À la coordination et aux autres employés de l'entreprise.
                 this.Flash(FlashMessageResources.CreateAccountSuccess, FlashEnum.Success);
                 return RedirectToAction(MVC.ContactEnterprise.CreateConfirmation(newContactEnterprise.Id));
 
@@ -334,7 +334,6 @@ namespace Stagio.Web.Controllers
             return View(listStudentsApply);
         }
 
-
         public virtual ActionResult ListStage()
         {
             var user = _contactEnterpriseRepository.GetById(_httpContext.GetUserId());
@@ -344,8 +343,20 @@ namespace Stagio.Web.Controllers
             {
                 stages = stages.Where(x => x.CompanyName == user.EnterpriseName).Where(x => x.Status != StageStatus.Draft);
             }
+            foreach (var stage in stages)
+            {
+                var applies = _applyRepository.GetAll().Where(x => x.IdStage == stage.Id).ToList();
+                stage.NbApply = applies.Count();
+            }
 
             var listStages = Mapper.Map<IEnumerable<ViewModels.ContactEnterprise.ListStage>>(stages).ToList();
+            foreach (var listStage in listStages)
+            {
+                var interviews = _interviewRepository.GetAll().Where(x => x.StageId == listStage.Id && x.DateAcceptOffer != null).ToList();
+                listStage.nbStagiaireFind = interviews.Count();
+            }
+
+
             return View(listStages);
         }
 

@@ -10,7 +10,6 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/moment")
-   
 
     @RenderSection("SectionCss", required: false)
 
@@ -19,29 +18,28 @@
 
     <div class="navbar navbar-inverse navbar-static-top" role="navigation">
         <div class="container">
-            <div class="navbar-header">
+            <div class="navbar-header ">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-
                 @if (Request.IsAuthenticated && User.IsInRole(RoleName.Student))
                 {
-                    <div>@Html.ActionLink("Accueil", MVC.Student.Index(), new { @class = "navbar-brand", id = "home-link" })</div>
+                        <div>@Html.ActionLink("Stagio", MVC.Student.Index(), new { @class = "navbar-brand glyphicon glyphicon-bookmark", id = "home-link", @style = "font-weight: bold; font-size: 25px" })</div>
                 }
                 @if (Request.IsAuthenticated && User.IsInRole(RoleName.Coordinator))
                 {
-                    <div>@Html.ActionLink("Accueil", MVC.Coordinator.Index(), new { @class = "navbar-brand", id = "home-link" })</div>
+                        <div>@Html.ActionLink("Stagio", MVC.Coordinator.Index(), new { @class = "navbar-brand glyphicon glyphicon-bookmark", id = "home-link", @style = "font-weight: bold; font-size: 25px" })</div>
                 }
                 @if (Request.IsAuthenticated && User.IsInRole(RoleName.ContactEnterprise))
                 {
-                    <div>@Html.ActionLink("Accueil", MVC.ContactEnterprise.Index(), new { @class = "navbar-brand", id = "home-link" })</div>
+                        <div>@Html.ActionLink("Stagio", MVC.ContactEnterprise.Index(), new { @class = "navbar-brand glyphicon glyphicon-bookmark", id = "home-link", @style = "font-weight: bold; font-size: 25px" })</div>
                 }
                 @if (!Request.IsAuthenticated)
                 {
-                    <div>@Html.ActionLink("Accueil", MVC.Home.Index(), new { @class = "navbar-brand", id = "home-link" })</div>
+                        <div>@Html.ActionLink("Stagio", MVC.Home.Index(), new { @class = "navbar-brand glyphicon glyphicon-bookmark", id = "home-link", @style = "font-weight: bold; font-size: 25px" })</div>
                 }
             </div>
             <div class="navbar-collapse collapse">
@@ -62,13 +60,19 @@
             </div>
         </div>
         <hr />
+
         <footer>
-            <p style="color:#808080">© Stagio 2014 |    Martin Barbeau - Élise Carbonneau-Leclerc - Laurie Lavoie - Thomas Lepage</p>
+                <p style="color:#808080">© Stagio 2014 |    Martin Barbeau - Élise Carbonneau-Leclerc - Laurie Lavoie - Thomas Lepage</p>
         </footer>
-    </div>   
+            
+    </div>
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+
     @Flash.FlashMessage(TempData)
+
     @RenderSection("scripts", required: false)
 </body>
+
 </html>

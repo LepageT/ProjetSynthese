@@ -17,14 +17,15 @@
         @Html.ValidationMessage("loginError")
 
         @Html.ValidationMessageFor(model => model.Username)
-        @Html.TextBoxFor(model => model.Username, new { @class = "form-control", placeholder = "Identifiant", type = "username" })
+        @Html.TextBoxFor(model => model.Username, new { @class = "form-control", placeholder = "Identifiant", type = "username", style="width:280px"})
 
+        <br />
 
         @Html.ValidationMessageFor(model => model.Password)
-        @Html.TextBoxFor(model => model.Password, new { @class = "form-control", placeholder = "Mot de passe", type = "password" })
+        @Html.TextBoxFor(model => model.Password, new { @class = "form-control", placeholder = "Mot de passe", type = "password", style = "width:280px" })
 
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit" id="login-submit">Se connecter</button>
+        <button class="btn btn-lg btnLogin btn-block" type="submit" id="login-submit" style="width: 280px">Se connecter</button>
     }
 
 </div>

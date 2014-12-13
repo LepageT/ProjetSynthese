@@ -1,7 +1,6 @@
 ﻿
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
-using System;
 using System.Security.Claims;
 using System.Web;
 

@@ -21,7 +21,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Date, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control", @id="datetimepicker"} })
+                    @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @style="width:150px",@class = "form-control", @id="datetimepicker"} })
                     @Html.ValidationMessageFor(model => model.Date)
                 </div>
             </div>
@@ -45,7 +45,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.DateOffer, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.DateOffer, new { htmlAttributes = new { @class = "form-control", @id = "datetimepickerDateOffer" } })
+                    @Html.EditorFor(model => model.DateOffer, new { htmlAttributes = new { @style="width:100px",@class = "form-control", @id = "datetimepickerDateOffer" } })
                     @Html.ValidationMessageFor(model => model.DateOffer)
                 </div>
             </div>
@@ -59,7 +59,7 @@
                     }
                     else
                     {
-                        @Html.EditorFor(model => model.DateAcceptOffer, new { htmlAttributes = new { @class = "form-control", @id = "datetimepickerDateAcceptOffer" } })
+                        @Html.EditorFor(model => model.DateAcceptOffer, new { htmlAttributes = new { @style="width:100px",@class = "form-control", @id = "datetimepickerDateAcceptOffer" } })
                     @Html.ValidationMessageFor(model => model.DateAcceptOffer)
                     }
                    
@@ -70,7 +70,7 @@
     
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input id="edit-button" type="submit" value="Sauvegarder" class="btn btn-default" />
+                    <input id="edit-button" type="submit" value="Sauvegarder" class="btnMenu btnMenu-default" style="width:125px" />
                 </div>
             </div>
         </div>

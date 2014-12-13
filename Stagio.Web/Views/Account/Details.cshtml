@@ -44,6 +44,17 @@
             <dd>
                 @Html.DisplayFor(model => model.Telephone)
             </dd>
+            @if (Model.Poste != null)
+            {
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Poste)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Poste)
+                </dd>
+            }
 
             <dt>
                 @Html.DisplayNameFor(model => model.Email)
@@ -59,13 +70,14 @@
     @if (@User.IsInRole("Étudiant"))
     {
         <div>
-            @Html.ActionLink("Modifier le profil", MVC.Student.Edit(), new { id = "edit-Student" })
+            @Html.ActionLink("Modifier mon profil", MVC.Student.Edit(), new { id = "edit-Student", @class="btnMenu btnMenu-default", @style="width:150px" })
+
         </div>
     } 
     @if (@User.IsInRole("Contact entreprise"))
     {
         <div>
-            @Html.ActionLink("Modifier le profil", MVC.ContactEnterprise.Edit(), new { id = "edit-enterprise" })
+            @Html.ActionLink("Modifier mon profil", MVC.ContactEnterprise.Edit(), new { id = "edit-enterprise", @class="btnMenu btnMenu-default", @style="width:150px" })
         </div>
     }
     <p>

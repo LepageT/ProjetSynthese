@@ -17,7 +17,7 @@
             @Html.Label(Model.First().Matricule.ToString())
             @Html.Label(") ")
         </h4>
-    
+
     }
     else
     {
@@ -25,7 +25,7 @@
     }
 </div>
 
-<table class="table">
+<table class="table newTable">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.StageTitle)
@@ -50,6 +50,9 @@
         </th>
         <th>
             Détails de la candidature
+        </th>
+        <th>
+            Convention de stage
         </th>
     </tr>
 
@@ -105,7 +108,7 @@
                 {
                     @Html.ActionLink("Créer la convention de stage", MVC.StageAgreement.CreateConfirmation(item.Id), new { id = "create-stageAgreement" + item.Id })
                 }
-                
+
             </td>
         </tr>
     }

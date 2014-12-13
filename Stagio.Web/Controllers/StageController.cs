@@ -22,8 +22,10 @@ namespace Stagio.Web.Controllers
         private readonly IHttpContextService _httpContextService;
         private readonly IEntityRepository<Coordinator> _coordinatorRepository;
         private readonly IEntityRepository<Student> _studentRepository;
+        private readonly IEntityRepository<Apply> _applyRepository;
+        private readonly IEntityRepository<Interview> _interviewRepository;
 
-        public StageController(IEntityRepository<Stage> stageRepository, IHttpContextService httpContextService, IEntityRepository<ContactEnterprise> contactEnterpriseRepository, INotificationService notificationService, IEntityRepository<Coordinator> coordinatorRepository, IEntityRepository<Student> studentRepository)
+        public StageController(IEntityRepository<Stage> stageRepository, IHttpContextService httpContextService, IEntityRepository<ContactEnterprise> contactEnterpriseRepository, INotificationService notificationService, IEntityRepository<Coordinator> coordinatorRepository, IEntityRepository<Student> studentRepository, IEntityRepository<Apply> applyRepository, IEntityRepository<Interview> interviewRepository)
         {
             _stageRepository = stageRepository;
             _notificationService = notificationService;
@@ -31,6 +33,8 @@ namespace Stagio.Web.Controllers
             _httpContextService = httpContextService;
             _coordinatorRepository = coordinatorRepository;
             _studentRepository = studentRepository;
+            _applyRepository = applyRepository;
+            _interviewRepository = interviewRepository;
         }
 
         [Authorize(Roles = RoleName.Coordinator)]
@@ -38,20 +42,36 @@ namespace Stagio.Web.Controllers
         {
             var stages = _stageRepository.GetAll();
             var listAllStages = new ListAllStages();
-            var stagesNotStatus = stages.Where(stage => stage.Status == 0).ToList();
-            var stagesStatus = stages.Where(stage => stage.Status == StageStatus.Accepted).ToList();
-            var stagesRefusedByCoordinator = stages.Where(stage => stage.Status == StageStatus.Refused).ToList();
-            var stagesRemoveByContact = stages.Where(stage => stage.Status == StageStatus.Removed).ToList();
+            var listStages = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stages).ToList();
+
+            foreach (var listStage in listStages)
+            {
+                var applies = _applyRepository.GetAll().Where(x => x.IdStage == listStage.Id).ToList();
+                listStage.NbApply = applies.Count();
+            }
+
+            foreach (var listStage in listStages)
+            {
+                var interviews = _interviewRepository.GetAll().Where(x => x.StageId == listStage.Id && x.DateAcceptOffer != null).ToList();
+                listStage.NbrStagiaireFind = interviews.Count();
+            }
+
+            var stagesNotStatus = listStages.Where(stage => stage.Status == 0).ToList();
+            var stagesStatus = listStages.Where(stage => stage.Status == StageStatus.Accepted).ToList();
+            var stagesRefusedByCoordinator = listStages.Where(stage => stage.Status == StageStatus.Refused).ToList();
+            var stagesRemoveByContact = listStages.Where(stage => stage.Status == StageStatus.Removed).ToList();
 
             stagesNotStatus = stagesNotStatus.OrderBy(x => x.PublicationDate).ToList();
             stagesStatus = stagesStatus.OrderBy(x => x.PublicationDate).ToList();
             stagesRefusedByCoordinator = stagesRefusedByCoordinator.OrderBy(x => x.PublicationDate).ToList();
             stagesRemoveByContact = stagesRemoveByContact.OrderBy(x => x.PublicationDate).ToList();
 
-            listAllStages.ListNewStages = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesNotStatus).ToList();
-            listAllStages.ListStagesAccepted = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesStatus).ToList();
-            listAllStages.ListStagesRefused = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesRefusedByCoordinator).ToList();
-            listAllStages.ListStagesRemoved = Mapper.Map<IEnumerable<ViewModels.Stage.ListNewStages>>(stagesRemoveByContact).ToList();
+            listAllStages.ListNewStages = stagesNotStatus;
+            listAllStages.ListStagesAccepted =stagesStatus;
+            listAllStages.ListStagesRefused = stagesRefusedByCoordinator;
+            listAllStages.ListStagesRemoved = stagesRemoveByContact;
+
+        
 
             return View(listAllStages);
         }
@@ -91,8 +111,6 @@ namespace Stagio.Web.Controllers
             {
                 return View();
             }
-
-            
 
             if (command.Equals("Accepter"))
             {
