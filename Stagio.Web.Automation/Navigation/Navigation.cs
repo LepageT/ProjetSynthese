@@ -258,6 +258,14 @@ namespace Stagio.Web.Automation
                     MenuSelector.Select("Coordinator-student-menu", "remove-student");
                 }
             }
+
+            public class ChangeSmtpOptions
+            {
+                public static void Select()
+                {
+                    MenuSelector.Select("gestion-menu", "SmtpOptions");
+                }
+            }
         }
 
         public class AllUsers

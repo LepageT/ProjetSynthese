@@ -328,6 +328,7 @@
     <Compile Include="ViewModels\Account\Details.cs" />
     <Compile Include="ViewModels\Coordinator\RemoveStudent.cs" />
     <Compile Include="ViewModels\Coordinator\InviteContactEnterprise.cs" />
+    <Compile Include="ViewModels\Coordinator\SmtpOption.cs" />
     <Compile Include="ViewModels\StageAgreement\EditStageAgreement.cs" />
     <Compile Include="ViewModels\Apply\StudentApply.cs" />
     <Compile Include="ViewModels\ContactEnterprise\AcceptApply.cs" />
@@ -534,6 +535,7 @@
     <Content Include="Views\Coordinator\BlockWebsiteAccess.cshtml" />
     <Content Include="Views\Coordinator\InviteOneContactEnterprise.cshtml" />
     <Content Include="Views\Coordinator\InviteOneContactEnterpriseConfirmation.cshtml" />
+    <Content Include="Views\Coordinator\ChangeSMTPOptions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt.hooks.t4" />

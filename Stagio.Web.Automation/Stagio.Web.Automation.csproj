@@ -82,6 +82,7 @@
     <Compile Include="PageObjects\ContactEnterprise\StudentApplyContactEnterprisePage.cs" />
     <Compile Include="PageObjects\Coordinator\AddStudentsCoordinatorPage.cs" />
     <Compile Include="PageObjects\Coordinator\BlockWebsiteAccessCoordinatorPage.cs" />
+    <Compile Include="PageObjects\Coordinator\ChangeSMTPOptionsPage.cs" />
     <Compile Include="PageObjects\Coordinator\ChangeStageApplyDatesCoordinatorPage.cs" />
     <Compile Include="PageObjects\Coordinator\CreateCoordinatorPage.cs" />
     <Compile Include="PageObjects\Coordinator\CreateListStudentsCoordinatorPage.cs" />

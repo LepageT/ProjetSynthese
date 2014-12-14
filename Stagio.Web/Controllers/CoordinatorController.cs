@@ -21,6 +21,9 @@ namespace Stagio.Web.Controllers
     [Authorize(Roles = RoleName.Coordinator)]
     public partial class CoordinatorController : Controller
     {
+        private const string SERVER = "jenkinssmtp.cegep-ste-foy.qc.ca";
+        private const int SMTP_PORT = 25;
+
         private readonly IAccountService _accountService;
         private readonly IEntityRepository<ContactEnterprise> _enterpriseContactRepository;
         private readonly IEntityRepository<Coordinator> _coordinatorRepository;
@@ -761,6 +764,65 @@ namespace Stagio.Web.Controllers
         public virtual ActionResult RemoveStudentConfirmation()
         {
             return View();
+        }
+
+        public virtual ActionResult ChangeSmtpOptions()
+        {
+            var misc = _miscRepository.GetAll().FirstOrDefault();
+            if (misc == null)
+            {
+                return View();
+            }
+
+            var miscViewModel = Mapper.Map<ViewModels.Coordinator.SmtpOption>(misc);
+            return View(miscViewModel);
+        }
+
+        [HttpPost]
+        public virtual ActionResult ChangeSmtpOptions(String command, SmtpOption smtpOption)
+        {
+            bool isMiscNull = false;
+            if (ModelState.IsValid)
+            {
+                var misc = _miscRepository.GetAll().FirstOrDefault();
+                if (misc == null)
+                {
+                    misc = new Misc();
+                    isMiscNull = true;
+                }
+                if (command.Equals(CoordinatorResources.SaveNewSmtpOptions))
+                {
+                        misc.SmtpServer = smtpOption.SmtpServer;
+
+                        misc.SmtpPort = smtpOption.SmtpPort;
+                    
+                        misc.SmtpUsername = smtpOption.SmtpUsername;
+                    
+                        misc.SmtpPassword = smtpOption.SmtpPassword;
+                }
+                else if (command.Equals(CoordinatorResources.DefaultSmtpOptions))
+                {
+                    misc.SmtpServer = SERVER;
+                    misc.SmtpPort = SMTP_PORT;
+                    misc.SmtpUsername = null;
+                    misc.SmtpPassword = null;
+                }
+                
+
+                if (isMiscNull)
+                {
+                    _miscRepository.Add(misc);
+                }
+                else
+                {
+                    _miscRepository.Update(misc);
+                }
+                this.Flash(FlashMessageResources.EditSuccess, FlashEnum.Success);
+                _mailler.SetNewSmtpOptions(misc, smtpOption.TestEmail);
+                return RedirectToAction(MVC.Coordinator.Index());
+            }
+            this.Flash(FlashMessageResources.ErrorsOnPage, FlashEnum.Error);
+            return View(smtpOption);
         }
     }
 }

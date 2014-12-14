@@ -120,11 +120,17 @@
   <data name="CoordinatorUseSameEmail" xml:space="preserve">
     <value>Un autre coordonnateur utilise le même courriel. Veuillez en utiliser un autre.</value>
   </data>
+  <data name="DefaultSmtpOptions" xml:space="preserve">
+    <value>Retour vers les options par défaults</value>
+  </data>
   <data name="EndDateLowerThanStartDate" xml:space="preserve">
     <value>La date de fin doit être plus grande que la date de début</value>
   </data>
   <data name="FilesCanNotBeDownload" xml:space="preserve">
     <value>Un ou des fichiers ne peuvent pas être téléchargés</value>
+  </data>
+  <data name="SaveNewSmtpOptions" xml:space="preserve">
+    <value>Sauvegarder les nouvelles options</value>
   </data>
   <data name="StartDateLowerThanNow" xml:space="preserve">
     <value>La date de début doit être égale ou plus grande à celle d'aujourd'hui</value>
