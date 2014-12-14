@@ -762,7 +762,9 @@ namespace Stagio.TestUtilities.Database
                 var miscForTest = new Misc()
                 {
                     StartApplyDate = String.Format("{0:yyyy-MM-dd}", DateTime.Today.AddDays(-2)),
-                    EndApplyDate = String.Format("{0:yyyy-MM-dd}", DateTime.Today.AddDays(5))
+                    EndApplyDate = String.Format("{0:yyyy-MM-dd}", DateTime.Today.AddDays(5)),
+                    SmtpServer = "jenkinssmtp.cegep-ste-foy.qc.ca",
+                    SmtpPort = 25
                 };
                 return miscForTest;
             }
