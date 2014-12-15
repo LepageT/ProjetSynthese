@@ -792,13 +792,26 @@ namespace Stagio.Web.Controllers
                 }
                 if (command.Equals(CoordinatorResources.SaveNewSmtpOptions))
                 {
+                    if(smtpOption.SmtpServer != null)
+                    {
                         misc.SmtpServer = smtpOption.SmtpServer;
+                    }
 
+                    if(smtpOption.SmtpPort > 0)
+                    {
                         misc.SmtpPort = smtpOption.SmtpPort;
-                    
+                    }
+
+                    if(smtpOption.SmtpUsername != null)
+                    {
                         misc.SmtpUsername = smtpOption.SmtpUsername;
-                    
+                    }
+
+                    if(smtpOption.SmtpPassword != null)
+                    {
                         misc.SmtpPassword = smtpOption.SmtpPassword;
+                    }  
+                                        
                 }
                 else if (command.Equals(CoordinatorResources.DefaultSmtpOptions))
                 {

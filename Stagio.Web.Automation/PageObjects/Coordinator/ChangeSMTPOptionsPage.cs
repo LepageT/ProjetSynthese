@@ -29,5 +29,12 @@ namespace Stagio.Web.Automation.PageObjects.Coordinator
             Driver.Instance.FindElement(By.Id("SaveSmtpOptions")).Click();
         }
 
+        public static void ReturnToDefault()
+        {
+            Driver.Instance.FindElement(By.Id("SmtpUsername")).Clear();
+            Driver.Instance.FindElement(By.Id("SmtpPassword")).Clear();
+            Driver.Instance.FindElement(By.Id("DefaultSmtpOptions")).Click();
+        }
+
     }
 }

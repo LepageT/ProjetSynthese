@@ -1,4 +1,5 @@
 ﻿using System.Net.Mail;
+using Microsoft.Ajax.Utilities;
 using Stagio.Domain.Entities;
 
 
@@ -37,7 +38,7 @@ namespace Stagio.Web.Services
         {
             try
             {
-                MailMessage mail = new MailMessage("noreply@" + SERVER, destination);
+                MailMessage mail = new MailMessage("noreply@" + client.Host, destination);
                 mail.IsBodyHtml = true;
                 mail.Subject = subject;
                 mail.Body = content;
@@ -54,8 +55,8 @@ namespace Stagio.Web.Services
 
         public void SetNewSmtpOptions(Misc misc, string destination)
         {
-            const string TEST_SUBJECT = "Stagio, test new smtp options";
-            const string TEST_CONTENT = "Testing new smtp options for the stagio website.";
+            const string TEST_SUBJECT = "Stagio, essaie des options Smtp";
+            const string TEST_CONTENT = "Essaie des nouvelles options Smtp du site Stagio.";
             client.Host = misc.SmtpServer;
             client.Port = misc.SmtpPort;
 
@@ -71,7 +72,7 @@ namespace Stagio.Web.Services
             }
             
             //test new options
-            if (destination != null || destination != "")
+            if (!destination.IsNullOrWhiteSpace())
             {
                 SendEmail(destination, TEST_SUBJECT, TEST_CONTENT);
             }
