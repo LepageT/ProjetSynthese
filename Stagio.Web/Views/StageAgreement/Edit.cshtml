@@ -16,9 +16,16 @@
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.Id)
         @Html.HiddenFor(model => model.IdStage)
-         @Html.HiddenFor(model => model.IdStudentSigned)
-         @Html.HiddenFor(model => model.IdCoordinatorSigned)
-         @Html.HiddenFor(model => model.IdContactEnterpriseSigned)
+        @Html.HiddenFor(model => model.IdStudentSigned)
+        @Html.HiddenFor(model => model.IdCoordinatorSigned)
+        @Html.HiddenFor(model => model.IdContactEnterpriseSigned)
+        @Html.HiddenFor(model => model.ContactEnterpriseHasSigned)
+        @Html.HiddenFor(model => model.CoordinatorHasSigned)
+        @Html.HiddenFor(model => model.StudentHasSigned)
+        @Html.HiddenFor(model => model.DateContactEnterpriseSigned)
+        @Html.HiddenFor(model => model.DateCoordinatorSigned)
+        @Html.HiddenFor(model => model.DateStudentSigned)
+     
         <div class="form-horizontal">
             <h2>Convention de stage</h2>
             <h4>Engagement</h4>
