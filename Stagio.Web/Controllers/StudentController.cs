@@ -87,7 +87,10 @@ namespace Stagio.Web.Controllers
             student.Active = true;
             student.Password = _accountService.HashPassword(createStudentViewModel.Password);
             student.UserName = createStudentViewModel.Matricule.ToString();
-
+            student.Roles = new List<UserRole>()
+            {
+                new UserRole() {RoleName = RoleName.Student}
+            };
             _studentRepository.Update(student);
             string message = String.Format(StudentToCoordinator.CreateStudent, student.FirstName, student.LastName);
 
