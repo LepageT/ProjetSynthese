@@ -19,7 +19,7 @@ namespace Stagio.Web.ViewModels.Coordinator
         [DataType(DataType.Password)]
         public string SmtpPassword { get; set; }
 
-        [DisplayName("Compte Mail pour test")]
+        [DisplayName("Courriel pour test")]
         public string TestEmail { get; set; }
     }
 }
