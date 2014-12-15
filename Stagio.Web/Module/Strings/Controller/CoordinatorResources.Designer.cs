@@ -70,7 +70,7 @@ namespace Stagio.Web.Module.Strings.Controller {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Retour vers les options par défaults.
+        ///   Looks up a localized string similar to Retour vers les options par défaut.
         /// </summary>
         internal static string DefaultSmtpOptions {
             get {

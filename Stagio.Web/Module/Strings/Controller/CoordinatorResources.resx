@@ -121,7 +121,7 @@
     <value>Un autre coordonnateur utilise le même courriel. Veuillez en utiliser un autre.</value>
   </data>
   <data name="DefaultSmtpOptions" xml:space="preserve">
-    <value>Retour vers les options par défaults</value>
+    <value>Retour vers les options par défaut</value>
   </data>
   <data name="EndDateLowerThanStartDate" xml:space="preserve">
     <value>La date de fin doit être plus grande que la date de début</value>
