@@ -82,6 +82,9 @@
             <td class="col-md-2">
                 @Html.DisplayFor(modelItem => item.StudentLastName)
             </td>
+            <td>
+                @Html.ActionLink("Signer", MVC.StageAgreement.Edit(item.Id))
+            </td>
             <td style="border-left: 0px"></td>
         </tr>
     }
