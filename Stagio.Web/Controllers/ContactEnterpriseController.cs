@@ -149,29 +149,33 @@ namespace Stagio.Web.Controllers
                 return View(createViewModel);
             }
 
-                var invitation = _invitationRepository.GetById(createViewModel.InvitationId);
-                if (invitation != null && invitation.Email == createViewModel.Email)
-                {
-                    
-                        invitation.Used = true;
+            var invitation = _invitationRepository.GetById(createViewModel.InvitationId);
+            if (invitation != null && invitation.Email == createViewModel.Email)
+            {
 
-                        _invitationRepository.Update(invitation);
+                invitation.Used = true;
 
-                        var contactEnterprise = Mapper.Map<ContactEnterprise>(createViewModel);
-                        contactEnterprise.UserName = contactEnterprise.Email;
-                        contactEnterprise.Password = _accountService.HashPassword(contactEnterprise.Password);
-                        contactEnterprise.Active = true;
-                        _contactEnterpriseRepository.Add(contactEnterprise);
-                        string message = String.Format(ContactEntrepriseToCoordinator.CreateContactEnterprise, contactEnterprise.FirstName, contactEnterprise.LastName);
+                _invitationRepository.Update(invitation);
 
-                        _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.CreateContactEnterpriseTitle, message);
-                        _mailler.SendEmail(createViewModel.Email, EmailAccountCreation.Subject,
-                            EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
+                var contactEnterprise = Mapper.Map<ContactEnterprise>(createViewModel);
+                contactEnterprise.UserName = contactEnterprise.Email;
+                contactEnterprise.Password = _accountService.HashPassword(contactEnterprise.Password);
+                contactEnterprise.Active = true;
+                contactEnterprise.Roles = new List<UserRole>()
+                    {
+                        new UserRole() {RoleName = RoleName.ContactEnterprise}
+                    };
+                _contactEnterpriseRepository.Add(contactEnterprise);
+                string message = String.Format(ContactEntrepriseToCoordinator.CreateContactEnterprise, contactEnterprise.FirstName, contactEnterprise.LastName);
 
-                        this.Flash(FlashMessageResources.ReactivateSuccess, FlashEnum.Success);
-                        return RedirectToAction(MVC.ContactEnterprise.CreateConfirmation(contactEnterprise.Id));
-                    
-                }
+                _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.CreateContactEnterpriseTitle, message);
+                _mailler.SendEmail(createViewModel.Email, EmailAccountCreation.Subject,
+                    EmailAccountCreation.Message + EmailAccountCreation.EmailLink);
+
+                this.Flash(FlashMessageResources.ReactivateSuccess, FlashEnum.Success);
+                return RedirectToAction(MVC.ContactEnterprise.CreateConfirmation(contactEnterprise.Id));
+
+            }
 
             return HttpNotFound();
 
@@ -208,24 +212,24 @@ namespace Stagio.Web.Controllers
                 return View(MVC.ContactEnterprise.Views.ViewNames.DraftConfirmation);
             }
             else
-        {
-
-            if (!ModelState.IsValid)
             {
+
+                if (!ModelState.IsValid)
+                {
                     this.Flash(FlashMessageResources.ErrorsOnPage, FlashEnum.Error);
-                return View(createdStage);
+                    return View(createdStage);
+                }
+
+                var stage = Mapper.Map<Stage>(createdStage);
+                stage.PublicationDate = DateTime.Now.ToString();
+
+                _stageRepository.Add(stage);
+                this.Flash("Stage en attente d'approbation", FlashEnum.Info);
+                string message = String.Format(ContactEntrepriseToCoordinator.NewStageMessage, stage.CompanyName, stage.Id, stage.StageTitle);
+                _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.NewStageTitle, message);
+
+                return RedirectToAction(MVC.ContactEnterprise.CreateStageSucceed());
             }
-
-            var stage = Mapper.Map<Stage>(createdStage);
-            stage.PublicationDate = DateTime.Now.ToString();
-
-            _stageRepository.Add(stage);
-            this.Flash("Stage en attente d'approbation", FlashEnum.Info);
-            string message = String.Format(ContactEntrepriseToCoordinator.NewStageMessage, stage.CompanyName, stage.Id, stage.StageTitle);    
-            _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.NewStageTitle, message);
-            
-            return RedirectToAction(MVC.ContactEnterprise.CreateStageSucceed());
-        }
         }
 
         [Authorize(Roles = RoleName.ContactEnterprise)]
@@ -317,7 +321,7 @@ namespace Stagio.Web.Controllers
             }
 
             var students = _studentRepository.GetAll().ToList();
-//TODO A vérifier!!!!!
+            //TODO A vérifier!!!!!
             var listStudents = (from apply in applies from student in students where student.Id == apply.IdStudent select student).ToList();
 
             var listStudentsApply = Mapper.Map<IEnumerable<ViewModels.Apply.StudentApply>>(applies).ToList();
@@ -326,10 +330,10 @@ namespace Stagio.Web.Controllers
             {
                 foreach (var listStudent in listStudents.Where(listStudent => listStudent.Id == studentApply.IdStudent))
                 {
-                        studentApply.FirstName = listStudent.FirstName;
-                        studentApply.LastName = listStudent.LastName;
-                    }
+                    studentApply.FirstName = listStudent.FirstName;
+                    studentApply.LastName = listStudent.LastName;
                 }
+            }
 
             return View(listStudentsApply);
         }
@@ -402,7 +406,7 @@ namespace Stagio.Web.Controllers
         [HttpPost, ActionName("DetailsStudentApply")]
         public virtual ActionResult DetailsStudentApplyPost(string command, int id)
         {
-            
+
             var apply = _applyRepository.GetById(id);
             if (apply == null)
             {
@@ -410,14 +414,14 @@ namespace Stagio.Web.Controllers
             }
             var stage = _stageRepository.GetById(apply.IdStage);
             var student = _studentRepository.GetById(apply.IdStudent);
-           
+
             //Change status
             if (command.Equals(ContactEnterpriseResources.Interested))
             {
                 apply.Status = StatusApply.Accepted;
                 _applyRepository.Update(apply);
                 var acceptApply =
-                    Mapper.Map<ViewModels.ContactEnterprise.AcceptApply>(_studentRepository.GetById(apply.IdStudent));   
+                    Mapper.Map<ViewModels.ContactEnterprise.AcceptApply>(_studentRepository.GetById(apply.IdStudent));
                 string message = String.Format(ContactEntrepriseToCoordinator.InterestedBy, stage.CompanyName, student.FirstName, student.LastName);
 
                 _notificationService.SendNotificationToAllCoordinator(
@@ -449,7 +453,7 @@ namespace Stagio.Web.Controllers
             var readFile = new ReadFile();
             try
             {
-               return File(readFile.Download(file), System.Net.Mime.MediaTypeNames.Application.Octet, file);
+                return File(readFile.Download(file), System.Net.Mime.MediaTypeNames.Application.Octet, file);
             }
             catch (Exception)
             {
@@ -472,7 +476,7 @@ namespace Stagio.Web.Controllers
                 return RedirectToAction(MVC.ContactEnterprise.ListStage());
             }
             string message = String.Format(ContactEntrepriseToCoordinator.RemoveStage, stage.CompanyName, idStage, stage.StageTitle);
-            
+
             _notificationService.SendNotificationToAllCoordinator(ContactEntrepriseToCoordinator.RemoveStageTitle, message);
 
             message = String.Format(ContactEnterpriseToStudent.RemoveStage, stage.CompanyName, stage.StageTitle);
